@@ -8,24 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QAccessibleBridge
+$addRequests
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$beginClassFrom=
 
-   METHOD delete
-   METHOD setRootObject
-   METHOD notifyAccessibilityUpdate
+$addMethods
 
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

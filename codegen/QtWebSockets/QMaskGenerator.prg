@@ -8,15 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QMaskGenerator INHERIT QObject
+$addRequests
 
-   METHOD delete
-   METHOD seed
-   METHOD nextMask
+$beginClassFrom=QObject
 
-   DESTRUCTOR destroyObject
+$addMethods
 
-END CLASS
+$endClass
 
 $destructor
 

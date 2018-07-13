@@ -8,91 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QCOMPLETER
-REQUEST QSIZE
-REQUEST QVARIANT
-REQUEST QABSTRACTITEMDELEGATE
-REQUEST QICON
-REQUEST QLINEEDIT
-REQUEST QABSTRACTITEMMODEL
-REQUEST QMODELINDEX
-REQUEST QVALIDATOR
-REQUEST QABSTRACTITEMVIEW
-#endif
+$addRequests
 
-CLASS QComboBox INHERIT QWidget
+$beginClassFrom=QWidget
 
-   METHOD new
-   METHOD delete
-   METHOD addItem
-   METHOD addItems
-   METHOD completer
-   METHOD count
-   METHOD currentIndex
-   METHOD currentText
-   METHOD duplicatesEnabled
-   METHOD findData
-   METHOD findText
-   METHOD hasFrame
-   METHOD hidePopup
-   METHOD iconSize
-   METHOD insertItem
-   METHOD insertItems
-   METHOD insertPolicy
-   METHOD insertSeparator
-   METHOD isEditable
-   METHOD itemData
-   METHOD itemDelegate
-   METHOD itemIcon
-   METHOD itemText
-   METHOD lineEdit
-   METHOD maxCount
-   METHOD maxVisibleItems
-   METHOD minimumContentsLength
-   METHOD model
-   METHOD modelColumn
-   METHOD removeItem
-   METHOD rootModelIndex
-   METHOD setCompleter
-   METHOD setDuplicatesEnabled
-   METHOD setEditable
-   METHOD setFrame
-   METHOD setIconSize
-   METHOD setInsertPolicy
-   METHOD setItemData
-   METHOD setItemDelegate
-   METHOD setItemIcon
-   METHOD setItemText
-   METHOD setLineEdit
-   METHOD setMaxCount
-   METHOD setMaxVisibleItems
-   METHOD setMinimumContentsLength
-   METHOD setModel
-   METHOD setModelColumn
-   METHOD setRootModelIndex
-   METHOD setSizeAdjustPolicy
-   METHOD setValidator
-   METHOD setView
-   METHOD showPopup
-   METHOD sizeAdjustPolicy
-   METHOD validator
-   METHOD view
-   METHOD event
-   METHOD minimumSizeHint
-   METHOD sizeHint
-   METHOD clear
-   METHOD clearEditText
-   METHOD setCurrentIndex
-   METHOD setEditText
+$addMethods
 
-   METHOD onActivated1
-   METHOD onActivated2
-   METHOD onCurrentIndexChanged1
-   METHOD onCurrentIndexChanged2
-   METHOD onEditTextChanged
-   METHOD onHighlighted1
-   METHOD onHighlighted2
+$addSignals
 
    // for compatibility
    METHOD onActivated            // = onActivated1
@@ -102,9 +24,7 @@ CLASS QComboBox INHERIT QWidget
    METHOD onHighlighted          // = onHighlighted1
    METHOD onHighlightedC         // = onHighlighted2
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

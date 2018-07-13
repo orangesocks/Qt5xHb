@@ -8,45 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QAbstractBarSeries INHERIT QAbstractSeries
+$addRequests
 
-%%   METHOD new
-   METHOD delete
+$beginClassFrom=QAbstractSeries
 
-   METHOD append
-   METHOD barSets
-   METHOD barWidth
-   METHOD clear
-   METHOD count
-   METHOD insert
-   METHOD isLabelsVisible
-   METHOD labelsAngle
-   METHOD labelsFormat
-   METHOD labelsPosition
-   METHOD remove
-   METHOD setBarWidth
-   METHOD setLabelsAngle
-   METHOD setLabelsFormat
-   METHOD setLabelsPosition
-   METHOD setLabelsVisible
-   METHOD take
+$addMethods
 
-   METHOD onBarsetsAdded
-   METHOD onBarsetsRemoved
-   METHOD onClicked
-   METHOD onCountChanged
-   METHOD onDoubleClicked
-   METHOD onHovered
-   METHOD onLabelsAngleChanged
-   METHOD onLabelsFormatChanged
-   METHOD onLabelsPositionChanged
-   METHOD onLabelsVisibleChanged
-   METHOD onPressed
-   METHOD onReleased
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

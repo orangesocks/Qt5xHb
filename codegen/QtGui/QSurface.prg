@@ -8,33 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QSURFACEFORMAT
-%% REQUEST QPLATFORMSURFACE
-REQUEST QSIZE
-#endif
+$addRequests
 
-CLASS QSurface
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD delete
-   METHOD surfaceClass
-   METHOD format
-%%   METHOD surfaceHandle
-   METHOD surfaceType
-   METHOD size
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

@@ -8,20 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QWIDGET
-#endif
+$addRequests
 
-CLASS QFocusFrame INHERIT QWidget
+$beginClassFrom=QWidget
 
-   METHOD new
-   METHOD delete
-   METHOD setWidget
-   METHOD widget
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

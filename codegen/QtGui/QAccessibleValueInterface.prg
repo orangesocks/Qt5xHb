@@ -8,31 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QVARIANT
-#endif
+$addRequests
 
-CLASS QAccessibleValueInterface
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD delete
-   METHOD currentValue
-   METHOD setCurrentValue
-   METHOD maximumValue
-   METHOD minimumValue
-   METHOD minimumStepSize
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

@@ -8,28 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QPOINT
-REQUEST QPOINTF
-#endif
+$addRequests
 
-CLASS QEnterEvent INHERIT QEvent
+$beginClassFrom=QEvent
 
-   METHOD new
-   METHOD delete
-   METHOD pos
-   METHOD globalPos
-   METHOD x
-   METHOD y
-   METHOD globalX
-   METHOD globalY
-   METHOD localPos
-   METHOD windowPos
-   METHOD screenPos
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

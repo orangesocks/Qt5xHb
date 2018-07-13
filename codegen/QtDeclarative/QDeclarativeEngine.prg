@@ -8,49 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QURL
-REQUEST QDECLARATIVEIMAGEPROVIDER
-REQUEST QNETWORKACCESSMANAGER
-REQUEST QDECLARATIVENETWORKACCESSMANAGERFACTORY
-REQUEST QDECLARATIVECONTEXT
-#endif
+$addRequests
 
-CLASS QDeclarativeEngine INHERIT QObject
+$beginClassFrom=QObject
 
-   METHOD new
-   METHOD delete
-   METHOD addImageProvider
-   METHOD addImportPath
-   METHOD addPluginPath
-   METHOD baseUrl
-   METHOD clearComponentCache
-   METHOD imageProvider
-   METHOD importPathList
-   METHOD networkAccessManager
-   METHOD networkAccessManagerFactory
-   METHOD offlineStoragePath
-   METHOD outputWarningsToStandardError
-   METHOD pluginPathList
-   METHOD removeImageProvider
-   METHOD rootContext
-   METHOD setBaseUrl
-   METHOD setImportPathList
-   METHOD setNetworkAccessManagerFactory
-   METHOD setOfflineStoragePath
-   METHOD setOutputWarningsToStandardError
-   METHOD setPluginPathList
-   METHOD contextForObject
-   METHOD objectOwnership
-   METHOD setContextForObject
-   METHOD setObjectOwnership
+$addMethods
 
-   METHOD onQuit
-   METHOD onWarnings
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

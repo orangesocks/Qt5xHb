@@ -8,53 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QLegend INHERIT QGraphicsWidget
+$addRequests
 
-%%   METHOD new
-   METHOD delete
+$beginClassFrom=QGraphicsWidget
 
-   METHOD alignment
-   METHOD attachToChart
-   METHOD borderColor
-   METHOD brush
-   METHOD color
-   METHOD detachFromChart
-   METHOD font
-   METHOD isAttachedToChart
-   METHOD isBackgroundVisible
-   METHOD labelBrush
-   METHOD labelColor
-   METHOD markers
-   METHOD markerShape
-   METHOD paint
-   METHOD pen
-   METHOD reverseMarkers
-   METHOD setAlignment
-   METHOD setBackgroundVisible
-   METHOD setBorderColor
-   METHOD setBrush
-   METHOD setColor
-   METHOD setFont
-   METHOD setLabelBrush
-   METHOD setLabelColor
-   METHOD setMarkerShape
-   METHOD setPen
-   METHOD setReverseMarkers
-   METHOD setShowToolTips
-   METHOD showToolTips
+$addMethods
 
-   METHOD onBackgroundVisibleChanged
-   METHOD onBorderColorChanged
-   METHOD onColorChanged
-   METHOD onFontChanged
-   METHOD onLabelColorChanged
-   METHOD onMarkerShapeChanged
-   METHOD onReverseMarkersChanged
-   METHOD onShowToolTipsChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

@@ -8,39 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-%%REQUEST UCHAR // TODO: corrigir
-REQUEST QLOCALE
-#endif
+$addRequests
 
-CLASS QResource
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD new
-   METHOD delete
-   METHOD absoluteFilePath
-   METHOD data
-   METHOD fileName
-   METHOD isCompressed
-   METHOD isValid
-   METHOD locale
-   METHOD setFileName
-   METHOD setLocale
-   METHOD size
-   METHOD registerResource
-   METHOD unregisterResource
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

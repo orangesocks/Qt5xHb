@@ -8,58 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QQUICKITEM
-REQUEST QCOLOR
-REQUEST QSGTEXTURE
-REQUEST QIMAGE
-REQUEST QQMLINCUBATIONCONTROLLER
-REQUEST QOPENGLCONTEXT
-REQUEST QOPENGLFRAMEBUFFEROBJECT
-REQUEST QSIZE
-REQUEST QACCESSIBLEINTERFACE
-#endif
+$addRequests
 
-CLASS QQuickWindow INHERIT QWindow
+$beginClassFrom=QWindow
 
-   METHOD new
-   METHOD delete
-   METHOD activeFocusItem
-   METHOD clearBeforeRendering
-   METHOD color
-   METHOD contentItem
-   METHOD createTextureFromId
-   METHOD createTextureFromImage
-   METHOD grabWindow
-   METHOD incubationController
-   METHOD isPersistentOpenGLContext
-   METHOD isPersistentSceneGraph
-   METHOD mouseGrabberItem
-   METHOD openglContext
-   METHOD renderTarget
-   METHOD renderTargetId
-   METHOD renderTargetSize
-   METHOD sendEvent
-   METHOD setClearBeforeRendering
-   METHOD setColor
-   METHOD setPersistentOpenGLContext
-   METHOD setPersistentSceneGraph
-   METHOD setRenderTarget
-   METHOD accessibleRoot
-   METHOD releaseResources
-   METHOD update
+$addMethods
 
-   METHOD onAfterRendering
-   METHOD onBeforeRendering
-   METHOD onBeforeSynchronizing
-   METHOD onColorChanged
-   METHOD onFrameSwapped
-   METHOD onSceneGraphInitialized
-   METHOD onSceneGraphInvalidated
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

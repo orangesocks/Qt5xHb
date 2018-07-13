@@ -8,20 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QAudioProbe INHERIT QObject
+$addRequests
 
-   METHOD new
-   METHOD delete
+$beginClassFrom=QObject
 
-   METHOD isActive
-   METHOD setSource
+$addMethods
 
-   METHOD onAudioBufferProbed
-   METHOD onFlush
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

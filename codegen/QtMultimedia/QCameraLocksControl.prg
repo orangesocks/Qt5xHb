@@ -8,21 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QCameraLocksControl INHERIT QMediaControl
+$addRequests
 
-%%   METHOD new
-   METHOD delete
+$beginClassFrom=QMediaControl
 
-   METHOD lockStatus
-   METHOD searchAndLock
-   METHOD supportedLocks
-   METHOD unlock
+$addMethods
 
-   METHOD onLockStatusChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

@@ -8,38 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QMimeType
+$addRequests
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$beginClassFrom=
 
-   METHOD new
-   METHOD delete
-   METHOD swap
-   METHOD isValid
-   METHOD isDefault
-   METHOD name
-   METHOD comment
-   METHOD genericIconName
-   METHOD iconName
-   METHOD globPatterns
-   METHOD parentMimeTypes
-   METHOD allAncestors
-   METHOD aliases
-   METHOD suffixes
-   METHOD preferredSuffix
-   METHOD inherits
-   METHOD filterString
+$addMethods
 
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

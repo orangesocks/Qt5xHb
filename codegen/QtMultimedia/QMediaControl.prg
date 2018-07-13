@@ -8,14 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QMediaControl INHERIT QObject
+$addRequests
 
-%%   METHOD new
-   METHOD delete
+$beginClassFrom=QObject
 
-   DESTRUCTOR destroyObject
+$addMethods
 
-END CLASS
+$endClass
 
 $destructor
 

@@ -8,52 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QSIZE
-REQUEST QVARIANT
-REQUEST QBYTEARRAY
-REQUEST QRECT
-#endif
+$addRequests
 
-CLASS QVideoSurfaceFormat
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD new
-   METHOD delete
-
-   METHOD frameHeight
-   METHOD frameRate
-   METHOD frameSize
-   METHOD frameWidth
-   METHOD handleType
-   METHOD isValid
-   METHOD pixelAspectRatio
-   METHOD pixelFormat
-   METHOD property
-   METHOD propertyNames
-   METHOD scanLineDirection
-   METHOD setFrameRate
-   METHOD setFrameSize
-   METHOD setPixelAspectRatio
-   METHOD setProperty
-   METHOD setScanLineDirection
-   METHOD setViewport
-   METHOD setYCbCrColorSpace
-   METHOD sizeHint
-   METHOD viewport
-   METHOD yCbCrColorSpace
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

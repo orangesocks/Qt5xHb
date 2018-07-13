@@ -8,65 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QSQLDRIVER
-REQUEST QSQLERROR
-REQUEST QSQLRECORD
-REQUEST QSQLRESULT
-REQUEST QVARIANT
-#endif
+$addRequests
 
-CLASS QSqlQuery
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD new
-   METHOD delete
-
-   METHOD addBindValue
-   METHOD at
-   METHOD bindValue
-   METHOD boundValue
-   METHOD clear
-   METHOD driver
-   METHOD exec
-   METHOD execBatch
-   METHOD executedQuery
-   METHOD finish
-   METHOD first
-   METHOD isActive
-   METHOD isForwardOnly
-   METHOD isNull
-   METHOD isSelect
-   METHOD isValid
-   METHOD last
-   METHOD lastError
-   METHOD lastInsertId
-   METHOD lastQuery
-   METHOD next
-   METHOD nextResult
-   METHOD numericalPrecisionPolicy
-   METHOD numRowsAffected
-   METHOD prepare
-   METHOD previous
-   METHOD record
-   METHOD result
-   METHOD seek
-   METHOD setForwardOnly
-   METHOD setNumericalPrecisionPolicy
-   METHOD size
-   METHOD value
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

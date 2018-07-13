@@ -8,36 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QRECTF
-REQUEST QSIZE
-#endif
+$addRequests
 
-CLASS QSGTexture INHERIT QObject
+$beginClassFrom=QObject
 
-   METHOD delete
-   METHOD bind
-   METHOD convertToNormalizedSourceRect
-   METHOD filtering
-   METHOD hasAlphaChannel
-   METHOD hasMipmaps
-   METHOD horizontalWrapMode
-   METHOD isAtlasTexture
-   METHOD mipmapFiltering
-   METHOD normalizedTextureSubRect
-   METHOD removedFromAtlas
-   METHOD setFiltering
-   METHOD setHorizontalWrapMode
-   METHOD setMipmapFiltering
-   METHOD setVerticalWrapMode
-   METHOD textureId
-   METHOD textureSize
-   METHOD updateBindOptions
-   METHOD verticalWrapMode
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

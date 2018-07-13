@@ -8,29 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QBYTEARRAY
-#endif
+$addRequests
 
-CLASS QOpenGLShader INHERIT QObject
+$beginClassFrom=QObject
 
-   METHOD new
-   METHOD delete
-   METHOD shaderType
-   METHOD compileSourceCode1
-   METHOD compileSourceCode2
-   METHOD compileSourceCode3
-   METHOD compileSourceCode
-   METHOD compileSourceFile
-   METHOD sourceCode
-   METHOD isCompiled
-   METHOD log
-   METHOD shaderId
-   METHOD hasOpenGLShaders
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

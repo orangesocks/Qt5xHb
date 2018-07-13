@@ -8,21 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QCameraFlashControl INHERIT QMediaControl
+$addRequests
 
-%%   METHOD new
-   METHOD delete
+$beginClassFrom=QMediaControl
 
-   METHOD flashMode
-   METHOD isFlashModeSupported
-   METHOD isFlashReady
-   METHOD setFlashMode
+$addMethods
 
-   METHOD onFlashReady
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

@@ -8,17 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QMediaAvailabilityControl INHERIT QMediaControl
+$addRequests
 
-%%   METHOD new
-   METHOD delete
-   METHOD availability
+$beginClassFrom=QMediaControl
 
-   METHOD onAvailabilityChanged
+$addMethods
 
-   DESTRUCTOR destroyObject
+$addSignals
 
-END CLASS
+$endClass
 
 $destructor
 

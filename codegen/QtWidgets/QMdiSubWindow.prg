@@ -8,40 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QMDIAREA
-REQUEST QMENU
-REQUEST QWIDGET
-REQUEST QSIZE
-#endif
+$addRequests
 
-CLASS QMdiSubWindow INHERIT QWidget
+$beginClassFrom=QWidget
 
-   METHOD new
-   METHOD delete
-   METHOD isShaded
-   METHOD keyboardPageStep
-   METHOD keyboardSingleStep
-   METHOD mdiArea
-   METHOD setKeyboardPageStep
-   METHOD setKeyboardSingleStep
-   METHOD setOption
-   METHOD setSystemMenu
-   METHOD setWidget
-   METHOD systemMenu
-   METHOD testOption
-   METHOD widget
-   METHOD minimumSizeHint
-   METHOD sizeHint
-   METHOD showShaded
-   METHOD showSystemMenu
+$addMethods
 
-   METHOD onAboutToActivate
-   METHOD onWindowStateChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

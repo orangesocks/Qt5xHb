@@ -8,43 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QBLUETOOTHADDRESS
-#endif
+$addRequests
 
-CLASS QBluetoothSocket INHERIT QIODevice
+$beginClassFrom=QIODevice
 
-   METHOD new
-   METHOD delete
-   METHOD abort
-   METHOD close
-   METHOD isSequential
-   METHOD bytesAvailable
-   METHOD bytesToWrite
-   METHOD canReadLine
-   METHOD connectToService
-   METHOD disconnectFromService
-   METHOD localName
-   METHOD localAddress
-   METHOD localPort
-   METHOD peerName
-   METHOD peerAddress
-   METHOD peerPort
-   METHOD setSocketDescriptor
-   METHOD socketDescriptor
-   METHOD socketType
-   METHOD state
-   METHOD error
-   METHOD errorString
+$addMethods
 
-   METHOD onConnected
-   METHOD onDisconnected
-   METHOD onError
-   METHOD onStateChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

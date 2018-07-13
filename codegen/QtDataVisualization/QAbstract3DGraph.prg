@@ -8,88 +8,16 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QAbstract3DGraph INHERIT QWindow // protected QOpenGLFunctions
+$addRequests
 
-%%   METHOD new
-   METHOD delete
+$beginClassFrom=QWindow
+%% CLASS QAbstract3DGraph INHERIT QWindow // protected QOpenGLFunction
 
-   METHOD activeInputHandler
-   METHOD activeTheme
-   METHOD addCustomItem
-   METHOD addInputHandler
-   METHOD addTheme
-   METHOD aspectRatio
-   METHOD clearSelection
-   METHOD currentFps
-   METHOD customItems
-   METHOD hasContext
-   METHOD horizontalAspectRatio
-   METHOD inputHandlers
-   METHOD isOrthoProjection
-   METHOD isPolar
-   METHOD isReflection
-   METHOD locale
-   METHOD margin
-   METHOD measureFps
-   METHOD optimizationHints
-   METHOD queriedGraphPosition
-   METHOD radialLabelOffset
-   METHOD reflectivity
-   METHOD releaseCustomItem
-   METHOD releaseInputHandler
-   METHOD releaseTheme
-   METHOD removeCustomItem
-   METHOD removeCustomItemAt
-   METHOD removeCustomItems
-   METHOD renderToImage
-   METHOD scene
-   METHOD selectedAxis
-   METHOD selectedCustomItem
-   METHOD selectedCustomItemIndex
-   METHOD selectedElement
-   METHOD selectedLabelIndex
-   METHOD selectionMode
-   METHOD setActiveInputHandler
-   METHOD setActiveTheme
-   METHOD setAspectRatio
-   METHOD setHorizontalAspectRatio
-   METHOD setLocale
-   METHOD setMargin
-   METHOD setMeasureFps
-   METHOD setOptimizationHints
-   METHOD setOrthoProjection
-   METHOD setPolar
-   METHOD setRadialLabelOffset
-   METHOD setReflection
-   METHOD setReflectivity
-   METHOD setSelectionMode
-   METHOD setShadowQuality
-   METHOD shadowQuality
-   METHOD shadowsSupported
-   METHOD themes
+$addMethods
 
-   METHOD onActiveInputHandlerChanged
-   METHOD onActiveThemeChanged
-   METHOD onAspectRatioChanged
-   METHOD onCurrentFpsChanged
-   METHOD onHorizontalAspectRatioChanged
-   METHOD onLocaleChanged
-   METHOD onMarginChanged
-   METHOD onMeasureFpsChanged
-   METHOD onOptimizationHintsChanged
-   METHOD onOrthoProjectionChanged
-   METHOD onPolarChanged
-   METHOD onQueriedGraphPositionChanged
-   METHOD onRadialLabelOffsetChanged
-   METHOD onReflectionChanged
-   METHOD onReflectivityChanged
-   METHOD onSelectedElementChanged
-   METHOD onSelectionModeChanged
-   METHOD onShadowQualityChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

@@ -12,41 +12,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QNetworkDatagram
+$addRequests
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$beginClassFrom=
 
-   METHOD new
-   METHOD delete
+$addMethods
 
-   METHOD clear
-   METHOD data
-   METHOD destinationAddress
-   METHOD destinationPort
-   METHOD hopLimit
-   METHOD interfaceIndex
-   METHOD isNull
-   METHOD isValid
-   METHOD makeReply
-   METHOD senderAddress
-   METHOD senderPort
-   METHOD setData
-   METHOD setDestination
-   METHOD setHopLimit
-   METHOD setInterfaceIndex
-   METHOD setSender
-   METHOD swap
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

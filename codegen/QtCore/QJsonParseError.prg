@@ -8,23 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QJsonParseError
+$addRequests
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$beginClassFrom=
 
-   METHOD delete
-   METHOD errorString
+$addMethods
 
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

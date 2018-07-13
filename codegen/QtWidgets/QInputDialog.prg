@@ -8,73 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QSIZE
-#endif
+$addRequests
 
-CLASS QInputDialog INHERIT QDialog
+$beginClassFrom=QDialog
 
-   METHOD new
-   METHOD delete
-   METHOD cancelButtonText
-   METHOD setCancelButtonText
-   METHOD comboBoxItems
-   METHOD setComboBoxItems
-   METHOD doubleDecimals
-   METHOD setDoubleDecimals
-   METHOD doubleMaximum
-   METHOD setDoubleMaximum
-   METHOD doubleMinimum
-   METHOD setDoubleMinimum
-   METHOD doubleValue
-   METHOD setDoubleValue
-   METHOD inputMode
-   METHOD setInputMode
-   METHOD intMaximum
-   METHOD setIntMaximum
-   METHOD intMinimum
-   METHOD setIntMinimum
-   METHOD intStep
-   METHOD setIntStep
-   METHOD intValue
-   METHOD setIntValue
-   METHOD isComboBoxEditable
-   METHOD setComboBoxEditable
-   METHOD labelText
-   METHOD setLabelText
-   METHOD okButtonText
-   METHOD setOkButtonText
-   METHOD open
-   METHOD options
-   METHOD setOptions
-   METHOD setDoubleRange
-   METHOD setIntRange
-   METHOD setOption
-   METHOD testOption
-   METHOD textEchoMode
-   METHOD setTextEchoMode
-   METHOD textValue
-   METHOD setTextValue
-   METHOD done
-   METHOD minimumSizeHint
-   METHOD setVisible
-   METHOD sizeHint
-   METHOD getDouble
-   METHOD getInt
-   METHOD getItem
-   METHOD getText
-   METHOD getMultiLineText
+$addMethods
 
-   METHOD onDoubleValueChanged
-   METHOD onDoubleValueSelected
-   METHOD onIntValueChanged
-   METHOD onIntValueSelected
-   METHOD onTextValueChanged
-   METHOD onTextValueSelected
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

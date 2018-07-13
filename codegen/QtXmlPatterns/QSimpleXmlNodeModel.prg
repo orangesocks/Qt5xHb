@@ -8,26 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QXMLNAMEPOOL
-REQUEST QURL
-REQUEST QXMLNODEMODELINDEX
-REQUEST QXMLNAME
-#endif
+$addRequests
 
-CLASS QSimpleXmlNodeModel INHERIT QAbstractXmlNodeModel
+$beginClassFrom=QAbstractXmlNodeModel
 
-   METHOD delete
-   METHOD namePool
-   METHOD baseUri
-   METHOD elementById
-   METHOD namespaceBindings
-   METHOD nodesByIdref
-   METHOD stringValue
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

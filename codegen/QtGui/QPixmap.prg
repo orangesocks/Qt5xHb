@@ -8,65 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QSIZE
-REQUEST QRECT
-REQUEST QBITMAP
-REQUEST QIMAGE
-REQUEST QPAINTENGINE
-REQUEST QMATRIX
-REQUEST QTRANSFORM
-#endif
+$addRequests
 
-CLASS QPixmap INHERIT QPaintDevice
+$beginClassFrom=QPaintDevice
 
-   METHOD new
-   METHOD delete
-   METHOD swap
-   METHOD isNull
-   METHOD devType
-   METHOD width
-   METHOD height
-   METHOD size
-   METHOD rect
-   METHOD depth
-   METHOD fill
-   METHOD mask
-   METHOD setMask
-   METHOD devicePixelRatio
-   METHOD setDevicePixelRatio
-   METHOD hasAlpha
-   METHOD hasAlphaChannel
-   METHOD createHeuristicMask
-   METHOD createMaskFromColor
-   METHOD scaled
-   METHOD scaledToWidth
-   METHOD scaledToHeight
-   METHOD transformed
-   METHOD toImage
-   METHOD load
-   METHOD loadFromData
-   METHOD save
-   METHOD convertFromImage
-   METHOD copy
-   METHOD scroll
-   METHOD cacheKey
-   METHOD isDetached
-   METHOD detach
-   METHOD isQBitmap
-   METHOD paintEngine
-   METHOD defaultDepth
-   METHOD grabWindow
-   METHOD grabWidget
-   METHOD trueMatrix
-   METHOD fromImage
-   METHOD fromImageReader
-   METHOD toVariant
-   METHOD fromVariant
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

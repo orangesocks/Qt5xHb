@@ -8,48 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QSQLFIELD
-REQUEST QVARIANT
-#endif
+$addRequests
 
-CLASS QSqlRecord
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD new
-   METHOD delete
-
-   METHOD append
-   METHOD clear
-   METHOD clearValues
-   METHOD contains
-   METHOD count
-   METHOD field
-   METHOD fieldName
-   METHOD indexOf
-   METHOD insert
-   METHOD isEmpty
-   METHOD isGenerated
-   METHOD isNull
-   METHOD keyValues
-   METHOD remove
-   METHOD replace
-   METHOD setGenerated
-   METHOD setNull
-   METHOD setValue
-   METHOD value
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

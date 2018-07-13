@@ -8,13 +8,9 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QTEXTTABLECELL
-REQUEST QTEXTCURSOR
-REQUEST QTEXTTABLEFORMAT
-#endif
+$addRequests
 
-CLASS QTextTable INHERIT QTextFrame
+$beginClassFrom=QTextFrame
 
    METHOD new
    METHOD delete
@@ -35,9 +31,7 @@ CLASS QTextTable INHERIT QTextFrame
    METHOD setFormat
    METHOD format
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

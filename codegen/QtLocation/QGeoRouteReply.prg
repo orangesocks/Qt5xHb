@@ -8,28 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QGEOROUTEREQUEST
-REQUEST QGEOROUTE
-#endif
+$addRequests
 
-CLASS QGeoRouteReply INHERIT QObject
+$beginClassFrom=QObject
 
-   METHOD new
-   METHOD delete
-   METHOD isFinished
-   METHOD error
-   METHOD errorString
-   METHOD request
-   METHOD routes
-   METHOD abort
+$addMethods
 
-   METHOD onFinished
-   METHOD onError
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

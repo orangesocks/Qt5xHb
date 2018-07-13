@@ -8,36 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QGLFORMAT
-REQUEST QSIZE
-REQUEST QIMAGE
-REQUEST QPAINTENGINE
-#endif
+$addRequests
 
-CLASS QGLPixelBuffer INHERIT QPaintDevice
+$beginClassFrom=QPaintDevice
 
-   METHOD new
-   METHOD delete
-   METHOD bindTexture
-   METHOD bindToDynamicTexture
-   METHOD deleteTexture
-   METHOD doneCurrent
-   METHOD drawTexture
-   METHOD format
-   METHOD generateDynamicTexture
-   METHOD isValid
-   METHOD makeCurrent
-   METHOD releaseFromDynamicTexture
-   METHOD size
-   METHOD toImage
-   METHOD updateDynamicTexture
-   METHOD paintEngine
-   METHOD hasOpenGLPbuffers
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

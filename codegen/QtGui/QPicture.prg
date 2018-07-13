@@ -8,28 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QRECT
-#endif
+$addRequests
 
-CLASS QPicture INHERIT QPaintDevice
+$beginClassFrom=QPaintDevice
 
-   METHOD new
-   METHOD delete
-   METHOD boundingRect
-   METHOD data
-   METHOD isNull
-   METHOD load
-   METHOD play
-   METHOD save
-   METHOD setBoundingRect
-   METHOD setData
-   METHOD size
-   METHOD swap
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

@@ -8,18 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QWebHistoryInterface INHERIT QObject
+$addRequests
 
-   METHOD delete
+$beginClassFrom=QObject
 
-   METHOD addHistoryEntry
-   METHOD defaultInterface
-   METHOD historyContains
-   METHOD setDefaultInterface
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

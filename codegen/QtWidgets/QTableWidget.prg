@@ -8,78 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QWIDGET
-REQUEST QTABLEWIDGETITEM
-REQUEST QRECT
-#endif
+$addRequests
 
-CLASS QTableWidget INHERIT QTableView
+$beginClassFrom=QTableView
 
-   METHOD new
-   METHOD delete
-   METHOD cellWidget
-   METHOD closePersistentEditor
-   METHOD column
-   METHOD columnCount
-   METHOD currentColumn
-   METHOD currentItem
-   METHOD currentRow
-   METHOD editItem
-   METHOD horizontalHeaderItem
-   METHOD item
-   METHOD itemAt
-   METHOD openPersistentEditor
-   METHOD removeCellWidget
-   METHOD row
-   METHOD rowCount
-   METHOD setCellWidget
-   METHOD setColumnCount
-   METHOD setCurrentCell
-   METHOD setCurrentItem
-   METHOD setHorizontalHeaderItem
-   METHOD setHorizontalHeaderLabels
-   METHOD setItem
-   METHOD setItemPrototype
-   METHOD setRangeSelected
-   METHOD setRowCount
-   METHOD setVerticalHeaderItem
-   METHOD setVerticalHeaderLabels
-   METHOD sortItems
-   METHOD takeHorizontalHeaderItem
-   METHOD takeItem
-   METHOD takeVerticalHeaderItem
-   METHOD verticalHeaderItem
-   METHOD visualColumn
-   METHOD visualItemRect
-   METHOD visualRow
-   METHOD clear
-   METHOD clearContents
-   METHOD insertColumn
-   METHOD insertRow
-   METHOD removeColumn
-   METHOD removeRow
-   METHOD scrollToItem
+$addMethods
 
-   METHOD onCellActivated
-   METHOD onCellChanged
-   METHOD onCellClicked
-   METHOD onCellDoubleClicked
-   METHOD onCellEntered
-   METHOD onCellPressed
-   METHOD onCurrentCellChanged
-   METHOD onCurrentItemChanged
-   METHOD onItemActivated
-   METHOD onItemChanged
-   METHOD onItemClicked
-   METHOD onItemDoubleClicked
-   METHOD onItemEntered
-   METHOD onItemPressed
-   METHOD onItemSelectionChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

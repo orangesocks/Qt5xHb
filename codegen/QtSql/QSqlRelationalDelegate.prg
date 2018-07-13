@@ -8,21 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QWIDGET
-#endif
+$addRequests
 
-CLASS QSqlRelationalDelegate INHERIT QItemDelegate
+$beginClassFrom=QItemDelegate
 
-   METHOD new
-   METHOD delete
+$addMethods
 
-   METHOD createEditor
-   METHOD setModelData
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

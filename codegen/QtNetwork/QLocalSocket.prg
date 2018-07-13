@@ -8,44 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QLocalSocket INHERIT QIODevice
+$addRequests
 
-   METHOD new
-   METHOD delete
+$beginClassFrom=QIODevice
 
-   METHOD abort
-   METHOD bytesAvailable
-   METHOD bytesToWrite
-   METHOD canReadLine
-   METHOD close
-   METHOD connectToServer
-   METHOD disconnectFromServer
-   METHOD error
-   METHOD flush
-   METHOD fullServerName
-   METHOD isSequential
-   METHOD isValid
-   METHOD open
-   METHOD readBufferSize
-   METHOD serverName
-   METHOD setReadBufferSize
-   METHOD setServerName
-   METHOD setSocketDescriptor
-   METHOD socketDescriptor
-   METHOD state
-   METHOD waitForBytesWritten
-   METHOD waitForConnected
-   METHOD waitForDisconnected
-   METHOD waitForReadyRead
+$addMethods
 
-   METHOD onConnected
-   METHOD onDisconnected
-   METHOD onError
-   METHOD onStateChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

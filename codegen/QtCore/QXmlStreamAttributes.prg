@@ -8,35 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QSTRINGREF
-#endif
+$addRequests
 
-CLASS QXmlStreamAttributes
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD new
-   METHOD delete
-   METHOD append
-   METHOD hasAttribute
-   METHOD value1
-   METHOD value2
-   METHOD value3
-   METHOD value4
-   METHOD value5
-   METHOD value
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

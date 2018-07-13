@@ -8,26 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QPIXMAP
-#endif
+$addRequests
 
-CLASS QSplashScreen INHERIT QWidget
+$beginClassFrom=QWidget
 
-   METHOD new
-   METHOD delete
-   METHOD finish
-   METHOD pixmap
-   METHOD setPixmap
-   METHOD repaint
-   METHOD clearMessage
-   METHOD showMessage
+$addMethods
 
-   METHOD onMessageChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

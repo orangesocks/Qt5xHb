@@ -8,15 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QOrientationReading INHERIT QSensorReading
+$addRequests
 
-   METHOD delete
-   METHOD orientation
-   METHOD setOrientation
+$beginClassFrom=QSensorReading
 
-   DESTRUCTOR destroyObject
+$addMethods
 
-END CLASS
+$endClass
 
 $destructor
 

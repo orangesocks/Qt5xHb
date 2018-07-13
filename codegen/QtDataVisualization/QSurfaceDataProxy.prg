@@ -8,39 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QSurfaceDataProxy INHERIT QAbstractDataProxy
+$addRequests
 
-   METHOD new
-   METHOD delete
+$beginClassFrom=QAbstractDataProxy
 
-%%   METHOD addRow
-%%   METHOD addRows
-%%   METHOD array
-   METHOD columnCount
-%%   METHOD insertRow
-%%   METHOD insertRows
-   METHOD itemAt
-   METHOD removeRows
-%%   METHOD resetArray
-   METHOD rowCount
-   METHOD series
-   METHOD setItem
-%%   METHOD setRow
-%%   METHOD setRows
+$addMethods
 
-   METHOD onArrayReset
-   METHOD onColumnCountChanged
-   METHOD onItemChanged
-   METHOD onRowCountChanged
-   METHOD onRowsAdded
-   METHOD onRowsChanged
-   METHOD onRowsInserted
-   METHOD onRowsRemoved
-   METHOD onSeriesChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

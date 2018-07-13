@@ -8,20 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QSCREEN
-#endif
+$addRequests
 
-CLASS QScreenOrientationChangeEvent INHERIT QEvent
+$beginClassFrom=QEvent
 
-   METHOD new
-   METHOD delete
-   METHOD screen
-   METHOD orientation
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

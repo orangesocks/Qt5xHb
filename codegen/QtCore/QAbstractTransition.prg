@@ -8,31 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QABSTRACTANIMATION
-REQUEST QSTATEMACHINE
-REQUEST QSTATE
-REQUEST QABSTRACTSTATE
-#endif
+$addRequests
 
-CLASS QAbstractTransition INHERIT QObject
+$beginClassFrom=QObject
 
-   METHOD delete
-   METHOD addAnimation
-   METHOD animations
-   METHOD machine
-   METHOD removeAnimation
-   METHOD setTargetState
-   METHOD setTargetStates
-   METHOD sourceState
-   METHOD targetState
-   METHOD targetStates
+$addMethods
 
-   METHOD onTriggered
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

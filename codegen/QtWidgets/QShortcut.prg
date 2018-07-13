@@ -8,34 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QKEYSEQUENCE
-REQUEST QWIDGET
-#endif
+$addRequests
 
-CLASS QShortcut INHERIT QObject
+$beginClassFrom=QObject
 
-   METHOD new
-   METHOD delete
-   METHOD autoRepeat
-   METHOD context
-   METHOD id
-   METHOD isEnabled
-   METHOD key
-   METHOD parentWidget
-   METHOD setAutoRepeat
-   METHOD setContext
-   METHOD setEnabled
-   METHOD setKey
-   METHOD setWhatsThis
-   METHOD whatsThis
+$addMethods
 
-   METHOD onActivated
-   METHOD onActivatedAmbiguously
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

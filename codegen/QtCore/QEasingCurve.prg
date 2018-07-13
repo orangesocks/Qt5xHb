@@ -8,40 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QPOINTF
-#endif
+$addRequests
 
-CLASS QEasingCurve
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD new
-   METHOD delete
-   METHOD addCubicBezierSegment
-   METHOD addTCBSegment
-   METHOD amplitude
-   METHOD overshoot
-   METHOD period
-   METHOD setAmplitude
-   METHOD setOvershoot
-   METHOD setPeriod
-   METHOD setType
-   METHOD swap
-   METHOD toCubicSpline
-   METHOD type
-   METHOD valueForProgress
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

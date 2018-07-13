@@ -8,50 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QIMAGEENCODERSETTINGS
-REQUEST QMEDIAOBJECT
-REQUEST QSIZE
-#endif
+$addRequests
 
-CLASS QCameraImageCapture INHERIT QObject,QMediaBindableInterface
+$beginClassFrom=QObject,QMediaBindableInterface
 
-   METHOD new
-   METHOD delete
+$addMethods
 
-   METHOD availability
-   METHOD bufferFormat
-   METHOD captureDestination
-   METHOD encodingSettings
-   METHOD error
-   METHOD errorString
-   METHOD imageCodecDescription
-   METHOD isAvailable
-   METHOD isCaptureDestinationSupported
-   METHOD isReadyForCapture
-   METHOD mediaObject
-   METHOD setBufferFormat
-   METHOD setCaptureDestination
-   METHOD setEncodingSettings
-   METHOD supportedBufferFormats
-   METHOD supportedImageCodecs
-   METHOD supportedResolutions
-   METHOD cancelCapture
-   METHOD capture
+$addSignals
 
-   METHOD onBufferFormatChanged
-   METHOD onCaptureDestinationChanged
-   METHOD onError
-   METHOD onImageAvailable
-   METHOD onImageCaptured
-   METHOD onImageExposed
-   METHOD onImageMetadataAvailable
-   METHOD onImageSaved
-   METHOD onReadyForCaptureChanged
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

@@ -8,27 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QDESIGNERFORMEDITORINTERFACE
-REQUEST QOBJECT
-#endif
+$addRequests
 
-CLASS QDesignerPropertyEditorInterface INHERIT QWidget
+$beginClassFrom=QWidget
 
-   METHOD delete
-   METHOD core
-   METHOD currentPropertyName
-   METHOD isReadOnly
-   METHOD object
-   METHOD setObject
-   METHOD setPropertyValue
-   METHOD setReadOnly
+$addMethods
 
-   METHOD onPropertyChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

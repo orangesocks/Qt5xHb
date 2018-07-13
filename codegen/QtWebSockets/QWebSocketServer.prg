@@ -8,52 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QHOSTADDRESS
-REQUEST QWEBSOCKET
-REQUEST QNETWORKPROXY
-REQUEST QSSLCONFIGURATION
-#endif
+$addRequests
 
-CLASS QWebSocketServer INHERIT QObject
+$beginClassFrom=QObject
 
-   METHOD new
-   METHOD delete
-   METHOD listen
-   METHOD close
-   METHOD isListening
-   METHOD maxPendingConnections
-   METHOD setMaxPendingConnections
-   METHOD serverPort
-   METHOD serverAddress
-   METHOD secureMode
-   METHOD socketDescriptor
-   METHOD setSocketDescriptor
-   METHOD hasPendingConnections
-   METHOD nextPendingConnection
-   METHOD error
-   METHOD errorString
-   METHOD pauseAccepting
-   METHOD resumeAccepting
-   METHOD serverName
-   METHOD setServerName
-   METHOD proxy
-   METHOD setProxy
-   METHOD setSslConfiguration
-   METHOD sslConfiguration
-   METHOD supportedVersions
+$addMethods
 
-   METHOD onAcceptError
-   METHOD onServerError
-   METHOD onOriginAuthenticationRequired
-   METHOD onNewConnection
-   METHOD onPeerVerifyError
-   METHOD onSslErrors
-   METHOD onClosed
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

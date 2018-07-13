@@ -8,33 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QMEDIAOBJECT
-REQUEST QPOINTF
-REQUEST QSIZEF
-REQUEST QRECTF
-#endif
+$addRequests
 
-CLASS QGraphicsVideoItem INHERIT QGraphicsObject,QMediaBindableInterface
+$beginClassFrom=QGraphicsObject,QMediaBindableInterface
 
-   METHOD new
-   METHOD delete
-   METHOD mediaObject
-   METHOD aspectRatioMode
-   METHOD setAspectRatioMode
-   METHOD offset
-   METHOD setOffset
-   METHOD size
-   METHOD setSize
-   METHOD nativeSize
-   METHOD boundingRect
-   METHOD paint
+$addMethods
 
-   METHOD onNativeSizeChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

@@ -8,20 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QACTION
-#endif
+$addRequests
 
-CLASS QActionEvent INHERIT QEvent
+$beginClassFrom=QEvent
 
-   METHOD new
-   METHOD delete
-   METHOD action
-   METHOD before
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

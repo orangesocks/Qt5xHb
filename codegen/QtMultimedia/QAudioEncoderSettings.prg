@@ -8,43 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QVARIANT
-#endif
+$addRequests
 
-CLASS QAudioEncoderSettings
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD new
-   METHOD delete
-
-   METHOD bitRate
-   METHOD channelCount
-   METHOD codec
-   METHOD encodingMode
-   METHOD encodingOption
-   METHOD isNull
-   METHOD quality
-   METHOD sampleRate
-   METHOD setBitRate
-   METHOD setChannelCount
-   METHOD setCodec
-   METHOD setEncodingMode
-   METHOD setEncodingOption
-   METHOD setQuality
-   METHOD setSampleRate
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

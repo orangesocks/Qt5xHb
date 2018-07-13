@@ -8,27 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QHELPCONTENTMODEL
-REQUEST QHELPCONTENTWIDGET
-REQUEST QHELPINDEXMODEL
-REQUEST QHELPINDEXWIDGET
-REQUEST QHELPSEARCHENGINE
-#endif
+$addRequests
 
-CLASS QHelpEngine INHERIT QHelpEngineCore
+$beginClassFrom=QHelpEngineCore
 
-   METHOD new
-   METHOD delete
-   METHOD contentModel
-   METHOD contentWidget
-   METHOD indexModel
-   METHOD indexWidget
-   METHOD searchEngine
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

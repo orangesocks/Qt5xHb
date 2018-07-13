@@ -8,32 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-CLASS Q3DInputHandler INHERIT QAbstract3DInputHandler
+$addRequests
 
-   METHOD new
-   METHOD delete
+$beginClassFrom=QAbstract3DInputHandler
 
-   METHOD isRotationEnabled
-   METHOD isSelectionEnabled
-   METHOD isZoomAtTargetEnabled
-   METHOD isZoomEnabled
-%%   METHOD mouseMoveEvent
-%%   METHOD mousePressEvent
-%%   METHOD mouseReleaseEvent
-   METHOD setRotationEnabled
-   METHOD setSelectionEnabled
-   METHOD setZoomAtTargetEnabled
-   METHOD setZoomEnabled
-%%   METHOD wheelEvent
+$addMethods
 
-   METHOD onRotationEnabledChanged
-   METHOD onSelectionEnabledChanged
-   METHOD onZoomAtTargetEnabledChanged
-   METHOD onZoomEnabledChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

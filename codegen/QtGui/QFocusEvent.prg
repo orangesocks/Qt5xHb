@@ -8,17 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QFocusEvent INHERIT QEvent
+$addRequests
 
-   METHOD new
-   METHOD delete
-   METHOD gotFocus
-   METHOD lostFocus
-   METHOD reason
+$beginClassFrom=QEvent
 
-   DESTRUCTOR destroyObject
+$addMethods
 
-END CLASS
+$endClass
 
 $destructor
 

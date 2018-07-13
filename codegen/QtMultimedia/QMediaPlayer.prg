@@ -8,73 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QMEDIACONTENT
-REQUEST QNETWORKCONFIGURATION
-REQUEST QIODEVICE
-REQUEST QMEDIAPLAYLIST
-#endif
+$addRequests
 
-CLASS QMediaPlayer INHERIT QMediaObject
+$beginClassFrom=QMediaObject
 
-   METHOD new
-   METHOD delete
-   METHOD bufferStatus
-   METHOD currentMedia
-   METHOD currentNetworkConfiguration
-   METHOD duration
-   METHOD error
-   METHOD errorString
-   METHOD isAudioAvailable
-   METHOD isMuted
-   METHOD isSeekable
-   METHOD isVideoAvailable
-   METHOD media
-   METHOD mediaStatus
-   METHOD mediaStream
-   METHOD playbackRate
-   METHOD playlist
-   METHOD position
-   METHOD setVideoOutput
-   METHOD state
-   METHOD volume
-   METHOD availability
-   METHOD pause
-   METHOD play
-   METHOD setMedia
-   METHOD setMuted
-   METHOD setNetworkConfigurations
-   METHOD setPlaybackRate
-   METHOD setPlaylist
-   METHOD setPosition
-   METHOD setVolume
-   METHOD stop
-   METHOD hasSupport
-   METHOD supportedAudioRoles
-   METHOD supportedMimeTypes
-   METHOD audioRole
-   METHOD setAudioRole
+$addMethods
 
-   METHOD onAudioAvailableChanged
-   METHOD onAudioRoleChanged
-   METHOD onBufferStatusChanged
-   METHOD onCurrentMediaChanged
-   METHOD onDurationChanged
-   METHOD onError
-   METHOD onMediaChanged
-   METHOD onMediaStatusChanged
-   METHOD onMutedChanged
-   METHOD onNetworkConfigurationChanged
-   METHOD onPlaybackRateChanged
-   METHOD onPositionChanged
-   METHOD onSeekableChanged
-   METHOD onStateChanged
-   METHOD onVideoAvailableChanged
-   METHOD onVolumeChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

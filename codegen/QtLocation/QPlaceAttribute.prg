@@ -8,28 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QPlaceAttribute
+$addRequests
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$beginClassFrom=
 
-   METHOD new
-   METHOD delete
-   METHOD label
-   METHOD setLabel
-   METHOD text
-   METHOD setText
-   METHOD isEmpty
+$addMethods
 
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

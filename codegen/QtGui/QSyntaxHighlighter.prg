@@ -10,22 +10,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QTEXTDOCUMENT
-#endif
+$addRequests
 
-CLASS QSyntaxHighlighter INHERIT QObject
+$beginClassFrom=QObject
 
-%%   METHOD new
-   METHOD delete
-   METHOD setDocument
-   METHOD document
-   METHOD rehighlight
-   METHOD rehighlightBlock
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

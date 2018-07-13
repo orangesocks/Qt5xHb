@@ -8,28 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QTextDocumentFragment
+$addRequests
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$beginClassFrom=
 
-   METHOD new
-   METHOD delete
-   METHOD isEmpty
-   METHOD toPlainText
-   METHOD toHtml
-   METHOD fromPlainText
-   METHOD fromHtml
+$addMethods
 
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

@@ -8,38 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QOBJECT
-REQUEST QDECLARATIVECONTEXT
-REQUEST QDECLARATIVEERROR
-REQUEST QURL
-#endif
+$addRequests
 
-CLASS QDeclarativeComponent INHERIT QObject
+$beginClassFrom=QObject
 
-   METHOD new
-   METHOD delete
-   METHOD beginCreate
-   METHOD completeCreate
-   METHOD create
-   METHOD creationContext
-   METHOD errors
-   METHOD isError
-   METHOD isLoading
-   METHOD isNull
-   METHOD isReady
-   METHOD loadUrl
-   METHOD progress
-   METHOD setData
-   METHOD status
-   METHOD url
+$addMethods
 
-   METHOD onProgressChanged
-   METHOD onStatusChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

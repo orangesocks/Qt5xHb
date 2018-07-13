@@ -8,41 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QVARIANT
-#endif
+$addRequests
 
-CLASS QDesignerPropertySheetExtension
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD delete
-   METHOD count
-   METHOD hasReset
-   METHOD indexOf
-   METHOD isAttribute
-   METHOD isChanged
-   METHOD isVisible
-   METHOD property
-   METHOD propertyGroup
-   METHOD propertyName
-   METHOD reset
-   METHOD setAttribute
-   METHOD setChanged
-   METHOD setProperty
-   METHOD setPropertyGroup
-   METHOD setVisible
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

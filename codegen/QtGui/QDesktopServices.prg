@@ -8,25 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QDesktopServices
+$addRequests
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$beginClassFrom=
 
-   METHOD delete
-   METHOD openUrl
-   METHOD setUrlHandler
-   METHOD unsetUrlHandler
+$addMethods
 
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

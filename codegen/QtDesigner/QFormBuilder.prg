@@ -8,23 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QDESIGNERCUSTOMWIDGETINTERFACE
-#endif
+$addRequests
 
-CLASS QFormBuilder INHERIT QAbstractFormBuilder
+$beginClassFrom=QAbstractFormBuilder
 
-   METHOD new
-   METHOD delete
-   METHOD addPluginPath
-   METHOD clearPluginPaths
-   METHOD customWidgets
-   METHOD pluginPaths
-   METHOD setPluginPath
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

@@ -8,16 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QTouch3DInputHandler INHERIT Q3DInputHandler
+$addRequests
 
-   METHOD new
-   METHOD delete
+$beginClassFrom=Q3DInputHandler
 
-   METHOD touchEvent
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

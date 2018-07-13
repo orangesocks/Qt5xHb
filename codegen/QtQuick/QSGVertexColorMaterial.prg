@@ -8,14 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QSGVertexColorMaterial INHERIT QSGMaterial
+$addRequests
 
-   METHOD new
-   METHOD delete
+$beginClassFrom=QSGMaterial
 
-   DESTRUCTOR destroyObject
+$addMethods
 
-END CLASS
+$endClass
 
 $destructor
 

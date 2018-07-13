@@ -8,40 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QBYTEARRAY
-#endif
+$addRequests
 
-CLASS QDesignerMemberSheetExtension
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD delete
-   METHOD count
-   METHOD declaredInClass
-   METHOD indexOf
-   METHOD inheritedFromWidget
-   METHOD isSignal
-   METHOD isSlot
-   METHOD isVisible
-   METHOD memberGroup
-   METHOD memberName
-   METHOD parameterNames
-   METHOD parameterTypes
-   METHOD setMemberGroup
-   METHOD setVisible
-   METHOD signature
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

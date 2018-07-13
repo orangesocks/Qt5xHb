@@ -8,21 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QREGEXP
-#endif
+$addRequests
 
-CLASS QRegExpValidator INHERIT QValidator
+$beginClassFrom=QValidator
 
-   METHOD new
-   METHOD delete
-   METHOD regExp
-   METHOD setRegExp
-   METHOD validate
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

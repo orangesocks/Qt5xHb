@@ -8,34 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QDBUSCONNECTION
-REQUEST QDBUSMESSAGE
-#endif
+$addRequests
 
-CLASS QDBusContext
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD new
-   METHOD delete
-   METHOD calledFromDBus
-   METHOD connection
-   METHOD message
-   METHOD isDelayedReply
-   METHOD setDelayedReply
-   METHOD sendErrorReply
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

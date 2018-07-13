@@ -8,34 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QSURFACEFORMAT
-REQUEST QSIZE
-REQUEST QSCREEN
-%% REQUEST QPLATFORMOFFSCREENSURFACE
-#endif
+$addRequests
 
-CLASS QOffscreenSurface INHERIT QObject,QSurface
+$beginClassFrom=QObject,QSurface
 
-   METHOD new
-   METHOD delete
-   METHOD surfaceType
-   METHOD create
-   METHOD destroy
-   METHOD isValid
-   METHOD setFormat
-   METHOD format
-   METHOD requestedFormat
-   METHOD size
-   METHOD screen
-   METHOD setScreen
-%%   METHOD handle
+$addMethods
 
-   METHOD onScreenChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

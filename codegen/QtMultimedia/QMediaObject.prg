@@ -8,35 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QVARIANT
-REQUEST QMEDIASERVICE
-#endif
+$addRequests
 
-CLASS QMediaObject INHERIT QObject
+$beginClassFrom=QObject
 
-   METHOD delete
-   METHOD availability
-   METHOD availableMetaData
-   METHOD bind
-   METHOD isAvailable
-   METHOD isMetaDataAvailable
-   METHOD metaData
-   METHOD notifyInterval
-   METHOD service
-   METHOD setNotifyInterval
-   METHOD unbind
+$addMethods
 
-   METHOD onAvailabilityChanged1
-   METHOD onAvailabilityChanged2
-   METHOD onMetaDataAvailableChanged
-   METHOD onMetaDataChanged1
-   METHOD onMetaDataChanged2
-   METHOD onNotifyIntervalChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

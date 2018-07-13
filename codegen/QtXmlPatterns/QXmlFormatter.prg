@@ -8,27 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QXmlFormatter INHERIT QXmlSerializer
+$addRequests
 
-   METHOD new
-   METHOD delete
-   METHOD indentationDepth
-   METHOD setIndentationDepth
-   METHOD atomicValue
-   METHOD attribute
-   METHOD characters
-   METHOD comment
-   METHOD endDocument
-   METHOD endElement
-   METHOD endOfSequence
-   METHOD processingInstruction
-   METHOD startDocument
-   METHOD startElement
-   METHOD startOfSequence
+$beginClassFrom=QXmlSerializer
 
-   DESTRUCTOR destroyObject
+$addMethods
 
-END CLASS
+$endClass
 
 $destructor
 

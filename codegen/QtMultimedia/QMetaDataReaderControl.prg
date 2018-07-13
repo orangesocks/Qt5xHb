@@ -8,26 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QVARIANT
-#endif
+$addRequests
 
-CLASS QMetaDataReaderControl INHERIT QMediaControl
+$beginClassFrom=QMediaControl
 
-%%   METHOD new
-   METHOD delete
+$addMethods
 
-   METHOD isMetaDataAvailable
-   METHOD metaData
-   METHOD availableMetaData
+$addSignals
 
-   METHOD onMetaDataAvailableChanged
-   METHOD onMetaDataChanged1
-   METHOD onMetaDataChanged2
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

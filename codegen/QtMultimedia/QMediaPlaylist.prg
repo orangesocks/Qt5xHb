@@ -8,55 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QMEDIACONTENT
-REQUEST QMEDIAOBJECT
-#endif
+$addRequests
 
-CLASS QMediaPlaylist INHERIT QObject,QMediaBindableInterface
+$beginClassFrom=QObject,QMediaBindableInterface
 
-   METHOD new
-   METHOD delete
+$addMethods
 
-   METHOD addMedia
-   METHOD clear
-   METHOD currentIndex
-   METHOD currentMedia
-   METHOD error
-   METHOD errorString
-   METHOD insertMedia
-   METHOD isEmpty
-   METHOD isReadOnly
-   METHOD load
-   METHOD media
-   METHOD mediaCount
-   METHOD mediaObject
-   METHOD moveMedia
-   METHOD next
-   METHOD nextIndex
-   METHOD playbackMode
-   METHOD previous
-   METHOD previousIndex
-   METHOD removeMedia
-   METHOD save
-   METHOD setCurrentIndex
-   METHOD setPlaybackMode
-   METHOD shuffle
+$addSignals
 
-   METHOD onCurrentIndexChanged
-   METHOD onCurrentMediaChanged
-   METHOD onLoaded
-   METHOD onLoadFailed
-   METHOD onMediaAboutToBeInserted
-   METHOD onMediaAboutToBeRemoved
-   METHOD onMediaChanged
-   METHOD onMediaInserted
-   METHOD onMediaRemoved
-   METHOD onPlaybackModeChanged
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

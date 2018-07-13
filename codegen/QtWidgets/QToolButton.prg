@@ -8,37 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QACTION
-REQUEST QMENU
-REQUEST QSIZE
-#endif
+$addRequests
 
-CLASS QToolButton INHERIT QAbstractButton
+$beginClassFrom=QAbstractButton
 
-   METHOD new
-   METHOD delete
-   METHOD arrowType
-   METHOD autoRaise
-   METHOD defaultAction
-   METHOD menu
-   METHOD popupMode
-   METHOD setArrowType
-   METHOD setAutoRaise
-   METHOD setMenu
-   METHOD setPopupMode
-   METHOD toolButtonStyle
-   METHOD minimumSizeHint
-   METHOD sizeHint
-   METHOD setDefaultAction
-   METHOD setToolButtonStyle
-   METHOD showMenu
+$addMethods
 
-   METHOD onTriggered
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

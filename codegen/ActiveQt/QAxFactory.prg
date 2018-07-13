@@ -8,40 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QUUID
-REQUEST QOBJECT
-REQUEST QMETAOBJECT
-#endif
+$addRequests
 
-CLASS QAxFactory INHERIT QObject
+$beginClassFrom=QObject
 
-   METHOD delete
-   METHOD appID
-   METHOD classID
-   METHOD createObject
-   METHOD eventsID
-   METHOD exposeToSuperClass
-   METHOD featureList
-   METHOD hasStockEvents
-   METHOD interfaceID
-   METHOD isService
-   METHOD metaObject
-   METHOD registerClass
-   METHOD stayTopLevel
-   METHOD typeLibID
-   METHOD unregisterClass
-   METHOD validateLicenseKey
-   METHOD isServer
-   METHOD registerActiveObject
-   METHOD serverDirPath
-   METHOD serverFilePath
-   METHOD startServer
-   METHOD stopServer
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

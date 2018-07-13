@@ -8,32 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QURL
-REQUEST QOBJECT
-REQUEST QVARIANT
-REQUEST QQMLENGINE
-#endif
+$addRequests
 
-CLASS QQmlContext INHERIT QObject
+$beginClassFrom=QObject
 
-   METHOD new
-   METHOD delete
-   METHOD baseUrl
-   METHOD contextObject
-   METHOD contextProperty
-   METHOD engine
-   METHOD isValid
-   METHOD nameForObject
-   METHOD parentContext
-   METHOD resolvedUrl
-   METHOD setBaseUrl
-   METHOD setContextObject
-   METHOD setContextProperty
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

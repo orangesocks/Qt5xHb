@@ -8,84 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QXMLSTREAMATTRIBUTES
-REQUEST QIODEVICE
-REQUEST QSTRINGREF
-REQUEST QXMLSTREAMENTITYDECLARATIONS
-REQUEST QXMLSTREAMENTITYRESOLVER
-REQUEST QXMLSTREAMNAMESPACEDECLARATIONS
-REQUEST QXMLSTREAMNOTATIONDECLARATIONS
-#endif
+$addRequests
 
-CLASS QXmlStreamReader
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD new
-   METHOD delete
-   METHOD addData
-   METHOD addExtraNamespaceDeclaration
-   METHOD atEnd
-   METHOD attributes
-   METHOD characterOffset
-   METHOD clear
-   METHOD columnNumber
-   METHOD device
-   METHOD documentEncoding
-   METHOD documentVersion
-   METHOD dtdName
-   METHOD dtdPublicId
-   METHOD dtdSystemId
-   METHOD entityDeclarations
-   METHOD entityResolver
-   METHOD error
-   METHOD errorString
-   METHOD hasError
-   METHOD isCDATA
-   METHOD isCharacters
-   METHOD isComment
-   METHOD isDTD
-   METHOD isEndDocument
-   METHOD isEndElement
-   METHOD isEntityReference
-   METHOD isProcessingInstruction
-   METHOD isStandaloneDocument
-   METHOD isStartDocument
-   METHOD isStartElement
-   METHOD isWhitespace
-   METHOD lineNumber
-   METHOD name
-   METHOD namespaceDeclarations
-   METHOD namespaceProcessing
-   METHOD namespaceUri
-   METHOD notationDeclarations
-   METHOD prefix
-   METHOD processingInstructionData
-   METHOD processingInstructionTarget
-   METHOD qualifiedName
-   METHOD raiseError
-   METHOD readElementText
-   METHOD readNext
-   METHOD readNextStartElement
-   METHOD setDevice
-   METHOD setEntityResolver
-   METHOD setNamespaceProcessing
-   METHOD skipCurrentElement
-   METHOD text
-   METHOD tokenString
-   METHOD tokenType
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

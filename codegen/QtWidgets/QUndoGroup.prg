@@ -8,41 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QUNDOSTACK
-REQUEST QACTION
-#endif
+$addRequests
 
-CLASS QUndoGroup INHERIT QObject
+$beginClassFrom=QObject
 
-   METHOD new
-   METHOD delete
-   METHOD activeStack
-   METHOD addStack
-   METHOD canRedo
-   METHOD canUndo
-   METHOD createRedoAction
-   METHOD createUndoAction
-   METHOD isClean
-   METHOD redoText
-   METHOD removeStack
-   METHOD stacks
-   METHOD undoText
-   METHOD redo
-   METHOD setActiveStack
-   METHOD undo
+$addMethods
 
-   METHOD onActiveStackChanged
-   METHOD onCanRedoChanged
-   METHOD onCanUndoChanged
-   METHOD onCleanChanged
-   METHOD onIndexChanged
-   METHOD onRedoTextChanged
-   METHOD onUndoTextChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

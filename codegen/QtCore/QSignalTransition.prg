@@ -8,23 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QOBJECT
-REQUEST QBYTEARRAY
-#endif
+$addRequests
 
-CLASS QSignalTransition INHERIT QAbstractTransition
+$beginClassFrom=QAbstractTransition
 
-   METHOD new
-   METHOD delete
-   METHOD senderObject
-   METHOD setSenderObject
-   METHOD signal
-   METHOD setSignal
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

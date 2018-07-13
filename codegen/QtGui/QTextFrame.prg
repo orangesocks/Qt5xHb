@@ -8,30 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QTEXTFRAMEFORMAT
-REQUEST QTEXTCURSOR
-%% REQUEST QTEXTFRAMELAYOUTDATA
-#endif
+$addRequests
 
-CLASS QTextFrame INHERIT QTextObject
+$beginClassFrom=QTextObject
 
-   METHOD new
-   METHOD delete
-   METHOD setFrameFormat
-   METHOD frameFormat
-   METHOD firstCursorPosition
-   METHOD lastCursorPosition
-   METHOD firstPosition
-   METHOD lastPosition
-%%   METHOD layoutData
-%%   METHOD setLayoutData
-   METHOD childFrames
-   METHOD parentFrame
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

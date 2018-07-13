@@ -8,62 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QICON
-REQUEST QPIXMAP
-REQUEST QURL
-#endif
+$addRequests
 
-CLASS QWebSettings
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD clearIconDatabase
-   METHOD clearMemoryCaches
-   METHOD defaultTextEncoding
-   METHOD enablePersistentStorage
-   METHOD fontFamily
-   METHOD fontSize
-   METHOD globalSettings
-   METHOD iconDatabasePath
-   METHOD iconForUrl
-   METHOD localStoragePath
-   METHOD maximumPagesInCache
-   METHOD offlineStorageDefaultQuota
-   METHOD offlineStoragePath
-   METHOD offlineWebApplicationCachePath
-   METHOD offlineWebApplicationCacheQuota
-   METHOD resetAttribute
-   METHOD resetFontFamily
-   METHOD resetFontSize
-   METHOD setAttribute
-   METHOD setDefaultTextEncoding
-   METHOD setFontFamily
-   METHOD setFontSize
-   METHOD setIconDatabasePath
-   METHOD setLocalStoragePath
-   METHOD setMaximumPagesInCache
-   METHOD setObjectCacheCapacities
-   METHOD setOfflineStorageDefaultQuota
-   METHOD setOfflineStoragePath
-   METHOD setOfflineWebApplicationCachePath
-   METHOD setOfflineWebApplicationCacheQuota
-   METHOD setUserStyleSheetUrl
-   METHOD setWebGraphic
-   METHOD testAttribute
-   METHOD userStyleSheetUrl
-   METHOD webGraphic
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

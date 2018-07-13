@@ -8,45 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QPERSISTENTMODELINDEX
-REQUEST QMODELINDEX
-REQUEST QABSTRACTITEMMODEL
-#endif
+$addRequests
 
-CLASS QItemSelectionRange
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD new
-   METHOD delete
-   METHOD top
-   METHOD left
-   METHOD bottom
-   METHOD right
-   METHOD width
-   METHOD height
-   METHOD topLeft
-   METHOD bottomRight
-   METHOD parent
-   METHOD model
-   METHOD contains
-   METHOD intersects
-   METHOD intersected
-   METHOD isValid
-   METHOD isEmpty
-   METHOD indexes
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

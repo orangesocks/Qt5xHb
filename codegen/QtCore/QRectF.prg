@@ -8,84 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QPOINTF
-REQUEST QSIZEF
-REQUEST QRECT
-#endif
+$addRequests
 
-CLASS QRectF
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD new
-   METHOD delete
-   METHOD adjust
-   METHOD adjusted
-   METHOD bottom
-   METHOD bottomLeft
-   METHOD bottomRight
-   METHOD center
-   METHOD contains
-   METHOD getCoords
-   METHOD getRect
-   METHOD height
-   METHOD intersected
-   METHOD intersects
-   METHOD isEmpty
-   METHOD isNull
-   METHOD isValid
-   METHOD left
-   METHOD moveBottom
-   METHOD moveBottomLeft
-   METHOD moveBottomRight
-   METHOD moveCenter
-   METHOD moveLeft
-   METHOD moveRight
-   METHOD moveTo
-   METHOD moveTop
-   METHOD moveTopLeft
-   METHOD moveTopRight
-   METHOD normalized
-   METHOD right
-   METHOD setBottom
-   METHOD setBottomLeft
-   METHOD setBottomRight
-   METHOD setCoords
-   METHOD setHeight
-   METHOD setLeft
-   METHOD setRect
-   METHOD setRight
-   METHOD setSize
-   METHOD setTop
-   METHOD setTopLeft
-   METHOD setTopRight
-   METHOD setWidth
-   METHOD setX
-   METHOD setY
-   METHOD size
-   METHOD toAlignedRect
-   METHOD toRect
-   METHOD top
-   METHOD topLeft
-   METHOD topRight
-   METHOD translate
-   METHOD translated
-   METHOD united
-   METHOD width
-   METHOD x
-   METHOD y
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

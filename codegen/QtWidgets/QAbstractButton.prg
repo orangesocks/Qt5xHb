@@ -8,53 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QICON
-REQUEST QSIZE
-REQUEST QKEYSEQUENCE
-REQUEST QBUTTONGROUP
-#endif
+$addRequests
 
-CLASS QAbstractButton INHERIT QWidget
+$beginClassFrom=QWidget
 
-%%   METHOD new
-   METHOD delete
+$addMethods
 
-   METHOD animateClick
-   METHOD autoExclusive
-   METHOD autoRepeat
-   METHOD autoRepeatDelay
-   METHOD autoRepeatInterval
-   METHOD click
-   METHOD group
-   METHOD icon
-   METHOD iconSize
-   METHOD isCheckable
-   METHOD isChecked
-   METHOD isDown
-   METHOD setAutoExclusive
-   METHOD setAutoRepeat
-   METHOD setAutoRepeatDelay
-   METHOD setAutoRepeatInterval
-   METHOD setCheckable
-   METHOD setChecked
-   METHOD setDown
-   METHOD setIcon
-   METHOD setIconSize
-   METHOD setShortcut
-   METHOD setText
-   METHOD shortcut
-   METHOD text
-   METHOD toggle
+$addSignals
 
-   METHOD onClicked
-   METHOD onPressed
-   METHOD onReleased
-   METHOD onToggled
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

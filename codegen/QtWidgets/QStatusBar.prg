@@ -8,26 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QStatusBar INHERIT QWidget
+$addRequests
 
-   METHOD new
-   METHOD delete
-   METHOD addPermanentWidget
-   METHOD addWidget
-   METHOD currentMessage
-   METHOD insertPermanentWidget
-   METHOD insertWidget
-   METHOD isSizeGripEnabled
-   METHOD removeWidget
-   METHOD setSizeGripEnabled
-   METHOD clearMessage
-   METHOD showMessage
+$beginClassFrom=QWidget
 
-   METHOD onMessageChanged
+$addMethods
 
-   DESTRUCTOR destroyObject
+$addSignals
 
-END CLASS
+$endClass
 
 $destructor
 

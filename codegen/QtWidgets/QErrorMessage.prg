@@ -8,16 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QErrorMessage INHERIT QDialog
+$addRequests
 
-   METHOD new
-   METHOD delete
-   METHOD showMessage
-   METHOD qtHandler
+$beginClassFrom=QDialog
 
-   DESTRUCTOR destroyObject
+$addMethods
 
-END CLASS
+$endClass
 
 $destructor
 

@@ -8,24 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QAnimationDriver INHERIT QObject
+$addRequests
 
-   METHOD new
-   METHOD delete
-   METHOD advance
-   METHOD install
-   METHOD uninstall
-   METHOD isRunning
-   METHOD elapsed
-   METHOD setStartTime
-   METHOD startTime
+$beginClassFrom=QObject
 
-   METHOD onStarted
-   METHOD onStopped
+$addMethods
 
-   DESTRUCTOR destroyObject
+$addSignals
 
-END CLASS
+$endClass
 
 $destructor
 

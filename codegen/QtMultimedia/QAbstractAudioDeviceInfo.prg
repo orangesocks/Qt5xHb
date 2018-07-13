@@ -8,26 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QAUDIOFORMAT
-#endif
+$addRequests
 
-CLASS QAbstractAudioDeviceInfo INHERIT QObject
+$beginClassFrom=QObject
 
-   METHOD delete
-   METHOD preferredFormat
-   METHOD isFormatSupported
-   METHOD deviceName
-   METHOD supportedCodecs
-   METHOD supportedSampleRates
-   METHOD supportedChannelCounts
-   METHOD supportedSampleSizes
-   METHOD supportedByteOrders
-   METHOD supportedSampleTypes
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

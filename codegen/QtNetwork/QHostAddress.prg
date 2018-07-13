@@ -8,48 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-%% REQUEST Q_IPV6ADDR
-#endif
+$addRequests
 
-CLASS QHostAddress
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD new1
-   METHOD new2
-   METHOD new7
-   METHOD new8
-   METHOD new9
-   METHOD new
-   METHOD delete
-
-   METHOD clear
-   METHOD isEqual
-   METHOD isInSubnet
-   METHOD isLoopback
-   METHOD isMulticast
-   METHOD isNull
-%%   METHOD parseSubnet
-   METHOD protocol
-   METHOD scopeId
-   METHOD setAddress
-   METHOD setScopeId
-   METHOD swap
-   METHOD toIPv4Address
-%%   METHOD toIPv6Address
-   METHOD toString
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

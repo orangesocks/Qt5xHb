@@ -8,31 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QAbstract3DInputHandler INHERIT QObject
+$addRequests
 
-%%   METHOD new
-   METHOD delete
+$beginClassFrom=QObject
 
-   METHOD inputPosition
-   METHOD inputView
-%%   METHOD mouseDoubleClickEvent
-%%   METHOD mouseMoveEvent
-%%   METHOD mousePressEvent
-%%   METHOD mouseReleaseEvent
-   METHOD scene
-   METHOD setInputPosition
-   METHOD setInputView
-   METHOD setScene
-%%   METHOD touchEvent
-%%   METHOD wheelEvent
+$addMethods
 
-   METHOD onInputViewChanged
-   METHOD onPositionChanged
-   METHOD onSceneChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

@@ -8,40 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QVARIANT
-#endif
+$addRequests
 
-CLASS QDBusArgument
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD new
-   METHOD delete
-   METHOD beginStructure
-   METHOD endStructure
-   METHOD beginArray
-   METHOD endArray
-   METHOD beginMap
-   METHOD endMap
-   METHOD beginMapEntry
-   METHOD endMapEntry
-   METHOD appendVariant
-   METHOD currentSignature
-   METHOD currentType
-   METHOD atEnd
-   METHOD asVariant
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

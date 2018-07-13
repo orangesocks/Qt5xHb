@@ -8,51 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QBRUSH
-REQUEST QPOINTF
-REQUEST QPAINTERPATH
-REQUEST QREGION
-REQUEST QFONT
-REQUEST QPAINTER
-REQUEST QPEN
-REQUEST QTRANSFORM
-#endif
+$addRequests
 
-CLASS QPaintEngineState
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD delete
-   METHOD backgroundBrush
-   METHOD backgroundMode
-   METHOD brush
-   METHOD brushNeedsResolving
-   METHOD brushOrigin
-   METHOD clipOperation
-   METHOD clipPath
-   METHOD clipRegion
-   METHOD compositionMode
-   METHOD font
-   METHOD isClipEnabled
-   METHOD opacity
-   METHOD painter
-   METHOD pen
-   METHOD penNeedsResolving
-   METHOD renderHints
-   METHOD state
-   METHOD transform
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

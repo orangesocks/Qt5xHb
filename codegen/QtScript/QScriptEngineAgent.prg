@@ -8,40 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QSCRIPTENGINE
-REQUEST QVARIANT
-#endif
+$addRequests
 
-CLASS QScriptEngineAgent
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD new
-   METHOD delete
-   METHOD contextPop
-   METHOD contextPush
-   METHOD engine
-   METHOD exceptionCatch
-   METHOD exceptionThrow
-   METHOD extension
-   METHOD functionEntry
-   METHOD functionExit
-   METHOD positionChange
-   METHOD scriptLoad
-   METHOD scriptUnload
-   METHOD supportsExtension
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

@@ -8,95 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QFILEICONPROVIDER
-REQUEST QABSTRACTITEMDELEGATE
-REQUEST QABSTRACTPROXYMODEL
-REQUEST QBYTEARRAY
-REQUEST QDIR
-REQUEST QURL
-#endif
+$addRequests
 
-CLASS QFileDialog INHERIT QDialog
+$beginClassFrom=QDialog
 
-   METHOD new
-   METHOD delete
-   METHOD acceptMode
-   METHOD setAcceptMode
-   METHOD confirmOverwrite
-   METHOD setConfirmOverwrite
-   METHOD defaultSuffix
-   METHOD setDefaultSuffix
-   METHOD fileMode
-   METHOD setFileMode
-   METHOD filter
-   METHOD setFilter
-   METHOD history
-   METHOD setHistory
-   METHOD iconProvider
-   METHOD setIconProvider
-   METHOD isNameFilterDetailsVisible
-   METHOD setNameFilterDetailsVisible
-   METHOD isReadOnly
-   METHOD setReadOnly
-   METHOD itemDelegate
-   METHOD setItemDelegate
-   METHOD labelText
-   METHOD setLabelText
-   METHOD nameFilters
-   METHOD setNameFilters
-   METHOD open
-   METHOD options
-   METHOD setOptions
-   METHOD proxyModel
-   METHOD setProxyModel
-   METHOD resolveSymlinks
-   METHOD setResolveSymlinks
-   METHOD restoreState
-   METHOD saveState
-   METHOD selectFile
-   METHOD selectNameFilter
-   METHOD selectedFiles
-   METHOD selectedNameFilter
-   METHOD directory
-   METHOD setDirectory
-   METHOD setNameFilter
-   METHOD setOption
-   METHOD sidebarUrls
-   METHOD setSidebarUrls
-   METHOD testOption
-   METHOD viewMode
-   METHOD setViewMode
-   METHOD setVisible
-   METHOD directoryUrl
-   METHOD setDirectoryUrl
-   METHOD selectUrl
-   METHOD selectedUrls
-   METHOD mimeTypeFilters
-   METHOD setMimeTypeFilters
-   METHOD selectMimeTypeFilter
-   METHOD getExistingDirectory
-   METHOD getOpenFileName
-   METHOD getOpenFileNames
-   METHOD getSaveFileName
-   METHOD getOpenFileUrl
-   METHOD getSaveFileUrl
-   METHOD getExistingDirectoryUrl
-   METHOD getOpenFileUrls
+$addMethods
 
-   METHOD onCurrentChanged
-   METHOD onDirectoryEntered
-   METHOD onFileSelected
-   METHOD onFilesSelected
-   METHOD onFilterSelected
-   METHOD onUrlSelected
-   METHOD onUrlsSelected
-   METHOD onCurrentUrlChanged
-   METHOD onDirectoryUrlEntered
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

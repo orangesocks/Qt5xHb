@@ -11,30 +11,27 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QOAuthOobReplyHandler INHERIT QAbstractOAuthReplyHandler
+$addRequests
 
-   METHOD new
-   METHOD delete
+$beginClassFrom=QAbstractOAuthReplyHandler
 
-   METHOD callback
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 
 #pragma BEGINDUMP
 
-$includes
+$includes=5,10,0
 
 $prototype=explicit QOAuthOobReplyHandler(QObject *parent = nullptr)
-$constructor=|new|QObject *=nullptr
+$constructor=5,10,0|new|QObject *=nullptr
 
-$deleteMethod
+$deleteMethod=5,10,0
 
 $prototype=QString callback() const override
-$method=|QString|callback|
+$method=5,10,0|QString|callback|
 
 $prototype=void networkReplyFinished(QNetworkReply *reply) override (protected)
 

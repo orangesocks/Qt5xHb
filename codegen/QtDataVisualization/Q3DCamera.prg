@@ -8,45 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-CLASS Q3DCamera INHERIT Q3DObject
+$addRequests
 
-   METHOD new
-   METHOD delete
+$beginClassFrom=Q3DObject
 
-   METHOD cameraPreset
-   METHOD copyValuesFrom
-   METHOD maxZoomLevel
-   METHOD minZoomLevel
-   METHOD setCameraPosition
-   METHOD setCameraPreset
-   METHOD setMaxZoomLevel
-   METHOD setMinZoomLevel
-   METHOD setTarget
-   METHOD setWrapXRotation
-   METHOD setWrapYRotation
-   METHOD setXRotation
-   METHOD setYRotation
-   METHOD setZoomLevel
-   METHOD target
-   METHOD wrapXRotation
-   METHOD wrapYRotation
-   METHOD xRotation
-   METHOD yRotation
-   METHOD zoomLevel
+$addMethods
 
-   METHOD onCameraPresetChanged
-   METHOD onMaxZoomLevelChanged
-   METHOD onMinZoomLevelChanged
-   METHOD onTargetChanged
-   METHOD onWrapXRotationChanged
-   METHOD onWrapYRotationChanged
-   METHOD onXRotationChanged
-   METHOD onYRotationChanged
-   METHOD onZoomLevelChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

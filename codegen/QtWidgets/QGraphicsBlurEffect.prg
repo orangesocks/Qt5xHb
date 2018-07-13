@@ -8,26 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QRECTF
-#endif
+$addRequests
 
-CLASS QGraphicsBlurEffect INHERIT QGraphicsWidget
+$beginClassFrom=QGraphicsWidget
 
-   METHOD new
-   METHOD delete
-   METHOD blurHints
-   METHOD blurRadius
-   METHOD boundingRectFor
-   METHOD setBlurHints
-   METHOD setBlurRadius
+$addMethods
 
-   METHOD onBlurHintsChanged
-   METHOD onBlurRadiusChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

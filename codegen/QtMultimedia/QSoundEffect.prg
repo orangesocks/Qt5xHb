@@ -8,46 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QURL
-#endif
+$addRequests
 
-CLASS QSoundEffect INHERIT QObject
+$beginClassFrom=QObject
 
-   METHOD new
-   METHOD delete
+$addMethods
 
-   METHOD category
-   METHOD isLoaded
-   METHOD isMuted
-   METHOD isPlaying
-   METHOD loopCount
-   METHOD loopsRemaining
-   METHOD play
-   METHOD setCategory
-   METHOD setLoopCount
-   METHOD setMuted
-   METHOD setSource
-   METHOD setVolume
-   METHOD source
-   METHOD status
-   METHOD stop
-   METHOD supportedMimeTypes
-   METHOD volume
+$addSignals
 
-   METHOD onCategoryChanged
-   METHOD onLoadedChanged
-   METHOD onLoopCountChanged
-   METHOD onLoopsRemainingChanged
-   METHOD onMutedChanged
-   METHOD onPlayingChanged
-   METHOD onSourceChanged
-   METHOD onStatusChanged
-   METHOD onVolumeChanged
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

@@ -8,41 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QVARIANT
-REQUEST QBYTEARRAY
-REQUEST QURL
-#endif
+$addRequests
 
-CLASS QMimeData INHERIT QObject
+$beginClassFrom=QObject
 
-   METHOD new
-   METHOD delete
-   METHOD clear
-   METHOD colorData
-   METHOD data
-   METHOD formats
-   METHOD hasColor
-   METHOD hasFormat
-   METHOD hasHtml
-   METHOD hasImage
-   METHOD hasText
-   METHOD hasUrls
-   METHOD html
-   METHOD imageData
-   METHOD removeFormat
-   METHOD setColorData
-   METHOD setData
-   METHOD setHtml
-   METHOD setImageData
-   METHOD setText
-   METHOD setUrls
-   METHOD text
-   METHOD urls
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

@@ -8,20 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QSIZE
-#endif
+$addRequests
 
-CLASS QSizeGrip INHERIT QWidget
+$beginClassFrom=QWidget
 
-   METHOD new
-   METHOD delete
-   METHOD setVisible
-   METHOD sizeHint
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

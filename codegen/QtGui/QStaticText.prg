@@ -8,41 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QTEXTOPTION
-REQUEST QSIZEF
-#endif
+$addRequests
 
-CLASS QStaticText
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD new
-   METHOD delete
-   METHOD swap
-   METHOD setText
-   METHOD text
-   METHOD setTextFormat
-   METHOD textFormat
-   METHOD setTextWidth
-   METHOD textWidth
-   METHOD setTextOption
-   METHOD textOption
-   METHOD size
-   METHOD prepare
-   METHOD setPerformanceHint
-   METHOD performanceHint
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

@@ -8,36 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QPOINTF
-REQUEST QPIXMAP
-REQUEST QRECTF
-REQUEST QPAINTERPATH
-#endif
+$addRequests
 
-CLASS QGraphicsPixmapItem INHERIT QGraphicsItem
+$beginClassFrom=QGraphicsItem
 
-   METHOD new
-   METHOD delete
-   METHOD offset
-   METHOD pixmap
-   METHOD setOffset
-   METHOD setPixmap
-   METHOD setShapeMode
-   METHOD setTransformationMode
-   METHOD shapeMode
-   METHOD transformationMode
-   METHOD boundingRect
-   METHOD contains
-   METHOD isObscuredBy
-   METHOD opaqueArea
-   METHOD paint
-   METHOD shape
-   METHOD type
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

@@ -8,33 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QAccessibleActionInterface
+$addRequests
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$beginClassFrom=
 
-   METHOD delete
-   METHOD actionNames
-   METHOD localizedActionName
-   METHOD localizedActionDescription
-   METHOD doAction
-   METHOD keyBindingsForAction
-   METHOD pressAction
-   METHOD increaseAction
-   METHOD decreaseAction
-   METHOD showMenuAction
-   METHOD setFocusAction
-   METHOD toggleAction
+$addMethods
 
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

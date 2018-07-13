@@ -8,62 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST UCHAR
-REQUEST QVARIANT
-REQUEST QSIZE
-#endif
+$addRequests
 
-CLASS QVideoFrame
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD new
-   METHOD delete
-
-%%   METHOD bits1
-%%   METHOD bits2
-%%   METHOD bits3
-%%   METHOD bits4
-%%   METHOD bits
-   METHOD bytesPerLine
-   METHOD endTime
-   METHOD fieldType
-   METHOD handle
-   METHOD handleType
-   METHOD height
-   METHOD isMapped
-   METHOD isReadable
-   METHOD isValid
-   METHOD isWritable
-   METHOD map
-   METHOD mapMode
-   METHOD mappedBytes
-   METHOD pixelFormat
-   METHOD setEndTime
-   METHOD setFieldType
-   METHOD setStartTime
-   METHOD size
-   METHOD startTime
-   METHOD unmap
-   METHOD width
-   METHOD imageFormatFromPixelFormat
-   METHOD pixelFormatFromImageFormat
-   METHOD planeCount
-%%   METHOD availableMetaData
-   METHOD metaData
-   METHOD setMetaData
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

@@ -8,69 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QTEXTCODEC
-REQUEST QLOCALE
-REQUEST QIODEVICE
-REQUEST QSTRING
-REQUEST QCHAR
-#endif
+$addRequests
 
-CLASS QTextStream
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD new
-   METHOD delete
-   METHOD setCodec
-   METHOD codec
-   METHOD setAutoDetectUnicode
-   METHOD autoDetectUnicode
-   METHOD setGenerateByteOrderMark
-   METHOD generateByteOrderMark
-   METHOD setLocale
-   METHOD locale
-   METHOD setDevice
-   METHOD device
-   METHOD setString
-   METHOD string
-   METHOD status
-   METHOD setStatus
-   METHOD resetStatus
-   METHOD atEnd
-   METHOD reset
-   METHOD flush
-   METHOD seek
-   METHOD pos
-   METHOD skipWhiteSpace
-   METHOD readLine
-   METHOD readAll
-   METHOD read
-   METHOD setFieldAlignment
-   METHOD fieldAlignment
-   METHOD setPadChar
-   METHOD padChar
-   METHOD setFieldWidth
-   METHOD fieldWidth
-   METHOD setNumberFlags
-   METHOD numberFlags
-   METHOD setIntegerBase
-   METHOD integerBase
-   METHOD setRealNumberNotation
-   METHOD realNumberNotation
-   METHOD setRealNumberPrecision
-   METHOD realNumberPrecision
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

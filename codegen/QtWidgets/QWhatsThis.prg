@@ -8,32 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QACTION
-#endif
+$addRequests
 
-CLASS QWhatsThis
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD delete
-   METHOD createAction
-   METHOD enterWhatsThisMode
-   METHOD hideText
-   METHOD inWhatsThisMode
-   METHOD leaveWhatsThisMode
-   METHOD showText
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

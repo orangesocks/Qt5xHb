@@ -8,33 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QWebEngineSettings
+$addRequests
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$beginClassFrom=
 
-   METHOD globalSettings
-   METHOD fontFamily
-   METHOD setFontFamily
-   METHOD resetFontFamily
-   METHOD fontSize
-   METHOD setFontSize
-   METHOD resetFontSize
-   METHOD setAttribute
-   METHOD testAttribute
-   METHOD resetAttribute
-   METHOD defaultTextEncoding
-   METHOD setDefaultTextEncoding
+$addMethods
 
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

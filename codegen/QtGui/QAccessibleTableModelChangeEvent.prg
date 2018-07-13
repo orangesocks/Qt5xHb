@@ -8,24 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QAccessibleTableModelChangeEvent INHERIT QAccessibleEvent
+$addRequests
 
-   METHOD new
-   METHOD delete
-   METHOD setModelChangeType
-   METHOD modelChangeType
-   METHOD setFirstRow
-   METHOD setFirstColumn
-   METHOD setLastRow
-   METHOD setLastColumn
-   METHOD firstRow
-   METHOD firstColumn
-   METHOD lastRow
-   METHOD lastColumn
+$beginClassFrom=QAccessibleEvent
 
-   DESTRUCTOR destroyObject
+$addMethods
 
-END CLASS
+$endClass
 
 $destructor
 

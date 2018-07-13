@@ -8,49 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QPieSeries INHERIT QAbstractSeries
+$addRequests
 
-   METHOD new
-   METHOD delete
+$beginClassFrom=QAbstractSeries
 
-   METHOD append
-   METHOD clear
-   METHOD count
-   METHOD holeSize
-   METHOD horizontalPosition
-   METHOD insert
-   METHOD isEmpty
-   METHOD pieEndAngle
-   METHOD pieSize
-   METHOD pieStartAngle
-   METHOD remove
-   METHOD setHoleSize
-   METHOD setHorizontalPosition
-   METHOD setLabelsPosition
-   METHOD setLabelsVisible
-   METHOD setPieEndAngle
-   METHOD setPieSize
-   METHOD setPieStartAngle
-   METHOD setVerticalPosition
-   METHOD slices
-   METHOD sum
-   METHOD take
-   METHOD type
-   METHOD verticalPosition
+$addMethods
 
-   METHOD onAdded
-   METHOD onClicked
-   METHOD onCountChanged
-   METHOD onDoubleClicked
-   METHOD onHovered
-   METHOD onPressed
-   METHOD onReleased
-   METHOD onRemoved
-   METHOD onSumChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

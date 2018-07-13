@@ -8,11 +8,9 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QTEXTLENGTH
-#endif
+$addRequests
 
-CLASS QTextTableFormat INHERIT QTextFrameFormat
+$beginClassFrom=QTextFrameFormat
 
    METHOD new
    METHOD delete
@@ -31,9 +29,7 @@ CLASS QTextTableFormat INHERIT QTextFrameFormat
    METHOD setHeaderRowCount
    METHOD headerRowCount
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

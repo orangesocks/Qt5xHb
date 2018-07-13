@@ -8,32 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QHstsPolicy
+$addRequests
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$beginClassFrom=
 
-   METHOD new
-   METHOD delete
+$addMethods
 
-   METHOD expiry
-   METHOD host
-   METHOD includesSubDomains
-   METHOD isExpired
-   METHOD setExpiry
-   METHOD setHost
-   METHOD setIncludesSubDomains
-   METHOD swap
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

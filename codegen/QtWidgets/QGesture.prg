@@ -8,26 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QPOINTF
-#endif
+$addRequests
 
-CLASS QGesture INHERIT QObject
+$beginClassFrom=QObject
 
-   METHOD new
-   METHOD delete
-   METHOD gestureCancelPolicy
-   METHOD gestureType
-   METHOD hasHotSpot
-   METHOD hotSpot
-   METHOD setGestureCancelPolicy
-   METHOD setHotSpot
-   METHOD state
-   METHOD unsetHotSpot
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

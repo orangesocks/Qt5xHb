@@ -8,26 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QBar3DSeries INHERIT QAbstract3DSeries
+$addRequests
 
-   METHOD new
-   METHOD delete
+$beginClassFrom=QAbstract3DSeries
 
-   METHOD dataProxy
-   METHOD invalidSelectionPosition
-   METHOD meshAngle
-   METHOD selectedBar
-   METHOD setDataProxy
-   METHOD setMeshAngle
-   METHOD setSelectedBar
+$addMethods
 
-   METHOD onDataProxyChanged
-   METHOD onMeshAngleChanged
-   METHOD onSelectedBarChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

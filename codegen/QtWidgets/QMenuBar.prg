@@ -8,50 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QACTION
-REQUEST QMENU
-REQUEST QSIZE
-REQUEST QRECT
-REQUEST QWIDGET
-#endif
+$addRequests
 
-CLASS QMenuBar INHERIT QWidget
+$beginClassFrom=QWidget
 
-   METHOD new
-   METHOD delete
-   METHOD activeAction
-   METHOD addAction
-   METHOD addMenu
-   METHOD addSeparator
-   METHOD clear
-   METHOD insertMenu
-   METHOD insertSeparator
-   METHOD isDefaultUp
-   METHOD setDefaultUp
-   METHOD isNativeMenuBar
-   METHOD setNativeMenuBar
-   METHOD setActiveAction
-   METHOD heightForWidth
-   METHOD minimumSizeHint
-   METHOD sizeHint
-   METHOD setVisible
-   METHOD actionGeometry
-   METHOD actionAt
-   METHOD cornerWidget
-   METHOD setCornerWidget
-   METHOD setDefaultAction
-   METHOD defaultAction
-   METHOD wceCommands
-   METHOD wceRefresh
-   METHOD toNSMenu
+$addMethods
 
-   METHOD onHovered
-   METHOD onTriggered
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

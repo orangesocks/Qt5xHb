@@ -8,39 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QSIZE
-REQUEST QWIDGET
-REQUEST QSCROLLBAR
-#endif
+$addRequests
 
-CLASS QAbstractScrollArea INHERIT QFrame
+$beginClassFrom=QFrame
 
-   METHOD delete
-   METHOD addScrollBarWidget
-   METHOD horizontalScrollBarPolicy
-   METHOD setHorizontalScrollBarPolicy
-   METHOD maximumViewportSize
-   METHOD scrollBarWidgets
-   METHOD cornerWidget
-   METHOD setCornerWidget
-   METHOD horizontalScrollBar
-   METHOD setHorizontalScrollBar
-   METHOD setViewport
-   METHOD verticalScrollBar
-   METHOD setVerticalScrollBar
-   METHOD verticalScrollBarPolicy
-   METHOD setVerticalScrollBarPolicy
-   METHOD viewport
-   METHOD minimumSizeHint
-   METHOD sizeHint
-   METHOD setupViewport
-   METHOD sizeAdjustPolicy
-   METHOD setSizeAdjustPolicy
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

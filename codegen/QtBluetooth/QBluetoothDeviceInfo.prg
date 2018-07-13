@@ -8,41 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QBLUETOOTHADDRESS
-REQUEST QBLUETOOTHUUID
-#endif
+$addRequests
 
-CLASS QBluetoothDeviceInfo
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD new
-   METHOD delete
-   METHOD isValid
-   METHOD isCached
-   METHOD setCached
-   METHOD address
-   METHOD name
-   METHOD serviceClasses
-   METHOD majorDeviceClass
-   METHOD minorDeviceClass
-   METHOD rssi
-   METHOD setRssi
-   METHOD setServiceUuids
-%%   METHOD serviceUuids
-   METHOD serviceUuidsCompleteness
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

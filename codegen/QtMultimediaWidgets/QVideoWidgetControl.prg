@@ -8,36 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QWIDGET
-#endif
+$addRequests
 
-CLASS QVideoWidgetControl INHERIT QMediaControl
+$beginClassFrom=QMediaControl
 
-   METHOD delete
-   METHOD videoWidget
-   METHOD aspectRatioMode
-   METHOD setAspectRatioMode
-   METHOD isFullScreen
-   METHOD setFullScreen
-   METHOD brightness
-   METHOD setBrightness
-   METHOD contrast
-   METHOD setContrast
-   METHOD hue
-   METHOD setHue
-   METHOD saturation
-   METHOD setSaturation
+$addMethods
 
-   METHOD onFullScreenChanged
-   METHOD onBrightnessChanged
-   METHOD onContrastChanged
-   METHOD onHueChanged
-   METHOD onSaturationChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

@@ -8,38 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QURL
-#endif
+$addRequests
 
-CLASS QMediaRecorderControl INHERIT QMediaControl
+$beginClassFrom=QMediaControl
 
-%%   METHOD new
-   METHOD delete
+$addMethods
 
-   METHOD applySettings
-   METHOD duration
-   METHOD isMuted
-   METHOD outputLocation
-   METHOD setOutputLocation
-   METHOD state
-   METHOD status
-   METHOD volume
-   METHOD setMuted
-   METHOD setState
-   METHOD setVolume
+$addSignals
 
-   METHOD onActualLocationChanged
-   METHOD onDurationChanged
-   METHOD onError
-   METHOD onMutedChanged
-   METHOD onStateChanged
-   METHOD onStatusChanged
-   METHOD onVolumeChanged
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

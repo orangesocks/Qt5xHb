@@ -8,37 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QIMAGE
-REQUEST QMIMEDATA
-REQUEST QPIXMAP
-#endif
+$addRequests
 
-CLASS QClipboard INHERIT QObject
+$beginClassFrom=QObject
 
-   METHOD clear
-   METHOD image
-   METHOD mimeData
-   METHOD ownsClipboard
-   METHOD ownsFindBuffer
-   METHOD ownsSelection
-   METHOD pixmap
-   METHOD setImage
-   METHOD setMimeData
-   METHOD setPixmap
-   METHOD setText
-   METHOD supportsFindBuffer
-   METHOD supportsSelection
-   METHOD text
+$addMethods
 
-   METHOD onChanged
-   METHOD onDataChanged
-   METHOD onFindBufferChanged
-   METHOD onSelectionChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

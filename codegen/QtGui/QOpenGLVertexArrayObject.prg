@@ -8,20 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QOpenGLVertexArrayObject INHERIT QObject
+$addRequests
 
-   METHOD new
-   METHOD delete
-   METHOD create
-   METHOD destroy
-   METHOD isCreated
-   METHOD objectId
-   METHOD bind
-   METHOD release
+$beginClassFrom=QObject
 
-   DESTRUCTOR destroyObject
+$addMethods
 
-END CLASS
+$endClass
 
 $destructor
 

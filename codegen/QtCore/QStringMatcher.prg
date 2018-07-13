@@ -8,28 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QStringMatcher
+$addRequests
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$beginClassFrom=
 
-   METHOD new
-   METHOD delete
-   METHOD setPattern
-   METHOD setCaseSensitivity
-   METHOD indexIn
-   METHOD pattern
-   METHOD caseSensitivity
+$addMethods
 
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

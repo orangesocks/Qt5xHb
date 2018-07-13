@@ -8,40 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QVARIANT
-%% REQUEST QVARIANTHASH
-#endif
+$addRequests
 
-CLASS QAuthenticator
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD new
-   METHOD delete
-
-   METHOD detach
-   METHOD isNull
-   METHOD option
-%%   METHOD options
-   METHOD password
-   METHOD realm
-   METHOD setOption
-   METHOD setPassword
-   METHOD setRealm
-   METHOD setUser
-   METHOD user
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

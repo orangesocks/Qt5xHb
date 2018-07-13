@@ -8,79 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QBYTEARRAY
-%% REQUEST QRANGELIST
-%% REQUEST QOUTPUTRANGELIST
-REQUEST QSENSORFILTER
-REQUEST QSENSORREADING
-#endif
+$addRequests
 
-CLASS QSensor INHERIT QObject
+$beginClassFrom=QObject
 
-   METHOD new
-   METHOD delete
-   METHOD identifier
-   METHOD setIdentifier
-   METHOD type
-   METHOD connectToBackend
-   METHOD isConnectedToBackend
-   METHOD isBusy
-   METHOD setActive
-   METHOD isActive
-   METHOD isAlwaysOn
-   METHOD setAlwaysOn
-   METHOD skipDuplicates
-   METHOD setSkipDuplicates
-%%   METHOD availableDataRates
-   METHOD dataRate
-   METHOD setDataRate
-%%   METHOD outputRanges
-   METHOD outputRange
-   METHOD setOutputRange
-   METHOD description
-   METHOD error
-   METHOD addFilter
-   METHOD removeFilter
-%%   METHOD filters
-   METHOD reading
-   METHOD isFeatureSupported
-   METHOD axesOrientationMode
-   METHOD setAxesOrientationMode
-   METHOD currentOrientation
-   METHOD setCurrentOrientation
-   METHOD userOrientation
-   METHOD setUserOrientation
-   METHOD maxBufferSize
-   METHOD setMaxBufferSize
-   METHOD efficientBufferSize
-   METHOD setEfficientBufferSize
-   METHOD bufferSize
-   METHOD setBufferSize
-   METHOD start
-   METHOD stop
-   METHOD sensorTypes
-   METHOD sensorsForType
-   METHOD defaultSensorForType
+$addMethods
 
-   METHOD onBusyChanged
-   METHOD onActiveChanged
-   METHOD onReadingChanged
-   METHOD onSensorError
-   METHOD onAvailableSensorsChanged
-   METHOD onAlwaysOnChanged
-   METHOD onDataRateChanged
-   METHOD onSkipDuplicatesChanged
-   METHOD onAxesOrientationModeChanged
-   METHOD onCurrentOrientationChanged
-   METHOD onUserOrientationChanged
-   METHOD onMaxBufferSizeChanged
-   METHOD onEfficientBufferSizeChanged
-   METHOD onBufferSizeChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

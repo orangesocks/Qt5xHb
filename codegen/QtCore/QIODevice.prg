@@ -8,50 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QBYTEARRAY
-#endif
+$addRequests
 
-CLASS QIODevice INHERIT QObject
+$beginClassFrom=QObject
 
-   METHOD delete
-   METHOD atEnd
-   METHOD bytesAvailable
-   METHOD bytesToWrite
-   METHOD canReadLine
-   METHOD close
-   METHOD errorString
-   METHOD getChar
-   METHOD isOpen
-   METHOD isReadable
-   METHOD isSequential
-   METHOD isTextModeEnabled
-   METHOD isWritable
-   METHOD open
-   METHOD openMode
-   METHOD peek
-   METHOD pos
-   METHOD putChar
-   METHOD read
-   METHOD readAll
-   METHOD readLine
-   METHOD reset
-   METHOD seek
-   METHOD setTextModeEnabled
-   METHOD size
-   METHOD ungetChar
-   METHOD waitForBytesWritten
-   METHOD waitForReadyRead
-   METHOD write
+$addMethods
 
-   METHOD onAboutToClose
-   METHOD onBytesWritten
-   METHOD onReadChannelFinished
-   METHOD onReadyRead
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

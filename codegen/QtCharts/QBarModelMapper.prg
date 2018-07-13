@@ -8,14 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QBarModelMapper INHERIT QObject
+$addRequests
 
-%%   METHOD new
-%%   METHOD delete
+$beginClassFrom=QObject
 
-   DESTRUCTOR destroyObject
+$addMethods
 
-END CLASS
+$endClass
 
 $destructor
 

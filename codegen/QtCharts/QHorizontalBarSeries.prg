@@ -8,16 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QHorizontalBarSeries INHERIT QAbstractBarSeries
+$addRequests
 
-   METHOD new
-   METHOD delete
+$beginClassFrom=QAbstractBarSeries
 
-   METHOD type
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

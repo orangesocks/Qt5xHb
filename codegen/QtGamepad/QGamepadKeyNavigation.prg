@@ -8,77 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QGAMEPAD
-#endif
+$addRequests
 
-CLASS QGamepadKeyNavigation INHERIT QObject
+$beginClassFrom=QObject
 
-   METHOD new
-%%   METHOD delete
+$addMethods
 
-   METHOD active
-   METHOD buttonAKey
-   METHOD buttonBKey
-   METHOD buttonGuideKey
-   METHOD buttonL1Key
-   METHOD buttonL2Key
-   METHOD buttonL3Key
-   METHOD buttonR1Key
-   METHOD buttonR2Key
-   METHOD buttonR3Key
-   METHOD buttonSelectKey
-   METHOD buttonStartKey
-   METHOD buttonXKey
-   METHOD buttonYKey
-   METHOD downKey
-   METHOD gamepad
-   METHOD leftKey
-   METHOD rightKey
-   METHOD setActive
-   METHOD setButtonAKey
-   METHOD setButtonBKey
-   METHOD setButtonGuideKey
-   METHOD setButtonL1Key
-   METHOD setButtonL2Key
-   METHOD setButtonL3Key
-   METHOD setButtonR1Key
-   METHOD setButtonR2Key
-   METHOD setButtonR3Key
-   METHOD setButtonSelectKey
-   METHOD setButtonStartKey
-   METHOD setButtonXKey
-   METHOD setButtonYKey
-   METHOD setDownKey
-   METHOD setGamepad
-   METHOD setLeftKey
-   METHOD setRightKey
-   METHOD setUpKey
-   METHOD upKey
+$addSignals
 
-   METHOD onActiveChanged
-   METHOD onGamepadChanged
-   METHOD onUpKeyChanged
-   METHOD onDownKeyChanged
-   METHOD onLeftKeyChanged
-   METHOD onRightKeyChanged
-   METHOD onButtonAKeyChanged
-   METHOD onButtonBKeyChanged
-   METHOD onButtonXKeyChanged
-   METHOD onButtonYKeyChanged
-   METHOD onButtonSelectKeyChanged
-   METHOD onButtonStartKeyChanged
-   METHOD onButtonGuideKeyChanged
-   METHOD onButtonL1KeyChanged
-   METHOD onButtonR1KeyChanged
-   METHOD onButtonL2KeyChanged
-   METHOD onButtonR2KeyChanged
-   METHOD onButtonL3KeyChanged
-   METHOD onButtonR3KeyChanged
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

@@ -8,29 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QMetaType
+$addRequests
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$beginClassFrom=
 
-   METHOD registerTypedef
-   METHOD type
-   METHOD typeName
-   METHOD isRegistered
-   METHOD construct
-   METHOD destroy
-   METHOD save
-   METHOD load
+$addMethods
 
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

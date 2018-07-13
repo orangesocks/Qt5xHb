@@ -8,20 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QURL
-#endif
+$addRequests
 
-CLASS QFileOpenEvent INHERIT QEvent
+$beginClassFrom=QEvent
 
-   METHOD delete
-   METHOD file
-   METHOD openFile
-   METHOD url
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

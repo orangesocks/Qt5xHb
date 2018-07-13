@@ -8,58 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QMEDIATIMERANGE
-REQUEST QMEDIACONTENT
-REQUEST QIODEVICE
-#endif
+$addRequests
 
-CLASS QMediaPlayerControl INHERIT QMediaControl
+$beginClassFrom=QMediaControl
 
-%%   METHOD new
-   METHOD delete
+$addMethods
 
-   METHOD availablePlaybackRanges
-   METHOD bufferStatus
-   METHOD duration
-   METHOD isAudioAvailable
-   METHOD isMuted
-   METHOD isSeekable
-   METHOD isVideoAvailable
-   METHOD media
-   METHOD mediaStatus
-   METHOD mediaStream
-   METHOD pause
-   METHOD play
-   METHOD playbackRate
-   METHOD position
-   METHOD setMedia
-   METHOD setMuted
-   METHOD setPlaybackRate
-   METHOD setPosition
-   METHOD setVolume
-   METHOD state
-   METHOD stop
-   METHOD volume
+$addSignals
 
-   METHOD onAudioAvailableChanged
-   METHOD onAvailablePlaybackRangesChanged
-   METHOD onBufferStatusChanged
-   METHOD onDurationChanged
-   METHOD onError
-   METHOD onMediaChanged
-   METHOD onMediaStatusChanged
-   METHOD onMutedChanged
-   METHOD onPlaybackRateChanged
-   METHOD onPositionChanged
-   METHOD onSeekableChanged
-   METHOD onStateChanged
-   METHOD onVideoAvailableChanged
-   METHOD onVolumeChanged
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

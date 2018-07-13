@@ -8,20 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QCameraCaptureBufferFormatControl INHERIT QMediaObject
+$addRequests
 
-%%   METHOD new
-   METHOD delete
+$beginClassFrom=QMediaObject
 
-   METHOD bufferFormat
-   METHOD setBufferFormat
-   METHOD supportedBufferFormats
+$addMethods
 
-   METHOD onBufferFormatChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

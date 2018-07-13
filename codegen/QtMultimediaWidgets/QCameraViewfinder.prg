@@ -8,19 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QMEDIAOBJECT
-#endif
+$addRequests
 
-CLASS QCameraViewfinder INHERIT QVideoWidget
+$beginClassFrom=QVideoWidget
 
-   METHOD new
-   METHOD delete
-   METHOD mediaObject
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

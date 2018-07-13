@@ -8,32 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QUndoCommand
+$addRequests
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$beginClassFrom=
 
-   METHOD new
-   METHOD delete
-   METHOD actionText
-   METHOD child
-   METHOD childCount
-   METHOD id
-   METHOD mergeWith
-   METHOD redo
-   METHOD setText
-   METHOD text
-   METHOD undo
+$addMethods
 
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

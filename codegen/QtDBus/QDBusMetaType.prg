@@ -8,25 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QDBusMetaType
+$addRequests
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$beginClassFrom=
 
-   METHOD delete
-   METHOD demarshall
-   METHOD signatureToType
-   METHOD typeToSignature
+$addMethods
 
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

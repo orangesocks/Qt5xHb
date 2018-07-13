@@ -8,41 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QICON
-#endif
+$addRequests
 
-CLASS QWinJumpListItem
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD new
-   METHOD delete
-   METHOD type
-   METHOD setType
-   METHOD filePath
-   METHOD setFilePath
-   METHOD workingDirectory
-   METHOD setWorkingDirectory
-   METHOD icon
-   METHOD setIcon
-   METHOD title
-   METHOD setTitle
-   METHOD description
-   METHOD setDescription
-   METHOD arguments
-   METHOD setArguments
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

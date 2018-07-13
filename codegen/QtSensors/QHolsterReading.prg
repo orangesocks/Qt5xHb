@@ -8,15 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QHolsterReading INHERIT QSensorReading
+$addRequests
 
-   METHOD delete
-   METHOD holstered
-   METHOD setHolstered
+$beginClassFrom=QSensorReading
 
-   DESTRUCTOR destroyObject
+$addMethods
 
-END CLASS
+$endClass
 
 $destructor
 

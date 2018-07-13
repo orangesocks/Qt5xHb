@@ -8,25 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QABSTRACTANIMATION
-#endif
+$addRequests
 
-CLASS QAnimationGroup INHERIT QAbstractAnimation
+$beginClassFrom=QAbstractAnimation
 
-   METHOD delete
-   METHOD addAnimation
-   METHOD animationAt
-   METHOD animationCount
-   METHOD clear
-   METHOD indexOfAnimation
-   METHOD insertAnimation
-   METHOD removeAnimation
-   METHOD takeAnimation
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

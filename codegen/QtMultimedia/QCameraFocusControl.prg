@@ -8,34 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QPOINTF
-REQUEST QCAMERAFOCUSZONELIST
-#endif
+$addRequests
 
-CLASS QCameraFocusControl INHERIT QMediaControl
+$beginClassFrom=QMediaControl
 
-%%   METHOD new
-   METHOD delete
+$addMethods
 
-   METHOD customFocusPoint
-   METHOD focusMode
-   METHOD focusPointMode
-   METHOD focusZones
-   METHOD isFocusModeSupported
-   METHOD isFocusPointModeSupported
-   METHOD setCustomFocusPoint
-   METHOD setFocusMode
-   METHOD setFocusPointMode
+$addSignals
 
-   METHOD onCustomFocusPointChanged
-   METHOD onFocusModeChanged
-   METHOD onFocusPointModeChanged
-   METHOD onFocusZonesChanged
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

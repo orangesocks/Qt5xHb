@@ -8,101 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QSIZE
-REQUEST QCURSOR
-REQUEST QOBJECT
-REQUEST QRECT
-REQUEST QMARGINS
-REQUEST QPOINT
-REQUEST QSURFACEFORMAT
-REQUEST QSCREEN
-#endif
+$addRequests
 
-CLASS QWindow INHERIT QObject,QSurface
+$beginClassFrom=QObject,QSurface
 
-   METHOD new
-   METHOD delete
-   METHOD baseSize
-   METHOD contentOrientation
-   METHOD create
-   METHOD cursor
-   METHOD destroy
-   METHOD focusObject
-   METHOD frameGeometry
-   METHOD frameMargins
-   METHOD geometry
-   METHOD height
-   METHOD isActive
-   METHOD isAncestorOf
-   METHOD isExposed
-   METHOD isModal
-   METHOD isTopLevel
-   METHOD isVisible
-   METHOD mapFromGlobal
-   METHOD mapToGlobal
-   METHOD maximumSize
-   METHOD minimumSize
-   METHOD parent
-   METHOD reportContentOrientationChange
-   METHOD requestedFormat
-   METHOD resize
-   METHOD screen
-   METHOD setBaseSize
-   METHOD setCursor
-   METHOD setFormat
-   METHOD setGeometry
-   METHOD setKeyboardGrabEnabled
-   METHOD setMaximumSize
-   METHOD setMinimumSize
-   METHOD setMouseGrabEnabled
-   METHOD setOpacity
-   METHOD setParent
-   METHOD setScreen
-   METHOD setSizeIncrement
-   METHOD setSurfaceType
-   METHOD setTransientParent
-   METHOD sizeIncrement
-   METHOD transientParent
-   METHOD unsetCursor
-   METHOD width
-   METHOD windowState
-   METHOD x
-   METHOD y
-   METHOD format
-   METHOD size
-   METHOD surfaceType
-   METHOD close
-   METHOD hide
-   METHOD lower
-   METHOD raise
-   METHOD setHeight
-   METHOD setVisible
-   METHOD setWidth
-   METHOD setX
-   METHOD setY
-   METHOD show
-   METHOD showFullScreen
-   METHOD showMaximized
-   METHOD showMinimized
-   METHOD showNormal
-   METHOD position
-   METHOD setPosition
-   METHOD requestUpdate
+$addMethods
 
-   METHOD onContentOrientationChanged
-   METHOD onFocusObjectChanged
-   METHOD onHeightChanged
-   METHOD onScreenChanged
-   METHOD onVisibleChanged
-   METHOD onWidthChanged
-   METHOD onWindowModalityChanged
-   METHOD onXChanged
-   METHOD onYChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

@@ -8,28 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QCameraImageCaptureControl INHERIT QMediaControl
+$addRequests
 
-%%   METHOD new
-   METHOD delete
+$beginClassFrom=QMediaControl
 
-   METHOD cancelCapture
-   METHOD capture
-   METHOD driveMode
-   METHOD isReadyForCapture
-   METHOD setDriveMode
+$addMethods
 
-   METHOD onError
-   METHOD onImageAvailable
-   METHOD onImageCaptured
-   METHOD onImageExposed
-   METHOD onImageMetadataAvailable
-   METHOD onImageSaved
-   METHOD onReadyForCaptureChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

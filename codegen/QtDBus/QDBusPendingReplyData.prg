@@ -8,21 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QVARIANT
-#endif
+$addRequests
 
-CLASS QDBusPendingReplyData INHERIT QDBusPendingCall
+$beginClassFrom=QDBusPendingCall
 
-%%   METHOD new
-%%   METHOD delete
-%%   METHOD assign
-%%   METHOD argumentAt
-%%   METHOD setMetaTypes
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

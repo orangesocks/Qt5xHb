@@ -8,24 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QRECTF
-#endif
+$addRequests
 
-CLASS QGraphicsEffect INHERIT QObject
+$beginClassFrom=QObject
 
-   METHOD delete
-   METHOD boundingRect
-   METHOD boundingRectFor
-   METHOD isEnabled
-   METHOD setEnabled
-   METHOD update
+$addMethods
 
-   METHOD onEnabledChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

@@ -8,38 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QGLBuffer
+$addRequests
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$beginClassFrom=
 
-   METHOD new
-   METHOD delete
-   METHOD allocate
-   METHOD bind
-   METHOD bufferId
-   METHOD create
-   METHOD destroy
-   METHOD isCreated
-   METHOD map
-   METHOD read
-   METHOD release
-   METHOD setUsagePattern
-   METHOD size
-   METHOD type
-   METHOD unmap
-   METHOD usagePattern
-   METHOD write
+$addMethods
 
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

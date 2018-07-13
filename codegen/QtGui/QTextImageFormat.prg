@@ -8,21 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QTextImageFormat INHERIT QTextCharFormat
+$addRequests
 
-   METHOD new
-   METHOD delete
-   METHOD isValid
-   METHOD setName
-   METHOD name
-   METHOD setWidth
-   METHOD width
-   METHOD setHeight
-   METHOD height
+$beginClassFrom=QTextCharFormat
 
-   DESTRUCTOR destroyObject
+$addMethods
 
-END CLASS
+$endClass
 
 $destructor
 

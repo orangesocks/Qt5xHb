@@ -8,35 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QScatterDataProxy INHERIT QAbstractDataProxy
+$addRequests
 
-   METHOD new
-   METHOD delete
+$beginClassFrom=QAbstractDataProxy
 
-   METHOD addItem
-%%   METHOD addItems
-%%   METHOD array
-   METHOD insertItem
-%%   METHOD insertItems
-   METHOD itemAt
-   METHOD itemCount
-   METHOD removeItems
-%%   METHOD resetArray
-   METHOD series
-   METHOD setItem
-%%   METHOD setItems
+$addMethods
 
-   METHOD onArrayReset
-   METHOD onItemCountChanged
-   METHOD onItemsAdded
-   METHOD onItemsChanged
-   METHOD onItemsInserted
-   METHOD onItemsRemoved
-   METHOD onSeriesChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

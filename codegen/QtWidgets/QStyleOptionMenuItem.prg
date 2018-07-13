@@ -8,36 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QStyleOptionMenuItem INHERIT QStyleOption
+$addRequests
 
-   METHOD new
-%%   METHOD delete
+$beginClassFrom=QStyleOption
 
-   METHOD menuItemType
-   METHOD checkType
-   METHOD checked
-   METHOD menuHasCheckableItems
-   METHOD menuRect
-   METHOD text
-   METHOD icon
-   METHOD maxIconWidth
-   METHOD tabWidth
-   METHOD font
+$addMethods
 
-   METHOD setMenuItemType
-   METHOD setCheckType
-   METHOD setChecked
-   METHOD setMenuHasCheckableItems
-   METHOD setMenuRect
-   METHOD setText
-   METHOD setIcon
-   METHOD setMaxIconWidth
-   METHOD setTabWidth
-   METHOD setFont
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

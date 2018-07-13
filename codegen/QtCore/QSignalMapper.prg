@@ -8,27 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QOBJECT
-#endif
+$addRequests
 
-CLASS QSignalMapper INHERIT QObject
+$beginClassFrom=QObject
 
-   METHOD new
-   METHOD delete
-   METHOD setMapping
-   METHOD removeMappings
-   METHOD mapping
-   METHOD map
+$addMethods
 
-   METHOD onMapped1
-   METHOD onMapped2
-   METHOD onMapped3
-   METHOD onMapped4
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

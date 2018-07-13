@@ -8,46 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QSPLITTERHANDLE
-REQUEST QBYTEARRAY
-REQUEST QWIDGET
-REQUEST QSIZE
-#endif
+$addRequests
 
-CLASS QSplitter INHERIT QFrame
+$beginClassFrom=QFrame
 
-   METHOD new
-   METHOD delete
-   METHOD addWidget
-   METHOD childrenCollapsible
-   METHOD count
-   METHOD getRange
-   METHOD handle
-   METHOD handleWidth
-   METHOD indexOf
-   METHOD insertWidget
-   METHOD isCollapsible
-   METHOD opaqueResize
-   METHOD orientation
-   METHOD refresh
-   METHOD restoreState
-   METHOD saveState
-   METHOD setChildrenCollapsible
-   METHOD setCollapsible
-   METHOD setHandleWidth
-   METHOD setOpaqueResize
-   METHOD setOrientation
-   METHOD setStretchFactor
-   METHOD widget
-   METHOD minimumSizeHint
-   METHOD sizeHint
+$addMethods
 
-   METHOD onSplitterMoved
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

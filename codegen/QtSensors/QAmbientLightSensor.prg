@@ -8,19 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QAMBIENTLIGHTREADING
-#endif
+$addRequests
 
-CLASS QAmbientLightSensor INHERIT QSensor
+$beginClassFrom=QSensor
 
-   METHOD new
-   METHOD delete
-   METHOD reading
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

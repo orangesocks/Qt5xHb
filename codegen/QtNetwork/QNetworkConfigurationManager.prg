@@ -12,31 +12,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QNETWORKCONFIGURATION
-#endif
+$addRequests
 
-CLASS QNetworkConfigurationManager INHERIT QObject
+$beginClassFrom=QObject
 
-   METHOD new
-   METHOD delete
+$addMethods
 
-   METHOD allConfigurations
-   METHOD capabilities
-   METHOD configurationFromIdentifier
-   METHOD defaultConfiguration
-   METHOD isOnline
-   METHOD updateConfigurations
+$addSignals
 
-   METHOD onConfigurationAdded
-   METHOD onConfigurationChanged
-   METHOD onConfigurationRemoved
-   METHOD onOnlineStateChanged
-   METHOD onUpdateCompleted
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

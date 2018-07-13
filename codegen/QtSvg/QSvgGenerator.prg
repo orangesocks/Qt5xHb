@@ -8,37 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QIODEVICE
-REQUEST QRECT
-REQUEST QRECTF
-REQUEST QSIZE
-#endif
+$addRequests
 
-CLASS QSvgGenerator INHERIT QPaintDevice
+$beginClassFrom=QPaintDevice
 
-   METHOD new
-   METHOD delete
+$addMethods
 
-   METHOD description
-   METHOD fileName
-   METHOD outputDevice
-   METHOD resolution
-   METHOD setDescription
-   METHOD setFileName
-   METHOD setOutputDevice
-   METHOD setResolution
-   METHOD setSize
-   METHOD setTitle
-   METHOD setViewBox
-   METHOD size
-   METHOD title
-   METHOD viewBox
-   METHOD viewBoxF
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

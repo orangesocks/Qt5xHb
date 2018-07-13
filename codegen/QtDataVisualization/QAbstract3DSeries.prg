@@ -8,65 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QAbstract3DSeries INHERIT QObject
+$addRequests
 
-%%   METHOD new
-   METHOD delete
+$beginClassFrom=QObject
 
-   METHOD baseColor
-   METHOD baseGradient
-   METHOD colorStyle
-   METHOD isItemLabelVisible
-   METHOD isMeshSmooth
-   METHOD isVisible
-   METHOD itemLabel
-   METHOD itemLabelFormat
-   METHOD mesh
-   METHOD meshRotation
-   METHOD multiHighlightColor
-   METHOD multiHighlightGradient
-   METHOD name
-   METHOD setBaseColor
-   METHOD setBaseGradient
-   METHOD setColorStyle
-   METHOD setItemLabelFormat
-   METHOD setItemLabelVisible
-   METHOD setMesh
-   METHOD setMeshAxisAndAngle
-   METHOD setMeshRotation
-   METHOD setMeshSmooth
-   METHOD setMultiHighlightColor
-   METHOD setMultiHighlightGradient
-   METHOD setName
-   METHOD setSingleHighlightColor
-   METHOD setSingleHighlightGradient
-   METHOD setUserDefinedMesh
-   METHOD setVisible
-   METHOD singleHighlightColor
-   METHOD singleHighlightGradient
-   METHOD type
-   METHOD userDefinedMesh
+$addMethods
 
-   METHOD onBaseColorChanged
-   METHOD onBaseGradientChanged
-   METHOD onColorStyleChanged
-   METHOD onItemLabelChanged
-   METHOD onItemLabelFormatChanged
-   METHOD onItemLabelVisibilityChanged
-   METHOD onMeshChanged
-   METHOD onMeshRotationChanged
-   METHOD onMeshSmoothChanged
-   METHOD onMultiHighlightColorChanged
-   METHOD onMultiHighlightGradientChanged
-   METHOD onNameChanged
-   METHOD onSingleHighlightColorChanged
-   METHOD onSingleHighlightGradientChanged
-   METHOD onUserDefinedMeshChanged
-   METHOD onVisibilityChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

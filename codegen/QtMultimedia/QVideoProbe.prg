@@ -8,20 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QVideoProbe INHERIT QObject
+$addRequests
 
-   METHOD new
-   METHOD delete
+$beginClassFrom=QObject
 
-   METHOD isActive
-   METHOD setSource
+$addMethods
 
-   METHOD onFlush
-   METHOD onVideoFrameProbed
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

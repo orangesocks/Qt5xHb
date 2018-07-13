@@ -8,69 +8,25 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QHOSTADDRESS
-REQUEST QNETWORKPROXY
-REQUEST QVARIANT
-#endif
+$addRequests
 
-CLASS QAbstractSocket INHERIT QIODevice
+$beginClassFrom=QIODevice
 
-   METHOD new
-   METHOD delete
-
-   METHOD abort
-   METHOD atEnd
-   METHOD bind
-   METHOD bytesAvailable
-   METHOD bytesToWrite
-   METHOD canReadLine
-   METHOD close
-   METHOD connectToHost
-   METHOD disconnectFromHost
-   METHOD error
-   METHOD flush
-   METHOD isSequential
-   METHOD isValid
-   METHOD localAddress
-   METHOD localPort
-   METHOD pauseMode
-   METHOD peerAddress
-   METHOD peerName
-   METHOD peerPort
+$addMethods
 %% #ifndef QT_NO_NETWORKPROXY
-   METHOD proxy
+%%   METHOD proxy
 %% #endif
-   METHOD readBufferSize
-   METHOD resume
-   METHOD setPauseMode
 %% #ifndef QT_NO_NETWORKPROXY
-   METHOD setProxy
+%%   METHOD setProxy
 %% #endif
-   METHOD setReadBufferSize
-   METHOD setSocketDescriptor
-   METHOD setSocketOption
-   METHOD socketDescriptor
-   METHOD socketOption
-   METHOD socketType
-   METHOD state
-   METHOD waitForBytesWritten
-   METHOD waitForConnected
-   METHOD waitForDisconnected
-   METHOD waitForReadyRead
 
-   METHOD onConnected
-   METHOD onDisconnected
-   METHOD onError
-   METHOD onHostFound
+$addSignals
+
 %% #ifndef QT_NO_NETWORKPROXY
-   METHOD onProxyAuthenticationRequired
+%% METHOD onProxyAuthenticationRequired
 %% #endif
-   METHOD onStateChanged
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

@@ -8,36 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-CLASS Q3DSurface INHERIT QAbstract3DGraph
+$addRequests
 
-   METHOD new
-   METHOD delete
+$beginClassFrom=QAbstract3DGraph
 
-   METHOD addAxis
-   METHOD addSeries
-   METHOD axes
-   METHOD axisX
-   METHOD axisY
-   METHOD axisZ
-   METHOD flipHorizontalGrid
-   METHOD releaseAxis
-   METHOD removeSeries
-   METHOD selectedSeries
-   METHOD seriesList
-   METHOD setAxisX
-   METHOD setAxisY
-   METHOD setAxisZ
-   METHOD setFlipHorizontalGrid
+$addMethods
 
-   METHOD onAxisXChanged
-   METHOD onAxisYChanged
-   METHOD onAxisZChanged
-   METHOD onFlipHorizontalGridChanged
-   METHOD onSelectedSeriesChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

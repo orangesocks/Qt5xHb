@@ -8,57 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QMODELINDEX
-REQUEST QVARIANT
-REQUEST QFILEICONPROVIDER
-REQUEST QICON
-REQUEST QFILEINFO
-#endif
+$addRequests
 
-CLASS QDirModel INHERIT QAbstractItemModel
+$beginClassFrom=QAbstractItemModel
 
-   METHOD new
-   METHOD delete
-   METHOD index
-   METHOD parent
-   METHOD rowCount
-   METHOD columnCount
-   METHOD data
-   METHOD setData
-   METHOD headerData
-   METHOD hasChildren
-   METHOD flags
-   METHOD sort
-   METHOD mimeTypes
-   METHOD supportedDropActions
-   METHOD setIconProvider
-   METHOD iconProvider
-   METHOD setNameFilters
-   METHOD nameFilters
-   METHOD setFilter
-   METHOD filter
-   METHOD setSorting
-   METHOD sorting
-   METHOD setResolveSymlinks
-   METHOD resolveSymlinks
-   METHOD setReadOnly
-   METHOD isReadOnly
-   METHOD setLazyChildCount
-   METHOD lazyChildCount
-   METHOD isDir
-   METHOD mkdir
-   METHOD rmdir
-   METHOD remove
-   METHOD filePath
-   METHOD fileName
-   METHOD fileIcon
-   METHOD fileInfo
-   METHOD refresh
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

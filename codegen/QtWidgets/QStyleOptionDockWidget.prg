@@ -8,26 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QStyleOptionDockWidget INHERIT QStyleOption
+$addRequests
 
-   METHOD new
-%%   METHOD delete
+$beginClassFrom=QStyleOption
 
-   METHOD title
-   METHOD closable
-   METHOD movable
-   METHOD floatable
-   METHOD verticalTitleBar
+$addMethods
 
-   METHOD setTitle
-   METHOD setClosable
-   METHOD setMovable
-   METHOD setFloatable
-   METHOD setVerticalTitleBar
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

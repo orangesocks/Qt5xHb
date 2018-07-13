@@ -8,36 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QSQLERROR
-REQUEST QSQLQUERY
-REQUEST QSQLRECORD
-REQUEST QVARIANT
-#endif
+$addRequests
 
-CLASS QSqlQueryModel INHERIT QAbstractTableModel
+$beginClassFrom=QAbstractTableModel
 
-   METHOD new
-   METHOD delete
+$addMethods
 
-   METHOD canFetchMore
-   METHOD clear
-   METHOD columnCount
-   METHOD data
-   METHOD fetchMore
-   METHOD headerData
-   METHOD insertColumns
-   METHOD lastError
-   METHOD query
-   METHOD record
-   METHOD removeColumns
-   METHOD rowCount
-   METHOD setHeaderData
-   METHOD setQuery
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

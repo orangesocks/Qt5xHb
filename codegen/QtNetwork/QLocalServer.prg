@@ -8,37 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QLOCALSOCKET
-#endif
+$addRequests
 
-CLASS QLocalServer INHERIT QObject
+$beginClassFrom=QObject
 
-   METHOD new
-   METHOD delete
+$addMethods
 
-   METHOD close
-   METHOD errorString
-   METHOD fullServerName
-   METHOD hasPendingConnections
-   METHOD isListening
-   METHOD listen
-   METHOD maxPendingConnections
-   METHOD nextPendingConnection
-   METHOD removeServer
-   METHOD serverError
-   METHOD serverName
-   METHOD setMaxPendingConnections
-   METHOD setSocketOptions
-   METHOD socketDescriptor
-   METHOD socketOptions
-   METHOD waitForNewConnection
+$addSignals
 
-   METHOD onNewConnection
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

@@ -6,52 +6,17 @@
 
 $header
 
-#include "hbclass.ch"
-
 %% TODO: class under condition #ifndef QT_NO_ITEMVIEWS
 
-CLASS QStyleOptionViewItem INHERIT QStyleOption
+#include "hbclass.ch"
 
-   METHOD new
-%%   METHOD delete
+$addRequests
 
-   METHOD displayAlignment
-   METHOD decorationAlignment
-   METHOD textElideMode
-   METHOD decorationPosition
-   METHOD decorationSize
-   METHOD font
-   METHOD showDecorationSelected
-   METHOD features
-   METHOD locale
-   METHOD widget
-   METHOD index
-   METHOD checkState
-   METHOD icon
-   METHOD text
-   METHOD viewItemPosition
-   METHOD backgroundBrush
+$beginClassFrom=QStyleOption
 
-   METHOD setDisplayAlignment
-   METHOD setDecorationAlignment
-   METHOD setTextElideMode
-   METHOD setDecorationPosition
-   METHOD setDecorationSize
-   METHOD setFont
-   METHOD setShowDecorationSelected
-   METHOD setFeatures
-   METHOD setLocale
-   METHOD setWidget
-   METHOD setIndex
-   METHOD setCheckState
-   METHOD setIcon
-   METHOD setText
-   METHOD setViewItemPosition
-   METHOD setBackgroundBrush
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

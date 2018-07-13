@@ -8,39 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QRECT
-REQUEST QPOINT
-#endif
+$addRequests
 
-CLASS QPolygon
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD new
-   METHOD delete
-   METHOD swap
-   METHOD translate
-   METHOD translated
-   METHOD boundingRect
-   METHOD point
-   METHOD setPoint
-   METHOD putPoints
-   METHOD containsPoint
-   METHOD united
-   METHOD intersected
-   METHOD subtracted
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

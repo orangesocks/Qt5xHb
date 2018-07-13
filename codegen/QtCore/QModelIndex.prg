@@ -8,40 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QVARIANT
-REQUEST QUINTPTR
-REQUEST QABSTRACTITEMMODEL
-#endif
+$addRequests
 
-CLASS QModelIndex
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD new
-   METHOD delete
-   METHOD child
-   METHOD column
-   METHOD data
-   METHOD flags
-   METHOD internalId
-   METHOD internalPointer
-   METHOD isValid
-   METHOD model
-   METHOD parent
-   METHOD row
-   METHOD sibling
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

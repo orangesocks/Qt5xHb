@@ -8,24 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QAUDIOENCODERSETTINGS
-#endif
+$addRequests
 
-CLASS QAudioEncoderSettingsControl INHERIT QMediaControl
+$beginClassFrom=QMediaControl
 
-%%   METHOD new
-   METHOD delete
+$addMethods
 
-   METHOD audioSettings
-   METHOD codecDescription
-   METHOD setAudioSettings
-   METHOD supportedAudioCodecs
-   METHOD supportedSampleRates
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

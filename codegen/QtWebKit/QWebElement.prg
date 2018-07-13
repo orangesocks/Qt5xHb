@@ -8,84 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QRECT
-REQUEST QVARIANT
-REQUEST QWEBELEMENTCOLLECTION
-REQUEST QWEBFRAME
-#endif
+$addRequests
 
-CLASS QWebElement
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD new
-   METHOD delete
-
-   METHOD addClass
-   METHOD appendInside
-   METHOD appendOutside
-   METHOD attribute
-   METHOD attributeNames
-   METHOD attributeNS
-   METHOD classes
-   METHOD clone
-   METHOD document
-   METHOD encloseContentsWith
-   METHOD encloseWith
-   METHOD evaluateJavaScript
-   METHOD findAll
-   METHOD findFirst
-   METHOD firstChild
-   METHOD geometry
-   METHOD hasAttribute
-   METHOD hasAttributeNS
-   METHOD hasAttributes
-   METHOD hasClass
-   METHOD hasFocus
-   METHOD isNull
-   METHOD lastChild
-   METHOD localName
-   METHOD namespaceUri
-   METHOD nextSibling
-   METHOD parent
-   METHOD prefix
-   METHOD prependInside
-   METHOD prependOutside
-   METHOD previousSibling
-   METHOD removeAllChildren
-   METHOD removeAttribute
-   METHOD removeAttributeNS
-   METHOD removeClass
-   METHOD removeFromDocument
-   METHOD render
-   METHOD replace
-   METHOD setAttribute
-   METHOD setAttributeNS
-   METHOD setFocus
-   METHOD setInnerXml
-   METHOD setOuterXml
-   METHOD setPlainText
-   METHOD setStyleProperty
-   METHOD styleProperty
-   METHOD tagName
-   METHOD takeFromDocument
-   METHOD toggleClass
-   METHOD toInnerXml
-   METHOD toOuterXml
-   METHOD toPlainText
-   METHOD webFrame
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

@@ -8,20 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QMODELINDEX
-#endif
+$addRequests
 
-CLASS QHelpContentWidget INHERIT QTreeView
+$beginClassFrom=QTreeView
 
-   METHOD delete
-   METHOD indexOf
+$addMethods
 
-   METHOD onLinkActivated
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

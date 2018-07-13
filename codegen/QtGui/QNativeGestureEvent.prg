@@ -8,25 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QPOINTF
-#endif
+$addRequests
 
-CLASS QNativeGestureEvent INHERIT QInputEvent
+$beginClassFrom=QInputEvent
 
-   METHOD new
-   METHOD delete
-   METHOD gestureType
-   METHOD value
-   METHOD pos
-   METHOD globalPos
-   METHOD localPos
-   METHOD windowPos
-   METHOD screenPos
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

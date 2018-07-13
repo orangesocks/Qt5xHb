@@ -8,34 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QVXYModelMapper INHERIT QXYModelMapper
+$addRequests
 
-   METHOD new
-%%   METHOD delete
+$beginClassFrom=QXYModelMapper
 
-   METHOD firstRow
-   METHOD model
-   METHOD rowCount
-   METHOD series
-   METHOD setFirstRow
-   METHOD setModel
-   METHOD setRowCount
-   METHOD setSeries
-   METHOD setXColumn
-   METHOD setYColumn
-   METHOD xColumn
-   METHOD yColumn
+$addMethods
 
-   METHOD onFirstRowChanged
-   METHOD onModelReplaced
-   METHOD onRowCountChanged
-   METHOD onSeriesReplaced
-   METHOD onXColumnChanged
-   METHOD onYColumnChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

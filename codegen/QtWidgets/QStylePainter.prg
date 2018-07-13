@@ -8,26 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QSTYLE
-#endif
+$addRequests
 
-CLASS QStylePainter INHERIT QPainter
+$beginClassFrom=QPainter
 
-   METHOD new
-   //METHOD delete
+$addMethods
 
-   METHOD begin
-   METHOD drawPrimitive
-   METHOD drawControl
-   METHOD drawComplexControl
-   METHOD drawItemText
-   METHOD drawItemPixmap
-   METHOD style
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

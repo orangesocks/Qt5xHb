@@ -8,80 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QPROCESSENVIRONMENT
-REQUEST QBYTEARRAY
-#endif
+$addRequests
 
-CLASS QProcess INHERIT QIODevice
+$beginClassFrom=QIODevice
 
-   METHOD new
-   METHOD delete
+$addMethods
 
-   METHOD closeReadChannel
-   METHOD closeWriteChannel
-   METHOD environment
-   METHOD error
-   METHOD exitCode
-   METHOD exitStatus
-   METHOD nativeArguments
-   METHOD processChannelMode
-   METHOD processEnvironment
-   METHOD readAllStandardError
-   METHOD readAllStandardOutput
-   METHOD readChannel
-   METHOD setEnvironment
-   METHOD setNativeArguments
-   METHOD setProcessChannelMode
-   METHOD setProcessEnvironment
-   METHOD setReadChannel
-   METHOD setStandardErrorFile
-   METHOD setStandardInputFile
-   METHOD setStandardOutputFile
-   METHOD setStandardOutputProcess
-   METHOD setWorkingDirectory
-   METHOD start
-   METHOD state
-   METHOD waitForFinished
-   METHOD waitForStarted
-   METHOD workingDirectory
-   METHOD atEnd
-   METHOD bytesAvailable
-   METHOD bytesToWrite
-   METHOD canReadLine
-   METHOD close
-   METHOD isSequential
-   METHOD waitForBytesWritten
-   METHOD waitForReadyRead
-   METHOD kill
-   METHOD terminate
-   METHOD execute
-   METHOD startDetached
-   METHOD systemEnvironment
-   METHOD open
-   METHOD program
-   METHOD setProgram
-   METHOD arguments
-   METHOD setArguments
-   METHOD readChannelMode
-   METHOD setReadChannelMode
-   METHOD inputChannelMode
-   METHOD setInputChannelMode
-   METHOD processId
-   METHOD nullDevice
-%%   METHOD createProcessArgumentsModifier
+$addSignals
 
-   METHOD onError
-   METHOD onErrorOccurred
-   METHOD onFinished
-   METHOD onReadyReadStandardError
-   METHOD onReadyReadStandardOutput
-   METHOD onStarted
-   METHOD onStateChanged
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

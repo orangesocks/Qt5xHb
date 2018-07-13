@@ -12,19 +12,13 @@ $header
 REQUEST QLIGHTREADING
 #endif
 
-CLASS QLightSensor INHERIT QSensor
+$beginClassFrom=QSensor
 
-   METHOD new
-   METHOD delete
-   METHOD reading
-   METHOD fieldOfView
-   METHOD setFieldOfView
+$addMethods
 
-   METHOD onFieldOfViewChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

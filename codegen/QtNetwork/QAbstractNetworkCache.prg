@@ -8,28 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QIODEVICE
-REQUEST QNETWORKCACHEMETADATA
-#endif
+$addRequests
 
-CLASS QAbstractNetworkCache INHERIT QObject
+$beginClassFrom=QObject
 
-%%   METHOD new
-   METHOD delete
+$addMethods
 
-   METHOD cacheSize
-   METHOD data
-   METHOD insert
-   METHOD metaData
-   METHOD prepare
-   METHOD remove
-   METHOD updateMetaData
-   METHOD clear
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

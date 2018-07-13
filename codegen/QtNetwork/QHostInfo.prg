@@ -8,44 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QHOSTADDRESS
-#endif
+$addRequests
 
-CLASS QHostInfo
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD new
-   METHOD delete
-
-   METHOD abortHostLookup
-   METHOD addresses
-   METHOD error
-   METHOD errorString
-   METHOD fromName
-   METHOD hostName
-   METHOD localDomainName
-   METHOD localHostName
-   METHOD lookupHost
-   METHOD lookupId
-   METHOD setAddresses
-   METHOD setError
-   METHOD setErrorString
-   METHOD setHostName
-   METHOD setLookupId
-   METHOD swap
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

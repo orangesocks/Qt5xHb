@@ -8,15 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QDomComment INHERIT QDomCharacterData
+$addRequests
 
-   METHOD new
-   METHOD delete
-   METHOD nodeType
+$beginClassFrom=QDomCharacterData
 
-   DESTRUCTOR destroyObject
+$addMethods
 
-END CLASS
+$endClass
 
 $destructor
 

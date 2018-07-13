@@ -8,39 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QGEOCOORDINATE
-REQUEST QGEOMANEUVER
-#endif
+$addRequests
 
-CLASS QGeoRouteSegment
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD new
-   METHOD delete
-   METHOD isValid
-   METHOD setNextRouteSegment
-   METHOD nextRouteSegment
-   METHOD setTravelTime
-   METHOD travelTime
-   METHOD setDistance
-   METHOD distance
-   METHOD setPath
-   METHOD path
-   METHOD setManeuver
-   METHOD maneuver
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

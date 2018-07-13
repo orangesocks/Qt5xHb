@@ -8,12 +8,9 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QTEXTBLOCK
-REQUEST QTEXTLISTFORMAT
-#endif
+$addRequests
 
-CLASS QTextList INHERIT QTextBlockGroup
+$beginClassFrom=QTextBlockGroup
 
    METHOD new
    METHOD delete
@@ -28,9 +25,7 @@ CLASS QTextList INHERIT QTextBlockGroup
    METHOD setFormat
    METHOD format
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

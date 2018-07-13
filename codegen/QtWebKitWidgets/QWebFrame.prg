@@ -8,82 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QICON
-REQUEST QPOINT
-REQUEST QRECT
-REQUEST QSIZE
-REQUEST QURL
-REQUEST QVARIANT
-REQUEST QWEBELEMENT
-REQUEST QWEBELEMENTCOLLECTION
-REQUEST QWEBHITTESTRESULT
-REQUEST QWEBPAGE
-REQUEST QWEBSECURITYORIGIN
-#endif
+$addRequests
 
-CLASS QWebFrame INHERIT QObject
+$beginClassFrom=QObject
 
-   METHOD addToJavaScriptWindowObject
-   METHOD baseUrl
-   METHOD childFrames
-   METHOD contentsSize
-   METHOD documentElement
-   METHOD evaluateJavaScript
-   METHOD event
-   METHOD findAllElements
-   METHOD findFirstElement
-   METHOD frameName
-   METHOD geometry
-   METHOD hasFocus
-   METHOD hitTestContent
-   METHOD icon
-   METHOD load
-   METHOD page
-   METHOD parentFrame
-   METHOD pos
-   METHOD print
-   METHOD render
-   METHOD requestedUrl
-   METHOD scroll
-   METHOD scrollBarGeometry
-   METHOD scrollBarMaximum
-   METHOD scrollBarMinimum
-   METHOD scrollBarPolicy
-   METHOD scrollBarValue
-   METHOD scrollPosition
-   METHOD scrollToAnchor
-   METHOD securityOrigin
-   METHOD setContent
-   METHOD setFocus
-   METHOD setHtml
-   METHOD setScrollBarPolicy
-   METHOD setScrollBarValue
-   METHOD setScrollPosition
-   METHOD setTextSizeMultiplier
-   METHOD setUrl
-   METHOD setZoomFactor
-   METHOD textSizeMultiplier
-   METHOD title
-   METHOD toHtml
-   METHOD toPlainText
-   METHOD url
-   METHOD zoomFactor
+$addMethods
 
-   METHOD onContentsSizeChanged
-   METHOD onIconChanged
-   METHOD onInitialLayoutCompleted
-   METHOD onJavaScriptWindowObjectCleared
-   METHOD onLoadFinished
-   METHOD onLoadStarted
-   METHOD onPageChanged
-   //METHOD onProvisionalLoad
-   METHOD onTitleChanged
-   METHOD onUrlChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

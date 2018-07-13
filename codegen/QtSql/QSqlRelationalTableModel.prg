@@ -8,32 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QSQLRELATION
-REQUEST QSQLTABLEMODEL
-REQUEST QVARIANT
-#endif
+$addRequests
 
-CLASS QSqlRelationalTableModel INHERIT QSqlTableModel
+$beginClassFrom=QSqlTableModel
 
-   METHOD new
-   METHOD delete
+$addMethods
 
-   METHOD clear
-   METHOD data
-   METHOD relation
-   METHOD relationModel
-   METHOD removeColumns
-   METHOD revertRow
-   METHOD select
-   METHOD setData
-   METHOD setJoinMode
-   METHOD setRelation
-   METHOD setTable
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

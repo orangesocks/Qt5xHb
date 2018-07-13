@@ -8,22 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QPOINTF
-#endif
+$addRequests
 
-CLASS QLinearGradient INHERIT QGradient
+$beginClassFrom=QGradient
 
-   METHOD new
-   METHOD delete
-   METHOD finalStop
-   METHOD setFinalStop
-   METHOD setStart
-   METHOD start
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

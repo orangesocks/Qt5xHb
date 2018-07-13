@@ -8,39 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QWIDGET
-REQUEST QICON
-#endif
+$addRequests
 
-CLASS QToolBox INHERIT QFrame
+$beginClassFrom=QFrame
 
-   METHOD new
-   METHOD delete
-   METHOD addItem
-   METHOD count
-   METHOD currentIndex
-   METHOD currentWidget
-   METHOD indexOf
-   METHOD insertItem
-   METHOD isItemEnabled
-   METHOD itemIcon
-   METHOD itemText
-   METHOD itemToolTip
-   METHOD removeItem
-   METHOD setItemEnabled
-   METHOD setItemIcon
-   METHOD setItemText
-   METHOD setItemToolTip
-   METHOD widget
-   METHOD setCurrentIndex
-   METHOD setCurrentWidget
+$addMethods
 
-   METHOD onCurrentChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

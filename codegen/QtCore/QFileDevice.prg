@@ -8,27 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QFileDevice INHERIT QIODevice
+$addRequests
 
-   METHOD delete
-   METHOD error
-   METHOD fileName
-   METHOD flush
-   METHOD handle
-   METHOD permissions
-   METHOD resize
-   METHOD setPermissions
-   METHOD unsetError
-   METHOD atEnd
-   METHOD close
-   METHOD isSequential
-   METHOD pos
-   METHOD seek
-   METHOD size
+$beginClassFrom=QIODevice
 
-   DESTRUCTOR destroyObject
+$addMethods
 
-END CLASS
+$endClass
 
 $destructor
 

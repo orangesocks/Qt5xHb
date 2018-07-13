@@ -8,15 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QStatusTipEvent INHERIT QEvent
+$addRequests
 
-   METHOD new
-   METHOD delete
-   METHOD tip
+$beginClassFrom=QEvent
 
-   DESTRUCTOR destroyObject
+$addMethods
 
-END CLASS
+$endClass
 
 $destructor
 

@@ -8,48 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QRECTF
-REQUEST QSIZEF
-#endif
+$addRequests
 
-CLASS QFontMetricsF
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD new
-   METHOD delete
-   METHOD ascent
-   METHOD averageCharWidth
-   METHOD boundingRect
-   METHOD descent
-   METHOD elidedText
-   METHOD height
-   METHOD inFontUcs4
-   METHOD leading
-   METHOD lineSpacing
-   METHOD lineWidth
-   METHOD maxWidth
-   METHOD minLeftBearing
-   METHOD minRightBearing
-   METHOD overlinePos
-   METHOD size
-   METHOD strikeOutPos
-   METHOD tightBoundingRect
-   METHOD underlinePos
-   METHOD width
-   METHOD xHeight
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

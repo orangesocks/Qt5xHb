@@ -8,49 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QBYTEARRAY
-#endif
+$addRequests
 
-CLASS QTimeZone
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD new
-   METHOD delete
-   METHOD swap
-   METHOD isValid
-   METHOD id
-   METHOD country
-   METHOD comment
-   METHOD displayName
-   METHOD abbreviation
-   METHOD offsetFromUtc
-   METHOD standardTimeOffset
-   METHOD daylightTimeOffset
-   METHOD hasDaylightTime
-   METHOD isDaylightTime
-   METHOD hasTransitions
-   METHOD systemTimeZoneId
-   METHOD isTimeZoneIdAvailable
-   METHOD availableTimeZoneIds1
-   METHOD availableTimeZoneIds2
-   METHOD availableTimeZoneIds3
-   METHOD availableTimeZoneIds
-   METHOD ianaIdToWindowsId
-   METHOD windowsIdToDefaultIanaId
-   METHOD windowsIdToIanaIds
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

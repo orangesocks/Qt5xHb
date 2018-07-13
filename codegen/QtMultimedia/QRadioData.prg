@@ -8,38 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QMEDIAOBJECT
-#endif
+$addRequests
 
-CLASS QRadioData INHERIT QObject,QMediaBindableInterface
+$beginClassFrom=QObject,QMediaBindableInterface
 
-   METHOD new
-   METHOD delete
+$addMethods
 
-   METHOD availability
-   METHOD mediaObject
-   METHOD stationId
-   METHOD programType
-   METHOD programTypeName
-   METHOD stationName
-   METHOD radioText
-   METHOD isAlternativeFrequenciesEnabled
-   METHOD error
-   METHOD errorString
-   METHOD setAlternativeFrequenciesEnabled
+$addSignals
 
-   METHOD onAlternativeFrequenciesEnabledChanged
-   METHOD onError
-   METHOD onProgramTypeChanged
-   METHOD onProgramTypeNameChanged
-   METHOD onRadioTextChanged
-   METHOD onStationIdChanged
-   METHOD onStationNameChanged
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

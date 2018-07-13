@@ -8,11 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QMacCocoaViewContainer INHERIT QWidget
+$addRequests
 
-   DESTRUCTOR destroyObject
+$beginClassFrom=QWidget
 
-END CLASS
+$addMethods
+
+$endClass
 
 $destructor
 

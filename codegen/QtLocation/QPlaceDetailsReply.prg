@@ -8,20 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QPLACE
-#endif
+$addRequests
 
-CLASS QPlaceDetailsReply INHERIT QPlaceReply
+$beginClassFrom=QPlaceReply
 
-   METHOD new
-   METHOD delete
-   METHOD type
-   METHOD place
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

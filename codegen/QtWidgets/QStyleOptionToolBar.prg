@@ -6,34 +6,19 @@
 
 $header
 
-#include "hbclass.ch"
-
 %% TODO:
 %% #ifndef QT_NO_TOOLBAR
 %% #endif // QT_NO_TOOLBAR
 
-CLASS QStyleOptionToolBar INHERIT QStyleOption
+#include "hbclass.ch"
 
-   METHOD new
-%%   METHOD delete
+$addRequests
 
-   METHOD positionOfLine
-   METHOD positionWithinLine
-   METHOD toolBarArea
-   METHOD features
-   METHOD lineWidth
-   METHOD midLineWidth
+$beginClassFrom=QStyleOption
 
-   METHOD setPositionOfLine
-   METHOD setPositionWithinLine
-   METHOD setToolBarArea
-   METHOD setFeatures
-   METHOD setLineWidth
-   METHOD setMidLineWidth
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

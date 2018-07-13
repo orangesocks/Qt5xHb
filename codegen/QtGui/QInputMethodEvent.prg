@@ -8,19 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QInputMethodEvent INHERIT QEvent
+$addRequests
 
-   METHOD new
-   METHOD delete
-   METHOD commitString
-   METHOD preeditString
-   METHOD replacementLength
-   METHOD replacementStart
-   METHOD setCommitString
+$beginClassFrom=QEvent
 
-   DESTRUCTOR destroyObject
+$addMethods
 
-END CLASS
+$endClass
 
 $destructor
 

@@ -8,25 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QOpenGLTimeMonitor INHERIT QObject
+$addRequests
 
-   METHOD new
-   METHOD delete
-   METHOD sampleCount
-   METHOD setSampleCount
-   METHOD create
-   METHOD destroy
-   METHOD isCreated
-   METHOD objectIds
-   METHOD recordSample
-   METHOD isResultAvailable
-   METHOD waitForSamples
-   METHOD waitForIntervals
-   METHOD reset
+$beginClassFrom=QObject
 
-   DESTRUCTOR destroyObject
+$addMethods
 
-END CLASS
+$endClass
 
 $destructor
 

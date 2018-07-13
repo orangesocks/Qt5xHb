@@ -8,85 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QItemModelSurfaceDataProxy INHERIT QSurfaceDataProxy
+$addRequests
 
-   METHOD new
-   METHOD delete
+$beginClassFrom=QSurfaceDataProxy
 
-   METHOD autoColumnCategories
-   METHOD autoRowCategories
-   METHOD columnCategories
-   METHOD columnCategoryIndex
-   METHOD columnRole
-   METHOD columnRolePattern
-   METHOD columnRoleReplace
-   METHOD itemModel
-   METHOD multiMatchBehavior
-   METHOD remap
-   METHOD rowCategories
-   METHOD rowCategoryIndex
-   METHOD rowRole
-   METHOD rowRolePattern
-   METHOD rowRoleReplace
-   METHOD setAutoColumnCategories
-   METHOD setAutoRowCategories
-   METHOD setColumnCategories
-   METHOD setColumnRole
-   METHOD setColumnRolePattern
-   METHOD setColumnRoleReplace
-   METHOD setItemModel
-   METHOD setMultiMatchBehavior
-   METHOD setRowCategories
-   METHOD setRowRole
-   METHOD setRowRolePattern
-   METHOD setRowRoleReplace
-   METHOD setUseModelCategories
-   METHOD setXPosRole
-   METHOD setXPosRolePattern
-   METHOD setXPosRoleReplace
-   METHOD setYPosRole
-   METHOD setYPosRolePattern
-   METHOD setYPosRoleReplace
-   METHOD setZPosRole
-   METHOD setZPosRolePattern
-   METHOD setZPosRoleReplace
-   METHOD useModelCategories
-   METHOD xPosRole
-   METHOD xPosRolePattern
-   METHOD xPosRoleReplace
-   METHOD yPosRole
-   METHOD yPosRolePattern
-   METHOD yPosRoleReplace
-   METHOD zPosRole
-   METHOD zPosRolePattern
-   METHOD zPosRoleReplace
+$addMethods
 
-   METHOD onAutoColumnCategoriesChanged
-   METHOD onAutoRowCategoriesChanged
-   METHOD onColumnCategoriesChanged
-   METHOD onColumnRoleChanged
-   METHOD onColumnRolePatternChanged
-   METHOD onColumnRoleReplaceChanged
-   METHOD onItemModelChanged
-   METHOD onMultiMatchBehaviorChanged
-   METHOD onRowCategoriesChanged
-   METHOD onRowRoleChanged
-   METHOD onRowRolePatternChanged
-   METHOD onRowRoleReplaceChanged
-   METHOD onUseModelCategoriesChanged
-   METHOD onXPosRoleChanged
-   METHOD onXPosRolePatternChanged
-   METHOD onXPosRoleReplaceChanged
-   METHOD onYPosRoleChanged
-   METHOD onYPosRolePatternChanged
-   METHOD onYPosRoleReplaceChanged
-   METHOD onZPosRoleChanged
-   METHOD onZPosRolePatternChanged
-   METHOD onZPosRoleReplaceChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

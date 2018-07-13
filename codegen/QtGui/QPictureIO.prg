@@ -8,52 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QPICTURE
-REQUEST QIODEVICE
-REQUEST QBYTEARRAY
-#endif
+$addRequests
 
-CLASS QPictureIO
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD new
-   METHOD delete
-   METHOD picture
-   METHOD status
-   METHOD format
-   METHOD ioDevice
-   METHOD fileName
-   METHOD quality
-   METHOD description
-   METHOD parameters
-   METHOD gamma
-   METHOD setPicture
-   METHOD setStatus
-   METHOD setFormat
-   METHOD setIODevice
-   METHOD setFileName
-   METHOD setQuality
-   METHOD setDescription
-   METHOD setParameters
-   METHOD setGamma
-   METHOD read
-   METHOD write
-   METHOD pictureFormat
-   METHOD inputFormats
-   METHOD outputFormats
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

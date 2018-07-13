@@ -8,28 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QMEDIACONTENT
-#endif
+$addRequests
 
-CLASS QMediaGaplessPlaybackControl INHERIT QMediaControl
+$beginClassFrom=QMediaControl
 
-%%   METHOD new
-   METHOD delete
+$addMethods
 
-   METHOD crossfadeTime
-   METHOD isCrossfadeSupported
-   METHOD nextMedia
-   METHOD setCrossfadeTime
-   METHOD setNextMedia
+$addSignals
 
-   METHOD onAdvancedToNextMedia
-   METHOD onCrossfadeTimeChanged
-   METHOD onNextMediaChanged
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

@@ -8,34 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QTEXTCODEC
-REQUEST QIODEVICE
-#endif
+$addRequests
 
-CLASS QXmlSerializer INHERIT QAbstractXmlReceiver
+$beginClassFrom=QAbstractXmlReceiver
 
-   METHOD new
-   METHOD delete
-   METHOD codec
-   METHOD outputDevice
-   METHOD setCodec
-   METHOD atomicValue
-   METHOD attribute
-   METHOD characters
-   METHOD comment
-   METHOD endDocument
-   METHOD endElement
-   METHOD endOfSequence
-   METHOD namespaceBinding
-   METHOD processingInstruction
-   METHOD startDocument
-   METHOD startElement
-   METHOD startOfSequence
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

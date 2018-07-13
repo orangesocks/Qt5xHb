@@ -8,25 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QSIZE
-#endif
+$addRequests
 
-CLASS QSlider INHERIT QAbstractSlider
+$beginClassFrom=QAbstractSlider
 
-   METHOD new
-   METHOD delete
-   METHOD tickInterval
-   METHOD setTickInterval
-   METHOD tickPosition
-   METHOD setTickPosition
-   METHOD event
-   METHOD minimumSizeHint
-   METHOD sizeHint
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

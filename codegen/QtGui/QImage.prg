@@ -8,82 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QPOINT
-REQUEST QRECT
-REQUEST QSIZE
-REQUEST QTRANSFORM
-#endif
+$addRequests
 
 %% TODO: revisar e completar implementacao da classe
 
-CLASS QImage INHERIT QPaintDevice
+$beginClassFrom=QPaintDevice
 
-   METHOD new9
-   METHOD new10
-   METHOD new
-   METHOD delete
-   METHOD allGray
-   METHOD bitPlaneCount
-   METHOD byteCount
-   METHOD bytesPerLine
-   METHOD cacheKey
-   METHOD color
-   METHOD colorCount
-   METHOD colorTable
-   METHOD convertToFormat
-   METHOD copy
-   METHOD createAlphaMask
-   METHOD createHeuristicMask
-   METHOD createMaskFromColor
-   METHOD depth
-   METHOD dotsPerMeterX
-   METHOD dotsPerMeterY
-   METHOD fill
-   METHOD format
-   METHOD hasAlphaChannel
-   METHOD height
-   METHOD invertPixels
-   METHOD isGrayscale
-   METHOD isNull
-   METHOD load
-   METHOD loadFromData
-   METHOD mirrored
-   METHOD offset
-   METHOD pixel
-   METHOD pixelIndex
-   METHOD rect
-   METHOD rgbSwapped
-   METHOD save
-   METHOD scaled
-   METHOD scaledToHeight
-   METHOD scaledToWidth
-   METHOD scanLine
-   METHOD setColor
-   METHOD setColorCount
-   METHOD setDotsPerMeterX
-   METHOD setDotsPerMeterY
-   METHOD setOffset
-   METHOD setPixel
-   METHOD setText
-   METHOD size
-   METHOD swap
-   METHOD text
-   METHOD textKeys
-   METHOD transformed
-   METHOD valid
-   METHOD width
-   METHOD fromData
-   METHOD trueMatrix
-   METHOD pixelColor
-   METHOD reinterpretAsFormat
-   METHOD setPixelColor
-   METHOD toVariant
-   METHOD fromVariant
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

@@ -8,20 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QSIZE
-#endif
+$addRequests
 
-CLASS QRadioButton INHERIT QAbstractButton
+$beginClassFrom=QAbstractButton
 
-   METHOD new
-   METHOD delete
-   METHOD sizeHint
-   METHOD minimumSizeHint
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

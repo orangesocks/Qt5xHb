@@ -8,35 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QACTION
-REQUEST QMENU
-REQUEST QTOOLBAR
-REQUEST QMAINWINDOW
-REQUEST QWIDGET
-#endif
+$addRequests
 
-CLASS QScriptEngineDebugger INHERIT QObject
+$beginClassFrom=QObject
 
-   METHOD new
-   METHOD delete
-   METHOD action
-   METHOD attachTo
-   METHOD autoShowStandardWindow
-   METHOD createStandardMenu
-   METHOD createStandardToolBar
-   METHOD detach
-   METHOD setAutoShowStandardWindow
-   METHOD standardWindow
-   METHOD state
-   METHOD widget
+$addMethods
 
-   METHOD onEvaluationResumed
-   METHOD onEvaluationSuspended
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

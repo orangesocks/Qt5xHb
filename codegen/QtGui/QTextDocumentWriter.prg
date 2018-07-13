@@ -8,38 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QBYTEARRAY
-REQUEST QIODEVICE
-REQUEST QTEXTCODEC
-#endif
+$addRequests
 
-CLASS QTextDocumentWriter
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD new
-   METHOD delete
-   METHOD setFormat
-   METHOD format
-   METHOD setDevice
-   METHOD device
-   METHOD setFileName
-   METHOD fileName
-   METHOD write
-   METHOD setCodec
-   METHOD codec
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

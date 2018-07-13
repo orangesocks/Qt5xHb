@@ -8,45 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QCustom3DItem INHERIT QObject
+$addRequests
 
-   METHOD new
-   METHOD delete
+$beginClassFrom=QObject
 
-   METHOD isPositionAbsolute
-   METHOD isScalingAbsolute
-   METHOD isShadowCasting
-   METHOD isVisible
-   METHOD meshFile
-   METHOD position
-   METHOD rotation
-   METHOD scaling
-   METHOD setMeshFile
-   METHOD setPosition
-   METHOD setPositionAbsolute
-   METHOD setRotation
-   METHOD setRotationAxisAndAngle
-   METHOD setScaling
-   METHOD setScalingAbsolute
-   METHOD setShadowCasting
-   METHOD setTextureFile
-   METHOD setTextureImage
-   METHOD setVisible
-   METHOD textureFile
+$addMethods
 
-   METHOD onMeshFileChanged
-   METHOD onPositionAbsoluteChanged
-   METHOD onPositionChanged
-   METHOD onRotationChanged
-   METHOD onScalingAbsoluteChanged
-   METHOD onScalingChanged
-   METHOD onShadowCastingChanged
-   METHOD onTextureFileChanged
-   METHOD onVisibleChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

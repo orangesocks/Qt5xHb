@@ -8,60 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QCOLOR
-REQUEST QIMAGE
-REQUEST QPIXMAP
-REQUEST QIODEVICE
-REQUEST QBYTEARRAY
-REQUEST QRECT
-REQUEST QSIZE
-#endif
+$addRequests
 
-CLASS QMovie INHERIT QObject
+$beginClassFrom=QObject
 
-   METHOD new
-   METHOD delete
-   METHOD backgroundColor
-   METHOD cacheMode
-   METHOD currentFrameNumber
-   METHOD currentImage
-   METHOD currentPixmap
-   METHOD device
-   METHOD fileName
-   METHOD format
-   METHOD frameCount
-   METHOD frameRect
-   METHOD isValid
-   METHOD jumpToFrame
-   METHOD loopCount
-   METHOD nextFrameDelay
-   METHOD scaledSize
-   METHOD setBackgroundColor
-   METHOD setCacheMode
-   METHOD setDevice
-   METHOD setFileName
-   METHOD setFormat
-   METHOD setScaledSize
-   METHOD speed
-   METHOD state
-   METHOD jumpToNextFrame
-   METHOD setPaused
-   METHOD setSpeed
-   METHOD start
-   METHOD stop
+$addMethods
 
-   METHOD onError
-   METHOD onFinished
-   METHOD onFrameChanged
-   METHOD onResized
-   METHOD onStarted
-   METHOD onStateChanged
-   METHOD onUpdated
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

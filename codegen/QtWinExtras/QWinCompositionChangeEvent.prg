@@ -8,15 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QWinCompositionChangeEvent INHERIT QWinEvent
+$addRequests
 
-   METHOD new
-   METHOD delete
-   METHOD isCompositionEnabled
+$beginClassFrom=QWinEvent
 
-   DESTRUCTOR destroyObject
+$addMethods
 
-END CLASS
+$endClass
 
 $destructor
 

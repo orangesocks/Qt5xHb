@@ -8,28 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QRECTF
-REQUEST QSIZEF
-#endif
+$addRequests
 
-CLASS QPlainTextDocumentLayout INHERIT QAbstractTextDocumentLayout
+$beginClassFrom=QAbstractTextDocumentLayout
 
-   METHOD new
-   METHOD delete
-   METHOD cursorWidth
-   METHOD ensureBlockLayout
-   METHOD requestUpdate
-   METHOD setCursorWidth
-   METHOD blockBoundingRect
-   METHOD documentSize
-   METHOD frameBoundingRect
-   METHOD hitTest
-   METHOD pageCount
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

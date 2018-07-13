@@ -8,13 +8,9 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QTEXTFORMAT
-REQUEST QTEXTDOCUMENT
-%% REQUEST QTEXTDOCUMENTPRIVATE
-#endif
+$addRequests
 
-CLASS QTextObject INHERIT QObject
+$beginClassFrom=QObject
 
    METHOD format
    METHOD formatIndex
@@ -22,9 +18,7 @@ CLASS QTextObject INHERIT QObject
    METHOD objectIndex
 %%   METHOD docHandle
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

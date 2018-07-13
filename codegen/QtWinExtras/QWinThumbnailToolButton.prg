@@ -8,36 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QICON
-#endif
+$addRequests
 
-CLASS QWinThumbnailToolButton INHERIT QObject
+$beginClassFrom=QObject
 
-   METHOD new
-   METHOD delete
-   METHOD toolTip
-   METHOD setToolTip
-   METHOD icon
-   METHOD setIcon
-   METHOD isEnabled
-   METHOD setEnabled
-   METHOD isInteractive
-   METHOD setInteractive
-   METHOD isVisible
-   METHOD setVisible
-   METHOD dismissOnClick
-   METHOD setDismissOnClick
-   METHOD isFlat
-   METHOD setFlat
-   METHOD click
+$addMethods
 
-   METHOD onClicked
-   METHOD onChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

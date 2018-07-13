@@ -12,73 +12,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QSSLCERTIFICATE
-REQUEST QSSLCIPHER
-REQUEST QSSLKEY
-#endif
+$addRequests
 
-CLASS QSslConfiguration
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD new
-   METHOD delete
-
-   METHOD allowedNextProtocols
-   METHOD caCertificates
-   METHOD ciphers
-   METHOD defaultConfiguration
-%%   METHOD diffieHellmanParameters
-%%   METHOD ellipticCurves
-   METHOD ephemeralServerKey
-   METHOD isNull
-   METHOD localCertificate
-   METHOD localCertificateChain
-   METHOD nextNegotiatedProtocol
-   METHOD nextProtocolNegotiationStatus
-   METHOD peerCertificate
-   METHOD peerCertificateChain
-   METHOD peerVerifyDepth
-   METHOD peerVerifyMode
-   METHOD preSharedKeyIdentityHint
-   METHOD privateKey
-   METHOD protocol
-   METHOD sessionCipher
-   METHOD sessionProtocol
-   METHOD sessionTicket
-   METHOD sessionTicketLifeTimeHint
-   METHOD setAllowedNextProtocols
-   METHOD setCaCertificates
-   METHOD setCiphers
-   METHOD setDefaultConfiguration
-%%   METHOD setDiffieHellmanParameters
-%%   METHOD setEllipticCurves
-   METHOD setLocalCertificate
-   METHOD setLocalCertificateChain
-   METHOD setPeerVerifyDepth
-   METHOD setPeerVerifyMode
-   METHOD setPreSharedKeyIdentityHint
-   METHOD setPrivateKey
-   METHOD setProtocol
-   METHOD setSessionTicket
-   METHOD setSslOption
-   METHOD supportedCiphers
-%%   METHOD supportedEllipticCurves
-   METHOD swap
-   METHOD systemCaCertificates
-   METHOD testSslOption
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 
@@ -104,7 +44,7 @@ HB_FUNC_STATIC( QSSLCONFIGURATION_NEW )
   {
     QSslConfiguration_new1();
   }
-  if( ISNUMPAR(1) && ISQSSLCONFIGURATION(1) )
+  else if( ISNUMPAR(1) && ISQSSLCONFIGURATION(1) )
   {
     QSslConfiguration_new2();
   }

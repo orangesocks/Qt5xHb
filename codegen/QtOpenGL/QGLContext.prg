@@ -8,48 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QPAINTDEVICE
-REQUEST QGLFORMAT
-REQUEST QCOLOR
-#endif
+$addRequests
 
-CLASS QGLContext
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD new
-   METHOD delete
-   METHOD bindTexture
-%%   METHOD create
-   METHOD deleteTexture
-   METHOD device
-   METHOD doneCurrent
-   METHOD drawTexture
-   METHOD format
-   METHOD isSharing
-   METHOD isValid
-   METHOD makeCurrent
-   METHOD overlayTransparentColor
-   METHOD requestedFormat
-   METHOD reset
-   METHOD setFormat
-   METHOD swapBuffers
-   METHOD areSharing
-   METHOD currentContext
-   METHOD setTextureCacheLimit
-   METHOD textureCacheLimit
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

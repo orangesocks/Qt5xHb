@@ -8,37 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QPIXMAP
-#endif
+$addRequests
 
-CLASS QWizardPage INHERIT QWidget
+$beginClassFrom=QWidget
 
-   METHOD new
-   METHOD delete
-   METHOD buttonText
-   METHOD setButtonText
-   METHOD cleanupPage
-   METHOD initializePage
-   METHOD isCommitPage
-   METHOD setCommitPage
-   METHOD isComplete
-   METHOD isFinalPage
-   METHOD setFinalPage
-   METHOD nextId
-   METHOD pixmap
-   METHOD setPixmap
-   METHOD subTitle
-   METHOD setSubTitle
-   METHOD title
-   METHOD setTitle
-   METHOD validatePage
+$addMethods
 
-   METHOD onCompleteChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

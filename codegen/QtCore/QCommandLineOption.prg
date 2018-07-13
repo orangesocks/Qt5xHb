@@ -8,32 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QCommandLineOption
+$addRequests
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$beginClassFrom=
 
-   METHOD new
-   METHOD delete
-   METHOD swap
-   METHOD names
-   METHOD setValueName
-   METHOD valueName
-   METHOD setDescription
-   METHOD description
-   METHOD setDefaultValue
-   METHOD setDefaultValues
-   METHOD defaultValues
+$addMethods
 
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

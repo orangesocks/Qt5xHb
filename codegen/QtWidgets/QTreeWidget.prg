@@ -8,66 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QTREEWIDGETITEM
-REQUEST QWIDGET
-REQUEST QRECT
-#endif
+$addRequests
 
-CLASS QTreeWidget INHERIT QTreeView
+$beginClassFrom=QTreeView
 
-   METHOD new
-   METHOD delete
-   METHOD addTopLevelItem
-   METHOD closePersistentEditor
-   METHOD columnCount
-   METHOD currentColumn
-   METHOD currentItem
-   METHOD editItem
-   METHOD headerItem
-   METHOD indexOfTopLevelItem
-   METHOD insertTopLevelItem
-   METHOD invisibleRootItem
-   METHOD isFirstItemColumnSpanned
-   METHOD itemAbove
-   METHOD itemAt
-   METHOD itemBelow
-   METHOD itemWidget
-   METHOD openPersistentEditor
-   METHOD removeItemWidget
-   METHOD setColumnCount
-   METHOD setCurrentItem
-   METHOD setFirstItemColumnSpanned
-   METHOD setHeaderItem
-   METHOD setHeaderLabel
-   METHOD setHeaderLabels
-   METHOD setItemWidget
-   METHOD sortColumn
-   METHOD sortItems
-   METHOD takeTopLevelItem
-   METHOD topLevelItem
-   METHOD topLevelItemCount
-   METHOD visualItemRect
-   METHOD setSelectionModel
-   METHOD clear
-   METHOD collapseItem
-   METHOD expandItem
-   METHOD scrollToItem
+$addMethods
 
-   METHOD onCurrentItemChanged
-   METHOD onItemActivated
-   METHOD onItemChanged
-   METHOD onItemClicked
-   METHOD onItemCollapsed
-   METHOD onItemDoubleClicked
-   METHOD onItemEntered
-   METHOD onItemExpanded
-   METHOD onItemPressed
-   METHOD onItemSelectionChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

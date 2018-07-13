@@ -8,37 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QCustom3DLabel INHERIT QCustom3DItem
+$addRequests
 
-   METHOD new
-   METHOD delete
+$beginClassFrom=QCustom3DItem
 
-   METHOD backgroundColor
-   METHOD font
-   METHOD isBackgroundEnabled
-   METHOD isBorderEnabled
-   METHOD isFacingCamera
-   METHOD setBackgroundColor
-   METHOD setBackgroundEnabled
-   METHOD setBorderEnabled
-   METHOD setFacingCamera
-   METHOD setFont
-   METHOD setText
-   METHOD setTextColor
-   METHOD text
-   METHOD textColor
+$addMethods
 
-   METHOD onBackgroundColorChanged
-   METHOD onBackgroundEnabledChanged
-   METHOD onBorderEnabledChanged
-   METHOD onFacingCameraChanged
-   METHOD onFontChanged
-   METHOD onTextChanged
-   METHOD onTextColorChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

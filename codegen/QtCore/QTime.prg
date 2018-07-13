@@ -8,40 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QTime
+$addRequests
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$beginClassFrom=
 
-   METHOD new
-   METHOD delete
-   METHOD addMSecs
-   METHOD addSecs
-   METHOD elapsed
-   METHOD hour
-   METHOD isNull
-   METHOD isValid
-   METHOD minute
-   METHOD msec
-   METHOD msecsTo
-   METHOD restart
-   METHOD second
-   METHOD secsTo
-   METHOD setHMS
-   METHOD start
-   METHOD toString
-   METHOD currentTime
-   METHOD fromString
+$addMethods
 
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

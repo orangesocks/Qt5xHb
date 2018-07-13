@@ -8,21 +8,11 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QValue3DAxis INHERIT QAbstract3DAxis
+$addRequests
 
-   METHOD new
-   METHOD delete
+$beginClassFrom=QAbstract3DAxis
 
-   METHOD formatter
-   METHOD labelFormat
-   METHOD reversed
-   METHOD segmentCount
-   METHOD setFormatter
-   METHOD setLabelFormat
-   METHOD setReversed
-   METHOD setSegmentCount
-   METHOD setSubSegmentCount
-   METHOD subSegmentCount
+$addMethods
 
 %%   METHOD onFormatterChanged
 %%   METHOD onLabelFormatChanged
@@ -30,9 +20,7 @@ CLASS QValue3DAxis INHERIT QAbstract3DAxis
 %%   METHOD onSegmentCountChanged
 %%   METHOD onSubSegmentCountChanged
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

@@ -12,8 +12,6 @@
 
 #include "QOAuth1Slots.h"
 
-static QOAuth1Slots * s = NULL;
-
 QOAuth1Slots::QOAuth1Slots(QObject *parent) : QObject(parent)
 {
 }
@@ -21,6 +19,7 @@ QOAuth1Slots::QOAuth1Slots(QObject *parent) : QObject(parent)
 QOAuth1Slots::~QOAuth1Slots()
 {
 }
+#if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
 void QOAuth1Slots::clientSharedSecretChanged( const QString & credential )
 {
   QObject *object = qobject_cast<QObject *>(sender());
@@ -34,6 +33,8 @@ void QOAuth1Slots::clientSharedSecretChanged( const QString & credential )
     hb_itemRelease( pcredential );
   }
 }
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
 void QOAuth1Slots::signatureMethodChanged( QOAuth1::SignatureMethod method )
 {
   QObject *object = qobject_cast<QObject *>(sender());
@@ -47,6 +48,8 @@ void QOAuth1Slots::signatureMethodChanged( QOAuth1::SignatureMethod method )
     hb_itemRelease( pmethod );
   }
 }
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
 void QOAuth1Slots::temporaryCredentialsUrlChanged( const QUrl & url )
 {
   QObject *object = qobject_cast<QObject *>(sender());
@@ -60,6 +63,8 @@ void QOAuth1Slots::temporaryCredentialsUrlChanged( const QUrl & url )
     hb_itemRelease( purl );
   }
 }
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
 void QOAuth1Slots::tokenCredentialsUrlChanged( const QUrl & url )
 {
   QObject *object = qobject_cast<QObject *>(sender());
@@ -73,6 +78,8 @@ void QOAuth1Slots::tokenCredentialsUrlChanged( const QUrl & url )
     hb_itemRelease( purl );
   }
 }
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
 void QOAuth1Slots::tokenSecretChanged( const QString & token )
 {
   QObject *object = qobject_cast<QObject *>(sender());
@@ -86,13 +93,31 @@ void QOAuth1Slots::tokenSecretChanged( const QString & token )
     hb_itemRelease( ptoken );
   }
 }
+#endif
 
 void QOAuth1Slots_connect_signal ( const QString & signal, const QString & slot )
 {
-  if( s == NULL )
-  {
-    s = new QOAuth1Slots( QCoreApplication::instance() );
-  }
+#if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
+  QOAuth1 * obj = (QOAuth1 *) hb_itemGetPtr( hb_objSendMsg( hb_stackSelfItem(), "POINTER", 0 ) );
 
-  hb_retl( Signals_connection_disconnection( s, signal, slot ) );
+  if( obj )
+  {
+    QOAuth1Slots * s = QCoreApplication::instance()->findChild<QOAuth1Slots *>();
+
+    if( s == NULL )
+    {
+      s = new QOAuth1Slots();
+      s->moveToThread( QCoreApplication::instance()->thread() );
+      s->setParent( QCoreApplication::instance() );
+    }
+
+    hb_retl( Signals_connection_disconnection( s, signal, slot ) );
+  }
+  else
+  {
+    hb_retl( false );
+  }
+#else
+  hb_retl( false );
+#endif
 }

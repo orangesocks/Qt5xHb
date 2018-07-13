@@ -8,37 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QPOINTF
-#endif
+$addRequests
 
-CLASS QTabletEvent INHERIT QInputEvent
+$beginClassFrom=QInputEvent
 
-   METHOD new
-   METHOD delete
-   METHOD device
-   METHOD globalPos
-   METHOD globalPosF
-   METHOD globalX
-   METHOD globalY
-   METHOD hiResGlobalX
-   METHOD hiResGlobalY
-   METHOD pointerType
-   METHOD pos
-   METHOD posF
-   METHOD pressure
-   METHOD rotation
-   METHOD tangentialPressure
-   METHOD uniqueId
-   METHOD x
-   METHOD xTilt
-   METHOD y
-   METHOD yTilt
-   METHOD z
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

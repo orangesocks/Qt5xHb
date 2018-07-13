@@ -8,23 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QKeyEvent INHERIT QInputEvent
+$addRequests
 
-   METHOD new
-   METHOD delete
-   METHOD count
-   METHOD isAutoRepeat
-   METHOD key
-   METHOD matches
-   METHOD modifiers
-   METHOD nativeModifiers
-   METHOD nativeScanCode
-   METHOD nativeVirtualKey
-   METHOD text
+$beginClassFrom=QInputEvent
 
-   DESTRUCTOR destroyObject
+$addMethods
 
-END CLASS
+$endClass
 
 $destructor
 

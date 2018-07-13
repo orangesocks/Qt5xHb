@@ -8,25 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QIMAGE
-REQUEST QPIXMAP
-REQUEST QQUICKTEXTUREFACTORY
-#endif
+$addRequests
 
-CLASS QQuickImageProvider INHERIT QQmlImageProviderBase
+$beginClassFrom=QQmlImageProviderBase
 
-   METHOD new
-   METHOD delete
-   METHOD flags
-   METHOD imageType
-   METHOD requestImage
-   METHOD requestPixmap
-   METHOD requestTexture
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

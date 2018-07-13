@@ -8,30 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QCameraViewfinderSettings
+$addRequests
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$beginClass
 
-   METHOD new
-   METHOD delete
+$addMethods
 
-   METHOD isNull
-   METHOD maximumFrameRate
-   METHOD minimumFrameRate
-   METHOD pixelAspectRatio
-   METHOD pixelFormat
-   METHOD resolution
-   METHOD setMaximumFrameRate
-   METHOD setMinimumFrameRate
-   METHOD setPixelAspectRatio
-   METHOD setPixelFormat
-   METHOD setResolution
-   METHOD swap
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

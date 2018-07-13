@@ -8,22 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QRECTF
-#endif
+$addRequests
 
-CLASS QSGClipNode INHERIT QSGBasicGeometryNode
+$beginClassFrom=QSGBasicGeometryNode
 
-   METHOD new
-   METHOD delete
-   METHOD clipRect
-   METHOD isRectangular
-   METHOD setClipRect
-   METHOD setIsRectangular
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

@@ -8,17 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QTranslator INHERIT QObject
+$addRequests
 
-   METHOD new
-   METHOD delete
-   METHOD isEmpty
-   METHOD load
-   METHOD translate
+$beginClassFrom=QObject
 
-   DESTRUCTOR destroyObject
+$addMethods
 
-END CLASS
+$endClass
 
 $destructor
 

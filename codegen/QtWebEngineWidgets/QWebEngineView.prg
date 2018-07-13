@@ -8,52 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QWEBENGINEPAGE
-REQUEST QWEBENGINEHISTORY
-REQUEST QURL
-REQUEST QACTION
-REQUEST QSIZE
-#endif
+$addRequests
 
-CLASS QWebEngineView INHERIT QWidget
+$beginClassFrom=QWidget
 
-   METHOD new
-   METHOD delete
-   METHOD page
-   METHOD setPage
-   METHOD load
-   METHOD setHtml
-   METHOD setContent
-   METHOD history
-   METHOD title
-   METHOD url
-   METHOD setUrl
-   METHOD iconUrl
-   METHOD hasSelection
-   METHOD selectedText
-   METHOD pageAction
-   METHOD triggerPageAction
-   METHOD zoomFactor
-   METHOD setZoomFactor
-%%   METHOD findText
-   METHOD sizeHint
-   METHOD stop
-   METHOD back
-   METHOD forward
-   METHOD reload
+$addMethods
 
-   METHOD onLoadStarted
-   METHOD onLoadProgress
-   METHOD onLoadFinished
-   METHOD onTitleChanged
-   METHOD onSelectionChanged
-   METHOD onUrlChanged
-   METHOD onIconUrlChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

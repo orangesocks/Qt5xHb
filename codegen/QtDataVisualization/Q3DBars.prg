@@ -8,52 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-CLASS Q3DBars INHERIT QAbstract3DGraph
+$addRequests
 
-   METHOD new
-   METHOD delete
+$beginClassFrom=QAbstract3DGraph
 
-   METHOD addAxis
-   METHOD addSeries
-   METHOD axes
-   METHOD barSpacing
-   METHOD barThickness
-   METHOD columnAxis
-   METHOD floorLevel
-   METHOD insertSeries
-   METHOD isBarSpacingRelative
-   METHOD isMultiSeriesUniform
-   METHOD primarySeries
-   METHOD releaseAxis
-   METHOD removeSeries
-   METHOD rowAxis
-   METHOD selectedSeries
-   METHOD seriesList
-   METHOD setBarSpacing
-   METHOD setBarSpacingRelative
-   METHOD setBarThickness
-   METHOD setColumnAxis
-   METHOD setFloorLevel
-   METHOD setMultiSeriesUniform
-   METHOD setPrimarySeries
-   METHOD setRowAxis
-   METHOD setValueAxis
-   METHOD valueAxis
+$addMethods
 
-   METHOD onBarSpacingChanged
-   METHOD onBarSpacingRelativeChanged
-   METHOD onBarThicknessChanged
-   METHOD onColumnAxisChanged
-   METHOD onFloorLevelChanged
-   METHOD onMultiSeriesUniformChanged
-   METHOD onPrimarySeriesChanged
-   METHOD onRowAxisChanged
-   METHOD onSelectedSeriesChanged
-   METHOD onValueAxisChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

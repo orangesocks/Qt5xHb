@@ -8,39 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QRECT
-#endif
+$addRequests
 
-CLASS QAccessibleTextInterface
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD delete
-   METHOD selection
-   METHOD selectionCount
-   METHOD addSelection
-   METHOD removeSelection
-   METHOD setSelection
-   METHOD cursorPosition
-   METHOD setCursorPosition
-   METHOD text
-   METHOD characterCount
-   METHOD characterRect
-   METHOD offsetAtPoint
-   METHOD scrollToSubstring
-   METHOD attributes
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

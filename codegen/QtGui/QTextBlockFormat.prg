@@ -8,36 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QTextBlockFormat INHERIT QTextFormat
+$addRequests
 
-   METHOD new
-   METHOD delete
-   METHOD isValid
-   METHOD setAlignment
-   METHOD alignment
-   METHOD setTopMargin
-   METHOD topMargin
-   METHOD setBottomMargin
-   METHOD bottomMargin
-   METHOD setLeftMargin
-   METHOD leftMargin
-   METHOD setRightMargin
-   METHOD rightMargin
-   METHOD setTextIndent
-   METHOD textIndent
-   METHOD setIndent
-   METHOD indent
-   METHOD setLineHeight
-   METHOD lineHeight
-   METHOD lineHeightType
-   METHOD setNonBreakableLines
-   METHOD nonBreakableLines
-   METHOD setPageBreakPolicy
-   METHOD pageBreakPolicy
+$beginClassFrom=QTextFormat
 
-   DESTRUCTOR destroyObject
+$addMethods
 
-END CLASS
+$endClass
 
 $destructor
 

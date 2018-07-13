@@ -8,24 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QSENSORGESTURERECOGNIZER
-#endif
+$addRequests
 
-CLASS QSensorGestureManager INHERIT QObject
+$beginClassFrom=QObject
 
-   METHOD new
-   METHOD delete
-   METHOD registerSensorGestureRecognizer
-   METHOD gestureIds
-   METHOD recognizerSignals
-   METHOD sensorGestureRecognizer
+$addMethods
 
-   METHOD onNewSensorGestureAvailable
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

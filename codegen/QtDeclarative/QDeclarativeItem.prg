@@ -8,38 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QRECTF
-REQUEST QSCRIPTVALUE
-#endif
+$addRequests
 
-CLASS QDeclarativeItem INHERIT QGraphicsObject,QDeclarativeParserStatus
+$beginClassFrom=QGraphicsObject,QDeclarativeParserStatus
 
-   METHOD new
-   METHOD delete
-   METHOD baselineOffset
-   METHOD childAt
-   METHOD childrenRect
-   METHOD clip
-   METHOD forceActiveFocus
-   METHOD implicitHeight
-   METHOD implicitWidth
-   METHOD keepMouseGrab
-   METHOD mapFromItem
-   METHOD mapToItem
-   METHOD parentItem
-   METHOD setBaselineOffset
-   METHOD setClip
-   METHOD setKeepMouseGrab
-   METHOD setParentItem
-   METHOD setSmooth
-   METHOD setTransformOrigin
-   METHOD smooth
-   METHOD transformOrigin
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

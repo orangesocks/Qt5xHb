@@ -8,21 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QMEDIASERVICE
-#endif
+$addRequests
 
-CLASS QMediaServiceProviderPlugin INHERIT QObject,QMediaServiceProviderFactoryInterface
+$beginClassFrom=QObject,QMediaServiceProviderFactoryInterface
 
-%%   METHOD new
-   METHOD delete
+$addMethods
 
-   METHOD create
-   METHOD release
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

@@ -8,24 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QPAINTERPATH
-#endif
+$addRequests
 
-CLASS QMouseEventTransition INHERIT QEventTransition
+$beginClassFrom=QEventTransition
 
-   METHOD new
-   METHOD delete
-   METHOD button
-   METHOD hitTestPath
-   METHOD modifierMask
-   METHOD setButton
-   METHOD setHitTestPath
-   METHOD setModifierMask
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

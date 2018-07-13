@@ -8,11 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QSGSimpleMaterialShader INHERIT QSGMaterialShader
+$addRequests
 
-   DESTRUCTOR destroyObject
+$beginClassFrom=QSGMaterialShader
 
-END CLASS
+$addMethods
+
+$endClass
 
 $destructor
 

@@ -8,29 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QMENU
-#endif
+$addRequests
 
-CLASS QPushButton INHERIT QAbstractButton
+$beginClassFrom=QAbstractButton
 
-   METHOD new
-   METHOD delete
-   METHOD autoDefault
-   METHOD isDefault
-   METHOD isFlat
-   METHOD menu
-   METHOD setAutoDefault
-   METHOD setDefault
-   METHOD setFlat
-   METHOD setMenu
-   METHOD showMenu
-   METHOD minimumSizeHint
-   METHOD sizeHint
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

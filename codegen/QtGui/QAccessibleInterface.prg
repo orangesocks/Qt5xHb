@@ -8,59 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QOBJECT
-REQUEST QWINDOW
-REQUEST QRECT
-REQUEST QCOLOR
-REQUEST QACCESSIBLETEXTINTERFACE
-REQUEST QACCESSIBLEEDITABLETEXTINTERFACE
-REQUEST QACCESSIBLEVALUEINTERFACE
-REQUEST QACCESSIBLEACTIONINTERFACE
-REQUEST QACCESSIBLEIMAGEINTERFACE
-REQUEST QACCESSIBLETABLEINTERFACE
-REQUEST QACCESSIBLETABLECELLINTERFACE
-#endif
+$addRequests
 
-CLASS QAccessibleInterface
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD isValid
-   METHOD object
-   METHOD window
-   METHOD focusChild
-   METHOD childAt
-   METHOD parent
-   METHOD child
-   METHOD childCount
-   METHOD indexOfChild
-   METHOD text
-   METHOD setText
-   METHOD rect
-   METHOD role
-   METHOD foregroundColor
-   METHOD backgroundColor
-   METHOD textInterface
-   METHOD editableTextInterface
-   METHOD valueInterface
-   METHOD actionInterface
-   METHOD imageInterface
-   METHOD tableInterface
-   METHOD tableCellInterface
-   METHOD virtual_hook
-   METHOD interface_cast
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

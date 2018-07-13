@@ -8,36 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QWINDOW
-REQUEST QACCESSIBLEINTERFACE
-REQUEST QRECT
-REQUEST QCOLOR
-#endif
+$addRequests
 
-CLASS QAccessibleWidget INHERIT QAccessibleObject,QAccessibleActionInterface
+$beginClassFrom=QAccessibleObject,QAccessibleActionInterface
 
-   METHOD new
-   METHOD isValid
-   METHOD window
-   METHOD childCount
-   METHOD indexOfChild
-   METHOD focusChild
-   METHOD rect
-   METHOD parent
-   METHOD child
-   METHOD text
-   METHOD role
-   METHOD foregroundColor
-   METHOD backgroundColor
-   METHOD interface_cast
-   METHOD actionNames
-   METHOD doAction
-   METHOD keyBindingsForAction
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

@@ -8,56 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QItemModelScatterDataProxy INHERIT QScatterDataProxy
+$addRequests
 
-   METHOD new
-   METHOD delete
+$beginClassFrom=QScatterDataProxy
 
-   METHOD itemModel
-   METHOD remap
-   METHOD rotationRole
-   METHOD rotationRolePattern
-   METHOD rotationRoleReplace
-   METHOD setItemModel
-   METHOD setRotationRole
-   METHOD setRotationRolePattern
-   METHOD setRotationRoleReplace
-   METHOD setXPosRole
-   METHOD setXPosRolePattern
-   METHOD setXPosRoleReplace
-   METHOD setYPosRole
-   METHOD setYPosRolePattern
-   METHOD setYPosRoleReplace
-   METHOD setZPosRole
-   METHOD setZPosRolePattern
-   METHOD setZPosRoleReplace
-   METHOD xPosRole
-   METHOD xPosRolePattern
-   METHOD xPosRoleReplace
-   METHOD yPosRole
-   METHOD yPosRolePattern
-   METHOD yPosRoleReplace
-   METHOD zPosRole
-   METHOD zPosRolePattern
-   METHOD zPosRoleReplace
+$addMethods
 
-   METHOD onItemModelChanged
-   METHOD onRotationRoleChanged
-   METHOD onRotationRolePatternChanged
-   METHOD onRotationRoleReplaceChanged
-   METHOD onXPosRoleChanged
-   METHOD onXPosRolePatternChanged
-   METHOD onXPosRoleReplaceChanged
-   METHOD onYPosRoleChanged
-   METHOD onYPosRolePatternChanged
-   METHOD onYPosRoleReplaceChanged
-   METHOD onZPosRoleChanged
-   METHOD onZPosRolePatternChanged
-   METHOD onZPosRoleReplaceChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

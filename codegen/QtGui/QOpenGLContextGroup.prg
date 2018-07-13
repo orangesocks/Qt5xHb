@@ -8,15 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QOpenGLContextGroup INHERIT QObject
+$addRequests
 
-   METHOD delete
-   METHOD shares
-   METHOD currentContextGroup
+$beginClassFrom=QObject
 
-   DESTRUCTOR destroyObject
+$addMethods
 
-END CLASS
+$endClass
 
 $destructor
 

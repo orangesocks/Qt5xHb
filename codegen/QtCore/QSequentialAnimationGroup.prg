@@ -8,25 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QPAUSEANIMATION
-REQUEST QABSTRACTANIMATION
-#endif
+$addRequests
 
-CLASS QSequentialAnimationGroup INHERIT QAnimationGroup
+$beginClassFrom=QAnimationGroup
 
-   METHOD new
-   METHOD delete
-   METHOD addPause
-   METHOD currentAnimation
-   METHOD insertPause
-   METHOD duration
+$addMethods
 
-   METHOD onCurrentAnimationChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

@@ -8,14 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QSGTransformNode INHERIT QSGNode
+$addRequests
 
-   METHOD new
-   METHOD delete
+$beginClassFrom=QSGNode
 
-   DESTRUCTOR destroyObject
+$addMethods
 
-END CLASS
+$endClass
 
 $destructor
 

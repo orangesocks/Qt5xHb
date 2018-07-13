@@ -8,28 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QOBJECT
-#endif
+$addRequests
 
-CLASS QPluginLoader INHERIT QObject
+$beginClassFrom=QObject
 
-   METHOD new
-   METHOD delete
-   METHOD errorString
-   METHOD fileName
-   METHOD instance
-   METHOD isLoaded
-   METHOD load
-   METHOD loadHints
-   METHOD setFileName
-   METHOD setLoadHints
-   METHOD unload
-   METHOD staticInstances
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

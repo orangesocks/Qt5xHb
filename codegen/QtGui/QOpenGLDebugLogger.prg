@@ -8,25 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QOpenGLDebugLogger INHERIT QObject
+$addRequests
 
-   METHOD new
-   METHOD delete
-   METHOD initialize
-   METHOD isLogging
-   METHOD loggingMode
-   METHOD maximumMessageLength
-   METHOD pushGroup
-   METHOD popGroup
-   METHOD logMessage
-   METHOD startLogging
-   METHOD stopLogging
+$beginClassFrom=QObject
 
-   METHOD onMessageLogged
+$addMethods
 
-   DESTRUCTOR destroyObject
+$addSignals
 
-END CLASS
+$endClass
 
 $destructor
 

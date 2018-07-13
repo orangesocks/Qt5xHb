@@ -8,45 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QACCESSIBLEINTERFACE
-#endif
+$addRequests
 
-CLASS QAccessibleTableInterface
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD delete
-   METHOD cellAt
-   METHOD caption
-   METHOD columnDescription
-   METHOD columnCount
-   METHOD rowCount
-   METHOD selectedCellCount
-   METHOD selectedColumnCount
-   METHOD selectedRowCount
-   METHOD rowDescription
-   METHOD selectedCells
-   METHOD selectedColumns
-   METHOD selectedRows
-   METHOD summary
-   METHOD isColumnSelected
-   METHOD isRowSelected
-   METHOD selectRow
-   METHOD selectColumn
-   METHOD unselectRow
-   METHOD unselectColumn
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

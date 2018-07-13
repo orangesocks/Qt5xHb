@@ -8,33 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QURL
-REQUEST QXMLNODEMODELINDEX
-REQUEST QXMLNAME
-REQUEST QSOURCELOCATION
-REQUEST QVARIANT
-#endif
+$addRequests
 
-CLASS QAbstractXmlNodeModel INHERIT QSharedData
+$beginClassFrom=QSharedData
 
-   METHOD delete
-   METHOD baseUri
-   METHOD compareOrder
-   METHOD documentUri
-   METHOD elementById
-   METHOD kind
-   METHOD name
-   METHOD namespaceBindings
-   METHOD nodesByIdref
-   METHOD root
-   METHOD sourceLocation
-   METHOD stringValue
-   METHOD typedValue
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

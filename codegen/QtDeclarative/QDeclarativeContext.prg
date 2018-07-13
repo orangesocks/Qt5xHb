@@ -8,31 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QURL
-REQUEST QOBJECT
-REQUEST QVARIANT
-REQUEST QDECLARATIVEENGINE
-#endif
+$addRequests
 
-CLASS QDeclarativeContext INHERIT QObject
+$beginClassFrom=QObject
 
-   METHOD new
-   METHOD delete
-   METHOD baseUrl
-   METHOD contextObject
-   METHOD contextProperty
-   METHOD engine
-   METHOD isValid
-   METHOD parentContext
-   METHOD resolvedUrl
-   METHOD setBaseUrl
-   METHOD setContextObject
-   METHOD setContextProperty
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

@@ -8,38 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QPOINTF
-REQUEST QCAMERAFOCUSZONELIST
-#endif
+$addRequests
 
-CLASS QCameraFocus INHERIT QObject
+$beginClassFrom=QObject
 
-   METHOD customFocusPoint
-   METHOD digitalZoom
-   METHOD focusMode
-   METHOD focusPointMode
-   METHOD focusZones
-   METHOD isAvailable
-   METHOD isFocusModeSupported
-   METHOD isFocusPointModeSupported
-   METHOD maximumDigitalZoom
-   METHOD maximumOpticalZoom
-   METHOD opticalZoom
-   METHOD setCustomFocusPoint
-   METHOD setFocusMode
-   METHOD setFocusPointMode
-   METHOD zoomTo
+$addMethods
 
-   METHOD onDigitalZoomChanged
-   METHOD onFocusZonesChanged
-   METHOD onMaximumDigitalZoomChanged
-   METHOD onMaximumOpticalZoomChanged
-   METHOD onOpticalZoomChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

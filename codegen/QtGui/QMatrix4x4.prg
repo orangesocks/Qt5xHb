@@ -8,62 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QVECTOR4D
-//REQUEST QMATRIX3X3 TODO: classe nao implementada
-REQUEST QMATRIX
-REQUEST QTRANSFORM
-REQUEST QPOINT
-REQUEST QPOINTF
-REQUEST QVECTOR3D
-REQUEST QRECT
-REQUEST QRECTF
-#endif
+$addRequests
 
-CLASS QMatrix4x4
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD new
-   METHOD delete
-   METHOD column
-   METHOD setColumn
-   METHOD row
-   METHOD setRow
-   METHOD isAffine
-   METHOD isIdentity
-   METHOD setToIdentity
-   METHOD fill
-   METHOD determinant
-   METHOD inverted
-   METHOD transposed
-   METHOD normalMatrix
-   METHOD scale
-   METHOD translate
-   METHOD rotate
-   METHOD ortho
-   METHOD frustum
-   METHOD perspective
-   METHOD lookAt
-   METHOD viewport
-   METHOD flipCoordinates
-   METHOD toAffine
-   METHOD toTransform
-   METHOD map
-   METHOD mapVector
-   METHOD mapRect
-   METHOD optimize
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

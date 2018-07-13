@@ -8,24 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QKEYSEQUENCE
-#endif
+$addRequests
 
-CLASS QKeySequenceEdit INHERIT QWidget
+$beginClassFrom=QWidget
 
-   METHOD new
-   METHOD delete
-   METHOD keySequence
-   METHOD setKeySequence
-   METHOD clear
+$addMethods
 
-   METHOD onEditingFinished
-   METHOD onKeySequenceChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

@@ -8,58 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QSQLDATABASE
-REQUEST QSQLINDEX
-REQUEST QSQLRECORD
-REQUEST QVARIANT
-#endif
+$addRequests
 
-CLASS QSqlTableModel INHERIT QSqlQueryModel
+$beginClassFrom=QSqlQueryModel
 
-   METHOD new
-   METHOD delete
+$addMethods
 
-   METHOD clear
-   METHOD data
-   METHOD database
-   METHOD editStrategy
-   METHOD fieldIndex
-   METHOD filter
-   METHOD flags
-   METHOD headerData
-   METHOD insertRecord
-   METHOD insertRows
-   METHOD isDirty
-   METHOD primaryKey
-   METHOD record
-   METHOD removeColumns
-   METHOD removeRows
-   METHOD revert
-   METHOD revertAll
-   METHOD revertRow
-   METHOD rowCount
-   METHOD select
-   METHOD selectRow
-   METHOD setData
-   METHOD setEditStrategy
-   METHOD setFilter
-   METHOD setRecord
-   METHOD setSort
-   METHOD setTable
-   METHOD sort
-   METHOD submit
-   METHOD submitAll
-   METHOD tableName
+$addSignals
 
-   METHOD onBeforeDelete
-   METHOD onBeforeInsert
-   METHOD onBeforeUpdate
-   METHOD onPrimeInsert
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

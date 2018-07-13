@@ -8,51 +8,11 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QBYTEARRAY
-REQUEST QMETAOBJECT
-REQUEST QVARIANT
-REQUEST QTHREAD
-REQUEST QCHILDEVENT
-REQUEST QEVENT
-REQUEST QTIMEREVENT
-#endif
+$addRequests
 
-CLASS QObject
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
-
-   METHOD new
-   METHOD delete
-   METHOD blockSignals
-   METHOD children
-   METHOD dumpObjectInfo
-   METHOD dumpObjectTree
-   METHOD dynamicPropertyNames
-   METHOD event
-   METHOD eventFilter
-   METHOD findChild
-   METHOD findChildren
-   METHOD inherits
-   METHOD installEventFilter
-   METHOD isWidgetType
-   METHOD isWindowType
-   METHOD killTimer
-   METHOD metaObject
-   METHOD moveToThread
-   METHOD objectName
-   METHOD setObjectName
-   METHOD parent
-   METHOD setParent
-   METHOD property
-   METHOD setProperty
-   METHOD removeEventFilter
-   METHOD signalsBlocked
-   METHOD startTimer
-   METHOD thread
-   METHOD deleteLater
-   METHOD tr
+$addMethods
 
    METHOD onAcceptDropsChangeEvent
    METHOD onActionAddedEvent
@@ -220,14 +180,7 @@ CLASS QObject
    METHOD onZeroTimerEventEvent
    METHOD onZOrderChangeEvent
 
-   METHOD onDestroyed
-   METHOD onObjectNameChanged
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
+$addSignals
 
    METHOD connect
    METHOD disconnect
@@ -235,9 +188,7 @@ CLASS QObject
    METHOD disconnectAllEvents
    METHOD disconnectAllSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 
@@ -377,8 +328,6 @@ $method=|void|deleteLater|
 
 $prototype=static QString tr ( const char * sourceText, const char * disambiguation = 0, int n = -1 )
 $staticMethod=|QString|tr|const char *,const char *=0,int=-1
-
-$extraMethods
 
 HB_FUNC_STATIC( QOBJECT_DISCONNECTALL )
 {
@@ -1447,5 +1396,7 @@ $beginSignals
 $signal=|destroyed(QObject*)
 $signal=|objectNameChanged(QString)
 $endSignals
+
+$extraMethods
 
 #pragma ENDDUMP

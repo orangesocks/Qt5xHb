@@ -8,36 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QBarCategoryAxis INHERIT QAbstractAxis
+$addRequests
 
-   METHOD new
-   METHOD delete
+$beginClassFrom=QAbstractAxis
 
-   METHOD append
-   METHOD at
-   METHOD categories
-   METHOD clear
-   METHOD count
-   METHOD insert
-   METHOD max
-   METHOD min
-   METHOD remove
-   METHOD replace
-   METHOD setCategories
-   METHOD setMax
-   METHOD setMin
-   METHOD setRange
-   METHOD type
+$addMethods
 
-   METHOD onCategoriesChanged
-   METHOD onCountChanged
-   METHOD onMaxChanged
-   METHOD onMinChanged
-   METHOD onRangeChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

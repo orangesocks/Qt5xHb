@@ -8,36 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QGEOPOSITIONINFO
-#endif
+$addRequests
 
-CLASS QGeoPositionInfoSource INHERIT QObject
+$beginClassFrom=QObject
 
-   METHOD delete
-   METHOD setUpdateInterval
-   METHOD updateInterval
-   METHOD setPreferredPositioningMethods
-   METHOD preferredPositioningMethods
-   METHOD lastKnownPosition
-   METHOD supportedPositioningMethods
-   METHOD minimumUpdateInterval
-   METHOD sourceName
-   METHOD error
-   METHOD startUpdates
-   METHOD stopUpdates
-   METHOD requestUpdate
-   METHOD createDefaultSource
-   METHOD createSource
-   METHOD availableSources
+$addMethods
 
-   METHOD onPositionUpdated
-   METHOD onUpdateTimeout
-   METHOD onError
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

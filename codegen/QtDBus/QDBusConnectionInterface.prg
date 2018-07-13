@@ -8,36 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-%% TODO: corrigir
-%% #ifndef QT5XHB_NO_REQUESTS
-%% REQUEST QDBUSREPLY<QSTRINGLIST>
-%% REQUEST QDBUSREPLY<BOOL>
-%% REQUEST QDBUSREPLY<QSTRING>
-%% REQUEST QDBUSREPLY<UINT>
-%% REQUEST QDBUSREPLY<VOID>
-%% #endif
+$addRequests
 
-CLASS QDBusConnectionInterface INHERIT QDBusAbstractInterface
+$beginClassFrom=QDBusAbstractInterface
 
-%%   METHOD new
-%%   METHOD delete
-%%   METHOD registeredServiceNames
-%%   METHOD isServiceRegistered
-%%   METHOD serviceOwner
-%%   METHOD unregisterService
-%%   METHOD registerService
-%%   METHOD servicePid
-%%   METHOD serviceUid
-%%   METHOD startService
+$addMethods
 
-   METHOD onServiceRegistered
-   METHOD onServiceUnregistered
-   METHOD onServiceOwnerChanged
-   METHOD onCallWithCallbackFailed
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

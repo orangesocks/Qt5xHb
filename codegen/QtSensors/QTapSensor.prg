@@ -8,23 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QTAPREADING
-#endif
+$addRequests
 
-CLASS QTapSensor INHERIT QSensor
+$beginClassFrom=QSensor
 
-   METHOD new
-   METHOD delete
-   METHOD reading
-   METHOD returnDoubleTapEvents
-   METHOD setReturnDoubleTapEvents
+$addMethods
 
-   METHOD onReturnDoubleTapEventsChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

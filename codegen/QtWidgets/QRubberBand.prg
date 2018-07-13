@@ -8,18 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QRubberBand INHERIT QWidget
+$addRequests
 
-   METHOD new
-   METHOD delete
-   METHOD move
-   METHOD resize
-   METHOD setGeometry
-   METHOD shape
+$beginClassFrom=QWidget
 
-   DESTRUCTOR destroyObject
+$addMethods
 
-END CLASS
+$endClass
 
 $destructor
 

@@ -8,31 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-%% REQUEST WATCHMODE
-REQUEST QDBUSCONNECTION
-#endif
+$addRequests
 
-CLASS QDBusServiceWatcher INHERIT QObject
+$beginClassFrom=QObject
 
-   METHOD new
-   METHOD delete
-   METHOD watchedServices
-   METHOD setWatchedServices
-   METHOD addWatchedService
-   METHOD removeWatchedService
-   METHOD watchMode
-   METHOD setWatchMode
-   METHOD connection
-   METHOD setConnection
+$addMethods
 
-   METHOD onServiceRegistered
-   METHOD onServiceUnregistered
-   METHOD onServiceOwnerChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

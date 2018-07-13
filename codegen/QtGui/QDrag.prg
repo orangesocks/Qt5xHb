@@ -8,37 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QPIXMAP
-REQUEST QPOINT
-REQUEST QMIMEDATA
-REQUEST QOBJECT
-#endif
+$addRequests
 
-CLASS QDrag INHERIT QObject
+$beginClassFrom=QObject
 
-   METHOD new
-   METHOD delete
-   METHOD defaultAction
-   METHOD dragCursor
-   METHOD exec
-   METHOD hotSpot
-   METHOD mimeData
-   METHOD pixmap
-   METHOD setDragCursor
-   METHOD setHotSpot
-   METHOD setMimeData
-   METHOD setPixmap
-   METHOD source
-   METHOD supportedActions
-   METHOD target
+$addMethods
 
-   METHOD onActionChanged
-   METHOD onTargetChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

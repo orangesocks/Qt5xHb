@@ -8,20 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QPlaceEditorial INHERIT QPlaceContent
+$addRequests
 
-   METHOD new
-   METHOD delete
-   METHOD text
-   METHOD setText
-   METHOD title
-   METHOD setTitle
-   METHOD language
-   METHOD setLanguage
+$beginClassFrom=QPlaceContent
 
-   DESTRUCTOR destroyObject
+$addMethods
 
-END CLASS
+$endClass
 
 $destructor
 

@@ -8,31 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QAndroidJniObject
+$addRequests
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$beginClassFrom=
 
-   METHOD new
-   METHOD delete
-   METHOD callObjectMethod
-   METHOD getObjectField
-   METHOD toString
-   METHOD isValid
-   METHOD callStaticObjectMethod
-   METHOD getStaticObjectField
-   METHOD fromString
-   METHOD isClassAvailable
+$addMethods
 
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

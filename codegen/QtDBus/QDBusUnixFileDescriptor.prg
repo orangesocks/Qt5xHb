@@ -8,30 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QDBusUnixFileDescriptor
+$addRequests
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$beginClassFrom=
 
-   METHOD new
-   METHOD delete
-   METHOD swap
-   METHOD isValid
-   METHOD fileDescriptor
-   METHOD setFileDescriptor
-   METHOD giveFileDescriptor
-   METHOD takeFileDescriptor
-   METHOD isSupported
+$addMethods
 
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

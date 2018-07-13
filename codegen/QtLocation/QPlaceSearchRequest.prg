@@ -8,47 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QPLACECATEGORY
-REQUEST QGEOSHAPE
-REQUEST QVARIANT
-#endif
+$addRequests
 
-CLASS QPlaceSearchRequest
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD new
-   METHOD delete
-   METHOD searchTerm
-   METHOD setSearchTerm
-   METHOD categories
-   METHOD setCategory
-   METHOD setCategories
-   METHOD searchArea
-   METHOD setSearchArea
-   METHOD recommendationId
-   METHOD setRecommendationId
-   METHOD searchContext
-   METHOD setSearchContext
-   METHOD visibilityScope
-   METHOD setVisibilityScope
-   METHOD relevanceHint
-   METHOD setRelevanceHint
-   METHOD limit
-   METHOD setLimit
-   METHOD clear
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

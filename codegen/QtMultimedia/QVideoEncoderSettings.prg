@@ -8,44 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QVARIANT
-REQUEST QSIZE
-#endif
+$addRequests
 
-CLASS QVideoEncoderSettings
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD new
-   METHOD delete
-
-   METHOD bitRate
-   METHOD codec
-   METHOD encodingMode
-   METHOD encodingOption
-   METHOD frameRate
-   METHOD isNull
-   METHOD quality
-   METHOD resolution
-   METHOD setBitRate
-   METHOD setCodec
-   METHOD setEncodingMode
-   METHOD setEncodingOption
-   METHOD setFrameRate
-   METHOD setQuality
-   METHOD setResolution
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

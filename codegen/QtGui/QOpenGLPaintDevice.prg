@@ -8,33 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QPAINTENGINE
-REQUEST QOPENGLCONTEXT
-REQUEST QSIZE
-#endif
+$addRequests
 
-CLASS QOpenGLPaintDevice INHERIT QPaintDevice
+$beginClassFrom=QPaintDevice
 
-   METHOD new
-   METHOD delete
-   METHOD devType
-   METHOD paintEngine
-   METHOD context
-   METHOD size
-   METHOD setSize
-   METHOD setDevicePixelRatio
-   METHOD dotsPerMeterX
-   METHOD dotsPerMeterY
-   METHOD setDotsPerMeterX
-   METHOD setDotsPerMeterY
-   METHOD setPaintFlipped
-   METHOD paintFlipped
-   METHOD ensureActiveTarget
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

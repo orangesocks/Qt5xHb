@@ -8,33 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QGEOCODINGMANAGER
-REQUEST QGEOMAPPINGMANAGER
-REQUEST QGEOROUTINGMANAGER
-REQUEST QPLACEMANAGER
-#endif
+$addRequests
 
-CLASS QGeoServiceProvider INHERIT QObject
+$beginClassFrom=QObject
 
-   METHOD delete
-   METHOD availableServiceProviders
-   METHOD routingFeatures
-   METHOD geocodingFeatures
-   METHOD mappingFeatures
-   METHOD placesFeatures
-   METHOD geocodingManager
-%%   METHOD mappingManager
-   METHOD routingManager
-   METHOD placeManager
-   METHOD error
-   METHOD errorString
-   METHOD setLocale
-   METHOD setAllowExperimental
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

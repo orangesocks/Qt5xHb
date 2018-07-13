@@ -8,25 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QXmlDTDHandler
+$addRequests
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$beginClassFrom=
 
-   METHOD delete
-   METHOD errorString
-   METHOD notationDecl
-   METHOD unparsedEntityDecl
+$addMethods
 
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

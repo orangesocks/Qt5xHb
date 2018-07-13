@@ -8,32 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QRadioDataControl INHERIT QMediaControl
+$addRequests
 
-%%   METHOD new
-   METHOD delete
+$beginClassFrom=QMediaControl
 
-   METHOD error
-   METHOD errorString
-   METHOD isAlternativeFrequenciesEnabled
-   METHOD programType
-   METHOD programTypeName
-   METHOD radioText
-   METHOD setAlternativeFrequenciesEnabled
-   METHOD stationId
-   METHOD stationName
+$addMethods
 
-   METHOD onAlternativeFrequenciesEnabledChanged
-   METHOD onError
-   METHOD onProgramTypeChanged
-   METHOD onProgramTypeNameChanged
-   METHOD onRadioTextChanged
-   METHOD onStationIdChanged
-   METHOD onStationNameChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

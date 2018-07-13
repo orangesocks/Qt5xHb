@@ -8,60 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QCAMERAEXPOSURE
-REQUEST QCAMERAFOCUS
-REQUEST QCAMERAIMAGEPROCESSING
-REQUEST QBYTEARRAY
-#endif
+$addRequests
 
-CLASS QCamera INHERIT QMediaObject
+$beginClassFrom=QMediaObject
 
-   METHOD new
-   METHOD delete
+$addMethods
 
-   METHOD availability
-   METHOD availableDevices
-   METHOD captureMode
-   METHOD deviceDescription
-   METHOD error
-   METHOD errorString
-   METHOD exposure
-   METHOD focus
-   METHOD imageProcessing
-   METHOD isCaptureModeSupported
-   METHOD load
-   METHOD lockStatus
-   METHOD requestedLocks
-   METHOD searchAndLock
-   METHOD setCaptureMode
-   METHOD setViewFinder
-   METHOD setViewfinderSettings
-   METHOD start
-   METHOD state
-   METHOD status
-   METHOD stop
-   METHOD supportedLocks
-%%   METHOD supportedViewfinderFrameRateRanges
-   METHOD supportedViewfinderPixelFormats
-   METHOD supportedViewfinderResolutions
-   METHOD supportedViewfinderSettings
-   METHOD unload
-   METHOD unlock
-   METHOD viewfinderSettings
+$addSignals
 
-   METHOD onCaptureModeChanged
-   METHOD onError
-   METHOD onLocked
-   METHOD onLockFailed
-   METHOD onLockStatusChanged1
-   METHOD onLockStatusChanged2
-   METHOD onStateChanged
-   METHOD onStatusChanged
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

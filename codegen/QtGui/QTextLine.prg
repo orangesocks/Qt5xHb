@@ -8,15 +8,9 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QRECTF
-REQUEST QPOINTF
-#endif
+$addRequests
 
-CLASS QTextLine
-
-   DATA pointer
-   DATA self_destruction INIT .F.
+$beginClassFrom=
 
    METHOD new
    METHOD delete
@@ -45,15 +39,7 @@ CLASS QTextLine
    METHOD lineNumber
 %%   METHOD draw
 
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

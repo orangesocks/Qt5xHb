@@ -8,25 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QVideoDeviceSelectorControl INHERIT QMediaControl
+$addRequests
 
-%%   METHOD new
-   METHOD delete
+$beginClassFrom=QMediaControl
 
-   METHOD defaultDevice
-   METHOD deviceCount
-   METHOD deviceDescription
-   METHOD deviceName
-   METHOD selectedDevice
-   METHOD setSelectedDevice
+$addMethods
 
-   METHOD onDevicesChanged
-   METHOD onSelectedDeviceChanged1
-   METHOD onSelectedDeviceChanged2
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

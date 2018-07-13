@@ -8,17 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QMediaAudioProbeControl INHERIT QMediaControl
+$addRequests
 
-%%   METHOD new
-   METHOD delete
+$beginClassFrom=QMediaControl
 
-   METHOD onAudioBufferProbed
-   METHOD onFlush
+$addMethods
 
-   DESTRUCTOR destroyObject
+$addSignals
 
-END CLASS
+$endClass
 
 $destructor
 

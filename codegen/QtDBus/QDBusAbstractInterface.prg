@@ -8,33 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QDBUSCONNECTION
-REQUEST QDBUSERROR
-REQUEST QDBUSMESSAGE
-REQUEST QDBUSPENDINGCALL
-#endif
+$addRequests
 
-CLASS QDBusAbstractInterface INHERIT QDBusAbstractInterfaceBase
+$beginClassFrom=QDBusAbstractInterfaceBase
 
-   METHOD delete
-   METHOD isValid
-   METHOD connection
-   METHOD service
-   METHOD path
-   METHOD interface
-   METHOD lastError
-   METHOD setTimeout
-   METHOD timeout
-   METHOD call
-   METHOD callWithArgumentList
-   METHOD callWithCallback
-   METHOD asyncCall
-   METHOD asyncCallWithArgumentList
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

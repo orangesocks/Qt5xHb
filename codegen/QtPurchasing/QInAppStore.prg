@@ -8,23 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QInAppStore INHERIT QObject
+$addRequests
 
-   METHOD new
-   METHOD delete
+$beginClassFrom=QObject
 
-   METHOD restorePurchases
-   METHOD registerProduct
-   METHOD registeredProduct
-   METHOD setPlatformProperty
+$addMethods
 
-   METHOD onProductRegistered
-   METHOD onProductUnknown
-   METHOD onTransactionReady
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

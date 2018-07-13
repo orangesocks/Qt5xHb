@@ -8,36 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QPLACEICON
-#endif
+$addRequests
 
-CLASS QPlaceCategory
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD new
-   METHOD delete
-   METHOD categoryId
-   METHOD setCategoryId
-   METHOD name
-   METHOD setName
-   METHOD visibility
-   METHOD setVisibility
-   METHOD icon
-   METHOD setIcon
-   METHOD isEmpty
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

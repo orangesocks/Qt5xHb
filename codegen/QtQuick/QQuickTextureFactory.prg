@@ -8,23 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QSGTEXTURE
-REQUEST QIMAGE
-REQUEST QSIZE
-#endif
+$addRequests
 
-CLASS QQuickTextureFactory INHERIT QObject
+$beginClassFrom=QObject
 
-   METHOD delete
-   METHOD createTexture
-   METHOD image
-   METHOD textureByteCount
-   METHOD textureSize
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

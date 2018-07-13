@@ -8,46 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-%% REQUEST UCHAR
-REQUEST QBYTEARRAY
-#endif
+$addRequests
 
-CLASS QFile INHERIT QFileDevice
+$beginClassFrom=QFileDevice
 
-   METHOD new
-   METHOD delete
-   METHOD copy
-   METHOD error
-   METHOD exists
-   METHOD fileName
-   METHOD flush
-   METHOD handle
-   METHOD link
-%%   METHOD map
-   METHOD open
-   METHOD permissions
-   METHOD remove
-   METHOD rename
-   METHOD resize
-   METHOD setFileName
-   METHOD setPermissions
-   METHOD symLinkTarget
-   METHOD unmap
-   METHOD unsetError
-   METHOD atEnd
-   METHOD close
-   METHOD isSequential
-   METHOD pos
-   METHOD seek
-   METHOD size
-   METHOD decodeName
-   METHOD encodeName
-   METHOD readLink
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

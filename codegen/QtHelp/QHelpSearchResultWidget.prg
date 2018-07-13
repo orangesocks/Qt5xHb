@@ -8,20 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QURL
-#endif
+$addRequests
 
-CLASS QHelpSearchResultWidget INHERIT QWidget
+$beginClassFrom=QWidget
 
-   METHOD delete
-   METHOD linkAt
+$addMethods
 
-   METHOD onRequestShowLink
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

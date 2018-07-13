@@ -8,29 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QSIZE
-REQUEST QWIDGET
-REQUEST QITEMEDITORFACTORY
-#endif
+$addRequests
 
-CLASS QStyledItemDelegate INHERIT QAbstractItemDelegate
+$beginClassFrom=QAbstractItemDelegate
 
-   METHOD new
-   METHOD delete
-   METHOD paint
-   METHOD sizeHint
-   METHOD createEditor
-   METHOD setEditorData
-   METHOD setModelData
-   METHOD updateEditorGeometry
-   METHOD itemEditorFactory
-   METHOD setItemEditorFactory
-   METHOD displayText
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

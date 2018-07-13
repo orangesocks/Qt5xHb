@@ -8,21 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QMETAOBJECT
-#endif
+$addRequests
 
-CLASS QDBusInterface INHERIT QDBusAbstractInterface
+$beginClassFrom=QDBusAbstractInterface
 
-   METHOD new
-   METHOD delete
-   METHOD metaObject
-   METHOD qt_metacast
-%%   METHOD qt_metacall
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

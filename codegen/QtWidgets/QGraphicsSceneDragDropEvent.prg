@@ -8,32 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QMIMEDATA
-REQUEST QPOINTF
-REQUEST QPOINT
-REQUEST QWIDGET
-#endif
+$addRequests
 
-CLASS QGraphicsSceneDragDropEvent INHERIT QGraphicsSceneEvent
+$beginClassFrom=QGraphicsSceneEvent
 
-   METHOD delete
-   METHOD acceptProposedAction
-   METHOD buttons
-   METHOD dropAction
-   METHOD mimeData
-   METHOD modifiers
-   METHOD pos
-   METHOD possibleActions
-   METHOD proposedAction
-   METHOD scenePos
-   METHOD screenPos
-   METHOD setDropAction
-   METHOD source
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

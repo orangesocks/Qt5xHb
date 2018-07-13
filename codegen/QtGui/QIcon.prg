@@ -8,45 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QSIZE
-REQUEST QPIXMAP
-#endif
+$addRequests
 
-CLASS QIcon
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD new
-   METHOD delete
-   METHOD actualSize
-   METHOD addFile
-   METHOD addPixmap
-   METHOD availableSizes
-   METHOD cacheKey
-   METHOD isNull
-   METHOD name
-   METHOD paint
-   METHOD pixmap
-   METHOD fromTheme
-   METHOD hasThemeIcon
-   METHOD setThemeName
-   METHOD setThemeSearchPaths
-   METHOD themeName
-   METHOD themeSearchPaths
-   METHOD toVariant
-   METHOD fromVariant
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

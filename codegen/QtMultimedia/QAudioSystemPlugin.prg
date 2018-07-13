@@ -8,26 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QBYTEARRAY
-REQUEST QABSTRACTAUDIOINPUT
-REQUEST QABSTRACTAUDIOOUTPUT
-REQUEST QABSTRACTAUDIODEVICEINFO
-#endif
+$addRequests
 
-CLASS QAudioSystemPlugin INHERIT QObject,QAudioSystemFactoryInterface
+$beginClassFrom=QObject,QAudioSystemFactoryInterface
 
-%%   METHOD new
-   METHOD delete
+$addMethods
 
-   METHOD availableDevices
-   METHOD createInput
-   METHOD createOutput
-   METHOD createDeviceInfo
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

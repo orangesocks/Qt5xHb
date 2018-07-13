@@ -8,21 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QLOCALE
-#endif
+$addRequests
 
-CLASS QValidator INHERIT QObject
+$beginClassFrom=QObject
 
-   METHOD delete
-   METHOD fixup
-   METHOD locale
-   METHOD setLocale
-   METHOD validate
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

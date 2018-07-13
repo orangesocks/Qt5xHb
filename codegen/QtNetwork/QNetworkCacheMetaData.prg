@@ -13,43 +13,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QDATETIME
-REQUEST QURL
-#endif
+$addRequests
 
-CLASS QNetworkCacheMetaData
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD new
-   METHOD delete
-
-%%   METHOD attributes
-   METHOD expirationDate
-   METHOD isValid
-   METHOD lastModified
-%%   METHOD rawHeaders
-   METHOD saveToDisk
-%%   METHOD setAttributes
-   METHOD setExpirationDate
-   METHOD setLastModified
-%%   METHOD setRawHeaders
-   METHOD setSaveToDisk
-   METHOD setUrl
-   METHOD swap
-   METHOD url
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

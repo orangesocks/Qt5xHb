@@ -8,38 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QDnsLookup INHERIT QObject
+$addRequests
 
-   METHOD new
-   METHOD delete
+$beginClassFrom=QObject
 
-   METHOD abort
-   METHOD canonicalNameRecords
-   METHOD error
-   METHOD errorString
-   METHOD hostAddressRecords
-   METHOD isFinished
-   METHOD lookup
-   METHOD mailExchangeRecords
-   METHOD name
-   METHOD nameserver
-   METHOD nameServerRecords
-   METHOD pointerRecords
-   METHOD serviceRecords
-   METHOD setName
-   METHOD setNameserver
-   METHOD setType
-   METHOD textRecords
-   METHOD type
+$addMethods
 
-   METHOD onFinished
-   METHOD onNameChanged
-   METHOD onNameserverChanged
-   METHOD onTypeChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

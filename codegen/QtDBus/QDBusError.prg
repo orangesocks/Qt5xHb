@@ -8,28 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QDBusError
+$addRequests
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$beginClassFrom=
 
-   METHOD new
-   METHOD delete
-   METHOD type
-   METHOD name
-   METHOD message
-   METHOD isValid
-   METHOD errorString
+$addMethods
 
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

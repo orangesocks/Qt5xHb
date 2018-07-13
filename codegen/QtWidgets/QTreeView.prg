@@ -8,80 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QHEADERVIEW
-REQUEST QMODELINDEX
-REQUEST QRECT
-#endif
+$addRequests
 
-CLASS QTreeView INHERIT QAbstractItemView
+$beginClassFrom=QAbstractItemView
 
-   METHOD new
-   METHOD delete
-   METHOD allColumnsShowFocus
-   METHOD autoExpandDelay
-   METHOD columnAt
-   METHOD columnViewportPosition
-   METHOD columnWidth
-   METHOD expandsOnDoubleClick
-   METHOD header
-   METHOD indentation
-   METHOD indexAbove
-   METHOD indexBelow
-   METHOD isAnimated
-   METHOD isColumnHidden
-   METHOD isExpanded
-   METHOD isFirstColumnSpanned
-   METHOD isHeaderHidden
-   METHOD isRowHidden
-   METHOD isSortingEnabled
-   METHOD itemsExpandable
-   METHOD rootIsDecorated
-   METHOD setAllColumnsShowFocus
-   METHOD setAnimated
-   METHOD setAutoExpandDelay
-   METHOD setColumnHidden
-   METHOD setColumnWidth
-   METHOD setExpanded
-   METHOD setExpandsOnDoubleClick
-   METHOD setFirstColumnSpanned
-   METHOD setHeader
-   METHOD setHeaderHidden
-   METHOD setIndentation
-   METHOD setItemsExpandable
-   METHOD setRootIsDecorated
-   METHOD setRowHidden
-   METHOD setSortingEnabled
-   METHOD setUniformRowHeights
-   METHOD setWordWrap
-   METHOD sortByColumn
-   METHOD uniformRowHeights
-   METHOD wordWrap
-   METHOD dataChanged
-   METHOD indexAt
-   METHOD keyboardSearch
-   METHOD reset
-   METHOD scrollTo
-   METHOD selectAll
-   METHOD setModel
-   METHOD setRootIndex
-   METHOD setSelectionModel
-   METHOD visualRect
-   METHOD collapse
-   METHOD collapseAll
-   METHOD expand
-   METHOD expandAll
-   METHOD expandToDepth
-   METHOD hideColumn
-   METHOD resizeColumnToContents
-   METHOD showColumn
+$addMethods
 
-   METHOD onCollapsed
-   METHOD onExpanded
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

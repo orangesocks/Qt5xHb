@@ -6,38 +6,19 @@
 
 $header
 
-#include "hbclass.ch"
-
 %% TODO:
 %% #ifndef QT_NO_TABWIDGET
 %% #endif // QT_NO_TABWIDGET
 
-CLASS QStyleOptionTabWidgetFrame INHERIT QStyleOption
+#include "hbclass.ch"
 
-   METHOD new
-%%   METHOD delete
+$addRequests
 
-   METHOD lineWidth
-   METHOD midLineWidth
-   METHOD shape
-   METHOD tabBarSize
-   METHOD rightCornerWidgetSize
-   METHOD leftCornerWidgetSize
-   METHOD tabBarRect
-   METHOD selectedTabRect
+$beginClassFrom=QStyleOption
 
-   METHOD setLineWidth
-   METHOD setMidLineWidth
-   METHOD setShape
-   METHOD setTabBarSize
-   METHOD setRightCornerWidgetSize
-   METHOD setLeftCornerWidgetSize
-   METHOD setTabBarRect
-   METHOD setSelectedTabRect
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

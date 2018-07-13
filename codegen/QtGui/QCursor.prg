@@ -8,37 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QBITMAP
-REQUEST QPOINT
-REQUEST QPIXMAP
-#endif
+$addRequests
 
-CLASS QCursor
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD new
-   METHOD delete
-   METHOD bitmap
-   METHOD hotSpot
-   METHOD mask
-   METHOD pixmap
-   METHOD setShape
-   METHOD shape
-   METHOD pos
-   METHOD setPos
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

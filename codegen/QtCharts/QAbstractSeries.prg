@@ -8,35 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QAbstractSeries INHERIT QObject
+$addRequests
 
-%%   METHOD new
-   METHOD delete
+$beginClassFrom=QObject
 
-   METHOD attachAxis
-   METHOD attachedAxes
-   METHOD chart
-   METHOD detachAxis
-   METHOD hide
-   METHOD isVisible
-   METHOD name
-   METHOD opacity
-   METHOD setName
-   METHOD setOpacity
-   METHOD setUseOpenGL
-   METHOD setVisible
-   METHOD show
-   METHOD type
-   METHOD useOpenGL
+$addMethods
 
-   METHOD onNameChanged
-   METHOD onOpacityChanged
-   METHOD onUseOpenGLChanged
-   METHOD onVisibleChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

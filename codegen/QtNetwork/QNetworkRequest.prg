@@ -8,55 +8,19 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QVARIANT
-REQUEST QOBJECT
-REQUEST QBYTEARRAY
-REQUEST QSSLCONFIGURATION
-REQUEST QURL
-#endif
+$addRequests
 
-CLASS QNetworkRequest
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
-
-   METHOD new
-   METHOD delete
-
-   METHOD attribute
-   METHOD hasRawHeader
-   METHOD header
-   METHOD maximumRedirectsAllowed
-   METHOD originatingObject
-   METHOD priority
-   METHOD rawHeader
-   METHOD rawHeaderList
-   METHOD setAttribute
-   METHOD setHeader
-   METHOD setMaximumRedirectsAllowed
-   METHOD setOriginatingObject
-   METHOD setPriority
-   METHOD setRawHeader
+$addMethods
 %% #ifndef QT_NO_SSL
-   METHOD setSslConfiguration
+%%   METHOD setSslConfiguration
 %% #endif
-   METHOD setUrl
 %% #ifndef QT_NO_SSL
-   METHOD sslConfiguration
+%%   METHOD sslConfiguration
 %% #endif
-   METHOD swap
-   METHOD url
 
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

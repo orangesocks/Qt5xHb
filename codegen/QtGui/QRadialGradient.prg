@@ -8,28 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QPOINTF
-#endif
+$addRequests
 
-CLASS QRadialGradient INHERIT QGradient
+$beginClassFrom=QGradient
 
-   METHOD new
-   METHOD delete
-   METHOD center
-   METHOD centerRadius
-   METHOD focalPoint
-   METHOD focalRadius
-   METHOD radius
-   METHOD setCenter
-   METHOD setCenterRadius
-   METHOD setFocalPoint
-   METHOD setFocalRadius
-   METHOD setRadius
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

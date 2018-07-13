@@ -8,43 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QSIZE
-#endif
+$addRequests
 
-CLASS QProgressBar INHERIT QWidget
+$beginClassFrom=QWidget
 
-   METHOD new
-   METHOD delete
-   METHOD alignment
-   METHOD format
-   METHOD invertedAppearance
-   METHOD isTextVisible
-   METHOD maximum
-   METHOD minimum
-   METHOD orientation
-   METHOD setAlignment
-   METHOD setFormat
-   METHOD setInvertedAppearance
-   METHOD setTextDirection
-   METHOD setTextVisible
-   METHOD text
-   METHOD textDirection
-   METHOD value
-   METHOD minimumSizeHint
-   METHOD sizeHint
-   METHOD reset
-   METHOD setMaximum
-   METHOD setMinimum
-   METHOD setOrientation
-   METHOD setRange
-   METHOD setValue
+$addMethods
 
-   METHOD onValueChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

@@ -8,23 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QSIZE
-REQUEST QSVGRENDERER
-#endif
+$addRequests
 
-CLASS QSvgWidget INHERIT QWidget
+$beginClassFrom=QWidget
 
-   METHOD new
-   METHOD delete
+$addMethods
 
-   METHOD load
-   METHOD renderer
-   METHOD sizeHint
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

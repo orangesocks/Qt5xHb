@@ -8,53 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QMARGINS
-REQUEST QRECT
-REQUEST QLAYOUTITEM
-REQUEST QWIDGET
-REQUEST QSIZE
-#endif
+$addRequests
 
-CLASS QLayout INHERIT QObject,QLayoutItem
+$beginClassFrom=QObject,QLayoutItem
 
-   METHOD delete
-   METHOD activate
-   METHOD addItem
-   METHOD addWidget
-   METHOD contentsMargins
-   METHOD contentsRect
-   METHOD count
-   METHOD indexOf
-   METHOD isEnabled
-   METHOD itemAt
-   METHOD menuBar
-   METHOD parentWidget
-   METHOD removeItem
-   METHOD removeWidget
-   METHOD setAlignment
-   METHOD setContentsMargins
-   METHOD setEnabled
-   METHOD setMenuBar
-   METHOD setSizeConstraint
-   METHOD setSpacing
-   METHOD sizeConstraint
-   METHOD spacing
-   METHOD takeAt
-   METHOD update
-   METHOD expandingDirections
-   METHOD geometry
-   METHOD invalidate
-   METHOD isEmpty
-   METHOD layout
-   METHOD maximumSize
-   METHOD minimumSize
-   METHOD setGeometry
-   METHOD closestAcceptableSize
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

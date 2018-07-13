@@ -8,15 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QToolBarChangeEvent INHERIT QEvent
+$addRequests
 
-   METHOD new
-   METHOD delete
-   METHOD toggle
+$beginClassFrom=QEvent
 
-   DESTRUCTOR destroyObject
+$addMethods
 
-END CLASS
+$endClass
 
 $destructor
 

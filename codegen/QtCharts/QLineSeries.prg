@@ -8,16 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QLineSeries INHERIT QXYSeries
+$addRequests
 
-   METHOD new
-   METHOD delete
+$beginClassFrom=QXYSeries
 
-   METHOD type
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

@@ -8,23 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QInAppTransaction INHERIT QObject
+$addRequests
 
-%%   METHOD new
-   METHOD delete
+$beginClassFrom=QObject
 
-   METHOD product
-   METHOD orderId
-   METHOD failureReason
-   METHOD errorString
-   METHOD timestamp
-   METHOD finalize
-   METHOD platformProperty
-   METHOD status
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

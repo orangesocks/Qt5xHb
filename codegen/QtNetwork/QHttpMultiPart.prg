@@ -8,23 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QBYTEARRAY
-#endif
+$addRequests
 
-CLASS QHttpMultiPart INHERIT QObject
+$beginClassFrom=QObject
 
-   METHOD new
-   METHOD delete
+$addMethods
 
-   METHOD append
-   METHOD boundary
-   METHOD setBoundary
-   METHOD setContentType
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

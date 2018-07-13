@@ -8,51 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QMETAMETHOD
-REQUEST QOBJECT
-REQUEST QMETAPROPERTY
-REQUEST QVARIANT
-#endif
+$addRequests
 
-CLASS QQmlProperty
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD new
-   METHOD delete
-   METHOD connectNotifySignal
-   METHOD hasNotifySignal
-   METHOD index
-   METHOD isDesignable
-   METHOD isProperty
-   METHOD isResettable
-   METHOD isSignalProperty
-   METHOD isValid
-   METHOD isWritable
-   METHOD method
-   METHOD name
-   METHOD needsNotifySignal
-   METHOD object
-   METHOD property
-   METHOD propertyType
-   METHOD propertyTypeCategory
-   METHOD propertyTypeName
-   METHOD read
-   METHOD reset
-   METHOD type
-   METHOD write
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

@@ -8,29 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QVECTOR3D
-#endif
+$addRequests
 
-CLASS QGraphicsRotation INHERIT QGraphicsTransform
+$beginClassFrom=QGraphicsTransform
 
-   METHOD new
-   METHOD delete
-   METHOD angle
-   METHOD axis
-   METHOD origin
-   METHOD setAngle
-   METHOD setAxis
-   METHOD setOrigin
-   METHOD applyTo
+$addMethods
 
-   METHOD onAngleChanged
-   METHOD onAxisChanged
-   METHOD onOriginChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

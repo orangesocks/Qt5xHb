@@ -8,42 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QPAINTERPATH
-#endif
+$addRequests
 
-CLASS QPainterPathStroker
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD new
-   METHOD delete
-   METHOD capStyle
-   METHOD createStroke
-   METHOD curveThreshold
-   METHOD dashOffset
-   METHOD dashPattern
-   METHOD joinStyle
-   METHOD miterLimit
-   METHOD setCapStyle
-   METHOD setCurveThreshold
-   METHOD setDashOffset
-   METHOD setDashPattern
-   METHOD setJoinStyle
-   METHOD setMiterLimit
-   METHOD setWidth
-   METHOD width
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

@@ -8,41 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QRECTF
-REQUEST QTEXTFORMAT
-#endif
+$addRequests
 
-CLASS QTextInlineObject
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD new
-   METHOD delete
-   METHOD isValid
-   METHOD rect
-   METHOD width
-   METHOD ascent
-   METHOD descent
-   METHOD height
-   METHOD textDirection
-   METHOD setWidth
-   METHOD setAscent
-   METHOD setDescent
-   METHOD textPosition
-   METHOD formatIndex
-   METHOD format
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

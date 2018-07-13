@@ -12,45 +12,17 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QURL
-#endif
+$addRequests
 
-CLASS QNetworkProxyQuery
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
-
-   METHOD new
-   METHOD delete
-
-   METHOD localPort
-   METHOD peerHostName
-   METHOD peerPort
-   METHOD protocolTag
-   METHOD queryType
-   METHOD setLocalPort
-   METHOD setPeerHostName
-   METHOD setPeerPort
-   METHOD setProtocolTag
-   METHOD setQueryType
-   METHOD setUrl
-   METHOD url
-   METHOD swap
+$addMethods
 %% #if !defined(QT_NO_BEARERMANAGEMENT) && QT_DEPRECATED_SINCE(5, 10)
-   METHOD networkConfiguration
-   METHOD setNetworkConfiguration
+%%   METHOD networkConfiguration
+%%   METHOD setNetworkConfiguration
 %% #endif
 
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

@@ -8,23 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QAudioOutputSelectorControl INHERIT QMediaControl
+$addRequests
 
-%%   METHOD new
-   METHOD delete
+$beginClassFrom=QMediaControl
 
-   METHOD activeOutput
-   METHOD availableOutputs
-   METHOD defaultOutput
-   METHOD outputDescription
-   METHOD setActiveOutput
+$addMethods
 
-   METHOD onActiveOutputChanged
-   METHOD onAvailableOutputsChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

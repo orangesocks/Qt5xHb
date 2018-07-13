@@ -8,24 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QPOINTF
-#endif
+$addRequests
 
-CLASS QPanGesture INHERIT QGesture
+$beginClassFrom=QGesture
 
-   METHOD delete
-   METHOD acceleration
-   METHOD delta
-   METHOD lastOffset
-   METHOD offset
-   METHOD setAcceleration
-   METHOD setLastOffset
-   METHOD setOffset
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

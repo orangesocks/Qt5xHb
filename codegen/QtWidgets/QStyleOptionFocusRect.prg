@@ -8,18 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QStyleOptionFocusRect INHERIT QStyleOption
+$addRequests
 
-   METHOD new
-%%   METHOD delete
+$beginClassFrom=QStyleOption
 
-   METHOD backgroundColor
+$addMethods
 
-   METHOD setBackgroundColor
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

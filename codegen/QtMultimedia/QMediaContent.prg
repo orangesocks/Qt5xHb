@@ -8,37 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QNETWORKREQUEST
-REQUEST QMEDIARESOURCE
-REQUEST QURL
-REQUEST QMEDIAPLAYLIST
-#endif
+$addRequests
 
-CLASS QMediaContent
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD new
-   METHOD delete
-
-   METHOD canonicalRequest
-   METHOD canonicalResource
-   METHOD canonicalUrl
-   METHOD isNull
-   METHOD playlist
-   METHOD resources
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

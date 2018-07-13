@@ -8,28 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QRECT
-REQUEST QSIZE
-#endif
+$addRequests
 
-CLASS QSpacerItem INHERIT QLayoutItem
+$beginClassFrom=QLayoutItem
 
-   METHOD new
-   METHOD delete
-   METHOD changeSize
-   METHOD expandingDirections
-   METHOD geometry
-   METHOD isEmpty
-   METHOD maximumSize
-   METHOD minimumSize
-   METHOD setGeometry
-   METHOD sizeHint
-   METHOD spacerItem
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

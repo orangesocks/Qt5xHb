@@ -11,64 +11,30 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QVARIANT
-REQUEST QNETWORKACCESSMANAGER
-REQUEST QBYTEARRAY
-REQUEST QNETWORKREQUEST
-REQUEST QSSLCONFIGURATION
-REQUEST QURL
-#endif
+$addRequests
 
-CLASS QNetworkReply INHERIT QIODevice
+$beginClassFrom=QIODevice
 
-%%   METHOD new
-   METHOD delete
-
-   METHOD abort
-   METHOD attribute
-   METHOD close
-   METHOD error
-   METHOD hasRawHeader
-   METHOD header
+$addMethods
 %% #ifndef QT_NO_SSL
-   METHOD ignoreSslErrors
-%% #endif
-   METHOD isFinished
-   METHOD isRunning
-   METHOD isSequential
-   METHOD manager
-   METHOD operation
-   METHOD rawHeader
-   METHOD rawHeaderList
-%%   METHOD rawHeaderPairs
-   METHOD readBufferSize
-   METHOD request
-   METHOD setReadBufferSize
-%% #ifndef QT_NO_SSL
-   METHOD setSslConfiguration
+%%   METHOD ignoreSslErrors
 %% #endif
 %% #ifndef QT_NO_SSL
-   METHOD sslConfiguration
+%%   METHOD setSslConfiguration
 %% #endif
-   METHOD url
-
-   METHOD onDownloadProgress
-   METHOD onError
-   METHOD onFinished
-   METHOD onMetaDataChanged
-   METHOD onUploadProgress
 %% #ifndef QT_NO_SSL
-   METHOD onEncrypted
-   METHOD onSslErrors
-   METHOD onPreSharedKeyAuthenticationRequired
+%%   METHOD sslConfiguration
 %% #endif
-   METHOD onRedirected
-   METHOD onRedirectAllowed
 
-   DESTRUCTOR destroyObject
+$addSignals
 
-END CLASS
+%% #ifndef QT_NO_SSL
+%%   METHOD onEncrypted
+%%   METHOD onSslErrors
+%%   METHOD onPreSharedKeyAuthenticationRequired
+%% #endif
+
+$endClass
 
 $destructor
 

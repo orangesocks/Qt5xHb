@@ -8,24 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QStyleOptionFrame INHERIT QStyleOption
+$addRequests
 
-   METHOD new
-%%   METHOD delete
+$beginClassFrom=QStyleOption
 
-   METHOD lineWidth
-   METHOD midLineWidth
-   METHOD features
-   METHOD frameShape
+$addMethods
 
-   METHOD setLineWidth
-   METHOD setMidLineWidth
-   METHOD setFeatures
-   METHOD setFrameShape
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

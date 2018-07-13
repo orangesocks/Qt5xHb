@@ -8,39 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QRECT
-#endif
+$addRequests
 
-CLASS QRegion
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD new
-   METHOD delete
-   METHOD swap
-   METHOD isEmpty
-   METHOD isNull
-   METHOD contains
-   METHOD translate
-   METHOD translated
-   METHOD united
-   METHOD subtracted
-   METHOD xored
-   METHOD intersects
-   METHOD boundingRect
-   METHOD rectCount
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

@@ -8,39 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QQMLCONTEXT
-REQUEST QQMLENGINE
-REQUEST QQMLERROR
-REQUEST QVARIANT
-REQUEST QOBJECT
-#endif
+$addRequests
 
-CLASS QQmlExpression INHERIT QObject
+$beginClassFrom=QObject
 
-   METHOD new
-   METHOD delete
-   METHOD clearError
-   METHOD columnNumber
-   METHOD context
-   METHOD engine
-   METHOD error
-   METHOD evaluate
-   METHOD expression
-   METHOD hasError
-   METHOD lineNumber
-   METHOD notifyOnValueChanged
-   METHOD scopeObject
-   METHOD setExpression
-   METHOD setNotifyOnValueChanged
-   METHOD setSourceLocation
-   METHOD sourceFile
+$addMethods
 
-   METHOD onValueChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

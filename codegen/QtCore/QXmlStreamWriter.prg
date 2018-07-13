@@ -8,54 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QTEXTCODEC
-REQUEST QIODEVICE
-#endif
+$addRequests
 
-CLASS QXmlStreamWriter
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD new
-   METHOD delete
-   METHOD autoFormatting
-   METHOD autoFormattingIndent
-   METHOD codec
-   METHOD device
-   METHOD hasError
-   METHOD setAutoFormatting
-   METHOD setAutoFormattingIndent
-   METHOD setCodec
-   METHOD setDevice
-   METHOD writeAttribute
-   METHOD writeAttributes
-   METHOD writeCDATA
-   METHOD writeCharacters
-   METHOD writeComment
-   METHOD writeCurrentToken
-   METHOD writeDTD
-   METHOD writeDefaultNamespace
-   METHOD writeEmptyElement
-   METHOD writeEndDocument
-   METHOD writeEndElement
-   METHOD writeEntityReference
-   METHOD writeNamespace
-   METHOD writeProcessingInstruction
-   METHOD writeStartDocument
-   METHOD writeStartElement
-   METHOD writeTextElement
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

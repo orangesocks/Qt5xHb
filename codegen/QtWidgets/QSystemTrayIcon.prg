@@ -8,37 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QMENU
-REQUEST QRECT
-REQUEST QICON
-#endif
+$addRequests
 
-CLASS QSystemTrayIcon INHERIT QObject
+$beginClassFrom=QObject
 
-   METHOD new
-   METHOD delete
-   METHOD contextMenu
-   METHOD geometry
-   METHOD icon
-   METHOD isVisible
-   METHOD setContextMenu
-   METHOD setIcon
-   METHOD setToolTip
-   METHOD showMessage
-   METHOD toolTip
-   METHOD hide
-   METHOD setVisible
-   METHOD show
-   METHOD isSystemTrayAvailable
-   METHOD supportsMessages
+$addMethods
 
-   METHOD onActivated
-   METHOD onMessageClicked
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

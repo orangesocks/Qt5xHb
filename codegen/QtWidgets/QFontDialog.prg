@@ -8,31 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QFONT
-#endif
+$addRequests
 
-CLASS QFontDialog INHERIT QDialog
+$beginClassFrom=QDialog
 
-   METHOD new
-   METHOD delete
-   METHOD currentFont
-   METHOD setCurrentFont
-   METHOD open
-   METHOD options
-   METHOD setOptions
-   METHOD selectedFont
-   METHOD setOption
-   METHOD testOption
-   METHOD setVisible
-   METHOD getFont
+$addMethods
 
-   METHOD onCurrentFontChanged
-   METHOD onFontSelected
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

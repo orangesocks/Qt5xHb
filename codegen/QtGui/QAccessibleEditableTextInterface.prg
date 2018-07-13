@@ -8,25 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QAccessibleEditableTextInterface
+$addRequests
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$beginClassFrom=
 
-   METHOD delete
-   METHOD deleteText
-   METHOD insertText
-   METHOD replaceText
+$addMethods
 
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

@@ -8,30 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QGEOSHAPE
-REQUEST QGEOLOCATION
-#endif
+$addRequests
 
-CLASS QGeoCodeReply INHERIT QObject
+$beginClassFrom=QObject
 
-   METHOD new
-   METHOD delete
-   METHOD isFinished
-   METHOD error
-   METHOD errorString
-   METHOD viewport
-   METHOD locations
-   METHOD limit
-   METHOD offset
-   METHOD abort
+$addMethods
 
-   METHOD onFinished
-   METHOD onError
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

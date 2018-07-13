@@ -8,24 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QURL
-#endif
+$addRequests
 
-CLASS QPlaceImage INHERIT QPlaceContent
+$beginClassFrom=QPlaceContent
 
-   METHOD new
-   METHOD delete
-   METHOD url
-   METHOD setUrl
-   METHOD imageId
-   METHOD setImageId
-   METHOD mimeType
-   METHOD setMimeType
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

@@ -8,20 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QOBJECT
-#endif
+$addRequests
 
-CLASS QWebPluginFactory INHERIT QObject
+$beginClassFrom=QObject
 
-   METHOD delete
+$addMethods
 
-   METHOD create
-   METHOD refreshPlugins
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

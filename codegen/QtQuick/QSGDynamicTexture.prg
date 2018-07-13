@@ -8,13 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QSGDynamicTexture INHERIT QSGTexture
+$addRequests
 
-   METHOD updateTexture
+$beginClassFrom=QSGTexture
 
-   DESTRUCTOR destroyObject
+$addMethods
 
-END CLASS
+$endClass
 
 $destructor
 

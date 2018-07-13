@@ -8,52 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QPIXMAP
-REQUEST QPOINT
-REQUEST QRECT
-REQUEST QURL
-REQUEST QWEBELEMENT
-REQUEST QWEBFRAME
-#endif
+$addRequests
 
-CLASS QWebHitTestResult
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD new
-   METHOD delete
-
-   METHOD alternateText
-   METHOD boundingRect
-   METHOD element
-   METHOD enclosingBlockElement
-   METHOD frame
-   METHOD imageUrl
-   METHOD isContentEditable
-   METHOD isContentSelected
-   METHOD isNull
-   METHOD linkElement
-   METHOD linkTargetFrame
-   METHOD linkText
-   METHOD linkTitle
-   METHOD linkTitleString
-   METHOD linkUrl
-   METHOD mediaUrl
-   METHOD pixmap
-   METHOD pos
-   METHOD title
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

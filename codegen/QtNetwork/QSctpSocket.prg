@@ -12,22 +12,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QSctpSocket INHERIT QTcpSocket
+$addRequests
 
-   METHOD new
-   METHOD delete
+$beginClassFrom=QTcpSocket
 
-   METHOD close
-   METHOD disconnectFromHost
-   METHOD isInDatagramMode
-   METHOD maximumChannelCount
-   METHOD readDatagram
-   METHOD setMaximumChannelCount
-   METHOD writeDatagram
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

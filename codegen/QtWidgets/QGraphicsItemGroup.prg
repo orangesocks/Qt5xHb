@@ -8,26 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QRECTF
-REQUEST QPAINTERPATH
-#endif
+$addRequests
 
-CLASS QGraphicsItemGroup INHERIT QGraphicsItem
+$beginClassFrom=QGraphicsItem
 
-   METHOD new
-   METHOD delete
-   METHOD addToGroup
-   METHOD removeFromGroup
-   METHOD boundingRect
-   METHOD isObscuredBy
-   METHOD opaqueArea
-   METHOD paint
-   METHOD type
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

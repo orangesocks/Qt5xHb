@@ -8,24 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QNETWORKCOOKIE
-#endif
+$addRequests
 
-CLASS QNetworkCookieJar INHERIT QObject
+$beginClassFrom=QObject
 
-   METHOD new
-   METHOD delete
+$addMethods
 
-   METHOD cookiesForUrl
-   METHOD deleteCookie
-   METHOD insertCookie
-   METHOD setCookiesFromUrl
-   METHOD updateCookie
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

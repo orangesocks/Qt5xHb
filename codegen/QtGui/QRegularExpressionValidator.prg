@@ -8,22 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QREGULAREXPRESSION
-#endif
+$addRequests
 
-CLASS QRegularExpressionValidator INHERIT QValidator
+$beginClassFrom=QValidator
 
-   METHOD new
-   METHOD delete
-   METHOD regularExpression
-   METHOD setRegularExpression
+$addMethods
 
-   METHOD onRegularExpressionChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

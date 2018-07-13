@@ -8,86 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QSCRIPTENGINE
-REQUEST QSCRIPTCLASS
-REQUEST QDATETIME
-REQUEST QMETAOBJECT
-REQUEST QOBJECT
-REQUEST QREGEXP
-REQUEST QVARIANT
-#endif
+$addRequests
 
-CLASS QScriptValue
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD new1
-   METHOD new2
-   METHOD new3
-   METHOD new4
-   METHOD new5
-   METHOD new6
-   METHOD new7
-   METHOD new8
-   METHOD new9
-   METHOD new10
-   METHOD new
-   METHOD delete
-   METHOD call
-   METHOD construct
-   METHOD data
-   METHOD engine
-   METHOD equals
-   METHOD instanceOf
-   METHOD isArray
-   METHOD isBool
-   METHOD isDate
-   METHOD isError
-   METHOD isFunction
-   METHOD isNull
-   METHOD isNumber
-   METHOD isObject
-   METHOD isQMetaObject
-   METHOD isQObject
-   METHOD isRegExp
-   METHOD isString
-   METHOD isUndefined
-   METHOD isValid
-   METHOD isVariant
-   METHOD lessThan
-   METHOD property
-   METHOD propertyFlags
-   METHOD prototype
-   METHOD scriptClass
-   METHOD setData
-   METHOD setProperty
-   METHOD setPrototype
-   METHOD setScriptClass
-   METHOD strictlyEquals
-   METHOD toBool
-   METHOD toDateTime
-   METHOD toInt32
-   METHOD toInteger
-   METHOD toNumber
-   METHOD toQMetaObject
-   METHOD toQObject
-   METHOD toRegExp
-   METHOD toString
-   METHOD toUInt16
-   METHOD toUInt32
-   METHOD toVariant
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

@@ -8,31 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QRECT
-REQUEST QSIZE
-REQUEST QWIDGET
-#endif
+$addRequests
 
-CLASS QWidgetItem INHERIT QLayoutItem
+$beginClassFrom=QLayoutItem
 
-   METHOD new
-   METHOD delete
-   METHOD controlTypes
-   METHOD expandingDirections
-   METHOD geometry
-   METHOD hasHeightForWidth
-   METHOD heightForWidth
-   METHOD isEmpty
-   METHOD maximumSize
-   METHOD minimumSize
-   METHOD setGeometry
-   METHOD sizeHint
-   METHOD widget
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

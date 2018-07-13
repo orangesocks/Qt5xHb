@@ -8,19 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QChartView INHERIT QGraphicsView
+$addRequests
 
-   METHOD new
-   METHOD delete
+$beginClassFrom=QGraphicsView
 
-   METHOD chart
-   METHOD rubberBand
-   METHOD setChart
-%%   METHOD setRubberBand
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

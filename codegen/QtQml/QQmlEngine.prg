@@ -8,54 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QURL
-REQUEST QQMLIMAGEPROVIDERBASE
-REQUEST QQMLINCUBATIONCONTROLLER
-REQUEST QNETWORKACCESSMANAGER
-REQUEST QQMLNETWORKACCESSMANAGERFACTORY
-REQUEST QQMLCONTEXT
-#endif
+$addRequests
 
-CLASS QQmlEngine INHERIT QJSEngine
+$beginClassFrom=QJSEngine
 
-   METHOD new
-   METHOD delete
-   METHOD addImageProvider
-   METHOD addImportPath
-   METHOD addNamedBundle
-   METHOD addPluginPath
-   METHOD baseUrl
-   METHOD clearComponentCache
-   METHOD imageProvider
-   METHOD importPathList
-%%   METHOD importPlugin
-   METHOD incubationController
-   METHOD networkAccessManager
-   METHOD networkAccessManagerFactory
-   METHOD offlineStoragePath
-   METHOD outputWarningsToStandardError
-   METHOD pluginPathList
-   METHOD removeImageProvider
-   METHOD rootContext
-   METHOD setBaseUrl
-   METHOD setImportPathList
-   METHOD setIncubationController
-   METHOD setNetworkAccessManagerFactory
-   METHOD setOfflineStoragePath
-   METHOD setOutputWarningsToStandardError
-   METHOD setPluginPathList
-   METHOD trimComponentCache
-   METHOD contextForObject
-   METHOD objectOwnership
-   METHOD setContextForObject
-   METHOD setObjectOwnership
+$addMethods
 
-   METHOD onQuit
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

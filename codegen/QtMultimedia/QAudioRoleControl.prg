@@ -8,20 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QAudioRoleControl INHERIT QMediaControl
+$addRequests
 
-%%   METHOD new
-   METHOD delete
+$beginClassFrom=QMediaControl
 
-   METHOD audioRole
-   METHOD setAudioRole
-   METHOD supportedAudioRoles
+$addMethods
 
 %%   METHOD onAudioRoleChanged
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

@@ -8,45 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QIODEVICE
-#endif
+$addRequests
 
-CLASS QDataStream
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD new
-   METHOD delete
-   METHOD device
-   METHOD setDevice
-   METHOD unsetDevice
-   METHOD atEnd
-   METHOD status
-   METHOD setStatus
-   METHOD resetStatus
-   METHOD floatingPointPrecision
-   METHOD setFloatingPointPrecision
-   METHOD byteOrder
-   METHOD setByteOrder
-   METHOD version
-   METHOD setVersion
-   METHOD readBytes
-   METHOD readRawData
-   METHOD writeBytes
-   METHOD writeRawData
-   METHOD skipRawData
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

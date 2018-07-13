@@ -8,33 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QScriptContextInfo
+$addRequests
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$beginClassFrom=
 
-   METHOD new
-   METHOD delete
-   METHOD fileName
-   METHOD functionEndLineNumber
-   METHOD functionMetaIndex
-   METHOD functionName
-   METHOD functionParameterNames
-   METHOD functionStartLineNumber
-   METHOD functionType
-   METHOD isNull
-   METHOD lineNumber
-   METHOD scriptId
+$addMethods
 
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

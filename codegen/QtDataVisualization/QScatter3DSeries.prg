@@ -8,26 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QScatter3DSeries INHERIT QAbstract3DSeries
+$addRequests
 
-   METHOD new
-   METHOD delete
+$beginClassFrom=QAbstract3DSeries
 
-   METHOD dataProxy
-   METHOD invalidSelectionIndex
-   METHOD itemSize
-   METHOD selectedItem
-   METHOD setDataProxy
-   METHOD setItemSize
-   METHOD setSelectedItem
+$addMethods
 
-   METHOD onDataProxyChanged
-   METHOD onItemSizeChanged
-   METHOD onSelectedItemChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

@@ -8,47 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QAUDIOFORMAT
-REQUEST QAUDIOBUFFER
-REQUEST QIODEVICE
-#endif
+$addRequests
 
-CLASS QAudioDecoder INHERIT QMediaObject
+$beginClassFrom=QMediaObject
 
-   METHOD new
-   METHOD delete
+$addMethods
 
-   METHOD audioFormat
-   METHOD bufferAvailable
-   METHOD duration
-   METHOD error
-   METHOD errorString
-   METHOD hasSupport
-   METHOD position
-   METHOD read
-   METHOD setAudioFormat
-   METHOD setSourceDevice
-   METHOD setSourceFilename
-   METHOD sourceDevice
-   METHOD sourceFilename
-   METHOD start
-   METHOD state
-   METHOD stop
+$addSignals
 
-   METHOD onBufferAvailableChanged
-   METHOD onBufferReady
-   METHOD onDurationChanged
-   METHOD onError
-   METHOD onFinished
-   METHOD onFormatChanged
-   METHOD onPositionChanged
-   METHOD onSourceChanged
-   METHOD onStateChanged
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

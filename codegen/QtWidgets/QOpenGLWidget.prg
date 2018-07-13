@@ -8,33 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QSURFACEFORMAT
-REQUEST QOPENGLCONTEXT
-REQUEST QIMAGE
-#endif
+$addRequests
 
-CLASS QOpenGLWidget INHERIT QWidget
+$beginClassFrom=QWidget
 
-   METHOD new
-   METHOD delete
-   METHOD format
-   METHOD setFormat
-   METHOD isValid
-   METHOD makeCurrent
-   METHOD doneCurrent
-   METHOD context
-   METHOD defaultFramebufferObject
-   METHOD grabFramebuffer
+$addMethods
 
-   METHOD onAboutToCompose
-   METHOD onFrameSwapped
-   METHOD onAboutToResize
-   METHOD onResized
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

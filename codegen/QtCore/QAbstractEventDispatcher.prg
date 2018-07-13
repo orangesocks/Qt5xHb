@@ -8,35 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QAbstractEventDispatcher INHERIT QObject
+$addRequests
 
-   METHOD delete
-   METHOD filterNativeEvent
-   METHOD flush
-   METHOD hasPendingEvents
-   METHOD installNativeEventFilter
-   METHOD interrupt
-   METHOD processEvents
-   METHOD registerEventNotifier
-   METHOD registerSocketNotifier
-   METHOD registerTimer
-   METHOD remainingTime
-   METHOD removeNativeEventFilter
-   METHOD unregisterEventNotifier
-   METHOD unregisterSocketNotifier
-   METHOD unregisterTimer
-   METHOD unregisterTimers
-   METHOD wakeUp
-   METHOD instance
-   METHOD startingUp
-   METHOD closingDown
+$beginClassFrom=QObject
 
-   METHOD onAboutToBlock
-   METHOD onAwake
+$addMethods
 
-   DESTRUCTOR destroyObject
+$addSignals
 
-END CLASS
+$endClass
 
 $destructor
 

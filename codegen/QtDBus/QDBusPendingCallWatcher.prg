@@ -8,18 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QDBusPendingCallWatcher INHERIT QObject,QDBusPendingCall
+$addRequests
 
-   METHOD new
-   METHOD delete
-   METHOD isFinished
-   METHOD waitForFinished
+$beginClassFrom=QObject,QDBusPendingCall
 
-   METHOD onFinished
+$addMethods
 
-   DESTRUCTOR destroyObject
+$addSignals
 
-END CLASS
+$endClass
 
 $destructor
 

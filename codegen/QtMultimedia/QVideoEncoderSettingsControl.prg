@@ -8,26 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QSIZE
-REQUEST QVIDEOENCODERSETTINGS
-#endif
+$addRequests
 
-CLASS QVideoEncoderSettingsControl INHERIT QMediaControl
+$beginClassFrom=QMediaControl
 
-%%   METHOD new
-   METHOD delete
+$addMethods
 
-   METHOD setVideoSettings
-   METHOD supportedFrameRates
-   METHOD supportedResolutions
-   METHOD supportedVideoCodecs
-   METHOD videoCodecDescription
-   METHOD videoSettings
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

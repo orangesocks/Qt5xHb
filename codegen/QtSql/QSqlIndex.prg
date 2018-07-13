@@ -8,22 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QSqlIndex INHERIT QSqlRecord
+$addRequests
 
-   METHOD new
-   METHOD delete
+$beginClassFrom=QSqlRecord
 
-   METHOD append
-   METHOD cursorName
-   METHOD isDescending
-   METHOD name
-   METHOD setCursorName
-   METHOD setDescending
-   METHOD setName
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

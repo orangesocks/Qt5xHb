@@ -8,29 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QCameraZoomControl INHERIT QMediaControl
+$addRequests
 
-%%   METHOD new
-   METHOD delete
+$beginClassFrom=QMediaControl
 
-   METHOD currentDigitalZoom
-   METHOD currentOpticalZoom
-   METHOD maximumDigitalZoom
-   METHOD maximumOpticalZoom
-   METHOD requestedDigitalZoom
-   METHOD requestedOpticalZoom
-   METHOD zoomTo
+$addMethods
 
-   METHOD onCurrentDigitalZoomChanged
-   METHOD onCurrentOpticalZoomChanged
-   METHOD onMaximumDigitalZoomChanged
-   METHOD onMaximumOpticalZoomChanged
-   METHOD onRequestedDigitalZoomChanged
-   METHOD onRequestedOpticalZoomChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

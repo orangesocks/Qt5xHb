@@ -8,58 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QDATE
-REQUEST QTIME
-#endif
+$addRequests
 
-CLASS QDateTime
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD new
-   METHOD delete
-   METHOD addDays
-   METHOD addMSecs
-   METHOD addMonths
-   METHOD addSecs
-   METHOD addYears
-   METHOD date
-   METHOD daysTo
-   METHOD isNull
-   METHOD isValid
-   METHOD msecsTo
-   METHOD secsTo
-   METHOD setDate
-   METHOD setMSecsSinceEpoch
-   METHOD setTime
-   METHOD setTimeSpec
-   METHOD setTime_t
-   METHOD time
-   METHOD timeSpec
-   METHOD toLocalTime
-   METHOD toMSecsSinceEpoch
-   METHOD toString
-   METHOD toTimeSpec
-   METHOD toTime_t
-   METHOD toUTC
-   METHOD currentDateTime
-   METHOD currentDateTimeUtc
-   METHOD currentMSecsSinceEpoch
-   METHOD fromMSecsSinceEpoch
-   METHOD fromString
-   METHOD fromTime_t
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

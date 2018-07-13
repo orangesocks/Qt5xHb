@@ -8,30 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QWIDGET
-#endif
+$addRequests
 
-CLASS QStackedLayout INHERIT QLayout
+$beginClassFrom=QLayout
 
-   METHOD new
-   METHOD delete
-   METHOD addWidget
-   METHOD currentIndex
-   METHOD currentWidget
-   METHOD insertWidget
-   METHOD setStackingMode
-   METHOD stackingMode
-   METHOD widget
-   METHOD setCurrentIndex
-   METHOD setCurrentWidget
+$addMethods
 
-   METHOD onSetCurrentIndex
-   METHOD onSetCurrentWidget
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

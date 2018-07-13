@@ -8,43 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-%% REQUEST QPLATFORMBACKINGSTORE
-REQUEST QPAINTDEVICE
-REQUEST QSIZE
-REQUEST QREGION
-REQUEST QWINDOW
-#endif
+$addRequests
 
-CLASS QBackingStore
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD new
-   METHOD delete
-   METHOD beginPaint
-   METHOD endPaint
-   METHOD flush
-%%   METHOD handle
-   METHOD hasStaticContents
-   METHOD paintDevice
-   METHOD resize
-   METHOD scroll
-   METHOD setStaticContents
-   METHOD size
-   METHOD staticContents
-   METHOD window
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

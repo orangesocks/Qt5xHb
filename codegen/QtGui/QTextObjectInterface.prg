@@ -8,28 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QSIZEF
-#endif
+$addRequests
 
-CLASS QTextObjectInterface
-
-   DATA pointer
-   DATA self_destruction INIT .F.
+$beginClassFrom=
 
    METHOD delete
    METHOD intrinsicSize
    METHOD drawObject
 
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

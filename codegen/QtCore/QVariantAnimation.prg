@@ -8,30 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QVARIANT
-REQUEST QEASINGCURVE
-#endif
+$addRequests
 
-CLASS QVariantAnimation INHERIT QAbstractAnimation
+$beginClassFrom=QAbstractAnimation
 
-   METHOD delete
-   METHOD currentValue
-   METHOD easingCurve
-   METHOD endValue
-   METHOD keyValueAt
-   METHOD setDuration
-   METHOD setEasingCurve
-   METHOD setEndValue
-   METHOD setKeyValueAt
-   METHOD setStartValue
-   METHOD startValue
+$addMethods
 
-   METHOD onValueChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

@@ -8,21 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QTemporaryFile INHERIT QFile
+$addRequests
 
-   METHOD new
-   METHOD delete
-   METHOD autoRemove
-   METHOD fileTemplate
-   METHOD open
-   METHOD setAutoRemove
-   METHOD setFileTemplate
-   METHOD fileName
-   METHOD createNativeFile
+$beginClassFrom=QFile
 
-   DESTRUCTOR destroyObject
+$addMethods
 
-END CLASS
+$endClass
 
 $destructor
 

@@ -8,19 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QMODELINDEX
-#endif
+$addRequests
 
-CLASS QAbstractListModel INHERIT QAbstractItemModel
+$beginClassFrom=QAbstractItemModel
 
-   METHOD delete
-   METHOD dropMimeData
-   METHOD index
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

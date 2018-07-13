@@ -8,15 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QSplineSeries INHERIT QLineSeries
+$addRequests
 
-   METHOD new
-   METHOD delete
-   METHOD type
+$beginClassFrom=QLineSeries
 
-   DESTRUCTOR destroyObject
+$addMethods
 
-END CLASS
+$endClass
 
 $destructor
 

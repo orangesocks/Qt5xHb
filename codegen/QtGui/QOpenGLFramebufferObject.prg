@@ -8,54 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QOPENGLFRAMEBUFFEROBJECTFORMAT
-REQUEST QSIZE
-REQUEST QIMAGE
-#endif
+$addRequests
 
-CLASS QOpenGLFramebufferObject
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD new1
-   METHOD new2
-   METHOD new3
-   METHOD new4
-   METHOD new5
-   METHOD new6
-   METHOD new7
-   METHOD new8
-   METHOD new
-   METHOD delete
-   METHOD format
-   METHOD isValid
-   METHOD isBound
-   METHOD bind
-   METHOD release
-   METHOD width
-   METHOD height
-   METHOD texture
-   METHOD size
-   METHOD toImage
-   METHOD attachment
-   METHOD setAttachment
-   METHOD handle
-   METHOD bindDefault
-   METHOD hasOpenGLFramebufferObjects
-   METHOD hasOpenGLFramebufferBlit
-   METHOD blitFramebuffer
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

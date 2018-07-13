@@ -8,41 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QSGGeometry
+$addRequests
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$beginClassFrom=
 
-   METHOD delete
-   METHOD allocate
-   METHOD attributeCount
-   METHOD drawingMode
-   METHOD indexCount
-   METHOD indexDataPattern
-   METHOD indexType
-   METHOD lineWidth
-   METHOD markIndexDataDirty
-   METHOD markVertexDataDirty
-   METHOD setDrawingMode
-   METHOD setIndexDataPattern
-   METHOD setLineWidth
-   METHOD setVertexDataPattern
-   METHOD sizeOfIndex
-   METHOD sizeOfVertex
-   METHOD vertexCount
-   METHOD vertexDataPattern
-   METHOD updateRectGeometry
-   METHOD updateTexturedRectGeometry
+$addMethods
 
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

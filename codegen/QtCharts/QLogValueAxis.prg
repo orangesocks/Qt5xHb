@@ -8,36 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QLogValueAxis INHERIT QAbstractAxis
+$addRequests
 
-   METHOD new
-   METHOD delete
+$beginClassFrom=QAbstractAxis
 
-   METHOD base
-   METHOD labelFormat
-   METHOD max
-   METHOD min
-   METHOD minorTickCount
-   METHOD setBase
-   METHOD setLabelFormat
-   METHOD setMax
-   METHOD setMin
-   METHOD setMinorTickCount
-   METHOD setRange
-   METHOD tickCount
-   METHOD type
+$addMethods
 
-   METHOD onBaseChanged
-   METHOD onLabelFormatChanged
-   METHOD onMaxChanged
-   METHOD onMinChanged
-   METHOD onMinorTickCountChanged
-   METHOD onRangeChanged
-   METHOD onTickCountChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

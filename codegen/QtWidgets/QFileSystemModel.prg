@@ -8,73 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QICON
-REQUEST QFILEINFO
-REQUEST QFILEICONPROVIDER
-REQUEST QMODELINDEX
-REQUEST QDATETIME
-REQUEST QVARIANT
-REQUEST QDIR
-REQUEST QMIMEDATA
-#endif
+$addRequests
 
-CLASS QFileSystemModel INHERIT QAbstractItemModel
+$beginClassFrom=QAbstractItemModel
 
-   METHOD new
-   METHOD delete
-   METHOD fileIcon
-   METHOD fileInfo
-   METHOD fileName
-   METHOD filePath
-   METHOD filter
-   METHOD setFilter
-   METHOD iconProvider
-   METHOD setIconProvider
-   METHOD index
-   METHOD isDir
-   METHOD isReadOnly
-   METHOD setReadOnly
-   METHOD lastModified
-   METHOD mkdir
-   METHOD myComputer
-   METHOD nameFilterDisables
-   METHOD setNameFilterDisables
-   METHOD nameFilters
-   METHOD setNameFilters
-   METHOD permissions
-   METHOD remove
-   METHOD resolveSymlinks
-   METHOD setResolveSymlinks
-   METHOD rmdir
-   METHOD rootDirectory
-   METHOD rootPath
-   METHOD setRootPath
-   METHOD size
-   METHOD type
-   METHOD canFetchMore
-   METHOD columnCount
-   METHOD data
-   METHOD setData
-   METHOD dropMimeData
-   METHOD fetchMore
-   METHOD flags
-   METHOD hasChildren
-   METHOD headerData
-   METHOD mimeData
-   METHOD mimeTypes
-   METHOD parent
-   METHOD rowCount
-   METHOD sort
-   METHOD supportedDropActions
+$addMethods
 
-   METHOD onDirectoryLoaded
-   METHOD onFileRenamed
-   METHOD onRootPathChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

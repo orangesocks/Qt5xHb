@@ -8,14 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QTcpSocket INHERIT QAbstractSocket
+$addRequests
 
-   METHOD new
-   METHOD delete
+$beginClassFrom=QAbstractSocket
 
-   DESTRUCTOR destroyObject
+$addMethods
 
-END CLASS
+$endClass
 
 $destructor
 

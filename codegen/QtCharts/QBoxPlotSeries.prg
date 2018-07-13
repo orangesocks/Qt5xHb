@@ -8,44 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QBoxPlotSeries INHERIT QAbstractSeries
+$addRequests
 
-   METHOD new
-   METHOD delete
+$beginClassFrom=QAbstractSeries
 
-   METHOD append
-   METHOD boxOutlineVisible
-   METHOD boxSets
-   METHOD boxWidth
-   METHOD brush
-   METHOD clear
-   METHOD count
-   METHOD insert
-   METHOD pen
-   METHOD remove
-   METHOD setBoxOutlineVisible
-   METHOD setBoxWidth
-   METHOD setBrush
-   METHOD setPen
-   METHOD take
-   METHOD type
+$addMethods
 
-   METHOD onBoxOutlineVisibilityChanged
-   METHOD onBoxsetsAdded
-   METHOD onBoxsetsRemoved
-   METHOD onBoxWidthChanged
-   METHOD onBrushChanged
-   METHOD onClicked
-   METHOD onCountChanged
-   METHOD onDoubleClicked
-   METHOD onHovered
-   METHOD onPenChanged
-   METHOD onPressed
-   METHOD onReleased
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

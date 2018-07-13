@@ -8,39 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QWinTaskbarProgress INHERIT QObject
+$addRequests
 
-   METHOD new
-   METHOD delete
-   METHOD value
-   METHOD setValue
-   METHOD minimum
-   METHOD setMinimum
-   METHOD maximum
-   METHOD setMaximum
-   METHOD isVisible
-   METHOD setVisible
-   METHOD isPaused
-   METHOD setPaused
-   METHOD isStopped
-   METHOD setRange
-   METHOD reset
-   METHOD show
-   METHOD hide
-   METHOD pause
-   METHOD resume
-   METHOD stop
+$beginClassFrom=QObject
 
-   METHOD onValueChanged
-   METHOD onMinimumChanged
-   METHOD onMaximumChanged
-   METHOD onVisibilityChanged
-   METHOD onPausedChanged
-   METHOD onStoppedChanged
+$addMethods
 
-   DESTRUCTOR destroyObject
+$addSignals
 
-END CLASS
+$endClass
 
 $destructor
 

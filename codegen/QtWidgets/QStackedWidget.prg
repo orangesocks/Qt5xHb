@@ -8,31 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QWIDGET
-#endif
+$addRequests
 
-CLASS QStackedWidget INHERIT QFrame
+$beginClassFrom=QFrame
 
-   METHOD new
-   METHOD delete
-   METHOD addWidget
-   METHOD count
-   METHOD currentIndex
-   METHOD currentWidget
-   METHOD indexOf
-   METHOD insertWidget
-   METHOD removeWidget
-   METHOD widget
-   METHOD setCurrentIndex
-   METHOD setCurrentWidget
+$addMethods
 
-   METHOD onCurrentChanged
-   METHOD onWidgetRemoved
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

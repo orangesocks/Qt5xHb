@@ -8,61 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QXYSeries INHERIT QAbstractSeries
+$addRequests
 
-%%   METHOD new
-   METHOD delete
+$beginClassFrom=QAbstractSeries
 
-   METHOD append
-   METHOD at
-   METHOD brush
-   METHOD clear
-   METHOD color
-   METHOD count
-   METHOD insert
-   METHOD pen
-   METHOD pointLabelsClipping
-   METHOD pointLabelsColor
-   METHOD pointLabelsFont
-   METHOD pointLabelsFormat
-   METHOD pointLabelsVisible
-   METHOD points
-   METHOD pointsVector
-   METHOD pointsVisible
-   METHOD remove
-   METHOD removePoints
-   METHOD replace
-   METHOD setBrush
-   METHOD setColor
-   METHOD setPen
-   METHOD setPointLabelsClipping
-   METHOD setPointLabelsColor
-   METHOD setPointLabelsFont
-   METHOD setPointLabelsFormat
-   METHOD setPointLabelsVisible
-   METHOD setPointsVisible
+$addMethods
 
-   METHOD onClicked
-   METHOD onColorChanged
-   METHOD onDoubleClicked
-   METHOD onHovered
-   METHOD onPenChanged
-   METHOD onPointAdded
-   METHOD onPointLabelsClippingChanged
-   METHOD onPointLabelsColorChanged
-   METHOD onPointLabelsFontChanged
-   METHOD onPointLabelsFormatChanged
-   METHOD onPointLabelsVisibilityChanged
-   METHOD onPointRemoved
-   METHOD onPointReplaced
-   METHOD onPointsRemoved
-   METHOD onPointsReplaced
-   METHOD onPressed
-   METHOD onReleased
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

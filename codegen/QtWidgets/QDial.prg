@@ -8,27 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QSIZE
-#endif
+$addRequests
 
-CLASS QDial INHERIT QAbstractSlider
+$beginClassFrom=QAbstractSlider
 
-   METHOD new
-   METHOD delete
-   METHOD notchSize
-   METHOD notchTarget
-   METHOD notchesVisible
-   METHOD setNotchTarget
-   METHOD wrapping
-   METHOD minimumSizeHint
-   METHOD sizeHint
-   METHOD setNotchesVisible
-   METHOD setWrapping
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

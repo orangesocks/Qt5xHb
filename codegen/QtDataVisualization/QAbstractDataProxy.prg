@@ -8,16 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QAbstractDataProxy INHERIT QObject
+$addRequests
 
-%%   METHOD new
-   METHOD delete
+$beginClassFrom=QObject
 
-   METHOD type
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

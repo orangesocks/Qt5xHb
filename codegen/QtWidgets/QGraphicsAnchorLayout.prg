@@ -8,33 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QGRAPHICSANCHOR
-REQUEST QGRAPHICSLAYOUTITEM
-#endif
+$addRequests
 
-CLASS QGraphicsAnchorLayout INHERIT QGraphicsLayout
+$beginClassFrom=QGraphicsLayout
 
-   METHOD new
-   METHOD delete
-   METHOD addAnchor
-   METHOD addAnchors
-   METHOD addCornerAnchors
-   METHOD anchor
-   METHOD horizontalSpacing
-   METHOD setHorizontalSpacing
-   METHOD setSpacing
-   METHOD setVerticalSpacing
-   METHOD verticalSpacing
-   METHOD count
-   METHOD invalidate
-   METHOD itemAt
-   METHOD removeAt
-   METHOD setGeometry
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

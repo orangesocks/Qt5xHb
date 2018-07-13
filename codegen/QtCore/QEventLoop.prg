@@ -8,20 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QEventLoop INHERIT QObject
+$addRequests
 
-   METHOD new
-   METHOD delete
-   METHOD exec
-   METHOD exit
-   METHOD isRunning
-   METHOD processEvents
-   METHOD wakeUp
-   METHOD quit
+$beginClassFrom=QObject
 
-   DESTRUCTOR destroyObject
+$addMethods
 
-END CLASS
+$endClass
 
 $destructor
 

@@ -8,54 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QAreaSeries INHERIT QAbstractSeries
+$addRequests
 
-   METHOD new
-   METHOD delete
+$beginClassFrom=QAbstractSeries
 
-   METHOD borderColor
-   METHOD brush
-   METHOD color
-   METHOD lowerSeries
-   METHOD pen
-   METHOD pointLabelsClipping
-   METHOD pointLabelsColor
-   METHOD pointLabelsFont
-   METHOD pointLabelsFormat
-   METHOD pointLabelsVisible
-   METHOD pointsVisible
-   METHOD setBorderColor
-   METHOD setBrush
-   METHOD setColor
-   METHOD setLowerSeries
-   METHOD setPen
-   METHOD setPointLabelsClipping
-   METHOD setPointLabelsColor
-   METHOD setPointLabelsFont
-   METHOD setPointLabelsFormat
-   METHOD setPointLabelsVisible
-   METHOD setPointsVisible
-   METHOD setUpperSeries
-   METHOD type
-   METHOD upperSeries
+$addMethods
 
-   METHOD onBorderColorChanged
-   METHOD onClicked
-   METHOD onColorChanged
-   METHOD onDoubleClicked
-   METHOD onHovered
-   METHOD onPointLabelsClippingChanged
-   METHOD onPointLabelsColorChanged
-   METHOD onPointLabelsFontChanged
-   METHOD onPointLabelsFormatChanged
-   METHOD onPointLabelsVisibilityChanged
-   METHOD onPressed
-   METHOD onReleased
-   METHOD onSelected
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

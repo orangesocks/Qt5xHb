@@ -8,23 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QPOINTF
-REQUEST QPOINT
-#endif
+$addRequests
 
-CLASS QGraphicsSceneContextMenuEvent INHERIT QGraphicsSceneEvent
+$beginClassFrom=QGraphicsSceneEvent
 
-   METHOD delete
-   METHOD modifiers
-   METHOD pos
-   METHOD reason
-   METHOD scenePos
-   METHOD screenPos
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

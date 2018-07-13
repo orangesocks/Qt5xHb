@@ -8,106 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QACTION
-REQUEST QMENU
-REQUEST QNETWORKACCESSMANAGER
-REQUEST QPALETTE
-REQUEST QSIZE
-REQUEST QUNDOSTACK
-REQUEST QVARIANT
-REQUEST QWEBFRAME
-REQUEST QWEBHISTORY
-REQUEST QWEBPLUGINFACTORY
-REQUEST QWEBSETTINGS
-REQUEST QWIDGET
-#endif
+$addRequests
 
-CLASS QWebPage INHERIT QObject
+$beginClassFrom=QObject
 
-   METHOD new
-   METHOD delete
+$addMethods
 
-   METHOD action
-   METHOD bytesReceived
-   METHOD createStandardContextMenu
-   METHOD currentFrame
-   METHOD event
-   //METHOD extension
-   METHOD findText
-   METHOD focusNextPrevChild
-   METHOD forwardUnsupportedContent
-   METHOD frameAt
-   METHOD hasSelection
-   METHOD history
-   METHOD inputMethodQuery
-   METHOD isContentEditable
-   METHOD isModified
-   METHOD linkDelegationPolicy
-   METHOD mainFrame
-   METHOD networkAccessManager
-   METHOD palette
-   METHOD pluginFactory
-   METHOD preferredContentsSize
-   METHOD selectedHtml
-   METHOD selectedText
-   METHOD setActualVisibleContentRect
-   METHOD setContentEditable
-   METHOD setFeaturePermission
-   METHOD setForwardUnsupportedContent
-   METHOD setLinkDelegationPolicy
-   METHOD setNetworkAccessManager
-   METHOD setPalette
-   METHOD setPluginFactory
-   METHOD setPreferredContentsSize
-   METHOD settings
-   METHOD setView
-   METHOD setViewportSize
-   METHOD setVisibilityState
-   METHOD shouldInterruptJavaScript
-   METHOD supportedContentTypes
-   METHOD supportsContentType
-   //METHOD supportsExtension
-   METHOD swallowContextMenuEvent
-   METHOD totalBytes
-   METHOD triggerAction
-   METHOD undoStack
-   METHOD updatePositionDependentActions
-   METHOD view
-   METHOD viewportSize
-   METHOD visibilityState
+$addSignals
 
-   METHOD onApplicationCacheQuotaExceeded
-   METHOD onContentsChanged
-   METHOD onDatabaseQuotaExceeded
-   METHOD onDownloadRequested
-   METHOD onFeaturePermissionRequestCanceled
-   METHOD onFeaturePermissionRequested
-   METHOD onFrameCreated
-   METHOD onGeometryChangeRequested
-   METHOD onLinkClicked
-   METHOD onLinkHovered
-   METHOD onLoadFinished
-   METHOD onLoadProgress
-   METHOD onLoadStarted
-   METHOD onMenuBarVisibilityChangeRequested
-   METHOD onMicroFocusChanged
-   METHOD onPrintRequested
-   METHOD onRepaintRequested
-   METHOD onRestoreFrameStateRequested
-   METHOD onSaveFrameStateRequested
-   METHOD onScrollRequested
-   METHOD onSelectionChanged
-   METHOD onStatusBarMessage
-   METHOD onStatusBarVisibilityChangeRequested
-   METHOD onToolBarVisibilityChangeRequested
-   METHOD onUnsupportedContent
-   METHOD onViewportChangeRequested
-   METHOD onWindowCloseRequested
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

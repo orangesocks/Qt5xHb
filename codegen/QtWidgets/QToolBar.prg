@@ -8,52 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QACTION
-REQUEST QSIZE
-REQUEST QWIDGET
-#endif
+$addRequests
 
-CLASS QToolBar INHERIT QWidget
+$beginClassFrom=QWidget
 
-   METHOD new
-   METHOD delete
-   METHOD actionAt
-   METHOD addAction
-   METHOD addSeparator
-   METHOD addWidget
-   METHOD allowedAreas
-   METHOD clear
-   METHOD iconSize
-   METHOD insertSeparator
-   METHOD insertWidget
-   METHOD isAreaAllowed
-   METHOD isFloatable
-   METHOD isFloating
-   METHOD isMovable
-   METHOD orientation
-   METHOD setAllowedAreas
-   METHOD setFloatable
-   METHOD setMovable
-   METHOD setOrientation
-   METHOD toggleViewAction
-   METHOD toolButtonStyle
-   METHOD widgetForAction
-   METHOD setIconSize
-   METHOD setToolButtonStyle
+$addMethods
 
-   METHOD onActionTriggered
-   METHOD onAllowedAreasChanged
-   METHOD onIconSizeChanged
-   METHOD onMovableChanged
-   METHOD onOrientationChanged
-   METHOD onToolButtonStyleChanged
-   METHOD onTopLevelChanged
-   METHOD onVisibilityChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

@@ -8,21 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QOBJECT
-#endif
+$addRequests
 
-CLASS QExtensionManager INHERIT QObject,QAbstractExtensionManager
+$beginClassFrom=QObject,QAbstractExtensionManager
 
-   METHOD new
-   METHOD delete
-   METHOD extension
-   METHOD registerExtensions
-   METHOD unregisterExtensions
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

@@ -8,30 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QKeySequence
+$addRequests
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$beginClassFrom=
 
-   METHOD new
-   METHOD delete
-   METHOD count
-   METHOD isEmpty
-   METHOD matches
-   METHOD toString
-   METHOD fromString
-   METHOD keyBindings
-   METHOD mnemonic
+$addMethods
 
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

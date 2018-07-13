@@ -8,57 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QPLACEDETAILSREPLY
-REQUEST QPLACECONTENTREPLY
-REQUEST QPLACESEARCHREPLY
-REQUEST QPLACESEARCHSUGGESTIONREPLY
-REQUEST QPLACEIDREPLY
-REQUEST QPLACEREPLY
-REQUEST QPLACECATEGORY
-REQUEST QLOCALE
-REQUEST QURL
-REQUEST QPLACE
-REQUEST QPLACEMATCHREPLY
-#endif
+$addRequests
 
-CLASS QPlaceManagerEngine INHERIT QObject
+$beginClassFrom=QObject
 
-   METHOD delete
-   METHOD managerName
-   METHOD managerVersion
-   METHOD getPlaceDetails
-   METHOD getPlaceContent
-   METHOD search
-   METHOD searchSuggestions
-   METHOD savePlace
-   METHOD removePlace
-   METHOD saveCategory
-   METHOD removeCategory
-   METHOD initializeCategories
-   METHOD parentCategoryId
-   METHOD childCategoryIds
-   METHOD category
-   METHOD childCategories
-   METHOD locales
-   METHOD setLocales
-   METHOD constructIconUrl
-   METHOD compatiblePlace
-   METHOD matchingPlaces
+$addMethods
 
-   METHOD onFinished
-   METHOD onError
-   METHOD onPlaceAdded
-   METHOD onPlaceUpdated
-   METHOD onPlaceRemoved
-   METHOD onCategoryAdded
-   METHOD onCategoryUpdated
-   METHOD onCategoryRemoved
-   METHOD onDataChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

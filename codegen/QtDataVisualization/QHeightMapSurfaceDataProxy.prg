@@ -8,35 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QHeightMapSurfaceDataProxy INHERIT QSurfaceDataProxy
+$addRequests
 
-   METHOD new
-   METHOD delete
+$beginClassFrom=QSurfaceDataProxy
 
-   METHOD heightMap
-   METHOD heightMapFile
-   METHOD maxXValue
-   METHOD maxZValue
-   METHOD minXValue
-   METHOD minZValue
-   METHOD setHeightMap
-   METHOD setHeightMapFile
-   METHOD setMaxXValue
-   METHOD setMaxZValue
-   METHOD setMinXValue
-   METHOD setMinZValue
-   METHOD setValueRanges
+$addMethods
 
-   METHOD onHeightMapChanged
-   METHOD onHeightMapFileChanged
-   METHOD onMaxXValueChanged
-   METHOD onMaxZValueChanged
-   METHOD onMinXValueChanged
-   METHOD onMinZValueChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

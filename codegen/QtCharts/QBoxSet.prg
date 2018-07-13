@@ -8,37 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QBoxSet INHERIT QObject
+$addRequests
 
-   METHOD new
-   METHOD delete
+$beginClassFrom=QObject
 
-   METHOD append
-   METHOD at
-   METHOD brush
-   METHOD clear
-   METHOD count
-   METHOD label
-   METHOD pen
-   METHOD setBrush
-   METHOD setLabel
-   METHOD setPen
-   METHOD setValue
+$addMethods
 
-   METHOD onBrushChanged
-   METHOD onCleared
-   METHOD onClicked
-   METHOD onDoubleClicked
-   METHOD onHovered
-   METHOD onPenChanged
-   METHOD onPressed
-   METHOD onReleased
-   METHOD onValueChanged
-   METHOD onValuesChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

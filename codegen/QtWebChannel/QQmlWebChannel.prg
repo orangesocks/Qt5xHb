@@ -8,25 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-%% REQUEST QQMLLISTPROPERTY<QOBJECT>
-REQUEST QQMLWEBCHANNELATTACHED
-#endif
+$addRequests
 
-CLASS QQmlWebChannel INHERIT QWebChannel
+$beginClassFrom=QWebChannel
 
-   METHOD new
-   METHOD delete
-%%   METHOD registerObjects
-%%   METHOD registeredObjects
-%%   METHOD transports
-%%   METHOD qmlAttachedProperties
-   METHOD connectTo
-   METHOD disconnectFrom
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

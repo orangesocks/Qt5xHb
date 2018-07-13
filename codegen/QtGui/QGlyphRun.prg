@@ -8,37 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QRAWFONT
-#endif
+$addRequests
 
-CLASS QGlyphRun
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD new
-   METHOD delete
-   METHOD clear
-   METHOD overline
-   METHOD rawFont
-   METHOD setOverline
-%%   METHOD setRawData
-   METHOD setRawFont
-   METHOD setStrikeOut
-   METHOD setUnderline
-   METHOD strikeOut
-   METHOD underline
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

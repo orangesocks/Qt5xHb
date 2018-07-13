@@ -8,35 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QCOLOR
-REQUEST QPOINTF
-REQUEST QRECTF
-#endif
+$addRequests
 
-CLASS QGraphicsDropShadowEffect INHERIT QGraphicsEffect
+$beginClassFrom=QGraphicsEffect
 
-   METHOD new
-   METHOD delete
-   METHOD blurRadius
-   METHOD color
-   METHOD offset
-   METHOD xOffset
-   METHOD yOffset
-   METHOD boundingRectFor
-   METHOD setBlurRadius
-   METHOD setColor
-   METHOD setOffset
-   METHOD setXOffset
-   METHOD setYOffset
+$addMethods
 
-   METHOD onBlurRadiusChanged
-   METHOD onColorChanged
-   METHOD onOffsetChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

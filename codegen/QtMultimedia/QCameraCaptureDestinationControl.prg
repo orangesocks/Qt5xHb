@@ -8,20 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QCameraCaptureDestinationControl INHERIT QMediaObject
+$addRequests
 
-%%   METHOD new
-   METHOD delete
+$beginClassFrom=QMediaObject
 
-   METHOD captureDestination
-   METHOD isCaptureDestinationSupported
-   METHOD setCaptureDestination
+$addMethods
 
-   METHOD onCaptureDestinationChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

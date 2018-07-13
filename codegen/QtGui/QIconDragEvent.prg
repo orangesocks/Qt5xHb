@@ -8,14 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QIconDragEvent INHERIT QEvent
+$addRequests
 
-   METHOD new
-   METHOD delete
+$beginClassFrom=QEvent
 
-   DESTRUCTOR destroyObject
+$addMethods
 
-END CLASS
+$endClass
 
 $destructor
 

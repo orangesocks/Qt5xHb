@@ -8,47 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QURL
-REQUEST QVARIANT
-#endif
+$addRequests
 
-CLASS QTextBrowser INHERIT QTextEdit
+$beginClassFrom=QTextEdit
 
-   METHOD new
-   METHOD delete
-   METHOD backwardHistoryCount
-   METHOD clearHistory
-   METHOD forwardHistoryCount
-   METHOD historyTitle
-   METHOD historyUrl
-   METHOD isBackwardAvailable
-   METHOD isForwardAvailable
-   METHOD openExternalLinks
-   METHOD openLinks
-   METHOD searchPaths
-   METHOD setOpenExternalLinks
-   METHOD setOpenLinks
-   METHOD setSearchPaths
-   METHOD source
-   METHOD loadResource
-   METHOD backward
-   METHOD forward
-   METHOD home
-   METHOD reload
-   METHOD setSource
+$addMethods
 
-   METHOD onAnchorClicked
-   METHOD onBackwardAvailable
-   METHOD onForwardAvailable
-   METHOD onHighlighted1
-   METHOD onHighlighted2
-   METHOD onHistoryChanged
-   METHOD onSourceChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

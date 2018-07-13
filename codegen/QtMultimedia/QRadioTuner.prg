@@ -8,58 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QRADIODATA
-#endif
+$addRequests
 
-CLASS QRadioTuner INHERIT QMediaObject
+$beginClassFrom=QMediaObject
 
-   METHOD new
-   METHOD delete
+$addMethods
 
-   METHOD availability
-   METHOD band
-   METHOD cancelSearch
-   METHOD error
-   METHOD errorString
-   METHOD frequency
-   METHOD frequencyStep
-   METHOD isAntennaConnected
-   METHOD isBandSupported
-   METHOD isMuted
-   METHOD isSearching
-   METHOD isStereo
-   METHOD radioData
-   METHOD searchAllStations
-   METHOD searchBackward
-   METHOD searchForward
-   METHOD setBand
-   METHOD setFrequency
-   METHOD setMuted
-   METHOD setStereoMode
-   METHOD setVolume
-   METHOD signalStrength
-   METHOD start
-   METHOD state
-   METHOD stereoMode
-   METHOD stop
-   METHOD volume
+$addSignals
 
-   METHOD onAntennaConnectedChanged
-   METHOD onBandChanged
-   METHOD onError
-   METHOD onFrequencyChanged
-   METHOD onMutedChanged
-   METHOD onSearchingChanged
-   METHOD onSignalStrengthChanged
-   METHOD onStateChanged
-   METHOD onStationFound
-   METHOD onStereoStatusChanged
-   METHOD onVolumeChanged
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

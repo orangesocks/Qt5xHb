@@ -8,46 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QXMLNAME
-REQUEST QABSTRACTMESSAGEHANDLER
-REQUEST QXMLNAMEPOOL
-REQUEST QNETWORKACCESSMANAGER
-REQUEST QABSTRACTURIRESOLVER
-#endif
+$addRequests
 
-CLASS QXmlQuery
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD new
-   METHOD delete
-   METHOD bindVariable
-   METHOD evaluateTo
-   METHOD initialTemplateName
-   METHOD isValid
-   METHOD messageHandler
-   METHOD namePool
-   METHOD networkAccessManager
-   METHOD queryLanguage
-   METHOD setFocus
-   METHOD setInitialTemplateName
-   METHOD setMessageHandler
-   METHOD setNetworkAccessManager
-   METHOD setQuery
-   METHOD setUriResolver
-   METHOD uriResolver
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

@@ -8,28 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QICON
-REQUEST QUNDOGROUP
-REQUEST QUNDOSTACK
-#endif
+$addRequests
 
-CLASS QUndoView INHERIT QWidget
+$beginClassFrom=QWidget
 
-   METHOD new
-   METHOD delete
-   METHOD cleanIcon
-   METHOD emptyLabel
-   METHOD group
-   METHOD setCleanIcon
-   METHOD setEmptyLabel
-   METHOD stack
-   METHOD setGroup
-   METHOD setStack
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

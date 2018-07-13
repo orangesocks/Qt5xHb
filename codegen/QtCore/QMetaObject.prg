@@ -8,61 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QMETACLASSINFO
-REQUEST QMETAMETHOD
-REQUEST QMETAENUM
-REQUEST QOBJECT
-REQUEST QMETAPROPERTY
-REQUEST QBYTEARRAY
-#endif
+$addRequests
 
-CLASS QMetaObject
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD delete
-   METHOD classInfo
-   METHOD classInfoCount
-   METHOD classInfoOffset
-   METHOD className
-   METHOD constructor
-   METHOD constructorCount
-   METHOD enumerator
-   METHOD enumeratorCount
-   METHOD enumeratorOffset
-   METHOD indexOfClassInfo
-   METHOD indexOfConstructor
-   METHOD indexOfEnumerator
-   METHOD indexOfMethod
-   METHOD indexOfProperty
-   METHOD indexOfSignal
-   METHOD indexOfSlot
-   METHOD method
-   METHOD methodCount
-   METHOD methodOffset
-%%   METHOD newInstance
-   METHOD property
-   METHOD propertyCount
-   METHOD propertyOffset
-   METHOD superClass
-   METHOD userProperty
-   METHOD checkConnectArgs
-   METHOD connectSlotsByName
-   METHOD invokeMethod
-   METHOD normalizedSignature
-   METHOD normalizedType
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

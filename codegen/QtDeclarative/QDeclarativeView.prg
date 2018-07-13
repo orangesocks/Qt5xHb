@@ -8,36 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QDECLARATIVEENGINE
-REQUEST QDECLARATIVEERROR
-REQUEST QSIZE
-REQUEST QDECLARATIVECONTEXT
-REQUEST QGRAPHICSOBJECT
-REQUEST QURL
-#endif
+$addRequests
 
-CLASS QDeclarativeView INHERIT QGraphicsView
+$beginClassFrom=QGraphicsView
 
-   METHOD new
-   METHOD delete
-   METHOD engine
-   METHOD errors
-   METHOD initialSize
-   METHOD resizeMode
-   METHOD rootContext
-   METHOD rootObject
-   METHOD setResizeMode
-   METHOD setSource
-   METHOD source
-   METHOD status
+$addMethods
 
-   METHOD onSceneResized
-   METHOD onStatusChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

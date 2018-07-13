@@ -12,43 +12,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QNETWORKADDRESSENTRY
-REQUEST QHOSTADDRESS
-#endif
+$addRequests
 
-CLASS QNetworkInterface
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD new
-   METHOD delete
-
-   METHOD addressEntries
-   METHOD allAddresses
-   METHOD allInterfaces
-   METHOD flags
-   METHOD hardwareAddress
-   METHOD humanReadableName
-   METHOD index
-   METHOD interfaceFromIndex
-   METHOD interfaceFromName
-   METHOD interfaceIndexFromName
-   METHOD interfaceNameFromIndex
-   METHOD isValid
-   METHOD name
-   METHOD swap
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

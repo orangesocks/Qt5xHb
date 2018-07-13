@@ -8,38 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QHCandlestickModelMapper INHERIT QCandlestickModelMapper
+$addRequests
 
-   METHOD new
-%%   METHOD delete
+$beginClassFrom=QCandlestickModelMapper
 
-   METHOD closeColumn
-   METHOD firstSetRow
-   METHOD highColumn
-   METHOD lastSetRow
-   METHOD lowColumn
-   METHOD openColumn
-   METHOD orientation
-   METHOD setCloseColumn
-   METHOD setFirstSetRow
-   METHOD setHighColumn
-   METHOD setLastSetRow
-   METHOD setLowColumn
-   METHOD setOpenColumn
-   METHOD setTimestampColumn
-   METHOD timestampColumn
+$addMethods
 
-   METHOD onCloseColumnChanged
-   METHOD onFirstSetRowChanged
-   METHOD onHighColumnChanged
-   METHOD onLastSetRowChanged
-   METHOD onLowColumnChanged
-   METHOD onOpenColumnChanged
-   METHOD onTimestampColumnChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

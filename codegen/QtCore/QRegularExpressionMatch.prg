@@ -8,42 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QSTRINGREF
-REQUEST QREGULAREXPRESSION
-#endif
+$addRequests
 
-CLASS QRegularExpressionMatch
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD new
-   METHOD delete
-   METHOD captured
-   METHOD capturedEnd
-   METHOD capturedLength
-   METHOD capturedRef
-   METHOD capturedStart
-   METHOD capturedTexts
-   METHOD hasMatch
-   METHOD hasPartialMatch
-   METHOD isValid
-   METHOD lastCapturedIndex
-   METHOD matchOptions
-   METHOD matchType
-   METHOD regularExpression
-   METHOD swap
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

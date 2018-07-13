@@ -8,45 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QSIZEF
-REQUEST QSIZE
-REQUEST QRECTF
-REQUEST QRECT
-#endif
+$addRequests
 
-CLASS QPageSize
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD new
-   METHOD delete
-   METHOD swap
-   METHOD isEquivalentTo
-   METHOD isValid
-   METHOD key
-   METHOD name
-   METHOD id
-   METHOD windowsId
-   METHOD definitionSize
-   METHOD definitionUnits
-   METHOD size
-   METHOD sizePoints
-   METHOD sizePixels
-   METHOD rect
-   METHOD rectPoints
-   METHOD rectPixels
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

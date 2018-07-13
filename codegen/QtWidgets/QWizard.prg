@@ -8,69 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QABSTRACTBUTTON
-REQUEST QWIZARDPAGE
-REQUEST QVARIANT
-REQUEST QPIXMAP
-REQUEST QWIDGET
-REQUEST QSIZE
-#endif
+$addRequests
 
-CLASS QWizard INHERIT QDialog
+$beginClassFrom=QDialog
 
-   METHOD new
-   METHOD delete
-   METHOD addPage
-   METHOD button
-   METHOD setButton
-   METHOD buttonText
-   METHOD setButtonText
-   METHOD currentId
-   METHOD currentPage
-   METHOD field
-   METHOD hasVisitedPage
-   METHOD nextId
-   METHOD options
-   METHOD setOptions
-   METHOD page
-   METHOD pageIds
-   METHOD pixmap
-   METHOD removePage
-   METHOD setButtonLayout
-   METHOD setDefaultProperty
-   METHOD setField
-   METHOD setOption
-   METHOD setPage
-   METHOD setPixmap
-   METHOD setSideWidget
-   METHOD sideWidget
-   METHOD startId
-   METHOD setStartId
-   METHOD subTitleFormat
-   METHOD setSubTitleFormat
-   METHOD testOption
-   METHOD titleFormat
-   METHOD setTitleFormat
-   METHOD validateCurrentPage
-   METHOD visitedPages
-   METHOD wizardStyle
-   METHOD setWizardStyle
-   METHOD setVisible
-   METHOD sizeHint
-   METHOD back
-   METHOD next
-   METHOD restart
+$addMethods
 
-   METHOD onCurrentIdChanged
-   METHOD onCustomButtonClicked
-   METHOD onHelpRequested
-   METHOD onPageAdded
-   METHOD onPageRemoved
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

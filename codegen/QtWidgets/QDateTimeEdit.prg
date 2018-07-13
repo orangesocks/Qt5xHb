@@ -8,74 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QCALENDARWIDGET
-REQUEST QDATE
-REQUEST QDATETIME
-REQUEST QTIME
-REQUEST QSIZE
-#endif
+$addRequests
 
-CLASS QDateTimeEdit INHERIT QAbstractSpinBox
+$beginClassFrom=QAbstractSpinBox
 
-   METHOD new
-   METHOD delete
-   METHOD calendarPopup
-   METHOD calendarWidget
-   METHOD clearMaximumDate
-   METHOD clearMaximumDateTime
-   METHOD clearMaximumTime
-   METHOD clearMinimumDate
-   METHOD clearMinimumDateTime
-   METHOD clearMinimumTime
-   METHOD currentSection
-   METHOD currentSectionIndex
-   METHOD date
-   METHOD dateTime
-   METHOD displayFormat
-   METHOD displayedSections
-   METHOD maximumDate
-   METHOD maximumDateTime
-   METHOD maximumTime
-   METHOD minimumDate
-   METHOD minimumDateTime
-   METHOD minimumTime
-   METHOD sectionAt
-   METHOD sectionCount
-   METHOD sectionText
-   METHOD setCalendarPopup
-   METHOD setCalendarWidget
-   METHOD setCurrentSection
-   METHOD setCurrentSectionIndex
-   METHOD setDateRange
-   METHOD setDateTimeRange
-   METHOD setDisplayFormat
-   METHOD setMaximumDate
-   METHOD setMaximumDateTime
-   METHOD setMaximumTime
-   METHOD setMinimumDate
-   METHOD setMinimumDateTime
-   METHOD setMinimumTime
-   METHOD setSelectedSection
-   METHOD setTimeRange
-   METHOD setTimeSpec
-   METHOD time
-   METHOD timeSpec
-   METHOD clear
-   METHOD event
-   METHOD sizeHint
-   METHOD stepBy
-   METHOD setDate
-   METHOD setDateTime
-   METHOD setTime
+$addMethods
 
-   METHOD onDateChanged
-   METHOD onDateTimeChanged
-   METHOD onTimeChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

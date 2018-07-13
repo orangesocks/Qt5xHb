@@ -8,40 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QGEOSHAPE
-REQUEST QDATETIME
-#endif
+$addRequests
 
-CLASS QGeoAreaMonitorInfo
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD new1
-   METHOD new2
-   METHOD new
-   METHOD delete
-   METHOD name
-   METHOD setName
-   METHOD identifier
-   METHOD isValid
-   METHOD area
-   METHOD setArea
-   METHOD expiration
-   METHOD setExpiration
-   METHOD isPersistent
-   METHOD setPersistent
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

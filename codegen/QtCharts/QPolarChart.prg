@@ -8,18 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QPolarChart INHERIT QChart
+$addRequests
 
-   METHOD new
-   METHOD delete
+$beginClassFrom=QChart
 
-   METHOD addAxis
-%%   METHOD axes
-   METHOD axisPolarOrientation
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

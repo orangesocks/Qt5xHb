@@ -8,30 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QDATETIME
-#endif
+$addRequests
 
-CLASS QPlaceReview INHERIT QPlaceContent
+$beginClassFrom=QPlaceContent
 
-   METHOD new
-   METHOD delete
-   METHOD dateTime
-   METHOD setDateTime
-   METHOD text
-   METHOD setText
-   METHOD language
-   METHOD setLanguage
-   METHOD rating
-   METHOD setRating
-   METHOD reviewId
-   METHOD setReviewId
-   METHOD title
-   METHOD setTitle
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

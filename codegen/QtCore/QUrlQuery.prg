@@ -8,43 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QCHAR
-#endif
+$addRequests
 
-CLASS QUrlQuery
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD new
-   METHOD delete
-   METHOD addQueryItem
-   METHOD allQueryItemValues
-   METHOD clear
-   METHOD hasQueryItem
-   METHOD isEmpty
-   METHOD query
-   METHOD queryItemValue
-   METHOD queryPairDelimiter
-   METHOD queryValueDelimiter
-   METHOD removeAllQueryItems
-   METHOD removeQueryItem
-   METHOD setQuery
-   METHOD swap
-   METHOD toString
-   METHOD defaultQueryPairDelimiter
-   METHOD defaultQueryValueDelimiter
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

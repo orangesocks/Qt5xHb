@@ -8,29 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QGeoSatelliteInfoSource INHERIT QObject
+$addRequests
 
-   METHOD delete
-   METHOD sourceName
-   METHOD setUpdateInterval
-   METHOD updateInterval
-   METHOD minimumUpdateInterval
-   METHOD error
-   METHOD startUpdates
-   METHOD stopUpdates
-   METHOD requestUpdate
-   METHOD createDefaultSource
-   METHOD createSource
-   METHOD availableSources
+$beginClassFrom=QObject
 
-   METHOD onSatellitesInViewUpdated
-   METHOD onSatellitesInUseUpdated
-   METHOD onRequestTimeout
-   METHOD onError
+$addMethods
 
-   DESTRUCTOR destroyObject
+$addSignals
 
-END CLASS
+$endClass
 
 $destructor
 

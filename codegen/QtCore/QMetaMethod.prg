@@ -8,46 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QBYTEARRAY
-REQUEST QMETAOBJECT
-#endif
+$addRequests
 
-CLASS QMetaMethod
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD new
-   METHOD delete
-   METHOD typeName
-   METHOD parameterTypes
-   METHOD parameterNames
-   METHOD tag
-   METHOD access
-   METHOD methodType
-   METHOD attributes
-   METHOD methodIndex
-   METHOD revision
-   METHOD enclosingMetaObject
-   METHOD invoke
-   METHOD methodSignature
-   METHOD name
-   METHOD returnType
-   METHOD parameterCount
-   METHOD parameterType
-   METHOD getParameterTypes
-   METHOD isValid
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

@@ -8,19 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QDESIGNERFORMEDITORINTERFACE
-#endif
+$addRequests
 
-CLASS QDesignerObjectInspectorInterface INHERIT QWidget
+$beginClassFrom=QWidget
 
-   METHOD delete
-   METHOD core
-   METHOD setFormWindow
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

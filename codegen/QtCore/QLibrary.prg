@@ -8,29 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-%% #ifndef QT5XHB_NO_REQUESTS
-%% REQUEST QFUNCTIONPOINTER
-%% #endif
+$addRequests
 
-CLASS QLibrary INHERIT QObject
+$beginClassFrom=QObject
 
-   METHOD new
-   METHOD delete
-   METHOD load
-   METHOD unload
-   METHOD isLoaded
-   METHOD setFileName
-   METHOD fileName
-   METHOD setFileNameAndVersion
-   METHOD errorString
-   METHOD setLoadHints
-   METHOD loadHints
-   METHOD resolve
-   METHOD isLibrary
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

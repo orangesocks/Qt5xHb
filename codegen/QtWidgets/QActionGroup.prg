@@ -8,31 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QACTION
-#endif
+$addRequests
 
-CLASS QActionGroup INHERIT QObject
+$beginClassFrom=QObject
 
-   METHOD new
-   METHOD delete
-   METHOD addAction
-   METHOD checkedAction
-   METHOD isEnabled
-   METHOD isExclusive
-   METHOD isVisible
-   METHOD removeAction
-   METHOD setDisabled
-   METHOD setEnabled
-   METHOD setExclusive
-   METHOD setVisible
+$addMethods
 
-   METHOD onHovered
-   METHOD onTriggered
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

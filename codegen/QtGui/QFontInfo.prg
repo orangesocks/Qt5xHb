@@ -8,36 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QFontInfo
+$addRequests
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$beginClassFrom=
 
-   METHOD new
-   METHOD delete
-   METHOD bold
-   METHOD exactMatch
-   METHOD family
-   METHOD fixedPitch
-   METHOD italic
-   METHOD pixelSize
-   METHOD pointSize
-   METHOD pointSizeF
-   METHOD rawMode
-   METHOD style
-   METHOD styleHint
-   METHOD styleName
-   METHOD weight
+$addMethods
 
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

@@ -8,22 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QMODELINDEX
-#endif
+$addRequests
 
-CLASS QHelpIndexModel INHERIT QStringListModel
+$beginClassFrom=QStringListModel
 
-   METHOD createIndex
-   METHOD filter
-   METHOD isCreatingIndex
+$addMethods
 
-   METHOD onIndexCreated
-   METHOD onIndexCreationStarted
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

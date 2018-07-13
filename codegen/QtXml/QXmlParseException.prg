@@ -8,28 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QXmlParseException
+$addRequests
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$beginClassFrom=
 
-   METHOD new
-   METHOD delete
-   METHOD columnNumber
-   METHOD lineNumber
-   METHOD message
-   METHOD publicId
-   METHOD systemId
+$addMethods
 
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

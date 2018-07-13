@@ -8,27 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QGEOCODEREPLY
-REQUEST QLOCALE
-#endif
+$addRequests
 
-CLASS QGeoCodingManager INHERIT QObject
+$beginClassFrom=QObject
 
-   METHOD delete
-   METHOD managerName
-   METHOD managerVersion
-   METHOD geocode
-   METHOD reverseGeocode
-   METHOD setLocale
-   METHOD locale
+$addMethods
 
-   METHOD onFinished
-   METHOD onError
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

@@ -8,10 +8,9 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QTextOption
+$addRequests
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$beginClassFrom=
 
    METHOD new
    METHOD delete
@@ -30,15 +29,7 @@ CLASS QTextOption
    METHOD setUseDesignMetrics
    METHOD useDesignMetrics
 
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

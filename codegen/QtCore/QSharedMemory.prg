@@ -8,28 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QSharedMemory INHERIT QObject
+$addRequests
 
-   METHOD new
-   METHOD delete
-   METHOD setKey
-   METHOD key
-   METHOD setNativeKey
-   METHOD nativeKey
-   METHOD create
-   METHOD size
-   METHOD attach
-   METHOD isAttached
-   METHOD detach
-   METHOD data
-   METHOD lock
-   METHOD unlock
-   METHOD error
-   METHOD errorString
+$beginClassFrom=QObject
 
-   DESTRUCTOR destroyObject
+$addMethods
 
-END CLASS
+$endClass
 
 $destructor
 

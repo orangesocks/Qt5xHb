@@ -8,15 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QParallelAnimationGroup INHERIT QAnimationGroup
+$addRequests
 
-   METHOD new
-   METHOD delete
-   METHOD duration
+$beginClassFrom=QAnimationGroup
 
-   DESTRUCTOR destroyObject
+$addMethods
 
-END CLASS
+$endClass
 
 $destructor
 

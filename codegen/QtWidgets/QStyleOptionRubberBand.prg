@@ -6,26 +6,19 @@
 
 $header
 
-#include "hbclass.ch"
-
 %% TODO: class under condition
 %% #ifndef QT_NO_RUBBERBAND
 %% #endif // QT_NO_RUBBERBAND
 
-CLASS QStyleOptionRubberBand INHERIT QStyleOption
+#include "hbclass.ch"
 
-   METHOD new
-%%   METHOD delete
+$addRequests
 
-   METHOD shape
-   METHOD opaque
+$beginClassFrom=QStyleOption
 
-   METHOD setShape
-   METHOD setOpaque
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

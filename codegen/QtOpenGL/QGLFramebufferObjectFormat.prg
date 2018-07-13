@@ -8,22 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QGLFramebufferObjectFormat INHERIT QWidget
+$addRequests
 
-   METHOD new
-   METHOD delete
-   METHOD attachment
-   METHOD internalTextureFormat
-   METHOD samples
-   METHOD setAttachment
-   METHOD setInternalTextureFormat
-   METHOD setSamples
-   METHOD setTextureTarget
-   METHOD textureTarget
+$beginClassFrom=QWidget
 
-   DESTRUCTOR destroyObject
+$addMethods
 
-END CLASS
+$endClass
 
 $destructor
 

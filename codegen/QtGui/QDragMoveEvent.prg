@@ -8,21 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QRECT
-#endif
+$addRequests
 
-CLASS QDragMoveEvent INHERIT QDropEvent
+$beginClassFrom=QDropEvent
 
-   METHOD new
-   METHOD delete
-   METHOD accept
-   METHOD answerRect
-   METHOD ignore
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

@@ -8,35 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QValueAxis INHERIT QAbstractAxis
+$addRequests
 
-   METHOD new
-   METHOD delete
+$beginClassFrom=QAbstractAxis
 
-   METHOD applyNiceNumbers
-   METHOD labelFormat
-   METHOD max
-   METHOD min
-   METHOD minorTickCount
-   METHOD setLabelFormat
-   METHOD setMax
-   METHOD setMin
-   METHOD setMinorTickCount
-   METHOD setRange
-   METHOD setTickCount
-   METHOD tickCount
-   METHOD type
+$addMethods
 
-   METHOD onLabelFormatChanged
-   METHOD onMaxChanged
-   METHOD onMinChanged
-   METHOD onMinorTickCountChanged
-   METHOD onRangeChanged
-   METHOD onTickCountChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

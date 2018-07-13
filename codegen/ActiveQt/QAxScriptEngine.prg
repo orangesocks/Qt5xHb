@@ -8,20 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QAxScriptEngine INHERIT QAxObject
+$addRequests
 
-   METHOD new
-   METHOD delete
-   METHOD addItem
-   METHOD hasIntrospection
-   METHOD isValid
-   METHOD scriptLanguage
-   METHOD setState
-   METHOD state
+$beginClassFrom=QAxObject
 
-   DESTRUCTOR destroyObject
+$addMethods
 
-END CLASS
+$endClass
 
 $destructor
 

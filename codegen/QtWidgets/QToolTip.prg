@@ -8,35 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QFONT
-REQUEST QPALETTE
-#endif
+$addRequests
 
-CLASS QToolTip
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD delete
-   METHOD font
-   METHOD hideText
-   METHOD isVisible
-   METHOD palette
-   METHOD setFont
-   METHOD setPalette
-   METHOD showText
-   METHOD text
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

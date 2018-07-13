@@ -12,34 +12,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QNETWORKPROXY
-#endif
+$addRequests
 
-CLASS QNetworkProxyFactory
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-%%   METHOD new
-   METHOD delete
-
-   METHOD proxyForQuery
-   METHOD queryProxy
-   METHOD setApplicationProxyFactory
-   METHOD setUseSystemConfiguration
-   METHOD systemProxyForQuery
-   METHOD usesSystemConfiguration
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

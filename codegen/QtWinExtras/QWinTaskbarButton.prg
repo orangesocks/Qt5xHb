@@ -8,29 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QWINDOW
-REQUEST QICON
-REQUEST QWINTASKBARPROGRESS
-#endif
+$addRequests
 
-CLASS QWinTaskbarButton INHERIT QObject
+$beginClassFrom=QObject
 
-   METHOD new
-   METHOD delete
-   METHOD window
-   METHOD setWindow
-   METHOD overlayIcon
-   METHOD setOverlayIcon
-   METHOD clearOverlayIcon
-   METHOD overlayAccessibleDescription
-   METHOD setOverlayAccessibleDescription
-   METHOD progress
-   METHOD eventFilter
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

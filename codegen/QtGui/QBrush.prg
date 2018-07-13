@@ -8,48 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QCOLOR
-REQUEST QGRADIENT
-REQUEST QMATRIX
-REQUEST QPIXMAP
-REQUEST QIMAGE
-REQUEST QTRANSFORM
-#endif
+$addRequests
 
-CLASS QBrush
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD new
-   METHOD delete
-   METHOD color
-   METHOD gradient
-   METHOD isOpaque
-   METHOD matrix
-   METHOD setColor
-   METHOD setMatrix
-   METHOD setStyle
-   METHOD setTexture
-   METHOD setTextureImage
-   METHOD setTransform
-   METHOD style
-   METHOD texture
-   METHOD textureImage
-   METHOD transform
-   METHOD toVariant
-   METHOD fromVariant
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

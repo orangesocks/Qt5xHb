@@ -8,23 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QACCELEROMETERREADING
-#endif
+$addRequests
 
-CLASS QAccelerometer INHERIT QSensor
+$beginClassFrom=QSensor
 
-   METHOD new
-   METHOD delete
-   METHOD accelerationMode
-   METHOD setAccelerationMode
-   METHOD reading
+$addMethods
 
-   METHOD onAccelerationModeChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

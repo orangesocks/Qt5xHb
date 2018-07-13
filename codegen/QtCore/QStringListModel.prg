@@ -8,29 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QVARIANT
-REQUEST QMODELINDEX
-#endif
+$addRequests
 
-CLASS QStringListModel INHERIT QAbstractListModel
+$beginClassFrom=QAbstractListModel
 
-   METHOD new
-   METHOD setStringList
-   METHOD stringList
-   METHOD data
-   METHOD flags
-   METHOD insertRows
-   METHOD removeRows
-   METHOD rowCount
-   METHOD setData
-   METHOD sibling
-   METHOD sort
-   METHOD supportedDropActions
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

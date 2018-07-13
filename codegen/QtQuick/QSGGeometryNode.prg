@@ -8,22 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QSGMATERIAL
-#endif
+$addRequests
 
-CLASS QSGGeometryNode INHERIT QSGBasicGeometryNode
+$beginClassFrom=QSGBasicGeometryNode
 
-   METHOD new
-   METHOD delete
-   METHOD material
-   METHOD opaqueMaterial
-   METHOD setMaterial
-   METHOD setOpaqueMaterial
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

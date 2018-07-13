@@ -8,21 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QSaveFile INHERIT QFileDevice
+$addRequests
 
-   METHOD new
-   METHOD delete
-   METHOD fileName
-   METHOD setFileName
-   METHOD open
-   METHOD commit
-   METHOD cancelWriting
-   METHOD setDirectWriteFallback
-   METHOD directWriteFallback
+$beginClassFrom=QFileDevice
 
-   DESTRUCTOR destroyObject
+$addMethods
 
-END CLASS
+$endClass
 
 $destructor
 

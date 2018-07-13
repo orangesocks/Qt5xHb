@@ -8,35 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QABSTRACTBUTTON
-#endif
+$addRequests
 
-CLASS QButtonGroup INHERIT QObject
+$beginClassFrom=QObject
 
-   METHOD new
-   METHOD delete
-   METHOD addButton
-   METHOD button
-   METHOD buttons
-   METHOD checkedButton
-   METHOD checkedId
-   METHOD exclusive
-   METHOD id
-   METHOD removeButton
-   METHOD setExclusive
-   METHOD setId
+$addMethods
 
-   METHOD onButtonClicked1
-   METHOD onButtonClicked2
-   METHOD onButtonPressed1
-   METHOD onButtonPressed2
-   METHOD onButtonReleased1
-   METHOD onButtonReleased2
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

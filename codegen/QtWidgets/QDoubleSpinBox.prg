@@ -8,37 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QDoubleSpinBox INHERIT QAbstractSpinBox
+$addRequests
 
-   METHOD new
-   METHOD delete
-   METHOD cleanText
-   METHOD decimals
-   METHOD setDecimals
-   METHOD maximum
-   METHOD setMaximum
-   METHOD minimum
-   METHOD setMinimum
-   METHOD prefix
-   METHOD setPrefix
-   METHOD setRange
-   METHOD singleStep
-   METHOD setSingleStep
-   METHOD suffix
-   METHOD setSuffix
-   METHOD textFromValue
-   METHOD value
-   METHOD setValue
-   METHOD valueFromText
-   METHOD fixup
-   METHOD validate
+$beginClassFrom=QAbstractSpinBox
 
-   METHOD onValueChanged1
-   METHOD onValueChanged2
+$addMethods
 
-   DESTRUCTOR destroyObject
+$addSignals
 
-END CLASS
+$endClass
 
 $destructor
 

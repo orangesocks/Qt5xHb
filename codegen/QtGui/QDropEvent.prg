@@ -8,28 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QMIMEDATA
-REQUEST QOBJECT
-#endif
+$addRequests
 
-CLASS QDropEvent INHERIT QEvent,QMimeSource
+$beginClassFrom=QEvent,QMimeSource
 
-   METHOD new
-   METHOD delete
-   METHOD acceptProposedAction
-   METHOD dropAction
-   METHOD keyboardModifiers
-   METHOD mimeData
-   METHOD mouseButtons
-   METHOD possibleActions
-   METHOD proposedAction
-   METHOD setDropAction
-   METHOD source
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

@@ -8,44 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QSIZE
-#endif
+$addRequests
 
-CLASS QProgressDialog INHERIT QDialog
+$beginClassFrom=QDialog
 
-   METHOD new
-   METHOD delete
-   METHOD autoClose
-   METHOD setAutoClose
-   METHOD autoReset
-   METHOD setAutoReset
-   METHOD labelText
-   METHOD setLabelText
-   METHOD maximum
-   METHOD setMaximum
-   METHOD minimum
-   METHOD setMinimum
-   METHOD minimumDuration
-   METHOD setMinimumDuration
-   METHOD open
-   METHOD setBar
-   METHOD setCancelButton
-   METHOD setLabel
-   METHOD value
-   METHOD setValue
-   METHOD wasCanceled
-   METHOD sizeHint
-   METHOD cancel
-   METHOD reset
-   METHOD setCancelButtonText
-   METHOD setRange
+$addMethods
 
-   METHOD onCanceled
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

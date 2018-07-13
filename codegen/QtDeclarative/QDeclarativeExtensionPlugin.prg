@@ -8,14 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QDeclarativeExtensionPlugin INHERIT QObject
+$addRequests
 
-   METHOD initializeEngine
-   METHOD registerTypes
+$beginClassFrom=QObject
 
-   DESTRUCTOR destroyObject
+$addMethods
 
-END CLASS
+$endClass
 
 $destructor
 

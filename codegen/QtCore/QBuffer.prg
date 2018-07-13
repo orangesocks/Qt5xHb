@@ -8,31 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QBYTEARRAY
-#endif
+$addRequests
 
-CLASS QBuffer INHERIT QIODevice
+$beginClassFrom=QIODevice
 
-   METHOD new
-   METHOD delete
-   METHOD buffer1
-   METHOD buffer2
-   METHOD buffer
-   METHOD data
-   METHOD setBuffer
-   METHOD setData
-   METHOD atEnd
-   METHOD canReadLine
-   METHOD close
-   METHOD open
-   METHOD pos
-   METHOD seek
-   METHOD size
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

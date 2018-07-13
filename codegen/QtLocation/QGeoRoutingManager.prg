@@ -8,35 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QGEOROUTEREPLY
-REQUEST QLOCALE
-#endif
+$addRequests
 
-CLASS QGeoRoutingManager INHERIT QObject
+$beginClassFrom=QObject
 
-   METHOD delete
-   METHOD managerName
-   METHOD managerVersion
-   METHOD calculateRoute
-   METHOD updateRoute
-   METHOD supportedTravelModes
-   METHOD supportedFeatureTypes
-   METHOD supportedFeatureWeights
-   METHOD supportedRouteOptimizations
-   METHOD supportedSegmentDetails
-   METHOD supportedManeuverDetails
-   METHOD setLocale
-   METHOD locale
-   METHOD setMeasurementSystem
-   METHOD measurementSystem
+$addMethods
 
-   METHOD onFinished
-   METHOD onError
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

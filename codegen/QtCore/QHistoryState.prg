@@ -8,22 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QABSTRACTSTATE
-#endif
+$addRequests
 
-CLASS QHistoryState INHERIT QAbstractState
+$beginClassFrom=QAbstractState
 
-   METHOD new
-   METHOD delete
-   METHOD defaultState
-   METHOD setDefaultState
-   METHOD historyType
-   METHOD setHistoryType
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

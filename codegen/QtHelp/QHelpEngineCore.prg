@@ -8,49 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QVARIANT
-REQUEST QBYTEARRAY
-REQUEST QURL
-#endif
+$addRequests
 
-CLASS QHelpEngineCore INHERIT QObject
+$beginClassFrom=QObject
 
-   METHOD new
-   METHOD delete
-   METHOD addCustomFilter
-   METHOD autoSaveFilter
-   METHOD collectionFile
-   METHOD copyCollectionFile
-   METHOD currentFilter
-   METHOD customFilters
-   METHOD customValue
-   METHOD documentationFileName
-   METHOD error
-   METHOD fileData
-   METHOD filterAttributes
-   METHOD findFile
-   METHOD registerDocumentation
-   METHOD registeredDocumentations
-   METHOD removeCustomFilter
-   METHOD removeCustomValue
-   METHOD setAutoSaveFilter
-   METHOD setCollectionFile
-   METHOD setCurrentFilter
-   METHOD setCustomValue
-   METHOD setupData
-   METHOD unregisterDocumentation
-   METHOD metaData
-   METHOD namespaceName
+$addMethods
 
-   METHOD onCurrentFilterChanged
-   METHOD onSetupFinished
-   METHOD onSetupStarted
-   METHOD onWarning
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

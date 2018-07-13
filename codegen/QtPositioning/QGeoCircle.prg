@@ -8,28 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QGEOCOORDINATE
-#endif
+$addRequests
 
-CLASS QGeoCircle INHERIT QGeoShape
+$beginClassFrom=QGeoShape
 
-   METHOD new1
-   METHOD new2
-   METHOD new3
-   METHOD new4
-   METHOD new
-   METHOD delete
-   METHOD setCenter
-   METHOD center
-   METHOD setRadius
-   METHOD radius
-   METHOD translate
-   METHOD translated
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

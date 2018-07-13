@@ -8,42 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QPOINT
-#endif
+$addRequests
 
-CLASS QLine
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD new
-   METHOD delete
-   METHOD p1
-   METHOD p2
-   METHOD x1
-   METHOD x2
-   METHOD y1
-   METHOD y2
-   METHOD dx
-   METHOD dy
-   METHOD isNull
-   METHOD setP1
-   METHOD setP2
-   METHOD setLine
-   METHOD setPoints
-   METHOD translate
-   METHOD translated
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

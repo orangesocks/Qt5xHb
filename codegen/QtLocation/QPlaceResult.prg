@@ -8,24 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QPLACE
-#endif
+$addRequests
 
-CLASS QPlaceResult INHERIT QPlaceSearchResult
+$beginClassFrom=QPlaceSearchResult
 
-   METHOD new
-   METHOD delete
-   METHOD distance
-   METHOD setDistance
-   METHOD place
-   METHOD setPlace
-   METHOD isSponsored
-   METHOD setSponsored
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

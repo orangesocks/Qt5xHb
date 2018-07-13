@@ -8,25 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QDOMNAMEDNODEMAP
-#endif
+$addRequests
 
-CLASS QDomDocumentType INHERIT QDomNode
+$beginClassFrom=QDomNode
 
-   METHOD new
-   METHOD delete
-   METHOD entities
-   METHOD internalSubset
-   METHOD name
-   METHOD nodeType
-   METHOD notations
-   METHOD publicId
-   METHOD systemId
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

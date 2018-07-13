@@ -8,76 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QItemModelBarDataProxy INHERIT QBarDataProxy
+$addRequests
 
-   METHOD new
-   METHOD delete
+$beginClassFrom=QBarDataProxy
 
-   METHOD autoColumnCategories
-   METHOD autoRowCategories
-   METHOD columnCategories
-   METHOD columnCategoryIndex
-   METHOD columnRole
-   METHOD columnRolePattern
-   METHOD columnRoleReplace
-   METHOD itemModel
-   METHOD multiMatchBehavior
-   METHOD remap
-   METHOD rotationRole
-   METHOD rotationRolePattern
-   METHOD rotationRoleReplace
-   METHOD rowCategories
-   METHOD rowCategoryIndex
-   METHOD rowRole
-   METHOD rowRolePattern
-   METHOD rowRoleReplace
-   METHOD setAutoColumnCategories
-   METHOD setAutoRowCategories
-   METHOD setColumnCategories
-   METHOD setColumnRole
-   METHOD setColumnRolePattern
-   METHOD setColumnRoleReplace
-   METHOD setItemModel
-   METHOD setMultiMatchBehavior
-   METHOD setRotationRole
-   METHOD setRotationRolePattern
-   METHOD setRotationRoleReplace
-   METHOD setRowCategories
-   METHOD setRowRole
-   METHOD setRowRolePattern
-   METHOD setRowRoleReplace
-   METHOD setUseModelCategories
-   METHOD setValueRole
-   METHOD setValueRolePattern
-   METHOD setValueRoleReplace
-   METHOD useModelCategories
-   METHOD valueRole
-   METHOD valueRolePattern
-   METHOD valueRoleReplace
+$addMethods
 
-   METHOD onAutoColumnCategoriesChanged
-   METHOD onAutoRowCategoriesChanged
-   METHOD onColumnCategoriesChanged
-   METHOD onColumnRoleChanged
-   METHOD onColumnRolePatternChanged
-   METHOD onColumnRoleReplaceChanged
-   METHOD onItemModelChanged
-   METHOD onMultiMatchBehaviorChanged
-   METHOD onRotationRoleChanged
-   METHOD onRotationRolePatternChanged
-   METHOD onRotationRoleReplaceChanged
-   METHOD onRowCategoriesChanged
-   METHOD onRowRoleChanged
-   METHOD onRowRolePatternChanged
-   METHOD onRowRoleReplaceChanged
-   METHOD onUseModelCategoriesChanged
-   METHOD onValueRoleChanged
-   METHOD onValueRolePatternChanged
-   METHOD onValueRoleReplaceChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

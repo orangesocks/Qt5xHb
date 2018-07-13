@@ -8,19 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QCategory3DAxis INHERIT QAbstract3DAxis
+$addRequests
 
-   METHOD new
-   METHOD delete
+$beginClassFrom=QAbstract3DAxis
 
-   METHOD labels
-   METHOD setLabels
+$addMethods
 
-   METHOD onLabelsChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

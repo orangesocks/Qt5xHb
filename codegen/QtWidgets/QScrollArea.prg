@@ -8,30 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QWIDGET
-REQUEST QSIZE
-#endif
+$addRequests
 
-CLASS QScrollArea INHERIT QAbstractScrollArea
+$beginClassFrom=QAbstractScrollArea
 
-   METHOD new
-   METHOD delete
-   METHOD alignment
-   METHOD ensureVisible
-   METHOD ensureWidgetVisible
-   METHOD setAlignment
-   METHOD setWidget
-   METHOD setWidgetResizable
-   METHOD takeWidget
-   METHOD widget
-   METHOD widgetResizable
-   METHOD focusNextPrevChild
-   METHOD sizeHint
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

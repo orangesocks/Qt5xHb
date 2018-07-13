@@ -8,23 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QSTATEMACHINE
-REQUEST QSTATE
-#endif
+$addRequests
 
-CLASS QAbstractState INHERIT QObject
+$beginClassFrom=QObject
 
-   METHOD delete
-   METHOD machine
-   METHOD parentState
+$addMethods
 
-   METHOD onEntered
-   METHOD onExited
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

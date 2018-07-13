@@ -8,34 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QAbstractXmlReceiver
+$addRequests
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$beginClassFrom=
 
-   METHOD delete
-   METHOD atomicValue
-   METHOD attribute
-   METHOD characters
-   METHOD comment
-   METHOD endDocument
-   METHOD endElement
-   METHOD endOfSequence
-   METHOD namespaceBinding
-   METHOD processingInstruction
-   METHOD startDocument
-   METHOD startElement
-   METHOD startOfSequence
+$addMethods
 
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

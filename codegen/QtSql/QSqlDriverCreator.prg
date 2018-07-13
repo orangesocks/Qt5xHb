@@ -8,11 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QSqlDriverCreator INHERIT QSqlDriverCreatorBase
+$addRequests
 
-   DESTRUCTOR destroyObject
+$beginClassFrom=QSqlDriverCreatorBase
 
-END CLASS
+$addMethods
+
+$endClass
 
 $destructor
 

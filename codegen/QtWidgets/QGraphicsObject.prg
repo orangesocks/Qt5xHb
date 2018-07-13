@@ -8,25 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QGraphicsObject INHERIT QObject,QGraphicsItem
+$addRequests
 
-   METHOD delete
-   METHOD grabGesture
-   METHOD ungrabGesture
+$beginClassFrom=QObject,QGraphicsItem
 
-   METHOD onEnabledChanged
-   METHOD onOpacityChanged
-   METHOD onParentChanged
-   METHOD onRotationChanged
-   METHOD onScaleChanged
-   METHOD onVisibleChanged
-   METHOD onXChanged
-   METHOD onYChanged
-   METHOD onZChanged
+$addMethods
 
-   DESTRUCTOR destroyObject
+$addSignals
 
-END CLASS
+$endClass
 
 $destructor
 

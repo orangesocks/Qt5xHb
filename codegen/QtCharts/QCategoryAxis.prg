@@ -8,29 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QCategoryAxis INHERIT QValueAxis
+$addRequests
 
-   METHOD new
-   METHOD delete
+$beginClassFrom=QValueAxis
 
-   METHOD append
-   METHOD categoriesLabels
-   METHOD count
-   METHOD endValue
-   METHOD labelsPosition
-   METHOD remove
-   METHOD replaceLabel
-   METHOD setLabelsPosition
-   METHOD setStartValue
-   METHOD startValue
-   METHOD type
+$addMethods
 
-   METHOD onCategoriesChanged
-   METHOD onLabelsPositionChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

@@ -8,36 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QGLFRAMEBUFFEROBJECTFORMAT
-REQUEST QSIZE
-REQUEST QIMAGE
-REQUEST QPAINTENGINE
-#endif
+$addRequests
 
-CLASS QGLFramebufferObject INHERIT QPaintDevice
+$beginClassFrom=QPaintDevice
 
-   METHOD new
-   METHOD delete
-   METHOD attachment
-   METHOD bind
-   METHOD drawTexture
-   METHOD format
-   METHOD handle
-   METHOD isBound
-   METHOD isValid
-   METHOD release
-   METHOD size
-   METHOD texture
-   METHOD toImage
-   METHOD paintEngine
-   METHOD blitFramebuffer
-   METHOD hasOpenGLFramebufferBlit
-   METHOD hasOpenGLFramebufferObjects
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

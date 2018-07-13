@@ -8,77 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QURL
-REQUEST QAUDIOENCODERSETTINGS
-REQUEST QVARIANT
-REQUEST QSIZE
-REQUEST QVIDEOENCODERSETTINGS
-REQUEST QMEDIAOBJECT
-#endif
+$addRequests
 
-CLASS QMediaRecorder INHERIT QObject,QMediaBindableInterface
+$beginClassFrom=QObject,QMediaBindableInterface
 
-   METHOD new
-   METHOD delete
+$addMethods
 
-   METHOD actualLocation
-   METHOD audioCodecDescription
-   METHOD audioSettings
-   METHOD availability
-   METHOD availableMetaData
-   METHOD containerDescription
-   METHOD containerFormat
-   METHOD duration
-   METHOD error
-   METHOD errorString
-   METHOD isAvailable
-   METHOD isMetaDataAvailable
-   METHOD isMetaDataWritable
-   METHOD isMuted
-   METHOD metaData
-   METHOD outputLocation
-   METHOD setAudioSettings
-   METHOD setContainerFormat
-   METHOD setEncodingSettings
-   METHOD setMetaData
-   METHOD setOutputLocation
-   METHOD setVideoSettings
-   METHOD state
-   METHOD status
-   METHOD supportedAudioCodecs
-   METHOD supportedAudioSampleRates
-   METHOD supportedContainers
-   METHOD supportedFrameRates
-   METHOD supportedResolutions
-   METHOD supportedVideoCodecs
-   METHOD videoCodecDescription
-   METHOD videoSettings
-   METHOD volume
-   METHOD mediaObject
-   METHOD pause
-   METHOD record
-   METHOD setMuted
-   METHOD setVolume
-   METHOD stop
+$addSignals
 
-   METHOD onActualLocationChanged
-   METHOD onAvailabilityChanged1
-   METHOD onAvailabilityChanged2
-   METHOD onDurationChanged
-   METHOD onError
-   METHOD onMetaDataAvailableChanged
-   METHOD onMetaDataChanged1
-   METHOD onMetaDataChanged2
-   METHOD onMetaDataWritableChanged
-   METHOD onMutedChanged
-   METHOD onStateChanged
-   METHOD onStatusChanged
-   METHOD onVolumeChanged
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

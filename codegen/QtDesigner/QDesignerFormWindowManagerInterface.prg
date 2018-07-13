@@ -8,49 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QACTION
-REQUEST QDESIGNERFORMWINDOWINTERFACE
-REQUEST QDESIGNERFORMEDITORINTERFACE
-#endif
+$addRequests
 
-CLASS QDesignerFormWindowManagerInterface INHERIT QObject
+$beginClassFrom=QObject
 
-   METHOD delete
-   METHOD actionAdjustSize
-   METHOD actionBreakLayout
-   METHOD actionCopy
-   METHOD actionCut
-   METHOD actionDelete
-   METHOD actionFormLayout
-   METHOD actionGridLayout
-   METHOD actionHorizontalLayout
-   METHOD actionLower
-   METHOD actionPaste
-   METHOD actionRaise
-   METHOD actionRedo
-   METHOD actionSelectAll
-   METHOD actionSimplifyLayout
-   METHOD actionSplitHorizontal
-   METHOD actionSplitVertical
-   METHOD actionUndo
-   METHOD actionVerticalLayout
-   METHOD activeFormWindow
-   METHOD core
-   METHOD createFormWindow
-   METHOD formWindow
-   METHOD formWindowCount
-   METHOD addFormWindow
-   METHOD removeFormWindow
-   METHOD setActiveFormWindow
+$addMethods
 
-   METHOD onActiveFormWindowChanged
-   METHOD onFormWindowAdded
-   METHOD onFormWindowRemoved
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

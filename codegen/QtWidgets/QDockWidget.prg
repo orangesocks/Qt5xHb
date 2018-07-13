@@ -8,37 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QWIDGET
-REQUEST QACTION
-#endif
+$addRequests
 
-CLASS QDockWidget INHERIT QWidget
+$beginClassFrom=QWidget
 
-   METHOD new
-   METHOD delete
-   METHOD allowedAreas
-   METHOD features
-   METHOD isAreaAllowed
-   METHOD isFloating
-   METHOD setAllowedAreas
-   METHOD setFeatures
-   METHOD setFloating
-   METHOD setTitleBarWidget
-   METHOD setWidget
-   METHOD titleBarWidget
-   METHOD toggleViewAction
-   METHOD widget
+$addMethods
 
-   METHOD onAllowedAreasChanged
-   METHOD onDockLocationChanged
-   METHOD onFeaturesChanged
-   METHOD onTopLevelChanged
-   METHOD onVisibilityChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

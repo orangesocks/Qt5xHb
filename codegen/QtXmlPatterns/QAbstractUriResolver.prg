@@ -8,18 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QURL
-#endif
+$addRequests
 
-CLASS QAbstractUriResolver INHERIT QObject
+$beginClassFrom=QObject
 
-   METHOD delete
-   METHOD resolve
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

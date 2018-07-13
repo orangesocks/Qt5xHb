@@ -8,13 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QAccessibleStateChangeEvent INHERIT QAccessibleEvent
+$addRequests
 
-   METHOD delete
+$beginClassFrom=QAccessibleEvent
 
-   DESTRUCTOR destroyObject
+$addMethods
 
-END CLASS
+$endClass
 
 $destructor
 

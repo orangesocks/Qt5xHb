@@ -8,25 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QSIZE
-REQUEST QIMAGEENCODERSETTINGS
-#endif
+$addRequests
 
-CLASS QImageEncoderControl INHERIT QMediaControl
+$beginClassFrom=QMediaControl
 
-%%   METHOD new
-   METHOD delete
+$addMethods
 
-   METHOD supportedImageCodecs
-   METHOD imageCodecDescription
-   METHOD supportedResolutions
-   METHOD imageSettings
-   METHOD setImageSettings
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

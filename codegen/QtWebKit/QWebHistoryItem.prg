@@ -8,39 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QDATETIME
-REQUEST QICON
-REQUEST QURL
-REQUEST QVARIANT
-#endif
+$addRequests
 
-CLASS QWebHistoryItem
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD new
-   METHOD delete
-
-   METHOD icon
-   METHOD isValid
-   METHOD lastVisited
-   METHOD originalUrl
-   METHOD setUserData
-   METHOD title
-   METHOD url
-   METHOD userData
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

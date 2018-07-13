@@ -8,24 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QSIZE
-REQUEST QWEBPAGE
-#endif
+$addRequests
 
-CLASS QWebInspector INHERIT QWidget
+$beginClassFrom=QWidget
 
-   METHOD new
-   METHOD delete
+$addMethods
 
-   METHOD event
-   METHOD page
-   METHOD setPage
-   METHOD sizeHint
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

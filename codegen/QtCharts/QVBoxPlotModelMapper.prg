@@ -8,34 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QVBoxPlotModelMapper INHERIT QBoxPlotModelMapper
+$addRequests
 
-   METHOD new
-%%   METHOD delete
+$beginClassFrom=QBoxPlotModelMapper
 
-   METHOD firstBoxSetColumn
-   METHOD firstRow
-   METHOD lastBoxSetColumn
-   METHOD model
-   METHOD rowCount
-   METHOD series
-   METHOD setFirstBoxSetColumn
-   METHOD setFirstRow
-   METHOD setLastBoxSetColumn
-   METHOD setModel
-   METHOD setRowCount
-   METHOD setSeries
+$addMethods
 
-   METHOD onFirstBoxSetColumnChanged
-   METHOD onFirstRowChanged
-   METHOD onLastBoxSetColumnChanged
-   METHOD onModelReplaced
-   METHOD onRowCountChanged
-   METHOD onSeriesReplaced
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

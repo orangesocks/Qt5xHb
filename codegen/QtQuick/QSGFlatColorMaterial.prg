@@ -8,20 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QCOLOR
-#endif
+$addRequests
 
-CLASS QSGFlatColorMaterial INHERIT QSGMaterial
+$beginClassFrom=QSGMaterial
 
-   METHOD new
-   METHOD delete
-   METHOD color
-   METHOD setColor
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

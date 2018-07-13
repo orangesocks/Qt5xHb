@@ -8,76 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QCustom3DVolume INHERIT QCustom3DItem
+$addRequests
 
-   METHOD new
-   METHOD delete
+$beginClassFrom=QCustom3DItem
 
-   METHOD alphaMultiplier
-%%   METHOD colorTable
-%%   METHOD createTextureData
-   METHOD drawSliceFrames
-   METHOD drawSlices
-   METHOD preserveOpacity
-   METHOD renderSlice
-   METHOD setAlphaMultiplier
-%%   METHOD setColorTable
-   METHOD setDrawSliceFrames
-   METHOD setDrawSlices
-   METHOD setPreserveOpacity
-   METHOD setSliceFrameColor
-   METHOD setSliceFrameGaps
-   METHOD setSliceFrameThicknesses
-   METHOD setSliceFrameWidths
-   METHOD setSliceIndexX
-   METHOD setSliceIndexY
-   METHOD setSliceIndexZ
-   METHOD setSliceIndices
-   METHOD setSubTextureData
-%%   METHOD setTextureData
-   METHOD setTextureDepth
-   METHOD setTextureDimensions
-   METHOD setTextureFormat
-   METHOD setTextureHeight
-   METHOD setTextureWidth
-   METHOD setUseHighDefShader
-   METHOD sliceFrameColor
-   METHOD sliceFrameGaps
-   METHOD sliceFrameThicknesses
-   METHOD sliceFrameWidths
-   METHOD sliceIndexX
-   METHOD sliceIndexY
-   METHOD sliceIndexZ
-%%   METHOD textureData
-   METHOD textureDataWidth
-   METHOD textureDepth
-   METHOD textureFormat
-   METHOD textureHeight
-   METHOD textureWidth
-   METHOD useHighDefShader
+$addMethods
 
-   METHOD onAlphaMultiplierChanged
-   METHOD onColorTableChanged
-   METHOD onDrawSliceFramesChanged
-   METHOD onDrawSlicesChanged
-   METHOD onPreserveOpacityChanged
-   METHOD onSliceFrameColorChanged
-   METHOD onSliceFrameGapsChanged
-   METHOD onSliceFrameThicknessesChanged
-   METHOD onSliceFrameWidthsChanged
-   METHOD onSliceIndexXChanged
-   METHOD onSliceIndexYChanged
-   METHOD onSliceIndexZChanged
-%%   METHOD onTextureDataChanged
-   METHOD onTextureDepthChanged
-   METHOD onTextureFormatChanged
-   METHOD onTextureHeightChanged
-   METHOD onTextureWidthChanged
-   METHOD onUseHighDefShaderChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

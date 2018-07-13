@@ -8,37 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QMARGINS
-#endif
+$addRequests
 
-CLASS QMarginsF
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD new
-   METHOD delete
-   METHOD isNull
-   METHOD left
-   METHOD top
-   METHOD right
-   METHOD bottom
-   METHOD setLeft
-   METHOD setTop
-   METHOD setRight
-   METHOD setBottom
-   METHOD toMargins
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

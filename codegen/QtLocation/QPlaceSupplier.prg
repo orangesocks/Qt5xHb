@@ -8,37 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QURL
-REQUEST QPLACEICON
-#endif
+$addRequests
 
-CLASS QPlaceSupplier
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD new
-   METHOD delete
-   METHOD name
-   METHOD setName
-   METHOD supplierId
-   METHOD setSupplierId
-   METHOD url
-   METHOD setUrl
-   METHOD icon
-   METHOD setIcon
-   METHOD isEmpty
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

@@ -8,28 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QVARIANT
-#endif
+$addRequests
 
-CLASS QQmlPropertyMap INHERIT QObject
+$beginClassFrom=QObject
 
-   METHOD new
-   METHOD delete
-   METHOD clear
-   METHOD contains
-   METHOD count
-   METHOD insert
-   METHOD isEmpty
-   METHOD keys
-   METHOD size
-   METHOD value
+$addMethods
 
-   METHOD onValueChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

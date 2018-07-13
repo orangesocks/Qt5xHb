@@ -8,45 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QSTYLE
-REQUEST QSIZE
-REQUEST QRECT
-REQUEST QICON
-REQUEST QPIXMAP
-REQUEST QPALETTE
-#endif
+$addRequests
 
-CLASS QProxyStyle INHERIT QCommonStyle
+$beginClassFrom=QCommonStyle
 
-   METHOD new
-   METHOD delete
-   METHOD baseStyle
-   METHOD setBaseStyle
-   METHOD drawPrimitive
-   METHOD drawControl
-   METHOD drawComplexControl
-   METHOD drawItemText
-   METHOD drawItemPixmap
-   METHOD sizeFromContents
-   METHOD subElementRect
-   METHOD subControlRect
-   METHOD itemTextRect
-   METHOD itemPixmapRect
-   METHOD hitTestComplexControl
-   METHOD styleHint
-   METHOD pixelMetric
-   METHOD layoutSpacing
-   METHOD standardIcon
-   METHOD standardPixmap
-   METHOD generatedIconPixmap
-   METHOD standardPalette
-   METHOD polish
-   METHOD unpolish
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

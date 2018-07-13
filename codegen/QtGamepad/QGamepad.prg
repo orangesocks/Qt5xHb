@@ -8,67 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QGamepad INHERIT QObject
+$addRequests
 
-   METHOD new
-   METHOD delete
+$beginClassFrom=QObject
 
-   METHOD axisLeftX
-   METHOD axisLeftY
-   METHOD axisRightX
-   METHOD axisRightY
-   METHOD buttonA
-   METHOD buttonB
-   METHOD buttonCenter
-   METHOD buttonDown
-   METHOD buttonGuide
-   METHOD buttonL1
-   METHOD buttonL2
-   METHOD buttonL3
-   METHOD buttonLeft
-   METHOD buttonR1
-   METHOD buttonR2
-   METHOD buttonR3
-   METHOD buttonRight
-   METHOD buttonSelect
-   METHOD buttonStart
-   METHOD buttonUp
-   METHOD buttonX
-   METHOD buttonY
-   METHOD deviceId
-   METHOD isConnected
-   METHOD name
-   METHOD setDeviceId
+$addMethods
 
-   METHOD onAxisLeftXChanged
-   METHOD onAxisLeftYChanged
-   METHOD onAxisRightXChanged
-   METHOD onAxisRightYChanged
-   METHOD onButtonAChanged
-   METHOD onButtonBChanged
-   METHOD onButtonCenterChanged
-   METHOD onButtonDownChanged
-   METHOD onButtonGuideChanged
-   METHOD onButtonL1Changed
-   METHOD onButtonL2Changed
-   METHOD onButtonL3Changed
-   METHOD onButtonLeftChanged
-   METHOD onButtonR1Changed
-   METHOD onButtonR2Changed
-   METHOD onButtonR3Changed
-   METHOD onButtonRightChanged
-   METHOD onButtonSelectChanged
-   METHOD onButtonStartChanged
-   METHOD onButtonUpChanged
-   METHOD onButtonXChanged
-   METHOD onButtonYChanged
-   METHOD onConnectedChanged
-   METHOD onDeviceIdChanged
-   METHOD onNameChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

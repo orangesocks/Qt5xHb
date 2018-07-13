@@ -8,26 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QSIZE
-#endif
+$addRequests
 
-CLASS QCheckBox INHERIT QAbstractButton
+$beginClassFrom=QAbstractButton
 
-   METHOD new
-   METHOD delete
-   METHOD checkState
-   METHOD isTristate
-   METHOD setCheckState
-   METHOD setTristate
-   METHOD minimumSizeHint
-   METHOD sizeHint
+$addMethods
 
-   METHOD onStateChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

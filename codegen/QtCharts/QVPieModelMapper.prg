@@ -8,34 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QVPieModelMapper INHERIT QPieModelMapper
+$addRequests
 
-   METHOD new
-%%   METHOD delete
+$beginClassFrom=QPieModelMapper
 
-   METHOD firstRow
-   METHOD labelsColumn
-   METHOD model
-   METHOD rowCount
-   METHOD series
-   METHOD setFirstRow
-   METHOD setLabelsColumn
-   METHOD setModel
-   METHOD setRowCount
-   METHOD setSeries
-   METHOD setValuesColumn
-   METHOD valuesColumn
+$addMethods
 
-   METHOD onFirstRowChanged
-   METHOD onLabelsColumnChanged
-   METHOD onModelReplaced
-   METHOD onRowCountChanged
-   METHOD onSeriesReplaced
-   METHOD onValuesColumnChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

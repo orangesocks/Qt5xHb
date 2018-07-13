@@ -8,24 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QDOMELEMENT
-#endif
+$addRequests
 
-CLASS QDomAttr INHERIT QDomNode
+$beginClassFrom=QDomNode
 
-   METHOD new
-   METHOD delete
-   METHOD name
-   METHOD nodeType
-   METHOD ownerElement
-   METHOD setValue
-   METHOD specified
-   METHOD value
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

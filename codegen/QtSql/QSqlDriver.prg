@@ -8,50 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QSQLERROR
-REQUEST QSQLINDEX
-REQUEST QSQLRECORD
-REQUEST QSQLRESULT
-REQUEST QVARIANT
-#endif
+$addRequests
 
-CLASS QSqlDriver INHERIT QObject
+$beginClassFrom=QObject
 
-   METHOD delete
+$addMethods
 
-   METHOD beginTransaction
-   METHOD cancelQuery
-   METHOD close
-   METHOD commitTransaction
-   METHOD createResult
-   METHOD escapeIdentifier
-   METHOD formatValue
-   METHOD handle
-   METHOD hasFeature
-   METHOD isIdentifierEscaped
-   METHOD isOpen
-   METHOD isOpenError
-   METHOD lastError
-   METHOD numericalPrecisionPolicy
-   METHOD open
-   METHOD primaryIndex
-   METHOD record
-   METHOD rollbackTransaction
-   METHOD setNumericalPrecisionPolicy
-   METHOD sqlStatement
-   METHOD stripDelimiters
-   METHOD subscribedToNotifications
-   METHOD subscribeToNotification
-   METHOD tables
-   METHOD unsubscribeFromNotification
+$addSignals
 
-   METHOD onNotification1
-   METHOD onNotification2
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

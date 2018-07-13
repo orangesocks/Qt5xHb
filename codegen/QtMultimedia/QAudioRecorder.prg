@@ -8,22 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QAudioRecorder INHERIT QMediaRecorder
+$addRequests
 
-   METHOD new
-   METHOD delete
-   METHOD audioInput
-   METHOD audioInputDescription
-   METHOD audioInputs
-   METHOD defaultAudioInput
-   METHOD setAudioInput
+$beginClassFrom=QMediaRecorder
 
-   METHOD onAudioInputChanged
-   METHOD onAvailableAudioInputsChanged
+$addMethods
 
-   DESTRUCTOR destroyObject
+$addSignals
 
-END CLASS
+$endClass
 
 $destructor
 

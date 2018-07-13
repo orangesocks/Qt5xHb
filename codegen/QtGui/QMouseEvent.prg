@@ -8,27 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QPOINTF
-#endif
+$addRequests
 
-CLASS QMouseEvent INHERIT QInputEvent
+$beginClassFrom=QInputEvent
 
-   METHOD new
-   METHOD delete
-   METHOD button
-   METHOD buttons
-   METHOD globalX
-   METHOD globalY
-   METHOD localPos
-   METHOD screenPos
-   METHOD windowPos
-   METHOD x
-   METHOD y
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

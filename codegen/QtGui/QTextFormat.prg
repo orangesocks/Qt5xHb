@@ -8,82 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QVARIANT
-REQUEST QCOLOR
-REQUEST QPEN
-REQUEST QBRUSH
-REQUEST QTEXTLENGTH
-REQUEST QTEXTBLOCKFORMAT
-REQUEST QTEXTCHARFORMAT
-REQUEST QTEXTLISTFORMAT
-REQUEST QTEXTTABLEFORMAT
-REQUEST QTEXTFRAMEFORMAT
-REQUEST QTEXTIMAGEFORMAT
-REQUEST QTEXTTABLECELLFORMAT
-#endif
+$addRequests
 
-CLASS QTextFormat
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD new
-   METHOD delete
-   METHOD swap
-   METHOD merge
-   METHOD isValid
-   METHOD type
-   METHOD objectIndex
-   METHOD setObjectIndex
-   METHOD property
-   METHOD clearProperty
-   METHOD hasProperty
-   METHOD boolProperty
-   METHOD intProperty
-   METHOD doubleProperty
-   METHOD stringProperty
-   METHOD colorProperty
-   METHOD penProperty
-   METHOD brushProperty
-   METHOD lengthProperty
-   METHOD lengthVectorProperty
-   METHOD setProperty
-   METHOD propertyCount
-   METHOD setObjectType
-   METHOD objectType
-   METHOD isCharFormat
-   METHOD isBlockFormat
-   METHOD isListFormat
-   METHOD isFrameFormat
-   METHOD isImageFormat
-   METHOD isTableFormat
-   METHOD isTableCellFormat
-   METHOD toBlockFormat
-   METHOD toCharFormat
-   METHOD toListFormat
-   METHOD toTableFormat
-   METHOD toFrameFormat
-   METHOD toImageFormat
-   METHOD toTableCellFormat
-   METHOD setLayoutDirection
-   METHOD layoutDirection
-   METHOD setBackground
-   METHOD background
-   METHOD clearBackground
-   METHOD setForeground
-   METHOD foreground
-   METHOD clearForeground
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

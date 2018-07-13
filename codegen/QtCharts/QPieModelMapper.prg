@@ -8,14 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QPieModelMapper INHERIT QObject
+$addRequests
 
-%%   METHOD new
-%%   METHOD delete
+$beginClassFrom=QObject
 
-   DESTRUCTOR destroyObject
+$addMethods
 
-END CLASS
+$endClass
 
 $destructor
 

@@ -8,37 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QWIDGET
-REQUEST QMODELINDEX
-REQUEST QSIZE
-REQUEST QRECT
-#endif
+$addRequests
 
-CLASS QColumnView INHERIT QAbstractItemView
+$beginClassFrom=QAbstractItemView
 
-   METHOD new
-   METHOD delete
-   METHOD columnWidths
-   METHOD previewWidget
-   METHOD resizeGripsVisible
-   METHOD setColumnWidths
-   METHOD setPreviewWidget
-   METHOD setResizeGripsVisible
-   METHOD indexAt
-   METHOD scrollTo
-   METHOD selectAll
-   METHOD setModel
-   METHOD setRootIndex
-   METHOD setSelectionModel
-   METHOD sizeHint
-   METHOD visualRect
+$addMethods
 
-   METHOD onUpdatePreviewWidget
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

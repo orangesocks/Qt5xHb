@@ -8,49 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QDATETIME
-REQUEST QBYTEARRAY
-#endif
+$addRequests
 
-CLASS QNetworkCookie
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD new
-   METHOD delete
-
-   METHOD domain
-   METHOD expirationDate
-   METHOD hasSameIdentifier
-   METHOD isHttpOnly
-   METHOD isSecure
-   METHOD isSessionCookie
-   METHOD name
-   METHOD normalize
-   METHOD parseCookies
-   METHOD path
-   METHOD setDomain
-   METHOD setExpirationDate
-   METHOD setHttpOnly
-   METHOD setName
-   METHOD setPath
-   METHOD setSecure
-   METHOD setValue
-   METHOD swap
-   METHOD toRawForm
-   METHOD value
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

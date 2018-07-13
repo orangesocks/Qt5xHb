@@ -8,46 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QBRUSH
-REQUEST QTEXTLENGTH
-#endif
+$addRequests
 
-CLASS QTextFrameFormat INHERIT QTextFormat
+$beginClassFrom=QTextFormat
 
-   METHOD new
-   METHOD delete
-   METHOD isValid
-   METHOD setPosition
-   METHOD position
-   METHOD setBorder
-   METHOD border
-   METHOD setBorderBrush
-   METHOD borderBrush
-   METHOD setBorderStyle
-   METHOD borderStyle
-   METHOD setMargin
-   METHOD margin
-   METHOD setTopMargin
-   METHOD topMargin
-   METHOD setBottomMargin
-   METHOD bottomMargin
-   METHOD setLeftMargin
-   METHOD leftMargin
-   METHOD setRightMargin
-   METHOD rightMargin
-   METHOD setPadding
-   METHOD padding
-   METHOD setWidth
-   METHOD width
-   METHOD setHeight
-   METHOD height
-   METHOD setPageBreakPolicy
-   METHOD pageBreakPolicy
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

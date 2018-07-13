@@ -8,14 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QAbstractNativeEventFilter INHERIT QObject
+$addRequests
 
-   METHOD delete
-   METHOD nativeEventFilter
+$beginClassFrom=QObject
 
-   DESTRUCTOR destroyObject
+$addMethods
 
-END CLASS
+$endClass
 
 $destructor
 

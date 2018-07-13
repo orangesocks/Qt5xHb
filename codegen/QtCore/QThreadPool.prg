@@ -8,26 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QThreadPool INHERIT QObject
+$addRequests
 
-   METHOD new
-   METHOD delete
-   METHOD start
-   METHOD tryStart
-   METHOD expiryTimeout
-   METHOD setExpiryTimeout
-   METHOD maxThreadCount
-   METHOD setMaxThreadCount
-   METHOD activeThreadCount
-   METHOD reserveThread
-   METHOD releaseThread
-   METHOD waitForDone
-   METHOD clear
-   METHOD globalInstance
+$beginClassFrom=QObject
 
-   DESTRUCTOR destroyObject
+$addMethods
 
-END CLASS
+$endClass
 
 $destructor
 

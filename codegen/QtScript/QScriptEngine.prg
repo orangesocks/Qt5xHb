@@ -8,61 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QSCRIPTENGINEAGENT
-REQUEST QSCRIPTCONTEXT
-REQUEST QSCRIPTVALUE
-REQUEST QSCRIPTSTRING
-REQUEST QSCRIPTSYNTAXCHECKRESULT
-#endif
+$addRequests
 
-CLASS QScriptEngine INHERIT QObject
+$beginClassFrom=QObject
 
-   METHOD new
-   METHOD delete
-   METHOD abortEvaluation
-   METHOD agent
-   METHOD availableExtensions
-   METHOD clearExceptions
-   METHOD collectGarbage
-   METHOD currentContext
-   METHOD defaultPrototype
-   METHOD evaluate
-   METHOD globalObject
-   METHOD hasUncaughtException
-   METHOD importExtension
-   METHOD importedExtensions
-   METHOD installTranslatorFunctions
-   METHOD isEvaluating
-   METHOD newArray
-   METHOD newDate
-   METHOD newObject
-   METHOD newQMetaObject
-   METHOD newQObject
-   METHOD newRegExp
-   METHOD newVariant
-   METHOD nullValue
-   METHOD popContext
-   METHOD processEventsInterval
-   METHOD pushContext
-   METHOD reportAdditionalMemoryCost
-   METHOD setAgent
-   METHOD setDefaultPrototype
-   METHOD setGlobalObject
-   METHOD setProcessEventsInterval
-   METHOD toObject
-   METHOD toStringHandle
-   METHOD uncaughtException
-   METHOD uncaughtExceptionBacktrace
-   METHOD uncaughtExceptionLineNumber
-   METHOD undefinedValue
-   METHOD checkSyntax
+$addMethods
 
-   METHOD onSignalHandlerException
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

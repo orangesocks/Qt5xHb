@@ -8,28 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QVARIANT
-#endif
+$addRequests
 
-CLASS QCameraExposureControl INHERIT QMediaControl
+$beginClassFrom=QMediaControl
 
-%%   METHOD new
-   METHOD delete
+$addMethods
 
-   METHOD actualValue
-   METHOD isParameterSupported
-   METHOD requestedValue
-   METHOD setValue
-   METHOD supportedParameterRange
+$addSignals
 
-   METHOD onActualValueChanged
-   METHOD onParameterRangeChanged
-   METHOD onRequestedValueChanged
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

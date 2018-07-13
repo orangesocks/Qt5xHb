@@ -8,61 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QACTION
-REQUEST QRECT
-REQUEST QICON
-REQUEST QSIZE
-#endif
+$addRequests
 
-CLASS QMenu INHERIT QWidget
+$beginClassFrom=QWidget
 
-   METHOD new
-   METHOD delete
-   METHOD actionAt
-   METHOD actionGeometry
-   METHOD activeAction
-   METHOD setActiveAction
-   METHOD addAction
-   METHOD addMenu
-   METHOD addSeparator
-   METHOD clear
-   METHOD defaultAction
-   METHOD setDefaultAction
-   METHOD exec
-   METHOD hideTearOffMenu
-   METHOD icon
-   METHOD setIcon
-   METHOD insertMenu
-   METHOD insertSeparator
-   METHOD isEmpty
-   METHOD isTearOffEnabled
-   METHOD setTearOffEnabled
-   METHOD isTearOffMenuVisible
-   METHOD menuAction
-   METHOD popup
-   METHOD separatorsCollapsible
-   METHOD setSeparatorsCollapsible
-   METHOD title
-   METHOD setTitle
-   METHOD sizeHint
-   METHOD wceMenu
-   METHOD addSection
-   METHOD insertSection
-   METHOD setNoReplayFor
-   METHOD setAsDockMenu
-   METHOD toolTipsVisible
-   METHOD setToolTipsVisible
-   METHOD toNSMenu
+$addMethods
 
-   METHOD onAboutToHide
-   METHOD onAboutToShow
-   METHOD onHovered
-   METHOD onTriggered
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

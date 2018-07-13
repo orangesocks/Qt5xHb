@@ -8,42 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-%% TODO: corrigir
-%%//REQUEST QLIST<QWEBENGINEHISTORYITEM>
-REQUEST QWEBENGINEHISTORYITEM
-#endif
+$addRequests
 
-CLASS QWebEngineHistory
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD clear
-   METHOD items
-   METHOD backItems
-   METHOD forwardItems
-   METHOD canGoBack
-   METHOD canGoForward
-   METHOD back
-   METHOD forward
-   METHOD goToItem
-   METHOD backItem
-   METHOD currentItem
-   METHOD forwardItem
-   METHOD itemAt
-   METHOD currentItemIndex
-   METHOD count
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

@@ -6,46 +6,19 @@
 
 $header
 
-#include "hbclass.ch"
-
 %% TODO:
 %% #ifndef QT_NO_SLIDER
 %% #endif // QT_NO_SLIDER
 
-CLASS QStyleOptionSlider INHERIT QStyleOptionComplex
+#include "hbclass.ch"
 
-   METHOD new
-%%   METHOD delete
+$addRequests
 
-   METHOD orientation
-   METHOD minimum
-   METHOD maximum
-   METHOD tickPosition
-   METHOD tickInterval
-   METHOD upsideDown
-   METHOD sliderPosition
-   METHOD sliderValue
-   METHOD singleStep
-   METHOD pageStep
-   METHOD notchTarget
-   METHOD dialWrapping
+$beginClassFrom=QStyleOptionComplex
 
-   METHOD setOrientation
-   METHOD setMinimum
-   METHOD setMaximum
-   METHOD setTickPosition
-   METHOD setTickInterval
-   METHOD setUpsideDown
-   METHOD setSliderPosition
-   METHOD setSliderValue
-   METHOD setSingleStep
-   METHOD setPageStep
-   METHOD setNotchTarget
-   METHOD setDialWrapping
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

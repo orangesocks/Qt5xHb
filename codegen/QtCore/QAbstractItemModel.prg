@@ -8,70 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QMODELINDEX
-REQUEST QVARIANT
-REQUEST QSIZE
-#endif
+$addRequests
 
-CLASS QAbstractItemModel INHERIT QObject
+$beginClassFrom=QObject
 
-   METHOD delete
-   METHOD buddy
-   METHOD canFetchMore
-   METHOD columnCount
-   METHOD data
-   METHOD dropMimeData
-   METHOD fetchMore
-   METHOD flags
-   METHOD hasChildren
-   METHOD hasIndex
-   METHOD headerData
-   METHOD index
-   METHOD insertColumn
-   METHOD insertColumns
-   METHOD insertRow
-   METHOD insertRows
-   METHOD match
-   METHOD mimeTypes
-   METHOD parent
-   METHOD removeColumn
-   METHOD removeColumns
-   METHOD removeRow
-   METHOD removeRows
-   METHOD rowCount
-   METHOD setData
-   METHOD setHeaderData
-   METHOD sibling
-   METHOD sort
-   METHOD span
-   METHOD supportedDragActions
-   METHOD supportedDropActions
-   METHOD revert
-   METHOD submit
+$addMethods
 
-   METHOD onColumnsAboutToBeInserted
-   METHOD onColumnsAboutToBeMoved
-   METHOD onColumnsAboutToBeRemoved
-   METHOD onColumnsInserted
-   METHOD onColumnsMoved
-   METHOD onColumnsRemoved
-   METHOD onDataChanged
-   METHOD onHeaderDataChanged
-   METHOD onLayoutAboutToBeChanged
-   METHOD onLayoutChanged
-   METHOD onModelAboutToBeReset
-   METHOD onModelReset
-   METHOD onRowsAboutToBeInserted
-   METHOD onRowsAboutToBeMoved
-   METHOD onRowsAboutToBeRemoved
-   METHOD onRowsInserted
-   METHOD onRowsMoved
-   METHOD onRowsRemoved
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

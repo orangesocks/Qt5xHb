@@ -8,38 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QNetworkConfiguration
+$addRequests
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$beginClassFrom=
 
-   METHOD new
-   METHOD delete
+$addMethods
 
-   METHOD bearerType
-   METHOD bearerTypeFamily
-   METHOD bearerTypeName
-   METHOD children
-   METHOD connectTimeout
-   METHOD identifier
-   METHOD isRoamingAvailable
-   METHOD isValid
-   METHOD name
-   METHOD purpose
-   METHOD setConnectTimeout
-   METHOD state
-   METHOD swap
-   METHOD type
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

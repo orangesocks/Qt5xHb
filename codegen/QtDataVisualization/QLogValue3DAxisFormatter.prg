@@ -8,25 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QLogValue3DAxisFormatter INHERIT QValue3DAxisFormatter
+$addRequests
 
-   METHOD new
-   METHOD delete
+$beginClassFrom=QValue3DAxisFormatter
 
-   METHOD autoSubGrid
-   METHOD base
-   METHOD setAutoSubGrid
-   METHOD setBase
-   METHOD setShowEdgeLabels
-   METHOD showEdgeLabels
+$addMethods
 
-   METHOD onAutoSubGridChanged
-   METHOD onBaseChanged
-   METHOD onShowEdgeLabelsChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

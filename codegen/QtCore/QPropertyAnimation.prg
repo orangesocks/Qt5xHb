@@ -8,23 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QBYTEARRAY
-REQUEST QOBJECT
-#endif
+$addRequests
 
-CLASS QPropertyAnimation INHERIT QVariantAnimation
+$beginClassFrom=QVariantAnimation
 
-   METHOD new
-   METHOD delete
-   METHOD propertyName
-   METHOD setPropertyName
-   METHOD setTargetObject
-   METHOD targetObject
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

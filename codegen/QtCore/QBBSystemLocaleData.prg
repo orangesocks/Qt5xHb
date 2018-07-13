@@ -8,29 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QVARIANT
-REQUEST QLOCALE
-#endif
+$addRequests
 
-CLASS QBBSystemLocaleData INHERIT QObject
+$beginClassFrom=QObject
 
-   METHOD new
-   METHOD delete
-   METHOD measurementSystem
-   METHOD timeFormat
-   METHOD dateTimeFormat
-   METHOD languageLocale
-   METHOD regionLocale
-   METHOD installSocketNotifiers
-   METHOD readLanguageLocale
-   METHOD readRegionLocale
-   METHOD readMeasurementSystem
-   METHOD readHourFormat
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

@@ -8,44 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QAudioFormat
+$addRequests
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$beginClassFrom=
 
-   METHOD new
-   METHOD delete
+$addMethods
 
-   METHOD byteOrder
-   METHOD bytesForDuration
-   METHOD bytesForFrames
-   METHOD bytesPerFrame
-   METHOD channelCount
-   METHOD codec
-   METHOD durationForBytes
-   METHOD durationForFrames
-   METHOD framesForBytes
-   METHOD framesForDuration
-   METHOD isValid
-   METHOD sampleRate
-   METHOD sampleSize
-   METHOD sampleType
-   METHOD setByteOrder
-   METHOD setChannelCount
-   METHOD setCodec
-   METHOD setSampleRate
-   METHOD setSampleSize
-   METHOD setSampleType
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

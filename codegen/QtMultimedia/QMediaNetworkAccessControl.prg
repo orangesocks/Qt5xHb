@@ -8,23 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QNETWORKCONFIGURATION
-#endif
+$addRequests
 
-CLASS QMediaNetworkAccessControl INHERIT QMediaControl
+$beginClassFrom=QMediaControl
 
-%%   METHOD new
-   METHOD delete
+$addMethods
 
-   METHOD currentConfiguration
-   METHOD setConfigurations
+$addSignals
 
-   METHOD onConfigurationChanged
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

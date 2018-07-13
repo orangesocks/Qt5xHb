@@ -8,20 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QBitmap INHERIT QPixmap
+$addRequests
 
-   METHOD new
-   METHOD delete
-   METHOD clear
-   METHOD transformed
-   METHOD fromData
-   METHOD fromImage
-   METHOD toVariant
-   METHOD fromVariant
+$beginClassFrom=QPixmap
 
-   DESTRUCTOR destroyObject
+$addMethods
 
-END CLASS
+$endClass
 
 $destructor
 

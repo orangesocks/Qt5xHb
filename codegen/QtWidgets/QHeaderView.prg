@@ -8,93 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QBYTEARRAY
-REQUEST QSIZE
-#endif
+$addRequests
 
-CLASS QHeaderView INHERIT QAbstractItemView
+$beginClassFrom=QAbstractItemView
 
-   METHOD new
-   METHOD delete
-   METHOD cascadingSectionResizes
-   METHOD setCascadingSectionResizes
-   METHOD count
-   METHOD defaultAlignment
-   METHOD setDefaultAlignment
-   METHOD defaultSectionSize
-   METHOD setDefaultSectionSize
-   METHOD hiddenSectionCount
-   METHOD hideSection
-   METHOD highlightSections
-   METHOD setHighlightSections
-   METHOD isSectionHidden
-   METHOD isSortIndicatorShown
-   METHOD setSortIndicatorShown
-   METHOD length
-   METHOD logicalIndex
-   METHOD logicalIndexAt
-   METHOD minimumSectionSize
-   METHOD setMinimumSectionSize
-   METHOD moveSection
-   METHOD offset
-   METHOD orientation
-   METHOD resizeSection
-   METHOD resizeSections
-   METHOD restoreState
-   METHOD saveState
-   METHOD sectionPosition
-   METHOD sectionSize
-   METHOD sectionSizeHint
-   METHOD sectionViewportPosition
-   METHOD sectionsHidden
-   METHOD sectionsMoved
-   METHOD setSectionHidden
-   METHOD setSortIndicator
-   METHOD stretchLastSection
-   METHOD setStretchLastSection
-   METHOD showSection
-   METHOD sortIndicatorOrder
-   METHOD sortIndicatorSection
-   METHOD stretchSectionCount
-   METHOD swapSections
-   METHOD visualIndex
-   METHOD visualIndexAt
-   METHOD reset
-   METHOD setModel
-   METHOD sizeHint
-   METHOD headerDataChanged
-   METHOD setOffset
-   METHOD setOffsetToLastSection
-   METHOD setOffsetToSectionPosition
-   METHOD setVisible
-   METHOD setSectionsMovable
-   METHOD sectionsMovable
-   METHOD setSectionsClickable
-   METHOD sectionsClickable
-   METHOD sectionResizeMode
-   METHOD setSectionResizeMode
-   METHOD setResizeContentsPrecision
-   METHOD resizeContentsPrecision
-   METHOD maximumSectionSize
-   METHOD setMaximumSectionSize
-   METHOD doItemsLayout
+$addMethods
 
-   METHOD onGeometriesChanged
-   METHOD onSectionAutoResize
-   METHOD onSectionClicked
-   METHOD onSectionCountChanged
-   METHOD onSectionDoubleClicked
-   METHOD onSectionEntered
-   METHOD onSectionHandleDoubleClicked
-   METHOD onSectionMoved
-   METHOD onSectionPressed
-   METHOD onSectionResized
-   METHOD onSortIndicatorChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

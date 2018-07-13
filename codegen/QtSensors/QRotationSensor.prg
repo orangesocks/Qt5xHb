@@ -8,23 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QROTATIONREADING
-#endif
+$addRequests
 
-CLASS QRotationSensor INHERIT QSensor
+$beginClassFrom=QSensor
 
-   METHOD new
-   METHOD delete
-   METHOD reading
-   METHOD hasZ
-   METHOD setHasZ
+$addMethods
 
-   METHOD onHasZChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

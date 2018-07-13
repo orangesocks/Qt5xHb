@@ -8,25 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QCOLOR
-#endif
+$addRequests
 
-CLASS QGraphicsColorizeEffect INHERIT QGraphicsEffect
+$beginClassFrom=QGraphicsEffect
 
-   METHOD new
-   METHOD delete
-   METHOD color
-   METHOD strength
-   METHOD setColor
-   METHOD setStrength
+$addMethods
 
-   METHOD onColorChanged
-   METHOD onStrengthChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

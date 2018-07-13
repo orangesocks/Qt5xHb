@@ -8,23 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QDBUSERROR
-#endif
+$addRequests
 
-CLASS QDBusServer INHERIT QObject
+$beginClassFrom=QObject
 
-   METHOD new
-   METHOD delete
-   METHOD isConnected
-   METHOD lastError
-   METHOD address
+$addMethods
 
-   METHOD onNewConnection
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

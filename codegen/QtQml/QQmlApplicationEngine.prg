@@ -8,23 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QOBJECT
-#endif
+$addRequests
 
-CLASS QQmlApplicationEngine INHERIT QQmlEngine
+$beginClassFrom=QQmlEngine
 
-   METHOD new
-   METHOD delete
-   METHOD rootObjects
-   METHOD load
-   METHOD loadData
+$addMethods
 
-   METHOD onObjectCreated
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

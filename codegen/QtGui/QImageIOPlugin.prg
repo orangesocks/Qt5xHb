@@ -8,19 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QIMAGEIOHANDLER
-#endif
+$addRequests
 
-CLASS QImageIOPlugin INHERIT QObject
+$beginClassFrom=QObject
 
-   METHOD delete
-   METHOD capabilities
-   METHOD create
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

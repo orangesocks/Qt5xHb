@@ -8,20 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QVARIANT
-#endif
+$addRequests
 
-CLASS QAccessibleValueChangeEvent INHERIT QAccessibleEvent
+$beginClassFrom=QAccessibleEvent
 
-   METHOD new
-   METHOD delete
-   METHOD setValue
-   METHOD value
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

@@ -8,41 +8,16 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QAUDIOFORMAT
-REQUEST QIODEVICE
-#endif
+$addRequests
 
-CLASS QAudioInput INHERIT QObject
+$beginClassFrom=QObject
 
-   METHOD new
-   METHOD delete
-
-   METHOD bufferSize
-   METHOD bytesReady
-   METHOD elapsedUSecs
-   METHOD error
-   METHOD format
-   METHOD notifyInterval
-   METHOD periodSize
-   METHOD processedUSecs
-   METHOD reset
-   METHOD resume
-   METHOD setBufferSize
-   METHOD setNotifyInterval
-   METHOD setVolume
-   METHOD start
-   METHOD state
-   METHOD stop
-   METHOD suspend
-   METHOD volume
+$addMethods
 
 %%   METHOD onStateChanged
 %%   METHOD onNotify
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

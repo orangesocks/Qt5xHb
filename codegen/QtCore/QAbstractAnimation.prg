@@ -8,39 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QANIMATIONGROUP
-#endif
+$addRequests
 
-CLASS QAbstractAnimation INHERIT QObject
+$beginClassFrom=QObject
 
-   METHOD delete
-   METHOD currentLoop
-   METHOD currentLoopTime
-   METHOD currentTime
-   METHOD setCurrentTime
-   METHOD direction
-   METHOD setDirection
-   METHOD duration
-   METHOD group
-   METHOD loopCount
-   METHOD setLoopCount
-   METHOD state
-   METHOD totalDuration
-   METHOD pause
-   METHOD resume
-   METHOD setPaused
-   METHOD start
-   METHOD stop
+$addMethods
 
-   METHOD onCurrentLoopChanged
-   METHOD onDirectionChanged
-   METHOD onFinished
-   METHOD onStateChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

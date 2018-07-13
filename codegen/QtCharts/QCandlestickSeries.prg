@@ -8,62 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QCandlestickSeries INHERIT QAbstractSeries
+$addRequests
 
-   METHOD new
-   METHOD delete
+$beginClassFrom=QAbstractSeries
 
-   METHOD append
-   METHOD bodyOutlineVisible
-   METHOD bodyWidth
-   METHOD brush
-   METHOD capsVisible
-   METHOD capsWidth
-   METHOD clear
-   METHOD count
-   METHOD decreasingColor
-   METHOD increasingColor
-   METHOD insert
-   METHOD maximumColumnWidth
-   METHOD minimumColumnWidth
-   METHOD pen
-   METHOD remove
-   METHOD setBodyOutlineVisible
-   METHOD setBodyWidth
-   METHOD setBrush
-   METHOD setCapsVisible
-   METHOD setCapsWidth
-   METHOD setDecreasingColor
-   METHOD setIncreasingColor
-   METHOD setMaximumColumnWidth
-   METHOD setMinimumColumnWidth
-   METHOD setPen
-   METHOD sets
-   METHOD take
-   METHOD type
+$addMethods
 
-   METHOD onBodyOutlineVisibilityChanged
-   METHOD onBodyWidthChanged
-   METHOD onBrushChanged
-   METHOD onCandlestickSetsAdded
-   METHOD onCandlestickSetsRemoved
-   METHOD onCapsVisibilityChanged
-   METHOD onCapsWidthChanged
-   METHOD onClicked
-   METHOD onCountChanged
-   METHOD onDecreasingColorChanged
-   METHOD onDoubleClicked
-   METHOD onHovered
-   METHOD onIncreasingColorChanged
-   METHOD onMaximumColumnWidthChanged
-   METHOD onMinimumColumnWidthChanged
-   METHOD onPenChanged
-   METHOD onPressed
-   METHOD onReleased
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

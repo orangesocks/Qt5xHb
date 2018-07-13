@@ -8,42 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QCandlestickSet INHERIT QObject
+$addRequests
 
-   METHOD new
-   METHOD delete
+$beginClassFrom=QObject
 
-   METHOD brush
-   METHOD close
-   METHOD high
-   METHOD low
-   METHOD open
-   METHOD pen
-   METHOD setBrush
-   METHOD setClose
-   METHOD setHigh
-   METHOD setLow
-   METHOD setOpen
-   METHOD setPen
-   METHOD setTimestamp
-   METHOD timestamp
+$addMethods
 
-   METHOD onBrushChanged
-   METHOD onClicked
-   METHOD onCloseChanged
-   METHOD onDoubleClicked
-   METHOD onHighChanged
-   METHOD onHovered
-   METHOD onLowChanged
-   METHOD onOpenChanged
-   METHOD onPenChanged
-   METHOD onPressed
-   METHOD onReleased
-   METHOD onTimestampChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

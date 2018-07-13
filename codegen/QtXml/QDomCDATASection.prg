@@ -8,15 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QDomCDATASection INHERIT QDomText
+$addRequests
 
-   METHOD new
-   METHOD delete
-   METHOD nodeType
+$beginClassFrom=QDomText
 
-   DESTRUCTOR destroyObject
+$addMethods
 
-END CLASS
+$endClass
 
 $destructor
 

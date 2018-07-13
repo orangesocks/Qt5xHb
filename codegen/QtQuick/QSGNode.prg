@@ -8,43 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QSGNode
+$addRequests
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$beginClassFrom=
 
-   METHOD new
-   METHOD delete
-   METHOD appendChildNode
-   METHOD childAtIndex
-   METHOD childCount
-   METHOD firstChild
-   METHOD flags
-   METHOD insertChildNodeAfter
-   METHOD insertChildNodeBefore
-   METHOD isSubtreeBlocked
-   METHOD lastChild
-   METHOD markDirty
-   METHOD nextSibling
-   METHOD parent
-   METHOD prependChildNode
-   METHOD preprocess
-   METHOD previousSibling
-   METHOD removeAllChildNodes
-   METHOD removeChildNode
-   METHOD setFlag
-   METHOD setFlags
-   METHOD type
+$addMethods
 
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

@@ -8,44 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QBarDataProxy INHERIT QAbstractDataProxy
+$addRequests
 
-   METHOD new
-   METHOD delete
+$beginClassFrom=QAbstractDataProxy
 
-   METHOD addRow
-   METHOD addRows
-%%   METHOD array
-   METHOD columnLabels
-   METHOD insertRow
-   METHOD insertRows
-   METHOD itemAt
-   METHOD removeRows
-   METHOD resetArray
-%%   METHOD rowAt
-   METHOD rowCount
-   METHOD rowLabels
-   METHOD series
-   METHOD setColumnLabels
-   METHOD setItem
-   METHOD setRow
-   METHOD setRowLabels
-   METHOD setRows
+$addMethods
 
-   METHOD onArrayReset
-   METHOD onColumnLabelsChanged
-   METHOD onItemChanged
-   METHOD onRowCountChanged
-   METHOD onRowLabelsChanged
-   METHOD onRowsAdded
-   METHOD onRowsChanged
-   METHOD onRowsInserted
-   METHOD onRowsRemoved
-   METHOD onSeriesChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

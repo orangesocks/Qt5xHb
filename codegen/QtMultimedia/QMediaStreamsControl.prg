@@ -8,27 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QVARIANT
-#endif
+$addRequests
 
-CLASS QMediaStreamsControl INHERIT QMediaControl
+$beginClassFrom=QMediaControl
 
-%%   METHOD new
-   METHOD delete
+$addMethods
 
-   METHOD isActive
-   METHOD metaData
-   METHOD setActive
-   METHOD streamCount
-   METHOD streamType
+$addSignals
 
-   METHOD onActiveStreamsChanged
-   METHOD onStreamsChanged
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

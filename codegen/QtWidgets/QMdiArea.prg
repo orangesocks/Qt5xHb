@@ -8,54 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QMDISUBWINDOW
-REQUEST QBRUSH
-REQUEST QSIZE
-#endif
+$addRequests
 
-CLASS QMdiArea INHERIT QAbstractScrollArea
+$beginClassFrom=QAbstractScrollArea
 
-   METHOD new
-   METHOD delete
-   METHOD activationOrder
-   METHOD activeSubWindow
-   METHOD addSubWindow
-   METHOD background
-   METHOD currentSubWindow
-   METHOD documentMode
-   METHOD removeSubWindow
-   METHOD setActivationOrder
-   METHOD setBackground
-   METHOD setDocumentMode
-   METHOD setOption
-   METHOD setTabPosition
-   METHOD setTabShape
-   METHOD setViewMode
-   METHOD subWindowList
-   METHOD tabPosition
-   METHOD tabShape
-   METHOD testOption
-   METHOD viewMode
-   METHOD minimumSizeHint
-   METHOD sizeHint
-   METHOD activateNextSubWindow
-   METHOD activatePreviousSubWindow
-   METHOD cascadeSubWindows
-   METHOD closeActiveSubWindow
-   METHOD closeAllSubWindows
-   METHOD setActiveSubWindow
-   METHOD tileSubWindows
-   METHOD tabsClosable
-   METHOD setTabsClosable
-   METHOD tabsMovable
-   METHOD setTabsMovable
+$addMethods
 
-   METHOD onSubWindowActivated
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

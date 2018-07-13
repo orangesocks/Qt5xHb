@@ -8,23 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QFileSystemWatcher INHERIT QObject
+$addRequests
 
-   METHOD new
-   METHOD delete
-   METHOD addPath
-   METHOD addPaths
-   METHOD directories
-   METHOD files
-   METHOD removePath
-   METHOD removePaths
+$beginClassFrom=QObject
 
-   METHOD onDirectoryChanged
-   METHOD onFileChanged
+$addMethods
 
-   DESTRUCTOR destroyObject
+$addSignals
 
-END CLASS
+$endClass
 
 $destructor
 

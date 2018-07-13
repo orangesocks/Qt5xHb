@@ -8,14 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QGraphicsTransform INHERIT QObject
+$addRequests
 
-   METHOD delete
-   METHOD applyTo
+$beginClassFrom=QObject
 
-   DESTRUCTOR destroyObject
+$addMethods
 
-END CLASS
+$endClass
 
 $destructor
 

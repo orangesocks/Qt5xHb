@@ -8,18 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QKeyEventTransition INHERIT QEventTransition
+$addRequests
 
-   METHOD new
-   METHOD delete
-   METHOD key
-   METHOD modifierMask
-   METHOD setKey
-   METHOD setModifierMask
+$beginClassFrom=QEventTransition
 
-   DESTRUCTOR destroyObject
+$addMethods
 
-END CLASS
+$endClass
 
 $destructor
 

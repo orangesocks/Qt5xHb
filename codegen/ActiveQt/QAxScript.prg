@@ -8,32 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QVARIANT
-REQUEST QAXSCRIPTENGINE
-#endif
+$addRequests
 
-CLASS QAxScript INHERIT QObject
+$beginClassFrom=QObject
 
-   METHOD new
-   METHOD delete
-   METHOD call
-   METHOD functions
-   METHOD load
-   METHOD scriptCode
-   METHOD scriptEngine
-   METHOD scriptName
+$addMethods
 
-   METHOD onEntered
-   METHOD onError
-   METHOD onFinished1
-   METHOD onFinished2
-   METHOD onFinished3
-   METHOD onStateChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

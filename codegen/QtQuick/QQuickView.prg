@@ -8,33 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QQMLENGINE
-REQUEST QSIZE
-REQUEST QQMLCONTEXT
-REQUEST QQUICKITEM
-REQUEST QURL
-#endif
+$addRequests
 
-CLASS QQuickView INHERIT QQuickWindow
+$beginClassFrom=QQuickWindow
 
-   METHOD new
-   METHOD delete
-   METHOD engine
-   METHOD initialSize
-   METHOD resizeMode
-   METHOD rootContext
-   METHOD rootObject
-   METHOD setResizeMode
-   METHOD source
-   METHOD status
-   METHOD setSource
+$addMethods
 
-   METHOD onStatusChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

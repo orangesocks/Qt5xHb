@@ -8,36 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QACTION
-REQUEST QACTIONGROUP
-REQUEST QLAYOUT
-REQUEST QWIDGET
-REQUEST QDIR
-#endif
+$addRequests
 
-CLASS QUiLoader INHERIT QObject
+$beginClassFrom=QObject
 
-   METHOD new
-   METHOD delete
-   METHOD addPluginPath
-   METHOD availableLayouts
-   METHOD availableWidgets
-   METHOD clearPluginPaths
-   METHOD createAction
-   METHOD createActionGroup
-   METHOD createLayout
-   METHOD createWidget
-   METHOD isLanguageChangeEnabled
-   METHOD load
-   METHOD pluginPaths
-   METHOD setLanguageChangeEnabled
-   METHOD setWorkingDirectory
-   METHOD workingDirectory
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

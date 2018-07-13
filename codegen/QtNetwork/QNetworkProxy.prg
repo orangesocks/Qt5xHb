@@ -12,47 +12,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QNetworkProxy
+$addRequests
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$beginClassFrom=
 
-   METHOD new
-   METHOD delete
+$addMethods
 
-   METHOD applicationProxy
-   METHOD capabilities
-   METHOD hasRawHeader
-   METHOD header
-   METHOD hostName
-   METHOD isCachingProxy
-   METHOD isTransparentProxy
-   METHOD password
-   METHOD port
-   METHOD rawHeader
-   METHOD rawHeaderList
-   METHOD setApplicationProxy
-   METHOD setCapabilities
-   METHOD setHeader
-   METHOD setHostName
-   METHOD setPassword
-   METHOD setPort
-   METHOD setRawHeader
-   METHOD setType
-   METHOD setUser
-   METHOD swap
-   METHOD type
-   METHOD user
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

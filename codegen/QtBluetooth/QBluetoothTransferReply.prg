@@ -8,28 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QBLUETOOTHTRANSFERMANAGER
-REQUEST QBLUETOOTHTRANSFERREQUEST
-#endif
+$addRequests
 
-CLASS QBluetoothTransferReply INHERIT QObject
+$beginClassFrom=QObject
 
-   METHOD delete
-   METHOD isFinished
-   METHOD isRunning
-   METHOD manager
-   METHOD error
-   METHOD errorString
-   METHOD request
-   METHOD abort
+$addMethods
 
-   METHOD onFinished
-   METHOD onTransferProgress
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

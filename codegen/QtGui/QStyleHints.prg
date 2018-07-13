@@ -8,23 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QStyleHints INHERIT QObject
+$addRequests
 
-   METHOD mouseDoubleClickInterval
-   METHOD startDragDistance
-   METHOD startDragTime
-   METHOD startDragVelocity
-   METHOD keyboardInputInterval
-   METHOD keyboardAutoRepeatRate
-   METHOD cursorFlashTime
-   METHOD showIsFullScreen
-   METHOD passwordMaskDelay
-   METHOD fontSmoothingGamma
-   METHOD useRtlExtensions
+$beginClassFrom=QObject
 
-   DESTRUCTOR destroyObject
+$addMethods
 
-END CLASS
+$endClass
 
 $destructor
 

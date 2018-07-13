@@ -8,20 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QSCRIPTVALUE
-#endif
+$addRequests
 
-CLASS QScriptExtensionPlugin INHERIT QObject
+$beginClassFrom=QObject
 
-   METHOD delete
-   METHOD setupPackage
-   METHOD initialize
-   METHOD keys
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

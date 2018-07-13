@@ -8,26 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QWINDOW
-REQUEST QACCESSIBLEINTERFACE
-#endif
+$addRequests
 
-CLASS QAccessibleApplication INHERIT QAccessibleObject
+$beginClassFrom=QAccessibleObject
 
-   METHOD new
-   METHOD window
-   METHOD childCount
-   METHOD indexOfChild
-   METHOD focusChild
-   METHOD parent
-   METHOD child
-   METHOD text
-   METHOD role
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

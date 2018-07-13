@@ -8,23 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QWINDOW
-REQUEST QOBJECT
-REQUEST QTOUCHDEVICE
-#endif
+$addRequests
 
-CLASS QTouchEvent INHERIT QInputEvent
+$beginClassFrom=QInputEvent
 
-   METHOD delete
-   METHOD window
-   METHOD target
-   METHOD touchPointStates
-   METHOD device
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

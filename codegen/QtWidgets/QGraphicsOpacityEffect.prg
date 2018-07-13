@@ -8,25 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QBRUSH
-#endif
+$addRequests
 
-CLASS QGraphicsOpacityEffect INHERIT QGraphicsEffect
+$beginClassFrom=QGraphicsEffect
 
-   METHOD new
-   METHOD delete
-   METHOD opacity
-   METHOD opacityMask
-   METHOD setOpacity
-   METHOD setOpacityMask
+$addMethods
 
-   METHOD onOpacityChanged
-   METHOD onOpacityMaskChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

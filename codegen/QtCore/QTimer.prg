@@ -8,25 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QTimer INHERIT QObject
+$addRequests
 
-   METHOD new
-   METHOD delete
-   METHOD interval
-   METHOD isActive
-   METHOD isSingleShot
-   METHOD setInterval
-   METHOD setSingleShot
-   METHOD timerId
-   METHOD start
-   METHOD stop
-   METHOD singleShot
+$beginClassFrom=QObject
 
-   METHOD onTimeout
+$addMethods
 
-   DESTRUCTOR destroyObject
+$addSignals
 
-END CLASS
+$endClass
 
 $destructor
 

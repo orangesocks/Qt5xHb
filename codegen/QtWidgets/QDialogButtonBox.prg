@@ -8,35 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QPUSHBUTTON
-#endif
+$addRequests
 
-CLASS QDialogButtonBox INHERIT QWidget
+$beginClassFrom=QWidget
 
-   METHOD new
-   METHOD delete
-   METHOD addButton
-   METHOD button
-   METHOD buttonRole
-   METHOD centerButtons
-   METHOD clear
-   METHOD orientation
-   METHOD removeButton
-   METHOD setCenterButtons
-   METHOD setOrientation
-   METHOD setStandardButtons
-   METHOD standardButton
-   METHOD standardButtons
+$addMethods
 
-   METHOD onAccepted
-   METHOD onClicked
-   METHOD onHelpRequested
-   METHOD onRejected
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

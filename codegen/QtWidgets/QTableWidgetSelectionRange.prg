@@ -8,29 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QTableWidgetSelectionRange
+$addRequests
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$beginClassFrom=
 
-   METHOD new
-   METHOD delete
-   METHOD bottomRow
-   METHOD columnCount
-   METHOD leftColumn
-   METHOD rightColumn
-   METHOD rowCount
-   METHOD topRow
+$addMethods
 
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

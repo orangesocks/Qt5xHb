@@ -8,35 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QVARIANT
-REQUEST QBYTEARRAY
-#endif
+$addRequests
 
-CLASS QMacPasteboardMime
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD new
-   METHOD delete
-   METHOD convertorName
-   METHOD canConvert
-   METHOD mimeFor
-   METHOD flavorFor
-   METHOD convertToMime
-   METHOD convertFromMime
-   METHOD count
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

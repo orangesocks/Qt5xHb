@@ -8,18 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QICONENGINE
-#endif
+$addRequests
 
-CLASS QIconEnginePlugin INHERIT QObject
+$beginClassFrom=QObject
 
-   METHOD delete
-   METHOD create
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

@@ -8,36 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QOBJECT
-REQUEST QQMLCONTEXT
-REQUEST QURL
-#endif
+$addRequests
 
-CLASS QQmlComponent INHERIT QObject
+$beginClassFrom=QObject
 
-   METHOD new
-   METHOD delete
-   METHOD beginCreate
-   METHOD completeCreate
-   METHOD create
-   METHOD creationContext
-   METHOD isError
-   METHOD isLoading
-   METHOD isNull
-   METHOD isReady
-   METHOD progress
-   METHOD status
-   METHOD url
-   METHOD loadUrl
-   METHOD setData
+$addMethods
 
-   METHOD onProgressChanged
-   METHOD onStatusChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

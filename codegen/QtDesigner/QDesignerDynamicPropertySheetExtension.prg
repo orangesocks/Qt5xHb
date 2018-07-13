@@ -8,27 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QDesignerDynamicPropertySheetExtension
+$addRequests
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$beginClassFrom=
 
-   METHOD delete
-   METHOD addDynamicProperty
-   METHOD canAddDynamicProperty
-   METHOD dynamicPropertiesAllowed
-   METHOD isDynamicProperty
-   METHOD removeDynamicProperty
+$addMethods
 
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

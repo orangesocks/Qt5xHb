@@ -8,22 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QSound INHERIT QObject
+$addRequests
 
-   METHOD new
-   METHOD delete
+$beginClassFrom=QObject
 
-   METHOD loops
-   METHOD loopsRemaining
-   METHOD setLoops
-   METHOD fileName
-   METHOD isFinished
-   METHOD stop
-   METHOD play
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

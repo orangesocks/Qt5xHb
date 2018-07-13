@@ -8,17 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QDesignerWidgetBoxInterface INHERIT QWidget
+$addRequests
 
-   METHOD delete
-   METHOD fileName
-   METHOD load
-   METHOD save
-   METHOD setFileName
+$beginClassFrom=QWidget
 
-   DESTRUCTOR destroyObject
+$addMethods
 
-END CLASS
+$endClass
 
 $destructor
 

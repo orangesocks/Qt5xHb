@@ -8,17 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QSwipeGesture INHERIT QGesture
+$addRequests
 
-   METHOD delete
-   METHOD horizontalDirection
-   METHOD setSwipeAngle
-   METHOD swipeAngle
-   METHOD verticalDirection
+$beginClassFrom=QGesture
 
-   DESTRUCTOR destroyObject
+$addMethods
 
-END CLASS
+$endClass
 
 $destructor
 

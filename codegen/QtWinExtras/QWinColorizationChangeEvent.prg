@@ -8,16 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QWinColorizationChangeEvent INHERIT QWinEvent
+$addRequests
 
-   METHOD new
-   METHOD delete
-   METHOD color
-   METHOD opaqueBlend
+$beginClassFrom=QWinEvent
 
-   DESTRUCTOR destroyObject
+$addMethods
 
-END CLASS
+$endClass
 
 $destructor
 

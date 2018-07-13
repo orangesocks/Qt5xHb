@@ -8,27 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QSIZEF
-REQUEST QPAGELAYOUT
-#endif
+$addRequests
 
-CLASS QPagedPaintDevice INHERIT QPaintDevice
+$beginClassFrom=QPaintDevice
 
-   METHOD delete
-   METHOD newPage
-   METHOD pageSize
-   METHOD setPageSize
-   METHOD pageSizeMM
-   METHOD setPageSizeMM
-   METHOD pageLayout
-   METHOD setPageLayout
-   METHOD setPageOrientation
-   METHOD setPageMargins
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

@@ -8,21 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QMEDIACONTROL
-#endif
+$addRequests
 
-CLASS QMediaService INHERIT QObject
+$beginClassFrom=QObject
 
-%%   METHOD new
-   METHOD delete
+$addMethods
 
-   METHOD releaseControl
-   METHOD requestControl
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

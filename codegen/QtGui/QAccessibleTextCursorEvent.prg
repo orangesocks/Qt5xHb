@@ -8,16 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QAccessibleTextCursorEvent INHERIT QAccessibleEvent
+$addRequests
 
-   METHOD new
-   METHOD delete
-   METHOD setCursorPosition
-   METHOD cursorPosition
+$beginClassFrom=QAccessibleEvent
 
-   DESTRUCTOR destroyObject
+$addMethods
 
-END CLASS
+$endClass
 
 $destructor
 

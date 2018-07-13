@@ -8,55 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QBarSet INHERIT QObject
+$addRequests
 
-   METHOD new
-   METHOD delete
+$beginClassFrom=QObject
 
-   METHOD append
-   METHOD at
-   METHOD borderColor
-   METHOD brush
-   METHOD color
-   METHOD count
-   METHOD insert
-   METHOD label
-   METHOD labelBrush
-   METHOD labelColor
-   METHOD labelFont
-   METHOD pen
-   METHOD remove
-   METHOD replace
-   METHOD setBorderColor
-   METHOD setBrush
-   METHOD setColor
-   METHOD setLabel
-   METHOD setLabelBrush
-   METHOD setLabelColor
-   METHOD setLabelFont
-   METHOD setPen
-   METHOD sum
+$addMethods
 
-   METHOD onBorderColorChanged
-   METHOD onBrushChanged
-   METHOD onClicked
-   METHOD onColorChanged
-   METHOD onDoubleClicked
-   METHOD onHovered
-   METHOD onLabelBrushChanged
-   METHOD onLabelChanged
-   METHOD onLabelColorChanged
-   METHOD onLabelFontChanged
-   METHOD onPenChanged
-   METHOD onPressed
-   METHOD onReleased
-   METHOD onValueChanged
-   METHOD onValuesAdded
-   METHOD onValuesRemoved
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

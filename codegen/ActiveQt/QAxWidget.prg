@@ -8,43 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QAXAGGREGATED
-REQUEST QSIZE
-REQUEST QVARIANT
-REQUEST QAXOBJECT
-#endif
+$addRequests
 
-CLASS QAxWidget INHERIT QWidget,QAxBase
+$beginClassFrom=QWidget,QAxBase
 
-   METHOD new
-   METHOD delete
-   METHOD createAggregate
-   METHOD doVerb
-   METHOD clear
-   METHOD minimumSizeHint
-   METHOD sizeHint
-   METHOD asVariant
-   METHOD control
-   METHOD disableClassInfo
-   METHOD disableEventSink
-   METHOD disableMetaObject
-   METHOD dynamicCall
-   METHOD generateDocumentation
-   METHOD isNull
-   METHOD propertyWritable
-   METHOD querySubObject
-   METHOD setControl
-   METHOD setPropertyWritable
-   METHOD verbs
+$addMethods
 
-   METHOD onException
-   METHOD onPropertyChanged
-   METHOD onSignal
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

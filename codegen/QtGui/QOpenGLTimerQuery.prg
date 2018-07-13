@@ -8,24 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QOpenGLTimerQuery INHERIT QObject
+$addRequests
 
-   METHOD new
-   METHOD delete
-   METHOD create
-   METHOD destroy
-   METHOD isCreated
-   METHOD objectId
-   METHOD begin
-   METHOD end
-   METHOD waitForTimestamp
-   METHOD recordTimestamp
-   METHOD isResultAvailable
-   METHOD waitForResult
+$beginClassFrom=QObject
 
-   DESTRUCTOR destroyObject
+$addMethods
 
-END CLASS
+$endClass
 
 $destructor
 

@@ -8,32 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QScatterSeries INHERIT QXYSeries
+$addRequests
 
-   METHOD new
-   METHOD delete
+$beginClassFrom=QXYSeries
 
-   METHOD borderColor
-   METHOD brush
-   METHOD color
-   METHOD markerShape
-   METHOD markerSize
-   METHOD setBorderColor
-   METHOD setBrush
-   METHOD setColor
-   METHOD setMarkerShape
-   METHOD setMarkerSize
-   METHOD setPen
-   METHOD type
+$addMethods
 
-   METHOD onBorderColorChanged
-   METHOD onColorChanged
-   METHOD onMarkerShapeChanged
-   METHOD onMarkerSizeChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

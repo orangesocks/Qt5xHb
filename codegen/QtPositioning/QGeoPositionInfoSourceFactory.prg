@@ -8,30 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QGEOPOSITIONINFOSOURCE
-REQUEST QGEOSATELLITEINFOSOURCE
-REQUEST QGEOAREAMONITORSOURCE
-#endif
+$addRequests
 
-CLASS QGeoPositionInfoSourceFactory
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD positionInfoSource
-   METHOD satelliteInfoSource
-   METHOD areaMonitor
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

@@ -12,8 +12,6 @@
 
 #include "QAbstractOAuthReplyHandlerSlots.h"
 
-static QAbstractOAuthReplyHandlerSlots * s = NULL;
-
 QAbstractOAuthReplyHandlerSlots::QAbstractOAuthReplyHandlerSlots(QObject *parent) : QObject(parent)
 {
 }
@@ -21,6 +19,7 @@ QAbstractOAuthReplyHandlerSlots::QAbstractOAuthReplyHandlerSlots(QObject *parent
 QAbstractOAuthReplyHandlerSlots::~QAbstractOAuthReplyHandlerSlots()
 {
 }
+#if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
 void QAbstractOAuthReplyHandlerSlots::callbackDataReceived( const QByteArray & data )
 {
   QObject *object = qobject_cast<QObject *>(sender());
@@ -34,6 +33,8 @@ void QAbstractOAuthReplyHandlerSlots::callbackDataReceived( const QByteArray & d
     hb_itemRelease( pdata );
   }
 }
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
 void QAbstractOAuthReplyHandlerSlots::replyDataReceived( const QByteArray & data )
 {
   QObject *object = qobject_cast<QObject *>(sender());
@@ -47,13 +48,31 @@ void QAbstractOAuthReplyHandlerSlots::replyDataReceived( const QByteArray & data
     hb_itemRelease( pdata );
   }
 }
+#endif
 
 void QAbstractOAuthReplyHandlerSlots_connect_signal ( const QString & signal, const QString & slot )
 {
-  if( s == NULL )
-  {
-    s = new QAbstractOAuthReplyHandlerSlots( QCoreApplication::instance() );
-  }
+#if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
+  QAbstractOAuthReplyHandler * obj = (QAbstractOAuthReplyHandler *) hb_itemGetPtr( hb_objSendMsg( hb_stackSelfItem(), "POINTER", 0 ) );
 
-  hb_retl( Signals_connection_disconnection( s, signal, slot ) );
+  if( obj )
+  {
+    QAbstractOAuthReplyHandlerSlots * s = QCoreApplication::instance()->findChild<QAbstractOAuthReplyHandlerSlots *>();
+
+    if( s == NULL )
+    {
+      s = new QAbstractOAuthReplyHandlerSlots();
+      s->moveToThread( QCoreApplication::instance()->thread() );
+      s->setParent( QCoreApplication::instance() );
+    }
+
+    hb_retl( Signals_connection_disconnection( s, signal, slot ) );
+  }
+  else
+  {
+    hb_retl( false );
+  }
+#else
+  hb_retl( false );
+#endif
 }

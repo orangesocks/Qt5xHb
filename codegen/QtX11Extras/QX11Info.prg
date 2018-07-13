@@ -8,40 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QBYTEARRAY
-#endif
+$addRequests
 
-CLASS QX11Info
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD delete
-   METHOD isPlatformX11
-   METHOD appDpiX
-   METHOD appDpiY
-   METHOD appRootWindow
-   METHOD appScreen
-   METHOD appTime
-   METHOD appUserTime
-   METHOD setAppTime
-   METHOD setAppUserTime
-   METHOD getTimestamp
-   METHOD display
-   METHOD connection
-   METHOD nextStartupId
-   METHOD setNextStartupId
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

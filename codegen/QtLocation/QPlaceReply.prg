@@ -8,22 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QPlaceReply INHERIT QObject
+$addRequests
 
-   METHOD new
-   METHOD delete
-   METHOD isFinished
-   METHOD type
-   METHOD errorString
-   METHOD error
-   METHOD abort
+$beginClassFrom=QObject
 
-   METHOD onFinished
-   METHOD onError
+$addMethods
 
-   DESTRUCTOR destroyObject
+$addSignals
 
-END CLASS
+$endClass
 
 $destructor
 

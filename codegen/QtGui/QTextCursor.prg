@@ -8,92 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QTEXTDOCUMENTFRAGMENT
-REQUEST QTEXTBLOCK
-REQUEST QTEXTCHARFORMAT
-REQUEST QTEXTBLOCKFORMAT
-REQUEST QTEXTLIST
-REQUEST QTEXTTABLE
-REQUEST QTEXTFRAME
-REQUEST QTEXTDOCUMENT
-#endif
+$addRequests
 
-CLASS QTextCursor
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD new
-   METHOD delete
-   METHOD swap
-   METHOD isNull
-   METHOD setPosition
-   METHOD position
-   METHOD positionInBlock
-   METHOD anchor
-   METHOD insertText
-   METHOD movePosition
-   METHOD visualNavigation
-   METHOD setVisualNavigation
-   METHOD setVerticalMovementX
-   METHOD verticalMovementX
-   METHOD setKeepPositionOnInsert
-   METHOD keepPositionOnInsert
-   METHOD deleteChar
-   METHOD deletePreviousChar
-   METHOD select
-   METHOD hasSelection
-   METHOD hasComplexSelection
-   METHOD removeSelectedText
-   METHOD clearSelection
-   METHOD selectionStart
-   METHOD selectionEnd
-   METHOD selectedText
-   METHOD selection
-   METHOD selectedTableCells
-   METHOD block
-   METHOD charFormat
-   METHOD setCharFormat
-   METHOD mergeCharFormat
-   METHOD blockFormat
-   METHOD setBlockFormat
-   METHOD mergeBlockFormat
-   METHOD blockCharFormat
-   METHOD setBlockCharFormat
-   METHOD mergeBlockCharFormat
-   METHOD atBlockStart
-   METHOD atBlockEnd
-   METHOD atStart
-   METHOD atEnd
-   METHOD insertBlock
-   METHOD insertList
-   METHOD createList
-   METHOD currentList
-   METHOD insertTable
-   METHOD currentTable
-   METHOD insertFrame
-   METHOD currentFrame
-   METHOD insertFragment
-   METHOD insertHtml
-   METHOD insertImage
-   METHOD beginEditBlock
-   METHOD joinPreviousEditBlock
-   METHOD endEditBlock
-   METHOD isCopyOf
-   METHOD blockNumber
-   METHOD columnNumber
-   METHOD document
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

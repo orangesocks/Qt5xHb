@@ -8,30 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QMediaTimeInterval
+$addRequests
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$beginClassFrom=
 
-   METHOD new
-   METHOD delete
+$addMethods
 
-   METHOD contains
-   METHOD end
-   METHOD isNormal
-   METHOD normalized
-   METHOD start
-   METHOD translated
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

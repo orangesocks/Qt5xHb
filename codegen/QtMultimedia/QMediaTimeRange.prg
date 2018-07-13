@@ -8,39 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QMEDIATIMEINTERVAL
-#endif
+$addRequests
 
-CLASS QMediaTimeRange
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD new
-
-   METHOD delete
-   METHOD addInterval
-   METHOD addTimeRange
-   METHOD clear
-   METHOD contains
-   METHOD earliestTime
-   METHOD intervals
-   METHOD isContinuous
-   METHOD isEmpty
-   METHOD latestTime
-   METHOD removeInterval
-   METHOD removeTimeRange
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

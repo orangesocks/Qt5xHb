@@ -8,35 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QMIMETYPE
-#endif
+$addRequests
 
-CLASS QMimeDatabase
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD new
-   METHOD delete
-   METHOD mimeTypeForName
-   METHOD mimeTypeForFile
-   METHOD mimeTypesForFileName
-   METHOD mimeTypeForData
-   METHOD mimeTypeForUrl
-   METHOD mimeTypeForFileNameAndData
-   METHOD suffixForFileName
-   METHOD allMimeTypes
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

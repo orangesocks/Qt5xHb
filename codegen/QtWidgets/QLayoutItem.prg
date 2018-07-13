@@ -8,47 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QRECT
-REQUEST QLAYOUT
-REQUEST QSIZE
-REQUEST QSPACERITEM
-REQUEST QWIDGET
-#endif
+$addRequests
 
-CLASS QLayoutItem
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD delete
-   METHOD alignment
-   METHOD controlTypes
-   METHOD expandingDirections
-   METHOD geometry
-   METHOD hasHeightForWidth
-   METHOD heightForWidth
-   METHOD invalidate
-   METHOD isEmpty
-   METHOD layout
-   METHOD maximumSize
-   METHOD minimumHeightForWidth
-   METHOD minimumSize
-   METHOD setAlignment
-   METHOD setGeometry
-   METHOD sizeHint
-   METHOD spacerItem
-   METHOD widget
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

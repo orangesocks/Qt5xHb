@@ -8,54 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QCOLOR
-REQUEST QTEXTDOCUMENT
-REQUEST QFONT
-REQUEST QTEXTCURSOR
-REQUEST QRECTF
-REQUEST QPAINTERPATH
-#endif
+$addRequests
 
-CLASS QGraphicsTextItem INHERIT QGraphicsObject
+$beginClassFrom=QGraphicsObject
 
-   METHOD new
-   METHOD delete
-   METHOD adjustSize
-   METHOD defaultTextColor
-   METHOD document
-   METHOD font
-   METHOD openExternalLinks
-   METHOD setDefaultTextColor
-   METHOD setDocument
-   METHOD setFont
-   METHOD setHtml
-   METHOD setOpenExternalLinks
-   METHOD setPlainText
-   METHOD setTabChangesFocus
-   METHOD setTextCursor
-   METHOD setTextInteractionFlags
-   METHOD setTextWidth
-   METHOD tabChangesFocus
-   METHOD textCursor
-   METHOD textInteractionFlags
-   METHOD textWidth
-   METHOD toHtml
-   METHOD toPlainText
-   METHOD boundingRect
-   METHOD contains
-   METHOD isObscuredBy
-   METHOD opaqueArea
-   METHOD paint
-   METHOD shape
-   METHOD type
+$addMethods
 
-   METHOD onLinkActivated
-   METHOD onLinkHovered
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

@@ -8,42 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QWEBHISTORYITEM
-#endif
+$addRequests
 
-CLASS QWebHistory
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD back
-   METHOD backItem
-   METHOD backItems
-   METHOD canGoBack
-   METHOD canGoForward
-   METHOD clear
-   METHOD count
-   METHOD currentItem
-   METHOD currentItemIndex
-   METHOD forward
-   METHOD forwardItem
-   METHOD forwardItems
-   METHOD goToItem
-   METHOD itemAt
-   METHOD items
-   METHOD maximumItemCount
-   METHOD setMaximumItemCount
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

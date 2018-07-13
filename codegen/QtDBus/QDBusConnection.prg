@@ -8,60 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QDBUSERROR
-REQUEST CONNECTIONCAPABILITIES
-REQUEST QDBUSMESSAGE
-REQUEST QDBUSPENDINGCALL
-REQUEST QOBJECT
-REQUEST QDBUSCONNECTIONINTERFACE
-REQUEST QBYTEARRAY
-#endif
+$addRequests
 
-CLASS QDBusConnection
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD new
-   METHOD delete
-   METHOD isConnected
-   METHOD baseService
-   METHOD lastError
-   METHOD name
-   METHOD connectionCapabilities
-   METHOD send
-   METHOD callWithCallback
-   METHOD call
-   METHOD asyncCall
-   METHOD connect
-   METHOD disconnect
-   METHOD registerObject
-   METHOD unregisterObject
-   METHOD objectRegisteredAt
-   METHOD registerVirtualObject
-   METHOD registerService
-   METHOD unregisterService
-   METHOD interface
-   METHOD internalPointer
-   METHOD connectToBus
-   METHOD connectToPeer
-   METHOD disconnectFromBus
-   METHOD disconnectFromPeer
-   METHOD localMachineId
-   METHOD sessionBus
-   METHOD systemBus
-   METHOD sender
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

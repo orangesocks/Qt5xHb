@@ -8,106 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QBRUSH
-REQUEST QCOLOR
-REQUEST QFONT
-REQUEST QPEN
-#endif
+$addRequests
 
-CLASS QAbstractAxis INHERIT QObject
+$beginClassFrom=QObject
 
-%%   METHOD new
-   METHOD delete
+$addMethods
 
-   METHOD alignment
-   METHOD gridLineColor
-   METHOD gridLinePen
-   METHOD hide
-   METHOD isGridLineVisible
-   METHOD isLineVisible
-   METHOD isMinorGridLineVisible
-   METHOD isReverse
-   METHOD isTitleVisible
-   METHOD isVisible
-   METHOD labelsAngle
-   METHOD labelsBrush
-   METHOD labelsColor
-   METHOD labelsFont
-   METHOD labelsVisible
-   METHOD linePen
-   METHOD linePenColor
-   METHOD minorGridLineColor
-   METHOD minorGridLinePen
-   METHOD orientation
-   METHOD setGridLineColor
-   METHOD setGridLinePen
-   METHOD setGridLineVisible
-   METHOD setLabelsAngle
-   METHOD setLabelsBrush
-   METHOD setLabelsColor
-   METHOD setLabelsFont
-   METHOD setLabelsVisible
-   METHOD setLinePen
-   METHOD setLinePenColor
-   METHOD setLineVisible
-   METHOD setMax
-   METHOD setMin
-   METHOD setMinorGridLineColor
-   METHOD setMinorGridLinePen
-   METHOD setMinorGridLineVisible
-   METHOD setRange
-   METHOD setReverse
-   METHOD setShadesBorderColor
-   METHOD setShadesBrush
-   METHOD setShadesColor
-   METHOD setShadesPen
-   METHOD setShadesVisible
-   METHOD setTitleBrush
-   METHOD setTitleFont
-   METHOD setTitleText
-   METHOD setTitleVisible
-   METHOD setVisible
-   METHOD shadesBorderColor
-   METHOD shadesBrush
-   METHOD shadesColor
-   METHOD shadesPen
-   METHOD shadesVisible
-   METHOD show
-   METHOD titleBrush
-   METHOD titleFont
-   METHOD titleText
-   METHOD type
+$addSignals
 
-   METHOD onColorChanged
-   METHOD onGridLineColorChanged
-   METHOD onGridLinePenChanged
-   METHOD onGridVisibleChanged
-   METHOD onLabelsAngleChanged
-   METHOD onLabelsBrushChanged
-   METHOD onLabelsColorChanged
-   METHOD onLabelsFontChanged
-   METHOD onLabelsVisibleChanged
-   METHOD onLinePenChanged
-   METHOD onLineVisibleChanged
-   METHOD onMinorGridLineColorChanged
-   METHOD onMinorGridLinePenChanged
-   METHOD onMinorGridVisibleChanged
-   METHOD onReverseChanged
-   METHOD onShadesBorderColorChanged
-   METHOD onShadesBrushChanged
-   METHOD onShadesColorChanged
-   METHOD onShadesPenChanged
-   METHOD onShadesVisibleChanged
-   METHOD onTitleBrushChanged
-   METHOD onTitleFontChanged
-   METHOD onTitleTextChanged
-   METHOD onTitleVisibleChanged
-   METHOD onVisibleChanged
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

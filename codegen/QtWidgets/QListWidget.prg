@@ -8,57 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QLISTWIDGETITEM
-REQUEST QWIDGET
-REQUEST QRECT
-#endif
+$addRequests
 
-CLASS QListWidget INHERIT QListView
+$beginClassFrom=QListView
 
-   METHOD new
-   METHOD delete
-   METHOD addItem
-   METHOD addItems
-   METHOD closePersistentEditor
-   METHOD count
-   METHOD currentItem
-   METHOD currentRow
-   METHOD editItem
-   METHOD insertItem
-   METHOD insertItems
-   METHOD isSortingEnabled
-   METHOD item
-   METHOD itemAt
-   METHOD itemWidget
-   METHOD openPersistentEditor
-   METHOD removeItemWidget
-   METHOD row
-   METHOD setCurrentItem
-   METHOD setCurrentRow
-   METHOD setItemWidget
-   METHOD setSortingEnabled
-   METHOD sortItems
-   METHOD takeItem
-   METHOD visualItemRect
-   METHOD dropEvent
-   METHOD clear
-   METHOD scrollToItem
+$addMethods
 
-   METHOD onCurrentItemChanged
-   METHOD onCurrentRowChanged
-   METHOD onCurrentTextChanged
-   METHOD onItemActivated
-   METHOD onItemChanged
-   METHOD onItemClicked
-   METHOD onItemDoubleClicked
-   METHOD onItemEntered
-   METHOD onItemPressed
-   METHOD onItemSelectionChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

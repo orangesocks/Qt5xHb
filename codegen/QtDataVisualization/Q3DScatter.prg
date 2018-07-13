@@ -8,33 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-CLASS Q3DScatter INHERIT QAbstract3DGraph
+$addRequests
 
-   METHOD new
-   METHOD delete
+$beginClassFrom=QAbstract3DGraph
 
-   METHOD addAxis
-   METHOD addSeries
-   METHOD axes
-   METHOD axisX
-   METHOD axisY
-   METHOD axisZ
-   METHOD releaseAxis
-   METHOD removeSeries
-   METHOD selectedSeries
-   METHOD seriesList
-   METHOD setAxisX
-   METHOD setAxisY
-   METHOD setAxisZ
+$addMethods
 
-   METHOD onAxisXChanged
-   METHOD onAxisYChanged
-   METHOD onAxisZChanged
-   METHOD onSelectedSeriesChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

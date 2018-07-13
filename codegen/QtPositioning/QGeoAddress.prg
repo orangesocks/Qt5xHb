@@ -8,46 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QGeoAddress
+$addRequests
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$beginClassFrom=
 
-   METHOD new1
-   METHOD new2
-   METHOD new
-   METHOD delete
-   METHOD text
-   METHOD setText
-   METHOD country
-   METHOD setCountry
-   METHOD countryCode
-   METHOD setCountryCode
-   METHOD state
-   METHOD setState
-   METHOD county
-   METHOD setCounty
-   METHOD city
-   METHOD setCity
-   METHOD district
-   METHOD setDistrict
-   METHOD postalCode
-   METHOD setPostalCode
-   METHOD street
-   METHOD setStreet
-   METHOD isEmpty
-   METHOD clear
-   METHOD isTextGenerated
+$addMethods
 
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

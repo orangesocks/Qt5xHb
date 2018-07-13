@@ -8,71 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QPLACECATEGORY
-REQUEST QGEOLOCATION
-REQUEST QPLACERATINGS
-REQUEST QPLACESUPPLIER
-REQUEST QPLACEICON
-REQUEST QURL
-REQUEST QPLACEATTRIBUTE
-REQUEST QPLACECONTACTDETAIL
-#endif
+$addRequests
 
-CLASS QPlace
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD new
-   METHOD delete
-   METHOD categories
-   METHOD setCategories
-   METHOD setCategory
-   METHOD location
-   METHOD setLocation
-   METHOD ratings
-   METHOD setRatings
-   METHOD supplier
-   METHOD setSupplier
-   METHOD attribution
-   METHOD setAttribution
-   METHOD icon
-   METHOD setIcon
-   METHOD totalContentCount
-   METHOD setTotalContentCount
-   METHOD name
-   METHOD setName
-   METHOD placeId
-   METHOD setPlaceId
-   METHOD primaryPhone
-   METHOD primaryFax
-   METHOD primaryEmail
-   METHOD primaryWebsite
-   METHOD detailsFetched
-   METHOD setDetailsFetched
-   METHOD extendedAttributeTypes
-   METHOD extendedAttribute
-   METHOD setExtendedAttribute
-   METHOD removeExtendedAttribute
-   METHOD contactTypes
-   METHOD contactDetails
-   METHOD setContactDetails
-   METHOD appendContactDetail
-   METHOD removeContactDetails
-   METHOD visibility
-   METHOD setVisibility
-   METHOD isEmpty
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

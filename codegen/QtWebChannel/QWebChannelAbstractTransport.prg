@@ -8,17 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QWebChannelAbstractTransport INHERIT QObject
+$addRequests
 
-%%   METHOD new
-   METHOD delete
-   METHOD sendMessage
+$beginClassFrom=QObject
 
-   METHOD onMessageReceived
+$addMethods
 
-   DESTRUCTOR destroyObject
+$addSignals
 
-END CLASS
+$endClass
 
 $destructor
 

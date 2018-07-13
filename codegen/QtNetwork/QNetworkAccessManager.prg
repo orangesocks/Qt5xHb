@@ -8,78 +8,44 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QNETWORKCONFIGURATION
-REQUEST QABSTRACTNETWORKCACHE
-REQUEST QNETWORKCOOKIEJAR
-REQUEST QNETWORKREPLY
-REQUEST QNETWORKPROXY
-REQUEST QNETWORKPROXYFACTORY
-#endif
+$addRequests
 
-CLASS QNetworkAccessManager INHERIT QObject
+$beginClassFrom=QObject
 
-   METHOD new
-   METHOD delete
-
-   METHOD supportedSchemes
-   METHOD clearAccessCache
-   METHOD clearConnectionCache
+$addMethods
 %% #ifndef QT_NO_NETWORKPROXY
-   METHOD proxy
-   METHOD setProxy
-   METHOD proxyFactory
-   METHOD setProxyFactory
-%% #endif
-   METHOD cache
-   METHOD setCache
-   METHOD cookieJar
-   METHOD setCookieJar
-   METHOD setStrictTransportSecurityEnabled
-   METHOD isStrictTransportSecurityEnabled
-   METHOD enableStrictTransportSecurityStore
-   METHOD isStrictTransportSecurityStoreEnabled
-   METHOD addStrictTransportSecurityHosts
-   METHOD strictTransportSecurityHosts
-   METHOD head
-   METHOD get
-   METHOD post
-   METHOD put
-   METHOD deleteResource
-   METHOD sendCustomRequest
-%% #ifndef QT_NO_BEARERMANAGEMENT
-   METHOD setConfiguration
-   METHOD configuration
-   METHOD activeConfiguration
-   METHOD setNetworkAccessible
-   METHOD networkAccessible
-%% #endif
-%% #ifndef QT_NO_SSL
-   METHOD connectToHostEncrypted
-%% #endif
-   METHOD connectToHost
-   METHOD setRedirectPolicy
-   METHOD redirectPolicy
-%%   METHOD createRequest
-
-%% #ifndef QT_NO_NETWORKPROXY
-   METHOD onProxyAuthenticationRequired
-%% #endif
-   METHOD onAuthenticationRequired
-   METHOD onFinished
-%% #ifndef QT_NO_SSL
-   METHOD onEncrypted
-   METHOD onSslErrors
-   METHOD onPreSharedKeyAuthenticationRequired
+%%   METHOD proxy
+%%   METHOD setProxy
+%%   METHOD proxyFactory
+%%   METHOD setProxyFactory
 %% #endif
 %% #ifndef QT_NO_BEARERMANAGEMENT
-   METHOD onNetworkSessionConnected
-   METHOD onNetworkAccessibleChanged
+%%   METHOD setConfiguration
+%%   METHOD configuration
+%%   METHOD activeConfiguration
+%%   METHOD setNetworkAccessible
+%%   METHOD networkAccessible
+%% #endif
+%% #ifndef QT_NO_SSL
+%%   METHOD connectToHostEncrypted
 %% #endif
 
-   DESTRUCTOR destroyObject
+$addSignals
 
-END CLASS
+%% #ifndef QT_NO_NETWORKPROXY
+%%   METHOD onProxyAuthenticationRequired
+%% #endif
+%% #ifndef QT_NO_SSL
+%%   METHOD onEncrypted
+%%   METHOD onSslErrors
+%%   METHOD onPreSharedKeyAuthenticationRequired
+%% #endif
+%% #ifndef QT_NO_BEARERMANAGEMENT
+%%   METHOD onNetworkSessionConnected
+%%   METHOD onNetworkAccessibleChanged
+%% #endif
+
+$endClass
 
 $destructor
 

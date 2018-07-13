@@ -8,21 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-CLASS Q3DObject INHERIT QObject
+$addRequests
 
-   METHOD new
-   METHOD delete
+$beginClassFrom=QObject
 
-   METHOD copyValuesFrom
-   METHOD parentScene
-   METHOD position
-   METHOD setPosition
+$addMethods
 
-   METHOD onPositionChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

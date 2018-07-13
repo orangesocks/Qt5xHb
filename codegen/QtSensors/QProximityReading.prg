@@ -8,15 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QProximityReading INHERIT QSensorReading
+$addRequests
 
-   METHOD delete
-   METHOD close
-   METHOD setClose
+$beginClassFrom=QSensorReading
 
-   DESTRUCTOR destroyObject
+$addMethods
 
-END CLASS
+$endClass
 
 $destructor
 

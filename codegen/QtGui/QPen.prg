@@ -8,49 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QBRUSH
-REQUEST QCOLOR
-#endif
+$addRequests
 
-CLASS QPen
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD new
-   METHOD delete
-   METHOD brush
-   METHOD capStyle
-   METHOD color
-   METHOD dashOffset
-   METHOD isCosmetic
-   METHOD isSolid
-   METHOD joinStyle
-   METHOD miterLimit
-   METHOD setBrush
-   METHOD setCapStyle
-   METHOD setColor
-   METHOD setCosmetic
-   METHOD setDashOffset
-   METHOD setJoinStyle
-   METHOD setMiterLimit
-   METHOD setStyle
-   METHOD setWidth
-   METHOD setWidthF
-   METHOD style
-   METHOD width
-   METHOD widthF
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

@@ -8,14 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QFinalState INHERIT QAbstractState
+$addRequests
 
-   METHOD new
-   METHOD delete
+$beginClassFrom=QAbstractState
 
-   DESTRUCTOR destroyObject
+$addMethods
 
-END CLASS
+$endClass
 
 $destructor
 

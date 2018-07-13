@@ -8,69 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QBYTEARRAY
-#endif
+$addRequests
 
-CLASS QUrl
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD new
-   METHOD delete
-   METHOD authority
-   METHOD clear
-   METHOD errorString
-   METHOD fragment
-   METHOD hasFragment
-   METHOD hasQuery
-   METHOD host
-   METHOD isEmpty
-   METHOD isLocalFile
-   METHOD isParentOf
-   METHOD isRelative
-   METHOD isValid
-   METHOD password
-   METHOD path
-   METHOD port
-   METHOD resolved
-   METHOD scheme
-   METHOD setAuthority
-   METHOD setFragment
-   METHOD setHost
-   METHOD setPassword
-   METHOD setPath
-   METHOD setPort
-   METHOD setScheme
-   METHOD setUrl
-   METHOD setUserInfo
-   METHOD setUserName
-   METHOD swap
-   METHOD toEncoded
-   METHOD toLocalFile
-   METHOD toString
-   METHOD topLevelDomain
-   METHOD userInfo
-   METHOD userName
-   METHOD fromAce
-   METHOD fromEncoded
-   METHOD fromLocalFile
-   METHOD fromPercentEncoding
-   METHOD fromUserInput
-   METHOD setIdnWhitelist
-   METHOD toAce
-   METHOD toPercentEncoding
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

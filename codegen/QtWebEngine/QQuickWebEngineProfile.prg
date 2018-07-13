@@ -8,61 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QQuickWebEngineProfile INHERIT QObject
+$addRequests
 
-   METHOD new
-   METHOD delete
+$beginClassFrom=QObject
 
-   METHOD cachePath
-   METHOD clearHttpCache
-   METHOD cookieStore
-   METHOD defaultProfile
-   METHOD httpAcceptLanguage
-   METHOD httpCacheMaximumSize
-   METHOD httpCacheType
-   METHOD httpUserAgent
-   METHOD installUrlSchemeHandler
-   METHOD isOffTheRecord
-   METHOD isSpellCheckEnabled
-   METHOD persistentCookiesPolicy
-   METHOD persistentStoragePath
-   METHOD removeAllUrlSchemeHandlers
-   METHOD removeUrlScheme
-   METHOD removeUrlSchemeHandler
-   METHOD setCachePath
-   METHOD setHttpAcceptLanguage
-   METHOD setHttpCacheMaximumSize
-   METHOD setHttpCacheType
-   METHOD setHttpUserAgent
-   METHOD setOffTheRecord
-   METHOD setPersistentCookiesPolicy
-   METHOD setPersistentStoragePath
-   METHOD setRequestInterceptor
-   METHOD setSpellCheckEnabled
-   METHOD setSpellCheckLanguages
-   METHOD setStorageName
-   METHOD spellCheckLanguages
-   METHOD storageName
-   METHOD urlSchemeHandler
-%%   METHOD userScripts
+$addMethods
 
-   METHOD onCachePathChanged
-%%   METHOD onDownloadFinished
-%%   METHOD onDownloadRequested
-   METHOD onHttpAcceptLanguageChanged
-   METHOD onHttpCacheMaximumSizeChanged
-   METHOD onHttpCacheTypeChanged
-   METHOD onHttpUserAgentChanged
-   METHOD onOffTheRecordChanged
-   METHOD onPersistentCookiesPolicyChanged
-   METHOD onPersistentStoragePathChanged
-   METHOD onSpellCheckEnabledChanged
-   METHOD onSpellCheckLanguagesChanged
-   METHOD onStorageNameChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

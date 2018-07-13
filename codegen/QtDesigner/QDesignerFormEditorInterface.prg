@@ -8,35 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QDESIGNERACTIONEDITORINTERFACE
-REQUEST QEXTENSIONMANAGER
-REQUEST QDESIGNERFORMWINDOWMANAGERINTERFACE
-REQUEST QDESIGNEROBJECTINSPECTORINTERFACE
-REQUEST QDESIGNERPROPERTYEDITORINTERFACE
-REQUEST QWIDGET
-REQUEST QDESIGNERWIDGETBOXINTERFACE
-#endif
+$addRequests
 
-CLASS QDesignerFormEditorInterface INHERIT QObject
+$beginClassFrom=QObject
 
-   METHOD new
-   METHOD delete
-   METHOD actionEditor
-   METHOD extensionManager
-   METHOD formWindowManager
-   METHOD objectInspector
-   METHOD propertyEditor
-   METHOD setActionEditor
-   METHOD setObjectInspector
-   METHOD setPropertyEditor
-   METHOD setWidgetBox
-   METHOD topLevel
-   METHOD widgetBox
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

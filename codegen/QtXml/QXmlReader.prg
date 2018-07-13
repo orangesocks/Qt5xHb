@@ -8,50 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QXMLDTDHANDLER
-REQUEST QXMLCONTENTHANDLER
-REQUEST QXMLDECLHANDLER
-REQUEST QXMLENTITYRESOLVER
-REQUEST QXMLERRORHANDLER
-REQUEST QXMLLEXICALHANDLER
-#endif
+$addRequests
 
-CLASS QXmlReader
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD delete
-   METHOD DTDHandler
-   METHOD contentHandler
-   METHOD declHandler
-   METHOD entityResolver
-   METHOD errorHandler
-   METHOD feature
-   METHOD hasFeature
-   METHOD hasProperty
-   METHOD lexicalHandler
-   METHOD parse
-   METHOD property
-   METHOD setContentHandler
-   METHOD setDTDHandler
-   METHOD setDeclHandler
-   METHOD setEntityResolver
-   METHOD setErrorHandler
-   METHOD setFeature
-   METHOD setLexicalHandler
-   METHOD setProperty
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

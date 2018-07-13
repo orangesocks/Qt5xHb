@@ -8,22 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QSIZE
-#endif
+$addRequests
 
-CLASS QWidgetItemV2 INHERIT QWidgetItem
+$beginClassFrom=QWidgetItem
 
-   METHOD new
-   METHOD delete
-   METHOD sizeHint
-   METHOD minimumSize
-   METHOD maximumSize
-   METHOD heightForWidth
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

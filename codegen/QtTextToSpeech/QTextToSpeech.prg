@@ -8,45 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QLOCALE
-REQUEST QVOICE
-#endif
+$addRequests
 
-CLASS QTextToSpeech INHERIT QObject
+$beginClassFrom=QObject
 
-   METHOD new
-%%   METHOD delete
+$addMethods
 
-   METHOD availableEngines
-   METHOD availableLocales
-   METHOD availableVoices
-   METHOD locale
-   METHOD pause
-   METHOD pitch
-   METHOD rate
-   METHOD resume
-   METHOD say
-   METHOD setLocale
-   METHOD setPitch
-   METHOD setRate
-   METHOD setVoice
-   METHOD setVolume
-   METHOD state
-   METHOD stop
-   METHOD voice
-   METHOD volume
+$addSignals
 
-   METHOD onLocaleChanged
-   METHOD onPitchChanged
-   METHOD onRateChanged
-   METHOD onStateChanged
-   METHOD onVoiceChanged
-   METHOD onVolumeChanged
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

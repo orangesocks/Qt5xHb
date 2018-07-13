@@ -12,8 +12,6 @@
 
 #include "QAbstractOAuth2Slots.h"
 
-static QAbstractOAuth2Slots * s = NULL;
-
 QAbstractOAuth2Slots::QAbstractOAuth2Slots(QObject *parent) : QObject(parent)
 {
 }
@@ -21,6 +19,7 @@ QAbstractOAuth2Slots::QAbstractOAuth2Slots(QObject *parent) : QObject(parent)
 QAbstractOAuth2Slots::~QAbstractOAuth2Slots()
 {
 }
+#if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
 void QAbstractOAuth2Slots::clientIdentifierSharedKeyChanged( const QString & clientIdentifierSharedKey )
 {
   QObject *object = qobject_cast<QObject *>(sender());
@@ -34,6 +33,8 @@ void QAbstractOAuth2Slots::clientIdentifierSharedKeyChanged( const QString & cli
     hb_itemRelease( pclientIdentifierSharedKey );
   }
 }
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
 void QAbstractOAuth2Slots::error( const QString & error, const QString & errorDescription, const QUrl & uri )
 {
   QObject *object = qobject_cast<QObject *>(sender());
@@ -51,6 +52,8 @@ void QAbstractOAuth2Slots::error( const QString & error, const QString & errorDe
     hb_itemRelease( puri );
   }
 }
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
 void QAbstractOAuth2Slots::expirationAtChanged( const QDateTime & expiration )
 {
   QObject *object = qobject_cast<QObject *>(sender());
@@ -64,6 +67,8 @@ void QAbstractOAuth2Slots::expirationAtChanged( const QDateTime & expiration )
     hb_itemRelease( pexpiration );
   }
 }
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
 void QAbstractOAuth2Slots::responseTypeChanged( const QString & responseType )
 {
   QObject *object = qobject_cast<QObject *>(sender());
@@ -77,6 +82,8 @@ void QAbstractOAuth2Slots::responseTypeChanged( const QString & responseType )
     hb_itemRelease( presponseType );
   }
 }
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
 void QAbstractOAuth2Slots::scopeChanged( const QString & scope )
 {
   QObject *object = qobject_cast<QObject *>(sender());
@@ -90,6 +97,8 @@ void QAbstractOAuth2Slots::scopeChanged( const QString & scope )
     hb_itemRelease( pscope );
   }
 }
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
 void QAbstractOAuth2Slots::stateChanged( const QString & state )
 {
   QObject *object = qobject_cast<QObject *>(sender());
@@ -103,6 +112,8 @@ void QAbstractOAuth2Slots::stateChanged( const QString & state )
     hb_itemRelease( pstate );
   }
 }
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
 void QAbstractOAuth2Slots::userAgentChanged( const QString & userAgent )
 {
   QObject *object = qobject_cast<QObject *>(sender());
@@ -116,13 +127,31 @@ void QAbstractOAuth2Slots::userAgentChanged( const QString & userAgent )
     hb_itemRelease( puserAgent );
   }
 }
+#endif
 
 void QAbstractOAuth2Slots_connect_signal ( const QString & signal, const QString & slot )
 {
-  if( s == NULL )
-  {
-    s = new QAbstractOAuth2Slots( QCoreApplication::instance() );
-  }
+#if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
+  QAbstractOAuth2 * obj = (QAbstractOAuth2 *) hb_itemGetPtr( hb_objSendMsg( hb_stackSelfItem(), "POINTER", 0 ) );
 
-  hb_retl( Signals_connection_disconnection( s, signal, slot ) );
+  if( obj )
+  {
+    QAbstractOAuth2Slots * s = QCoreApplication::instance()->findChild<QAbstractOAuth2Slots *>();
+
+    if( s == NULL )
+    {
+      s = new QAbstractOAuth2Slots();
+      s->moveToThread( QCoreApplication::instance()->thread() );
+      s->setParent( QCoreApplication::instance() );
+    }
+
+    hb_retl( Signals_connection_disconnection( s, signal, slot ) );
+  }
+  else
+  {
+    hb_retl( false );
+  }
+#else
+  hb_retl( false );
+#endif
 }

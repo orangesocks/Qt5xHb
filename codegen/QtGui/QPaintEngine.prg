@@ -8,48 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QPAINTDEVICE
-REQUEST QPAINTER
-#endif
+$addRequests
 
-CLASS QPaintEngine
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD delete
-   METHOD begin
-   METHOD drawEllipse1
-   METHOD drawEllipse2
-   METHOD drawEllipse
-   METHOD drawImage
-   METHOD drawLines
-   METHOD drawPath
-   METHOD drawPixmap
-   METHOD drawPoints
-   METHOD drawPolygon
-   METHOD drawRects
-   METHOD drawTextItem
-   METHOD drawTiledPixmap
-   METHOD end
-   METHOD hasFeature
-   METHOD isActive
-   METHOD paintDevice
-   METHOD painter
-   METHOD setActive
-   METHOD type
-   METHOD updateState
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

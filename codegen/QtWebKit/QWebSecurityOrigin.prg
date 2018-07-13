@@ -8,39 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QWEBDATABASE
-#endif
+$addRequests
 
-CLASS QWebSecurityOrigin
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD new
-   METHOD delete
-
-   METHOD addLocalScheme
-   METHOD allOrigins
-   METHOD databaseQuota
-   METHOD databases
-   METHOD databaseUsage
-   METHOD host
-   METHOD localSchemes
-   METHOD port
-   METHOD removeLocalScheme
-   METHOD scheme
-   METHOD setDatabaseQuota
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

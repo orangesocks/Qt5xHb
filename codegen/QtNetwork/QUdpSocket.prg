@@ -12,26 +12,19 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QUdpSocket INHERIT QAbstractSocket
+$addRequests
 
-   METHOD new
-   METHOD delete
+$beginClassFrom=QAbstractSocket
 
+$addMethods
 %% #ifndef QT_NO_NETWORKINTERFACE
-   METHOD joinMulticastGroup
-   METHOD leaveMulticastGroup
-   METHOD multicastInterface
-   METHOD setMulticastInterface
+%%   METHOD joinMulticastGroup
+%%   METHOD leaveMulticastGroup
+%%   METHOD multicastInterface
+%%   METHOD setMulticastInterface
 %% #endif
-   METHOD hasPendingDatagrams
-   METHOD pendingDatagramSize
-   METHOD receiveDatagram
-%%   METHOD readDatagram
-   METHOD writeDatagram
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

@@ -8,34 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QHBarModelMapper INHERIT QBarModelMapper
+$addRequests
 
-   METHOD new
-%%   METHOD delete
+$beginClassFrom=QBarModelMapper
 
-   METHOD columnCount
-   METHOD firstBarSetRow
-   METHOD firstColumn
-   METHOD lastBarSetRow
-   METHOD model
-   METHOD series
-   METHOD setColumnCount
-   METHOD setFirstBarSetRow
-   METHOD setFirstColumn
-   METHOD setLastBarSetRow
-   METHOD setModel
-   METHOD setSeries
+$addMethods
 
-   METHOD onColumnCountChanged
-   METHOD onFirstBarSetRowChanged
-   METHOD onFirstColumnChanged
-   METHOD onLastBarSetRowChanged
-   METHOD onModelReplaced
-   METHOD onSeriesReplaced
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

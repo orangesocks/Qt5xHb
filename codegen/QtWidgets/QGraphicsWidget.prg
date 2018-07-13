@@ -8,76 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QFONT
-REQUEST QGRAPHICSLAYOUT
-REQUEST QPALETTE
-REQUEST QRECTF
-REQUEST QSIZEF
-REQUEST QSTYLE
-REQUEST QPAINTERPATH
-#endif
+$addRequests
 
-CLASS QGraphicsWidget INHERIT QGraphicsObject,QGraphicsLayoutItem
+$beginClassFrom=QGraphicsObject,QGraphicsLayoutItem
 
-   METHOD new
-   METHOD delete
-   METHOD addAction
-   METHOD adjustSize
-   METHOD autoFillBackground
-   METHOD focusPolicy
-   METHOD focusWidget
-   METHOD font
-   METHOD getWindowFrameMargins
-   METHOD grabShortcut
-   METHOD insertAction
-   METHOD isActiveWindow
-   METHOD layout
-   METHOD layoutDirection
-   METHOD paintWindowFrame
-   METHOD palette
-   METHOD rect
-   METHOD releaseShortcut
-   METHOD removeAction
-   METHOD resize
-   METHOD setAttribute
-   METHOD setAutoFillBackground
-   METHOD setContentsMargins
-   METHOD setFocusPolicy
-   METHOD setFont
-   METHOD setGeometry
-   METHOD setLayout
-   METHOD setLayoutDirection
-   METHOD setPalette
-   METHOD setShortcutAutoRepeat
-   METHOD setShortcutEnabled
-   METHOD setStyle
-   METHOD setWindowFlags
-   METHOD setWindowFrameMargins
-   METHOD setWindowTitle
-   METHOD size
-   METHOD style
-   METHOD testAttribute
-   METHOD unsetLayoutDirection
-   METHOD unsetWindowFrameMargins
-   METHOD windowFlags
-   METHOD windowFrameGeometry
-   METHOD windowFrameRect
-   METHOD windowTitle
-   METHOD windowType
-   METHOD boundingRect
-   METHOD getContentsMargins
-   METHOD paint
-   METHOD shape
-   METHOD type
-   METHOD close
-   METHOD setTabOrder
+$addMethods
 
-   METHOD onGeometryChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

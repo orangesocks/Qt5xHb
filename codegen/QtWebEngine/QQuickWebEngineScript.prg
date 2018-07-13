@@ -8,35 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QQuickWebEngineScript INHERIT QObject
+$addRequests
 
-   METHOD new
-   METHOD delete
+$beginClassFrom=QObject
 
-   METHOD injectionPoint
-   METHOD name
-   METHOD runOnSubframes
-   METHOD setInjectionPoint
-   METHOD setName
-   METHOD setRunOnSubframes
-   METHOD setSourceCode
-   METHOD setSourceUrl
-   METHOD setWorldId
-   METHOD sourceCode
-   METHOD sourceUrl
-   METHOD toString
-   METHOD worldId
+$addMethods
 
-   METHOD onInjectionPointChanged
-   METHOD onNameChanged
-   METHOD onRunOnSubframesChanged
-   METHOD onSourceCodeChanged
-   METHOD onSourceUrlChanged
-   METHOD onWorldIdChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

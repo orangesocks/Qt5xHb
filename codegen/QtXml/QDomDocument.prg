@@ -8,51 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QDOMATTR
-REQUEST QDOMCDATASECTION
-REQUEST QDOMCOMMENT
-REQUEST QDOMDOCUMENTFRAGMENT
-REQUEST QDOMELEMENT
-REQUEST QDOMENTITYREFERENCE
-REQUEST QDOMPROCESSINGINSTRUCTION
-REQUEST QDOMTEXT
-REQUEST QDOMDOCUMENTTYPE
-REQUEST QDOMNODELIST
-REQUEST QDOMIMPLEMENTATION
-REQUEST QDOMNODE
-REQUEST QBYTEARRAY
-#endif
+$addRequests
 
-CLASS QDomDocument INHERIT QDomNode
+$beginClassFrom=QDomNode
 
-   METHOD new
-   METHOD delete
-   METHOD createAttribute
-   METHOD createAttributeNS
-   METHOD createCDATASection
-   METHOD createComment
-   METHOD createDocumentFragment
-   METHOD createElement
-   METHOD createElementNS
-   METHOD createEntityReference
-   METHOD createProcessingInstruction
-   METHOD createTextNode
-   METHOD doctype
-   METHOD documentElement
-   METHOD elementById
-   METHOD elementsByTagName
-   METHOD elementsByTagNameNS
-   METHOD implementation
-   METHOD importNode
-   METHOD nodeType
-   METHOD setContent
-   METHOD toByteArray
-   METHOD toString
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

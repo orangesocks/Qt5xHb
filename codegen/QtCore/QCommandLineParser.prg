@@ -8,46 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QCOMMANDLINEOPTION
-#endif
+$addRequests
 
-CLASS QCommandLineParser
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD new
-   METHOD delete
-   METHOD setSingleDashWordOptionMode
-   METHOD addOption
-   METHOD addVersionOption
-   METHOD addHelpOption
-   METHOD setApplicationDescription
-   METHOD applicationDescription
-   METHOD addPositionalArgument
-   METHOD clearPositionalArguments
-   METHOD process
-   METHOD parse
-   METHOD errorText
-   METHOD isSet
-   METHOD value
-   METHOD values
-   METHOD positionalArguments
-   METHOD optionNames
-   METHOD unknownOptionNames
-   METHOD showHelp
-   METHOD helpText
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

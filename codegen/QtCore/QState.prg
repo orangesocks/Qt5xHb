@@ -8,33 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QSIGNALTRANSITION
-REQUEST QABSTRACTTRANSITION
-REQUEST QABSTRACTSTATE
-#endif
+$addRequests
 
-CLASS QState INHERIT QAbstractState
+$beginClassFrom=QAbstractState
 
-   METHOD new
-   METHOD delete
-   METHOD addTransition
-   METHOD assignProperty
-   METHOD childMode
-   METHOD errorState
-   METHOD initialState
-   METHOD removeTransition
-   METHOD setChildMode
-   METHOD setErrorState
-   METHOD setInitialState
-   METHOD transitions
+$addMethods
 
-   METHOD onFinished
-   METHOD onPropertiesAssigned
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

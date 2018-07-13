@@ -8,45 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QGEOCOORDINATE
-REQUEST QGEORECTANGLE
-#endif
+$addRequests
 
-CLASS QGeoRouteRequest
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD new
-   METHOD delete
-   METHOD setWaypoints
-   METHOD waypoints
-   METHOD setExcludeAreas
-   METHOD excludeAreas
-   METHOD setNumberAlternativeRoutes
-   METHOD numberAlternativeRoutes
-   METHOD setTravelModes
-   METHOD travelModes
-   METHOD setFeatureWeight
-   METHOD featureWeight
-   METHOD featureTypes
-   METHOD setRouteOptimization
-   METHOD routeOptimization
-   METHOD setSegmentDetail
-   METHOD segmentDetail
-   METHOD setManeuverDetail
-   METHOD maneuverDetail
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

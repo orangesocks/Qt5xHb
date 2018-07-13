@@ -8,25 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QMediaServiceSupportedFormatsInterface
+$addRequests
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$beginClassFrom=
 
-   METHOD delete
+$addMethods
 
-   METHOD hasSupport
-   METHOD supportedMimeTypes
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

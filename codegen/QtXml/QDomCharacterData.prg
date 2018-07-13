@@ -8,23 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QDomCharacterData INHERIT QDomNode
+$addRequests
 
-   METHOD new
-   METHOD delete
-   METHOD appendData
-   METHOD data
-   METHOD deleteData
-   METHOD insertData
-   METHOD length
-   METHOD nodeType
-   METHOD replaceData
-   METHOD setData
-   METHOD substringData
+$beginClassFrom=QDomNode
 
-   DESTRUCTOR destroyObject
+$addMethods
 
-END CLASS
+$endClass
 
 $destructor
 

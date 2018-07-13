@@ -8,37 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QSurface3DSeries INHERIT QAbstract3DSeries
+$addRequests
 
-   METHOD new
-   METHOD delete
+$beginClassFrom=QAbstract3DSeries
 
-   METHOD dataProxy
-   METHOD drawMode
-   METHOD invalidSelectionPosition
-   METHOD isFlatShadingEnabled
-   METHOD isFlatShadingSupported
-   METHOD selectedPoint
-   METHOD setDataProxy
-   METHOD setDrawMode
-   METHOD setFlatShadingEnabled
-   METHOD setSelectedPoint
-   METHOD setTexture
-   METHOD setTextureFile
-   METHOD texture
-   METHOD textureFile
+$addMethods
 
-   METHOD onDataProxyChanged
-   METHOD onDrawModeChanged
-   METHOD onFlatShadingEnabledChanged
-   METHOD onFlatShadingSupportedChanged
-   METHOD onSelectedPointChanged
-   METHOD onTextureChanged
-   METHOD onTextureFileChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

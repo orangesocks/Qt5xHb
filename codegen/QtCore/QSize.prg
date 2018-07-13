@@ -8,34 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QSize
+$addRequests
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$beginClassFrom=
 
-   METHOD new
-   METHOD delete
-   METHOD boundedTo
-   METHOD expandedTo
-   METHOD height
-   METHOD isEmpty
-   METHOD isNull
-   METHOD isValid
-   METHOD scale
-   METHOD setHeight
-   METHOD setWidth
-   METHOD transpose
-   METHOD width
+$addMethods
 
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

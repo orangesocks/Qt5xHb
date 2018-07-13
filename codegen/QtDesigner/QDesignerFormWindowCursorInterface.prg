@@ -8,38 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QWIDGET
-REQUEST QDESIGNERFORMWINDOWINTERFACE
-#endif
+$addRequests
 
-CLASS QDesignerFormWindowCursorInterface
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD delete
-   METHOD current
-   METHOD formWindow
-   METHOD hasSelection
-   METHOD isWidgetSelected
-   METHOD movePosition
-   METHOD position
-   METHOD selectedWidget
-   METHOD selectedWidgetCount
-   METHOD setPosition
-   METHOD widget
-   METHOD widgetCount
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

@@ -8,17 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QHelpIndexWidget INHERIT QListView
+$addRequests
 
-   METHOD delete
-   METHOD activateCurrentItem
-   METHOD filterIndices
+$beginClassFrom=QListView
 
-   METHOD onLinkActivated
+$addMethods
 
-   DESTRUCTOR destroyObject
+$addSignals
 
-END CLASS
+$endClass
 
 $destructor
 

@@ -8,45 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QAbstract3DAxis INHERIT QObject
+$addRequests
 
-%%   METHOD new
-   METHOD delete
+$beginClassFrom=QObject
 
-   METHOD isAutoAdjustRange
-   METHOD isTitleFixed
-   METHOD isTitleVisible
-   METHOD labelAutoRotation
-   METHOD labels
-   METHOD max
-   METHOD min
-   METHOD orientation
-   METHOD setAutoAdjustRange
-   METHOD setLabelAutoRotation
-   METHOD setLabels
-   METHOD setMax
-   METHOD setMin
-   METHOD setRange
-   METHOD setTitle
-   METHOD setTitleFixed
-   METHOD setTitleVisible
-   METHOD title
-   METHOD type
+$addMethods
 
-   METHOD onAutoAdjustRangeChanged
-   METHOD onLabelAutoRotationChanged
-   METHOD onLabelsChanged
-   METHOD onMaxChanged
-   METHOD onMinChanged
-   METHOD onOrientationChanged
-   METHOD onRangeChanged
-   METHOD onTitleChanged
-   METHOD onTitleFixedChanged
-   METHOD onTitleVisibilityChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

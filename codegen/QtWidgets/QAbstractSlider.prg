@@ -8,44 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QAbstractSlider INHERIT QWidget
+$addRequests
 
-   METHOD delete
-   METHOD maximum
-   METHOD setMaximum
-   METHOD minimum
-   METHOD setMinimum
-   METHOD orientation
-   METHOD setOrientation
-   METHOD pageStep
-   METHOD setPageStep
-   METHOD invertedAppearance
-   METHOD setInvertedAppearance
-   METHOD invertedControls
-   METHOD setInvertedControls
-   METHOD setRange
-   METHOD isSliderDown
-   METHOD setSliderDown
-   METHOD singleStep
-   METHOD setSingleStep
-   METHOD sliderPosition
-   METHOD setSliderPosition
-   METHOD triggerAction
-   METHOD value
-   METHOD setValue
-   METHOD hasTracking
-   METHOD setTracking
+$beginClassFrom=QWidget
 
-   METHOD onActionTriggered
-   METHOD onRangeChanged
-   METHOD onSliderMoved
-   METHOD onSliderPressed
-   METHOD onSliderReleased
-   METHOD onValueChanged
+$addMethods
 
-   DESTRUCTOR destroyObject
+$addSignals
 
-END CLASS
+$endClass
 
 $destructor
 

@@ -8,31 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QDateTimeAxis INHERIT QAbstractAxis
+$addRequests
 
-   METHOD new
-   METHOD delete
+$beginClassFrom=QAbstractAxis
 
-   METHOD format
-   METHOD max
-   METHOD min
-   METHOD setFormat
-   METHOD setMax
-   METHOD setMin
-   METHOD setRange
-   METHOD setTickCount
-   METHOD tickCount
-   METHOD type
+$addMethods
 
-   METHOD onFormatChanged
-   METHOD onMaxChanged
-   METHOD onMinChanged
-   METHOD onRangeChanged
-   METHOD onTickCountChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

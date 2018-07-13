@@ -8,37 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QPIXMAP
-#endif
+$addRequests
 
-CLASS QPixmapCache
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD delete
-   METHOD cacheLimit
-   METHOD setCacheLimit
-   METHOD find1
-   METHOD find2
-   METHOD find3
-   METHOD find
-   METHOD insert1
-   METHOD insert
-   METHOD remove1
-   METHOD remove
-   METHOD clear
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

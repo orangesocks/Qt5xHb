@@ -8,42 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QMODELINDEX
-REQUEST QABSTRACTITEMMODEL
-#endif
+$addRequests
 
-CLASS QItemSelectionModel INHERIT QObject
+$beginClassFrom=QObject
 
-   METHOD new
-   METHOD delete
-   METHOD currentIndex
-   METHOD isSelected
-   METHOD isRowSelected
-   METHOD isColumnSelected
-   METHOD rowIntersectsSelection
-   METHOD columnIntersectsSelection
-   METHOD hasSelection
-   METHOD selectedIndexes
-   METHOD selectedRows
-   METHOD selectedColumns
-   METHOD selection
-   METHOD model
-   METHOD setCurrentIndex
-   METHOD select
-   METHOD clear
-   METHOD reset
-   METHOD clearSelection
-   METHOD clearCurrentIndex
+$addMethods
 
-   METHOD onSelectionChanged
-   METHOD onCurrentChanged
-   METHOD onCurrentRowChanged
-   METHOD onCurrentColumnChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

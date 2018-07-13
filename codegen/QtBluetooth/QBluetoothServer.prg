@@ -8,36 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QBLUETOOTHSERVICEINFO
-REQUEST QBLUETOOTHSOCKET
-REQUEST QBLUETOOTHADDRESS
-#endif
+$addRequests
 
-CLASS QBluetoothServer INHERIT QObject
+$beginClassFrom=QObject
 
-   METHOD new
-   METHOD delete
-   METHOD close
-   METHOD listen
-   METHOD isListening
-   METHOD setMaxPendingConnections
-   METHOD maxPendingConnections
-   METHOD hasPendingConnections
-   METHOD nextPendingConnection
-   METHOD serverAddress
-   METHOD serverPort
-   METHOD setSecurityFlags
-   METHOD securityFlags
-   METHOD serverType
-   METHOD error
+$addMethods
 
-   METHOD onNewConnection
-   METHOD onError
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

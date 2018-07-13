@@ -8,16 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QPictureFormatPlugin INHERIT QObject
+$addRequests
 
-   METHOD delete
-   METHOD loadPicture
-   METHOD savePicture
-   METHOD installIOHandler
+$beginClassFrom=QObject
 
-   DESTRUCTOR destroyObject
+$addMethods
 
-END CLASS
+$endClass
 
 $destructor
 

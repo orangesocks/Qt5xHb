@@ -8,40 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QPAINTENGINE
-#endif
+$addRequests
 
-CLASS QPaintDevice
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD delete
-   METHOD colorCount
-   METHOD depth
-   METHOD height
-   METHOD heightMM
-   METHOD logicalDpiX
-   METHOD logicalDpiY
-   METHOD paintEngine
-   METHOD paintingActive
-   METHOD physicalDpiX
-   METHOD physicalDpiY
-   METHOD width
-   METHOD widthMM
-   METHOD devType
-   METHOD devicePixelRatio
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

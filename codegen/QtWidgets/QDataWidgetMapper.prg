@@ -8,49 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QABSTRACTITEMDELEGATE
-REQUEST QBYTEARRAY
-REQUEST QWIDGET
-REQUEST QABSTRACTITEMMODEL
-REQUEST QMODELINDEX
-#endif
+$addRequests
 
-CLASS QDataWidgetMapper INHERIT QObject
+$beginClassFrom=QObject
 
-   METHOD new
-   METHOD delete
-   METHOD addMapping
-   METHOD clearMapping
-   METHOD currentIndex
-   METHOD itemDelegate
-   METHOD mappedPropertyName
-   METHOD mappedSection
-   METHOD mappedWidgetAt
-   METHOD model
-   METHOD orientation
-   METHOD removeMapping
-   METHOD rootIndex
-   METHOD setItemDelegate
-   METHOD setModel
-   METHOD setOrientation
-   METHOD setRootIndex
-   METHOD setSubmitPolicy
-   METHOD submitPolicy
-   METHOD revert
-   METHOD setCurrentIndex
-   METHOD setCurrentModelIndex
-   METHOD submit
-   METHOD toFirst
-   METHOD toLast
-   METHOD toNext
-   METHOD toPrevious
+$addMethods
 
-   METHOD onCurrentIndexChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

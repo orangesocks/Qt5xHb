@@ -8,16 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QPlaceSearchSuggestionReply INHERIT QPlaceReply
+$addRequests
 
-   METHOD new
-   METHOD delete
-   METHOD suggestions
-   METHOD type
+$beginClassFrom=QPlaceReply
 
-   DESTRUCTOR destroyObject
+$addMethods
 
-END CLASS
+$endClass
 
 $destructor
 

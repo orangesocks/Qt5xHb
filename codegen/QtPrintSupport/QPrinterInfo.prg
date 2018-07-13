@@ -8,49 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QPAGESIZE
-#endif
+$addRequests
 
-CLASS QPrinterInfo
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD new
-   METHOD delete
-   METHOD isDefault
-   METHOD isNull
-   METHOD printerName
-   METHOD supportedPaperSizes
-   METHOD availablePrinters
-   METHOD defaultPrinter
-   METHOD description
-   METHOD location
-   METHOD makeAndModel
-   METHOD isRemote
-   METHOD state
-   METHOD supportedPageSizes
-   METHOD defaultPageSize
-   METHOD supportsCustomPageSizes
-   METHOD minimumPhysicalPageSize
-   METHOD maximumPhysicalPageSize
-   METHOD supportedResolutions
-   METHOD availablePrinterNames
-   METHOD defaultPrinterName
-   METHOD printerInfo
-   METHOD defaultDuplexMode
-   METHOD supportedDuplexModes
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

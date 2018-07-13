@@ -8,33 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QVECTOR3D
-#endif
+$addRequests
 
-CLASS QGraphicsScale INHERIT QGraphicsTransform
+$beginClassFrom=QGraphicsTransform
 
-   METHOD new
-   METHOD delete
-   METHOD origin
-   METHOD setOrigin
-   METHOD setXScale
-   METHOD setYScale
-   METHOD setZScale
-   METHOD xScale
-   METHOD yScale
-   METHOD zScale
-   METHOD applyTo
+$addMethods
 
-   METHOD onOriginChanged
-   METHOD onScaleChanged
-   METHOD onXScaleChanged
-   METHOD onYScaleChanged
-   METHOD onZScaleChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

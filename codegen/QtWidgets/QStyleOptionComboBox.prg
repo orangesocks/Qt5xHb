@@ -8,28 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QStyleOptionComboBox INHERIT QStyleOptionComplex
+$addRequests
 
-   METHOD new
-%%   METHOD delete
+$beginClassFrom=QStyleOptionComplex
 
-   METHOD editable
-   METHOD popupRect
-   METHOD frame
-   METHOD currentText
-   METHOD currentIcon
-   METHOD iconSize
+$addMethods
 
-   METHOD setEditable
-   METHOD setPopupRect
-   METHOD setFrame
-   METHOD setCurrentText
-   METHOD setCurrentIcon
-   METHOD setIconSize
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

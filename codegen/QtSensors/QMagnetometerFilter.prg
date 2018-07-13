@@ -8,14 +8,11 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QMagnetometerFilter INHERIT QSensorFilter
+$beginClassFrom=QSensorFilter
 
-   METHOD delete
-   METHOD filter
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

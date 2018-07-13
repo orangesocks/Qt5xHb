@@ -8,28 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QSqlRelation
+$addRequests
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$beginClassFrom=
 
-   METHOD new
-   METHOD delete
+$addMethods
 
-   METHOD displayColumn
-   METHOD indexColumn
-   METHOD isValid
-   METHOD tableName
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

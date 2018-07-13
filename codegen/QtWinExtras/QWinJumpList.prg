@@ -8,26 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QWINJUMPLISTCATEGORY
-#endif
+$addRequests
 
-CLASS QWinJumpList INHERIT QObject
+$beginClassFrom=QObject
 
-   METHOD new
-   METHOD delete
-   METHOD identifier
-   METHOD setIdentifier
-   METHOD recent
-   METHOD frequent
-   METHOD tasks
-   METHOD categories
-   METHOD addCategory
-   METHOD clear
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

@@ -8,57 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QRECT
-REQUEST QRECTF
-REQUEST QPOINT
-REQUEST QPOINTF
-REQUEST QLINE
-REQUEST QLINEF
-REQUEST QPOLYGONF
-REQUEST QPOLYGON
-REQUEST QREGION
-REQUEST QPAINTERPATH
-#endif
+$addRequests
 
-CLASS QMatrix
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD new
-   METHOD delete
-   METHOD setMatrix
-   METHOD m11
-   METHOD m12
-   METHOD m21
-   METHOD m22
-   METHOD dx
-   METHOD dy
-   METHOD map1
-   METHOD map2
-   METHOD map
-   METHOD mapRect
-   METHOD mapToPolygon
-   METHOD reset
-   METHOD isIdentity
-   METHOD translate
-   METHOD scale
-   METHOD shear
-   METHOD rotate
-   METHOD isInvertible
-   METHOD determinant
-   METHOD inverted
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

@@ -6,28 +6,19 @@
 
 $header
 
-#include "hbclass.ch"
-
 %% TODO:
 %% #ifndef QT_NO_SPINBOX
 %% #endif // QT_NO_SPINBOX
 
-CLASS QStyleOptionSpinBox INHERIT QStyleOptionComplex
+#include "hbclass.ch"
 
-   METHOD new
-%%   METHOD delete
+$addRequests
 
-   METHOD buttonSymbols
-   METHOD stepEnabled
-   METHOD frame
+$beginClassFrom=QStyleOptionComplex
 
-   METHOD setButtonSymbols
-   METHOD setStepEnabled
-   METHOD setFrame
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

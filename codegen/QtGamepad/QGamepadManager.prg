@@ -8,34 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QGamepadManager INHERIT QObject
+$addRequests
 
-%%   METHOD new
-%%   METHOD delete
+$beginClassFrom=QObject
 
-   METHOD configureAxis
-   METHOD configureButton
-%%   METHOD connectedGamepads
-   METHOD instance
-   METHOD isConfigurationNeeded
-   METHOD isGamepadConnected
-   METHOD resetConfiguration
-   METHOD setCancelConfigureButton
-   METHOD setSettingsFile
+$addMethods
 
-   METHOD onAxisConfigured
-   METHOD onButtonConfigured
-   METHOD onConfigurationCanceled
-   METHOD onConnectedGamepadsChanged
-   METHOD onGamepadAxisEvent
-   METHOD onGamepadButtonPressEvent
-   METHOD onGamepadButtonReleaseEvent
-   METHOD onGamepadConnected
-   METHOD onGamepadDisconnected
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

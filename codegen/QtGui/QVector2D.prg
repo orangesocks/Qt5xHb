@@ -8,46 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QVECTOR3D
-REQUEST QVECTOR4D
-REQUEST QPOINT
-REQUEST QPOINTF
-#endif
+$addRequests
 
-CLASS QVector2D
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD new
-   METHOD delete
-   METHOD isNull
-   METHOD x
-   METHOD y
-   METHOD setX
-   METHOD setY
-   METHOD length
-   METHOD lengthSquared
-   METHOD normalized
-   METHOD normalize
-   METHOD distanceToPoint
-   METHOD distanceToLine
-   METHOD toVector3D
-   METHOD toVector4D
-   METHOD toPoint
-   METHOD toPointF
-   METHOD dotProduct
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

@@ -8,27 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QSessionManager INHERIT QObject
+$addRequests
 
-   METHOD sessionId
-   METHOD sessionKey
-   METHOD allowsInteraction
-   METHOD allowsErrorInteraction
-   METHOD release
-   METHOD cancel
-   METHOD setRestartHint
-   METHOD restartHint
-   METHOD setRestartCommand
-   METHOD restartCommand
-   METHOD setDiscardCommand
-   METHOD discardCommand
-   METHOD setManagerProperty
-   METHOD isPhase2
-   METHOD requestPhase2
+$beginClassFrom=QObject
 
-   DESTRUCTOR destroyObject
+$addMethods
 
-END CLASS
+$endClass
 
 $destructor
 

@@ -8,24 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QJSVALUE
-#endif
+$addRequests
 
-CLASS QJSEngine INHERIT QObject
+$beginClassFrom=QObject
 
-   METHOD new
-   METHOD delete
-   METHOD collectGarbage
-   METHOD evaluate
-   METHOD globalObject
-   METHOD newArray
-   METHOD newObject
-   METHOD newQObject
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

@@ -8,32 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QSIZE
-#endif
+$addRequests
 
-CLASS QGroupBox INHERIT QWidget
+$beginClassFrom=QWidget
 
-   METHOD new
-   METHOD delete
-   METHOD alignment
-   METHOD isCheckable
-   METHOD isChecked
-   METHOD isFlat
-   METHOD setAlignment
-   METHOD setCheckable
-   METHOD setFlat
-   METHOD setTitle
-   METHOD title
-   METHOD minimumSizeHint
-   METHOD setChecked
+$addMethods
 
-   METHOD onClicked
-   METHOD onToggled
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

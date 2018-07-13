@@ -12,30 +12,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QSslCertificateExtension
+$addRequests
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$beginClassFrom=
 
-   METHOD new
-   METHOD delete
+$addMethods
 
-   METHOD isCritical
-   METHOD isSupported
-   METHOD name
-   METHOD oid
-   METHOD swap
-   METHOD value
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

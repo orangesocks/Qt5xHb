@@ -8,32 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QPRINTER
-#endif
+$addRequests
 
-CLASS QAbstractPrintDialog INHERIT QDialog
+$beginClassFrom=QDialog
 
-   METHOD delete
-   METHOD exec
-   METHOD fromPage
-   METHOD maxPage
-   METHOD minPage
-   METHOD printRange
-   METHOD printer
-   METHOD setFromTo
-   METHOD setMinMax
-   METHOD setOptionTabs
-   METHOD setPrintRange
-   METHOD toPage
-   METHOD addEnabledOption
-   METHOD setEnabledOptions
-   METHOD enabledOptions
-   METHOD isOptionEnabled
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

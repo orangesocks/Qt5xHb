@@ -8,29 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QRECT
-REQUEST QWIDGET
-#endif
+$addRequests
 
-CLASS QDesktopWidget INHERIT QWidget
+$beginClassFrom=QWidget
 
-   METHOD delete
-   METHOD availableGeometry
-   METHOD isVirtualDesktop
-   METHOD primaryScreen
-   METHOD screen
-   METHOD screenCount
-   METHOD screenGeometry
-   METHOD screenNumber
+$addMethods
 
-   METHOD onResized
-   METHOD onScreenCountChanged
-   METHOD onWorkAreaResized
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

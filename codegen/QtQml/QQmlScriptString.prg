@@ -8,29 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QQmlScriptString
+$addRequests
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$beginClassFrom=
 
-   METHOD new
-   METHOD delete
-   METHOD booleanLiteral
-   METHOD isEmpty
-   METHOD isNullLiteral
-   METHOD isUndefinedLiteral
-   METHOD numberLiteral
-   METHOD stringLiteral
+$addMethods
 
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

@@ -8,41 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QLegendMarker INHERIT QObject
+$addRequests
 
-%%   METHOD new
-   METHOD delete
+$beginClassFrom=QObject
 
-   METHOD brush
-   METHOD font
-   METHOD isVisible
-   METHOD label
-   METHOD labelBrush
-   METHOD pen
-   METHOD series
-   METHOD setBrush
-   METHOD setFont
-   METHOD setLabel
-   METHOD setLabelBrush
-   METHOD setPen
-   METHOD setShape
-   METHOD setVisible
-   METHOD shape
-   METHOD type
+$addMethods
 
-   METHOD onBrushChanged
-   METHOD onClicked
-   METHOD onFontChanged
-   METHOD onHovered
-   METHOD onLabelBrushChanged
-   METHOD onLabelChanged
-   METHOD onPenChanged
-   METHOD onShapeChanged
-   METHOD onVisibleChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

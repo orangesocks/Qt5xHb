@@ -8,43 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QRegExp
+$addRequests
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$beginClassFrom=
 
-   METHOD new
-   METHOD delete
-   METHOD cap
-   METHOD captureCount
-   METHOD capturedTexts
-   METHOD caseSensitivity
-   METHOD errorString
-   METHOD exactMatch
-   METHOD indexIn
-   METHOD isEmpty
-   METHOD isMinimal
-   METHOD isValid
-   METHOD lastIndexIn
-   METHOD matchedLength
-   METHOD pattern
-   METHOD patternSyntax
-   METHOD pos
-   METHOD setCaseSensitivity
-   METHOD setMinimal
-   METHOD setPattern
-   METHOD setPatternSyntax
-   METHOD escape
+$addMethods
 
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

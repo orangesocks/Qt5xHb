@@ -8,24 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QSPLITTER
-REQUEST QSIZE
-#endif
+$addRequests
 
-CLASS QSplitterHandle INHERIT QWidget
+$beginClassFrom=QWidget
 
-   METHOD new
-   METHOD delete
-   METHOD opaqueResize
-   METHOD orientation
-   METHOD setOrientation
-   METHOD splitter
-   METHOD sizeHint
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

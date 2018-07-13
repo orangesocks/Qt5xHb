@@ -8,29 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QDebug
+$addRequests
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$beginClassFrom=
 
-   METHOD new
-   METHOD delete
-   METHOD swap
-   METHOD space
-   METHOD nospace
-   METHOD maybeSpace
-   METHOD autoInsertSpaces
-   METHOD setAutoInsertSpaces
+$addMethods
 
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

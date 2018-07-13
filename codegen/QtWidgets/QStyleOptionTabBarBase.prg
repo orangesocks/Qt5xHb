@@ -6,30 +6,19 @@
 
 $header
 
-#include "hbclass.ch"
-
 %% TODO:
 %% #ifndef QT_NO_TABBAR
 %% #endif // QT_NO_TABBAR
 
-CLASS QStyleOptionTabBarBase INHERIT QStyleOption
+#include "hbclass.ch"
 
-   METHOD new
-%%   METHOD delete
+$addRequests
 
-   METHOD shape
-   METHOD tabBarRect
-   METHOD selectedTabRect
-   METHOD documentMode
+$beginClassFrom=QStyleOption
 
-   METHOD setShape
-   METHOD setTabBarRect
-   METHOD setSelectedTabRect
-   METHOD setDocumentMode
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

@@ -8,33 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QHELPSEARCHQUERY
-REQUEST QHELPSEARCHQUERYWIDGET
-REQUEST QHELPSEARCHRESULTWIDGET
-#endif
+$addRequests
 
-CLASS QHelpSearchEngine INHERIT QObject
+$beginClassFrom=QObject
 
-   METHOD new
-   METHOD delete
-   METHOD hitCount
-   METHOD query
-   METHOD queryWidget
-   METHOD resultWidget
-   METHOD cancelIndexing
-   METHOD cancelSearching
-   METHOD reindexDocumentation
-   METHOD search
+$addMethods
 
-   METHOD onIndexingFinished
-   METHOD onIndexingStarted
-   METHOD onSearchingFinished
-   METHOD onSearchingStarted
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

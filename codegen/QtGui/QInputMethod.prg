@@ -8,40 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QRECTF
-REQUEST QTRANSFORM
-REQUEST QLOCALE
-#endif
+$addRequests
 
-CLASS QInputMethod INHERIT QObject
+$beginClassFrom=QObject
 
-   METHOD cursorRectangle
-   METHOD inputDirection
-   METHOD inputItemTransform
-   METHOD isAnimating
-   METHOD isVisible
-   METHOD keyboardRectangle
-   METHOD locale
-   METHOD setInputItemTransform
-   METHOD setVisible
-   METHOD commit
-   METHOD hide
-   METHOD invokeAction
-   METHOD reset
-   METHOD show
-   METHOD update
+$addMethods
 
-   METHOD onAnimatingChanged
-   METHOD onCursorRectangleChanged
-   METHOD onInputDirectionChanged
-   METHOD onKeyboardRectangleChanged
-   METHOD onLocaleChanged
-   METHOD onVisibleChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

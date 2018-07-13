@@ -8,94 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QRECT
-REQUEST QRECTF
-REQUEST QSIZEF
-REQUEST QPRINTENGINE
-REQUEST QPAINTENGINE
-#endif
+$addRequests
 
-CLASS QPrinter INHERIT QPagedPaintDevice
+$beginClassFrom=QPagedPaintDevice
 
-   METHOD new
-   METHOD delete
-   METHOD abort
-   METHOD collateCopies
-   METHOD setCollateCopies
-   METHOD colorMode
-   METHOD setColorMode
-   METHOD copyCount
-   METHOD setCopyCount
-   METHOD creator
-   METHOD setCreator
-   METHOD docName
-   METHOD setDocName
-   METHOD doubleSidedPrinting
-   METHOD setDoubleSidedPrinting
-   METHOD duplex
-   METHOD setDuplex
-   METHOD fontEmbeddingEnabled
-   METHOD setFontEmbeddingEnabled
-   METHOD fromPage
-   METHOD fullPage
-   METHOD setFullPage
-   METHOD getPageMargins
-   METHOD setPageMargins
-   METHOD isValid
-   METHOD newPage
-   METHOD orientation
-   METHOD setOrientation
-   METHOD outputFileName
-   METHOD setOutputFileName
-   METHOD outputFormat
-   METHOD setOutputFormat
-   METHOD pageOrder
-   METHOD setPageOrder
-   METHOD pageRect
-   METHOD paperRect
-   METHOD paperSize
-   METHOD paperSource
-   METHOD setPaperSource
-   METHOD printEngine
-   METHOD printProgram
-   METHOD setPrintProgram
-   METHOD printRange
-   METHOD setPrintRange
-   METHOD printerName
-   METHOD setPrinterName
-   METHOD printerSelectionOption
-   METHOD printerState
-   METHOD resolution
-   METHOD setResolution
-   METHOD setFromTo
-   METHOD setPaperSize
-   METHOD setPrinterSelectionOption
-   METHOD setWinPageSize
-   METHOD supportedPaperSources
-   METHOD supportedResolutions
-   METHOD supportsMultipleCopies
-   METHOD toPage
-   METHOD winPageSize
-   METHOD paintEngine
-   METHOD devType
-   METHOD pageSize
-   METHOD setPageSize
-   METHOD setPageSizeMM
-   METHOD paperName
-   METHOD setPaperName
-   METHOD numCopies
-   METHOD setNumCopies
-   METHOD actualNumCopies
-   METHOD pageLayout
-   METHOD pdfVersion
-   METHOD setPageLayout
-   METHOD setPageOrientation
-   METHOD setPdfVersion
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

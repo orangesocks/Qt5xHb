@@ -8,28 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QReadWriteLock
+$addRequests
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$beginClassFrom=
 
-   METHOD new
-   METHOD delete
-   METHOD lockForRead
-   METHOD tryLockForRead
-   METHOD lockForWrite
-   METHOD tryLockForWrite
-   METHOD unlock
+$addMethods
 
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

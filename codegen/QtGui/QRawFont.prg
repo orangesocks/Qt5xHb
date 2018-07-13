@@ -8,61 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QPOINTF
-REQUEST QIMAGE
-REQUEST QPAINTERPATH
-REQUEST QRECTF
-REQUEST QBYTEARRAY
-#endif
+$addRequests
 
-CLASS QRawFont
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD new
-   METHOD delete
-   METHOD isValid
-   METHOD swap
-   METHOD familyName
-   METHOD styleName
-   METHOD style
-   METHOD weight
-   METHOD glyphIndexesForString
-   METHOD advancesForGlyphIndexes
-%%   METHOD glyphIndexesForChars
-   METHOD alphaMapForGlyph
-   METHOD pathForGlyph
-   METHOD boundingRect
-   METHOD setPixelSize
-   METHOD pixelSize
-   METHOD hintingPreference
-   METHOD ascent
-   METHOD descent
-   METHOD leading
-   METHOD xHeight
-   METHOD averageCharWidth
-   METHOD maxCharWidth
-   METHOD lineThickness
-   METHOD underlinePosition
-   METHOD unitsPerEm
-   METHOD loadFromFile
-   METHOD loadFromData
-   METHOD supportsCharacter
-   METHOD supportedWritingSystems
-   METHOD fontTable
-   METHOD fromFont
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

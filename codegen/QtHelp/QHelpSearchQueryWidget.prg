@@ -8,21 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QHELPSEARCHQUERY
-#endif
+$addRequests
 
-CLASS QHelpSearchQueryWidget INHERIT QWidget
+$beginClassFrom=QWidget
 
-   METHOD new
-   METHOD delete
-   METHOD query
+$addMethods
 
-   METHOD onSearch
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

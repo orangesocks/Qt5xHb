@@ -8,64 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QHEADERVIEW
-REQUEST QMODELINDEX
-#endif
+$addRequests
 
-CLASS QTableView INHERIT QAbstractItemView
+$beginClassFrom=QAbstractItemView
 
-   METHOD new
-   METHOD delete
-   METHOD clearSpans
-   METHOD columnAt
-   METHOD columnSpan
-   METHOD columnViewportPosition
-   METHOD columnWidth
-   METHOD gridStyle
-   METHOD horizontalHeader
-   METHOD isColumnHidden
-   METHOD isCornerButtonEnabled
-   METHOD isRowHidden
-   METHOD isSortingEnabled
-   METHOD rowAt
-   METHOD rowHeight
-   METHOD rowSpan
-   METHOD rowViewportPosition
-   METHOD setColumnHidden
-   METHOD setColumnWidth
-   METHOD setCornerButtonEnabled
-   METHOD setGridStyle
-   METHOD setHorizontalHeader
-   METHOD setRowHeight
-   METHOD setRowHidden
-   METHOD setSortingEnabled
-   METHOD setSpan
-   METHOD setVerticalHeader
-   METHOD setWordWrap
-   METHOD showGrid
-   METHOD sortByColumn
-   METHOD verticalHeader
-   METHOD wordWrap
-   METHOD indexAt
-   METHOD setModel
-   METHOD setRootIndex
-   METHOD setSelectionModel
-   METHOD hideColumn
-   METHOD hideRow
-   METHOD resizeColumnToContents
-   METHOD resizeColumnsToContents
-   METHOD resizeRowToContents
-   METHOD resizeRowsToContents
-   METHOD selectColumn
-   METHOD selectRow
-   METHOD setShowGrid
-   METHOD showColumn
-   METHOD showRow
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

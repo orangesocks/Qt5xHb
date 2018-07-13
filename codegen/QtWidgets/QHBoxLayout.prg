@@ -8,14 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QHBoxLayout INHERIT QBoxLayout
+$addRequests
 
-   METHOD new
-   METHOD delete
+$beginClassFrom=QBoxLayout
 
-   DESTRUCTOR destroyObject
+$addMethods
 
-END CLASS
+$endClass
 
 $destructor
 

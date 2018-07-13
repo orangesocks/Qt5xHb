@@ -8,48 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-CLASS Q3DScene INHERIT QObject
+$addRequests
 
-   METHOD new
-   METHOD delete
+$beginClassFrom=QObject
 
-   METHOD activeCamera
-   METHOD activeLight
-   METHOD devicePixelRatio
-   METHOD graphPositionQuery
-   METHOD invalidSelectionPoint
-   METHOD isPointInPrimarySubView
-   METHOD isPointInSecondarySubView
-   METHOD isSecondarySubviewOnTop
-   METHOD isSlicingActive
-   METHOD primarySubViewport
-   METHOD secondarySubViewport
-   METHOD selectionQueryPosition
-   METHOD setActiveCamera
-   METHOD setActiveLight
-   METHOD setDevicePixelRatio
-   METHOD setGraphPositionQuery
-   METHOD setPrimarySubViewport
-   METHOD setSecondarySubviewOnTop
-   METHOD setSecondarySubViewport
-   METHOD setSelectionQueryPosition
-   METHOD setSlicingActive
-   METHOD viewport
+$addMethods
 
-   METHOD onActiveCameraChanged
-   METHOD onActiveLightChanged
-   METHOD onDevicePixelRatioChanged
-   METHOD onGraphPositionQueryChanged
-   METHOD onPrimarySubViewportChanged
-   METHOD onSecondarySubviewOnTopChanged
-   METHOD onSecondarySubViewportChanged
-   METHOD onSelectionQueryPositionChanged
-   METHOD onSlicingActiveChanged
-   METHOD onViewportChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

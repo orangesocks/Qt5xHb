@@ -8,45 +8,17 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QVARIANT
-REQUEST QAXOBJECT
-#endif
+$addRequests
 
-CLASS QAxBase
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD delete
-   METHOD asVariant
-   METHOD clear
-   METHOD control
-   METHOD disableClassInfo
-   METHOD disableEventSink
-   METHOD disableMetaObject
-   METHOD dynamicCall
-   METHOD generateDocumentation
-   METHOD isNull
-   METHOD propertyWritable
-   METHOD querySubObject
-   METHOD setControl
-   METHOD setPropertyWritable
-   METHOD verbs
+%%   METHOD onException
+%%   METHOD onPropertyChanged
+%%   METHOD onSignal
 
-   METHOD onException
-   METHOD onPropertyChanged
-   METHOD onSignal
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 
@@ -147,10 +119,10 @@ $method=|QStringList|verbs|
 
 $extraMethods
 
-$beginSignals
-$signal=|exception(int,QString,QString,QString)
-$signal=|propertyChanged(QString)
-$signal=|signal(QString,int,void*)
-$endSignals
+%% $beginSignals
+%% $signal=|exception(int,QString,QString,QString)
+%% $signal=|propertyChanged(QString)
+%% $signal=|signal(QString,int,void*)
+%% $endSignals
 
 #pragma ENDDUMP

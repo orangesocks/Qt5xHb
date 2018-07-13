@@ -8,24 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QStyleOptionToolBox INHERIT QStyleOption
+$addRequests
 
-   METHOD new
-%%   METHOD delete
+$beginClassFrom=QStyleOption
 
-   METHOD text
-   METHOD icon
-   METHOD position
-   METHOD selectedPosition
+$addMethods
 
-   METHOD setText
-   METHOD setIcon
-   METHOD setPosition
-   METHOD setSelectedPosition
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

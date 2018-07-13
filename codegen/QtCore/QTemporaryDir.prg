@@ -8,28 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QTemporaryDir
+$addRequests
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$beginClassFrom=
 
-   METHOD new
-   METHOD delete
-   METHOD autoRemove
-   METHOD isValid
-   METHOD path
-   METHOD remove
-   METHOD setAutoRemove
+$addMethods
 
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

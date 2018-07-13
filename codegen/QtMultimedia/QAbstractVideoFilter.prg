@@ -8,23 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QVIDEOFILTERRUNNABLE
-#endif
+$addRequests
 
-CLASS QAbstractVideoFilter INHERIT QObject
+$beginClassFrom=QObject
 
-%%   METHOD new
-   METHOD delete
-   METHOD isActive
-   METHOD setActive
-   METHOD createFilterRunnable
+$addMethods
 
 %%   METHOD onActiveChanged
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

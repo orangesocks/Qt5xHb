@@ -8,22 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QSensorGesture INHERIT QObject
+$addRequests
 
-   METHOD new
-   METHOD delete
-   METHOD isActive
-   METHOD validIds
-   METHOD invalidIds
-   METHOD gestureSignals
-   METHOD startDetection
-   METHOD stopDetection
+$beginClassFrom=QObject
 
-   METHOD onDetected
+$addMethods
 
-   DESTRUCTOR destroyObject
+$addSignals
 
-END CLASS
+$endClass
 
 $destructor
 

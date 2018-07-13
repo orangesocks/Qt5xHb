@@ -8,14 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QCommonStyle INHERIT QStyle
+$addRequests
 
-   METHOD new
-   METHOD delete
+$beginClassFrom=QStyle
 
-   DESTRUCTOR destroyObject
+$addMethods
 
-END CLASS
+$endClass
 
 $destructor
 

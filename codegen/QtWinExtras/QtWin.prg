@@ -8,63 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QPIXMAP
-REQUEST QIMAGE
-REQUEST QREGION
-REQUEST QCOLOR
-#endif
+$addRequests
 
-CLASS QtWin
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD createMask
-   METHOD toHBITMAP
-   METHOD fromHBITMAP
-   METHOD toHICON
-   METHOD imageFromHBITMAP
-   METHOD fromHICON
-   METHOD toHRGN
-   METHOD fromHRGN
-   METHOD stringFromHresult
-   METHOD errorStringFromHresult
-   METHOD colorizationColor
-   METHOD realColorizationColor
-   METHOD setWindowExcludedFromPeek
-   METHOD isWindowExcludedFromPeek
-   METHOD setWindowDisallowPeek
-   METHOD isWindowPeekDisallowed
-   METHOD setWindowFlip3DPolicy
-   METHOD windowFlip3DPolicy
-   METHOD extendFrameIntoClientArea1
-   METHOD extendFrameIntoClientArea2
-   METHOD extendFrameIntoClientArea
-   METHOD resetExtendedFrame
-   METHOD enableBlurBehindWindow1
-   METHOD enableBlurBehindWindow2
-   METHOD enableBlurBehindWindow
-   METHOD disableBlurBehindWindow
-   METHOD isCompositionEnabled
-   METHOD setCompositionEnabled
-   METHOD isCompositionOpaque
-   METHOD setCurrentProcessExplicitAppUserModelID
-   METHOD markFullscreenWindow
-   METHOD taskbarActivateTab
-   METHOD taskbarActivateTabAlt
-   METHOD taskbarAddTab
-   METHOD taskbarDeleteTab
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

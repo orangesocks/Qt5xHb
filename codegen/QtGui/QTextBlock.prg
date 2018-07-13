@@ -8,64 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QTEXTLAYOUT
-REQUEST QTEXTBLOCKFORMAT
-REQUEST QTEXTCHARFORMAT
-REQUEST QTEXTDOCUMENT
-REQUEST QTEXTLIST
-REQUEST QTEXTBLOCKUSERDATA
-%% REQUEST QTEXTDOCUMENTPRIVATE
-#endif
+$addRequests
 
-CLASS QTextBlock
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD new
-   METHOD delete
-
-   METHOD isValid
-   METHOD position
-   METHOD length
-   METHOD contains
-   METHOD layout
-   METHOD clearLayout
-   METHOD blockFormat
-   METHOD blockFormatIndex
-   METHOD charFormat
-   METHOD charFormatIndex
-   METHOD textDirection
-   METHOD text
-   METHOD document
-   METHOD textList
-   METHOD userData
-   METHOD setUserData
-   METHOD userState
-   METHOD setUserState
-   METHOD revision
-   METHOD setRevision
-   METHOD isVisible
-   METHOD setVisible
-   METHOD blockNumber
-   METHOD firstLineNumber
-   METHOD setLineCount
-   METHOD lineCount
-   METHOD next
-   METHOD previous
-%%   METHOD docHandle
-   METHOD fragmentIndex
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

@@ -8,30 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QEvent
+$addRequests
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$beginClassFrom=
 
-   METHOD new
-   METHOD delete
-   METHOD accept
-   METHOD ignore
-   METHOD isAccepted
-   METHOD setAccepted
-   METHOD spontaneous
-   METHOD type
-   METHOD registerEventType
+$addMethods
 
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

@@ -8,27 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QPOINTF
-REQUEST QSIZEF
-REQUEST QRECTF
-#endif
+$addRequests
 
-CLASS QScrollPrepareEvent INHERIT QEvent
+$beginClassFrom=QEvent
 
-   METHOD new
-   METHOD delete
-   METHOD startPos
-   METHOD viewportSize
-   METHOD contentPosRange
-   METHOD contentPos
-   METHOD setViewportSize
-   METHOD setContentPosRange
-   METHOD setContentPos
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

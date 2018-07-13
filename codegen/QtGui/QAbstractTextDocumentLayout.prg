@@ -8,37 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QRECTF
-REQUEST QTEXTDOCUMENT
-REQUEST QSIZEF
-REQUEST QTEXTOBJECTINTERFACE
-REQUEST QPAINTDEVICE
-#endif
+$addRequests
 
-CLASS QAbstractTextDocumentLayout INHERIT QObject
+$beginClassFrom=QObject
 
-   METHOD delete
-   METHOD anchorAt
-   METHOD blockBoundingRect
-   METHOD document
-   METHOD documentSize
-   METHOD frameBoundingRect
-   METHOD handlerForObject
-   METHOD hitTest
-   METHOD pageCount
-   METHOD paintDevice
-   METHOD registerHandler
-   METHOD setPaintDevice
+$addMethods
 
-   METHOD onDocumentSizeChanged
-   METHOD onPageCountChanged
-   METHOD onUpdate
-   METHOD onUpdateBlock
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

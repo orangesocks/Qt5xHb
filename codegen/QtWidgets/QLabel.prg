@@ -8,59 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QWIDGET
-REQUEST QMOVIE
-REQUEST QPICTURE
-REQUEST QPIXMAP
-REQUEST QSIZE
-#endif
+$addRequests
 
-CLASS QLabel INHERIT QFrame
+$beginClassFrom=QFrame
 
-   METHOD new
-   METHOD delete
-   METHOD alignment
-   METHOD buddy
-   METHOD hasScaledContents
-   METHOD hasSelectedText
-   METHOD indent
-   METHOD margin
-   METHOD movie
-   METHOD openExternalLinks
-   METHOD picture
-   METHOD pixmap
-   METHOD selectedText
-   METHOD setAlignment
-   METHOD setBuddy
-   METHOD setIndent
-   METHOD setMargin
-   METHOD setOpenExternalLinks
-   METHOD setScaledContents
-   METHOD setSelection
-   METHOD setTextFormat
-   METHOD setTextInteractionFlags
-   METHOD setWordWrap
-   METHOD text
-   METHOD textFormat
-   METHOD textInteractionFlags
-   METHOD wordWrap
-   METHOD heightForWidth
-   METHOD minimumSizeHint
-   METHOD sizeHint
-   METHOD clear
-   METHOD setMovie
-   METHOD setNum
-   METHOD setPicture
-   METHOD setPixmap
-   METHOD setText
+$addMethods
 
-   METHOD onLinkActivated
-   METHOD onLinkHovered
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

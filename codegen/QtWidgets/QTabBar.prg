@@ -8,78 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QSIZE
-REQUEST QWIDGET
-REQUEST QVARIANT
-REQUEST QICON
-REQUEST QRECT
-REQUEST QCOLOR
-#endif
+$addRequests
 
-CLASS QTabBar INHERIT QWidget
+$beginClassFrom=QWidget
 
-   METHOD new
-   METHOD delete
-   METHOD addTab
-   METHOD count
-   METHOD currentIndex
-   METHOD documentMode
-   METHOD drawBase
-   METHOD elideMode
-   METHOD expanding
-   METHOD iconSize
-   METHOD insertTab
-   METHOD isMovable
-   METHOD isTabEnabled
-   METHOD moveTab
-   METHOD removeTab
-   METHOD selectionBehaviorOnRemove
-   METHOD setDocumentMode
-   METHOD setDrawBase
-   METHOD setElideMode
-   METHOD setExpanding
-   METHOD setIconSize
-   METHOD setMovable
-   METHOD setSelectionBehaviorOnRemove
-   METHOD setShape
-   METHOD setTabButton
-   METHOD setTabData
-   METHOD setTabEnabled
-   METHOD setTabIcon
-   METHOD setTabText
-   METHOD setTabTextColor
-   METHOD setTabToolTip
-   METHOD setTabWhatsThis
-   METHOD setTabsClosable
-   METHOD setUsesScrollButtons
-   METHOD shape
-   METHOD tabAt
-   METHOD tabButton
-   METHOD tabData
-   METHOD tabIcon
-   METHOD tabRect
-   METHOD tabText
-   METHOD tabTextColor
-   METHOD tabToolTip
-   METHOD tabWhatsThis
-   METHOD tabsClosable
-   METHOD usesScrollButtons
-   METHOD minimumSizeHint
-   METHOD sizeHint
-   METHOD setCurrentIndex
-   METHOD autoHide
-   METHOD setAutoHide
-   METHOD changeCurrentOnDrag
-   METHOD setChangeCurrentOnDrag
+$addMethods
 
-   METHOD onCurrentChanged
-   METHOD onTabCloseRequested
-   METHOD onTabMoved
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

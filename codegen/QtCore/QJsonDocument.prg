@@ -8,46 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QJSONARRAY
-REQUEST QJSONOBJECT
-REQUEST QBYTEARRAY
-REQUEST QVARIANT
-#endif
+$addRequests
 
-CLASS QJsonDocument
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD new
-   METHOD delete
-   METHOD array
-   METHOD isArray
-   METHOD isEmpty
-   METHOD isNull
-   METHOD isObject
-   METHOD object
-   METHOD rawData
-   METHOD setArray
-   METHOD setObject
-   METHOD toBinaryData
-   METHOD toJson
-   METHOD toVariant
-   METHOD fromBinaryData
-   METHOD fromJson
-   METHOD fromRawData
-   METHOD fromVariant
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

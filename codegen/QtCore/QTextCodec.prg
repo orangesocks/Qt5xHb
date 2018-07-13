@@ -8,43 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QBYTEARRAY
-REQUEST QTEXTDECODER
-REQUEST QTEXTENCODER
-#endif
+$addRequests
 
-CLASS QTextCodec
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD canEncode
-   METHOD toUnicode
-   METHOD fromUnicode
-   METHOD makeDecoder
-   METHOD makeEncoder
-   METHOD name
-   METHOD aliases
-   METHOD mibEnum
-   METHOD codecForName
-   METHOD codecForMib
-   METHOD availableCodecs
-   METHOD availableMibs
-   METHOD codecForLocale
-   METHOD setCodecForLocale
-   METHOD codecForHtml
-   METHOD codecForUtfText
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

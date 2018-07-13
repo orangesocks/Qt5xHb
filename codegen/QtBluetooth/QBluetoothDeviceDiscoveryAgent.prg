@@ -8,31 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QBLUETOOTHDEVICEINFO
-#endif
+$addRequests
 
-CLASS QBluetoothDeviceDiscoveryAgent INHERIT QObject
+$beginClassFrom=QObject
 
-   METHOD new
-   METHOD delete
-   METHOD inquiryType
-   METHOD setInquiryType
-   METHOD isActive
-   METHOD error
-   METHOD errorString
-   METHOD discoveredDevices
-   METHOD start
-   METHOD stop
+$addMethods
 
-   METHOD onDeviceDiscovered
-   METHOD onFinished
-   METHOD onError
-   METHOD onCanceled
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

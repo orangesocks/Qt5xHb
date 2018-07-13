@@ -8,38 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QGEOADDRESS
-REQUEST QGEOCOORDINATE
-REQUEST QGEORECTANGLE
-#endif
+$addRequests
 
-CLASS QGeoLocation
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD new1
-   METHOD new2
-   METHOD new
-   METHOD delete
-   METHOD address
-   METHOD setAddress
-   METHOD coordinate
-   METHOD setCoordinate
-   METHOD boundingBox
-   METHOD setBoundingBox
-   METHOD isEmpty
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

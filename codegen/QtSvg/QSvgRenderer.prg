@@ -8,37 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QMATRIX
-REQUEST QRECT
-REQUEST QRECTF
-REQUEST QSIZE
-#endif
+$addRequests
 
-CLASS QSvgRenderer INHERIT QObject
+$beginClassFrom=QObject
 
-   METHOD new
-   METHOD delete
+$addMethods
 
-   METHOD animated
-   METHOD boundsOnElement
-   METHOD defaultSize
-   METHOD elementExists
-   METHOD framesPerSecond
-   METHOD isValid
-   METHOD load
-   METHOD matrixForElement
-   METHOD render
-   METHOD setFramesPerSecond
-   METHOD setViewBox
-   METHOD viewBox
-   METHOD viewBoxF
+$addSignals
 
-   METHOD onRepaintNeeded
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

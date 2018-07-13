@@ -8,47 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QVARIANT
-#endif
+$addRequests
 
-CLASS QDBusMessage
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD new
-   METHOD delete
-   METHOD createReply
-   METHOD createErrorReply
-   METHOD service
-   METHOD path
-   METHOD interface
-   METHOD member
-   METHOD errorName
-   METHOD errorMessage
-   METHOD type
-   METHOD signature
-   METHOD isReplyRequired
-   METHOD setDelayedReply
-   METHOD isDelayedReply
-   METHOD setAutoStartService
-   METHOD autoStartService
-   METHOD setArguments
-   METHOD arguments
-   METHOD createSignal
-   METHOD createMethodCall
-   METHOD createError
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

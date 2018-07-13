@@ -8,72 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QBRUSH
-REQUEST QVARIANT
-REQUEST QFONT
-REQUEST QICON
-REQUEST QLISTWIDGET
-REQUEST QSIZE
-REQUEST QCOLOR
-#endif
+$addRequests
 
-CLASS QListWidgetItem
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD new
-   METHOD delete
-   METHOD background
-   METHOD setBackground
-   METHOD checkState
-   METHOD setCheckState
-   METHOD clone
-   METHOD data
-   METHOD setData
-   METHOD flags
-   METHOD setFlags
-   METHOD font
-   METHOD setFont
-   METHOD foreground
-   METHOD setForeground
-   METHOD icon
-   METHOD setIcon
-   METHOD isHidden
-   METHOD setHidden
-   METHOD isSelected
-   METHOD setSelected
-   METHOD listWidget
-   METHOD read
-   METHOD sizeHint
-   METHOD setSizeHint
-   METHOD statusTip
-   METHOD setStatusTip
-   METHOD text
-   METHOD setText
-   METHOD textAlignment
-   METHOD setTextAlignment
-   METHOD toolTip
-   METHOD setToolTip
-   METHOD type
-   METHOD whatsThis
-   METHOD setWhatsThis
-   METHOD write
-   METHOD backgroundColor
-   METHOD setBackgroundColor
-   METHOD textColor
-   METHOD setTextColor
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

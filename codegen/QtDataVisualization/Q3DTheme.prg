@@ -8,82 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-CLASS Q3DTheme INHERIT QObject
+$addRequests
 
-   METHOD new
-   METHOD delete
+$beginClassFrom=QObject
 
-   METHOD ambientLightStrength
-   METHOD backgroundColor
-   METHOD baseColors
-   METHOD baseGradients
-   METHOD colorStyle
-   METHOD font
-   METHOD gridLineColor
-   METHOD highlightLightStrength
-   METHOD isBackgroundEnabled
-   METHOD isGridEnabled
-   METHOD isLabelBackgroundEnabled
-   METHOD isLabelBorderEnabled
-   METHOD labelBackgroundColor
-   METHOD labelTextColor
-   METHOD lightColor
-   METHOD lightStrength
-   METHOD multiHighlightColor
-   METHOD multiHighlightGradient
-   METHOD setAmbientLightStrength
-   METHOD setBackgroundColor
-   METHOD setBackgroundEnabled
-   METHOD setBaseColors
-   METHOD setBaseGradients
-   METHOD setColorStyle
-   METHOD setFont
-   METHOD setGridEnabled
-   METHOD setGridLineColor
-   METHOD setHighlightLightStrength
-   METHOD setLabelBackgroundColor
-   METHOD setLabelBackgroundEnabled
-   METHOD setLabelBorderEnabled
-   METHOD setLabelTextColor
-   METHOD setLightColor
-   METHOD setLightStrength
-   METHOD setMultiHighlightColor
-   METHOD setMultiHighlightGradient
-   METHOD setSingleHighlightColor
-   METHOD setSingleHighlightGradient
-   METHOD setType
-   METHOD setWindowColor
-   METHOD singleHighlightColor
-   METHOD singleHighlightGradient
-   METHOD type
-   METHOD windowColor
+$addMethods
 
-   METHOD onAmbientLightStrengthChanged
-   METHOD onBackgroundColorChanged
-   METHOD onBackgroundEnabledChanged
-   METHOD onBaseColorsChanged
-   METHOD onBaseGradientsChanged
-   METHOD onColorStyleChanged
-   METHOD onFontChanged
-   METHOD onGridEnabledChanged
-   METHOD onGridLineColorChanged
-   METHOD onHighlightLightStrengthChanged
-   METHOD onLabelBackgroundColorChanged
-   METHOD onLabelBackgroundEnabledChanged
-   METHOD onLabelBorderEnabledChanged
-   METHOD onLabelTextColorChanged
-   METHOD onLightColorChanged
-   METHOD onLightStrengthChanged
-   METHOD onMultiHighlightColorChanged
-   METHOD onMultiHighlightGradientChanged
-   METHOD onSingleHighlightColorChanged
-   METHOD onSingleHighlightGradientChanged
-   METHOD onTypeChanged
-   METHOD onWindowColorChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

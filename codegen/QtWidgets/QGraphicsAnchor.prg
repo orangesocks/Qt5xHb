@@ -8,18 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QGraphicsAnchor INHERIT QObject
+$addRequests
 
-   METHOD delete
-   METHOD setSizePolicy
-   METHOD setSpacing
-   METHOD sizePolicy
-   METHOD spacing
-   METHOD unsetSpacing
+$beginClassFrom=QObject
 
-   DESTRUCTOR destroyObject
+$addMethods
 
-END CLASS
+$endClass
 
 $destructor
 

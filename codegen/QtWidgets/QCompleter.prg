@@ -8,59 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QABSTRACTITEMMODEL
-REQUEST QMODELINDEX
-REQUEST QABSTRACTITEMVIEW
-REQUEST QWIDGET
-#endif
+$addRequests
 
-CLASS QCompleter INHERIT QObject
+$beginClassFrom=QObject
 
-   METHOD new
-   METHOD delete
-   METHOD caseSensitivity
-   METHOD completionColumn
-   METHOD completionCount
-   METHOD completionMode
-   METHOD completionModel
-   METHOD completionPrefix
-   METHOD completionRole
-   METHOD currentCompletion
-   METHOD currentIndex
-   METHOD currentRow
-   METHOD maxVisibleItems
-   METHOD model
-   METHOD modelSorting
-   METHOD pathFromIndex
-   METHOD popup
-   METHOD setCaseSensitivity
-   METHOD setCompletionColumn
-   METHOD setCompletionMode
-   METHOD setCompletionRole
-   METHOD setCurrentRow
-   METHOD setMaxVisibleItems
-   METHOD setModel
-   METHOD setModelSorting
-   METHOD setPopup
-   METHOD setWidget
-   METHOD splitPath
-   METHOD widget
-   METHOD wrapAround
-   METHOD complete
-   METHOD setCompletionPrefix
-   METHOD setWrapAround
-   METHOD setFilterMode
-   METHOD filterMode
+$addMethods
 
-   METHOD onActivated1
-   METHOD onActivated2
-   METHOD onHighlighted1
-   METHOD onHighlighted2
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

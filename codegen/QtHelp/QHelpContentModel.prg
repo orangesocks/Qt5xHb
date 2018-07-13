@@ -8,30 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QHELPCONTENTITEM
-REQUEST QVARIANT
-REQUEST QMODELINDEX
-#endif
+$addRequests
 
-CLASS QHelpContentModel INHERIT QAbstractItemModel
+$beginClassFrom=QAbstractItemModel
 
-   METHOD delete
-   METHOD contentItemAt
-   METHOD createContents
-   METHOD isCreatingContents
-   METHOD columnCount
-   METHOD data
-   METHOD index
-   METHOD parent
-   METHOD rowCount
+$addMethods
 
-   METHOD onContentsCreated
-   METHOD onContentsCreationStarted
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

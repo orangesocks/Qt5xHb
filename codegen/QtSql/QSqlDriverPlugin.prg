@@ -8,19 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QSQLDRIVER
-#endif
+$addRequests
 
-CLASS QSqlDriverPlugin INHERIT QObject
+$beginClassFrom=QObject
 
-   METHOD delete
+$addMethods
 
-   METHOD create
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

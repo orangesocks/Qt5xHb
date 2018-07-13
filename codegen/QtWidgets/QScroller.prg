@@ -8,41 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QPOINTF
-REQUEST QSCROLLERPROPERTIES
-REQUEST QOBJECT
-#endif
+$addRequests
 
-CLASS QScroller INHERIT QObject
+$beginClassFrom=QObject
 
-   METHOD finalPosition
-   METHOD handleInput
-   METHOD pixelPerMeter
-   METHOD scrollerProperties
-   METHOD setSnapPositionsX
-   METHOD setSnapPositionsY
-   METHOD state
-   METHOD stop
-   METHOD target
-   METHOD velocity
-   METHOD ensureVisible
-   METHOD resendPrepareEvent
-   METHOD scrollTo
-   METHOD setScrollerProperties
-   METHOD activeScrollers
-   METHOD grabGesture
-   METHOD grabbedGesture
-   METHOD hasScroller
-   METHOD scroller
-   METHOD ungrabGesture
+$addMethods
 
-   METHOD onScrollerPropertiesChanged
-   METHOD onStateChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

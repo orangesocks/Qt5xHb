@@ -8,38 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QLOCALE
-REQUEST QCOLLATORSORTKEY
-#endif
+$addRequests
 
-CLASS QCollator
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD new
-   METHOD delete
-   METHOD swap
-   METHOD setLocale
-   METHOD locale
-   METHOD caseSensitivity
-   METHOD setCaseSensitivity
-   METHOD setNumericMode
-   METHOD numericMode
-   METHOD setIgnorePunctuation
-   METHOD ignorePunctuation
-   METHOD sortKey
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

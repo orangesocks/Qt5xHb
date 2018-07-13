@@ -8,62 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-%% REQUEST QPLATFORMSCREEN
-REQUEST QSIZE
-REQUEST QRECT
-REQUEST QSIZEF
-REQUEST QTRANSFORM
-REQUEST QPIXMAP
-#endif
+$addRequests
 
-CLASS QScreen INHERIT QObject
+$beginClassFrom=QObject
 
-   METHOD delete
-%%   METHOD handle
-   METHOD name
-   METHOD depth
-   METHOD size
-   METHOD geometry
-   METHOD physicalSize
-   METHOD physicalDotsPerInchX
-   METHOD physicalDotsPerInchY
-   METHOD physicalDotsPerInch
-   METHOD logicalDotsPerInchX
-   METHOD logicalDotsPerInchY
-   METHOD logicalDotsPerInch
-   METHOD devicePixelRatio
-   METHOD availableSize
-   METHOD availableGeometry
-   METHOD virtualSiblings
-   METHOD virtualSize
-   METHOD virtualGeometry
-   METHOD availableVirtualSize
-   METHOD availableVirtualGeometry
-   METHOD primaryOrientation
-   METHOD orientation
-   METHOD orientationUpdateMask
-   METHOD setOrientationUpdateMask
-   METHOD angleBetween
-   METHOD transformBetween
-   METHOD mapBetween
-   METHOD isPortrait
-   METHOD isLandscape
-   METHOD grabWindow
-   METHOD refreshRate
+$addMethods
 
-   METHOD onGeometryChanged
-   METHOD onPhysicalSizeChanged
-   METHOD onPhysicalDotsPerInchChanged
-   METHOD onLogicalDotsPerInchChanged
-   METHOD onVirtualGeometryChanged
-   METHOD onPrimaryOrientationChanged
-   METHOD onOrientationChanged
-   METHOD onRefreshRateChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

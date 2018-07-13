@@ -8,25 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QCameraInfo
+$addRequests
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$beginClass
 
-   METHOD new
-   METHOD delete
+$addMethods
 
-   METHOD availableCameras
-   METHOD defaultCamera
-   METHOD description
-   METHOD deviceName
-   METHOD isNull
-   METHOD orientation
-   METHOD position
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

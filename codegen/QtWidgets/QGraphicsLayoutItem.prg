@@ -8,60 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QRECTF
-REQUEST QSIZEF
-REQUEST QGRAPHICSITEM
-REQUEST QSIZEPOLICY
-#endif
+$addRequests
 
-CLASS QGraphicsLayoutItem
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD delete
-   METHOD contentsRect
-   METHOD effectiveSizeHint
-   METHOD geometry
-   METHOD getContentsMargins
-   METHOD graphicsItem
-   METHOD isLayout
-   METHOD maximumHeight
-   METHOD maximumSize
-   METHOD maximumWidth
-   METHOD minimumHeight
-   METHOD minimumSize
-   METHOD minimumWidth
-   METHOD ownedByLayout
-   METHOD parentLayoutItem
-   METHOD preferredHeight
-   METHOD preferredSize
-   METHOD preferredWidth
-   METHOD setGeometry
-   METHOD setMaximumHeight
-   METHOD setMaximumSize
-   METHOD setMaximumWidth
-   METHOD setMinimumHeight
-   METHOD setMinimumSize
-   METHOD setMinimumWidth
-   METHOD setParentLayoutItem
-   METHOD setPreferredHeight
-   METHOD setPreferredSize
-   METHOD setPreferredWidth
-   METHOD setSizePolicy
-   METHOD sizePolicy
-   METHOD updateGeometry
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

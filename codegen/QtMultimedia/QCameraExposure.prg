@@ -8,57 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QPOINTF
-#endif
+$addRequests
 
-CLASS QCameraExposure INHERIT QObject
+$beginClassFrom=QObject
 
-%%   METHOD new
-%%   METHOD delete
+$addMethods
 
-   METHOD aperture
-   METHOD exposureCompensation
-   METHOD exposureMode
-   METHOD flashMode
-   METHOD isAvailable
-   METHOD isExposureModeSupported
-   METHOD isFlashModeSupported
-   METHOD isFlashReady
-   METHOD isMeteringModeSupported
-   METHOD isoSensitivity
-   METHOD meteringMode
-   METHOD requestedAperture
-   METHOD requestedIsoSensitivity
-   METHOD requestedShutterSpeed
-   METHOD setSpotMeteringPoint
-   METHOD shutterSpeed
-   METHOD spotMeteringPoint
-   METHOD supportedApertures
-   METHOD supportedIsoSensitivities
-   METHOD supportedShutterSpeeds
-   METHOD setAutoAperture
-   METHOD setAutoIsoSensitivity
-   METHOD setAutoShutterSpeed
-   METHOD setExposureCompensation
-   METHOD setExposureMode
-   METHOD setFlashMode
-   METHOD setManualAperture
-   METHOD setManualIsoSensitivity
-   METHOD setManualShutterSpeed
-   METHOD setMeteringMode
+$addSignals
 
-   METHOD onApertureChanged
-   METHOD onApertureRangeChanged
-   METHOD onExposureCompensationChanged
-   METHOD onFlashReady
-   METHOD onIsoSensitivityChanged
-   METHOD onShutterSpeedChanged
-   METHOD onShutterSpeedRangeChanged
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

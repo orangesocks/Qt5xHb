@@ -8,22 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QWIDGET
-#endif
+$addRequests
 
-CLASS QWidgetAction INHERIT QAction
+$beginClassFrom=QAction
 
-   METHOD new
-   METHOD delete
-   METHOD defaultWidget
-   METHOD releaseWidget
-   METHOD requestWidget
-   METHOD setDefaultWidget
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

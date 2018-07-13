@@ -8,41 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QURL
-REQUEST QQMLENGINE
-REQUEST QQMLCONTEXT
-REQUEST QQUICKITEM
-REQUEST QQMLERROR
-REQUEST QSIZE
-REQUEST QSURFACEFORMAT
-#endif
+$addRequests
 
-CLASS QQuickWidget INHERIT QWidget
+$beginClassFrom=QWidget
 
-   METHOD new
-   METHOD delete
-   METHOD source
-   METHOD setSource
-   METHOD engine
-   METHOD rootContext
-   METHOD rootObject
-   METHOD resizeMode
-   METHOD setResizeMode
-   METHOD status
-   METHOD errors
-   METHOD sizeHint
-   METHOD initialSize
-   METHOD setContent
-   METHOD format
-   METHOD setFormat
+$addMethods
 
-   METHOD onStatusChanged
-   METHOD onSceneGraphError
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

@@ -8,26 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QRECTF
-REQUEST QWIDGET
-#endif
+$addRequests
 
-CLASS QGraphicsProxyWidget INHERIT QGraphicsWidget
+$beginClassFrom=QGraphicsWidget
 
-   METHOD new
-   METHOD delete
-   METHOD createProxyForChildWidget
-   METHOD setWidget
-   METHOD subWidgetRect
-   METHOD widget
-   METHOD paint
-   METHOD setGeometry
-   METHOD type
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

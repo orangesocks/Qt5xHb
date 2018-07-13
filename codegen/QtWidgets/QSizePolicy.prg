@@ -8,39 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QSizePolicy
+$addRequests
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$beginClassFrom=
 
-   METHOD new
-   METHOD delete
-   METHOD controlType
-   METHOD expandingDirections
-   METHOD hasHeightForWidth
-   METHOD hasWidthForHeight
-   METHOD horizontalPolicy
-   METHOD horizontalStretch
-   METHOD setControlType
-   METHOD setHeightForWidth
-   METHOD setHorizontalPolicy
-   METHOD setHorizontalStretch
-   METHOD setVerticalPolicy
-   METHOD setVerticalStretch
-   METHOD setWidthForHeight
-   METHOD transpose
-   METHOD verticalPolicy
-   METHOD verticalStretch
+$addMethods
 
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

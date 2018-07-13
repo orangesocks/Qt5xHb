@@ -8,33 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QProcessEnvironment
+$addRequests
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$beginClassFrom=
 
-   METHOD new
-   METHOD delete
-   METHOD swap
-   METHOD isEmpty
-   METHOD clear
-   METHOD contains
-   METHOD insert
-   METHOD remove
-   METHOD value
-   METHOD toStringList
-   METHOD keys
-   METHOD systemEnvironment
+$addMethods
 
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

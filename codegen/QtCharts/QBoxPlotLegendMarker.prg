@@ -8,17 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QBoxPlotLegendMarker INHERIT QLegendMarker
+$addRequests
 
-   METHOD new
-   METHOD delete
+$beginClassFrom=QLegendMarker
 
-   METHOD series
-   METHOD type
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

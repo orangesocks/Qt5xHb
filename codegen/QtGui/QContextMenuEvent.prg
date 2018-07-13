@@ -8,25 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QPOINT
-#endif
+$addRequests
 
-CLASS QContextMenuEvent INHERIT QInputEvent
+$beginClassFrom=QInputEvent
 
-   METHOD new
-   METHOD delete
-   METHOD globalPos
-   METHOD globalX
-   METHOD globalY
-   METHOD pos
-   METHOD reason
-   METHOD x
-   METHOD y
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

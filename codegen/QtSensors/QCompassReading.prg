@@ -8,17 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QCompassReading INHERIT QSensorReading
+$addRequests
 
-   METHOD delete
-   METHOD azimuth
-   METHOD setAzimuth
-   METHOD calibrationLevel
-   METHOD setCalibrationLevel
+$beginClassFrom=QSensorReading
 
-   DESTRUCTOR destroyObject
+$addMethods
 
-END CLASS
+$endClass
 
 $destructor
 

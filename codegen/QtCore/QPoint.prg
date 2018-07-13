@@ -8,29 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QPoint
+$addRequests
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$beginClassFrom=
 
-   METHOD new
-   METHOD delete
-   METHOD isNull
-   METHOD manhattanLength
-   METHOD setX
-   METHOD setY
-   METHOD x
-   METHOD y
+$addMethods
 
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

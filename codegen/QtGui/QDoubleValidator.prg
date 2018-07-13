@@ -8,24 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QDoubleValidator INHERIT QValidator
+$addRequests
 
-   METHOD new
-   METHOD delete
-   METHOD bottom
-   METHOD decimals
-   METHOD notation
-   METHOD setBottom
-   METHOD setDecimals
-   METHOD setNotation
-   METHOD setRange
-   METHOD setTop
-   METHOD top
-   METHOD validate
+$beginClassFrom=QValidator
 
-   DESTRUCTOR destroyObject
+$addMethods
 
-END CLASS
+$endClass
 
 $destructor
 

@@ -8,15 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QAmbientTemperatureReading INHERIT QSensorReading
+$addRequests
 
-   METHOD delete
-   METHOD temperature
-   METHOD setTemperature
+$beginClassFrom=QSensorReading
 
-   DESTRUCTOR destroyObject
+$addMethods
 
-END CLASS
+$endClass
 
 $destructor
 

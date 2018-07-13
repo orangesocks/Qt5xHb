@@ -8,49 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QFONT
-#endif
+$addRequests
 
-CLASS QFontDatabase
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD new
-   METHOD delete
-   METHOD bold
-   METHOD families
-   METHOD font
-   METHOD isBitmapScalable
-   METHOD isFixedPitch
-   METHOD isScalable
-   METHOD isSmoothlyScalable
-   METHOD italic
-   METHOD pointSizes
-   METHOD smoothSizes
-   METHOD styleString
-   METHOD styles
-   METHOD weight
-   METHOD addApplicationFont
-   METHOD addApplicationFontFromData
-   METHOD applicationFontFamilies
-   METHOD removeAllApplicationFonts
-   METHOD removeApplicationFont
-   METHOD standardSizes
-   METHOD supportsThreadedFontRendering
-   METHOD writingSystemName
-   METHOD writingSystemSample
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

@@ -10,68 +10,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QACTION
-REQUEST QICON
-REQUEST QURL
-REQUEST QWEBHISTORY
-REQUEST QWEBPAGE
-REQUEST QWEBSETTINGS
-#endif
+$addRequests
 
-CLASS QGraphicsWebView INHERIT QGraphicsWidget
+$beginClassFrom=QGraphicsWidget
 
-   METHOD new
-   METHOD delete
+$addMethods
 
-   METHOD back
-   METHOD event
-   METHOD findText
-   METHOD forward
-   METHOD history
-   METHOD icon
-   METHOD inputMethodQuery
-   METHOD isModified
-   METHOD isTiledBackingStoreFrozen
-   METHOD itemChange
-   METHOD load
-   METHOD page
-   METHOD pageAction
-   METHOD paint
-   METHOD reload
-   METHOD renderHints
-   METHOD resizesToContents
-   METHOD setContent
-   METHOD setGeometry
-   METHOD setHtml
-   METHOD setPage
-   METHOD setRenderHint
-   METHOD setRenderHints
-   METHOD setResizesToContents
-   METHOD setTiledBackingStoreFrozen
-   METHOD settings
-   METHOD setUrl
-   METHOD setZoomFactor
-   METHOD sizeHint
-   METHOD stop
-   METHOD title
-   METHOD triggerPageAction
-   METHOD updateGeometry
-   METHOD url
-   METHOD zoomFactor
+$addSignals
 
-   METHOD onIconChanged
-   METHOD onLinkClicked
-   METHOD onLoadFinished
-   METHOD onLoadProgress
-   METHOD onLoadStarted
-   METHOD onStatusBarMessage
-   METHOD onTitleChanged
-   METHOD onUrlChanged
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

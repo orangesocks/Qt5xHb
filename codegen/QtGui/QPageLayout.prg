@@ -8,58 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QPAGESIZE
-REQUEST QMARGINSF
-REQUEST QMARGINS
-REQUEST QRECTF
-REQUEST QRECT
-#endif
+$addRequests
 
-CLASS QPageLayout
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD new
-   METHOD delete
-   METHOD swap
-   METHOD isEquivalentTo
-   METHOD isValid
-   METHOD mode
-   METHOD setMode
-   METHOD pageSize
-   METHOD orientation
-   METHOD setOrientation
-   METHOD units
-   METHOD setUnits
-   METHOD setMargins
-   METHOD setLeftMargin
-   METHOD setRightMargin
-   METHOD setTopMargin
-   METHOD setBottomMargin
-   METHOD margins
-   METHOD marginsPoints
-   METHOD marginsPixels
-   METHOD setMinimumMargins
-   METHOD minimumMargins
-   METHOD maximumMargins
-   METHOD fullRect
-   METHOD fullRectPoints
-   METHOD fullRectPixels
-   METHOD paintRect
-   METHOD paintRectPoints
-   METHOD paintRectPixels
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

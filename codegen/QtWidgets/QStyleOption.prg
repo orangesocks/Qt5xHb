@@ -8,43 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QStyleOption
+$addRequests
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$beginClassFrom=
 
-   METHOD new
-   METHOD delete
-   METHOD init
-   METHOD initFrom
+$addMethods
 
-   METHOD version
-   METHOD type
-   METHOD state
-   METHOD direction
-   METHOD rect
-   METHOD fontMetrics
-   METHOD palette
-   METHOD styleObject
-
-   METHOD setVersion
-   METHOD setType
-   METHOD setState
-   METHOD setDirection
-   METHOD setRect
-   METHOD setFontMetrics
-   METHOD setPalette
-   METHOD setStyleObject
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

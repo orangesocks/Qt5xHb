@@ -8,22 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QITEMEDITORFACTORY
-#endif
+$addRequests
 
-CLASS QItemDelegate INHERIT QAbstractItemDelegate
+$beginClassFrom=QAbstractItemDelegate
 
-   METHOD new
-   METHOD delete
-   METHOD hasClipping
-   METHOD itemEditorFactory
-   METHOD setClipping
-   METHOD setItemEditorFactory
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

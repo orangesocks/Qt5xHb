@@ -8,45 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QAtomicInt
+$addRequests
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$beginClassFrom=
 
-   METHOD new
-   METHOD delete
-   METHOD deref
-   METHOD fetchAndAddAcquire
-   METHOD fetchAndAddOrdered
-   METHOD fetchAndAddRelaxed
-   METHOD fetchAndAddRelease
-   METHOD fetchAndStoreAcquire
-   METHOD fetchAndStoreOrdered
-   METHOD fetchAndStoreRelaxed
-   METHOD fetchAndStoreRelease
-   METHOD ref
-   METHOD testAndSetAcquire
-   METHOD testAndSetOrdered
-   METHOD testAndSetRelaxed
-   METHOD testAndSetRelease
-   METHOD isFetchAndAddNative
-   METHOD isFetchAndAddWaitFree
-   METHOD isFetchAndStoreNative
-   METHOD isFetchAndStoreWaitFree
-   METHOD isReferenceCountingNative
-   METHOD isReferenceCountingWaitFree
-   METHOD isTestAndSetNative
-   METHOD isTestAndSetWaitFree
+$addMethods
 
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

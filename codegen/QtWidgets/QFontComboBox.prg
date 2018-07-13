@@ -8,28 +8,15 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QFONT
-REQUEST QSIZE
-#endif
+$addRequests
 
-CLASS QFontComboBox INHERIT QComboBox
+$beginClassFrom=QComboBox
 
-   METHOD new
-   METHOD delete
-   METHOD currentFont
-   METHOD fontFilters
-   METHOD setFontFilters
-   METHOD setWritingSystem
-   METHOD writingSystem
-   METHOD sizeHint
-   METHOD setCurrentFont
+$addMethods
 
-   METHOD onCurrentFontChanged
+$addSignals
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

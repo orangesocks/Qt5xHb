@@ -8,31 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QSENSORREADING
-REQUEST QSENSOR
-#endif
+$addRequests
 
-CLASS QSensorBackend INHERIT QObject
+$beginClassFrom=QObject
 
-   METHOD delete
-   METHOD start
-   METHOD stop
-   METHOD isFeatureSupported
-   METHOD addDataRate
-   METHOD setDataRates
-   METHOD addOutputRange
-   METHOD setDescription
-   METHOD reading
-   METHOD sensor
-   METHOD newReadingAvailable
-   METHOD sensorStopped
-   METHOD sensorBusy
-   METHOD sensorError
+$addMethods
 
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

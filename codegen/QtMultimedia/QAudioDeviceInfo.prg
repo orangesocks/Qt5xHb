@@ -8,42 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-#ifndef QT5XHB_NO_REQUESTS
-REQUEST QAUDIOFORMAT
-#endif
+$addRequests
 
-CLASS QAudioDeviceInfo
+$beginClassFrom=
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$addMethods
 
-   METHOD new
-   METHOD delete
-
-   METHOD deviceName
-   METHOD isFormatSupported
-   METHOD isNull
-   METHOD nearestFormat
-   METHOD preferredFormat
-   METHOD supportedByteOrders
-   METHOD supportedChannelCounts
-   METHOD supportedCodecs
-   METHOD supportedSampleRates
-   METHOD supportedSampleSizes
-   METHOD supportedSampleTypes
-   METHOD availableDevices
-   METHOD defaultInputDevice
-   METHOD defaultOutputDevice
-
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 

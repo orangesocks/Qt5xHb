@@ -8,30 +8,13 @@ $header
 
 #include "hbclass.ch"
 
-CLASS QXmlName
+$addRequests
 
-   DATA pointer
-   DATA self_destruction INIT .F.
+$beginClassFrom=
 
-   METHOD new
-   METHOD delete
-   METHOD isNull
-   METHOD localName
-   METHOD namespaceUri
-   METHOD prefix
-   METHOD toClarkName
-   METHOD fromClarkName
-   METHOD isNCName
+$addMethods
 
-   METHOD newFrom
-   METHOD newFromObject
-   METHOD newFromPointer
-   METHOD selfDestruction
-   METHOD setSelfDestruction
-
-   DESTRUCTOR destroyObject
-
-END CLASS
+$endClass
 
 $destructor
 
