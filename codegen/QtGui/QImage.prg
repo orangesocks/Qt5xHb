@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtGui
 
 $header
 
@@ -24,9 +27,9 @@ $destructor
 
 $includes
 
-#include <QStringList>
-#include <QColor>
-#include <QVariant>
+#include <QtCore/QStringList>
+#include <QtGui/QColor>
+#include <QtCore/QVariant>
 
 $prototype=QImage ()
 $internalConstructor=|new1|
@@ -166,6 +169,7 @@ HB_FUNC_STATIC( QIMAGE_CONVERTTOFORMAT )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=convertToFormat
 
 $prototype=QImage copy ( const QRect & rectangle = QRect() ) const
 $internalMethod=|QImage|copy,copy1|const QRect &=QRect()
@@ -191,6 +195,7 @@ HB_FUNC_STATIC( QIMAGE_COPY )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=copy
 
 $prototype=QImage createAlphaMask ( Qt::ImageConversionFlags flags = Qt::AutoColor ) const
 $method=|QImage|createAlphaMask|Qt::ImageConversionFlags=Qt::AutoColor
@@ -243,6 +248,7 @@ HB_FUNC_STATIC( QIMAGE_FILL )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=fill
 
 $prototype=Format format () const
 $method=|QImage::Format|format|
@@ -286,6 +292,7 @@ HB_FUNC_STATIC( QIMAGE_LOAD )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=load
 
 $prototype=bool loadFromData ( const uchar * data, int len, const char * format = 0 )
 $internalMethod=|bool|loadFromData,loadFromData1|const uchar *,int,const char *=0
@@ -311,6 +318,7 @@ HB_FUNC_STATIC( QIMAGE_LOADFROMDATA )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=loadFromData
 
 $prototype=QImage mirrored ( bool horizontal = false, bool vertical = true ) const
 $method=|QImage|mirrored|bool=false,bool=true
@@ -342,6 +350,7 @@ HB_FUNC_STATIC( QIMAGE_PIXEL )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=pixel
 
 $prototype=int pixelIndex ( const QPoint & position ) const
 $internalMethod=|int|pixelIndex,pixelIndex1|const QPoint &
@@ -367,6 +376,7 @@ HB_FUNC_STATIC( QIMAGE_PIXELINDEX )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=pixelIndex
 
 $prototype=QRect rect () const
 $method=|QRect|rect|
@@ -398,6 +408,7 @@ HB_FUNC_STATIC( QIMAGE_SAVE )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=save
 
 $prototype=QImage scaled ( const QSize & size, Qt::AspectRatioMode aspectRatioMode = Qt::IgnoreAspectRatio, Qt::TransformationMode transformMode = Qt::FastTransformation ) const
 $internalMethod=|QImage|scaled,scaled1|const QSize &,Qt::AspectRatioMode=Qt::IgnoreAspectRatio,Qt::TransformationMode=Qt::FastTransformation
@@ -423,6 +434,7 @@ HB_FUNC_STATIC( QIMAGE_SCALED )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=scaled
 
 $prototype=QImage scaledToHeight ( int height, Qt::TransformationMode mode = Qt::FastTransformation ) const
 $method=|QImage|scaledToHeight|int,Qt::TransformationMode=Qt::FastTransformation
@@ -441,6 +453,7 @@ $prototype=const uchar * scanLine(int i) const
 HB_FUNC_STATIC( QIMAGE_SCANLINE )
 {
 }
+$addMethod=scanLine
 
 $prototype=void setColor ( int index, QRgb colorValue )
 $method=|void|setColor|int,QRgb
@@ -481,6 +494,7 @@ HB_FUNC_STATIC( QIMAGE_SETPIXEL )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=setPixel
 
 $prototype=void setText ( const QString & key, const QString & text )
 $method=|void|setText|const QString &,const QString &
@@ -521,6 +535,7 @@ HB_FUNC_STATIC( QIMAGE_TRANSFORMED )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=transformed
 
 $prototype=bool valid ( const QPoint & pos ) const
 $internalMethod=|bool|valid,valid1|const QPoint &
@@ -546,6 +561,7 @@ HB_FUNC_STATIC( QIMAGE_VALID )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=valid
 
 $prototype=int width () const
 $method=|int|width|
@@ -574,6 +590,7 @@ HB_FUNC_STATIC( QIMAGE_FROMDATA )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=fromData
 
 $prototype=static QMatrix trueMatrix ( const QMatrix & matrix, int width, int height )
 $internalStaticMethod=|QMatrix|trueMatrix,trueMatrix1|const QMatrix &,int,int
@@ -599,6 +616,7 @@ HB_FUNC_STATIC( QIMAGE_TRUEMATRIX )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=trueMatrix
 
 $prototype=QColor QImage::pixelColor(const QPoint &position) const
 $internalMethod=5,6,0|QColor|pixelColor,pixelColor1|const QPoint &
@@ -624,6 +642,7 @@ HB_FUNC_STATIC( QIMAGE_PIXELCOLOR )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=pixelColor
 
 $prototype=bool QImage::reinterpretAsFormat(Format format)
 $method=5,9,0|bool|reinterpretAsFormat|QImage::Format
@@ -652,6 +671,7 @@ HB_FUNC_STATIC( QIMAGE_SETPIXELCOLOR )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=setPixelColor
 
 $variantMethods
 

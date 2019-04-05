@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtDBus
 
 $header
 
@@ -22,15 +25,15 @@ $destructor
 
 $includes
 
-$prototype=QDBusPendingReplyData() (protected)
+$prototype=QDBusPendingReplyData() [protected]
 %% $constructor=|new|
 
-%% $deleteMethod (protected)
+%% $deleteMethod [protected]
 
-$prototype=void assign(const QDBusPendingCall &call) (protected)
+$prototype=void assign(const QDBusPendingCall &call) [protected]
 %% $internalMethod=|void|assign,assign1|const QDBusPendingCall &
 
-$prototype=void assign(const QDBusMessage &message) (protected)
+$prototype=void assign(const QDBusMessage &message) [protected]
 %% $internalMethod=|void|assign,assign2|const QDBusMessage &
 
 %% //[1]void assign(const QDBusPendingCall &call)
@@ -52,7 +55,7 @@ $prototype=void assign(const QDBusMessage &message) (protected)
 %%   }
 %% }
 
-$prototype=QVariant argumentAt(int index) const (protected)
+$prototype=QVariant argumentAt(int index) const [protected]
 %% $method=|QVariant|argumentAt|int
 
 $prototype=void setMetaTypes(int count, const int *metaTypes)

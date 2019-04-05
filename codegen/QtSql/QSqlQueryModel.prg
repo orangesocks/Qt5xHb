@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtSql
 
 $header
 
@@ -22,9 +25,9 @@ $destructor
 
 $includes
 
-#include <QSqlError>
-#include <QSqlQuery>
-#include <QSqlRecord>
+#include <QtSql/QSqlError>
+#include <QtSql/QSqlQuery>
+#include <QtSql/QSqlRecord>
 
 $prototype=explicit QSqlQueryModel ( QObject * parent = 0 )
 $constructor=|new|QObject *=0
@@ -64,6 +67,7 @@ HB_FUNC_STATIC( QSQLQUERYMODEL_SETQUERY )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=setQuery
 
 $prototype=QSqlRecord record ( int row ) const
 $internalMethod=|QSqlRecord|record,record1|int
@@ -89,6 +93,7 @@ HB_FUNC_STATIC( QSQLQUERYMODEL_RECORD )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=record
 
 $prototype=bool canFetchMore ( const QModelIndex & parent = QModelIndex() ) const
 $method=|bool|canFetchMore|const QModelIndex &=QModelIndex()

@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtWidgets
 
 $header
 
@@ -26,14 +29,14 @@ $destructor
 
 $includes
 
-#include <QIcon>
-#include <QVariant>
-#include <QLocale>
-#include <QGraphicsEffect>
-#include <QGraphicsProxyWidget>
-#include <QLayout>
-#include <QStyle>
-#include <QWindow>
+#include <QtGui/QIcon>
+#include <QtCore/QVariant>
+#include <QtCore/QLocale>
+#include <QtWidgets/QGraphicsEffect>
+#include <QtWidgets/QGraphicsProxyWidget>
+#include <QtWidgets/QLayout>
+#include <QtWidgets/QStyle>
+#include <QtGui/QWindow>
 
 $prototype=explicit QWidget ( QWidget * parent = 0, Qt::WindowFlags f = 0 )
 $constructor=|new|QWidget *=0,Qt::WindowFlags=0
@@ -112,6 +115,7 @@ HB_FUNC_STATIC( QWIDGET_SETBASESIZE )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=setBaseSize
 
 $prototype=QWidget * childAt ( int x, int y ) const
 $internalMethod=|QWidget *|childAt,childAt1|int,int
@@ -137,6 +141,7 @@ HB_FUNC_STATIC( QWIDGET_CHILDAT )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=childAt
 
 $prototype=QRect childrenRect () const
 $method=|QRect|childrenRect|
@@ -246,6 +251,7 @@ HB_FUNC_STATIC( QWIDGET_GRABMOUSE )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=grabMouse
 
 $prototype=int grabShortcut ( const QKeySequence & key, Qt::ShortcutContext context = Qt::WindowShortcut )
 $method=|int|grabShortcut|const QKeySequence &,Qt::ShortcutContext=Qt::WindowShortcut|#ifndef QT_NO_SHORTCUT
@@ -400,6 +406,7 @@ HB_FUNC_STATIC( QWIDGET_SETMASK )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=setMask
 
 $prototype=int maximumHeight () const
 $method=|int|maximumHeight|
@@ -455,6 +462,7 @@ HB_FUNC_STATIC( QWIDGET_MOVE )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=move
 
 $prototype=QWidget * nativeParentWidget () const
 $method=|QWidget *|nativeParentWidget|
@@ -496,10 +504,10 @@ $prototype=void removeAction ( QAction * action )
 $method=|void|removeAction|QAction *|#ifndef QT_NO_ACTION
 
 $prototype=void render (QPaintDevice *target, const QPoint &targetOffset = QPoint(),const QRegion &sourceRegion = QRegion(),RenderFlags renderFlags = RenderFlags(DrawWindowBackground | DrawChildren))
-$method=|void|render,render1|QPaintDevice *,const QPoint &=QPoint(),const QRegion &=QRegion(),QWidget::RenderFlags=QWidget::RenderFlags(QWidget::DrawWindowBackground OR QWidget::DrawChildren)
+$internalMethod=|void|render,render1|QPaintDevice *,const QPoint &=QPoint(),const QRegion &=QRegion(),QWidget::RenderFlags=QWidget::RenderFlags(QWidget::DrawWindowBackground OR QWidget::DrawChildren)
 
 $prototype=void render (QPainter *painter, const QPoint &targetOffset = QPoint(),const QRegion &sourceRegion = QRegion(),RenderFlags renderFlags = RenderFlags(DrawWindowBackground | DrawChildren))
-$method=|void|render,render2|QPainter *,const QPoint &=QPoint(),const QRegion &=QRegion(),QWidget::RenderFlags=QWidget::RenderFlags(QWidget::DrawWindowBackground OR QWidget::DrawChildren)
+$internalMethod=|void|render,render2|QPainter *,const QPoint &=QPoint(),const QRegion &=QRegion(),QWidget::RenderFlags=QWidget::RenderFlags(QWidget::DrawWindowBackground OR QWidget::DrawChildren)
 
 //[1]void render (QPaintDevice *target, const QPoint &targetOffset = QPoint(),const QRegion &sourceRegion = QRegion(),RenderFlags renderFlags = RenderFlags(DrawWindowBackground | DrawChildren))
 //[2]void render (QPainter *painter, const QPoint &targetOffset = QPoint(),const QRegion &sourceRegion = QRegion(),RenderFlags renderFlags = RenderFlags(DrawWindowBackground | DrawChildren))
@@ -507,19 +515,20 @@ $method=|void|render,render2|QPainter *,const QPoint &=QPoint(),const QRegion &=
 %% TODO: identificar QPaintDevice e QPainter
 HB_FUNC_STATIC( QWIDGET_RENDER )
 {
-  if( ISBETWEEN(1,4) && ISOBJECT(1) && (ISQPOINT(2)||ISNIL(2)) && (ISQREGION(3)||ISNIL(3)) && ISOPTNUM(4) )
+  if( ISBETWEEN(1,4) && ISQPAINTER(1) && (ISQPOINT(2)||ISNIL(2)) && (ISQREGION(3)||ISNIL(3)) && ISOPTNUM(4) )
   {
-    HB_FUNC_EXEC( QWIDGET_RENDER1 );
+    QWidget_render2();
   }
-  else if( ISBETWEEN(1,4) && ISQPAINTER(1) && (ISQPOINT(2)||ISNIL(2)) && (ISQREGION(3)||ISNIL(3)) && ISOPTNUM(4) )
+  else if( ISBETWEEN(1,4) && ISOBJECT(1) && (ISQPOINT(2)||ISNIL(2)) && (ISQREGION(3)||ISNIL(3)) && ISOPTNUM(4) )
   {
-    HB_FUNC_EXEC( QWIDGET_RENDER2 );
+    QWidget_render1();
   }
   else
   {
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=render
 
 $prototype=void repaint ( int x, int y, int w, int h )
 $internalMethod=|void|repaint,repaint1|int,int,int,int
@@ -561,6 +570,7 @@ HB_FUNC_STATIC( QWIDGET_REPAINT )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=repaint
 
 $prototype=void resize ( const QSize & )
 $internalMethod=|void|resize,resize1|const QSize &
@@ -586,6 +596,7 @@ HB_FUNC_STATIC( QWIDGET_RESIZE )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=resize
 
 $prototype=bool restoreGeometry ( const QByteArray & geometry )
 $method=|bool|restoreGeometry|const QByteArray &
@@ -617,6 +628,7 @@ HB_FUNC_STATIC( QWIDGET_SCROLL )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=scroll
 
 $prototype=void setAttribute ( Qt::WidgetAttribute attribute, bool on = true )
 $method=|void|setAttribute|Qt::WidgetAttribute,bool=true
@@ -645,6 +657,7 @@ HB_FUNC_STATIC( QWIDGET_SETCONTENTSMARGINS )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=setContentsMargins
 
 $prototype=void setEditFocus ( bool enable )
 $method=|void|setEditFocus|bool|#ifdef QT_KEYPAD_NAVIGATION
@@ -676,6 +689,7 @@ HB_FUNC_STATIC( QWIDGET_SETFIXEDSIZE )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=setFixedSize
 
 $prototype=void setFixedWidth ( int w )
 $method=|void|setFixedWidth|int
@@ -704,6 +718,7 @@ HB_FUNC_STATIC( QWIDGET_SETFOCUS )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=setFocus
 
 $prototype=void setFocusProxy ( QWidget * w )
 $method=|void|setFocusProxy|QWidget *
@@ -735,6 +750,7 @@ HB_FUNC_STATIC( QWIDGET_SETGEOMETRY )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=setGeometry
 
 $prototype=void setLayout ( QLayout * layout )
 $method=|void|setLayout|QLayout *
@@ -766,6 +782,7 @@ HB_FUNC_STATIC( QWIDGET_SETMAXIMUMSIZE )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=setMaximumSize
 
 $prototype=QSize minimumSize () const
 $method=|QSize|minimumSize|
@@ -794,6 +811,7 @@ HB_FUNC_STATIC( QWIDGET_SETMINIMUMSIZE )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=setMinimumSize
 
 $prototype=void setParent ( QWidget * parent )
 $internalMethod=|void|setParent,setParent1|QWidget *
@@ -819,6 +837,7 @@ HB_FUNC_STATIC( QWIDGET_SETPARENT )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=setParent
 
 $prototype=void setShortcutAutoRepeat ( int id, bool enable = true )
 $method=|void|setShortcutAutoRepeat|int,bool=true|#ifndef QT_NO_SHORTCUT
@@ -853,6 +872,7 @@ HB_FUNC_STATIC( QWIDGET_SETSIZEINCREMENT )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=setSizeIncrement
 
 $prototype=QSizePolicy sizePolicy () const
 $method=|QSizePolicy|sizePolicy|
@@ -881,6 +901,7 @@ HB_FUNC_STATIC( QWIDGET_SETSIZEPOLICY )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=setSizePolicy
 
 $prototype=int toolTipDuration() const
 $method=5,2,0|int|toolTipDuration||#ifndef QT_NO_TOOLTIP
@@ -982,6 +1003,7 @@ HB_FUNC_STATIC( QWIDGET_UPDATE )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=update
 
 $prototype=void updateGeometry ()
 $method=|void|updateGeometry|

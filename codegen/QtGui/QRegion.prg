@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtGui
 
 $header
 
@@ -114,6 +117,7 @@ HB_FUNC_STATIC( QREGION_CONTAINS )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=contains
 
 $prototype=void translate(int dx, int dy)
 $internalMethod=|void|translate,translate1|int,int
@@ -139,6 +143,7 @@ HB_FUNC_STATIC( QREGION_TRANSLATE )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=translate
 
 $prototype=QRegion translated(int dx, int dy) const
 $internalMethod=|QRegion|translated,translated1|int,int
@@ -164,6 +169,7 @@ HB_FUNC_STATIC( QREGION_TRANSLATED )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=translated
 
 $prototype=QRegion united(const QRegion &r) const
 $internalMethod=|QRegion|united,united1|const QRegion &
@@ -189,6 +195,7 @@ HB_FUNC_STATIC( QREGION_UNITED )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=united
 
 $prototype=QRegion subtracted(const QRegion &r) const
 $method=|QRegion|subtracted|const QRegion &
@@ -220,6 +227,7 @@ HB_FUNC_STATIC( QREGION_INTERSECTS )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=intersects
 
 $prototype=QRect boundingRect() const
 $method=|QRect|boundingRect|

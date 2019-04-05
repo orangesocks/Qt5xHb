@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtQuickWidgets
 
 $header
 
@@ -24,10 +27,10 @@ $destructor
 
 $includes=5,3,0
 
-#include <QQmlError>
-#include <QQmlEngine>
-#include <QQmlContext>
-#include <QQuickItem>
+#include <QtQml/QQmlError>
+#include <QtQml/QQmlEngine>
+#include <QtQml/QQmlContext>
+#include <QtQuick/QQuickItem>
 
 $prototype=explicit QQuickWidget(QWidget *parent = 0)
 $internalConstructor=5,3,0|new1|QWidget *=0

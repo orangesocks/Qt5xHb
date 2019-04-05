@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtGui
 
 $header
 
@@ -12,32 +15,7 @@ $addRequests
 
 $beginClassFrom=
 
-   METHOD new
-   METHOD delete
-   METHOD isValid
-   METHOD rect
-   METHOD x
-   METHOD y
-   METHOD width
-   METHOD ascent
-   METHOD descent
-   METHOD height
-   METHOD leading
-   METHOD setLeadingIncluded
-   METHOD leadingIncluded
-   METHOD naturalTextWidth
-   METHOD horizontalAdvance
-   METHOD naturalTextRect
-   METHOD cursorToX
-   METHOD xToCursor
-   METHOD setLineWidth
-   METHOD setNumColumns
-   METHOD setPosition
-   METHOD position
-   METHOD textStart
-   METHOD textLength
-   METHOD lineNumber
-%%   METHOD draw
+$addMethods
 
 $endClass
 
@@ -119,6 +97,7 @@ HB_FUNC_STATIC( QTEXTLINE_CURSORTOX )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=cursorToX
 
 $prototype=int xToCursor(qreal x, CursorPosition = CursorBetweenCharacters) const
 $method=|int|xToCursor|qreal,QTextLine::CursorPosition=QTextLine::CursorBetweenCharacters
@@ -150,6 +129,7 @@ HB_FUNC_STATIC( QTEXTLINE_SETNUMCOLUMNS )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=setNumColumns
 
 $prototype=void setPosition(const QPointF &pos)
 $method=|void|setPosition|const QPointF &

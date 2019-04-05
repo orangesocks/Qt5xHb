@@ -1,14 +1,63 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtGui
 
 $header
 
 #include "hbclass.ch"
 
 $addRequests
+$addRequest=QAccessibleEvent
+$addRequest=QAccessibleStateChangeEvent
+$addRequest=QAccessibleTableModelChangeEvent
+$addRequest=QAccessibleTextCursorEvent
+$addRequest=QAccessibleTextInsertEvent
+$addRequest=QAccessibleTextRemoveEvent
+$addRequest=QAccessibleTextSelectionEvent
+$addRequest=QAccessibleTextUpdateEvent
+$addRequest=QAccessibleValueChangeEvent
+$addRequest=QActionEvent
+$addRequest=QApplicationStateChangeEvent
+$addRequest=QCloseEvent
+$addRequest=QContextMenuEvent
+$addRequest=QDragEnterEvent
+$addRequest=QDragLeaveEvent
+$addRequest=QDragMoveEvent
+$addRequest=QDropEvent
+$addRequest=QEnterEvent
+$addRequest=QExposeEvent
+$addRequest=QFileOpenEvent
+$addRequest=QFocusEvent
+$addRequest=QHelpEvent
+$addRequest=QHideEvent
+$addRequest=QHoverEvent
+$addRequest=QIconDragEvent
+$addRequest=QInputEvent
+$addRequest=QInputMethodEvent
+$addRequest=QInputMethodQueryEvent
+$addRequest=QKeyEvent
+$addRequest=QMouseEvent
+$addRequest=QMoveEvent
+$addRequest=QNativeGestureEvent
+$addRequest=QPaintEvent
+$addRequest=QResizeEvent
+$addRequest=QScreenOrientationChangeEvent
+$addRequest=QScrollEvent
+$addRequest=QScrollPrepareEvent
+$addRequest=QShortcutEvent
+$addRequest=QShowEvent
+$addRequest=QStatusTipEvent
+$addRequest=QTabletEvent
+$addRequest=QToolBarChangeEvent
+$addRequest=QTouchEvent
+$addRequest=QWhatsThisClickedEvent
+$addRequest=QWheelEvent
+$addRequest=QWindowStateChangeEvent
 
 $beginClassFrom=QCoreApplication
 
@@ -24,12 +73,12 @@ $destructor
 
 $includes
 
-#include <QFont>
-#include <QPalette>
-#include <QClipboard>
-#include <QWindow>
-#include <QScreen>
-#include <QStyleHints>
+#include <QtGui/QFont>
+#include <QtGui/QPalette>
+#include <QtGui/QClipboard>
+#include <QtGui/QWindow>
+#include <QtGui/QScreen>
+#include <QtGui/QStyleHints>
 
 $prototype=QGuiApplication(int & argc, char ** argv)
 HB_FUNC_STATIC( QGUIAPPLICATION_NEW )
@@ -42,6 +91,7 @@ HB_FUNC_STATIC( QGUIAPPLICATION_NEW )
   o = new QGuiApplication( argc, argv );
   _qt5xhb_returnNewObject( o, false );
 }
+$addMethod=new
 
 $deleteMethod
 

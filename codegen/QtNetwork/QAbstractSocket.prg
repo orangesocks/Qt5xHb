@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtNetwork
 
 $header
 
@@ -34,13 +37,13 @@ $destructor
 
 $includes
 
-#include <QHostAddress>
-#include <QNetworkProxy>
+#include <QtNetwork/QHostAddress>
+#include <QtNetwork/QNetworkProxy>
 
 $prototype=QAbstractSocket ( SocketType socketType, QObject * parent )
 $constructor=|new|QAbstractSocket::SocketType,QObject *
 
-$prototype=QAbstractSocket(SocketType socketType, QAbstractSocketPrivate &dd, QObject *parent = Q_NULLPTR) (protected)
+$prototype=QAbstractSocket(SocketType socketType, QAbstractSocketPrivate &dd, QObject *parent = Q_NULLPTR) [protected]
 
 $prototype=virtual ~QAbstractSocket()
 $deleteMethod
@@ -78,6 +81,7 @@ HB_FUNC_STATIC( QABSTRACTSOCKET_BIND )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=bind
 
 $prototype=virtual void connectToHost(const QString &hostName, quint16 port, OpenMode mode = ReadWrite, NetworkLayerProtocol protocol = AnyIPProtocol)
 $internalVirtualMethod=|void|connectToHost,connectToHost1|const QString &,quint16,QIODevice::OpenMode=QIODevice::ReadWrite,QAbstractSocket::NetworkLayerProtocol=QAbstractSocket::AnyIPProtocol
@@ -103,6 +107,7 @@ HB_FUNC_STATIC( QABSTRACTSOCKET_CONNECTTOHOST )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=connectToHost
 
 $prototype=virtual void disconnectFromHost()
 $virtualMethod=|void|disconnectFromHost|
@@ -198,25 +203,25 @@ $method=|QNetworkProxy|proxy|
 
 %% #endif
 
-$prototype=qint64 readData(char *data, qint64 maxlen) Q_DECL_OVERRIDE (protected)
+$prototype=qint64 readData(char *data, qint64 maxlen) Q_DECL_OVERRIDE [protected]
 
-$prototype=qint64 readLineData(char *data, qint64 maxlen) Q_DECL_OVERRIDE (protected)
+$prototype=qint64 readLineData(char *data, qint64 maxlen) Q_DECL_OVERRIDE [protected]
 
-$prototype=qint64 writeData(const char *data, qint64 len) Q_DECL_OVERRIDE (protected)
+$prototype=qint64 writeData(const char *data, qint64 len) Q_DECL_OVERRIDE [protected]
 
-$prototype=void setSocketState(SocketState state) (protected)
+$prototype=void setSocketState(SocketState state) [protected]
 
-$prototype=void setSocketError(SocketError socketError) (protected)
+$prototype=void setSocketError(SocketError socketError) [protected]
 
-$prototype=void setLocalPort(quint16 port) (protected)
+$prototype=void setLocalPort(quint16 port) [protected]
 
-$prototype=void setLocalAddress(const QHostAddress &address) (protected)
+$prototype=void setLocalAddress(const QHostAddress &address) [protected]
 
-$prototype=void setPeerPort(quint16 port) (protected)
+$prototype=void setPeerPort(quint16 port) [protected]
 
-$prototype=void setPeerAddress(const QHostAddress &address) (protected)
+$prototype=void setPeerAddress(const QHostAddress &address) [protected]
 
-$prototype=void setPeerName(const QString &name) (protected)
+$prototype=void setPeerName(const QString &name) [protected]
 
 $beginSignals
 $signal=|connected()

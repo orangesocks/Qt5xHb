@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtSql
 
 $header
 
@@ -22,8 +25,8 @@ $destructor
 
 $includes
 
-#include <QSqlField>
-#include <QVariant>
+#include <QtSql/QSqlField>
+#include <QtCore/QVariant>
 
 $prototype=QSqlRecord ()
 $internalConstructor=|new1|
@@ -91,6 +94,7 @@ HB_FUNC_STATIC( QSQLRECORD_FIELD )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=field
 
 $prototype=QString fieldName ( int index ) const
 $method=|QString|fieldName|int
@@ -128,6 +132,7 @@ HB_FUNC_STATIC( QSQLRECORD_ISGENERATED )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=isGenerated
 
 $prototype=bool isNull ( const QString & name ) const
 $internalMethod=|bool|isNull,isNull1|const QString &
@@ -153,6 +158,7 @@ HB_FUNC_STATIC( QSQLRECORD_ISNULL )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=isNull
 
 $prototype=void remove ( int pos )
 $method=|void|remove|int
@@ -184,6 +190,7 @@ HB_FUNC_STATIC( QSQLRECORD_SETGENERATED )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=setGenerated
 
 $prototype=void setNull ( int index )
 $internalMethod=|void|setNull,setNull1|int
@@ -209,6 +216,7 @@ HB_FUNC_STATIC( QSQLRECORD_SETNULL )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=setNull
 
 $prototype=void setValue ( int index, const QVariant & val )
 $internalMethod=|void|setValue,setValue1|int,const QVariant &
@@ -234,6 +242,7 @@ HB_FUNC_STATIC( QSQLRECORD_SETVALUE )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=setValue
 
 $prototype=QVariant value ( int index ) const
 $internalMethod=|QVariant|value,value1|int
@@ -259,6 +268,7 @@ HB_FUNC_STATIC( QSQLRECORD_VALUE )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=value
 
 $prototype=QSqlRecord keyValues(const QSqlRecord &keyFields) const
 $method=|QSqlRecord|keyValues|const QSqlRecord &

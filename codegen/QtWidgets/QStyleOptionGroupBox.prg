@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtWidgets
 
 $header
 
@@ -28,11 +31,11 @@ $internalConstructor=|new1|
 $prototype=QStyleOptionGroupBox(const QStyleOptionGroupBox &other)
 $internalConstructor=|new2|const QStyleOptionGroupBox &
 
-$prototype=QStyleOptionGroupBox(int version) (protected)
+$prototype=QStyleOptionGroupBox(int version) [protected]
 
 //[1]QStyleOptionGroupBox()
 //[2]QStyleOptionGroupBox(const QStyleOptionGroupBox &other)
-//[3]QStyleOptionGroupBox(int version) (protected)
+//[3]QStyleOptionGroupBox(int version) [protected]
 
 HB_FUNC_STATIC( QSTYLEOPTIONGROUPBOX_NEW )
 {

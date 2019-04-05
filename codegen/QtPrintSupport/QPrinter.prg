@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtPrintSupport
 
 $header
 
@@ -136,6 +139,7 @@ HB_FUNC_STATIC( QPRINTER_SETPAGEMARGINS )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=setPageMargins
 
 $prototype=bool isValid () const
 $method=|bool|isValid|
@@ -191,6 +195,7 @@ HB_FUNC_STATIC( QPRINTER_PAGERECT )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=pageRect
 
 $prototype=QRect paperRect () const
 $internalMethod=|QRect|paperRect,paperRect1|
@@ -216,6 +221,7 @@ HB_FUNC_STATIC( QPRINTER_PAPERRECT )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=paperRect
 
 $prototype=PaperSize paperSize () const
 $internalMethod=|QPrinter::PaperSize|paperSize,paperSize1|
@@ -241,6 +247,7 @@ HB_FUNC_STATIC( QPRINTER_PAPERSIZE )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=paperSize
 
 $prototype=PaperSource paperSource () const
 $method=|QPrinter::PaperSource|paperSource|
@@ -308,6 +315,7 @@ HB_FUNC_STATIC( QPRINTER_SETPAPERSIZE )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=setPaperSize
 
 $prototype=void setPrinterSelectionOption ( const QString & option )
 $method=|void|setPrinterSelectionOption|const QString &|#if !defined(Q_OS_WIN) || defined(Q_QDOC)
@@ -363,6 +371,7 @@ HB_FUNC_STATIC( QPRINTER_SETPAGESIZE )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=setPageSize
 
 $prototype=void setPageSizeMM(const QSizeF &size)
 $method=|void|setPageSizeMM|const QSizeF &

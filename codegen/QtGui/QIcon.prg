@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtGui
 
 $header
 
@@ -22,7 +25,7 @@ $destructor
 
 $includes
 
-#include <QVariant>
+#include <QtCore/QVariant>
 
 $prototype=QIcon ()
 $internalConstructor=|new1|
@@ -114,6 +117,7 @@ HB_FUNC_STATIC( QICON_PAINT )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=paint
 
 $prototype=QPixmap pixmap ( const QSize & size, Mode mode = Normal, State state = Off ) const
 $internalMethod=|QPixmap|pixmap,pixmap1|const QSize &,QIcon::Mode=QIcon::Normal,QIcon::State=QIcon::Off
@@ -147,6 +151,7 @@ HB_FUNC_STATIC( QICON_PIXMAP )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=pixmap
 
 $prototype=static QIcon fromTheme ( const QString & name, const QIcon & fallback = QIcon() )
 $staticMethod=|QIcon|fromTheme|const QString &,const QIcon &=QIcon()
@@ -165,6 +170,12 @@ $staticMethod=|QString|themeName|
 
 $prototype=static QStringList themeSearchPaths ()
 $staticMethod=|QStringList|themeSearchPaths|
+
+$prototype=static QString QIcon::fallbackThemeName()
+$staticMethod=5,12,0|QString|fallbackThemeName|
+
+$prototype=static void QIcon::setFallbackThemeName(const QString &name)
+$staticMethod=5,12,0|void|setFallbackThemeName|const QString &
 
 $variantMethods
 

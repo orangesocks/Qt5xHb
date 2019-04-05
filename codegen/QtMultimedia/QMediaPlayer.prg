@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtMultimedia
 
 $header
 
@@ -24,7 +27,7 @@ $destructor
 
 $includes
 
-#include <QMediaPlaylist>
+#include <QtMultimedia/QMediaPlaylist>
 
 $prototype=explicit QMediaPlayer(QObject *parent = Q_NULLPTR, Flags flags = Flags())
 %% TODO: 'Q_NULLPTR' and 'Flags flags = Flags()'
@@ -208,6 +211,7 @@ HB_FUNC_STATIC( QMEDIAPLAYER_SETVIDEOOUTPUT )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=setVideoOutput
 
 $prototype=virtual QMultimedia::AvailabilityStatus availability() const override
 $virtualMethod=|QMultimedia::AvailabilityStatus|availability|

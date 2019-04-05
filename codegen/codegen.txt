@@ -115,7 +115,13 @@ QAmbientLightReading                                 |QObject
 QAmbientLightReading::LightLevel                     |enum
 QAmbientTemperatureReading                           |QObject
 QAndroidActivityResultReceiver                       |object
+QAndroidBinder                                       |object
+QAndroidBinder::CallType                             |enum
+QAndroidIntent                                       |object
+QAndroidJniExceptionCleaner::OutputMode              |enum
 QAndroidJniObject                                    |object
+QAndroidParcel                                       |object
+QAndroidServiceConnection                            |object
 QAnimationGroup                                      |QObject
 QApplication                                         |QObject
 QApplicationStateChangeEvent                         |QEvent
@@ -156,6 +162,7 @@ QBluetoothAddress                                    |object
 QBluetoothDeviceDiscoveryAgent::Error                |enum
 QBluetoothDeviceDiscoveryAgent::InquiryType          |enum
 QBluetoothDeviceInfo                                 |object
+QBluetoothDeviceInfo::CoreConfigurations             |enum
 QBluetoothDeviceInfo::DataCompleteness               |enum
 QBluetoothDeviceInfo::MajorDeviceClass               |enum
 QBluetoothDeviceInfo::ServiceClasses                 |enum
@@ -233,6 +240,7 @@ QChar::Category                                      |enum
 QChar::Decomposition                                 |enum
 QChar::Direction                                     |enum
 QChar::Joining                                       |enum
+QChar::SpecialCharacter                              |enum
 QChar::UnicodeVersion                                |enum
 QChart                                               |QObject
 QChart::AnimationOptions                             |enum
@@ -1084,6 +1092,7 @@ QSensor                                              |QObject
 QSensor::AxesOrientationMode                         |enum
 QSensor::Feature                                     |enum
 QSensorBackend                                       |QObject
+QSensorBackendFactory                                |object
 QSensorFilter                                        |object
 QSensorGestureRecognizer                             |QObject
 QSensorReading                                       |QObject
@@ -1460,6 +1469,8 @@ QTimerEvent                                          |QEvent
 QTimeZone                                            |object
 QTimeZone::NameType                                  |enum
 QTimeZone::TimeType                                  |enum
+QtAndroid::BindFlags                                 |enum
+QtAndroid::PermissionResult                          |enum
 QtMsgType                                            |enum
 QtMultimedia::AvailabilityStatus                     |enum
 QToolBar                                             |QWidget
@@ -1481,6 +1492,8 @@ QTreeWidgetItem                                      |item
 QTreeWidgetItem::ChildIndicatorPolicy                |enum
 QTreeWidgetItemIterator                              |object
 QTreeWidgetItemIterator::IteratorFlags               |enum
+QtWin::HBitmapFormat                                 |enum
+QtWin::WindowFlip3DPolicy                            |enum
 QUndoCommand                                         |item
 QUndoGroup                                           |QObject
 QUndoStack                                           |QObject
@@ -1635,3 +1648,22 @@ QXmlStreamReader::TokenType                          |enum
 QXmlStreamWriter                                     |object
 QXYSeries                                            |QObject
 VirtualObjectRegisterOption                          |enum
+HBITMAP                                              |handle
+HDC                                                  |handle
+HICON                                                |handle
+HRESULT                                              |handle
+HRGN                                                 |handle
+QCanBus                                              |QObject
+QCanBusDevice                                        |QObject
+QCanBusDevice::CanBusDeviceState                     |enum
+QCanBusDevice::CanBusError                           |enum
+QCanBusDeviceInfo                                    |object
+QCanBusFrame                                         |object
+QModbusDataUnit::RegisterType                        |enum
+QModbusDevice::Error                                 |enum
+QModbusDevice::State                                 |enum
+QCanBusDevice::Directions                            |enum
+QCanBusFrame::FrameType                              |enum
+QCanBusFrame::FrameErrors                            |enum
+QVirtualKeyboardSelectionListModel::Type             |enum
+ 

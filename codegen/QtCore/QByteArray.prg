@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtCore
 
 $header
 
@@ -22,8 +25,8 @@ $destructor
 
 $includes
 
-#include <QString>
-#include <QList>
+#include <QtCore/QString>
+#include <QtCore/QList>
 
 $prototype=QByteArray ()
 $internalConstructor=|new1|
@@ -44,6 +47,13 @@ void QByteArray_new4 ()
 
 $prototype=QByteArray ( const QByteArray & other )
 $internalConstructor=|new5|const QByteArray &
+
+%% TODO: reimplementar ?
+%% QByteArray()
+%% QByteArray(const char *data, int size = -1)
+%% QByteArray(int size, char ch)
+%% QByteArray(const QByteArray &other)
+%% QByteArray(QByteArray &&other)
 
 //[1]QByteArray ()
 //[2]QByteArray ( const char * str )
@@ -96,6 +106,9 @@ $method=|QByteArray &|append,append4|const char *,int
 $prototype=QByteArray & append ( char ch )
 $method=|QByteArray &|append,append5|char
 
+$prototype=QByteArray &QByteArray::append(int count, char ch)
+$method=5,7,0|QByteArray &|append,append6|int,char
+
 %% TODO: resolver conflito entre [2] e [3]
 
 //[1]QByteArray & append ( const QByteArray & ba )
@@ -103,6 +116,7 @@ $method=|QByteArray &|append,append5|char
 //[3]QByteArray & append ( const char * str )
 //[4]QByteArray & append ( const char * str, int len )
 //[5]QByteArray & append ( char ch )
+//[6]QByteArray & append ( int count, char ch )
 
 HB_FUNC_STATIC( QBYTEARRAY_APPEND )
 {
@@ -122,11 +136,16 @@ HB_FUNC_STATIC( QBYTEARRAY_APPEND )
   {
     HB_FUNC_EXEC( QBYTEARRAY_APPEND5 );
   }
+  else if( ISNUMPAR(2) && ISNUM(1) && ISNUM(2) )
+  {
+    HB_FUNC_EXEC( QBYTEARRAY_APPEND6 );
+  }
   else
   {
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=append
 
 $prototype=char at ( int i ) const
 $method=|char|at|int
@@ -175,6 +194,7 @@ HB_FUNC_STATIC( QBYTEARRAY_CONTAINS )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=contains
 
 $prototype=int count ( const QByteArray & ba ) const
 $internalMethod=|int|count,count1|const QByteArray &
@@ -216,6 +236,7 @@ HB_FUNC_STATIC( QBYTEARRAY_COUNT )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=count
 
 $prototype=const char * data () const
 $method=|const char *|data,data2|
@@ -228,6 +249,7 @@ HB_FUNC_STATIC( QBYTEARRAY_DATA )
 {
   HB_FUNC_EXEC( QBYTEARRAY_DATA2 );
 }
+$addMethod=data
 
 $prototype=bool endsWith ( const QByteArray & ba ) const
 $internalMethod=|bool|endsWith,endsWith1|const QByteArray &
@@ -261,6 +283,7 @@ HB_FUNC_STATIC( QBYTEARRAY_ENDSWITH )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=endsWith
 
 $prototype=QByteArray & fill ( char ch, int size = -1 )
 $method=|QByteArray &|fill|char,int=-1
@@ -306,6 +329,7 @@ HB_FUNC_STATIC( QBYTEARRAY_INDEXOF )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=indexOf
 
 $prototype=QByteArray & insert ( int i, const QByteArray & ba )
 $method=|QByteArray &|insert,insert1|int,const QByteArray &
@@ -352,6 +376,7 @@ HB_FUNC_STATIC( QBYTEARRAY_INSERT )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=insert
 
 $prototype=bool isEmpty () const
 $method=|bool|isEmpty|
@@ -400,6 +425,7 @@ HB_FUNC_STATIC( QBYTEARRAY_LASTINDEXOF )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=lastIndexOf
 
 $prototype=QByteArray left ( int len ) const
 $method=|QByteArray|left|int
@@ -453,6 +479,7 @@ HB_FUNC_STATIC( QBYTEARRAY_PREPEND )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=prepend
 
 $prototype=void push_back ( const QByteArray & other )
 $internalMethod=|void|push_back,push_back1|const QByteArray &
@@ -487,6 +514,7 @@ HB_FUNC_STATIC( QBYTEARRAY_PUSH_BACK )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=push_back
 
 $prototype=void push_front ( const QByteArray & other )
 $internalMethod=|void|push_front,push_front1|const QByteArray &
@@ -521,6 +549,7 @@ HB_FUNC_STATIC( QBYTEARRAY_PUSH_FRONT )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=push_front
 
 $prototype=QByteArray & remove ( int pos, int len )
 $method=|QByteArray &|remove|int,int
@@ -649,6 +678,7 @@ HB_FUNC_STATIC( QBYTEARRAY_REPLACE )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=replace
 
 $prototype=void reserve ( int size )
 $method=|void|reserve|int
@@ -707,6 +737,7 @@ HB_FUNC_STATIC( QBYTEARRAY_SETNUM )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=setNum
 
 $prototype=QByteArray & setRawData ( const char * data, uint size )
 $method=|QByteArray &|setRawData|const char *,uint
@@ -756,6 +787,7 @@ HB_FUNC_STATIC( QBYTEARRAY_STARTSWITH )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=startsWith
 
 $prototype=QByteArray toBase64 () const
 $method=|QByteArray|toBase64|
@@ -815,6 +847,9 @@ $method=|void|truncate|int
 $prototype=static QByteArray fromBase64 ( const QByteArray & base64 )
 $staticMethod=|QByteArray|fromBase64|const QByteArray &
 
+$prototype=static QByteArray fromBase64(const QByteArray &base64, QByteArray::Base64Options options)
+%% TODO: implementar
+
 $prototype=static QByteArray fromHex ( const QByteArray & hexEncoded )
 $staticMethod=|QByteArray|fromHex|const QByteArray &
 
@@ -832,67 +867,22 @@ HB_FUNC_STATIC( QBYTEARRAY_FROMPERCENTENCODING )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=fromPercentEncoding
 
 $prototype=static QByteArray fromRawData ( const char * data, int size )
 $staticMethod=|QByteArray|fromRawData|const char *,int
 
 $prototype=static QByteArray number ( int n, int base = 10 )
-HB_FUNC_STATIC( QBYTEARRAY_NUMBER1 )
-{
-  if( ISNUM(1) && ISOPTNUM(2) )
-  {
-    QByteArray * ptr = new QByteArray( QByteArray::number ( PINT(1), OPINT(2,10) ) );
-    _qt5xhb_createReturnClass ( ptr, "QBYTEARRAY" );
-  }
-  else
-  {
-    hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
-  }
-}
+$staticMethod=|QByteArray|number,number1|int,int=10
 
 $prototype=static QByteArray number ( uint n, int base = 10 )
-HB_FUNC_STATIC( QBYTEARRAY_NUMBER2 )
-{
-  if( ISNUM(1) && ISOPTNUM(2) )
-  {
-    QByteArray * ptr = new QByteArray( QByteArray::number ( (uint) hb_parni(1), OPINT(2,10) ) );
-    _qt5xhb_createReturnClass ( ptr, "QBYTEARRAY" );
-  }
-  else
-  {
-    hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
-  }
-}
+$staticMethod=|QByteArray|number,number2|uint,int=10
 
 $prototype=static QByteArray number ( qlonglong n, int base = 10 )
-HB_FUNC_STATIC( QBYTEARRAY_NUMBER3 )
-{
-  if( ISNUM(1) && ISOPTNUM(2) )
-  {
-    qlonglong par1 = hb_parnl(1);
-    QByteArray * ptr = new QByteArray( QByteArray::number ( par1, OPINT(2,10) ) );
-    _qt5xhb_createReturnClass ( ptr, "QBYTEARRAY" );
-  }
-  else
-  {
-    hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
-  }
-}
+$staticMethod=|QByteArray|number,number3|qlonglong,int=10
 
 $prototype=static QByteArray number ( qulonglong n, int base = 10 )
-HB_FUNC_STATIC( QBYTEARRAY_NUMBER4 )
-{
-  if( ISNUM(1) && ISOPTNUM(2) )
-  {
-    qulonglong par1 = hb_parnl(1);
-    QByteArray * ptr = new QByteArray( QByteArray::number ( par1, OPINT(2,10) ) );
-    _qt5xhb_createReturnClass ( ptr, "QBYTEARRAY" );
-  }
-  else
-  {
-    hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
-  }
-}
+$staticMethod=|QByteArray|number,number4|qulonglong,int=10
 
 $prototype=static QByteArray number ( double n, char f = 'g', int prec = 6 )
 HB_FUNC_STATIC( QBYTEARRAY_NUMBER5 )
@@ -908,8 +898,9 @@ HB_FUNC_STATIC( QBYTEARRAY_NUMBER5 )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=number5
 
-// TODO: resolver conflitos
+%% TODO: resolver conflitos
 //[1]static QByteArray number ( int n, int base = 10 )
 //[2]static QByteArray number ( uint n, int base = 10 )
 //[3]static QByteArray number ( qlonglong n, int base = 10 )
@@ -943,6 +934,30 @@ HB_FUNC_STATIC( QBYTEARRAY_NUMBER )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=number
+
+$prototype=char QByteArray::back() const
+%% TODO: implementar
+%% $method=5,10,0|char|back|
+
+$prototype=QByteRef QByteArray::back()
+%% TODO: implementar
+%% $method=5,10,0|QByteRef|back|
+
+$prototype=QByteArray QByteArray::chopped(int len) const
+$method=5,10,0|QByteArray|chopped|int
+
+$prototype=int QByteArray::compare(const char *c, Qt::CaseSensitivity cs = ...) const
+%% TODO: $method=5,12,0|int|compare|const char *,Qt::CaseSensitivity=
+
+$prototype=int QByteArray::compare(const QByteArray &a, Qt::CaseSensitivity cs = ...) const
+%% TODO: $method=5,12,0|int|compare|const QByteArray &,Qt::CaseSensitivity=
+
+$prototype=bool QByteArray::isLower() const
+$method=5,12,0|bool|isLower|
+
+$prototype=bool QByteArray::isUpper() const
+$method=5,12,0|bool|isUpper|
 
 $extraMethods
 

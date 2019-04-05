@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtPurchasing
 
 $header
 
@@ -42,11 +45,11 @@ $method=|QInAppProduct *|registeredProduct|const QString &
 $prototype=Q_INVOKABLE void setPlatformProperty(const QString &propertyName, const QString &value)
 $method=|void|setPlatformProperty|const QString &,const QString &
 
-$prototype=void registerPendingProducts() (private) (slot)
+$prototype=void registerPendingProducts() [private] (slot)
 
-$prototype=void registerProduct(QInAppProduct *) (private) (slot)
+$prototype=void registerProduct(QInAppProduct *) [private] (slot)
 
-$prototype=void setupBackend() (private)
+$prototype=void setupBackend() [private]
 
 $beginSignals
 $signal=|productRegistered(QInAppProduct*)

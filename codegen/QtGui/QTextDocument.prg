@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtGui
 
 $header
 
@@ -24,10 +27,10 @@ $destructor
 
 $includes
 
-#include <QTextOption>
-#include <QTextCursor>
-#include <QTextBlock>
-#include <QAbstractTextDocumentLayout>
+#include <QtGui/QTextOption>
+#include <QtGui/QTextCursor>
+#include <QtGui/QTextBlock>
+#include <QtGui/QAbstractTextDocumentLayout>
 
 $prototype=QTextDocument(QObject *parent = 0)
 $internalConstructor=|new1|QObject *=0
@@ -153,6 +156,7 @@ HB_FUNC_STATIC( QTEXTDOCUMENT_FIND )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=find
 
 $prototype=QTextFrame *frameAt(int pos) const
 $method=|QTextFrame *|frameAt|int
@@ -313,6 +317,7 @@ HB_FUNC_STATIC( QTEXTDOCUMENT_UNDO )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=undo
 
 $prototype=void redo(QTextCursor *cursor)
 $internalMethod=|void|redo,redo1|QTextCursor *
@@ -338,6 +343,7 @@ HB_FUNC_STATIC( QTEXTDOCUMENT_REDO )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=redo
 
 $prototype=void appendUndoItem(QAbstractUndoItem *)
 %% TODO: implementar

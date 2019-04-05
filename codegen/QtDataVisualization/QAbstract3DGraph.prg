@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtDataVisualization
 
 $header
 
@@ -25,12 +28,12 @@ $destructor
 
 $includes
 
-#include <QAbstract3DAxis>
-#include <QCustom3DItem>
+#include <QtDataVisualization/QAbstract3DAxis>
+#include <QtDataVisualization/QCustom3DItem>
 
 using namespace QtDataVisualization;
 
-$prototype=explicit QAbstract3DGraph(QAbstract3DGraphPrivate *d, const QSurfaceFormat *format, QWindow *parent = Q_NULLPTR) (protected)
+$prototype=explicit QAbstract3DGraph(QAbstract3DGraphPrivate *d, const QSurfaceFormat *format, QWindow *parent = Q_NULLPTR) [protected]
 
 $prototype=virtual ~QAbstract3DGraph()
 $deleteMethod
@@ -277,24 +280,24 @@ $method=|QImage|renderToImage|int=0,const QSize &=QSize()
 $prototype=bool hasContext() const
 $method=|bool|hasContext|
 
-$prototype=bool event(QEvent *event) (protected)
+$prototype=bool event(QEvent *event) [protected]
 
-$prototype=void resizeEvent(QResizeEvent *event) (protected)
+$prototype=void resizeEvent(QResizeEvent *event) [protected]
 
-$prototype=void exposeEvent(QExposeEvent *event) (protected)
+$prototype=void exposeEvent(QExposeEvent *event) [protected]
 
-$prototype=void mouseDoubleClickEvent(QMouseEvent *event) (protected)
+$prototype=void mouseDoubleClickEvent(QMouseEvent *event) [protected]
 
-$prototype=void touchEvent(QTouchEvent *event) (protected)
+$prototype=void touchEvent(QTouchEvent *event) [protected]
 
-$prototype=void mousePressEvent(QMouseEvent *event) (protected)
+$prototype=void mousePressEvent(QMouseEvent *event) [protected]
 
-$prototype=void mouseReleaseEvent(QMouseEvent *event) (protected)
+$prototype=void mouseReleaseEvent(QMouseEvent *event) [protected]
 
-$prototype=void mouseMoveEvent(QMouseEvent *event) (protected)
+$prototype=void mouseMoveEvent(QMouseEvent *event) [protected]
 
 %% #if QT_CONFIG(wheelevent)
-$prototype=void wheelEvent(QWheelEvent *event) (protected)
+$prototype=void wheelEvent(QWheelEvent *event) [protected]
 %% #endif
 
 $beginSignals

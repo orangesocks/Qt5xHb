@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtCore
 
 $header
 
@@ -22,7 +25,7 @@ $destructor
 
 $includes
 
-#include <QStringList>
+#include <QtCore/QStringList>
 
 $prototype=QUrl ()
 $internalConstructor=|new1|
@@ -133,6 +136,7 @@ HB_FUNC_STATIC( QURL_PORT )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=port
 
 $prototype=QUrl resolved ( const QUrl & relative ) const
 $method=|QUrl|resolved|const QUrl &
@@ -185,6 +189,7 @@ HB_FUNC_STATIC( QURL_SETURL )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=setUrl
 
 $prototype=void setUserInfo ( const QString & userInfo )
 $method=|void|setUserInfo|const QString &
@@ -240,6 +245,7 @@ HB_FUNC_STATIC( QURL_FROMENCODED )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=fromEncoded
 
 $prototype=static QUrl fromLocalFile ( const QString & localFile )
 $staticMethod=|QUrl|fromLocalFile|const QString &

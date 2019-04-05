@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtLocation
 
 $header
 
@@ -22,8 +25,8 @@ $destructor
 
 $includes=5,4,0
 
-#include <QGeoManeuver>
-#include <QGeoCoordinate>
+#include <QtLocation/QGeoManeuver>
+#include <QtPositioning/QGeoCoordinate>
 
 $prototype=QGeoRouteSegment()
 $internalConstructor=5,4,0|new1|
@@ -84,6 +87,9 @@ $method=5,4,0|void|setManeuver|const QGeoManeuver &
 
 $prototype=QGeoManeuver maneuver() const
 $method=5,4,0|QGeoManeuver|maneuver|
+
+$prototype=bool QGeoRouteSegment::isLegLastSegment() const
+$method=5,12,0|bool|isLegLastSegment|
 
 $extraMethods
 

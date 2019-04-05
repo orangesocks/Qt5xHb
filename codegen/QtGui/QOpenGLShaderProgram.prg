@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtGui
 
 $header
 
@@ -53,6 +56,7 @@ HB_FUNC_STATIC( QOPENGLSHADERPROGRAM_ADDSHADERFROMSOURCECODE )
 {
   // TODO: implementar
 }
+$addMethod=addShaderFromSourceCode
 
 $prototype=bool addShaderFromSourceFile(QOpenGLShader::ShaderType type, const QString& fileName)
 $method=|bool|addShaderFromSourceFile|QOpenGLShader::ShaderType,const QString &

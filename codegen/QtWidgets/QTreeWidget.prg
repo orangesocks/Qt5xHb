@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtWidgets
 
 $header
 
@@ -24,19 +27,38 @@ $destructor
 
 $includes
 
-$prototype=QTreeWidget ( QWidget * parent = 0 )
+$prototype=explicit QTreeWidget(QWidget *parent = nullptr)
 $constructor=|new|QWidget *=0
 
+$prototype=~QTreeWidget()
 $deleteMethod
+
+%%
+%% Q_PROPERTY(int columnCount READ columnCount WRITE setColumnCount)
+%%
+
+$prototype=int columnCount () const
+$method=|int|columnCount|
+
+$prototype=void setColumnCount ( int columns )
+$method=|void|setColumnCount|int
+
+%%
+%% Q_PROPERTY(int topLevelItemCount READ topLevelItemCount)
+%%
+
+$prototype=int topLevelItemCount () const
+$method=|int|topLevelItemCount|
+
+%%
+%%
+%%
 
 $prototype=void addTopLevelItem ( QTreeWidgetItem * item )
 $method=|void|addTopLevelItem|QTreeWidgetItem *
 
 $prototype=void closePersistentEditor ( QTreeWidgetItem * item, int column = 0 )
 $method=|void|closePersistentEditor|QTreeWidgetItem *,int=0
-
-$prototype=int columnCount () const
-$method=|int|columnCount|
 
 $prototype=int currentColumn () const
 $method=|int|currentColumn|
@@ -89,6 +111,7 @@ HB_FUNC_STATIC( QTREEWIDGET_ITEMAT )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=itemAt
 
 $prototype=QTreeWidgetItem *  itemBelow ( const QTreeWidgetItem * item ) const
 $method=|QTreeWidgetItem *|itemBelow|const QTreeWidgetItem *
@@ -101,9 +124,6 @@ $method=|void|openPersistentEditor|QTreeWidgetItem *,int=0
 
 $prototype=void removeItemWidget ( QTreeWidgetItem * item, int column )
 $method=|void|removeItemWidget|QTreeWidgetItem *,int
-
-$prototype=void setColumnCount ( int columns )
-$method=|void|setColumnCount|int
 
 $prototype=void setCurrentItem ( QTreeWidgetItem * item )
 $internalMethod=|void|setCurrentItem,setCurrentItem1|QTreeWidgetItem *
@@ -137,6 +157,7 @@ HB_FUNC_STATIC( QTREEWIDGET_SETCURRENTITEM )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=setCurrentItem
 
 $prototype=void setFirstItemColumnSpanned ( const QTreeWidgetItem * item, bool span )
 $method=|void|setFirstItemColumnSpanned|const QTreeWidgetItem *,bool
@@ -164,9 +185,6 @@ $method=|QTreeWidgetItem *|takeTopLevelItem|int
 
 $prototype=QTreeWidgetItem *  topLevelItem ( int index ) const
 $method=|QTreeWidgetItem *|topLevelItem|int
-
-$prototype=int topLevelItemCount () const
-$method=|int|topLevelItemCount|
 
 $prototype=QRect visualItemRect ( const QTreeWidgetItem * item ) const
 $method=|QRect|visualItemRect|const QTreeWidgetItem *

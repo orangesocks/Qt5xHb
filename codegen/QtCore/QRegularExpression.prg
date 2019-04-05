@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtCore
 
 $header
 
@@ -92,6 +95,12 @@ $method=|void|swap|QRegularExpression &
 
 $prototype=static QString escape(const QString & str)
 $staticMethod=|QString|escape|const QString &
+
+$prototype=static QString QRegularExpression::anchoredPattern(const QString &expression)
+$staticMethod=5,12,0|QString|anchoredPattern|const QString &
+
+$prototype=static QString QRegularExpression::wildcardToRegularExpression(const QString &pattern)
+$staticMethod=5,12,0|QString|wildcardToRegularExpression|const QString &
 
 $extraMethods
 

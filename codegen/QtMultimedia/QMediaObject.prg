@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtMultimedia
 
 $header
 
@@ -24,12 +27,12 @@ $destructor
 
 $includes
 
-#include <QVariant>
-#include <QMediaService>
+#include <QtCore/QVariant>
+#include <QtMultimedia/QMediaService>
 
-$prototype=QMediaObject(QObject *parent, QMediaService *service) (protected)
+$prototype=QMediaObject(QObject *parent, QMediaService *service) [protected]
 
-$prototype=QMediaObject(QMediaObjectPrivate &dd, QObject *parent, QMediaService *service) (protected)
+$prototype=QMediaObject(QMediaObjectPrivate &dd, QObject *parent, QMediaService *service) [protected]
 
 $prototype=~QMediaObject()
 $deleteMethod
@@ -72,11 +75,11 @@ $virtualMethod=|QMediaService *|service|
 $prototype=virtual void unbind(QObject * object)
 $virtualMethod=|void|unbind|QObject *
 
-$prototype=void addPropertyWatch(QByteArray const &name) (protected)
+$prototype=void addPropertyWatch(QByteArray const &name) [protected]
 
-$prototype=void removePropertyWatch(QByteArray const &name) (protected)
+$prototype=void removePropertyWatch(QByteArray const &name) [protected]
 
-$prototype=void setupControls() (private)
+$prototype=void setupControls() [private]
 
 $beginSignals
 $beginGroup

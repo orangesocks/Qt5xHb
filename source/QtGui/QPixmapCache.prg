@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -52,10 +52,10 @@ RETURN
 
 #pragma BEGINDUMP
 
-#include <Qt>
+#include <QtCore/Qt>
 
 #ifndef __XHARBOUR__
-#include <QPixmapCache>
+#include <QtGui/QPixmapCache>
 #endif
 
 #include "qt5xhb_common.h"
@@ -63,7 +63,7 @@ RETURN
 #include "qt5xhb_utils.h"
 
 #ifdef __XHARBOUR__
-#include <QPixmapCache>
+#include <QtGui/QPixmapCache>
 #endif
 
 HB_FUNC_STATIC( QPIXMAPCACHE_DELETE )
@@ -88,7 +88,18 @@ static int cacheLimit()
 */
 HB_FUNC_STATIC( QPIXMAPCACHE_CACHELIMIT )
 {
-  RINT( QPixmapCache::cacheLimit () );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
+    if( ISNUMPAR(0) )
+  {
+#endif
+      RINT( QPixmapCache::cacheLimit () );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
+  }
+  else
+  {
+    hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
+  }
+#endif
 }
 
 /*
@@ -96,7 +107,19 @@ static void setCacheLimit(int)
 */
 HB_FUNC_STATIC( QPIXMAPCACHE_SETCACHELIMIT )
 {
-  QPixmapCache::setCacheLimit ( PINT(1) );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
+    if( ISNUMPAR(1) && ISNUM(1) )
+  {
+#endif
+      QPixmapCache::setCacheLimit ( PINT(1) );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
+  }
+  else
+  {
+    hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
+  }
+#endif
+
   hb_itemReturn( hb_stackSelfItem() );
 }
 
@@ -105,8 +128,19 @@ static QPixmap *find(const QString &key)
 */
 HB_FUNC_STATIC( QPIXMAPCACHE_FIND1 )
 {
-  QPixmap * ptr = QPixmapCache::find ( PQSTRING(1) );
-  _qt5xhb_createReturnClass ( ptr, "QPIXMAP" );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
+    if( ISNUMPAR(1) && ISCHAR(1) )
+  {
+#endif
+      QPixmap * ptr = QPixmapCache::find ( PQSTRING(1) );
+      _qt5xhb_createReturnClass ( ptr, "QPIXMAP", false );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
+  }
+  else
+  {
+    hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
+  }
+#endif
 }
 
 /*
@@ -114,8 +148,18 @@ static bool find(const QString &key, QPixmap &pixmap)
 */
 HB_FUNC_STATIC( QPIXMAPCACHE_FIND2 )
 {
-  QPixmap * par2 = (QPixmap *) _qt5xhb_itemGetPtr(2);
-  RBOOL( QPixmapCache::find ( PQSTRING(1), *par2 ) );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
+    if( ISNUMPAR(2) && ISCHAR(1) && ISQPIXMAP(2) )
+  {
+#endif
+      RBOOL( QPixmapCache::find ( PQSTRING(1), *PQPIXMAP(2) ) );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
+  }
+  else
+  {
+    hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
+  }
+#endif
 }
 
 /*
@@ -123,8 +167,18 @@ static bool find(const QString &key, QPixmap *pixmap)
 */
 HB_FUNC_STATIC( QPIXMAPCACHE_FIND3 )
 {
-  QPixmap * par2 = (QPixmap *) _qt5xhb_itemGetPtr(2);
-  RBOOL( QPixmapCache::find ( PQSTRING(1), par2 ) );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
+    if( ISNUMPAR(2) && ISCHAR(1) && ISQPIXMAP(2) )
+  {
+#endif
+      RBOOL( QPixmapCache::find ( PQSTRING(1), PQPIXMAP(2) ) );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
+  }
+  else
+  {
+    hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
+  }
+#endif
 }
 
 //[1]static QPixmap *find(const QString &key)
@@ -134,7 +188,6 @@ HB_FUNC_STATIC( QPIXMAPCACHE_FIND3 )
 
 HB_FUNC_STATIC( QPIXMAPCACHE_FIND )
 {
-  // TODO: implementar
 }
 
 /*
@@ -142,7 +195,18 @@ static bool insert(const QString &key, const QPixmap &pixmap)
 */
 HB_FUNC_STATIC( QPIXMAPCACHE_INSERT1 )
 {
-  RBOOL( QPixmapCache::insert ( PQSTRING(1), *PQPIXMAP(2) ) );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
+    if( ISNUMPAR(2) && ISCHAR(1) && ISQPIXMAP(2) )
+  {
+#endif
+      RBOOL( QPixmapCache::insert ( PQSTRING(1), *PQPIXMAP(2) ) );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
+  }
+  else
+  {
+    hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
+  }
+#endif
 }
 
 //[1]static bool insert(const QString &key, const QPixmap &pixmap)
@@ -150,7 +214,6 @@ HB_FUNC_STATIC( QPIXMAPCACHE_INSERT1 )
 
 HB_FUNC_STATIC( QPIXMAPCACHE_INSERT )
 {
-  // TODO: implementar
 }
 
 /*
@@ -158,7 +221,19 @@ static void remove(const QString &key)
 */
 HB_FUNC_STATIC( QPIXMAPCACHE_REMOVE1 )
 {
-  QPixmapCache::remove ( PQSTRING(1) );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
+    if( ISNUMPAR(1) && ISCHAR(1) )
+  {
+#endif
+      QPixmapCache::remove ( PQSTRING(1) );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
+  }
+  else
+  {
+    hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
+  }
+#endif
+
   hb_itemReturn( hb_stackSelfItem() );
 }
 
@@ -167,7 +242,6 @@ HB_FUNC_STATIC( QPIXMAPCACHE_REMOVE1 )
 
 HB_FUNC_STATIC( QPIXMAPCACHE_REMOVE )
 {
-  // TODO: implementar
 }
 
 /*
@@ -175,7 +249,19 @@ static void clear()
 */
 HB_FUNC_STATIC( QPIXMAPCACHE_CLEAR )
 {
-  QPixmapCache::clear ();
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
+    if( ISNUMPAR(0) )
+  {
+#endif
+      QPixmapCache::clear ();
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
+  }
+  else
+  {
+    hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
+  }
+#endif
+
   hb_itemReturn( hb_stackSelfItem() );
 }
 

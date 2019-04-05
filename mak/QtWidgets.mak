@@ -1,7 +1,7 @@
 #
 # Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 #
-# Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+# Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 #
 
 # QtWidgets
@@ -272,8 +272,6 @@ OBJECTS_QTWIDGETS += $(QT5XHB_OBJ_DIR)/QStatusBar$(OBJEXT)
 OBJECTS_QTWIDGETS += $(QT5XHB_OBJ_DIR)/QStatusBarSlots$(OBJEXT)
 OBJECTS_QTWIDGETS += $(QT5XHB_OBJ_DIR)/QStatusBarSlotsMoc$(OBJEXT)
 OBJECTS_QTWIDGETS += $(QT5XHB_OBJ_DIR)/QStyle$(OBJEXT)
-OBJECTS_QTWIDGETS += $(QT5XHB_OBJ_DIR)/QStyleSlots$(OBJEXT)
-OBJECTS_QTWIDGETS += $(QT5XHB_OBJ_DIR)/QStyleSlotsMoc$(OBJEXT)
 OBJECTS_QTWIDGETS += $(QT5XHB_OBJ_DIR)/QStyleFactory$(OBJEXT)
 OBJECTS_QTWIDGETS += $(QT5XHB_OBJ_DIR)/QStyleHintReturn$(OBJEXT)
 OBJECTS_QTWIDGETS += $(QT5XHB_OBJ_DIR)/QStyleHintReturnMask$(OBJEXT)

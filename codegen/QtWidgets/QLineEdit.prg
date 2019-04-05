@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtWidgets
 
 $header
 
@@ -24,12 +27,12 @@ $destructor
 
 $includes
 
-#include <QVariant>
-#include <QIcon>
-#include <QCompleter>
-#include <QValidator>
-#include <QAction>
-#include <QMenu>
+#include <QtCore/QVariant>
+#include <QtGui/QIcon>
+#include <QtWidgets/QCompleter>
+#include <QtGui/QValidator>
+#include <QtWidgets/QAction>
+#include <QtWidgets/QMenu>
 
 $prototype=explicit QLineEdit ( QWidget * parent = 0 )
 $internalConstructor=|new1|QWidget *=0
@@ -214,6 +217,7 @@ HB_FUNC_STATIC( QLINEEDIT_SETTEXTMARGINS )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=setTextMargins
 
 $prototype=void setValidator ( const QValidator * v )
 $method=|void|setValidator|const QValidator *=0
@@ -290,6 +294,7 @@ HB_FUNC_STATIC( QLINEEDIT_ADDACTION )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=addAction
 
 $prototype=void setClearButtonEnabled(bool enable)
 $method=|void|setClearButtonEnabled|bool

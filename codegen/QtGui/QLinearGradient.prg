@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtGui
 
 $header
 
@@ -84,6 +87,7 @@ HB_FUNC_STATIC( QLINEARGRADIENT_SETFINALSTOP )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=setFinalStop
 
 $prototype=void setStart ( const QPointF & start )
 $internalMethod=|void|setStart,setStart1|const QPointF &
@@ -109,6 +113,7 @@ HB_FUNC_STATIC( QLINEARGRADIENT_SETSTART )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=setStart
 
 $prototype=QPointF start () const
 $method=|QPointF|start|

@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -12,26 +12,31 @@
 
 #include "hbclass.ch"
 
+#ifndef QT5XHB_NO_REQUESTS
+REQUEST QFONT
+REQUEST QICON
+REQUEST QPOINT
+REQUEST QSIZE
+#endif
+
 CLASS QStyleOptionToolButton INHERIT QStyleOptionComplex
 
    METHOD new
-
    METHOD features
-   METHOD icon
-   METHOD iconSize
-   METHOD text
-   METHOD arrowType
-   METHOD toolButtonStyle
-   METHOD pos
-   METHOD font
-
    METHOD setFeatures
+   METHOD icon
    METHOD setIcon
+   METHOD iconSize
    METHOD setIconSize
+   METHOD text
    METHOD setText
+   METHOD arrowType
    METHOD setArrowType
+   METHOD toolButtonStyle
    METHOD setToolButtonStyle
+   METHOD pos
    METHOD setPos
+   METHOD font
    METHOD setFont
 
    DESTRUCTOR destroyObject
@@ -46,10 +51,10 @@ RETURN
 
 #pragma BEGINDUMP
 
-#include <Qt>
+#include <QtCore/Qt>
 
 #ifndef __XHARBOUR__
-#include <QStyleOptionToolButton>
+#include <QtWidgets/QStyleOptionToolButton>
 #endif
 
 #include "qt5xhb_common.h"
@@ -57,7 +62,7 @@ RETURN
 #include "qt5xhb_utils.h"
 
 #ifdef __XHARBOUR__
-#include <QStyleOptionToolButton>
+#include <QtWidgets/QStyleOptionToolButton>
 #endif
 
 /*
@@ -79,12 +84,12 @@ void QStyleOptionToolButton_new2 ()
 }
 
 /*
-QStyleOptionToolButton(int version) (protected)
+QStyleOptionToolButton(int version) [protected]
 */
 
 //[1]QStyleOptionToolButton()
 //[2]QStyleOptionToolButton(const QStyleOptionToolButton &other)
-//[3]QStyleOptionToolButton(int version) (protected)
+//[3]QStyleOptionToolButton(int version) [protected]
 
 HB_FUNC_STATIC( QSTYLEOPTIONTOOLBUTTON_NEW )
 {

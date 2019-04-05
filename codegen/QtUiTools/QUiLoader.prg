@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtUiTools
 
 $header
 
@@ -22,11 +25,11 @@ $destructor
 
 $includes
 
-#include <QStringList>
-#include <QDir>
-#include <QAction>
-#include <QActionGroup>
-#include <QLayout>
+#include <QtCore/QStringList>
+#include <QtCore/QDir>
+#include <QtWidgets/QAction>
+#include <QtWidgets/QActionGroup>
+#include <QtWidgets/QLayout>
 
 $prototype=QUiLoader ( QObject * parent = 0 )
 $constructor=|new|QObject *=0

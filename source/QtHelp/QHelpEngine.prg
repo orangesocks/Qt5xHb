@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -42,10 +42,10 @@ RETURN
 
 #pragma BEGINDUMP
 
-#include <Qt>
+#include <QtCore/Qt>
 
 #ifndef __XHARBOUR__
-#include <QHelpEngine>
+#include <QtHelp/QHelpEngine>
 #endif
 
 #include "qt5xhb_common.h"
@@ -53,12 +53,12 @@ RETURN
 #include "qt5xhb_utils.h"
 
 #ifdef __XHARBOUR__
-#include <QHelpEngine>
+#include <QtHelp/QHelpEngine>
 #endif
 
-#include <QHelpContentModel>
-#include <QHelpIndexModel>
-#include <QHelpSearchEngine>
+#include <QtHelp/QHelpContentModel>
+#include <QtHelp/QHelpIndexModel>
+#include <QtHelp/QHelpSearchEngine>
 
 /*
 QHelpEngine ( const QString & collectionFile, QObject * parent = 0 )
@@ -102,15 +102,19 @@ HB_FUNC_STATIC( QHELPENGINE_CONTENTMODEL )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
+#endif
       QHelpContentModel * ptr = obj->contentModel ();
       _qt5xhb_createReturnQObjectClass ( ptr, "QHELPCONTENTMODEL" );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
@@ -123,15 +127,19 @@ HB_FUNC_STATIC( QHELPENGINE_CONTENTWIDGET )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
+#endif
       QHelpContentWidget * ptr = obj->contentWidget ();
       _qt5xhb_createReturnQWidgetClass ( ptr, "QHELPCONTENTWIDGET" );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
@@ -144,15 +152,19 @@ HB_FUNC_STATIC( QHELPENGINE_INDEXMODEL )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
+#endif
       QHelpIndexModel * ptr = obj->indexModel ();
       _qt5xhb_createReturnQObjectClass ( ptr, "QHELPINDEXMODEL" );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
@@ -165,15 +177,19 @@ HB_FUNC_STATIC( QHELPENGINE_INDEXWIDGET )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
+#endif
       QHelpIndexWidget * ptr = obj->indexWidget ();
       _qt5xhb_createReturnQWidgetClass ( ptr, "QHELPINDEXWIDGET" );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
@@ -186,15 +202,19 @@ HB_FUNC_STATIC( QHELPENGINE_SEARCHENGINE )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
+#endif
       QHelpSearchEngine * ptr = obj->searchEngine ();
       _qt5xhb_createReturnQObjectClass ( ptr, "QHELPSEARCHENGINE" );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 

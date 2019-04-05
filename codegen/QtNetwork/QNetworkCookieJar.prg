@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtNetwork
 
 $header
 
@@ -22,7 +25,7 @@ $destructor
 
 $includes
 
-#include <QNetworkCookie>
+#include <QtNetwork/QNetworkCookie>
 
 $prototype=explicit QNetworkCookieJar(QObject *parent = Q_NULLPTR)
 $constructor=|new|QObject *=0
@@ -45,10 +48,10 @@ $virtualMethod=|bool|updateCookie|const QNetworkCookie &
 $prototype=virtual bool deleteCookie(const QNetworkCookie &cookie)
 $virtualMethod=|bool|deleteCookie|const QNetworkCookie &
 
-$prototype=QList<QNetworkCookie> allCookies() const (protected)
+$prototype=QList<QNetworkCookie> allCookies() const [protected]
 
-$prototype=void setAllCookies(const QList<QNetworkCookie> &cookieList) (protected)
+$prototype=void setAllCookies(const QList<QNetworkCookie> &cookieList) [protected]
 
-$prototype=virtual bool validateCookie(const QNetworkCookie &cookie, const QUrl &url) const (protected)
+$prototype=virtual bool validateCookie(const QNetworkCookie &cookie, const QUrl &url) const protected]
 
 #pragma ENDDUMP

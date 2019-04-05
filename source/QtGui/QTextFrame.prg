@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -13,8 +13,8 @@
 #include "hbclass.ch"
 
 #ifndef QT5XHB_NO_REQUESTS
-REQUEST QTEXTFRAMEFORMAT
 REQUEST QTEXTCURSOR
+REQUEST QTEXTFRAMEFORMAT
 #endif
 
 CLASS QTextFrame INHERIT QTextObject
@@ -42,10 +42,10 @@ RETURN
 
 #pragma BEGINDUMP
 
-#include <Qt>
+#include <QtCore/Qt>
 
 #ifndef __XHARBOUR__
-#include <QTextFrame>
+#include <QtGui/QTextFrame>
 #endif
 
 #include "qt5xhb_common.h"
@@ -53,10 +53,10 @@ RETURN
 #include "qt5xhb_utils.h"
 
 #ifdef __XHARBOUR__
-#include <QTextFrame>
+#include <QtGui/QTextFrame>
 #endif
 
-#include <QTextCursor>
+#include <QtGui/QTextCursor>
 
 /*
 QTextFrame(QTextDocument *doc)
@@ -100,14 +100,18 @@ HB_FUNC_STATIC( QTEXTFRAME_SETFRAMEFORMAT )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(1) && ISQTEXTFRAMEFORMAT(1) )
     {
+#endif
       obj->setFrameFormat ( *PQTEXTFRAMEFORMAT(1) );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 
   hb_itemReturn( hb_stackSelfItem() );
@@ -122,15 +126,19 @@ HB_FUNC_STATIC( QTEXTFRAME_FRAMEFORMAT )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
+#endif
       QTextFrameFormat * ptr = new QTextFrameFormat( obj->frameFormat () );
       _qt5xhb_createReturnClass ( ptr, "QTEXTFRAMEFORMAT", true );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
@@ -143,15 +151,19 @@ HB_FUNC_STATIC( QTEXTFRAME_FIRSTCURSORPOSITION )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
+#endif
       QTextCursor * ptr = new QTextCursor( obj->firstCursorPosition () );
       _qt5xhb_createReturnClass ( ptr, "QTEXTCURSOR", true );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
@@ -164,15 +176,19 @@ HB_FUNC_STATIC( QTEXTFRAME_LASTCURSORPOSITION )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
+#endif
       QTextCursor * ptr = new QTextCursor( obj->lastCursorPosition () );
       _qt5xhb_createReturnClass ( ptr, "QTEXTCURSOR", true );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
@@ -185,14 +201,18 @@ HB_FUNC_STATIC( QTEXTFRAME_FIRSTPOSITION )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
+#endif
       RINT( obj->firstPosition () );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
@@ -205,14 +225,18 @@ HB_FUNC_STATIC( QTEXTFRAME_LASTPOSITION )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
+#endif
       RINT( obj->lastPosition () );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
@@ -233,8 +257,10 @@ HB_FUNC_STATIC( QTEXTFRAME_CHILDFRAMES )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
+#endif
       QList<QTextFrame *> list = obj->childFrames ();
       PHB_DYNS pDynSym = hb_dynsymFindName( "QTEXTFRAME" );
       PHB_ITEM pArray = hb_itemArrayNew(0);
@@ -261,11 +287,13 @@ HB_FUNC_STATIC( QTEXTFRAME_CHILDFRAMES )
         }
       }
       hb_itemReturnRelease(pArray);
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
@@ -278,15 +306,19 @@ HB_FUNC_STATIC( QTEXTFRAME_PARENTFRAME )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
+#endif
       QTextFrame * ptr = obj->parentFrame ();
       _qt5xhb_createReturnQObjectClass ( ptr, "QTEXTFRAME" );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 

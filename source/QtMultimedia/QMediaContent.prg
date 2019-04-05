@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -13,10 +13,10 @@
 #include "hbclass.ch"
 
 #ifndef QT5XHB_NO_REQUESTS
-REQUEST QNETWORKREQUEST
-REQUEST QMEDIARESOURCE
-REQUEST QURL
 REQUEST QMEDIAPLAYLIST
+REQUEST QMEDIARESOURCE
+REQUEST QNETWORKREQUEST
+REQUEST QURL
 #endif
 
 CLASS QMediaContent
@@ -26,7 +26,6 @@ CLASS QMediaContent
 
    METHOD new
    METHOD delete
-
    METHOD canonicalRequest
    METHOD canonicalResource
    METHOD canonicalUrl
@@ -52,10 +51,10 @@ RETURN
 
 #pragma BEGINDUMP
 
-#include <Qt>
+#include <QtCore/Qt>
 
 #ifndef __XHARBOUR__
-#include <QMediaContent>
+#include <QtMultimedia/QMediaContent>
 #endif
 
 #include "qt5xhb_common.h"
@@ -63,10 +62,10 @@ RETURN
 #include "qt5xhb_utils.h"
 
 #ifdef __XHARBOUR__
-#include <QMediaContent>
+#include <QtMultimedia/QMediaContent>
 #endif
 
-#include <QMediaPlaylist>
+#include <QtMultimedia/QMediaPlaylist>
 
 /*
 QMediaContent()
@@ -212,15 +211,19 @@ HB_FUNC_STATIC( QMEDIACONTENT_CANONICALREQUEST )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
+#endif
       QNetworkRequest * ptr = new QNetworkRequest( obj->canonicalRequest () );
       _qt5xhb_createReturnClass ( ptr, "QNETWORKREQUEST", true );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
@@ -233,15 +236,19 @@ HB_FUNC_STATIC( QMEDIACONTENT_CANONICALRESOURCE )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
+#endif
       QMediaResource * ptr = new QMediaResource( obj->canonicalResource () );
       _qt5xhb_createReturnClass ( ptr, "QMEDIARESOURCE", true );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
@@ -254,15 +261,19 @@ HB_FUNC_STATIC( QMEDIACONTENT_CANONICALURL )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
+#endif
       QUrl * ptr = new QUrl( obj->canonicalUrl () );
       _qt5xhb_createReturnClass ( ptr, "QURL", true );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
@@ -275,14 +286,18 @@ HB_FUNC_STATIC( QMEDIACONTENT_ISNULL )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
+#endif
       RBOOL( obj->isNull () );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
@@ -295,15 +310,19 @@ HB_FUNC_STATIC( QMEDIACONTENT_PLAYLIST )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
+#endif
       QMediaPlaylist * ptr = obj->playlist ();
       _qt5xhb_createReturnQObjectClass ( ptr, "QMEDIAPLAYLIST" );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
@@ -316,8 +335,10 @@ HB_FUNC_STATIC( QMEDIACONTENT_RESOURCES )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
+#endif
       QMediaResourceList list = obj->resources ();
       PHB_DYNS pDynSym = hb_dynsymFindName( "QMEDIARESOURCE" );
       PHB_ITEM pArray = hb_itemArrayNew(0);
@@ -348,11 +369,13 @@ HB_FUNC_STATIC( QMEDIACONTENT_RESOURCES )
         }
       }
       hb_itemReturnRelease(pArray);
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 

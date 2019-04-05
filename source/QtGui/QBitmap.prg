@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -11,6 +11,9 @@
 */
 
 #include "hbclass.ch"
+
+#ifndef QT5XHB_NO_REQUESTS
+#endif
 
 CLASS QBitmap INHERIT QPixmap
 
@@ -35,10 +38,10 @@ RETURN
 
 #pragma BEGINDUMP
 
-#include <Qt>
+#include <QtCore/Qt>
 
 #ifndef __XHARBOUR__
-#include <QBitmap>
+#include <QtGui/QBitmap>
 #endif
 
 #include "qt5xhb_common.h"
@@ -46,10 +49,10 @@ RETURN
 #include "qt5xhb_utils.h"
 
 #ifdef __XHARBOUR__
-#include <QBitmap>
+#include <QtGui/QBitmap>
 #endif
 
-#include <QVariant>
+#include <QtCore/QVariant>
 
 /*
 QBitmap ()
@@ -156,14 +159,18 @@ HB_FUNC_STATIC( QBITMAP_CLEAR )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
+#endif
       obj->clear ();
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 
   hb_itemReturn( hb_stackSelfItem() );
@@ -178,15 +185,19 @@ HB_FUNC_STATIC( QBITMAP_TRANSFORMED )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(1) && ISQTRANSFORM(1) )
     {
+#endif
       QBitmap * ptr = new QBitmap( obj->transformed ( *PQTRANSFORM(1) ) );
       _qt5xhb_createReturnClass ( ptr, "QBITMAP", true );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
@@ -195,15 +206,19 @@ static QBitmap fromData ( const QSize & size, const uchar * bits, QImage::Format
 */
 HB_FUNC_STATIC( QBITMAP_FROMDATA )
 {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISBETWEEN(2,3) && ISQSIZE(1) && ISCHAR(2) && ISOPTNUM(3) )
   {
+#endif
       QBitmap * ptr = new QBitmap( QBitmap::fromData ( *PQSIZE(1), PCONSTUCHAR(2), ISNIL(3)? (QImage::Format) QImage::Format_MonoLSB : (QImage::Format) hb_parni(3) ) );
       _qt5xhb_createReturnClass ( ptr, "QBITMAP", true );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
   }
   else
   {
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
+#endif
 }
 
 /*
@@ -211,16 +226,24 @@ static QBitmap fromImage ( const QImage & image, Qt::ImageConversionFlags flags 
 */
 HB_FUNC_STATIC( QBITMAP_FROMIMAGE )
 {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISBETWEEN(1,2) && ISQIMAGE(1) && ISOPTNUM(2) )
   {
+#endif
       QBitmap * ptr = new QBitmap( QBitmap::fromImage ( *PQIMAGE(1), ISNIL(2)? (Qt::ImageConversionFlags) Qt::AutoColor : (Qt::ImageConversionFlags) hb_parni(2) ) );
       _qt5xhb_createReturnClass ( ptr, "QBITMAP", true );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
   }
   else
   {
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
+#endif
 }
+
+/*
+static QBitmap QBitmap::fromImage(QImage &&image, Qt::ImageConversionFlags flags = Qt::AutoColor)
+*/
 
 /*
 QVariant toVariant ()

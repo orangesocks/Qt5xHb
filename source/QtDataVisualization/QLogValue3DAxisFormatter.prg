@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -12,17 +12,19 @@
 
 #include "hbclass.ch"
 
+#ifndef QT5XHB_NO_REQUESTS
+#endif
+
 CLASS QLogValue3DAxisFormatter INHERIT QValue3DAxisFormatter
 
    METHOD new
    METHOD delete
-
-   METHOD autoSubGrid
    METHOD base
-   METHOD setAutoSubGrid
    METHOD setBase
-   METHOD setShowEdgeLabels
+   METHOD autoSubGrid
+   METHOD setAutoSubGrid
    METHOD showEdgeLabels
+   METHOD setShowEdgeLabels
 
    METHOD onAutoSubGridChanged
    METHOD onBaseChanged
@@ -40,10 +42,10 @@ RETURN
 
 #pragma BEGINDUMP
 
-#include <Qt>
+#include <QtCore/Qt>
 
 #ifndef __XHARBOUR__
-#include <QLogValue3DAxisFormatter>
+#include <QtDataVisualization/QLogValue3DAxisFormatter>
 #endif
 
 #include "qt5xhb_common.h"
@@ -51,7 +53,7 @@ RETURN
 #include "qt5xhb_utils.h"
 
 #ifdef __XHARBOUR__
-#include <QLogValue3DAxisFormatter>
+#include <QtDataVisualization/QLogValue3DAxisFormatter>
 #endif
 
 using namespace QtDataVisualization;
@@ -73,7 +75,7 @@ HB_FUNC_STATIC( QLOGVALUE3DAXISFORMATTER_NEW )
 }
 
 /*
-explicit QLogValue3DAxisFormatter(QLogValue3DAxisFormatterPrivate *d, QObject *parent = Q_NULLPTR) (protected)
+explicit QLogValue3DAxisFormatter(QLogValue3DAxisFormatterPrivate *d, QObject *parent = Q_NULLPTR) [protected]
 */
 
 /*
@@ -105,14 +107,18 @@ HB_FUNC_STATIC( QLOGVALUE3DAXISFORMATTER_BASE )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
+#endif
       RQREAL( obj->base () );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
@@ -125,14 +131,18 @@ HB_FUNC_STATIC( QLOGVALUE3DAXISFORMATTER_SETBASE )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(1) && ISNUM(1) )
     {
+#endif
       obj->setBase ( PQREAL(1) );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 
   hb_itemReturn( hb_stackSelfItem() );
@@ -147,14 +157,18 @@ HB_FUNC_STATIC( QLOGVALUE3DAXISFORMATTER_AUTOSUBGRID )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
+#endif
       RBOOL( obj->autoSubGrid () );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
@@ -167,14 +181,18 @@ HB_FUNC_STATIC( QLOGVALUE3DAXISFORMATTER_SETAUTOSUBGRID )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(1) && ISLOG(1) )
     {
+#endif
       obj->setAutoSubGrid ( PBOOL(1) );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 
   hb_itemReturn( hb_stackSelfItem() );
@@ -189,14 +207,18 @@ HB_FUNC_STATIC( QLOGVALUE3DAXISFORMATTER_SHOWEDGELABELS )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
+#endif
       RBOOL( obj->showEdgeLabels () );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
@@ -209,37 +231,41 @@ HB_FUNC_STATIC( QLOGVALUE3DAXISFORMATTER_SETSHOWEDGELABELS )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(1) && ISLOG(1) )
     {
+#endif
       obj->setShowEdgeLabels ( PBOOL(1) );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 
   hb_itemReturn( hb_stackSelfItem() );
 }
 
 /*
-virtual QValue3DAxisFormatter *createNewInstance() const (protected)
+virtual QValue3DAxisFormatter *createNewInstance() const [protected]
 */
 
 /*
-virtual void recalculate() (protected)
+virtual void recalculate() [protected]
 */
 
 /*
-virtual float positionAt(float value) const (protected)
+virtual float positionAt(float value) const [protected]
 */
 
 /*
-virtual float valueAt(float position) const (protected)
+virtual float valueAt(float position) const [protected]
 */
 
 /*
-virtual void populateCopy(QValue3DAxisFormatter &copy) const (protected)
+virtual void populateCopy(QValue3DAxisFormatter &copy) const [protected]
 */
 
 void QLogValue3DAxisFormatterSlots_connect_signal ( const QString & signal, const QString & slot );

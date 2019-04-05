@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtGui
 
 $header
 
@@ -22,8 +25,8 @@ $destructor
 
 $includes
 
-#include <QVector2D>
-#include <QVector4D>
+#include <QtGui/QVector2D>
+#include <QtGui/QVector4D>
 
 $prototype=QVector3D()
 $internalConstructor=|new1|
@@ -152,6 +155,7 @@ HB_FUNC_STATIC( QVECTOR3D_DISTANCETOPLANE )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=distanceToPlane
 
 $prototype=float distanceToLine(const QVector3D& point, const QVector3D& direction) const
 $method=|float|distanceToLine|const QVector3D &,const QVector3D &
@@ -198,6 +202,7 @@ HB_FUNC_STATIC( QVECTOR3D_NORMAL )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=normal
 
 $extraMethods
 

@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtGui
 
 $header
 
@@ -22,7 +25,7 @@ $destructor
 
 $includes
 
-#include <QColor>
+#include <QtGui/QColor>
 
 $prototype=QImageReader ()
 $internalConstructor=|new1|
@@ -137,6 +140,7 @@ HB_FUNC_STATIC( QIMAGEREADER_READ )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=read
 
 $prototype=QRect scaledClipRect () const
 $method=|QRect|scaledClipRect|
@@ -221,9 +225,13 @@ HB_FUNC_STATIC( QIMAGEREADER_IMAGEFORMAT )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=imageFormat
 
 $prototype=static QList<QByteArray> supportedImageFormats ()
 $staticMethod=|QList<QByteArray>|supportedImageFormats|
+
+$prototype=static QList<QByteArray> QImageReader::imageFormatsForMimeType(const QByteArray &mimeType)
+$staticMethod=5,12,0|QList<QByteArray>|imageFormatsForMimeType|const QByteArray &
 
 $extraMethods
 

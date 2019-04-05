@@ -2,14 +2,14 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
 #ifndef HCODEBLOCKVALIDATOR_H
 #define HCODEBLOCKVALIDATOR_H
 
-#include <QValidator>
+#include <QtGui/QValidator>
 
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"

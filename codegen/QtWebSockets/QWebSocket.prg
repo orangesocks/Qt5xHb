@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtWebSockets
 
 $header
 
@@ -24,7 +27,7 @@ $destructor
 
 $includes=5,3,0
 
-#include <QMaskGenerator>
+#include <QtWebSockets/QMaskGenerator>
 
 $prototype=explicit QWebSocket(const QString &origin = QString(),QWebSocketProtocol::Version version = QWebSocketProtocol::VersionLatest,QObject *parent = Q_NULLPTR)
 $constructor=5,3,0|new|const QString &=QString(),QWebSocketProtocol::Version=QWebSocketProtocol::VersionLatest,QObject *=Q_NULLPTR
@@ -139,6 +142,7 @@ HB_FUNC_STATIC( QWEBSOCKET_IGNORESSLERRORS )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=ignoreSslErrors
 
 $prototype=QSslConfiguration sslConfiguration() const
 $method=5,3,0|QSslConfiguration|sslConfiguration|

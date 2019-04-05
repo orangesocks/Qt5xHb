@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -13,7 +13,6 @@
 #include "hbclass.ch"
 
 #ifndef QT5XHB_NO_REQUESTS
-REQUEST QMEDIASERVICE
 #endif
 
 CLASS QMediaServiceProviderFactoryInterface
@@ -22,7 +21,6 @@ CLASS QMediaServiceProviderFactoryInterface
    DATA self_destruction INIT .F.
 
    METHOD delete
-
    METHOD release
 
    METHOD newFrom
@@ -43,10 +41,10 @@ RETURN
 
 #pragma BEGINDUMP
 
-#include <Qt>
+#include <QtCore/Qt>
 
 #ifndef __XHARBOUR__
-#include <QMediaServiceProviderFactoryInterface>
+#include <QtMultimedia/QMediaServiceProviderFactoryInterface>
 #endif
 
 #include "qt5xhb_common.h"
@@ -54,7 +52,7 @@ RETURN
 #include "qt5xhb_utils.h"
 
 #ifdef __XHARBOUR__
-#include <QMediaServiceProviderFactoryInterface>
+#include <QtMultimedia/QMediaServiceProviderFactoryInterface>
 #endif
 
 /*
@@ -90,14 +88,18 @@ HB_FUNC_STATIC( QMEDIASERVICEPROVIDERFACTORYINTERFACE_RELEASE )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(1) && ISQMEDIASERVICE(1) )
     {
+#endif
       obj->release ( PQMEDIASERVICE(1) );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 
   hb_itemReturn( hb_stackSelfItem() );

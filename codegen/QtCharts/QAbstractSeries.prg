@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtCharts
 
 $header
 
@@ -24,11 +27,11 @@ $destructor
 
 $includes=5,7,0
 
-#include <QChart>
+#include <QtCharts/QChart>
 
 using namespace QtCharts;
 
-$prototype=QAbstractSeries(QAbstractSeriesPrivate &d, QObject *parent = nullptr) (protected)
+$prototype=QAbstractSeries(QAbstractSeriesPrivate &d, QObject *parent = nullptr) [protected]
 
 $prototype=~QAbstractSeries()
 $deleteMethod=5,7,0

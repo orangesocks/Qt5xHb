@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtMultimedia
 
 $header
 
@@ -41,7 +44,7 @@ $destructor
 
 $includes
 
-#include <QSize>
+#include <QtCore/QSize>
 
 $prototype=QMediaResource()
 $internalConstructor=|new1|
@@ -156,6 +159,7 @@ HB_FUNC_STATIC( QMEDIARESOURCE_SETRESOLUTION )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=setResolution
 
 $prototype=void setSampleRate(int frequency)
 $method=|void|setSampleRate|int

@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtQml
 
 $header
 
@@ -24,7 +27,7 @@ $destructor
 
 $includes
 
-#include <QQmlContext>
+#include <QtQml/QQmlContext>
 
 $prototype=QQmlComponent(QQmlEngine * engine, QObject * parent = 0)
 $internalConstructor=|new1|QQmlEngine *,QObject *=0
@@ -107,6 +110,7 @@ HB_FUNC_STATIC( QQMLCOMPONENT_CREATE )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=create
 
 $prototype=QQmlContext * creationContext() const
 $method=|QQmlContext *|creationContext|
@@ -156,6 +160,7 @@ HB_FUNC_STATIC( QQMLCOMPONENT_LOADURL )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=loadUrl
 
 $prototype=void setData(const QByteArray & data, const QUrl & url)
 $method=|void|setData|const QByteArray &,const QUrl &

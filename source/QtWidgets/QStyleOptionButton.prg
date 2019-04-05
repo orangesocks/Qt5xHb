@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -12,18 +12,21 @@
 
 #include "hbclass.ch"
 
+#ifndef QT5XHB_NO_REQUESTS
+REQUEST QICON
+REQUEST QSIZE
+#endif
+
 CLASS QStyleOptionButton INHERIT QStyleOption
 
    METHOD new
-
    METHOD features
-   METHOD text
-   METHOD icon
-   METHOD iconSize
-
    METHOD setFeatures
+   METHOD text
    METHOD setText
+   METHOD icon
    METHOD setIcon
+   METHOD iconSize
    METHOD setIconSize
 
    DESTRUCTOR destroyObject
@@ -38,10 +41,10 @@ RETURN
 
 #pragma BEGINDUMP
 
-#include <Qt>
+#include <QtCore/Qt>
 
 #ifndef __XHARBOUR__
-#include <QStyleOptionButton>
+#include <QtWidgets/QStyleOptionButton>
 #endif
 
 #include "qt5xhb_common.h"
@@ -49,7 +52,7 @@ RETURN
 #include "qt5xhb_utils.h"
 
 #ifdef __XHARBOUR__
-#include <QStyleOptionButton>
+#include <QtWidgets/QStyleOptionButton>
 #endif
 
 /*
@@ -71,12 +74,12 @@ void QStyleOptionButton_new2 ()
 }
 
 /*
-QStyleOptionButton(int version) (protected)
+QStyleOptionButton(int version) [protected]
 */
 
 //[1]QStyleOptionButton()
 //[2]QStyleOptionButton(const QStyleOptionButton &other) : QStyleOption(Version, Type)
-//[3]QStyleOptionButton(int version) (protected)
+//[3]QStyleOptionButton(int version) [protected]
 
 HB_FUNC_STATIC( QSTYLEOPTIONBUTTON_NEW )
 {

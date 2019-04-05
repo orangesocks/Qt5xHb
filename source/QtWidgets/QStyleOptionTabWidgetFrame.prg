@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -12,26 +12,29 @@
 
 #include "hbclass.ch"
 
+#ifndef QT5XHB_NO_REQUESTS
+REQUEST QRECT
+REQUEST QSIZE
+#endif
+
 CLASS QStyleOptionTabWidgetFrame INHERIT QStyleOption
 
    METHOD new
-
    METHOD lineWidth
-   METHOD midLineWidth
-   METHOD shape
-   METHOD tabBarSize
-   METHOD rightCornerWidgetSize
-   METHOD leftCornerWidgetSize
-   METHOD tabBarRect
-   METHOD selectedTabRect
-
    METHOD setLineWidth
+   METHOD midLineWidth
    METHOD setMidLineWidth
+   METHOD shape
    METHOD setShape
+   METHOD tabBarSize
    METHOD setTabBarSize
+   METHOD rightCornerWidgetSize
    METHOD setRightCornerWidgetSize
+   METHOD leftCornerWidgetSize
    METHOD setLeftCornerWidgetSize
+   METHOD tabBarRect
    METHOD setTabBarRect
+   METHOD selectedTabRect
    METHOD setSelectedTabRect
 
    DESTRUCTOR destroyObject
@@ -46,10 +49,10 @@ RETURN
 
 #pragma BEGINDUMP
 
-#include <Qt>
+#include <QtCore/Qt>
 
 #ifndef __XHARBOUR__
-#include <QStyleOptionTabWidgetFrame>
+#include <QtWidgets/QStyleOptionTabWidgetFrame>
 #endif
 
 #include "qt5xhb_common.h"
@@ -57,7 +60,7 @@ RETURN
 #include "qt5xhb_utils.h"
 
 #ifdef __XHARBOUR__
-#include <QStyleOptionTabWidgetFrame>
+#include <QtWidgets/QStyleOptionTabWidgetFrame>
 #endif
 
 /*
@@ -79,12 +82,12 @@ void QStyleOptionTabWidgetFrame_new2 ()
 }
 
 /*
-QStyleOptionTabWidgetFrame(int version) (protected)
+QStyleOptionTabWidgetFrame(int version) [protected]
 */
 
 //[1]QStyleOptionTabWidgetFrame()
 //[2]QStyleOptionTabWidgetFrame(const QStyleOptionTabWidgetFrame &other)
-//[3]QStyleOptionTabWidgetFrame(int version) (protected)
+//[3]QStyleOptionTabWidgetFrame(int version) [protected]
 
 HB_FUNC_STATIC( QSTYLEOPTIONTABWIDGETFRAME_NEW )
 {

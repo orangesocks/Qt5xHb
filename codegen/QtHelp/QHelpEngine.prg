@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtHelp
 
 $header
 
@@ -22,9 +25,9 @@ $destructor
 
 $includes
 
-#include <QHelpContentModel>
-#include <QHelpIndexModel>
-#include <QHelpSearchEngine>
+#include <QtHelp/QHelpContentModel>
+#include <QtHelp/QHelpIndexModel>
+#include <QtHelp/QHelpSearchEngine>
 
 $prototype=QHelpEngine ( const QString & collectionFile, QObject * parent = 0 )
 $constructor=|new|const QString &,QObject *=0

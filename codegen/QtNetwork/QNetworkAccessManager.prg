@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtNetwork
 
 $header
 
@@ -53,15 +56,15 @@ $destructor
 
 $includes
 
-#include <QNetworkConfiguration>
-#include <QNetworkProxy>
-#include <QSslError>
-#include <QList>
-#include <QAbstractNetworkCache>
-#include <QNetworkCookieJar>
-#include <QNetworkReply>
+#include <QtNetwork/QNetworkConfiguration>
+#include <QtNetwork/QNetworkProxy>
+#include <QtNetwork/QSslError>
+#include <QtCore/QList>
+#include <QtNetwork/QAbstractNetworkCache>
+#include <QtNetwork/QNetworkCookieJar>
+#include <QtNetwork/QNetworkReply>
 #if (QT_VERSION >= QT_VERSION_CHECK(5,9,0))
-#include <QHstsPolicy>
+#include <QtNetwork/QHstsPolicy>
 #endif
 $prototype=explicit QNetworkAccessManager(QObject *parent = Q_NULLPTR)
 $constructor=|new|QObject *=0
@@ -180,6 +183,7 @@ HB_FUNC_STATIC( QNETWORKACCESSMANAGER_POST )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=post
 
 $prototype=QNetworkReply *put(const QNetworkRequest &request, QIODevice *data)
 $internalMethod=|QNetworkReply *|put,put1|const QNetworkRequest &,QIODevice *
@@ -213,6 +217,7 @@ HB_FUNC_STATIC( QNETWORKACCESSMANAGER_PUT )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=put
 
 $prototype=QNetworkReply *deleteResource(const QNetworkRequest &request)
 $method=|QNetworkReply *|deleteResource|const QNetworkRequest &
@@ -249,6 +254,7 @@ HB_FUNC_STATIC( QNETWORKACCESSMANAGER_SENDCUSTOMREQUEST )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=sendCustomRequest
 
 %% #ifndef QT_NO_BEARERMANAGEMENT
 
@@ -279,9 +285,9 @@ $method=5,9,0|void|setRedirectPolicy|QNetworkRequest::RedirectPolicy
 $prototype=QNetworkRequest::RedirectPolicy redirectPolicy() const
 $method=5,9,0|QNetworkRequest::RedirectPolicy|redirectPolicy|
 
-$prototype=virtual QNetworkReply *createRequest(Operation op, const QNetworkRequest &request, QIODevice *outgoingData = Q_NULLPTR) (protected)
+$prototype=virtual QNetworkReply *createRequest(Operation op, const QNetworkRequest &request, QIODevice *outgoingData = Q_NULLPTR) [protected]
 
-$prototype=QStringList supportedSchemesImplementation() const (protected) (slot) (5,2,0)
+$prototype=QStringList supportedSchemesImplementation() const [protected] (slot) (5,2,0)
 
 $beginSignals
 %% #ifndef QT_NO_NETWORKPROXY

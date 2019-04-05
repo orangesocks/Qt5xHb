@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtWidgets
 
 $header
 
@@ -28,11 +31,11 @@ $internalConstructor=|new1|
 $prototype=QStyleOptionSizeGrip(const QStyleOptionSizeGrip &other)
 $internalConstructor=|new2|const QStyleOptionSizeGrip &
 
-$prototype=QStyleOptionSizeGrip(int version) (protected)
+$prototype=QStyleOptionSizeGrip(int version) [protected]
 
 //[1]QStyleOptionSizeGrip()
 //[2]QStyleOptionSizeGrip(const QStyleOptionSizeGrip &other)
-//[3]QStyleOptionSizeGrip(int version) (protected)
+//[3]QStyleOptionSizeGrip(int version) [protected]
 
 HB_FUNC_STATIC( QSTYLEOPTIONSIZEGRIP_NEW )
 {

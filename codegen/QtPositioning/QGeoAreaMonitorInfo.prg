@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtPositioning
 
 $header
 
@@ -22,13 +25,13 @@ $destructor
 
 $includes=5,2,0
 
-#include <QDateTime>
+#include <QtCore/QDateTime>
 
 $prototype=QGeoAreaMonitorInfo(const QString &name = QString())
-$constructor=5,2,0|new1|const QString &=QString()
+$internalConstructor=5,2,0|new1|const QString &=QString()
 
 $prototype=QGeoAreaMonitorInfo(const QGeoAreaMonitorInfo &other)
-$constructor=5,2,0|new2|const QGeoAreaMonitorInfo &
+$internalConstructor=5,2,0|new2|const QGeoAreaMonitorInfo &
 
 //[1]QGeoAreaMonitorInfo(const QString &name = QString())
 //[2]QGeoAreaMonitorInfo(const QGeoAreaMonitorInfo &other)
@@ -37,11 +40,11 @@ HB_FUNC_STATIC( QGEOAREAMONITORINFO_NEW )
 {
   if( ISBETWEEN(0,1) && ISOPTCHAR(1) )
   {
-    HB_FUNC_EXEC( QGEOAREAMONITORINFO_NEW1 );
+    QGeoAreaMonitorInfo_new1();
   }
   else if( ISNUMPAR(1) && ISQGEOAREAMONITORINFO(1) )
   {
-    HB_FUNC_EXEC( QGEOAREAMONITORINFO_NEW2 );
+    QGeoAreaMonitorInfo_new2();
   }
   else
   {

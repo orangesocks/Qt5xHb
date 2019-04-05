@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtWebKitWidgets
 
 $header
 
@@ -24,9 +27,9 @@ $destructor
 
 $includes
 
-#include <QAction>
-#include <QUrl>
-#include <QWidget>
+#include <QtWidgets/QAction>
+#include <QtCore/QUrl>
+#include <QtWidgets/QWidget>
 
 $prototype=explicit QWebView ( QWidget * parent = 0 )
 $constructor=|new|QWidget *=0
@@ -160,6 +163,7 @@ HB_FUNC_STATIC( QWEBVIEW_LOAD )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=load
 
 $prototype=QWebPage * page () const
 $method=|QWebPage *|page|

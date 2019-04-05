@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtNetwork
 
 $header
 
@@ -22,7 +25,7 @@ $destructor
 
 $includes
 
-#include <QIODevice>
+#include <QtCore/QIODevice>
 
 $prototype=explicit QNetworkDiskCache(QObject *parent = Q_NULLPTR)
 $constructor=|new|QObject *=0
@@ -69,6 +72,6 @@ $method=|QNetworkCacheMetaData|fileMetaData|const QString &
 $prototype=void clear() Q_DECL_OVERRIDE (slot)
 $slotMethod=|void|clear|
 
-$prototype=virtual qint64 expire() (protected)
+$prototype=virtual qint64 expire() [protected]
 
 #pragma ENDDUMP

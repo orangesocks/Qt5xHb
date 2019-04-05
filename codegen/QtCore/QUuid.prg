@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtCore
 
 $header
 
@@ -95,6 +98,7 @@ HB_FUNC_STATIC( QUUID_CREATEUUIDV3 )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=createUuidV3
 
 $prototype=static QUuid createUuidV5(const QUuid & ns, const QByteArray & baseData)
 $internalStaticMethod=|QUuid|createUuidV5,createUuidV51|const QUuid &,const QByteArray &
@@ -120,6 +124,7 @@ HB_FUNC_STATIC( QUUID_CREATEUUIDV5 )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=createUuidV5
 
 $prototype=static QUuid fromRfc4122(const QByteArray & bytes)
 $staticMethod=|QUuid|fromRfc4122|const QByteArray &

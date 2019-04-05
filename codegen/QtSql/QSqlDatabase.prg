@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtSql
 
 $header
 
@@ -22,12 +25,12 @@ $destructor
 
 $includes
 
-#include <QSqlDriver>
-#include <QSqlError>
-#include <QSqlIndex>
-#include <QSqlQuery>
-#include <QSqlRecord>
-#include <QStringList>
+#include <QtSql/QSqlDriver>
+#include <QtSql/QSqlError>
+#include <QtSql/QSqlIndex>
+#include <QtSql/QSqlQuery>
+#include <QtSql/QSqlRecord>
+#include <QtCore/QStringList>
 
 $prototype=QSqlDatabase ()
 $internalConstructor=|new1|
@@ -134,6 +137,7 @@ HB_FUNC_STATIC( QSQLDATABASE_OPEN )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=open
 
 $prototype=QString password () const
 $method=|QString|password|
@@ -203,6 +207,7 @@ HB_FUNC_STATIC( QSQLDATABASE_ADDDATABASE )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=addDatabase
 
 $prototype=static QSqlDatabase cloneDatabase ( const QSqlDatabase & other, const QString & connectionName )
 $staticMethod=|QSqlDatabase|cloneDatabase|const QSqlDatabase &,const QString &
@@ -223,6 +228,7 @@ HB_FUNC_STATIC( QSQLDATABASE_CONTAINS )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=contains
 
 $prototype=static QSqlDatabase database ( const QString & connectionName = QLatin1String( defaultConnection ), bool open = true )
 HB_FUNC_STATIC( QSQLDATABASE_DATABASE )
@@ -238,6 +244,7 @@ HB_FUNC_STATIC( QSQLDATABASE_DATABASE )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=database
 
 $prototype=static QStringList drivers ()
 $staticMethod=|QStringList|drivers|

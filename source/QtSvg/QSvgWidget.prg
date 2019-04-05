@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -21,10 +21,9 @@ CLASS QSvgWidget INHERIT QWidget
 
    METHOD new
    METHOD delete
-
-   METHOD load
    METHOD renderer
    METHOD sizeHint
+   METHOD load
 
    DESTRUCTOR destroyObject
 
@@ -38,10 +37,10 @@ RETURN
 
 #pragma BEGINDUMP
 
-#include <Qt>
+#include <QtCore/Qt>
 
 #ifndef __XHARBOUR__
-#include <QSvgWidget>
+#include <QtSvg/QSvgWidget>
 #endif
 
 #include "qt5xhb_common.h"
@@ -49,10 +48,10 @@ RETURN
 #include "qt5xhb_utils.h"
 
 #ifdef __XHARBOUR__
-#include <QSvgWidget>
+#include <QtSvg/QSvgWidget>
 #endif
 
-#include <QSvgRenderer>
+#include <QtSvg/QSvgRenderer>
 
 /*
 QSvgWidget ( QWidget * parent = 0 )
@@ -117,15 +116,19 @@ HB_FUNC_STATIC( QSVGWIDGET_RENDERER )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
+#endif
       QSvgRenderer * ptr = obj->renderer ();
       _qt5xhb_createReturnQObjectClass ( ptr, "QSVGRENDERER" );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
@@ -138,15 +141,19 @@ HB_FUNC_STATIC( QSVGWIDGET_SIZEHINT )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
+#endif
       QSize * ptr = new QSize( obj->sizeHint () );
       _qt5xhb_createReturnClass ( ptr, "QSIZE", true );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 

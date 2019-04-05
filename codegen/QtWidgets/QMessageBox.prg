@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtWidgets
 
 $header
 
@@ -24,9 +27,9 @@ $destructor
 
 $includes
 
-#include <QPushButton>
-#include <QAbstractButton>
-#include <QCheckBox>
+#include <QtWidgets/QPushButton>
+#include <QtWidgets/QAbstractButton>
+#include <QtWidgets/QCheckBox>
 
 $prototype=explicit QMessageBox ( QWidget * parent = 0 )
 $internalConstructor=|new1|QWidget *=0
@@ -87,6 +90,7 @@ HB_FUNC_STATIC( QMESSAGEBOX_ADDBUTTON )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=addButton
 
 $prototype=QAbstractButton * button ( StandardButton which ) const
 $method=|QAbstractButton *|button|QMessageBox::StandardButton
@@ -160,6 +164,7 @@ HB_FUNC_STATIC( QMESSAGEBOX_SETDEFAULTBUTTON )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=setDefaultButton
 
 $prototype=void setEscapeButton ( QAbstractButton * button )
 $internalMethod=|void|setEscapeButton,setEscapeButton1|QAbstractButton *
@@ -185,6 +190,7 @@ HB_FUNC_STATIC( QMESSAGEBOX_SETESCAPEBUTTON )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=setEscapeButton
 
 $prototype=void setWindowModality ( Qt::WindowModality windowModality )
 $method=|void|setWindowModality|Qt::WindowModality

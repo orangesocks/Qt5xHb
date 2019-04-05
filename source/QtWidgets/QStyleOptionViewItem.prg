@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -12,42 +12,50 @@
 
 #include "hbclass.ch"
 
+#ifndef QT5XHB_NO_REQUESTS
+REQUEST QBRUSH
+REQUEST QFONT
+REQUEST QICON
+REQUEST QLOCALE
+REQUEST QMODELINDEX
+REQUEST QSIZE
+REQUEST QWIDGET
+#endif
+
 CLASS QStyleOptionViewItem INHERIT QStyleOption
 
    METHOD new
-
    METHOD displayAlignment
-   METHOD decorationAlignment
-   METHOD textElideMode
-   METHOD decorationPosition
-   METHOD decorationSize
-   METHOD font
-   METHOD showDecorationSelected
-   METHOD features
-   METHOD locale
-   METHOD widget
-   METHOD index
-   METHOD checkState
-   METHOD icon
-   METHOD text
-   METHOD viewItemPosition
-   METHOD backgroundBrush
-
    METHOD setDisplayAlignment
+   METHOD decorationAlignment
    METHOD setDecorationAlignment
+   METHOD textElideMode
    METHOD setTextElideMode
+   METHOD decorationPosition
    METHOD setDecorationPosition
+   METHOD decorationSize
    METHOD setDecorationSize
+   METHOD font
    METHOD setFont
+   METHOD showDecorationSelected
    METHOD setShowDecorationSelected
+   METHOD features
    METHOD setFeatures
+   METHOD locale
    METHOD setLocale
+   METHOD widget
    METHOD setWidget
+   METHOD index
    METHOD setIndex
+   METHOD checkState
    METHOD setCheckState
+   METHOD icon
    METHOD setIcon
+   METHOD text
    METHOD setText
+   METHOD viewItemPosition
    METHOD setViewItemPosition
+   METHOD backgroundBrush
    METHOD setBackgroundBrush
 
    DESTRUCTOR destroyObject
@@ -62,10 +70,10 @@ RETURN
 
 #pragma BEGINDUMP
 
-#include <Qt>
+#include <QtCore/Qt>
 
 #ifndef __XHARBOUR__
-#include <QStyleOptionViewItem>
+#include <QtWidgets/QStyleOptionViewItem>
 #endif
 
 #include "qt5xhb_common.h"
@@ -73,7 +81,7 @@ RETURN
 #include "qt5xhb_utils.h"
 
 #ifdef __XHARBOUR__
-#include <QStyleOptionViewItem>
+#include <QtWidgets/QStyleOptionViewItem>
 #endif
 
 /*
@@ -95,12 +103,12 @@ void QStyleOptionViewItem_new2 ()
 }
 
 /*
-QStyleOptionViewItem(int version) (protected)
+QStyleOptionViewItem(int version) [protected]
 */
 
 //[1]QStyleOptionViewItem()
 //[2]QStyleOptionViewItem(const QStyleOptionViewItem &other) : QStyleOption(Version, Type)
-//[3]QStyleOptionViewItem(int version) (protected)
+//[3]QStyleOptionViewItem(int version) [protected]
 
 HB_FUNC_STATIC( QSTYLEOPTIONVIEWITEM_NEW )
 {

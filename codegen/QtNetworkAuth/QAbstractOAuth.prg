@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtNetworkAuth
 
 $header
 
@@ -27,10 +30,10 @@ $destructor
 
 $includes=5,10,0
 
-#include <QNetworkAccessManager>
-#include <QAbstractOAuthReplyHandler>
+#include <QtNetwork/QNetworkAccessManager>
+#include <QtNetworkAuth/QAbstractOAuthReplyHandler>
 
-$prototype=explicit QAbstractOAuth(QAbstractOAuthPrivate &, QObject *parent = nullptr) (protected)
+$prototype=explicit QAbstractOAuth(QAbstractOAuthPrivate &, QObject *parent = nullptr) [protected]
 
 $prototype=virtual ~QAbstractOAuth()
 $deleteMethod=5,10,0
@@ -131,13 +134,13 @@ $prototype=void setModifyParametersFunction(const ModifyParametersFunction &modi
 $prototype=virtual void grant() = 0 (slot)
 $virtualMethod=5,10,0|void|grant|
 
-$prototype=void setStatus(Status status) (protected)
+$prototype=void setStatus(Status status) [protected]
 
-$prototype=QString callback() const (protected)
+$prototype=QString callback() const [protected]
 
-$prototype=virtual void resourceOwnerAuthorization(const QUrl &url, const QVariantMap &parameters) (protected)
+$prototype=virtual void resourceOwnerAuthorization(const QUrl &url, const QVariantMap &parameters) [protected]
 
-$prototype=static QByteArray generateRandomString(quint8 length) (protected)
+$prototype=static QByteArray generateRandomString(quint8 length) [protected]
 
 $beginSignals
 $signal=5,10,0|authorizationUrlChanged(QUrl)

@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtDBus
 
 $header
 
@@ -22,10 +25,10 @@ $destructor
 
 $includes
 
-#include <QDBusError>
-#include <QDBusMessage>
-#include <QDBusPendingCall>
-#include <QDBusConnectionInterface>
+#include <QtDBus/QDBusError>
+#include <QtDBus/QDBusMessage>
+#include <QtDBus/QDBusPendingCall>
+#include <QtDBus/QDBusConnectionInterface>
 
 $prototype=QDBusConnection(const QString &name)
 $internalConstructor=|new1|const QString &
@@ -74,6 +77,7 @@ HB_FUNC_STATIC( QDBUSCONNECTION_CALLWITHCALLBACK )
 {
   // TODO: implementar
 }
+$addMethod=callWithCallback
 
 $prototype=QDBusMessage call(const QDBusMessage &message, QDBus::CallMode mode = QDBus::Block,int timeout = -1) const
 $method=|QDBusMessage|call|const QDBusMessage &,QDBus::CallMode=QDBus::Block,int=-1
@@ -98,6 +102,7 @@ HB_FUNC_STATIC( QDBUSCONNECTION_CONNECT )
 {
   // TODO: implementar
 }
+$addMethod=connect
 
 $prototype=bool disconnect(const QString &service, const QString &path, const QString &interface,const QString &name, QObject *receiver, const char *slot)
 $internalMethod=|bool|disconnect,disconnect1|const QString &,const QString &,const QString &,const QString &,QObject *,const char *
@@ -116,6 +121,7 @@ HB_FUNC_STATIC( QDBUSCONNECTION_DISCONNECT )
 {
   // TODO: implementar
 }
+$addMethod=disconnect
 
 $prototype=bool registerObject(const QString &path, QObject *object,RegisterOptions options = ExportAdaptors)
 $method=|bool|registerObject|const QString &,QObject *,QDBusConnection::RegisterOptions=QDBusConnection::ExportAdaptors
@@ -155,6 +161,7 @@ HB_FUNC_STATIC( QDBUSCONNECTION_CONNECTTOBUS )
 {
   // TODO: implementar
 }
+$addMethod=connectToBus
 
 $prototype=static QDBusConnection connectToPeer(const QString &address, const QString &name)
 $staticMethod=|QDBusConnection|connectToPeer|const QString &,const QString &

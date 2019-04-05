@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtCore
 
 $header
 
@@ -54,6 +57,7 @@ HB_FUNC_STATIC( QMIMEDATABASE_MIMETYPEFORFILE )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=mimeTypeForFile
 
 $prototype=QList<QMimeType> mimeTypesForFileName(const QString &fileName) const
 $method=|QList<QMimeType>|mimeTypesForFileName|const QString &
@@ -82,6 +86,7 @@ HB_FUNC_STATIC( QMIMEDATABASE_MIMETYPEFORDATA )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=mimeTypeForData
 
 $prototype=QMimeType mimeTypeForUrl(const QUrl &url) const
 $method=|QMimeType|mimeTypeForUrl|const QUrl &
@@ -110,6 +115,7 @@ HB_FUNC_STATIC( QMIMEDATABASE_MIMETYPEFORFILENAMEANDDATA )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=mimeTypeForFileNameAndData
 
 $prototype=QString suffixForFileName(const QString &fileName) const
 $method=|QString|suffixForFileName|const QString &

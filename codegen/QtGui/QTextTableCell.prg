@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtGui
 
 $header
 
@@ -12,20 +15,7 @@ $addRequests
 
 $beginClassFrom=
 
-   METHOD new
-   METHOD delete
-   METHOD setFormat
-   METHOD format
-   METHOD row
-   METHOD column
-   METHOD rowSpan
-   METHOD columnSpan
-   METHOD isValid
-   METHOD firstCursorPosition
-   METHOD lastCursorPosition
-   METHOD firstPosition
-   METHOD lastPosition
-   METHOD tableCellFormatIndex
+$addMethods
 
 $endClass
 
@@ -35,7 +25,7 @@ $destructor
 
 $includes
 
-#include <QTextCursor>
+#include <QtGui/QTextCursor>
 
 $prototype=QTextTableCell()
 $internalConstructor=|new1|

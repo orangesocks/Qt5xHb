@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtMultimedia
 
 $header
 
@@ -85,6 +88,7 @@ HB_FUNC_STATIC( QMEDIAPLAYLIST_ADDMEDIA )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=addMedia
 
 $prototype=bool clear()
 $method=|bool|clear|
@@ -119,6 +123,7 @@ HB_FUNC_STATIC( QMEDIAPLAYLIST_INSERTMEDIA )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=insertMedia
 
 $prototype=bool isEmpty() const
 $method=|bool|isEmpty|
@@ -158,6 +163,7 @@ HB_FUNC_STATIC( QMEDIAPLAYLIST_LOAD )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=load
 
 $prototype=QMediaContent media(int index) const
 $method=|QMediaContent|media|int
@@ -195,6 +201,7 @@ HB_FUNC_STATIC( QMEDIAPLAYLIST_REMOVEMEDIA )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=removeMedia
 
 $prototype=bool save(const QUrl & location, const char * format = Q_NULLPTR)
 $internalMethod=|bool|save,save1|const QUrl &,const char *=0
@@ -220,6 +227,7 @@ HB_FUNC_STATIC( QMEDIAPLAYLIST_SAVE )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=save
 
 $prototype=virtual QMediaObject *mediaObject() const override
 %% TODO: is virtual ?
@@ -237,7 +245,7 @@ $slotMethod=|void|shuffle|
 $prototype=bool moveMedia(int from, int to)
 $method=5,7,0|bool|moveMedia|int,int
 
-$prototype=bool setMediaObject(QMediaObject *object) override (protected)
+$prototype=bool setMediaObject(QMediaObject *object) override [protected]
 
 $beginSignals
 $signal=|currentIndexChanged(int)

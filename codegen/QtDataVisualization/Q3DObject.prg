@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtDataVisualization
 
 $header
 
@@ -24,7 +27,7 @@ $destructor
 
 $includes
 
-#include <Q3DScene>
+#include <QtDataVisualization/Q3DScene>
 
 using namespace QtDataVisualization;
 
@@ -58,9 +61,9 @@ $method=|void|setPosition|const QVector3D &
 $prototype=virtual void copyValuesFrom(const Q3DObject &source)
 $virtualMethod=|void|copyValuesFrom|const Q3DObject &
 
-$prototype=void setDirty(bool dirty) (protected)
+$prototype=void setDirty(bool dirty) [protected]
 
-$prototype=bool isDirty() const (protected)
+$prototype=bool isDirty() const [protected]
 
 $beginSignals
 $signal=|positionChanged(QVector3D)

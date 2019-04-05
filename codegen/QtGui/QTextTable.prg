@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtGui
 
 $header
 
@@ -12,24 +15,7 @@ $addRequests
 
 $beginClassFrom=QTextFrame
 
-   METHOD new
-   METHOD delete
-   METHOD resize
-   METHOD insertRows
-   METHOD insertColumns
-   METHOD appendRows
-   METHOD appendColumns
-   METHOD removeRows
-   METHOD removeColumns
-   METHOD mergeCells
-   METHOD splitCell
-   METHOD rows
-   METHOD columns
-   METHOD cellAt
-   METHOD rowStart
-   METHOD rowEnd
-   METHOD setFormat
-   METHOD format
+$addMethods
 
 $endClass
 
@@ -39,7 +25,7 @@ $destructor
 
 $includes
 
-#include <QTextCursor>
+#include <QtGui/QTextCursor>
 
 $prototype=QTextTable(QTextDocument *doc)
 $constructor=|new|QTextDocument *
@@ -91,6 +77,7 @@ HB_FUNC_STATIC( QTEXTTABLE_MERGECELLS )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=mergeCells
 
 $prototype=void splitCell(int row, int col, int numRows, int numCols)
 $method=|void|splitCell|int,int,int,int
@@ -133,6 +120,7 @@ HB_FUNC_STATIC( QTEXTTABLE_CELLAT )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=cellAt
 
 $prototype=QTextCursor rowStart(const QTextCursor &c) const
 $method=|QTextCursor|rowStart|const QTextCursor &

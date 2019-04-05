@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -12,34 +12,37 @@
 
 #include "hbclass.ch"
 
+#ifndef QT5XHB_NO_REQUESTS
+REQUEST QICON
+REQUEST QSIZE
+#endif
+
 CLASS QStyleOptionTab INHERIT QStyleOption
 
    METHOD new
-
    METHOD shape
-   METHOD text
-   METHOD icon
-   METHOD row
-   METHOD position
-   METHOD selectedPosition
-   METHOD cornerWidgets
-   METHOD iconSize
-   METHOD documentMode
-   METHOD leftButtonSize
-   METHOD rightButtonSize
-   METHOD features
-
    METHOD setShape
+   METHOD text
    METHOD setText
+   METHOD icon
    METHOD setIcon
+   METHOD row
    METHOD setRow
+   METHOD position
    METHOD setPosition
+   METHOD selectedPosition
    METHOD setSelectedPosition
+   METHOD cornerWidgets
    METHOD setCornerWidgets
+   METHOD iconSize
    METHOD setIconSize
+   METHOD documentMode
    METHOD setDocumentMode
+   METHOD leftButtonSize
    METHOD setLeftButtonSize
+   METHOD rightButtonSize
    METHOD setRightButtonSize
+   METHOD features
    METHOD setFeatures
 
    DESTRUCTOR destroyObject
@@ -54,10 +57,10 @@ RETURN
 
 #pragma BEGINDUMP
 
-#include <Qt>
+#include <QtCore/Qt>
 
 #ifndef __XHARBOUR__
-#include <QStyleOptionTab>
+#include <QtWidgets/QStyleOptionTab>
 #endif
 
 #include "qt5xhb_common.h"
@@ -65,7 +68,7 @@ RETURN
 #include "qt5xhb_utils.h"
 
 #ifdef __XHARBOUR__
-#include <QStyleOptionTab>
+#include <QtWidgets/QStyleOptionTab>
 #endif
 
 /*
@@ -87,12 +90,12 @@ void QStyleOptionTab_new2 ()
 }
 
 /*
-QStyleOptionTab(int version) (protected)
+QStyleOptionTab(int version) [protected]
 */
 
 //[1]QStyleOptionTab()
 //[2]QStyleOptionTab(const QStyleOptionTab &other)
-//[3]QStyleOptionTab(int version) (protected)
+//[3]QStyleOptionTab(int version) [protected]
 
 HB_FUNC_STATIC( QSTYLEOPTIONTAB_NEW )
 {

@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtWidgets
 
 $header
 
@@ -60,6 +63,7 @@ HB_FUNC_STATIC( QSCROLLER_SETSNAPPOSITIONSX )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=setSnapPositionsX
 
 $prototype=void setSnapPositionsY(const QList<qreal> & positions)
 $internalMethod=|void|setSnapPositionsY,setSnapPositionsY1|const QList<qreal> &
@@ -85,6 +89,7 @@ HB_FUNC_STATIC( QSCROLLER_SETSNAPPOSITIONSY )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=setSnapPositionsY
 
 $prototype=State state() const
 $method=|QScroller::State|state|
@@ -122,6 +127,7 @@ HB_FUNC_STATIC( QSCROLLER_ENSUREVISIBLE )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=ensureVisible
 
 $prototype=void resendPrepareEvent()
 $method=|void|resendPrepareEvent|
@@ -150,6 +156,7 @@ HB_FUNC_STATIC( QSCROLLER_SCROLLTO )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=scrollTo
 
 $prototype=void setScrollerProperties(const QScrollerProperties & prop)
 $method=|void|setScrollerProperties|const QScrollerProperties &
@@ -179,6 +186,7 @@ HB_FUNC_STATIC( QSCROLLER_SCROLLER )
 {
   QScroller_scroller1();
 }
+$addMethod=scroller
 
 $prototype=void ungrabGesture(QObject * target)
 $method=|void|ungrabGesture|QObject *

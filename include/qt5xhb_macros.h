@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -36,6 +36,7 @@
 #include "qt5xhb_macros_qtscript.h"
 #include "qt5xhb_macros_qtscripttools.h"
 #include "qt5xhb_macros_qtsensors.h"
+#include "qt5xhb_macros_qtserialbus.h"
 #include "qt5xhb_macros_qtserialport.h"
 #include "qt5xhb_macros_qtsql.h"
 #include "qt5xhb_macros_qtsvg.h"
@@ -159,6 +160,7 @@
 #define RDOUBLE(x)                                          hb_retnd(x)
 #define RLONG(x)                                            hb_retnl(x)
 #define RULONG(x)                                           hb_retnl(x)
+#define RUNSIGNEDLONG(x)                                    hb_retnl(x)
 #define RQLONGLONG(x)                                       hb_retnll(x)
 #define RQULONGLONG(x)                                      hb_retnll(x)
 #define RQREAL(x )                                          hb_retnd(x)

@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -12,6 +12,9 @@
 
 #include "hbclass.ch"
 
+#ifndef QT5XHB_NO_REQUESTS
+#endif
+
 CLASS QVoice
 
    DATA pointer
@@ -19,12 +22,11 @@ CLASS QVoice
 
    METHOD new
    METHOD delete
-
-   METHOD age
-   METHOD ageName
-   METHOD gender
-   METHOD genderName
    METHOD name
+   METHOD gender
+   METHOD age
+   METHOD genderName
+   METHOD ageName
 
    METHOD newFrom
    METHOD newFromObject
@@ -44,10 +46,10 @@ RETURN
 
 #pragma BEGINDUMP
 
-#include <Qt>
+#include <QtCore/Qt>
 
 #ifndef __XHARBOUR__
-#include <QVoice>
+#include <QtTextToSpeech/QVoice>
 #endif
 
 #include "qt5xhb_common.h"
@@ -55,7 +57,7 @@ RETURN
 #include "qt5xhb_utils.h"
 
 #ifdef __XHARBOUR__
-#include <QVoice>
+#include <QtTextToSpeech/QVoice>
 #endif
 
 /*
@@ -81,12 +83,12 @@ void QVoice_new2 ()
 }
 
 /*
-QVoice(const QString &name, Gender gender, Age age, const QVariant &data) (private)
+QVoice(const QString &name, Gender gender, Age age, const QVariant &data) [private]
 */
 
 //[1]QVoice()
 //[2]QVoice(const QVoice &other)
-//[3]QVoice(const QString &name, Gender gender, Age age, const QVariant &data) (private)
+//[3]QVoice(const QString &name, Gender gender, Age age, const QVariant &data) [private]
 
 HB_FUNC_STATIC( QVOICE_NEW )
 {
@@ -136,14 +138,18 @@ HB_FUNC_STATIC( QVOICE_NAME )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
+#endif
       RQSTRING( obj->name () );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 #endif
 }
@@ -158,14 +164,18 @@ HB_FUNC_STATIC( QVOICE_GENDER )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
+#endif
       RENUM( obj->gender () );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 #endif
 }
@@ -180,14 +190,18 @@ HB_FUNC_STATIC( QVOICE_AGE )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
+#endif
       RENUM( obj->age () );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 #endif
 }
@@ -198,14 +212,18 @@ static QString genderName(QVoice::Gender gender)
 HB_FUNC_STATIC( QVOICE_GENDERNAME )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(1) && ISNUM(1) )
   {
+#endif
       RQSTRING( QVoice::genderName ( (QVoice::Gender) hb_parni(1) ) );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
   }
   else
   {
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
+#endif
 #endif
 }
 
@@ -215,35 +233,39 @@ static QString ageName(QVoice::Age age)
 HB_FUNC_STATIC( QVOICE_AGENAME )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(1) && ISNUM(1) )
   {
+#endif
       RQSTRING( QVoice::ageName ( (QVoice::Age) hb_parni(1) ) );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
   }
   else
   {
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 #endif
+#endif
 }
 
 /*
-void setName(const QString &name) (private)
+void setName(const QString &name) [private]
 */
 
 /*
-void setGender(Gender gender) (private)
+void setGender(Gender gender) [private]
 */
 
 /*
-void setAge(Age age) (private)
+void setAge(Age age) [private]
 */
 
 /*
-void setData(const QVariant &data) (private)
+void setData(const QVariant &data) [private]
 */
 
 /*
-QVariant data() const (private)
+QVariant data() const [private]
 */
 
 HB_FUNC_STATIC( QVOICE_NEWFROM )

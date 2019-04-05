@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtCharts
 
 $header
 
@@ -24,15 +27,15 @@ $destructor
 
 $includes=5,7,0
 
-#include <QEasingCurve>
-#include <QLocale>
+#include <QtCore/QEasingCurve>
+#include <QtCore/QLocale>
 
 using namespace QtCharts;
 
 $prototype=explicit QChart(QGraphicsItem *parent = Q_NULLPTR, Qt::WindowFlags wFlags = Qt::WindowFlags())
 $constructor=5,7,0|new|QGraphicsItem *=Q_NULLPTR,Qt::WindowFlags=Qt::WindowFlags()
 
-$prototype=explicit QChart(QChart::ChartType type, QGraphicsItem *parent, Qt::WindowFlags wFlags) (protected)
+$prototype=explicit QChart(QChart::ChartType type, QGraphicsItem *parent, Qt::WindowFlags wFlags) [protected]
 
 $prototype=~QChart()
 $deleteMethod=5,7,0
@@ -259,6 +262,7 @@ HB_FUNC_STATIC( QCHART_ZOOMIN )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=zoomIn
 
 $prototype=void zoomOut()
 $method=5,7,0|void|zoomOut|

@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -12,15 +12,19 @@
 
 #include "hbclass.ch"
 
+#ifndef QT5XHB_NO_REQUESTS
+REQUEST Q3DSCENE
+REQUEST QVECTOR3D
+#endif
+
 CLASS Q3DObject INHERIT QObject
 
    METHOD new
    METHOD delete
-
-   METHOD copyValuesFrom
    METHOD parentScene
    METHOD position
    METHOD setPosition
+   METHOD copyValuesFrom
 
    METHOD onPositionChanged
 
@@ -36,10 +40,10 @@ RETURN
 
 #pragma BEGINDUMP
 
-#include <Qt>
+#include <QtCore/Qt>
 
 #ifndef __XHARBOUR__
-#include <Q3DObject>
+#include <QtDataVisualization/Q3DObject>
 #endif
 
 #include "qt5xhb_common.h"
@@ -47,10 +51,10 @@ RETURN
 #include "qt5xhb_utils.h"
 
 #ifdef __XHARBOUR__
-#include <Q3DObject>
+#include <QtDataVisualization/Q3DObject>
 #endif
 
-#include <Q3DScene>
+#include <QtDataVisualization/Q3DScene>
 
 using namespace QtDataVisualization;
 
@@ -99,15 +103,19 @@ HB_FUNC_STATIC( Q3DOBJECT_PARENTSCENE )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
+#endif
       Q3DScene * ptr = obj->parentScene ();
       _qt5xhb_createReturnQObjectClass ( ptr, "Q3DSCENE" );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
@@ -120,15 +128,19 @@ HB_FUNC_STATIC( Q3DOBJECT_POSITION )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
+#endif
       QVector3D * ptr = new QVector3D( obj->position () );
       _qt5xhb_createReturnClass ( ptr, "QVECTOR3D", true );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
@@ -141,14 +153,18 @@ HB_FUNC_STATIC( Q3DOBJECT_SETPOSITION )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(1) && ISQVECTOR3D(1) )
     {
+#endif
       obj->setPosition ( *PQVECTOR3D(1) );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 
   hb_itemReturn( hb_stackSelfItem() );
@@ -163,25 +179,29 @@ HB_FUNC_STATIC( Q3DOBJECT_COPYVALUESFROM )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(1) && ISQ3DOBJECT(1) )
     {
+#endif
       obj->copyValuesFrom ( *PQ3DOBJECT(1) );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 
   hb_itemReturn( hb_stackSelfItem() );
 }
 
 /*
-void setDirty(bool dirty) (protected)
+void setDirty(bool dirty) [protected]
 */
 
 /*
-bool isDirty() const (protected)
+bool isDirty() const [protected]
 */
 
 void Q3DObjectSlots_connect_signal ( const QString & signal, const QString & slot );

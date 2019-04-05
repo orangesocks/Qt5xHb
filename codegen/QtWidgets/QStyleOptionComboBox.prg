@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtWidgets
 
 $header
 
@@ -28,11 +31,11 @@ $internalConstructor=|new1|
 $prototype=QStyleOptionComboBox(const QStyleOptionComboBox &other)
 $internalConstructor=|new2|const QStyleOptionComboBox &
 
-$prototype=QStyleOptionComboBox(int version) (protected)
+$prototype=QStyleOptionComboBox(int version) [protected]
 
 //[1]QStyleOptionComboBox()
 //[2]QStyleOptionComboBox(const QStyleOptionComboBox &other)
-//[3]QStyleOptionComboBox(int version) (protected)
+//[3]QStyleOptionComboBox(int version) [protected]
 
 HB_FUNC_STATIC( QSTYLEOPTIONCOMBOBOX_NEW )
 {

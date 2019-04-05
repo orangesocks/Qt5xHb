@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtCore
 
 $header
 
@@ -123,6 +126,7 @@ HB_FUNC_STATIC( QRECT_CONTAINS )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=contains
 
 $prototype=void getCoords ( int * x1, int * y1, int * x2, int * y2 ) const
 $method=|void|getCoords|int *,int *,int *,int *
@@ -193,6 +197,7 @@ HB_FUNC_STATIC( QRECT_MOVETO )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=moveTo
 
 $prototype=void moveTop ( int y )
 $method=|void|moveTop|int
@@ -290,6 +295,7 @@ HB_FUNC_STATIC( QRECT_TRANSLATE )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=translate
 
 $prototype=QRect translated ( int dx, int dy ) const
 $internalMethod=|QRect|translated,translated1|int,int
@@ -315,6 +321,7 @@ HB_FUNC_STATIC( QRECT_TRANSLATED )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=translated
 
 $prototype=QRect united ( const QRect & rectangle ) const
 $method=|QRect|united|const QRect &

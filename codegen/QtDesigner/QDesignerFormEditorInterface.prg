@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtDesigner
 
 $header
 
@@ -22,12 +25,12 @@ $destructor
 
 $includes
 
-#include <QExtensionManager>
-#include <QDesignerFormWindowManagerInterface>
-#include <QDesignerActionEditorInterface>
-#include <QDesignerObjectInspectorInterface>
-#include <QDesignerPropertyEditorInterface>
-#include <QDesignerWidgetBoxInterface>
+#include <QtDesigner/QExtensionManager>
+#include <QtDesigner/QDesignerFormWindowManagerInterface>
+#include <QtDesigner/QDesignerActionEditorInterface>
+#include <QtDesigner/QDesignerObjectInspectorInterface>
+#include <QtDesigner/QDesignerPropertyEditorInterface>
+#include <QtDesigner/QDesignerWidgetBoxInterface>
 
 $prototype=QDesignerFormEditorInterface ( QObject * parent = 0 )
 $constructor=|new|QObject *=0

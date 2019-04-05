@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtWebEngineWidgets
 
 $header
 
@@ -24,8 +27,8 @@ $destructor
 
 $includes=5,4,0
 
-#include <QAction>
-#include <QMenu>
+#include <QtWidgets/QAction>
+#include <QtWidgets/QMenu>
 
 $prototype=explicit QWebEnginePage(QObject *parent = 0)
 $constructor=5,4,0|new|QObject *=0
@@ -129,6 +132,7 @@ HB_FUNC( QWEBENGINEPAGE_RUNJAVASCRIPT )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=runJavaScript
 
 $prototype=QWebEngineSettings *settings() const
 $method=5,4,0|QWebEngineSettings *|settings|

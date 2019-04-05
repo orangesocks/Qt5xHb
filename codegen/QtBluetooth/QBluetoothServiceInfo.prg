@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtBluetooth
 
 $header
 
@@ -22,7 +25,7 @@ $destructor
 
 $includes=5,2,0
 
-#include <QBluetoothDeviceInfo>
+#include <QtBluetooth/QBluetoothDeviceInfo>
 
 $prototype=QBluetoothServiceInfo()
 $internalConstructor=5,2,0|new1|
@@ -93,6 +96,7 @@ HB_FUNC_STATIC( QBLUETOOTHSERVICEINFO_SETATTRIBUTE )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=setAttribute
 
 $prototype=QVariant attribute(quint16 attributeId) const
 $method=5,2,0|QVariant|attribute|quint16

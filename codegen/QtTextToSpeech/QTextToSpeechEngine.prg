@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtTextToSpeech
 
 $header
 
@@ -24,9 +27,9 @@ $destructor
 
 $includes
 
-#include <QVector>
-#include <QLocale>
-#include <QVoice>
+#include <QtCore/QVector>
+#include <QtCore/QLocale>
+#include <QtTextToSpeech/QVoice>
 
 $prototype=explicit QTextToSpeechEngine(QObject *parent = nullptr) (abstract)
 %% $constructor=5,10,0|new|QObject *=nullptr
@@ -85,9 +88,9 @@ $virtualMethod=5,10,0|bool|setVoice|const QVoice &
 $prototype=virtual QTextToSpeech::State state() const = 0
 $virtualMethod=5,10,0|QTextToSpeech::State|state|
 
-$prototype=static QVoice createVoice(const QString &name, QVoice::Gender gender, QVoice::Age age, const QVariant &data) (protected)
+$prototype=static QVoice createVoice(const QString &name, QVoice::Gender gender, QVoice::Age age, const QVariant &data) [protected]
 
-$prototype=static QVariant voiceData(const QVoice &voice) (protected)
+$prototype=static QVariant voiceData(const QVoice &voice) [protected]
 
 $beginSignals
 $signal=5,10,0|stateChanged(QTextToSpeech::State)

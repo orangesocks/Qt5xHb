@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtGui
 
 $header
 
@@ -22,7 +25,7 @@ $destructor
 
 $includes
 
-#include <QVariant>
+#include <QtCore/QVariant>
 
 $prototype=QColor ()
 $internalConstructor=|new1|
@@ -31,36 +34,19 @@ $prototype=QColor ( int r, int g, int b, int a = 255 )
 $internalConstructor=|new2|int,int,int,int=255
 
 $prototype=QColor ( QRgb color )
-HB_FUNC_STATIC( QCOLOR_NEW3 )
-{
-  QRgb par1 = hb_parni(1);
-  QColor * o = new QColor ( par1 );
-  _qt5xhb_returnNewObject( o, true );
-}
+$constructor=|new3|QRgb
 
 $prototype=QColor ( const QString & name )
-HB_FUNC_STATIC( QCOLOR_NEW4 )
-{
-  QColor * o = new QColor ( PQSTRING(1) );
-  _qt5xhb_returnNewObject( o, true );
-}
+$constructor=|new4|const QString &
 
 $prototype=QColor ( const char * name )
-HB_FUNC_STATIC( QCOLOR_NEW5 )
-{
-  QColor * o = new QColor ( PCONSTCHAR(1) );
-  _qt5xhb_returnNewObject( o, true );
-}
+$constructor=|new5|const char *
 
 $prototype=QColor ( const QColor & color )
 $internalConstructor=|new6|const QColor &
 
 $prototype=QColor ( Qt::GlobalColor color )
-HB_FUNC_STATIC( QCOLOR_NEW7 )
-{
-  QColor * o = new QColor ( (Qt::GlobalColor) hb_parni(1) );
-  _qt5xhb_returnNewObject( o, true );
-}
+$constructor=|new7|Qt::GlobalColor
 
 // TODO: resolver conflitos: [3] e [4] - [4] e [5]
 //[1]QColor ()
@@ -299,6 +285,7 @@ HB_FUNC_STATIC( QCOLOR_SETRGB )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=setRgb
 
 $prototype=void setRgbF ( qreal r, qreal g, qreal b, qreal a = 1.0 )
 $method=|void|setRgbF|qreal,qreal,qreal,qreal=1.0
@@ -378,6 +365,7 @@ HB_FUNC_STATIC( QCOLOR_FROMRGB )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=fromRgb
 
 $prototype=static QColor fromRgbF ( qreal r, qreal g, qreal b, qreal a = 1.0 )
 $staticMethod=|QColor|fromRgbF|qreal,qreal,qreal,qreal=1.0

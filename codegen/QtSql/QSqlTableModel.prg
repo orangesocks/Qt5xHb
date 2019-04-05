@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtSql
 
 $header
 
@@ -24,7 +27,7 @@ $destructor
 
 $includes
 
-#include <QSqlIndex>
+#include <QtSql/QSqlIndex>
 
 $prototype=explicit QSqlTableModel ( QObject * parent = 0, QSqlDatabase db = QSqlDatabase() )
 $constructor=|new|QObject *=0,QSqlDatabase=QSqlDatabase()
@@ -76,6 +79,7 @@ HB_FUNC( QSQLTABLEMODEL_ISDIRTY )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=isDirty
 
 $prototype=QSqlIndex primaryKey () const
 $method=|QSqlIndex|primaryKey|
@@ -164,6 +168,7 @@ HB_FUNC( QSQLTABLEMODEL_RECORD )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=record
 
 $prototype=virtual bool selectRow(int row)
 $virtualMethod=|bool|selectRow|int

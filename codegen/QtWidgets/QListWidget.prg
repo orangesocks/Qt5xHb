@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtWidgets
 
 $header
 
@@ -53,6 +56,7 @@ HB_FUNC_STATIC( QLISTWIDGET_ADDITEM )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=addItem
 
 $prototype=void addItems ( const QStringList & labels )
 $method=|void|addItems|const QStringList &
@@ -96,6 +100,7 @@ HB_FUNC_STATIC( QLISTWIDGET_INSERTITEM )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=insertItem
 
 $prototype=void insertItems ( int row, const QStringList & labels )
 $method=|void|insertItems|int,const QStringList &
@@ -130,6 +135,7 @@ HB_FUNC_STATIC( QLISTWIDGET_ITEMAT )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=itemAt
 
 $prototype=QWidget * itemWidget ( QListWidgetItem * item ) const
 $method=|QWidget *|itemWidget|QListWidgetItem *
@@ -167,6 +173,7 @@ HB_FUNC_STATIC( QLISTWIDGET_SETCURRENTITEM )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=setCurrentItem
 
 $prototype=void setCurrentRow ( int row )
 $internalMethod=|void|setCurrentRow,setCurrentRow1|int
@@ -192,6 +199,7 @@ HB_FUNC_STATIC( QLISTWIDGET_SETCURRENTROW )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=setCurrentRow
 
 $prototype=void setItemWidget ( QListWidgetItem * item, QWidget * widget )
 $method=|void|setItemWidget|QListWidgetItem *,QWidget *

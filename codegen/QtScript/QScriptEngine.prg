@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtScript
 
 $header
 
@@ -24,7 +27,7 @@ $destructor
 
 $includes
 
-#include <QStringList>
+#include <QtCore/QStringList>
 
 $prototype=QScriptEngine()
 $internalConstructor=|new1|
@@ -98,6 +101,7 @@ HB_FUNC_STATIC( QSCRIPTENGINE_EVALUATE )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=evaluate
 
 $prototype=QScriptValue globalObject() const
 $method=|QScriptValue|globalObject|
@@ -147,6 +151,7 @@ HB_FUNC_STATIC( QSCRIPTENGINE_NEWOBJECT )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=newObject
 
 $prototype=QScriptValue newQMetaObject(const QMetaObject * metaObject, const QScriptValue & ctor = QScriptValue())
 $method=|QScriptValue|newQMetaObject|const QMetaObject *,const QScriptValue &=QScriptValue()
@@ -177,6 +182,7 @@ HB_FUNC_STATIC( QSCRIPTENGINE_NEWQOBJECT )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=newQObject
 
 $prototype=QScriptValue newRegExp(const QRegExp & regexp)
 $internalMethod=|QScriptValue|newRegExp,newRegExp1|const QRegExp &
@@ -202,6 +208,7 @@ HB_FUNC_STATIC( QSCRIPTENGINE_NEWREGEXP )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=newRegExp
 
 $prototype=QScriptValue newVariant(const QVariant & value)
 $internalMethod=|QScriptValue|newVariant,newVariant1|const QVariant &
@@ -227,6 +234,7 @@ HB_FUNC_STATIC( QSCRIPTENGINE_NEWVARIANT )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=newVariant
 
 $prototype=QScriptValue nullValue()
 $method=|QScriptValue|nullValue|

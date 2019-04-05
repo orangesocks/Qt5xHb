@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtCore
 
 $header
 
@@ -127,6 +130,7 @@ HB_FUNC_STATIC( QPROCESS_START )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=start
 
 $prototype=QProcess::ProcessState state () const
 $method=|QProcess::ProcessState|state|
@@ -194,6 +198,7 @@ HB_FUNC_STATIC( QPROCESS_EXECUTE )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=execute
 
 $prototype=static bool startDetached ( const QString & program, const QStringList & arguments, const QString & workingDirectory, qint64 * pid = 0 )
 %% TODO: implementar 'qint64 *=0'
@@ -232,6 +237,7 @@ HB_FUNC_STATIC( QPROCESS_STARTDETACHED )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=startDetached
 
 $prototype=static QStringList systemEnvironment ()
 $staticMethod=|QStringList|systemEnvironment|

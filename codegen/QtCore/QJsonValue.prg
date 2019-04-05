@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtCore
 
 $header
 
@@ -22,9 +25,9 @@ $destructor
 
 $includes
 
-#include <QJsonArray>
-#include <QJsonObject>
-#include <QVariant>
+#include <QtCore/QJsonArray>
+#include <QtCore/QJsonObject>
+#include <QtCore/QVariant>
 
 $prototype=QJsonValue(Type type = Null)
 $constructor=|new1|QJsonValue::Type=QJsonValue::Null
@@ -100,6 +103,7 @@ HB_FUNC_STATIC( QJSONVALUE_NEW )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=new
 
 $deleteMethod
 
@@ -148,6 +152,7 @@ HB_FUNC_STATIC( QJSONVALUE_TOARRAY )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=toArray
 
 $prototype=bool toBool(bool defaultValue = false) const
 $method=|bool|toBool|bool=false
@@ -179,6 +184,7 @@ HB_FUNC_STATIC( QJSONVALUE_TOOBJECT )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=toObject
 
 $prototype=QString toString(const QString & defaultValue = QString()) const
 $method=|QString|toString|const QString &=QString()

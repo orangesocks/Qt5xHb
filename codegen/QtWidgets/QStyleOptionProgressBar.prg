@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtWidgets
 
 $header
 
@@ -28,11 +31,11 @@ $internalConstructor=|new1|
 $prototype=QStyleOptionProgressBar(const QStyleOptionProgressBar &other)
 $internalConstructor=|new2|const QStyleOptionProgressBar &
 
-$prototype=QStyleOptionProgressBar(int version) (protected)
+$prototype=QStyleOptionProgressBar(int version) [protected]
 
 //[1]QStyleOptionProgressBar()
 //[2]QStyleOptionProgressBar(const QStyleOptionProgressBar &other)
-//[3]QStyleOptionProgressBar(int version) (protected)
+//[3]QStyleOptionProgressBar(int version) [protected]
 
 HB_FUNC_STATIC( QSTYLEOPTIONPROGRESSBAR_NEW )
 {

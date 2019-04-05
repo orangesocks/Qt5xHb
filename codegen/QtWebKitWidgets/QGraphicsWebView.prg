@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtWebKitWidgets
 
 %% TODO: implementar condicao #if !defined(QT_NO_GRAPHICSVIEW)
 
@@ -26,7 +29,7 @@ $destructor
 
 $includes
 
-#include <QAction>
+#include <QtWidgets/QAction>
 
 $prototype=explicit QGraphicsWebView ( QGraphicsItem * parent = 0 )
 $constructor=|new|QGraphicsItem *=0
@@ -139,6 +142,7 @@ HB_FUNC_STATIC( QGRAPHICSWEBVIEW_LOAD )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=load
 
 $prototype=QWebPage * page () const
 $method=|QWebPage *|page|

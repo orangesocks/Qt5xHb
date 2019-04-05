@@ -63,10 +63,16 @@ endif
 ifneq (,$(findstring 5.11,$(shell qmake -v)))
     CFLAGS += -std=c++11
 endif
+# Qt 5.12.x require C++11
+ifneq (,$(findstring 5.12,$(shell qmake -v)))
+    CFLAGS += -std=c++11
+endif
 CFLAGS += -c -O2 -frtti -fexceptions -mthreads -Wall -DUNICODE
 CFLAGS += -DQT_DLL
 CFLAGS += -DQT_NO_DEBUG
 CFLAGS += -DQT_THREAD_SUPPORT
+# ative a linha abaixo para compilar sem checagem de parametros
+# CFLAGS += -DQT5XHB_DONT_CHECK_PARAMETERS
 include mak/modules3.mak
 
 # CINCLUDES

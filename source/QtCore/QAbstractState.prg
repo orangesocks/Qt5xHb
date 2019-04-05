@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -13,8 +13,8 @@
 #include "hbclass.ch"
 
 #ifndef QT5XHB_NO_REQUESTS
-REQUEST QSTATEMACHINE
 REQUEST QSTATE
+REQUEST QSTATEMACHINE
 #endif
 
 CLASS QAbstractState INHERIT QObject
@@ -38,10 +38,10 @@ RETURN
 
 #pragma BEGINDUMP
 
-#include <Qt>
+#include <QtCore/Qt>
 
 #ifndef __XHARBOUR__
-#include <QAbstractState>
+#include <QtCore/QAbstractState>
 #endif
 
 #include "qt5xhb_common.h"
@@ -49,11 +49,11 @@ RETURN
 #include "qt5xhb_utils.h"
 
 #ifdef __XHARBOUR__
-#include <QAbstractState>
+#include <QtCore/QAbstractState>
 #endif
 
-#include <QStateMachine>
-#include <QState>
+#include <QtCore/QStateMachine>
+#include <QtCore/QState>
 
 HB_FUNC_STATIC( QABSTRACTSTATE_DELETE )
 {
@@ -81,15 +81,19 @@ HB_FUNC_STATIC( QABSTRACTSTATE_MACHINE )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
+#endif
       QStateMachine * ptr = obj->machine ();
       _qt5xhb_createReturnQObjectClass ( ptr, "QSTATEMACHINE" );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
@@ -102,15 +106,19 @@ HB_FUNC_STATIC( QABSTRACTSTATE_PARENTSTATE )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
+#endif
       QState * ptr = obj->parentState ();
       _qt5xhb_createReturnQObjectClass ( ptr, "QSTATE" );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 

@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -36,11 +36,11 @@ RETURN
 
 #pragma BEGINDUMP
 
-#include <Qt>
+#include <QtCore/Qt>
 
 #ifndef __XHARBOUR__
 #if (QT_VERSION >= QT_VERSION_CHECK(5,2,0))
-#include <QBluetoothTransferManager>
+#include <QtBluetooth/QBluetoothTransferManager>
 #endif
 #endif
 
@@ -50,11 +50,11 @@ RETURN
 
 #ifdef __XHARBOUR__
 #if (QT_VERSION >= QT_VERSION_CHECK(5,2,0))
-#include <QBluetoothTransferManager>
+#include <QtBluetooth/QBluetoothTransferManager>
 #endif
 #endif
 
-#include <QBluetoothTransferReply>
+#include <QtBluetooth/QBluetoothTransferReply>
 
 /*
 QBluetoothTransferManager(QObject *parent = 0)
@@ -103,15 +103,19 @@ HB_FUNC_STATIC( QBLUETOOTHTRANSFERMANAGER_PUT )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(2) && ISQBLUETOOTHTRANSFERREQUEST(1) && ISQIODEVICE(2) )
     {
+#endif
       QBluetoothTransferReply * ptr = obj->put ( *PQBLUETOOTHTRANSFERREQUEST(1), PQIODEVICE(2) );
       _qt5xhb_createReturnQObjectClass ( ptr, "QBLUETOOTHTRANSFERREPLY" );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 #endif
 }

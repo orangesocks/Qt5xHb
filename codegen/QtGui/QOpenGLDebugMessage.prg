@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtGui
 
 $header
 
@@ -27,6 +30,9 @@ $internalConstructor=|new1|
 
 $prototype=QOpenGLDebugMessage(const QOpenGLDebugMessage &debugMessage)
 $internalConstructor=|new2|const QOpenGLDebugMessage &
+
+//[1]QOpenGLDebugMessage()
+//[2]QOpenGLDebugMessage(const QOpenGLDebugMessage &debugMessage)
 
 HB_FUNC_STATIC( QOPENGLDEBUGMESSAGE_NEW )
 {

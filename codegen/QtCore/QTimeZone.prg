@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtCore
 
 $header
 
@@ -112,6 +115,7 @@ HB_FUNC_STATIC( QTIMEZONE_DISPLAYNAME )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=displayName
 
 $prototype=QString abbreviation(const QDateTime &atDateTime) const
 $method=5,2,0|QString|abbreviation|const QDateTime &
@@ -172,6 +176,7 @@ HB_FUNC_STATIC( QTIMEZONE_AVAILABLETIMEZONEIDS ) // TODO: resolver conflito entr
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=availableTimeZoneIds
 
 $prototype=static QByteArray ianaIdToWindowsId(const QByteArray &ianaId)
 $staticMethod=5,2,0|QByteArray|ianaIdToWindowsId|const QByteArray &
@@ -200,6 +205,7 @@ HB_FUNC_STATIC( QTIMEZONE_WINDOWSIDTODEFAULTIANAID )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=windowsIdToDefaultIanaId
 
 $prototype=static QList<QByteArray> windowsIdToIanaIds(const QByteArray &windowsId)
 $internalStaticMethod=5,2,0|QList<QByteArray>|windowsIdToIanaIds,windowsIdToIanaIds1|const QByteArray &
@@ -225,6 +231,7 @@ HB_FUNC_STATIC( QTIMEZONE_WINDOWSIDTOIANAIDS )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=windowsIdToIanaIds
 
 $extraMethods
 

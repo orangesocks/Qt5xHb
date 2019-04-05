@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtGui
 
 $header
 
@@ -88,6 +91,7 @@ HB_FUNC_STATIC( QPDFWRITER_SETPAGESIZE )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=setPageSize
 
 $prototype=void setPageSizeMM(const QSizeF & size) (obsolet)
 $method=|void|setPageSizeMM|const QSizeF &
@@ -131,6 +135,7 @@ HB_FUNC_STATIC( QPDFWRITER_SETPAGEMARGINS )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=setPageMargins
 
 $prototype=bool setPageOrientation(QPageLayout::Orientation orientation)
 $method=5,3,0|bool|setPageOrientation|QPageLayout::Orientation

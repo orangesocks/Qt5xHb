@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtXmlPatterns
 
 $header
 
@@ -22,9 +25,9 @@ $destructor
 
 $includes
 
-#include <QAbstractMessageHandler>
-#include <QNetworkAccessManager>
-#include <QAbstractUriResolver>
+#include <QtXmlPatterns/QAbstractMessageHandler>
+#include <QtNetwork/QNetworkAccessManager>
+#include <QtXmlPatterns/QAbstractUriResolver>
 
 $prototype=QXmlQuery ()
 $internalConstructor=|new1|
@@ -125,6 +128,7 @@ HB_FUNC_STATIC( QXMLQUERY_BINDVARIABLE )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=bindVariable
 
 $prototype=void evaluateTo ( QXmlResultItems * result ) const
 $internalMethod=|void|evaluateTo,evaluateTo1|QXmlResultItems *
@@ -176,6 +180,7 @@ HB_FUNC_STATIC( QXMLQUERY_EVALUATETO )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=evaluateTo
 
 $prototype=QXmlName initialTemplateName () const
 $method=|QXmlName|initialTemplateName|
@@ -235,6 +240,7 @@ HB_FUNC_STATIC( QXMLQUERY_SETFOCUS )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=setFocus
 
 $prototype=void setInitialTemplateName ( const QXmlName & name )
 $internalMethod=|void|setInitialTemplateName,setInitialTemplateName1|const QXmlName &
@@ -260,6 +266,7 @@ HB_FUNC_STATIC( QXMLQUERY_SETINITIALTEMPLATENAME )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=setInitialTemplateName
 
 $prototype=void setMessageHandler ( QAbstractMessageHandler * aMessageHandler )
 $method=|void|setMessageHandler|QAbstractMessageHandler *
@@ -299,6 +306,7 @@ HB_FUNC_STATIC( QXMLQUERY_SETQUERY )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=setQuery
 
 $prototype=void setUriResolver ( const QAbstractUriResolver * resolver )
 $method=|void|setUriResolver|const QAbstractUriResolver *

@@ -1,7 +1,7 @@
 #
 # Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 #
-# Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+# Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 #
 
 $(QT5XHB_OBJ_DIR)/QAbstractButtonSlotsMoc.cpp           : $(QT5XHB_SRC_DIR)/QtWidgets/QAbstractButtonSlots.h
@@ -131,8 +131,6 @@ $(QT5XHB_OBJ_DIR)/QStackedLayoutSlotsMoc.cpp            : $(QT5XHB_SRC_DIR)/QtWi
 $(QT5XHB_OBJ_DIR)/QStackedWidgetSlotsMoc.cpp            : $(QT5XHB_SRC_DIR)/QtWidgets/QStackedWidgetSlots.h
 	$(MOC) $(MOCFLAGS) $(MOCINCLUDES) $^ -o $@
 $(QT5XHB_OBJ_DIR)/QStatusBarSlotsMoc.cpp                : $(QT5XHB_SRC_DIR)/QtWidgets/QStatusBarSlots.h
-	$(MOC) $(MOCFLAGS) $(MOCINCLUDES) $^ -o $@
-$(QT5XHB_OBJ_DIR)/QStyleSlotsMoc.cpp                    : $(QT5XHB_SRC_DIR)/QtWidgets/QStyleSlots.h
 	$(MOC) $(MOCFLAGS) $(MOCINCLUDES) $^ -o $@
 $(QT5XHB_OBJ_DIR)/QSystemTrayIconSlotsMoc.cpp           : $(QT5XHB_SRC_DIR)/QtWidgets/QSystemTrayIconSlots.h
 	$(MOC) $(MOCFLAGS) $(MOCINCLUDES) $^ -o $@

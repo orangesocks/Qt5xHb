@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtDBus
 
 $header
 
@@ -24,7 +27,7 @@ $destructor
 
 $includes
 
-#include <QDBusConnection>
+#include <QtDBus/QDBusConnection>
 
 $prototype=explicit QDBusServiceWatcher(QObject *parent = 0)
 $internalConstructor=|new1|QObject *=0

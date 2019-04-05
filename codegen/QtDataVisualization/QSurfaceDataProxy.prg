@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtDataVisualization
 
 $header
 
@@ -31,14 +34,14 @@ $destructor
 
 $includes
 
-#include <QSurface3DSeries>
+#include <QtDataVisualization/QSurface3DSeries>
 
 using namespace QtDataVisualization;
 
 $prototype=explicit QSurfaceDataProxy(QObject *parent = Q_NULLPTR)
 $constructor=|new|QObject *=Q_NULLPTR
 
-$prototype=explicit QSurfaceDataProxy(QSurfaceDataProxyPrivate *d, QObject *parent = Q_NULLPTR) (protected)
+$prototype=explicit QSurfaceDataProxy(QSurfaceDataProxyPrivate *d, QObject *parent = Q_NULLPTR) [protected]
 
 $prototype=virtual ~QSurfaceDataProxy()
 $deleteMethod
@@ -95,6 +98,7 @@ HB_FUNC_STATIC( QSURFACEDATAPROXY_ITEMAT )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=itemAt
 
 $prototype=void resetArray(QSurfaceDataArray *newArray)
 %% TODO: implementar
@@ -129,6 +133,7 @@ HB_FUNC_STATIC( QSURFACEDATAPROXY_SETITEM )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=setItem
 
 $prototype=int addRow(QSurfaceDataRow *row)
 %% TODO: implementar

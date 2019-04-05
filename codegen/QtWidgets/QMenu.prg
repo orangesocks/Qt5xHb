@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtWidgets
 
 $header
 
@@ -111,6 +114,7 @@ HB_FUNC_STATIC( QMENU_ADDACTION )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=addAction
 
 $prototype=QAction * addMenu ( QMenu * menu )
 $internalMethod=|QAction *|addMenu,addMenu1|QMenu *
@@ -144,6 +148,7 @@ HB_FUNC_STATIC( QMENU_ADDMENU )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=addMenu
 
 $prototype=QAction * addSeparator ()
 $method=|QAction *|addSeparator|
@@ -201,6 +206,7 @@ HB_FUNC_STATIC( QMENU_EXEC )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=exec
 
 $prototype=void hideTearOffMenu ()
 $method=|void|hideTearOffMenu|
@@ -279,6 +285,7 @@ HB_FUNC_STATIC( QMENU_ADDSECTION )
   }
 #endif
 }
+$addMethod=addSection
 
 $prototype=QAction *insertSection(QAction *before, const QString &text)
 $internalMethod=5,1,0|QAction *|insertSection,insertSection1|QAction *,const QString &
@@ -306,6 +313,7 @@ HB_FUNC_STATIC( QMENU_INSERTSECTION )
   }
 #endif
 }
+$addMethod=insertSection
 
 $prototype=void setNoReplayFor(QWidget *widget)
 $method=|void|setNoReplayFor|QWidget *

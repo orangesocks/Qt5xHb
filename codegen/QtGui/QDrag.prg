@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtGui
 
 $header
 
@@ -24,9 +27,9 @@ $destructor
 
 $includes
 
-#include <QPoint>
-#include <QPixmap>
-#include <QMimeData>
+#include <QtCore/QPoint>
+#include <QtGui/QPixmap>
+#include <QtCore/QMimeData>
 
 $prototype=QDrag(QObject * dragSource)
 $constructor=|new|QObject *
@@ -63,6 +66,7 @@ HB_FUNC_STATIC( QDRAG_EXEC )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=exec
 
 $prototype=QPoint hotSpot() const
 $method=|QPoint|hotSpot|

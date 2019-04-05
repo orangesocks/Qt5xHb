@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtCore
 
 $header
 
@@ -22,11 +25,11 @@ $destructor
 
 $includes
 
-#include <QMetaClassInfo>
-#include <QMetaMethod>
-#include <QMetaEnum>
-#include <QMetaProperty>
-#include <QByteArray>
+#include <QtCore/QMetaClassInfo>
+#include <QtCore/QMetaMethod>
+#include <QtCore/QMetaEnum>
+#include <QtCore/QMetaProperty>
+#include <QtCore/QByteArray>
 
 $deleteMethod
 
@@ -154,6 +157,7 @@ HB_FUNC_STATIC( QMETAOBJECT_INVOKEMETHOD )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
 %%   }
 }
+$addMethod=invokeMethod
 
 $prototype=static QByteArray normalizedSignature ( const char * method )
 $staticMethod=|QByteArray|normalizedSignature|const char *

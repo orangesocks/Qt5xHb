@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtLocation
 
 $header
 
@@ -24,7 +27,7 @@ $destructor
 
 $includes=5,4,0
 
-#include <QGeoShape>
+#include <QtPositioning/QGeoShape>
 
 $prototype=QGeoCodeReply(Error error, const QString &errorString, QObject *parent = 0)
 $constructor=5,4,0|new|QGeoCodeReply::Error,const QString &,QObject *=0

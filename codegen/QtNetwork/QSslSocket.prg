@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtNetwork
 
 $header
 
@@ -44,9 +47,9 @@ $destructor
 
 $includes
 
-#include <QSslKey>
-#include <QSslCipher>
-#include <QSslConfiguration>
+#include <QtNetwork/QSslKey>
+#include <QtNetwork/QSslCipher>
+#include <QtNetwork/QSslConfiguration>
 
 $prototype=explicit QSslSocket(QObject *parent = Q_NULLPTR)
 $constructor=|new|QObject *=0
@@ -81,6 +84,7 @@ HB_FUNC_STATIC( QSSLSOCKET_CONNECTTOHOSTENCRYPTED )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=connectToHostEncrypted
 
 $prototype=bool setSocketDescriptor(qintptr socketDescriptor, SocketState state = ConnectedState, OpenMode openMode = ReadWrite) Q_DECL_OVERRIDE
 $method=|bool|setSocketDescriptor|qintptr,QAbstractSocket::SocketState=QAbstractSocket::ConnectedState,QIODevice::OpenMode=QIODevice::ReadWrite
@@ -193,6 +197,7 @@ HB_FUNC_STATIC( QSSLSOCKET_SETLOCALCERTIFICATE )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=setLocalCertificate
 
 $prototype=QSslCertificate localCertificate() const
 $method=|QSslCertificate|localCertificate|
@@ -233,6 +238,7 @@ HB_FUNC_STATIC( QSSLSOCKET_SETPRIVATEKEY )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=setPrivateKey
 
 $prototype=QSslKey privateKey() const
 $method=|QSslKey|privateKey|
@@ -265,6 +271,7 @@ HB_FUNC_STATIC( QSSLSOCKET_SETCIPHERS )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=setCiphers
 
 $prototype=static void setDefaultCiphers(const QList<QSslCipher> &ciphers)
 $staticMethod=|void|setDefaultCiphers|const QList<QSslCipher> &
@@ -300,6 +307,7 @@ HB_FUNC_STATIC( QSSLSOCKET_ADDCACERTIFICATES )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=addCaCertificates
 
 $prototype=void addCaCertificate(const QSslCertificate &certificate)
 $method=|void|addCaCertificate|const QSslCertificate &
@@ -339,6 +347,7 @@ HB_FUNC_STATIC( QSSLSOCKET_ADDDEFAULTCACERTIFICATES )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=addDefaultCaCertificates
 
 %% #if QT_DEPRECATED_SINCE(5, 5)
 $prototype=static void setDefaultCaCertificates(const QList<QSslCertificate> &certificates)
@@ -408,6 +417,7 @@ HB_FUNC_STATIC( QSSLSOCKET_IGNORESSLERRORS )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=ignoreSslErrors
 
 $prototype=void startClientEncryption() (slot)
 $method=|void|startClientEncryption|
@@ -415,9 +425,9 @@ $method=|void|startClientEncryption|
 $prototype=void startServerEncryption() (slot)
 $method=|void|startServerEncryption|
 
-$prototype=qint64 readData(char *data, qint64 maxlen) Q_DECL_OVERRIDE (protected)
+$prototype=qint64 readData(char *data, qint64 maxlen) Q_DECL_OVERRIDE [protected]
 
-$prototype=qint64 writeData(const char *data, qint64 len) Q_DECL_OVERRIDE (protected)
+$prototype=qint64 writeData(const char *data, qint64 len) Q_DECL_OVERRIDE [protected]
 
 $beginSignals
 $signal=|encrypted()

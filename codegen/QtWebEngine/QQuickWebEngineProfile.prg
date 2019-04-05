@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtWebEngine
 
 $header
 
@@ -25,16 +28,16 @@ $destructor
 $includes=5,6,0
 
 #if (QT_VERSION >= QT_VERSION_CHECK(5,6,0))
-#include <QWebEngineCookieStore>
+#include <QtWebEngine/QWebEngineCookieStore>
 #endif
 #if (QT_VERSION >= QT_VERSION_CHECK(5,6,0))
-#include <QWebEngineUrlSchemeHandler>
+#include <QtWebEngine/QWebEngineUrlSchemeHandler>
 #endif
 
 $prototype=QQuickWebEngineProfile(QObject *parent = Q_NULLPTR)
 $constructor=5,6,0|new|QObject *=Q_NULLPTR
 
-$prototype=QQuickWebEngineProfile(QQuickWebEngineProfilePrivate *, QObject *parent = Q_NULLPTR) (private)
+$prototype=QQuickWebEngineProfile(QQuickWebEngineProfilePrivate *, QObject *parent = Q_NULLPTR) [private]
 
 $prototype=~QQuickWebEngineProfile()
 $deleteMethod=5,6,0
@@ -191,9 +194,9 @@ $method=5,7,0|void|clearHttpCache|
 $prototype=static QQuickWebEngineProfile *defaultProfile()
 $staticMethod=5,6,0|QQuickWebEngineProfile *|defaultProfile|
 
-$prototype=void destroyedUrlSchemeHandler(QWebEngineUrlSchemeHandler *obj) (slot) (private)
+$prototype=void destroyedUrlSchemeHandler(QWebEngineUrlSchemeHandler *obj) (slot) [private]
 
-$prototype=QQuickWebEngineSettings *settings() const (private)
+$prototype=QQuickWebEngineSettings *settings() const [private]
 
 $beginSignals
 $signal=|cachePathChanged()

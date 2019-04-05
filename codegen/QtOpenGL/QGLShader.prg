@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtOpenGL
 
 $header
 
@@ -77,6 +80,7 @@ HB_FUNC_STATIC( QGLSHADER_COMPILESOURCECODE )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=compileSourceCode
 
 $prototype=bool compileSourceFile ( const QString & fileName )
 $method=|bool|compileSourceFile|const QString &
@@ -96,7 +100,7 @@ $method=|QGLShader::ShaderType|shaderType|
 $prototype=QByteArray sourceCode () const
 $method=|QByteArray|sourceCode|
 
-$prototype=static bool hasOpenGLShaders ( ShaderType type, const QGLContext * context = 0 ) (private)
+$prototype=static bool hasOpenGLShaders ( ShaderType type, const QGLContext * context = 0 ) [private]
 %% $staticMethod=|bool|hasOpenGLShaders|QGLShader::ShaderType,const QGLContext *=0
 
 #pragma ENDDUMP

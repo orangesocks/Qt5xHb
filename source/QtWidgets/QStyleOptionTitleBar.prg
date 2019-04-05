@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -12,18 +12,20 @@
 
 #include "hbclass.ch"
 
+#ifndef QT5XHB_NO_REQUESTS
+REQUEST QICON
+#endif
+
 CLASS QStyleOptionTitleBar INHERIT QStyleOptionComplex
 
    METHOD new
-
    METHOD text
-   METHOD icon
-   METHOD titleBarState
-   METHOD titleBarFlags
-
    METHOD setText
+   METHOD icon
    METHOD setIcon
+   METHOD titleBarState
    METHOD setTitleBarState
+   METHOD titleBarFlags
    METHOD setTitleBarFlags
 
    DESTRUCTOR destroyObject
@@ -38,10 +40,10 @@ RETURN
 
 #pragma BEGINDUMP
 
-#include <Qt>
+#include <QtCore/Qt>
 
 #ifndef __XHARBOUR__
-#include <QStyleOptionTitleBar>
+#include <QtWidgets/QStyleOptionTitleBar>
 #endif
 
 #include "qt5xhb_common.h"
@@ -49,7 +51,7 @@ RETURN
 #include "qt5xhb_utils.h"
 
 #ifdef __XHARBOUR__
-#include <QStyleOptionTitleBar>
+#include <QtWidgets/QStyleOptionTitleBar>
 #endif
 
 /*
@@ -71,12 +73,12 @@ void QStyleOptionTitleBar_new2 ()
 }
 
 /*
-QStyleOptionTitleBar(int version) (protected)
+QStyleOptionTitleBar(int version) [protected]
 */
 
 //[1]QStyleOptionTitleBar()
 //[2]QStyleOptionTitleBar(const QStyleOptionTitleBar &other)
-//[3]QStyleOptionTitleBar(int version) (protected)
+//[3]QStyleOptionTitleBar(int version) [protected]
 
 HB_FUNC_STATIC( QSTYLEOPTIONTITLEBAR_NEW )
 {

@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtWidgets
 
 $header
 
@@ -24,15 +27,15 @@ $destructor
 
 $includes
 
-#include <QFont>
-#include <QLocale>
-#include <QIcon>
-#include <QSessionManager>
-#include <QFontMetrics>
-#include <QPalette>
-#include <QClipboard>
-#include <QStyle>
-#include <QDesktopWidget>
+#include <QtGui/QFont>
+#include <QtCore/QLocale>
+#include <QtGui/QIcon>
+#include <QtGui/QSessionManager>
+#include <QtGui/QFontMetrics>
+#include <QtGui/QPalette>
+#include <QtGui/QClipboard>
+#include <QtWidgets/QStyle>
+#include <QtWidgets/QDesktopWidget>
 
 %% TODO: implementar construtores
 //QApplication ( int & argc, char ** argv )
@@ -53,6 +56,7 @@ HB_FUNC_STATIC( QAPPLICATION_NEW )
   o = new QApplication( argc, argv );
   _qt5xhb_returnNewObject( o, false );
 }
+$addMethod=new
 
 $deleteMethod
 
@@ -157,6 +161,7 @@ HB_FUNC_STATIC( QAPPLICATION_FONT )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=font
 
 $prototype=static QFontMetrics fontMetrics ()
 $staticMethod=|QFontMetrics|fontMetrics|
@@ -220,6 +225,7 @@ HB_FUNC_STATIC( QAPPLICATION_PALETTE )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=palette
 
 $prototype=static Qt::KeyboardModifiers queryKeyboardModifiers ()
 $staticMethod=|Qt::KeyboardModifiers|queryKeyboardModifiers|
@@ -299,6 +305,7 @@ HB_FUNC_STATIC( QAPPLICATION_SETSTYLE )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=setStyle
 
 $prototype=static void setWheelScrollLines ( int )
 $staticMethod=|void|setWheelScrollLines|int
@@ -339,6 +346,7 @@ HB_FUNC_STATIC( QAPPLICATION_TOPLEVELAT )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=topLevelAt
 
 $prototype=static QWidgetList topLevelWidgets ()
 $staticMethod=|QWidgetList|topLevelWidgets|
@@ -370,6 +378,7 @@ HB_FUNC_STATIC( QAPPLICATION_WIDGETAT )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=widgetAt
 
 $prototype=static QIcon windowIcon ()
 $staticMethod=|QIcon|windowIcon|

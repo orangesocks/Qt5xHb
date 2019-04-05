@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtTextToSpeech
 
 $header
 
@@ -24,9 +27,9 @@ $destructor
 
 $includes
 
-#include <QVector>
-#include <QLocale>
-#include <QVoice>
+#include <QtCore/QVector>
+#include <QtCore/QLocale>
+#include <QtTextToSpeech/QVoice>
 
 $prototype=explicit QTextToSpeech(QObject *parent = nullptr)
 $internalConstructor=5,10,0|new1|QObject *=nullptr

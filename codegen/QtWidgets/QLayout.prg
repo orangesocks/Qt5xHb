@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtWidgets
 
 $header
 
@@ -110,6 +113,7 @@ HB_FUNC_STATIC( QLAYOUT_SETALIGNMENT )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=setAlignment
 
 $prototype=void setContentsMargins ( int left, int top, int right, int bottom )
 $internalMethod=|void|setContentsMargins,setContentsMargins1|int,int,int,int
@@ -135,6 +139,7 @@ HB_FUNC_STATIC( QLAYOUT_SETCONTENTSMARGINS )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=setContentsMargins
 
 $prototype=void setEnabled ( bool enable )
 $method=|void|setEnabled|bool

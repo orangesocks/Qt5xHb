@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtGui
 
 $header
 
@@ -24,7 +27,7 @@ $destructor
 
 $includes
 
-#include <QMimeData>
+#include <QtCore/QMimeData>
 
 $prototype=QStandardItemModel(QObject *parent = 0)
 $internalConstructor=|new1|QObject *=0
@@ -80,6 +83,7 @@ HB_FUNC_STATIC( QSTANDARDITEMMODEL_APPENDROW )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=appendRow
 
 $prototype=void clear()
 $method=|void|clear|
@@ -117,6 +121,7 @@ HB_FUNC_STATIC( QSTANDARDITEMMODEL_INSERTCOLUMN )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=insertColumn
 
 $prototype=void insertRow(int row, const QList<QStandardItem*> &items)
 $internalMethod=|void|insertRow,insertRow1|int,const QList<QStandardItem *> &
@@ -150,6 +155,7 @@ HB_FUNC_STATIC( QSTANDARDITEMMODEL_INSERTROW )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=insertRow
 
 $prototype=QStandardItem *invisibleRootItem() const
 $method=|QStandardItem *|invisibleRootItem|
@@ -190,6 +196,7 @@ HB_FUNC_STATIC( QSTANDARDITEMMODEL_PARENT )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=parent
 
 $prototype=int rowCount(const QModelIndex &parent = QModelIndex()) const
 $method=|int|rowCount|const QModelIndex &=QModelIndex()
@@ -260,6 +267,7 @@ HB_FUNC_STATIC( QSTANDARDITEMMODEL_SETITEM )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=setItem
 
 $prototype=void setHorizontalHeaderItem(int column, QStandardItem *item)
 $method=|void|setHorizontalHeaderItem|int,QStandardItem *
@@ -314,6 +322,9 @@ $method=|QMimeData *|mimeData|const QModelIndexList &
 
 $prototype=bool dropMimeData (const QMimeData *data, Qt::DropAction action, int row, int column, const QModelIndex &parent)
 $method=|bool|dropMimeData|const QMimeData *,Qt::DropAction,int,int,const QModelIndex &
+
+$prototype=bool QStandardItemModel::clearItemData(const QModelIndex &index)
+$method=5,12,0|bool|clearItemData|const QModelIndex &
 
 $beginSignals
 $signal=|itemChanged(QStandardItem*)

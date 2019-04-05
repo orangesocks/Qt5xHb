@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -11,6 +11,9 @@
 */
 
 #include "hbclass.ch"
+
+#ifndef QT5XHB_NO_REQUESTS
+#endif
 
 CLASS QXYModelMapper INHERIT QObject
 
@@ -26,11 +29,11 @@ RETURN
 
 #pragma BEGINDUMP
 
-#include <Qt>
+#include <QtCore/Qt>
 
 #ifndef __XHARBOUR__
 #if (QT_VERSION >= QT_VERSION_CHECK(5,7,0))
-#include <QXYModelMapper>
+#include <QtCharts/QXYModelMapper>
 #endif
 #endif
 
@@ -40,73 +43,73 @@ RETURN
 
 #ifdef __XHARBOUR__
 #if (QT_VERSION >= QT_VERSION_CHECK(5,7,0))
-#include <QXYModelMapper>
+#include <QtCharts/QXYModelMapper>
 #endif
 #endif
 
-#include <QAbstractItemModel>
-#include <QXYSeries>
+#include <QtCore/QAbstractItemModel>
+#include <QtCharts/QXYSeries>
 
 using namespace QtCharts;
 
 /*
-explicit QXYModelMapper(QObject *parent = Q_NULLPTR) (protected)
+explicit QXYModelMapper(QObject *parent = Q_NULLPTR) [protected]
 */
 
 /*
-QAbstractItemModel *model() const (protected)
+QAbstractItemModel *model() const [protected]
 */
 
 /*
-void setModel(QAbstractItemModel *model) (protected)
+void setModel(QAbstractItemModel *model) [protected]
 */
 
 /*
-QXYSeries *series() const (protected)
+QXYSeries *series() const [protected]
 */
 
 /*
-void setSeries(QXYSeries *series) (protected)
+void setSeries(QXYSeries *series) [protected]
 */
 
 /*
-int first() const (protected)
+int first() const [protected]
 */
 
 /*
-void setFirst(int first) (protected)
+void setFirst(int first) [protected]
 */
 
 /*
-int count() const (protected)
+int count() const [protected]
 */
 
 /*
-void setCount(int count) (protected)
+void setCount(int count) [protected]
 */
 
 /*
-Qt::Orientation orientation() const (protected)
+Qt::Orientation orientation() const [protected]
 */
 
 /*
-void setOrientation(Qt::Orientation orientation) (protected)
+void setOrientation(Qt::Orientation orientation) [protected]
 */
 
 /*
-int xSection() const (protected)
+int xSection() const [protected]
 */
 
 /*
-void setXSection(int xSection) (protected)
+void setXSection(int xSection) [protected]
 */
 
 /*
-int ySection() const (protected)
+int ySection() const [protected]
 */
 
 /*
-void setYSection(int ySection) (protected)
+void setYSection(int ySection) [protected]
 */
 
 #pragma ENDDUMP

@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtWidgets
 
 $header
 
@@ -24,7 +27,7 @@ $destructor
 
 $includes=5,4,0
 
-#include <QOpenGLContext>
+#include <QtGui/QOpenGLContext>
 
 $prototype=explicit QOpenGLWidget(QWidget* parent = 0, Qt::WindowFlags f = 0)
 $constructor=5,4,0|new|QWidget *=0,Qt::WindowFlags=0|#ifndef QT_NO_OPENGL

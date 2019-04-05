@@ -1,14 +1,20 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtCore
 
 $header
 
 #include "hbclass.ch"
 
 $addRequests
+$addRequest=QChildEvent
+$addRequest=QEvent
+$addRequest=QTimerEvent
 
 $beginClassFrom=
 
@@ -196,10 +202,10 @@ $destructor
 
 $includes
 
-#include <QWidget>
-#include <QVariant>
-#include <QEvent>
-#include <QThread>
+#include <QtWidgets/QWidget>
+#include <QtCore/QVariant>
+#include <QtCore/QEvent>
+#include <QtCore/QThread>
 
 bool Events_connect_event ( QObject * object, int type, PHB_ITEM codeblock );
 bool Events_disconnect_event ( QObject * object, int type );
@@ -271,6 +277,7 @@ HB_FUNC_STATIC( QOBJECT_FINDCHILDREN )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=findChildren
 
 $prototype=bool inherits ( const char * className ) const
 $method=|bool|inherits|const char *

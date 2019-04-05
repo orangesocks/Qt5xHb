@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtXml
 
 $header
 
@@ -133,6 +136,7 @@ HB_FUNC_STATIC( QDOMELEMENT_SETATTRIBUTE )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=setAttribute
 
 $prototype=void setAttributeNS ( const QString nsURI, const QString & qName, const QString & value )
 $method=|void|setAttributeNS,setAttributeNS1|const QString,const QString &,const QString &
@@ -174,6 +178,7 @@ HB_FUNC_STATIC( QDOMELEMENT_SETATTRIBUTENS )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=setAttributeNS
 
 $prototype=QDomAttr setAttributeNode ( const QDomAttr & newAttr )
 $method=|QDomAttr|setAttributeNode|const QDomAttr &

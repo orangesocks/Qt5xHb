@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -12,13 +12,16 @@
 
 #include "hbclass.ch"
 
+#ifndef QT5XHB_NO_REQUESTS
+REQUEST QCANDLESTICKSERIES
+#endif
+
 CLASS QCandlestickLegendMarker INHERIT QLegendMarker
 
    METHOD new
    METHOD delete
-
-   METHOD series
    METHOD type
+   METHOD series
 
    DESTRUCTOR destroyObject
 
@@ -32,11 +35,11 @@ RETURN
 
 #pragma BEGINDUMP
 
-#include <Qt>
+#include <QtCore/Qt>
 
 #ifndef __XHARBOUR__
 #if (QT_VERSION >= QT_VERSION_CHECK(5,8,0))
-#include <QCandlestickLegendMarker>
+#include <QtCharts/QCandlestickLegendMarker>
 #endif
 #endif
 
@@ -46,7 +49,7 @@ RETURN
 
 #ifdef __XHARBOUR__
 #if (QT_VERSION >= QT_VERSION_CHECK(5,8,0))
-#include <QCandlestickLegendMarker>
+#include <QtCharts/QCandlestickLegendMarker>
 #endif
 #endif
 
@@ -104,14 +107,18 @@ HB_FUNC_STATIC( QCANDLESTICKLEGENDMARKER_TYPE )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
+#endif
       RENUM( obj->type () );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 #endif
 }
@@ -126,15 +133,19 @@ HB_FUNC_STATIC( QCANDLESTICKLEGENDMARKER_SERIES )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
+#endif
       QCandlestickSeries * ptr = obj->series ();
       _qt5xhb_createReturnQObjectClass ( ptr, "QCANDLESTICKSERIES" );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 #endif
 }

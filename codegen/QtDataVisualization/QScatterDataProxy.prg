@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtDataVisualization
 
 $header
 
@@ -30,14 +33,14 @@ $destructor
 
 $includes
 
-#include <QScatter3DSeries>
+#include <QtDataVisualization/QScatter3DSeries>
 
 using namespace QtDataVisualization;
 
 $prototype=explicit QScatterDataProxy(QObject *parent = Q_NULLPTR)
 $constructor=|new|QObject *=Q_NULLPTR
 
-$prototype=explicit QScatterDataProxy(QScatterDataProxyPrivate *d, QObject *parent = Q_NULLPTR) (protected)
+$prototype=explicit QScatterDataProxy(QScatterDataProxyPrivate *d, QObject *parent = Q_NULLPTR) [protected]
 
 $prototype=virtual ~QScatterDataProxy()
 $deleteMethod

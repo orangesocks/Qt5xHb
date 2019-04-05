@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtScript
 
 $header
 
@@ -22,9 +25,9 @@ $destructor
 
 $includes
 
-#include <QDateTime>
-#include <QRegExp>
-#include <QVariant>
+#include <QtCore/QDateTime>
+#include <QtCore/QRegExp>
+#include <QtCore/QVariant>
 
 $prototype=QScriptValue()
 $constructor=|new1|
@@ -129,6 +132,7 @@ HB_FUNC_STATIC( QSCRIPTVALUE_CALL )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=call
 
 $prototype=QScriptValue construct(const QScriptValueList & args = QScriptValueList())
 $internalMethod=|QScriptValue|construct,construct1|const QScriptValueList &=QScriptValueList()
@@ -154,6 +158,7 @@ HB_FUNC_STATIC( QSCRIPTVALUE_CONSTRUCT )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=construct
 
 $prototype=QScriptValue data() const
 $method=|QScriptValue|data|
@@ -247,6 +252,7 @@ HB_FUNC_STATIC( QSCRIPTVALUE_PROPERTY )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=property
 
 $prototype=QScriptValue::PropertyFlags propertyFlags(const QString & name, const ResolveFlags & mode = ResolvePrototype) const
 $internalMethod=|QScriptValue::PropertyFlags|propertyFlags,propertyFlags1|const QString &,const QScriptValue::ResolveFlags &=QScriptValue::ResolvePrototype
@@ -272,6 +278,7 @@ HB_FUNC_STATIC( QSCRIPTVALUE_PROPERTYFLAGS )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=propertyFlags
 
 $prototype=QScriptValue prototype() const
 $method=|QScriptValue|prototype|
@@ -314,6 +321,7 @@ HB_FUNC_STATIC( QSCRIPTVALUE_SETPROPERTY )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=setProperty
 
 $prototype=void setPrototype(const QScriptValue & prototype)
 $method=|void|setPrototype|const QScriptValue &

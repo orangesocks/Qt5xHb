@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -12,18 +12,20 @@
 
 #include "hbclass.ch"
 
+#ifndef QT5XHB_NO_REQUESTS
+REQUEST QRECT
+#endif
+
 CLASS QStyleOptionTabBarBase INHERIT QStyleOption
 
    METHOD new
-
    METHOD shape
-   METHOD tabBarRect
-   METHOD selectedTabRect
-   METHOD documentMode
-
    METHOD setShape
+   METHOD tabBarRect
    METHOD setTabBarRect
+   METHOD selectedTabRect
    METHOD setSelectedTabRect
+   METHOD documentMode
    METHOD setDocumentMode
 
    DESTRUCTOR destroyObject
@@ -38,10 +40,10 @@ RETURN
 
 #pragma BEGINDUMP
 
-#include <Qt>
+#include <QtCore/Qt>
 
 #ifndef __XHARBOUR__
-#include <QStyleOptionTabBarBase>
+#include <QtWidgets/QStyleOptionTabBarBase>
 #endif
 
 #include "qt5xhb_common.h"
@@ -49,7 +51,7 @@ RETURN
 #include "qt5xhb_utils.h"
 
 #ifdef __XHARBOUR__
-#include <QStyleOptionTabBarBase>
+#include <QtWidgets/QStyleOptionTabBarBase>
 #endif
 
 /*
@@ -71,12 +73,12 @@ void QStyleOptionTabBarBase_new2 ()
 }
 
 /*
-QStyleOptionTabBarBase(int version) (protected)
+QStyleOptionTabBarBase(int version) [protected]
 */
 
 //[1]QStyleOptionTabBarBase()
 //[2]QStyleOptionTabBarBase(const QStyleOptionTabBarBase &other)
-//[3]QStyleOptionTabBarBase(int version) (protected)
+//[3]QStyleOptionTabBarBase(int version) [protected]
 
 HB_FUNC_STATIC( QSTYLEOPTIONTABBARBASE_NEW )
 {

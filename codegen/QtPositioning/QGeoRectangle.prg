@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtPositioning
 
 $header
 
@@ -23,19 +26,19 @@ $destructor
 $includes=5,2,0
 
 $prototype=QGeoRectangle()
-$constructor=5,2,0|new1|
+$internalConstructor=5,2,0|new1|
 
 $prototype=QGeoRectangle(const QGeoCoordinate &center, double degreesWidth, double degreesHeight)
-$constructor=5,2,0|new2|const QGeoCoordinate &,double,double
+$internalConstructor=5,2,0|new2|const QGeoCoordinate &,double,double
 
 $prototype=QGeoRectangle(const QGeoCoordinate &topLeft, const QGeoCoordinate &bottomRight)
-$constructor=5,2,0|new3|const QGeoCoordinate &,const QGeoCoordinate &
+$internalConstructor=5,2,0|new3|const QGeoCoordinate &,const QGeoCoordinate &
 
 $prototype=QGeoRectangle(const QGeoRectangle &other)
-$constructor=5,2,0|new4|const QGeoRectangle &
+$internalConstructor=5,2,0|new4|const QGeoRectangle &
 
 $prototype=QGeoRectangle(const QGeoShape &other)
-$constructor=5,2,0|new5|const QGeoShape &
+$internalConstructor=5,2,0|new5|const QGeoShape &
 
 //[1]QGeoRectangle()
 //[2]QGeoRectangle(const QGeoCoordinate &center, double degreesWidth, double degreesHeight)
@@ -47,23 +50,23 @@ HB_FUNC_STATIC( QGEORECTANGLE_NEW )
 {
   if( ISNUMPAR(0) )
   {
-    HB_FUNC_EXEC( QGEORECTANGLE_NEW1 );
+    QGeoRectangle_new1();
   }
   else if( ISNUMPAR(3) && ISQGEOCOORDINATE(1) && ISNUM(2) && ISNUM(3) )
   {
-    HB_FUNC_EXEC( QGEORECTANGLE_NEW2 );
+    QGeoRectangle_new2();
   }
   else if( ISNUMPAR(2) && ISQGEOCOORDINATE(1) && ISQGEOCOORDINATE(2) )
   {
-    HB_FUNC_EXEC( QGEORECTANGLE_NEW3 );
+    QGeoRectangle_new3();
   }
   else if( ISNUMPAR(1) && ISQGEORECTANGLE(1) )
   {
-    HB_FUNC_EXEC( QGEORECTANGLE_NEW4 );
+    QGeoRectangle_new4();
   }
   else if( ISNUMPAR(1) && ISQGEOSHAPE(1) )
   {
-    HB_FUNC_EXEC( QGEORECTANGLE_NEW5 );
+    QGeoRectangle_new5();
   }
   else
   {
@@ -116,10 +119,10 @@ $prototype=double height() const
 $method=5,2,0|double|height|
 
 $prototype=bool contains(const QGeoCoordinate &coordinate) const
-$method=5,2,0|bool|contains,contains1|const QGeoCoordinate &
+$internalMethod=5,2,0|bool|contains,contains1|const QGeoCoordinate &
 
 $prototype=bool contains(const QGeoRectangle &rectangle) const
-$method=5,2,0|bool|contains,contains2|const QGeoRectangle &
+$internalMethod=5,2,0|bool|contains,contains2|const QGeoRectangle &
 
 //[1]bool contains(const QGeoCoordinate &coordinate) const
 //[2]bool contains(const QGeoRectangle &rectangle) const
@@ -128,18 +131,18 @@ HB_FUNC_STATIC( QGEORECTANGLE_CONTAINS )
 {
   if( ISNUMPAR(1) && ISQGEOCOORDINATE(1) )
   {
-    HB_FUNC_EXEC( QGEORECTANGLE_CONTAINS1 );
+    QGeoRectangle_contains1();
   }
   else if( ISNUMPAR(1) && ISQGEORECTANGLE(1) )
   {
-    HB_FUNC_EXEC( QGEORECTANGLE_CONTAINS2 );
+    QGeoRectangle_contains2();
   }
   else
   {
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
-
 }
+$addMethod=contains
 
 $prototype=bool intersects(const QGeoRectangle &rectangle) const
 $method=5,2,0|bool|intersects|const QGeoRectangle &

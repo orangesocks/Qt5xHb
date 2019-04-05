@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -12,27 +12,31 @@
 
 #include "hbclass.ch"
 
+#ifndef QT5XHB_NO_REQUESTS
+REQUEST QBAR3DSERIES
+REQUEST QBARDATAITEM
+#endif
+
 CLASS QBarDataProxy INHERIT QAbstractDataProxy
 
    METHOD new
    METHOD delete
-
-   METHOD addRow
-   METHOD addRows
-   METHOD columnLabels
-   METHOD insertRow
-   METHOD insertRows
-   METHOD itemAt
-   METHOD removeRows
-   METHOD resetArray
    METHOD rowCount
    METHOD rowLabels
-   METHOD series
-   METHOD setColumnLabels
-   METHOD setItem
-   METHOD setRow
    METHOD setRowLabels
+   METHOD columnLabels
+   METHOD setColumnLabels
+   METHOD series
+   METHOD itemAt
+   METHOD resetArray
+   METHOD setRow
    METHOD setRows
+   METHOD setItem
+   METHOD addRow
+   METHOD addRows
+   METHOD insertRow
+   METHOD insertRows
+   METHOD removeRows
 
    METHOD onArrayReset
    METHOD onColumnLabelsChanged
@@ -57,10 +61,10 @@ RETURN
 
 #pragma BEGINDUMP
 
-#include <Qt>
+#include <QtCore/Qt>
 
 #ifndef __XHARBOUR__
-#include <QBarDataProxy>
+#include <QtDataVisualization/QBarDataProxy>
 #endif
 
 #include "qt5xhb_common.h"
@@ -68,10 +72,10 @@ RETURN
 #include "qt5xhb_utils.h"
 
 #ifdef __XHARBOUR__
-#include <QBarDataProxy>
+#include <QtDataVisualization/QBarDataProxy>
 #endif
 
-#include <QBar3DSeries>
+#include <QtDataVisualization/QBar3DSeries>
 
 using namespace QtDataVisualization;
 
@@ -92,7 +96,7 @@ HB_FUNC_STATIC( QBARDATAPROXY_NEW )
 }
 
 /*
-explicit QBarDataProxy(QBarDataProxyPrivate *d, QObject *parent = Q_NULLPTR) (protected)
+explicit QBarDataProxy(QBarDataProxyPrivate *d, QObject *parent = Q_NULLPTR) [protected]
 */
 
 /*
@@ -124,14 +128,18 @@ HB_FUNC_STATIC( QBARDATAPROXY_ROWCOUNT )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
+#endif
       RINT( obj->rowCount () );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
@@ -144,14 +152,18 @@ HB_FUNC_STATIC( QBARDATAPROXY_ROWLABELS )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
+#endif
       RQSTRINGLIST( obj->rowLabels () );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
@@ -164,14 +176,18 @@ HB_FUNC_STATIC( QBARDATAPROXY_SETROWLABELS )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(1) && ISARRAY(1) )
     {
+#endif
       obj->setRowLabels ( PQSTRINGLIST(1) );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 
   hb_itemReturn( hb_stackSelfItem() );
@@ -186,14 +202,18 @@ HB_FUNC_STATIC( QBARDATAPROXY_COLUMNLABELS )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
+#endif
       RQSTRINGLIST( obj->columnLabels () );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
@@ -206,14 +226,18 @@ HB_FUNC_STATIC( QBARDATAPROXY_SETCOLUMNLABELS )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(1) && ISARRAY(1) )
     {
+#endif
       obj->setColumnLabels ( PQSTRINGLIST(1) );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 
   hb_itemReturn( hb_stackSelfItem() );
@@ -228,15 +252,19 @@ HB_FUNC_STATIC( QBARDATAPROXY_SERIES )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
+#endif
       QBar3DSeries * ptr = obj->series ();
       _qt5xhb_createReturnQObjectClass ( ptr, "QBAR3DSERIES" );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
@@ -463,14 +491,18 @@ HB_FUNC_STATIC( QBARDATAPROXY_REMOVEROWS )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISBETWEEN(2,3) && ISNUM(1) && ISNUM(2) && ISOPTLOG(3) )
     {
+#endif
       obj->removeRows ( PINT(1), PINT(2), OPBOOL(3,true) );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 
   hb_itemReturn( hb_stackSelfItem() );

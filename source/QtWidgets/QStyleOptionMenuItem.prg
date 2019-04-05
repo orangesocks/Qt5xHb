@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -12,30 +12,34 @@
 
 #include "hbclass.ch"
 
+#ifndef QT5XHB_NO_REQUESTS
+REQUEST QFONT
+REQUEST QICON
+REQUEST QRECT
+#endif
+
 CLASS QStyleOptionMenuItem INHERIT QStyleOption
 
    METHOD new
-
    METHOD menuItemType
-   METHOD checkType
-   METHOD checked
-   METHOD menuHasCheckableItems
-   METHOD menuRect
-   METHOD text
-   METHOD icon
-   METHOD maxIconWidth
-   METHOD tabWidth
-   METHOD font
-
    METHOD setMenuItemType
+   METHOD checkType
    METHOD setCheckType
+   METHOD checked
    METHOD setChecked
+   METHOD menuHasCheckableItems
    METHOD setMenuHasCheckableItems
+   METHOD menuRect
    METHOD setMenuRect
+   METHOD text
    METHOD setText
+   METHOD icon
    METHOD setIcon
+   METHOD maxIconWidth
    METHOD setMaxIconWidth
+   METHOD tabWidth
    METHOD setTabWidth
+   METHOD font
    METHOD setFont
 
    DESTRUCTOR destroyObject
@@ -50,10 +54,10 @@ RETURN
 
 #pragma BEGINDUMP
 
-#include <Qt>
+#include <QtCore/Qt>
 
 #ifndef __XHARBOUR__
-#include <QStyleOptionMenuItem>
+#include <QtWidgets/QStyleOptionMenuItem>
 #endif
 
 #include "qt5xhb_common.h"
@@ -61,7 +65,7 @@ RETURN
 #include "qt5xhb_utils.h"
 
 #ifdef __XHARBOUR__
-#include <QStyleOptionMenuItem>
+#include <QtWidgets/QStyleOptionMenuItem>
 #endif
 
 /*
@@ -83,12 +87,12 @@ void QStyleOptionMenuItem_new2 ()
 }
 
 /*
-QStyleOptionMenuItem(int version) (protected)
+QStyleOptionMenuItem(int version) [protected]
 */
 
 //[1]QStyleOptionMenuItem()
 //[2]QStyleOptionMenuItem(const QStyleOptionMenuItem &other)
-//[3]QStyleOptionMenuItem(int version) (protected)
+//[3]QStyleOptionMenuItem(int version) [protected]
 
 HB_FUNC_STATIC( QSTYLEOPTIONMENUITEM_NEW )
 {

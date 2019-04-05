@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtCore
 
 $header
 
@@ -24,7 +27,7 @@ $destructor
 
 $includes
 
-#include <QAbstractTransition>
+#include <QtCore/QAbstractTransition>
 
 $prototype=QState ( QState * parent = 0 )
 $internalConstructor=|new1|QState *=0
@@ -85,6 +88,7 @@ HB_FUNC_STATIC( QSTATE_ADDTRANSITION )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=addTransition
 
 $prototype=void assignProperty ( QObject * object, const char * name, const QVariant & value )
 $method=|void|assignProperty|QObject *,const char *,const QVariant &

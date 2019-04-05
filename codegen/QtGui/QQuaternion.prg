@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtGui
 
 $header
 
@@ -98,6 +101,7 @@ HB_FUNC_STATIC( QQUATERNION_SETVECTOR )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=setVector
 
 $prototype=float x() const
 $method=|float|x|
@@ -168,6 +172,7 @@ HB_FUNC_STATIC( QQUATERNION_FROMAXISANDANGLE )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=fromAxisAndAngle
 
 $prototype=static QQuaternion slerp(const QQuaternion& q1, const QQuaternion& q2, float t)
 $staticMethod=|QQuaternion|slerp|const QQuaternion &,const QQuaternion &,float

@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -23,7 +23,6 @@ CLASS QWebElementCollection
 
    METHOD new
    METHOD delete
-
    METHOD append
    METHOD at
    METHOD count
@@ -49,10 +48,10 @@ RETURN
 
 #pragma BEGINDUMP
 
-#include <Qt>
+#include <QtCore/Qt>
 
 #ifndef __XHARBOUR__
-#include <QWebElementCollection>
+#include <QtWebKit/QWebElementCollection>
 #endif
 
 #include "qt5xhb_common.h"
@@ -60,7 +59,7 @@ RETURN
 #include "qt5xhb_utils.h"
 
 #ifdef __XHARBOUR__
-#include <QWebElementCollection>
+#include <QtWebKit/QWebElementCollection>
 #endif
 
 /*
@@ -140,14 +139,18 @@ HB_FUNC_STATIC( QWEBELEMENTCOLLECTION_APPEND )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(1) && ISQWEBELEMENTCOLLECTION(1) )
     {
+#endif
       obj->append ( *PQWEBELEMENTCOLLECTION(1) );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 
   hb_itemReturn( hb_stackSelfItem() );
@@ -162,15 +165,19 @@ HB_FUNC_STATIC( QWEBELEMENTCOLLECTION_AT )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(1) && ISNUM(1) )
     {
+#endif
       QWebElement * ptr = new QWebElement( obj->at ( PINT(1) ) );
       _qt5xhb_createReturnClass ( ptr, "QWEBELEMENT", true );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
@@ -183,14 +190,18 @@ HB_FUNC_STATIC( QWEBELEMENTCOLLECTION_COUNT )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
+#endif
       RINT( obj->count () );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
@@ -203,15 +214,19 @@ HB_FUNC_STATIC( QWEBELEMENTCOLLECTION_FIRST )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
+#endif
       QWebElement * ptr = new QWebElement( obj->first () );
       _qt5xhb_createReturnClass ( ptr, "QWEBELEMENT", true );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
@@ -224,15 +239,19 @@ HB_FUNC_STATIC( QWEBELEMENTCOLLECTION_LAST )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
+#endif
       QWebElement * ptr = new QWebElement( obj->last () );
       _qt5xhb_createReturnClass ( ptr, "QWEBELEMENT", true );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
@@ -245,8 +264,10 @@ HB_FUNC_STATIC( QWEBELEMENTCOLLECTION_TOLIST )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
+#endif
       QList<QWebElement> list = obj->toList ();
       PHB_DYNS pDynSym = hb_dynsymFindName( "QWEBELEMENT" );
       PHB_ITEM pArray = hb_itemArrayNew(0);
@@ -277,11 +298,13 @@ HB_FUNC_STATIC( QWEBELEMENTCOLLECTION_TOLIST )
         }
       }
       hb_itemReturnRelease(pArray);
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 

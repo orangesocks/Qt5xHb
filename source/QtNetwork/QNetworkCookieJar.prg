@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -20,12 +20,11 @@ CLASS QNetworkCookieJar INHERIT QObject
 
    METHOD new
    METHOD delete
-
    METHOD cookiesForUrl
-   METHOD deleteCookie
-   METHOD insertCookie
    METHOD setCookiesFromUrl
+   METHOD insertCookie
    METHOD updateCookie
+   METHOD deleteCookie
 
    DESTRUCTOR destroyObject
 
@@ -39,10 +38,10 @@ RETURN
 
 #pragma BEGINDUMP
 
-#include <Qt>
+#include <QtCore/Qt>
 
 #ifndef __XHARBOUR__
-#include <QNetworkCookieJar>
+#include <QtNetwork/QNetworkCookieJar>
 #endif
 
 #include "qt5xhb_common.h"
@@ -50,10 +49,10 @@ RETURN
 #include "qt5xhb_utils.h"
 
 #ifdef __XHARBOUR__
-#include <QNetworkCookieJar>
+#include <QtNetwork/QNetworkCookieJar>
 #endif
 
-#include <QNetworkCookie>
+#include <QtNetwork/QNetworkCookie>
 
 /*
 explicit QNetworkCookieJar(QObject *parent = Q_NULLPTR)
@@ -100,8 +99,10 @@ HB_FUNC_STATIC( QNETWORKCOOKIEJAR_COOKIESFORURL )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(1) && ISQURL(1) )
     {
+#endif
       QList<QNetworkCookie> list = obj->cookiesForUrl ( *PQURL(1) );
       PHB_DYNS pDynSym = hb_dynsymFindName( "QNETWORKCOOKIE" );
       PHB_ITEM pArray = hb_itemArrayNew(0);
@@ -132,11 +133,13 @@ HB_FUNC_STATIC( QNETWORKCOOKIEJAR_COOKIESFORURL )
         }
       }
       hb_itemReturnRelease(pArray);
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
@@ -149,8 +152,10 @@ HB_FUNC_STATIC( QNETWORKCOOKIEJAR_SETCOOKIESFROMURL )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(2) && ISARRAY(1) && ISQURL(2) )
     {
+#endif
       QList<QNetworkCookie> par1;
 PHB_ITEM aList1 = hb_param(1, HB_IT_ARRAY);
 int i1;
@@ -160,11 +165,13 @@ for (i1=0;i1<nLen1;i1++)
   par1 << *(QNetworkCookie *) hb_itemGetPtr( hb_objSendMsg( hb_arrayGetItemPtr( aList1, i1+1 ), "POINTER", 0 ) );
 }
       RBOOL( obj->setCookiesFromUrl ( par1, *PQURL(2) ) );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
@@ -177,14 +184,18 @@ HB_FUNC_STATIC( QNETWORKCOOKIEJAR_INSERTCOOKIE )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(1) && ISQNETWORKCOOKIE(1) )
     {
+#endif
       RBOOL( obj->insertCookie ( *PQNETWORKCOOKIE(1) ) );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
@@ -197,14 +208,18 @@ HB_FUNC_STATIC( QNETWORKCOOKIEJAR_UPDATECOOKIE )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(1) && ISQNETWORKCOOKIE(1) )
     {
+#endif
       RBOOL( obj->updateCookie ( *PQNETWORKCOOKIE(1) ) );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
@@ -217,27 +232,31 @@ HB_FUNC_STATIC( QNETWORKCOOKIEJAR_DELETECOOKIE )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(1) && ISQNETWORKCOOKIE(1) )
     {
+#endif
       RBOOL( obj->deleteCookie ( *PQNETWORKCOOKIE(1) ) );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
 /*
-QList<QNetworkCookie> allCookies() const (protected)
+QList<QNetworkCookie> allCookies() const [protected]
 */
 
 /*
-void setAllCookies(const QList<QNetworkCookie> &cookieList) (protected)
+void setAllCookies(const QList<QNetworkCookie> &cookieList) [protected]
 */
 
 /*
-virtual bool validateCookie(const QNetworkCookie &cookie, const QUrl &url) const (protected)
+virtual bool validateCookie(const QNetworkCookie &cookie, const QUrl &url) const protected]
 */
 
 #pragma ENDDUMP

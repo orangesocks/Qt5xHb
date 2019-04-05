@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -12,18 +12,21 @@
 
 #include "hbclass.ch"
 
+#ifndef QT5XHB_NO_REQUESTS
+REQUEST QSCATTERDATAPROXY
+#endif
+
 CLASS QScatter3DSeries INHERIT QAbstract3DSeries
 
    METHOD new
    METHOD delete
-
    METHOD dataProxy
-   METHOD invalidSelectionIndex
-   METHOD itemSize
-   METHOD selectedItem
    METHOD setDataProxy
-   METHOD setItemSize
+   METHOD selectedItem
    METHOD setSelectedItem
+   METHOD itemSize
+   METHOD setItemSize
+   METHOD invalidSelectionIndex
 
    METHOD onDataProxyChanged
    METHOD onItemSizeChanged
@@ -41,10 +44,10 @@ RETURN
 
 #pragma BEGINDUMP
 
-#include <Qt>
+#include <QtCore/Qt>
 
 #ifndef __XHARBOUR__
-#include <QScatter3DSeries>
+#include <QtDataVisualization/QScatter3DSeries>
 #endif
 
 #include "qt5xhb_common.h"
@@ -52,7 +55,7 @@ RETURN
 #include "qt5xhb_utils.h"
 
 #ifdef __XHARBOUR__
-#include <QScatter3DSeries>
+#include <QtDataVisualization/QScatter3DSeries>
 #endif
 
 using namespace QtDataVisualization;
@@ -76,7 +79,7 @@ void QScatter3DSeries_new2 ()
 }
 
 /*
-explicit QScatter3DSeries(QScatter3DSeriesPrivate *d, QObject *parent = Q_NULLPTR) (protected)
+explicit QScatter3DSeries(QScatter3DSeriesPrivate *d, QObject *parent = Q_NULLPTR) [protected]
 */
 
 //[1]explicit QScatter3DSeries(QObject *parent = Q_NULLPTR)
@@ -127,15 +130,19 @@ HB_FUNC_STATIC( QSCATTER3DSERIES_DATAPROXY )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
+#endif
       QScatterDataProxy * ptr = obj->dataProxy ();
       _qt5xhb_createReturnQObjectClass ( ptr, "QSCATTERDATAPROXY" );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
@@ -148,14 +155,18 @@ HB_FUNC_STATIC( QSCATTER3DSERIES_SETDATAPROXY )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(1) && ISQSCATTERDATAPROXY(1) )
     {
+#endif
       obj->setDataProxy ( PQSCATTERDATAPROXY(1) );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 
   hb_itemReturn( hb_stackSelfItem() );
@@ -170,14 +181,18 @@ HB_FUNC_STATIC( QSCATTER3DSERIES_SELECTEDITEM )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
+#endif
       RINT( obj->selectedItem () );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
@@ -190,14 +205,18 @@ HB_FUNC_STATIC( QSCATTER3DSERIES_SETSELECTEDITEM )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(1) && ISNUM(1) )
     {
+#endif
       obj->setSelectedItem ( PINT(1) );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 
   hb_itemReturn( hb_stackSelfItem() );
@@ -212,14 +231,18 @@ HB_FUNC_STATIC( QSCATTER3DSERIES_ITEMSIZE )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
+#endif
       RFLOAT( obj->itemSize () );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
@@ -232,14 +255,18 @@ HB_FUNC_STATIC( QSCATTER3DSERIES_SETITEMSIZE )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(1) && ISNUM(1) )
     {
+#endif
       obj->setItemSize ( PFLOAT(1) );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 
   hb_itemReturn( hb_stackSelfItem() );
@@ -250,14 +277,18 @@ static int invalidSelectionIndex()
 */
 HB_FUNC_STATIC( QSCATTER3DSERIES_INVALIDSELECTIONINDEX )
 {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
   {
+#endif
       RINT( QScatter3DSeries::invalidSelectionIndex () );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
   }
   else
   {
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
+#endif
 }
 
 void QScatter3DSeriesSlots_connect_signal ( const QString & signal, const QString & slot );

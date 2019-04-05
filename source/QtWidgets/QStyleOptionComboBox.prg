@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -12,23 +12,27 @@
 
 #include "hbclass.ch"
 
+#ifndef QT5XHB_NO_REQUESTS
+REQUEST QICON
+REQUEST QRECT
+REQUEST QSIZE
+#endif
+
 CLASS QStyleOptionComboBox INHERIT QStyleOptionComplex
 
    METHOD new
-
    METHOD editable
-   METHOD popupRect
-   METHOD frame
-   METHOD currentText
-   METHOD currentIcon
-   METHOD iconSize
-
    METHOD setEditable
+   METHOD popupRect
    METHOD setPopupRect
+   METHOD frame
    METHOD setFrame
+   METHOD currentText
    METHOD setCurrentText
+   METHOD currentIcon
    METHOD setCurrentIcon
-   METHOD setIconSize
+   METHOD iconSize
+   METHOD seticonSize
 
    DESTRUCTOR destroyObject
 
@@ -42,10 +46,10 @@ RETURN
 
 #pragma BEGINDUMP
 
-#include <Qt>
+#include <QtCore/Qt>
 
 #ifndef __XHARBOUR__
-#include <QStyleOptionComboBox>
+#include <QtWidgets/QStyleOptionComboBox>
 #endif
 
 #include "qt5xhb_common.h"
@@ -53,7 +57,7 @@ RETURN
 #include "qt5xhb_utils.h"
 
 #ifdef __XHARBOUR__
-#include <QStyleOptionComboBox>
+#include <QtWidgets/QStyleOptionComboBox>
 #endif
 
 /*
@@ -75,12 +79,12 @@ void QStyleOptionComboBox_new2 ()
 }
 
 /*
-QStyleOptionComboBox(int version) (protected)
+QStyleOptionComboBox(int version) [protected]
 */
 
 //[1]QStyleOptionComboBox()
 //[2]QStyleOptionComboBox(const QStyleOptionComboBox &other)
-//[3]QStyleOptionComboBox(int version) (protected)
+//[3]QStyleOptionComboBox(int version) [protected]
 
 HB_FUNC_STATIC( QSTYLEOPTIONCOMBOBOX_NEW )
 {

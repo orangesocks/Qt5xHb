@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -13,8 +13,8 @@
 #include "hbclass.ch"
 
 #ifndef QT5XHB_NO_REQUESTS
-REQUEST QNETWORKADDRESSENTRY
 REQUEST QHOSTADDRESS
+REQUEST QNETWORKADDRESSENTRY
 #endif
 
 CLASS QNetworkInterface
@@ -24,20 +24,19 @@ CLASS QNetworkInterface
 
    METHOD new
    METHOD delete
-
    METHOD addressEntries
-   METHOD allAddresses
-   METHOD allInterfaces
    METHOD flags
    METHOD hardwareAddress
    METHOD humanReadableName
    METHOD index
+   METHOD isValid
+   METHOD name
+   METHOD allAddresses
+   METHOD allInterfaces
    METHOD interfaceFromIndex
    METHOD interfaceFromName
    METHOD interfaceIndexFromName
    METHOD interfaceNameFromIndex
-   METHOD isValid
-   METHOD name
    METHOD swap
 
    METHOD newFrom
@@ -58,10 +57,10 @@ RETURN
 
 #pragma BEGINDUMP
 
-#include <Qt>
+#include <QtCore/Qt>
 
 #ifndef __XHARBOUR__
-#include <QNetworkInterface>
+#include <QtNetwork/QNetworkInterface>
 #endif
 
 #include "qt5xhb_common.h"
@@ -69,7 +68,7 @@ RETURN
 #include "qt5xhb_utils.h"
 
 #ifdef __XHARBOUR__
-#include <QNetworkInterface>
+#include <QtNetwork/QNetworkInterface>
 #endif
 
 /*
@@ -138,8 +137,10 @@ HB_FUNC_STATIC( QNETWORKINTERFACE_ADDRESSENTRIES )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
+#endif
       QList<QNetworkAddressEntry> list = obj->addressEntries ();
       PHB_DYNS pDynSym = hb_dynsymFindName( "QNETWORKADDRESSENTRY" );
       PHB_ITEM pArray = hb_itemArrayNew(0);
@@ -170,11 +171,13 @@ HB_FUNC_STATIC( QNETWORKINTERFACE_ADDRESSENTRIES )
         }
       }
       hb_itemReturnRelease(pArray);
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
@@ -187,14 +190,18 @@ HB_FUNC_STATIC( QNETWORKINTERFACE_FLAGS )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
+#endif
       RENUM( obj->flags () );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
@@ -207,14 +214,18 @@ HB_FUNC_STATIC( QNETWORKINTERFACE_HARDWAREADDRESS )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
+#endif
       RQSTRING( obj->hardwareAddress () );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
@@ -227,14 +238,18 @@ HB_FUNC_STATIC( QNETWORKINTERFACE_HUMANREADABLENAME )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
+#endif
       RQSTRING( obj->humanReadableName () );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
@@ -247,14 +262,18 @@ HB_FUNC_STATIC( QNETWORKINTERFACE_INDEX )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
+#endif
       RINT( obj->index () );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
@@ -267,14 +286,18 @@ HB_FUNC_STATIC( QNETWORKINTERFACE_ISVALID )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
+#endif
       RBOOL( obj->isValid () );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
@@ -287,14 +310,18 @@ HB_FUNC_STATIC( QNETWORKINTERFACE_NAME )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
+#endif
       RQSTRING( obj->name () );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
@@ -303,8 +330,10 @@ static QList<QHostAddress> allAddresses ()
 */
 HB_FUNC_STATIC( QNETWORKINTERFACE_ALLADDRESSES )
 {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
   {
+#endif
       QList<QHostAddress> list = QNetworkInterface::allAddresses ();
       PHB_DYNS pDynSym = hb_dynsymFindName( "QHOSTADDRESS" );
       PHB_ITEM pArray = hb_itemArrayNew(0);
@@ -335,11 +364,13 @@ HB_FUNC_STATIC( QNETWORKINTERFACE_ALLADDRESSES )
         }
       }
       hb_itemReturnRelease(pArray);
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
   }
   else
   {
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
+#endif
 }
 
 /*
@@ -347,8 +378,10 @@ static QList<QNetworkInterface> allInterfaces ()
 */
 HB_FUNC_STATIC( QNETWORKINTERFACE_ALLINTERFACES )
 {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
   {
+#endif
       QList<QNetworkInterface> list = QNetworkInterface::allInterfaces ();
       PHB_DYNS pDynSym = hb_dynsymFindName( "QNETWORKINTERFACE" );
       PHB_ITEM pArray = hb_itemArrayNew(0);
@@ -379,54 +412,7 @@ HB_FUNC_STATIC( QNETWORKINTERFACE_ALLINTERFACES )
         }
       }
       hb_itemReturnRelease(pArray);
-  }
-  else
-  {
-    hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
-  }
-}
-
-/*
-static QNetworkInterface interfaceFromIndex ( int index )
-*/
-HB_FUNC_STATIC( QNETWORKINTERFACE_INTERFACEFROMINDEX )
-{
-    if( ISNUMPAR(1) && ISNUM(1) )
-  {
-      QNetworkInterface * ptr = new QNetworkInterface( QNetworkInterface::interfaceFromIndex ( PINT(1) ) );
-      _qt5xhb_createReturnClass ( ptr, "QNETWORKINTERFACE", true );
-  }
-  else
-  {
-    hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
-  }
-}
-
-/*
-static QNetworkInterface interfaceFromName ( const QString & name )
-*/
-HB_FUNC_STATIC( QNETWORKINTERFACE_INTERFACEFROMNAME )
-{
-    if( ISNUMPAR(1) && ISCHAR(1) )
-  {
-      QNetworkInterface * ptr = new QNetworkInterface( QNetworkInterface::interfaceFromName ( PQSTRING(1) ) );
-      _qt5xhb_createReturnClass ( ptr, "QNETWORKINTERFACE", true );
-  }
-  else
-  {
-    hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
-  }
-}
-
-/*
-static int interfaceIndexFromName(const QString &name)
-*/
-HB_FUNC_STATIC( QNETWORKINTERFACE_INTERFACEINDEXFROMNAME )
-{
-#if (QT_VERSION >= QT_VERSION_CHECK(5,7,0))
-    if( ISNUMPAR(1) && ISCHAR(1) )
-  {
-      RINT( QNetworkInterface::interfaceIndexFromName ( PQSTRING(1) ) );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
   }
   else
   {
@@ -436,19 +422,84 @@ HB_FUNC_STATIC( QNETWORKINTERFACE_INTERFACEINDEXFROMNAME )
 }
 
 /*
-static QString interfaceNameFromIndex(int index)
+static QNetworkInterface interfaceFromIndex ( int index )
 */
-HB_FUNC_STATIC( QNETWORKINTERFACE_INTERFACENAMEFROMINDEX )
+HB_FUNC_STATIC( QNETWORKINTERFACE_INTERFACEFROMINDEX )
 {
-#if (QT_VERSION >= QT_VERSION_CHECK(5,7,0))
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(1) && ISNUM(1) )
   {
-      RQSTRING( QNetworkInterface::interfaceNameFromIndex ( PINT(1) ) );
+#endif
+      QNetworkInterface * ptr = new QNetworkInterface( QNetworkInterface::interfaceFromIndex ( PINT(1) ) );
+      _qt5xhb_createReturnClass ( ptr, "QNETWORKINTERFACE", true );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
   }
   else
   {
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
+#endif
+}
+
+/*
+static QNetworkInterface interfaceFromName ( const QString & name )
+*/
+HB_FUNC_STATIC( QNETWORKINTERFACE_INTERFACEFROMNAME )
+{
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
+    if( ISNUMPAR(1) && ISCHAR(1) )
+  {
+#endif
+      QNetworkInterface * ptr = new QNetworkInterface( QNetworkInterface::interfaceFromName ( PQSTRING(1) ) );
+      _qt5xhb_createReturnClass ( ptr, "QNETWORKINTERFACE", true );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
+  }
+  else
+  {
+    hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
+  }
+#endif
+}
+
+/*
+static int interfaceIndexFromName(const QString &name)
+*/
+HB_FUNC_STATIC( QNETWORKINTERFACE_INTERFACEINDEXFROMNAME )
+{
+#if (QT_VERSION >= QT_VERSION_CHECK(5,7,0))
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
+    if( ISNUMPAR(1) && ISCHAR(1) )
+  {
+#endif
+      RINT( QNetworkInterface::interfaceIndexFromName ( PQSTRING(1) ) );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
+  }
+  else
+  {
+    hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
+  }
+#endif
+#endif
+}
+
+/*
+static QString interfaceNameFromIndex(int index)
+*/
+HB_FUNC_STATIC( QNETWORKINTERFACE_INTERFACENAMEFROMINDEX )
+{
+#if (QT_VERSION >= QT_VERSION_CHECK(5,7,0))
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
+    if( ISNUMPAR(1) && ISNUM(1) )
+  {
+#endif
+      RQSTRING( QNetworkInterface::interfaceNameFromIndex ( PINT(1) ) );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
+  }
+  else
+  {
+    hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
+  }
+#endif
 #endif
 }
 
@@ -461,14 +512,18 @@ HB_FUNC_STATIC( QNETWORKINTERFACE_SWAP )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(1) && ISQNETWORKINTERFACE(1) )
     {
+#endif
       obj->swap ( *PQNETWORKINTERFACE(1) );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 
   hb_itemReturn( hb_stackSelfItem() );

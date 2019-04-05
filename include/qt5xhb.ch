@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -63,6 +63,7 @@
 #include "QBluetoothUuid.ch"
 #include "QBoxLayout.ch"
 #include "QBoxSet.ch"
+#include "QByteArray.ch"
 
 // C
 #include "QCalendarWidget.ch"
@@ -77,6 +78,8 @@
 #include "QCameraImageProcessing.ch"
 #include "QCameraImageProcessingControl.ch"
 #include "QCameraViewfinderSettingsControl.ch"
+#include "QCanBusDevice.ch"
+#include "QCanBusFrame.ch"
 #include "QCategoryAxis.ch"
 #include "QChar.ch"
 #include "QChart.ch"
@@ -238,6 +241,9 @@
 #include "QMetaMethod.ch"
 #include "QMetaType.ch"
 #include "QMimeDatabase.ch"
+#include "QModbusDevice.ch"
+#include "QModbusReply.ch"
+#include "QModbusServer.ch"
 #include "QMovie.ch"
 #include "QMultimedia.ch"
 

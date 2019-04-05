@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtGui
 
 $header
 
@@ -22,7 +25,7 @@ $destructor
 
 $includes
 
-#include <QImage>
+#include <QtGui/QImage>
 
 $prototype=QOpenGLFramebufferObject(const QSize &size, GLenum target = GL_TEXTURE_2D)
 $constructor=|new1|const QSize &,GLenum=GL_TEXTURE_2D
@@ -121,6 +124,7 @@ HB_FUNC_STATIC( QOPENGLFRAMEBUFFEROBJECT_NEW )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=new
 
 $deleteMethod
 
@@ -196,6 +200,7 @@ HB_FUNC_STATIC( QOPENGLFRAMEBUFFEROBJECT_BLITFRAMEBUFFER )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=blitFramebuffer
 
 $extraMethods
 

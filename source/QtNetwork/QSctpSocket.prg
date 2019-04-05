@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -12,17 +12,20 @@
 
 #include "hbclass.ch"
 
+#ifndef QT5XHB_NO_REQUESTS
+REQUEST QNETWORKDATAGRAM
+#endif
+
 CLASS QSctpSocket INHERIT QTcpSocket
 
    METHOD new
    METHOD delete
-
    METHOD close
    METHOD disconnectFromHost
-   METHOD isInDatagramMode
-   METHOD maximumChannelCount
-   METHOD readDatagram
    METHOD setMaximumChannelCount
+   METHOD maximumChannelCount
+   METHOD isInDatagramMode
+   METHOD readDatagram
    METHOD writeDatagram
 
    DESTRUCTOR destroyObject
@@ -37,11 +40,11 @@ RETURN
 
 #pragma BEGINDUMP
 
-#include <Qt>
+#include <QtCore/Qt>
 
 #ifndef __XHARBOUR__
 #if (QT_VERSION >= QT_VERSION_CHECK(5,8,0))
-#include <QSctpSocket>
+#include <QtNetwork/QSctpSocket>
 #endif
 #endif
 
@@ -51,7 +54,7 @@ RETURN
 
 #ifdef __XHARBOUR__
 #if (QT_VERSION >= QT_VERSION_CHECK(5,8,0))
-#include <QSctpSocket>
+#include <QtNetwork/QSctpSocket>
 #endif
 #endif
 
@@ -110,14 +113,18 @@ HB_FUNC_STATIC( QSCTPSOCKET_CLOSE )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
+#endif
       obj->close ();
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 
   hb_itemReturn( hb_stackSelfItem() );
@@ -136,14 +143,18 @@ HB_FUNC_STATIC( QSCTPSOCKET_DISCONNECTFROMHOST )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
+#endif
       obj->disconnectFromHost ();
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 
   hb_itemReturn( hb_stackSelfItem() );
@@ -162,14 +173,18 @@ HB_FUNC_STATIC( QSCTPSOCKET_SETMAXIMUMCHANNELCOUNT )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(1) && ISNUM(1) )
     {
+#endif
       obj->setMaximumChannelCount ( PINT(1) );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 
   hb_itemReturn( hb_stackSelfItem() );
@@ -188,14 +203,18 @@ HB_FUNC_STATIC( QSCTPSOCKET_MAXIMUMCHANNELCOUNT )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
+#endif
       RINT( obj->maximumChannelCount () );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 #endif
 #endif
@@ -212,14 +231,18 @@ HB_FUNC_STATIC( QSCTPSOCKET_ISINDATAGRAMMODE )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
+#endif
       RBOOL( obj->isInDatagramMode () );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 #endif
 #endif
@@ -236,15 +259,19 @@ HB_FUNC_STATIC( QSCTPSOCKET_READDATAGRAM )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
+#endif
       QNetworkDatagram * ptr = new QNetworkDatagram( obj->readDatagram () );
       _qt5xhb_createReturnClass ( ptr, "QNETWORKDATAGRAM", true );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 #endif
 #endif
@@ -261,25 +288,29 @@ HB_FUNC_STATIC( QSCTPSOCKET_WRITEDATAGRAM )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(1) && ISQNETWORKDATAGRAM(1) )
     {
+#endif
       RBOOL( obj->writeDatagram ( *PQNETWORKDATAGRAM(1) ) );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 #endif
 #endif
 }
 
 /*
-qint64 readData(char *data, qint64 maxlen) Q_DECL_OVERRIDE (protected)
+qint64 readData(char *data, qint64 maxlen) Q_DECL_OVERRIDE [protected]
 */
 
 /*
-qint64 readLineData(char *data, qint64 maxlen) Q_DECL_OVERRIDE (protected)
+qint64 readLineData(char *data, qint64 maxlen) Q_DECL_OVERRIDE [protected]
 */
 
 #pragma ENDDUMP

@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtGamepad
 
 $header
 
@@ -24,7 +27,7 @@ $destructor
 
 $includes=5,9,0
 
-#include <QGamepad>
+#include <QtGamepad/QGamepad>
 
 $prototype=explicit QGamepadKeyNavigation(QObject *parent = nullptr)
 $constructor=5,9,0|new|QObject *=nullptr

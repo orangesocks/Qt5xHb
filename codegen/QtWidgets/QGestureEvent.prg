@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtWidgets
 
 $header
 
@@ -59,6 +62,7 @@ HB_FUNC_STATIC( QGESTUREEVENT_ACCEPT )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=accept
 
 $prototype=QList<QGesture *> activeGestures () const
 $method=|QList<QGesture *>|activeGestures|
@@ -104,6 +108,7 @@ HB_FUNC_STATIC( QGESTUREEVENT_IGNORE )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=ignore
 
 $prototype=bool isAccepted () const
 $internalMethod=|bool|isAccepted,isAccepted1|
@@ -137,6 +142,7 @@ HB_FUNC_STATIC( QGESTUREEVENT_ISACCEPTED )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=isAccepted
 
 $prototype=QPointF mapToGraphicsScene ( const QPointF & gesturePoint ) const
 $method=|QPointF|mapToGraphicsScene|const QPointF &
@@ -173,6 +179,7 @@ HB_FUNC_STATIC( QGESTUREEVENT_SETACCEPTED )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=setAccepted
 
 $prototype=QWidget * widget () const
 $method=|QWidget *|widget|

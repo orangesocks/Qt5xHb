@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtGui
 
 $header
 
@@ -114,6 +117,7 @@ HB_FUNC_STATIC( QPALETTE_BRUSH )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=brush
 
 $prototype=const QBrush & button () const
 $method=|const QBrush &|button|
@@ -148,6 +152,7 @@ HB_FUNC_STATIC( QPALETTE_COLOR )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=color
 
 $prototype=ColorGroup currentColorGroup () const
 $method=|QPalette::ColorGroup|currentColorGroup|
@@ -212,6 +217,7 @@ HB_FUNC_STATIC( QPALETTE_SETBRUSH )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=setBrush
 
 $prototype=void setColor ( ColorGroup group, ColorRole role, const QColor & color )
 $internalMethod=|void|setColor,setColor1|QPalette::ColorGroup,QPalette::ColorRole,const QColor &
@@ -237,6 +243,7 @@ HB_FUNC_STATIC( QPALETTE_SETCOLOR )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=setColor
 
 $prototype=void setColorGroup ( ColorGroup cg, const QBrush & windowText, const QBrush & button, const QBrush & light, const QBrush & dark, const QBrush & mid, const QBrush & text, const QBrush & bright_text, const QBrush & base, const QBrush & window )
 $method=|void|setColorGroup|QPalette::ColorGroup,const QBrush &,const QBrush &,const QBrush &,const QBrush &,const QBrush &,const QBrush &,const QBrush &,const QBrush &,const QBrush &
@@ -261,6 +268,9 @@ $method=|const QBrush &|window|
 
 $prototype=const QBrush & windowText () const
 $method=|const QBrush &|windowText|
+
+$prototype=const QBrush &QPalette::placeholderText() const
+$method=5,12,0|const QBrush &|placeholderText|
 
 $extraMethods
 

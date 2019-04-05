@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtGui
 
 $header
 
@@ -22,8 +25,8 @@ $destructor
 
 $includes
 
-#include <QMatrix>
-#include <QTransform>
+#include <QtGui/QMatrix>
+#include <QtGui/QTransform>
 
 $prototype=QMatrix4x4()
 $internalConstructor=|new1|
@@ -161,6 +164,7 @@ HB_FUNC_STATIC( QMATRIX4X4_SCALE )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=scale
 
 $prototype=void translate(const QVector3D& vector)
 $internalMethod=|void|translate,translate1|const QVector3D &|#ifndef QT_NO_VECTOR3D
@@ -194,6 +198,7 @@ HB_FUNC_STATIC( QMATRIX4X4_TRANSLATE )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=translate
 
 $prototype=void rotate(float angle, const QVector3D& vector)
 $internalMethod=|void|rotate,rotate1|float,const QVector3D &|#ifndef QT_NO_VECTOR3D
@@ -227,6 +232,7 @@ HB_FUNC_STATIC( QMATRIX4X4_ROTATE )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=rotate
 
 $prototype=void ortho(const QRect& rect)
 $internalMethod=|void|ortho,ortho1|const QRect &
@@ -260,6 +266,7 @@ HB_FUNC_STATIC( QMATRIX4X4_ORTHO )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=ortho
 
 $prototype=void frustum(float left, float right, float bottom, float top, float nearPlane, float farPlane)
 $method=|void|frustum|float,float,float,float,float,float
@@ -296,6 +303,7 @@ HB_FUNC_STATIC( QMATRIX4X4_VIEWPORT )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=viewport
 
 $prototype=void flipCoordinates()
 $method=|void|flipCoordinates|
@@ -327,6 +335,7 @@ HB_FUNC_STATIC( QMATRIX4X4_TOTRANSFORM )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=toTransform
 
 $prototype=QPoint map(const QPoint& point) const
 $internalMethod=|QPoint|map,map1|const QPoint &
@@ -368,6 +377,7 @@ HB_FUNC_STATIC( QMATRIX4X4_MAP )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=map
 
 $prototype=QVector3D mapVector(const QVector3D& vector) const
 $method=|QVector3D|mapVector|const QVector3D &|#ifndef QT_NO_VECTOR3D
@@ -396,6 +406,7 @@ HB_FUNC_STATIC( QMATRIX4X4_MAPRECT )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=mapRect
 
 $prototype=void optimize()
 $method=|void|optimize|

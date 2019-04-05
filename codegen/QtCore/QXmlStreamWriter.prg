@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtCore
 
 $header
 
@@ -111,6 +114,7 @@ HB_FUNC_STATIC( QXMLSTREAMWRITER_SETCODEC )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=setCodec
 
 $prototype=void setDevice(QIODevice * device)
 $method=|void|setDevice|QIODevice *
@@ -147,6 +151,7 @@ HB_FUNC_STATIC( QXMLSTREAMWRITER_WRITEATTRIBUTE )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=writeAttribute
 
 $prototype=void writeAttributes(const QXmlStreamAttributes & attributes)
 $method=|void|writeAttributes|const QXmlStreamAttributes &
@@ -193,6 +198,7 @@ HB_FUNC_STATIC( QXMLSTREAMWRITER_WRITEEMPTYELEMENT )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=writeEmptyElement
 
 $prototype=void writeEndDocument()
 $method=|void|writeEndDocument|
@@ -241,6 +247,7 @@ HB_FUNC_STATIC( QXMLSTREAMWRITER_WRITESTARTDOCUMENT )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=writeStartDocument
 
 $prototype=void writeStartElement(const QString & namespaceUri, const QString & name)
 $internalMethod=|void|writeStartElement,writeStartElement1|const QString &,const QString &
@@ -266,6 +273,7 @@ HB_FUNC_STATIC( QXMLSTREAMWRITER_WRITESTARTELEMENT )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=writeStartElement
 
 $prototype=void writeTextElement(const QString & namespaceUri, const QString & name, const QString & text)
 $internalMethod=|void|writeTextElement,writeTextElement1|const QString &,const QString &,const QString &
@@ -291,6 +299,7 @@ HB_FUNC_STATIC( QXMLSTREAMWRITER_WRITETEXTELEMENT )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=writeTextElement
 
 $extraMethods
 

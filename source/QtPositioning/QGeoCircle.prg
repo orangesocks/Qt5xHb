@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -18,10 +18,6 @@ REQUEST QGEOCOORDINATE
 
 CLASS QGeoCircle INHERIT QGeoShape
 
-   METHOD new1
-   METHOD new2
-   METHOD new3
-   METHOD new4
    METHOD new
    METHOD delete
    METHOD setCenter
@@ -43,11 +39,11 @@ RETURN
 
 #pragma BEGINDUMP
 
-#include <Qt>
+#include <QtCore/Qt>
 
 #ifndef __XHARBOUR__
 #if (QT_VERSION >= QT_VERSION_CHECK(5,2,0))
-#include <QGeoCircle>
+#include <QtPositioning/QGeoCircle>
 #endif
 #endif
 
@@ -57,14 +53,14 @@ RETURN
 
 #ifdef __XHARBOUR__
 #if (QT_VERSION >= QT_VERSION_CHECK(5,2,0))
-#include <QGeoCircle>
+#include <QtPositioning/QGeoCircle>
 #endif
 #endif
 
 /*
 QGeoCircle()
 */
-HB_FUNC_STATIC( QGEOCIRCLE_NEW1 )
+void QGeoCircle_new1 ()
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,2,0))
   QGeoCircle * o = new QGeoCircle ();
@@ -75,7 +71,7 @@ HB_FUNC_STATIC( QGEOCIRCLE_NEW1 )
 /*
 QGeoCircle(const QGeoCoordinate &center, qreal radius = -1.0)
 */
-HB_FUNC_STATIC( QGEOCIRCLE_NEW2 )
+void QGeoCircle_new2 ()
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,2,0))
   QGeoCircle * o = new QGeoCircle ( *PQGEOCOORDINATE(1), OPQREAL(2,-1.0) );
@@ -86,7 +82,7 @@ HB_FUNC_STATIC( QGEOCIRCLE_NEW2 )
 /*
 QGeoCircle(const QGeoCircle &other)
 */
-HB_FUNC_STATIC( QGEOCIRCLE_NEW3 )
+void QGeoCircle_new3 ()
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,2,0))
   QGeoCircle * o = new QGeoCircle ( *PQGEOCIRCLE(1) );
@@ -97,7 +93,7 @@ HB_FUNC_STATIC( QGEOCIRCLE_NEW3 )
 /*
 QGeoCircle(const QGeoShape &other)
 */
-HB_FUNC_STATIC( QGEOCIRCLE_NEW4 )
+void QGeoCircle_new4 ()
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,2,0))
   QGeoCircle * o = new QGeoCircle ( *PQGEOSHAPE(1) );
@@ -114,19 +110,19 @@ HB_FUNC_STATIC( QGEOCIRCLE_NEW )
 {
   if( ISNUMPAR(0) )
   {
-    HB_FUNC_EXEC( QGEOCIRCLE_NEW1 );
+    QGeoCircle_new1();
   }
   else if( ISBETWEEN(1,2) && ISQGEOCOORDINATE(1) && ISOPTNUM(2) )
   {
-    HB_FUNC_EXEC( QGEOCIRCLE_NEW2 );
+    QGeoCircle_new2();
   }
   else if( ISNUMPAR(1) && ISQGEOCIRCLE(1) )
   {
-    HB_FUNC_EXEC( QGEOCIRCLE_NEW3 );
+    QGeoCircle_new3();
   }
   else if( ISNUMPAR(1) && ISQGEOSHAPE(1) )
   {
-    HB_FUNC_EXEC( QGEOCIRCLE_NEW4 );
+    QGeoCircle_new4();
   }
   else
   {
@@ -163,14 +159,18 @@ HB_FUNC_STATIC( QGEOCIRCLE_SETCENTER )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(1) && ISQGEOCOORDINATE(1) )
     {
+#endif
       obj->setCenter ( *PQGEOCOORDINATE(1) );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 
   hb_itemReturn( hb_stackSelfItem() );
@@ -187,15 +187,19 @@ HB_FUNC_STATIC( QGEOCIRCLE_CENTER )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
+#endif
       QGeoCoordinate * ptr = new QGeoCoordinate( obj->center () );
       _qt5xhb_createReturnClass ( ptr, "QGEOCOORDINATE", true );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 #endif
 }
@@ -210,14 +214,18 @@ HB_FUNC_STATIC( QGEOCIRCLE_SETRADIUS )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(1) && ISNUM(1) )
     {
+#endif
       obj->setRadius ( PQREAL(1) );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 
   hb_itemReturn( hb_stackSelfItem() );
@@ -234,14 +242,18 @@ HB_FUNC_STATIC( QGEOCIRCLE_RADIUS )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
+#endif
       RQREAL( obj->radius () );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 #endif
 }
@@ -256,14 +268,18 @@ HB_FUNC_STATIC( QGEOCIRCLE_TRANSLATE )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(2) && ISNUM(1) && ISNUM(2) )
     {
+#endif
       obj->translate ( PDOUBLE(1), PDOUBLE(2) );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 
   hb_itemReturn( hb_stackSelfItem() );
@@ -280,15 +296,19 @@ HB_FUNC_STATIC( QGEOCIRCLE_TRANSLATED )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(2) && ISNUM(1) && ISNUM(2) )
     {
+#endif
       QGeoCircle * ptr = new QGeoCircle( obj->translated ( PDOUBLE(1), PDOUBLE(2) ) );
       _qt5xhb_createReturnClass ( ptr, "QGEOCIRCLE", true );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 #endif
 }

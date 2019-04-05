@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -13,38 +13,37 @@
 #include "hbclass.ch"
 
 #ifndef QT5XHB_NO_REQUESTS
-REQUEST QVARIANT
-REQUEST QNETWORKACCESSMANAGER
 REQUEST QBYTEARRAY
+REQUEST QNETWORKACCESSMANAGER
 REQUEST QNETWORKREQUEST
 REQUEST QSSLCONFIGURATION
 REQUEST QURL
+REQUEST QVARIANT
 #endif
 
 CLASS QNetworkReply INHERIT QIODevice
 
    METHOD delete
-
-   METHOD abort
-   METHOD attribute
    METHOD close
-   METHOD error
-   METHOD hasRawHeader
-   METHOD header
-   METHOD ignoreSslErrors
-   METHOD isFinished
-   METHOD isRunning
    METHOD isSequential
+   METHOD readBufferSize
+   METHOD setReadBufferSize
    METHOD manager
    METHOD operation
-   METHOD rawHeader
-   METHOD rawHeaderList
-   METHOD readBufferSize
    METHOD request
-   METHOD setReadBufferSize
-   METHOD setSslConfiguration
-   METHOD sslConfiguration
+   METHOD error
+   METHOD isFinished
+   METHOD isRunning
    METHOD url
+   METHOD header
+   METHOD hasRawHeader
+   METHOD rawHeaderList
+   METHOD rawHeader
+   METHOD attribute
+   METHOD sslConfiguration
+   METHOD setSslConfiguration
+   METHOD abort
+   METHOD ignoreSslErrors
 
    METHOD onDownloadProgress
    METHOD onError
@@ -69,10 +68,10 @@ RETURN
 
 #pragma BEGINDUMP
 
-#include <Qt>
+#include <QtCore/Qt>
 
 #ifndef __XHARBOUR__
-#include <QNetworkReply>
+#include <QtNetwork/QNetworkReply>
 #endif
 
 #include "qt5xhb_common.h"
@@ -80,17 +79,17 @@ RETURN
 #include "qt5xhb_utils.h"
 
 #ifdef __XHARBOUR__
-#include <QNetworkReply>
+#include <QtNetwork/QNetworkReply>
 #endif
 
-#include <QSslConfiguration>
+#include <QtNetwork/QSslConfiguration>
 
 /*
-explicit QNetworkReply(QObject *parent = Q_NULLPTR) (protected)
+explicit QNetworkReply(QObject *parent = Q_NULLPTR) [protected]
 */
 
 /*
-QNetworkReply(QNetworkReplyPrivate &dd, QObject *parent) (protected)
+QNetworkReply(QNetworkReplyPrivate &dd, QObject *parent) [protected]
 */
 
 /*
@@ -122,14 +121,18 @@ HB_FUNC_STATIC( QNETWORKREPLY_CLOSE )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
+#endif
       obj->close ();
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 
   hb_itemReturn( hb_stackSelfItem() );
@@ -144,14 +147,18 @@ HB_FUNC_STATIC( QNETWORKREPLY_ISSEQUENTIAL )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
+#endif
       RBOOL( obj->isSequential () );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
@@ -164,14 +171,18 @@ HB_FUNC_STATIC( QNETWORKREPLY_READBUFFERSIZE )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
+#endif
       RQINT64( obj->readBufferSize () );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
@@ -184,14 +195,18 @@ HB_FUNC_STATIC( QNETWORKREPLY_SETREADBUFFERSIZE )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(1) && ISNUM(1) )
     {
+#endif
       obj->setReadBufferSize ( PQINT64(1) );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 
   hb_itemReturn( hb_stackSelfItem() );
@@ -206,15 +221,19 @@ HB_FUNC_STATIC( QNETWORKREPLY_MANAGER )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
+#endif
       QNetworkAccessManager * ptr = obj->manager ();
       _qt5xhb_createReturnQObjectClass ( ptr, "QNETWORKACCESSMANAGER" );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
@@ -227,14 +246,18 @@ HB_FUNC_STATIC( QNETWORKREPLY_OPERATION )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
+#endif
       RENUM( obj->operation () );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
@@ -247,15 +270,19 @@ HB_FUNC_STATIC( QNETWORKREPLY_REQUEST )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
+#endif
       QNetworkRequest * ptr = new QNetworkRequest( obj->request () );
       _qt5xhb_createReturnClass ( ptr, "QNETWORKREQUEST", true );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
@@ -268,14 +295,18 @@ HB_FUNC_STATIC( QNETWORKREPLY_ERROR )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
+#endif
       RENUM( obj->error () );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
@@ -288,14 +319,18 @@ HB_FUNC_STATIC( QNETWORKREPLY_ISFINISHED )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
+#endif
       RBOOL( obj->isFinished () );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
@@ -308,14 +343,18 @@ HB_FUNC_STATIC( QNETWORKREPLY_ISRUNNING )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
+#endif
       RBOOL( obj->isRunning () );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
@@ -328,15 +367,19 @@ HB_FUNC_STATIC( QNETWORKREPLY_URL )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
+#endif
       QUrl * ptr = new QUrl( obj->url () );
       _qt5xhb_createReturnClass ( ptr, "QURL", true );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
@@ -349,15 +392,19 @@ HB_FUNC_STATIC( QNETWORKREPLY_HEADER )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(1) && ISNUM(1) )
     {
+#endif
       QVariant * ptr = new QVariant( obj->header ( (QNetworkRequest::KnownHeaders) hb_parni(1) ) );
       _qt5xhb_createReturnClass ( ptr, "QVARIANT", true );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
@@ -370,14 +417,18 @@ HB_FUNC_STATIC( QNETWORKREPLY_HASRAWHEADER )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(1) && ISQBYTEARRAY(1) )
     {
+#endif
       RBOOL( obj->hasRawHeader ( *PQBYTEARRAY(1) ) );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
@@ -390,8 +441,10 @@ HB_FUNC_STATIC( QNETWORKREPLY_RAWHEADERLIST )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
+#endif
       QList<QByteArray> list = obj->rawHeaderList ();
       PHB_DYNS pDynSym = hb_dynsymFindName( "QBYTEARRAY" );
       PHB_ITEM pArray = hb_itemArrayNew(0);
@@ -422,11 +475,13 @@ HB_FUNC_STATIC( QNETWORKREPLY_RAWHEADERLIST )
         }
       }
       hb_itemReturnRelease(pArray);
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
@@ -439,15 +494,19 @@ HB_FUNC_STATIC( QNETWORKREPLY_RAWHEADER )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(1) && ISQBYTEARRAY(1) )
     {
+#endif
       QByteArray * ptr = new QByteArray( obj->rawHeader ( *PQBYTEARRAY(1) ) );
       _qt5xhb_createReturnClass ( ptr, "QBYTEARRAY", true );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
@@ -464,15 +523,19 @@ HB_FUNC_STATIC( QNETWORKREPLY_ATTRIBUTE )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(1) && ISNUM(1) )
     {
+#endif
       QVariant * ptr = new QVariant( obj->attribute ( (QNetworkRequest::Attribute) hb_parni(1) ) );
       _qt5xhb_createReturnClass ( ptr, "QVARIANT", true );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
@@ -485,15 +548,19 @@ HB_FUNC_STATIC( QNETWORKREPLY_SSLCONFIGURATION )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
+#endif
       QSslConfiguration * ptr = new QSslConfiguration( obj->sslConfiguration () );
       _qt5xhb_createReturnClass ( ptr, "QSSLCONFIGURATION", true );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
@@ -506,14 +573,18 @@ HB_FUNC_STATIC( QNETWORKREPLY_SETSSLCONFIGURATION )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(1) && ISQSSLCONFIGURATION(1) )
     {
+#endif
       obj->setSslConfiguration ( *PQSSLCONFIGURATION(1) );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 
   hb_itemReturn( hb_stackSelfItem() );
@@ -528,14 +599,18 @@ HB_FUNC_STATIC( QNETWORKREPLY_ABORT )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
+#endif
       obj->abort ();
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 
   hb_itemReturn( hb_stackSelfItem() );
@@ -599,51 +674,51 @@ HB_FUNC_STATIC( QNETWORKREPLY_IGNORESSLERRORS )
 }
 
 /*
-virtual qint64 writeData(const char *data, qint64 len) Q_DECL_OVERRIDE (protected)
+virtual qint64 writeData(const char *data, qint64 len) Q_DECL_OVERRIDE [protected]
 */
 
 /*
-void setOperation(QNetworkAccessManager::Operation operation) (protected)
+void setOperation(QNetworkAccessManager::Operation operation) [protected]
 */
 
 /*
-void setRequest(const QNetworkRequest &request) (protected)
+void setRequest(const QNetworkRequest &request) [protected]
 */
 
 /*
-void setError(NetworkError errorCode, const QString &errorString) (protected)
+void setError(NetworkError errorCode, const QString &errorString) [protected]
 */
 
 /*
-void setFinished(bool) (protected)
+void setFinished(bool) [protected]
 */
 
 /*
-void setUrl(const QUrl &url) (protected)
+void setUrl(const QUrl &url) [protected]
 */
 
 /*
-void setHeader(QNetworkRequest::KnownHeaders header, const QVariant &value) (protected)
+void setHeader(QNetworkRequest::KnownHeaders header, const QVariant &value) [protected]
 */
 
 /*
-void setRawHeader(const QByteArray &headerName, const QByteArray &value) (protected)
+void setRawHeader(const QByteArray &headerName, const QByteArray &value) [protected]
 */
 
 /*
-void setAttribute(QNetworkRequest::Attribute code, const QVariant &value) (protected)
+void setAttribute(QNetworkRequest::Attribute code, const QVariant &value) [protected]
 */
 
 /*
-virtual void sslConfigurationImplementation(QSslConfiguration &) const (protected)
+virtual void sslConfigurationImplementation(QSslConfiguration &) const [protected]
 */
 
 /*
-virtual void setSslConfigurationImplementation(const QSslConfiguration &) (protected)
+virtual void setSslConfigurationImplementation(const QSslConfiguration &) [protected]
 */
 
 /*
-virtual void ignoreSslErrorsImplementation(const QList<QSslError> &) (protected)
+virtual void ignoreSslErrorsImplementation(const QList<QSslError> &) [protected]
 */
 
 void QNetworkReplySlots_connect_signal ( const QString & signal, const QString & slot );

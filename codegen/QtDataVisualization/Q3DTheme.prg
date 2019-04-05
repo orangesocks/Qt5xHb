@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtDataVisualization
 
 $header
 
@@ -32,11 +35,11 @@ $internalConstructor=|new1|QObject *=Q_NULLPTR
 $prototype=explicit Q3DTheme(Theme themeType, QObject *parent = Q_NULLPTR)
 $internalConstructor=|new2|Q3DTheme::Theme,QObject *=Q_NULLPTR
 
-$prototype=explicit Q3DTheme(Q3DThemePrivate *d, Theme themeType, QObject *parent = Q_NULLPTR) (protected)
+$prototype=explicit Q3DTheme(Q3DThemePrivate *d, Theme themeType, QObject *parent = Q_NULLPTR) [protected]
 
 //[1]explicit Q3DTheme(QObject *parent = Q_NULLPTR)
 //[2]explicit Q3DTheme(Theme themeType, QObject *parent = Q_NULLPTR)
-//[3]explicit Q3DTheme(Q3DThemePrivate *d, Theme themeType, QObject *parent = Q_NULLPTR) (protected)
+//[3]explicit Q3DTheme(Q3DThemePrivate *d, Theme themeType, QObject *parent = Q_NULLPTR) [protected]
 
 HB_FUNC_STATIC( Q3DTHEME_NEW )
 {

@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtQml
 
 $header
 
@@ -22,8 +25,8 @@ $destructor
 
 $includes
 
-#include <QDateTime>
-#include <QVariant>
+#include <QtCore/QDateTime>
+#include <QtCore/QVariant>
 
 $prototype=QJSValue(SpecialValue value = UndefinedValue)
 $constructor=|new1|QJSValue::SpecialValue=QJSValue::UndefinedValue
@@ -172,6 +175,7 @@ HB_FUNC_STATIC( QJSVALUE_PROPERTY )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=property
 
 $prototype=QJSValue prototype() const
 $method=|QJSValue|prototype|
@@ -200,6 +204,7 @@ HB_FUNC_STATIC( QJSVALUE_SETPROPERTY )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=setProperty
 
 $prototype=void setPrototype(const QJSValue & prototype)
 $method=|void|setPrototype|const QJSValue &

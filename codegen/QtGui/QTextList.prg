@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtGui
 
 $header
 
@@ -12,18 +15,7 @@ $addRequests
 
 $beginClassFrom=QTextBlockGroup
 
-   METHOD new
-   METHOD delete
-   METHOD count
-   METHOD isEmpty
-   METHOD item
-   METHOD itemNumber
-   METHOD itemText
-   METHOD removeItem
-   METHOD remove
-   METHOD add
-   METHOD setFormat
-   METHOD format
+$addMethods
 
 $endClass
 

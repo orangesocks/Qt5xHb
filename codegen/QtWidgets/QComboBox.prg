@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtWidgets
 
 $header
 
@@ -32,9 +35,9 @@ $destructor
 
 $includes
 
-#include <QCompleter>
-#include <QLineEdit>
-#include <QAbstractItemView>
+#include <QtWidgets/QCompleter>
+#include <QtWidgets/QLineEdit>
+#include <QtWidgets/QAbstractItemView>
 
 $prototype=QComboBox ( QWidget * parent = 0 )
 $constructor=|new|QWidget *=0
@@ -65,6 +68,7 @@ HB_FUNC_STATIC( QCOMBOBOX_ADDITEM )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=addItem
 
 $prototype=void addItems ( const QStringList & texts )
 $method=|void|addItems|const QStringList &
@@ -123,6 +127,7 @@ HB_FUNC_STATIC( QCOMBOBOX_INSERTITEM )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=insertItem
 
 $prototype=void insertItems ( int index, const QStringList & list )
 $method=|void|insertItems|int,const QStringList &

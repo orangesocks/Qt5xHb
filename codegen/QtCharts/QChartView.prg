@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtCharts
 
 $header
 
@@ -65,12 +68,12 @@ $method=5,7,0|QChart *|chart|
 $prototype=void setChart(QChart *chart)
 $method=5,7,0|void|setChart|QChart *
 
-$prototype=void resizeEvent(QResizeEvent *event) (protected)
+$prototype=void resizeEvent(QResizeEvent *event) [protected]
 
-$prototype=void mousePressEvent(QMouseEvent *event) (protected)
+$prototype=void mousePressEvent(QMouseEvent *event) [protected]
 
-$prototype=void mouseMoveEvent(QMouseEvent *event) (protected)
+$prototype=void mouseMoveEvent(QMouseEvent *event) [protected]
 
-$prototype=void mouseReleaseEvent(QMouseEvent *event) (protected)
+$prototype=void mouseReleaseEvent(QMouseEvent *event) [protected]
 
 #pragma ENDDUMP

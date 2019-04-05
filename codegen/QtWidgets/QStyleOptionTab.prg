@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtWidgets
 
 $header
 
@@ -32,11 +35,11 @@ $internalConstructor=|new1|
 $prototype=QStyleOptionTab(const QStyleOptionTab &other)
 $internalConstructor=|new2|const QStyleOptionTab &
 
-$prototype=QStyleOptionTab(int version) (protected)
+$prototype=QStyleOptionTab(int version) [protected]
 
 //[1]QStyleOptionTab()
 //[2]QStyleOptionTab(const QStyleOptionTab &other)
-//[3]QStyleOptionTab(int version) (protected)
+//[3]QStyleOptionTab(int version) [protected]
 
 HB_FUNC_STATIC( QSTYLEOPTIONTAB_NEW )
 {

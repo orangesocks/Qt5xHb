@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtGui
 
 $header
 
@@ -28,10 +31,10 @@ $prototype=virtual bool begin ( QPaintDevice * pdev ) = 0
 $virtualMethod=|bool|begin|QPaintDevice *
 
 $prototype=virtual void drawEllipse ( const QRectF & rect )
-$virtualMethod=|void|drawEllipse,drawEllipse1|const QRectF &
+$internalVirtualMethod=|void|drawEllipse,drawEllipse1|const QRectF &
 
 $prototype=virtual void drawEllipse ( const QRect & rect )
-$virtualMethod=|void|drawEllipse,drawEllipse2|const QRect &
+$internalVirtualMethod=|void|drawEllipse,drawEllipse2|const QRect &
 
 //[1]virtual void drawEllipse ( const QRectF & rect )
 //[2]virtual void drawEllipse ( const QRect & rect )
@@ -40,17 +43,18 @@ HB_FUNC_STATIC( QPAINTENGINE_DRAWELLIPSE )
 {
   if( ISNUMPAR(1) && ISQRECTF(1) )
   {
-    HB_FUNC_EXEC( QPAINTENGINE_DRAWELLIPSE1 );
+    QPaintEngine_drawEllipse1();
   }
   else if( ISNUMPAR(1) && ISQRECT(1) )
   {
-    HB_FUNC_EXEC( QPAINTENGINE_DRAWELLIPSE2 );
+    QPaintEngine_drawEllipse2();
   }
   else
   {
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=drawEllipse
 
 $prototype=virtual void drawImage ( const QRectF & rectangle, const QImage & image, const QRectF & sr, Qt::ImageConversionFlags flags = Qt::AutoColor )
 $virtualMethod=|void|drawImage|const QRectF &,const QImage &,const QRectF &,Qt::ImageConversionFlags=Qt::AutoColor
@@ -63,6 +67,7 @@ $virtualMethod=|void|drawImage|const QRectF &,const QImage &,const QRectF &,Qt::
 HB_FUNC_STATIC( QPAINTENGINE_DRAWLINES )
 {
 }
+$addMethod=drawLines
 
 $prototype=virtual void drawPath ( const QPainterPath & path )
 $virtualMethod=|void|drawPath|const QPainterPath &
@@ -78,6 +83,7 @@ $virtualMethod=|void|drawPixmap|const QRectF &,const QPixmap &,const QRectF &
 HB_FUNC_STATIC( QPAINTENGINE_DRAWPOINTS )
 {
 }
+$addMethod=drawPoints
 
 %% TODO: implementar reconhecimento de 'const QPointF *' e 'const QPoint *'
 
@@ -87,6 +93,7 @@ HB_FUNC_STATIC( QPAINTENGINE_DRAWPOINTS )
 HB_FUNC_STATIC( QPAINTENGINE_DRAWPOLYGON )
 {
 }
+$addMethod=drawPolygon
 
 %% TODO: implementar reconhecimento de 'const QRectF *' e 'const QRect *'
 
@@ -96,6 +103,7 @@ HB_FUNC_STATIC( QPAINTENGINE_DRAWPOLYGON )
 HB_FUNC_STATIC( QPAINTENGINE_DRAWRECTS )
 {
 }
+$addMethod=drawRects
 
 $prototype=virtual void drawTextItem ( const QPointF & p, const QTextItem & textItem )
 $virtualMethod=|void|drawTextItem|const QPointF &,const QTextItem &

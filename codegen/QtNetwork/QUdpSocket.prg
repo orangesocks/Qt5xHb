@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtNetwork
 
 $header
 
@@ -32,9 +35,9 @@ $destructor
 
 $includes
 
-#include <QNetworkInterface>
+#include <QtNetwork/QNetworkInterface>
 #if (QT_VERSION >= QT_VERSION_CHECK(5,8,0))
-#include <QNetworkDatagram>
+#include <QtNetwork/QNetworkDatagram>
 #endif
 
 $prototype=explicit QUdpSocket(QObject *parent = Q_NULLPTR)
@@ -69,6 +72,7 @@ HB_FUNC_STATIC( QUDPSOCKET_JOINMULTICASTGROUP )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=joinMulticastGroup
 
 $prototype=bool leaveMulticastGroup(const QHostAddress &groupAddress)
 $internalMethod=|bool|leaveMulticastGroup,leaveMulticastGroup1|const QHostAddress &
@@ -94,6 +98,7 @@ HB_FUNC_STATIC( QUDPSOCKET_LEAVEMULTICASTGROUP )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=leaveMulticastGroup
 
 $prototype=QNetworkInterface multicastInterface() const
 $method=|QNetworkInterface|multicastInterface|
@@ -144,5 +149,6 @@ HB_FUNC_STATIC( QUDPSOCKET_WRITEDATAGRAM )
     QUdpSocket_writeDatagram3();
   }
 }
+$addMethod=writeDatagram
 
 #pragma ENDDUMP

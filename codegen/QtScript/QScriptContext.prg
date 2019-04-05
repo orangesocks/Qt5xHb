@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtScript
 
 $header
 
@@ -22,8 +25,8 @@ $destructor
 
 $includes
 
-#include <QStringList>
-#include <QScriptEngine>
+#include <QtCore/QStringList>
+#include <QtScript/QScriptEngine>
 
 $deleteMethod
 
@@ -90,6 +93,7 @@ HB_FUNC_STATIC( QSCRIPTCONTEXT_THROWERROR )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=throwError
 
 $prototype=QScriptValue throwValue(const QScriptValue & value)
 $method=|QScriptValue|throwValue|const QScriptValue &

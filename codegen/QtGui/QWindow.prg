@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtGui
 
 $header
 
@@ -24,7 +27,7 @@ $destructor
 
 $includes
 
-#include <QScreen>
+#include <QtGui/QScreen>
 
 $prototype=QWindow(QScreen * targetScreen = 0)
 $internalConstructor=|new1|QScreen *=0
@@ -146,6 +149,7 @@ HB_FUNC_STATIC( QWINDOW_RESIZE )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=resize
 
 $prototype=QScreen * screen() const
 $method=|QScreen *|screen|
@@ -183,6 +187,7 @@ HB_FUNC_STATIC( QWINDOW_SETGEOMETRY )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=setGeometry
 
 $prototype=bool setKeyboardGrabEnabled(bool grab)
 $method=|bool|setKeyboardGrabEnabled|bool
@@ -325,6 +330,7 @@ HB_FUNC_STATIC( QWINDOW_SETPOSITION )
     QWindow_setPosition2();
   }
 }
+$addMethod=setPosition
 
 $prototype=void requestUpdate()
 $slotMethod=5,5,0|void|requestUpdate|

@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -13,41 +13,40 @@
 #include "hbclass.ch"
 
 #ifndef QT5XHB_NO_REQUESTS
-REQUEST QICON
-REQUEST QSIZE
-REQUEST QKEYSEQUENCE
 REQUEST QBUTTONGROUP
+REQUEST QICON
+REQUEST QKEYSEQUENCE
+REQUEST QSIZE
 #endif
 
 CLASS QAbstractButton INHERIT QWidget
 
    METHOD delete
-
-   METHOD animateClick
-   METHOD autoExclusive
-   METHOD autoRepeat
-   METHOD autoRepeatDelay
-   METHOD autoRepeatInterval
-   METHOD click
-   METHOD group
-   METHOD icon
-   METHOD iconSize
-   METHOD isCheckable
-   METHOD isChecked
-   METHOD isDown
-   METHOD setAutoExclusive
-   METHOD setAutoRepeat
-   METHOD setAutoRepeatDelay
-   METHOD setAutoRepeatInterval
-   METHOD setCheckable
-   METHOD setChecked
-   METHOD setDown
-   METHOD setIcon
-   METHOD setIconSize
-   METHOD setShortcut
-   METHOD setText
-   METHOD shortcut
    METHOD text
+   METHOD setText
+   METHOD icon
+   METHOD setIcon
+   METHOD iconSize
+   METHOD setIconSize
+   METHOD shortcut
+   METHOD setShortcut
+   METHOD isCheckable
+   METHOD setCheckable
+   METHOD isChecked
+   METHOD setChecked
+   METHOD autoRepeat
+   METHOD setAutoRepeat
+   METHOD autoExclusive
+   METHOD setAutoExclusive
+   METHOD autoRepeatDelay
+   METHOD setAutoRepeatDelay
+   METHOD autoRepeatInterval
+   METHOD setAutoRepeatInterval
+   METHOD isDown
+   METHOD setDown
+   METHOD group
+   METHOD animateClick
+   METHOD click
    METHOD toggle
 
    METHOD onClicked
@@ -67,10 +66,10 @@ RETURN
 
 #pragma BEGINDUMP
 
-#include <Qt>
+#include <QtCore/Qt>
 
 #ifndef __XHARBOUR__
-#include <QAbstractButton>
+#include <QtWidgets/QAbstractButton>
 #endif
 
 #include "qt5xhb_common.h"
@@ -78,17 +77,17 @@ RETURN
 #include "qt5xhb_utils.h"
 
 #ifdef __XHARBOUR__
-#include <QAbstractButton>
+#include <QtWidgets/QAbstractButton>
 #endif
 
-#include <QButtonGroup>
+#include <QtWidgets/QButtonGroup>
 
 /*
 explicit QAbstractButton(QWidget *parent = Q_NULLPTR) (abstract)
 */
 
 /*
-QAbstractButton(QAbstractButtonPrivate &dd, QWidget* parent = Q_NULLPTR) (protected)
+QAbstractButton(QAbstractButtonPrivate &dd, QWidget* parent = Q_NULLPTR) [protected]
 */
 
 /*
@@ -120,14 +119,18 @@ HB_FUNC_STATIC( QABSTRACTBUTTON_TEXT )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
+#endif
       RQSTRING( obj->text () );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
@@ -140,14 +143,18 @@ HB_FUNC_STATIC( QABSTRACTBUTTON_SETTEXT )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(1) && ISCHAR(1) )
     {
+#endif
       obj->setText ( PQSTRING(1) );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 
   hb_itemReturn( hb_stackSelfItem() );
@@ -162,15 +169,19 @@ HB_FUNC_STATIC( QABSTRACTBUTTON_ICON )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
+#endif
       QIcon * ptr = new QIcon( obj->icon () );
       _qt5xhb_createReturnClass ( ptr, "QICON", true );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
@@ -183,14 +194,18 @@ HB_FUNC_STATIC( QABSTRACTBUTTON_SETICON )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(1) && (ISQICON(1)||ISCHAR(1)) )
     {
+#endif
       obj->setIcon ( ISOBJECT(1)? *(QIcon *) _qt5xhb_itemGetPtr(1) : QIcon(hb_parc(1)) );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 
   hb_itemReturn( hb_stackSelfItem() );
@@ -205,15 +220,19 @@ HB_FUNC_STATIC( QABSTRACTBUTTON_ICONSIZE )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
+#endif
       QSize * ptr = new QSize( obj->iconSize () );
       _qt5xhb_createReturnClass ( ptr, "QSIZE", true );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
@@ -226,14 +245,18 @@ HB_FUNC_STATIC( QABSTRACTBUTTON_SETICONSIZE )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(1) && ISQSIZE(1) )
     {
+#endif
       obj->setIconSize ( *PQSIZE(1) );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 
   hb_itemReturn( hb_stackSelfItem() );
@@ -249,15 +272,19 @@ HB_FUNC_STATIC( QABSTRACTBUTTON_SHORTCUT )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
+#endif
       QKeySequence * ptr = new QKeySequence( obj->shortcut () );
       _qt5xhb_createReturnClass ( ptr, "QKEYSEQUENCE", true );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 #endif
 }
@@ -272,14 +299,18 @@ HB_FUNC_STATIC( QABSTRACTBUTTON_SETSHORTCUT )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(1) && ISQKEYSEQUENCE(1) )
     {
+#endif
       obj->setShortcut ( *PQKEYSEQUENCE(1) );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 
   hb_itemReturn( hb_stackSelfItem() );
@@ -295,14 +326,18 @@ HB_FUNC_STATIC( QABSTRACTBUTTON_ISCHECKABLE )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
+#endif
       RBOOL( obj->isCheckable () );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
@@ -315,14 +350,18 @@ HB_FUNC_STATIC( QABSTRACTBUTTON_SETCHECKABLE )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(1) && ISLOG(1) )
     {
+#endif
       obj->setCheckable ( PBOOL(1) );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 
   hb_itemReturn( hb_stackSelfItem() );
@@ -337,14 +376,18 @@ HB_FUNC_STATIC( QABSTRACTBUTTON_ISCHECKED )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
+#endif
       RBOOL( obj->isChecked () );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
@@ -357,14 +400,18 @@ HB_FUNC_STATIC( QABSTRACTBUTTON_SETCHECKED )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(1) && ISLOG(1) )
     {
+#endif
       obj->setChecked ( PBOOL(1) );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 
   hb_itemReturn( hb_stackSelfItem() );
@@ -379,14 +426,18 @@ HB_FUNC_STATIC( QABSTRACTBUTTON_AUTOREPEAT )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
+#endif
       RBOOL( obj->autoRepeat () );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
@@ -399,14 +450,18 @@ HB_FUNC_STATIC( QABSTRACTBUTTON_SETAUTOREPEAT )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(1) && ISLOG(1) )
     {
+#endif
       obj->setAutoRepeat ( PBOOL(1) );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 
   hb_itemReturn( hb_stackSelfItem() );
@@ -421,14 +476,18 @@ HB_FUNC_STATIC( QABSTRACTBUTTON_AUTOEXCLUSIVE )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
+#endif
       RBOOL( obj->autoExclusive () );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
@@ -441,14 +500,18 @@ HB_FUNC_STATIC( QABSTRACTBUTTON_SETAUTOEXCLUSIVE )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(1) && ISLOG(1) )
     {
+#endif
       obj->setAutoExclusive ( PBOOL(1) );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 
   hb_itemReturn( hb_stackSelfItem() );
@@ -463,14 +526,18 @@ HB_FUNC_STATIC( QABSTRACTBUTTON_AUTOREPEATDELAY )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
+#endif
       RINT( obj->autoRepeatDelay () );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
@@ -483,14 +550,18 @@ HB_FUNC_STATIC( QABSTRACTBUTTON_SETAUTOREPEATDELAY )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(1) && ISNUM(1) )
     {
+#endif
       obj->setAutoRepeatDelay ( PINT(1) );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 
   hb_itemReturn( hb_stackSelfItem() );
@@ -505,14 +576,18 @@ HB_FUNC_STATIC( QABSTRACTBUTTON_AUTOREPEATINTERVAL )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
+#endif
       RINT( obj->autoRepeatInterval () );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
@@ -525,14 +600,18 @@ HB_FUNC_STATIC( QABSTRACTBUTTON_SETAUTOREPEATINTERVAL )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(1) && ISNUM(1) )
     {
+#endif
       obj->setAutoRepeatInterval ( PINT(1) );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 
   hb_itemReturn( hb_stackSelfItem() );
@@ -547,14 +626,18 @@ HB_FUNC_STATIC( QABSTRACTBUTTON_ISDOWN )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
+#endif
       RBOOL( obj->isDown () );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
@@ -567,14 +650,18 @@ HB_FUNC_STATIC( QABSTRACTBUTTON_SETDOWN )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(1) && ISLOG(1) )
     {
+#endif
       obj->setDown ( PBOOL(1) );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 
   hb_itemReturn( hb_stackSelfItem() );
@@ -590,15 +677,19 @@ HB_FUNC_STATIC( QABSTRACTBUTTON_GROUP )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
+#endif
       QButtonGroup * ptr = obj->group ();
       _qt5xhb_createReturnQObjectClass ( ptr, "QBUTTONGROUP" );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 #endif
 }
@@ -612,14 +703,18 @@ HB_FUNC_STATIC( QABSTRACTBUTTON_ANIMATECLICK )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISBETWEEN(0,1) && ISOPTNUM(1) )
     {
+#endif
       obj->animateClick ( OPINT(1,100) );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 
   hb_itemReturn( hb_stackSelfItem() );
@@ -634,14 +729,18 @@ HB_FUNC_STATIC( QABSTRACTBUTTON_CLICK )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
+#endif
       obj->click ();
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 
   hb_itemReturn( hb_stackSelfItem() );
@@ -656,73 +755,77 @@ HB_FUNC_STATIC( QABSTRACTBUTTON_TOGGLE )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
+#endif
       obj->toggle ();
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 
   hb_itemReturn( hb_stackSelfItem() );
 }
 
 /*
-void paintEvent(QPaintEvent *e) Q_DECL_OVERRIDE = 0 (protected)
+void paintEvent(QPaintEvent *e) Q_DECL_OVERRIDE = 0 [protected]
 */
 
 /*
-virtual bool hitButton(const QPoint &pos) const (protected)
+virtual bool hitButton(const QPoint &pos) const [protected]
 */
 
 /*
-virtual void checkStateSet() (protected)
+virtual void checkStateSet() [protected]
 */
 
 /*
-virtual void nextCheckState() (protected)
+virtual void nextCheckState() [protected]
 */
 
 /*
-bool event(QEvent *e) Q_DECL_OVERRIDE (protected)
+bool event(QEvent *e) Q_DECL_OVERRIDE [protected]
 */
 
 /*
-void keyPressEvent(QKeyEvent *e) Q_DECL_OVERRIDE (protected)
+void keyPressEvent(QKeyEvent *e) Q_DECL_OVERRIDE [protected]
 */
 
 /*
-void keyReleaseEvent(QKeyEvent *e) Q_DECL_OVERRIDE (protected)
+void keyReleaseEvent(QKeyEvent *e) Q_DECL_OVERRIDE [protected]
 */
 
 /*
-void mousePressEvent(QMouseEvent *e) Q_DECL_OVERRIDE (protected)
+void mousePressEvent(QMouseEvent *e) Q_DECL_OVERRIDE [protected]
 */
 
 /*
-void mouseReleaseEvent(QMouseEvent *e) Q_DECL_OVERRIDE (protected)
+void mouseReleaseEvent(QMouseEvent *e) Q_DECL_OVERRIDE [protected]
 */
 
 /*
-void mouseMoveEvent(QMouseEvent *e) Q_DECL_OVERRIDE (protected)
+void mouseMoveEvent(QMouseEvent *e) Q_DECL_OVERRIDE [protected]
 */
 
 /*
-void focusInEvent(QFocusEvent *e) Q_DECL_OVERRIDE (protected)
+void focusInEvent(QFocusEvent *e) Q_DECL_OVERRIDE [protected]
 */
 
 /*
-void focusOutEvent(QFocusEvent *e) Q_DECL_OVERRIDE (protected)
+void focusOutEvent(QFocusEvent *e) Q_DECL_OVERRIDE [protected]
 */
 
 /*
-void changeEvent(QEvent *e) Q_DECL_OVERRIDE (protected)
+void changeEvent(QEvent *e) Q_DECL_OVERRIDE [protected]
 */
 
 /*
-void timerEvent(QTimerEvent *e) Q_DECL_OVERRIDE (protected)
+void timerEvent(QTimerEvent *e) Q_DECL_OVERRIDE [protected]
 */
 
 void QAbstractButtonSlots_connect_signal ( const QString & signal, const QString & slot );

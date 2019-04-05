@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtCharts
 
 $header
 
@@ -29,7 +32,7 @@ using namespace QtCharts;
 $prototype=explicit QBarCategoryAxis(QObject *parent = Q_NULLPTR)
 $constructor=5,7,0|new|QObject *=Q_NULLPTR
 
-$prototype=QBarCategoryAxis(QBarCategoryAxisPrivate &d, QObject *parent = Q_NULLPTR) (protected)
+$prototype=QBarCategoryAxis(QBarCategoryAxisPrivate &d, QObject *parent = Q_NULLPTR) [protected]
 
 $prototype=~QBarCategoryAxis()
 $deleteMethod=5,7,0
@@ -102,6 +105,7 @@ HB_FUNC_STATIC( QBARCATEGORYAXIS_APPEND )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=append
 
 $prototype=void remove(const QString &category)
 $method=5,7,0|void|remove|const QString &

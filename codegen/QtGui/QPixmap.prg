@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtGui
 
 $header
 
@@ -22,8 +25,8 @@ $destructor
 
 $includes
 
-#include <QBitmap>
-#include <QVariant>
+#include <QtGui/QBitmap>
+#include <QtCore/QVariant>
 
 $prototype=QPixmap ()
 $internalConstructor=|new1|
@@ -138,6 +141,7 @@ HB_FUNC_STATIC( QPIXMAP_FILL )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=fill
 
 $prototype=QBitmap mask() const
 $method=|QBitmap|mask|
@@ -187,6 +191,7 @@ HB_FUNC_STATIC( QPIXMAP_SCALED )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=scaled
 
 $prototype=QPixmap scaledToWidth(int w, Qt::TransformationMode mode = Qt::FastTransformation) const
 $method=|QPixmap|scaledToWidth|int,Qt::TransformationMode=Qt::FastTransformation
@@ -218,6 +223,7 @@ HB_FUNC_STATIC( QPIXMAP_TRANSFORMED )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=transformed
 
 $prototype=QImage toImage() const
 $method=|QImage|toImage|
@@ -249,6 +255,7 @@ HB_FUNC_STATIC( QPIXMAP_LOADFROMDATA )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=loadFromData
 
 $prototype=bool save(const QString& fileName, const char* format = 0, int quality = -1) const
 $internalMethod=|bool|save,save1|const QString &,const char *=0,int=-1
@@ -274,6 +281,7 @@ HB_FUNC_STATIC( QPIXMAP_SAVE )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=save
 
 $prototype=bool convertFromImage(const QImage &img, Qt::ImageConversionFlags flags = Qt::AutoColor)
 $method=|bool|convertFromImage|const QImage &,Qt::ImageConversionFlags=Qt::AutoColor
@@ -302,6 +310,7 @@ HB_FUNC_STATIC( QPIXMAP_COPY )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=copy
 
 $prototype=void scroll(int dx, int dy, int x, int y, int width, int height, QRegion *exposed = 0)
 $internalMethod=|void|scroll,scroll1|int,int,int,int,int,int,QRegion *=0
@@ -327,6 +336,7 @@ HB_FUNC_STATIC( QPIXMAP_SCROLL )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=scroll
 
 $prototype=qint64 cacheKey() const
 $method=|qint64|cacheKey|
@@ -373,6 +383,7 @@ HB_FUNC_STATIC( QPIXMAP_GRABWIDGET )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=grabWidget
 
 $prototype=static QMatrix trueMatrix(const QMatrix &m, int w, int h)
 $internalStaticMethod=|QMatrix|trueMatrix,trueMatrix1|const QMatrix &,int,int
@@ -398,6 +409,7 @@ HB_FUNC_STATIC( QPIXMAP_TRUEMATRIX )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=trueMatrix
 
 $prototype=static QPixmap fromImage(const QImage &image, Qt::ImageConversionFlags flags = Qt::AutoColor)
 $staticMethod=|QPixmap|fromImage|const QImage &,Qt::ImageConversionFlags=Qt::AutoColor

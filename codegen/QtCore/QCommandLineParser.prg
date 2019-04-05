@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtCore
 
 $header
 
@@ -75,6 +78,7 @@ HB_FUNC_STATIC( QCOMMANDLINEPARSER_PROCESS )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=process
 
 $prototype=bool parse(const QStringList &arguments)
 $method=5,2,0|bool|parse|const QStringList &
@@ -106,6 +110,7 @@ HB_FUNC_STATIC( QCOMMANDLINEPARSER_ISSET )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=isSet
 
 $prototype=QString value(const QString &name) const
 $internalMethod=5,2,0|QString|value,value1|const QString &
@@ -131,6 +136,7 @@ HB_FUNC_STATIC( QCOMMANDLINEPARSER_VALUE )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=value
 
 $prototype=QStringList values(const QString &name) const
 $internalMethod=5,2,0|QStringList|values,values1|const QString &
@@ -156,6 +162,7 @@ HB_FUNC_STATIC( QCOMMANDLINEPARSER_VALUES )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=values
 
 $prototype=QStringList positionalArguments() const
 $method=5,2,0|QStringList|positionalArguments|

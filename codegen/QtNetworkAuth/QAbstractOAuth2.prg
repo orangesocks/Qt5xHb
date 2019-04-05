@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtNetworkAuth
 
 $header
 
@@ -32,11 +35,11 @@ $prototype=explicit QAbstractOAuth2(QObject *parent = nullptr) (abstract)
 $prototype=explicit QAbstractOAuth2(QNetworkAccessManager *manager, QObject *parent = nullptr) (abstract)
 %% $internalConstructor=|new2|QNetworkAccessManager *,QObject *=nullptr
 
-$prototype=explicit QAbstractOAuth2(QAbstractOAuth2Private &, QObject *parent = nullptr) (protected)
+$prototype=explicit QAbstractOAuth2(QAbstractOAuth2Private &, QObject *parent = nullptr) [protected]
 
 %% //[1]explicit QAbstractOAuth2(QObject *parent = nullptr)
 %% //[2]explicit QAbstractOAuth2(QNetworkAccessManager *manager, QObject *parent = nullptr)
-%% //[3]explicit QAbstractOAuth2(QAbstractOAuth2Private &, QObject *parent = nullptr) (protected)
+%% //[3]explicit QAbstractOAuth2(QAbstractOAuth2Private &, QObject *parent = nullptr) [protected]
 
 %% HB_FUNC_STATIC( QABSTRACTOAUTH2_NEW )
 %% {
@@ -129,7 +132,7 @@ $prototype=Q_INVOKABLE QNetworkReply *deleteResource(const QUrl &url, const QVar
 $prototype=QString responseType() const
 $method=5,10,0|QString|responseType|
 
-$prototype=void setResponseType(const QString &responseType) (protected)
+$prototype=void setResponseType(const QString &responseType) [protected]
 
 $prototype=QString refreshToken() const
 $method=5,10,0|QString|refreshToken|

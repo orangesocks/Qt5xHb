@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtCharts
 
 $header
 
@@ -26,7 +29,7 @@ $includes=5,7,0
 
 using namespace QtCharts;
 
-$prototype=explicit QXYSeries(QXYSeriesPrivate &d, QObject *parent = Q_NULLPTR) (protected)
+$prototype=explicit QXYSeries(QXYSeriesPrivate &d, QObject *parent = Q_NULLPTR) [protected]
 
 $prototype=~QXYSeries()
 $deleteMethod=5,7,0
@@ -137,6 +140,7 @@ HB_FUNC_STATIC( QXYSERIES_APPEND )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=append
 
 $prototype=void replace(qreal oldX, qreal oldY, qreal newX, qreal newY)
 $internalMethod=5,7,0|void|replace,replace1|qreal,qreal,qreal,qreal
@@ -196,6 +200,7 @@ HB_FUNC_STATIC( QXYSERIES_REPLACE )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=replace
 
 $prototype=void remove(qreal x, qreal y)
 $internalMethod=5,7,0|void|remove,remove1|qreal,qreal
@@ -229,6 +234,7 @@ HB_FUNC_STATIC( QXYSERIES_REMOVE )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=remove
 
 $prototype=void removePoints(int index, int count)
 $method=5,7,0|void|removePoints|int,int

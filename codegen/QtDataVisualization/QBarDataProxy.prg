@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtDataVisualization
 
 $header
 
@@ -24,14 +27,14 @@ $destructor
 
 $includes
 
-#include <QBar3DSeries>
+#include <QtDataVisualization/QBar3DSeries>
 
 using namespace QtDataVisualization;
 
 $prototype=explicit QBarDataProxy(QObject *parent = Q_NULLPTR)
 $constructor=|new|QObject *=Q_NULLPTR
 
-$prototype=explicit QBarDataProxy(QBarDataProxyPrivate *d, QObject *parent = Q_NULLPTR) (protected)
+$prototype=explicit QBarDataProxy(QBarDataProxyPrivate *d, QObject *parent = Q_NULLPTR) [protected]
 
 $prototype=virtual ~QBarDataProxy()
 $deleteMethod
@@ -110,6 +113,7 @@ HB_FUNC_STATIC( QBARDATAPROXY_ITEMAT )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=itemAt
 
 $prototype=void resetArray()
 %% $method=|void|resetArray,resetArray1|
@@ -143,6 +147,7 @@ HB_FUNC_STATIC( QBARDATAPROXY_RESETARRAY )
 %%    hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
 %%  }
 }
+$addMethod=resetArray
 
 $prototype=void setRow(int rowIndex, QBarDataRow *row)
 %% $method=|void|setRow,setRow1|int,QBarDataRow *
@@ -168,6 +173,7 @@ HB_FUNC_STATIC( QBARDATAPROXY_SETROW )
 %%    hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
 %%  }
 }
+$addMethod=setRow
 
 $prototype=void setRows(int rowIndex, const QBarDataArray &rows)
 %% $method=|void|setRows,setRows1|int,const QBarDataArray &
@@ -193,6 +199,7 @@ HB_FUNC_STATIC( QBARDATAPROXY_SETROWS )
 %%    hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
 %%  }
 }
+$addMethod=setRows
 
 $prototype=void setItem(int rowIndex, int columnIndex, const QBarDataItem &item)
 $internalMethod=|void|setItem,setItem1|int,int,const QBarDataItem &
@@ -218,6 +225,7 @@ HB_FUNC_STATIC( QBARDATAPROXY_SETITEM )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=setItem
 
 $prototype=int addRow(QBarDataRow *row)
 %% $method=|int|addRow,addRow1|QBarDataRow *
@@ -243,6 +251,7 @@ HB_FUNC_STATIC( QBARDATAPROXY_ADDROW )
 %%    hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
 %%  }
 }
+$addMethod=addRow
 
 $prototype=int addRows(const QBarDataArray &rows)
 %% $method=|int|addRows,addRows1|const QBarDataArray &
@@ -268,6 +277,7 @@ HB_FUNC_STATIC( QBARDATAPROXY_ADDROWS )
 %%    hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
 %%  }
 }
+$addMethod=addRows
 
 $prototype=void insertRow(int rowIndex, QBarDataRow *row)
 %% $method=|void|insertRow,insertRow1|int,QBarDataRow *
@@ -293,6 +303,7 @@ HB_FUNC_STATIC( QBARDATAPROXY_INSERTROW )
 %%    hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
 %%  }
 }
+$addMethod=insertRow
 
 $prototype=void insertRows(int rowIndex, const QBarDataArray &rows)
 %% $method=|void|insertRows,insertRows1|int,const QBarDataArray &
@@ -318,6 +329,7 @@ HB_FUNC_STATIC( QBARDATAPROXY_INSERTROWS )
 %%    hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
 %%  }
 }
+$addMethod=insertRows
 
 $prototype=void removeRows(int rowIndex, int removeCount, bool removeLabels = true)
 $method=|void|removeRows|int,int,bool=true

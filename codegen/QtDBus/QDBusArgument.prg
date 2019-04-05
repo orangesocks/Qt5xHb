@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtDBus
 
 $header
 
@@ -57,6 +60,7 @@ HB_FUNC_STATIC( QDBUSARGUMENT_BEGINARRAY )
 {
   // TODO: implementar
 }
+$addMethod=beginArray
 
 $prototype=void endArray()
 $method=|void|endArray|
@@ -74,6 +78,7 @@ HB_FUNC_STATIC( QDBUSARGUMENT_BEGINMAP )
 {
   // TODO: implementar
 }
+$addMethod=beginMap
 
 $prototype=void endMap()
 $method=|void|endMap|

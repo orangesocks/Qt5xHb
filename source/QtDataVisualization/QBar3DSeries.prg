@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -12,18 +12,22 @@
 
 #include "hbclass.ch"
 
+#ifndef QT5XHB_NO_REQUESTS
+REQUEST QBARDATAPROXY
+REQUEST QPOINT
+#endif
+
 CLASS QBar3DSeries INHERIT QAbstract3DSeries
 
    METHOD new
    METHOD delete
-
    METHOD dataProxy
-   METHOD invalidSelectionPosition
-   METHOD meshAngle
-   METHOD selectedBar
    METHOD setDataProxy
-   METHOD setMeshAngle
+   METHOD selectedBar
    METHOD setSelectedBar
+   METHOD meshAngle
+   METHOD setMeshAngle
+   METHOD invalidSelectionPosition
 
    METHOD onDataProxyChanged
    METHOD onMeshAngleChanged
@@ -41,10 +45,10 @@ RETURN
 
 #pragma BEGINDUMP
 
-#include <Qt>
+#include <QtCore/Qt>
 
 #ifndef __XHARBOUR__
-#include <QBar3DSeries>
+#include <QtDataVisualization/QBar3DSeries>
 #endif
 
 #include "qt5xhb_common.h"
@@ -52,7 +56,7 @@ RETURN
 #include "qt5xhb_utils.h"
 
 #ifdef __XHARBOUR__
-#include <QBar3DSeries>
+#include <QtDataVisualization/QBar3DSeries>
 #endif
 
 using namespace QtDataVisualization;
@@ -123,15 +127,19 @@ HB_FUNC_STATIC( QBAR3DSERIES_DATAPROXY )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
+#endif
       QBarDataProxy * ptr = obj->dataProxy ();
       _qt5xhb_createReturnQObjectClass ( ptr, "QBARDATAPROXY" );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
@@ -144,14 +152,18 @@ HB_FUNC_STATIC( QBAR3DSERIES_SETDATAPROXY )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(1) && ISQBARDATAPROXY(1) )
     {
+#endif
       obj->setDataProxy ( PQBARDATAPROXY(1) );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 
   hb_itemReturn( hb_stackSelfItem() );
@@ -166,15 +178,19 @@ HB_FUNC_STATIC( QBAR3DSERIES_SELECTEDBAR )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
+#endif
       QPoint * ptr = new QPoint( obj->selectedBar () );
       _qt5xhb_createReturnClass ( ptr, "QPOINT", true );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
@@ -187,14 +203,18 @@ HB_FUNC_STATIC( QBAR3DSERIES_SETSELECTEDBAR )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(1) && ISQPOINT(1) )
     {
+#endif
       obj->setSelectedBar ( *PQPOINT(1) );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 
   hb_itemReturn( hb_stackSelfItem() );
@@ -209,14 +229,18 @@ HB_FUNC_STATIC( QBAR3DSERIES_MESHANGLE )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
+#endif
       RFLOAT( obj->meshAngle () );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
@@ -229,14 +253,18 @@ HB_FUNC_STATIC( QBAR3DSERIES_SETMESHANGLE )
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(1) && ISNUM(1) )
     {
+#endif
       obj->setMeshAngle ( PFLOAT(1) );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 
   hb_itemReturn( hb_stackSelfItem() );
@@ -247,15 +275,19 @@ static QPoint invalidSelectionPosition()
 */
 HB_FUNC_STATIC( QBAR3DSERIES_INVALIDSELECTIONPOSITION )
 {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
   {
+#endif
       QPoint * ptr = new QPoint( QBar3DSeries::invalidSelectionPosition () );
       _qt5xhb_createReturnClass ( ptr, "QPOINT", true );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
   }
   else
   {
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
+#endif
 }
 
 void QBar3DSeriesSlots_connect_signal ( const QString & signal, const QString & slot );

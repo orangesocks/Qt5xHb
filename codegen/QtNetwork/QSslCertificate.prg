@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtNetwork
 
 $header
 
@@ -31,11 +34,11 @@ $destructor
 
 $includes
 
-#include <QDateTime>
-#include <QSslKey>
-#include <QStringList>
-#include <QSslCertificateExtension>
-#include <QSslError>
+#include <QtCore/QDateTime>
+#include <QtNetwork/QSslKey>
+#include <QtCore/QStringList>
+#include <QtNetwork/QSslCertificateExtension>
+#include <QtNetwork/QSslError>
 
 $prototype=explicit QSslCertificate ( QIODevice * device, QSsl::EncodingFormat format = QSsl::Pem )
 $internalConstructor=|new1|QIODevice *,QSsl::EncodingFormat=QSsl::Pem
@@ -126,6 +129,7 @@ HB_FUNC_STATIC( QSSLCERTIFICATE_ISSUERINFO )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=issuerInfo
 
 $prototype=QStringList subjectInfo ( SubjectInfo subject ) const
 $internalMethod=|QStringList|subjectInfo,subjectInfo1|QSslCertificate::SubjectInfo
@@ -151,6 +155,7 @@ HB_FUNC_STATIC( QSSLCERTIFICATE_SUBJECTINFO )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=subjectInfo
 
 $prototype=QList<QByteArray> subjectInfoAttributes() const
 $method=|QList<QByteArray>|subjectInfoAttributes|

@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtCore
 
 $header
 
@@ -51,6 +54,7 @@ HB_FUNC_STATIC( QREGULAREXPRESSIONMATCH_CAPTURED )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=captured
 
 $prototype=int capturedEnd(int nth = 0) const
 $internalMethod=|int|capturedEnd,capturedEnd1|int=0
@@ -76,6 +80,7 @@ HB_FUNC_STATIC( QREGULAREXPRESSIONMATCH_CAPTUREDEND )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=capturedEnd
 
 $prototype=int capturedLength(int nth = 0) const
 $internalMethod=|int|capturedLength,capturedLength1|int=0
@@ -101,6 +106,7 @@ HB_FUNC_STATIC( QREGULAREXPRESSIONMATCH_CAPTUREDLENGTH )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=capturedLength
 
 $prototype=QStringRef capturedRef(int nth = 0) const
 $internalMethod=|QStringRef|capturedRef,capturedRef1|int=0
@@ -126,6 +132,7 @@ HB_FUNC_STATIC( QREGULAREXPRESSIONMATCH_CAPTUREDREF )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=capturedRef
 
 $prototype=int capturedStart(int nth = 0) const
 $internalMethod=|int|capturedStart,capturedStart1|int=0
@@ -151,6 +158,7 @@ HB_FUNC_STATIC( QREGULAREXPRESSIONMATCH_CAPTUREDSTART )
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
   }
 }
+$addMethod=capturedStart
 
 $prototype=QStringList capturedTexts() const
 $method=|QStringList|capturedTexts|

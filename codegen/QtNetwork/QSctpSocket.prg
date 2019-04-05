@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=QtNetwork
 
 $header
 
@@ -53,8 +56,8 @@ $method=5,8,0|QNetworkDatagram|readDatagram||#if !defined(QT_NO_SCTP)
 $prototype=bool writeDatagram(const QNetworkDatagram &datagram)
 $method=5,8,0|bool|writeDatagram|const QNetworkDatagram &|#if !defined(QT_NO_SCTP)
 
-$prototype=qint64 readData(char *data, qint64 maxlen) Q_DECL_OVERRIDE (protected)
+$prototype=qint64 readData(char *data, qint64 maxlen) Q_DECL_OVERRIDE [protected]
 
-$prototype=qint64 readLineData(char *data, qint64 maxlen) Q_DECL_OVERRIDE (protected)
+$prototype=qint64 readLineData(char *data, qint64 maxlen) Q_DECL_OVERRIDE [protected]
 
 #pragma ENDDUMP

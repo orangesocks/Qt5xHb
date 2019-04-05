@@ -1,8 +1,11 @@
 %%
 %% Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 %%
-%% Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+%% Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 %%
+
+$project=Qt5xHb
+$module=Qt3DAnimation
 
 $header
 
@@ -79,7 +82,7 @@ $prototype=void removeMorphTarget(Qt3DAnimation::QMorphTarget *target)
 $prototype=void setWeights(int positionIndex, const QVector<float> &weights)
 $prototype=QVector<float> getWeights(int positionIndex)
 $prototype=QVector<Qt3DAnimation::QMorphTarget *> morphTargetList()
-$prototype=void updateAnimation(float position) (private)
+$prototype=void updateAnimation(float position) [private]
 
 $beginSignals
 $signal=|targetPositionsChanged(QVector<float>)

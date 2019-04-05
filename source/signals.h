@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -12,6 +12,7 @@
 #include <QObject>
 #include <QMetaObject>
 #include <QMetaMethod>
+#include <QVector>
 #include <QList>
 #include <QCoreApplication>
 #include <QString>
@@ -43,10 +44,10 @@ class Signals: public QObject
   public:
   Signals(QObject *parent = 0);
   ~Signals();
-  QList<QObject*> list1; // armazena ponteiro do objeto
-  QList<QString> list2;  // armazena assinatura do sinal
-  QList<PHB_ITEM> list3; // armazena codeblock
-  QList<bool> list4;     // ativo (true) ou liberado (false)
+  QVector<QObject*> list1; // armazena ponteiro do objeto
+  QVector<QString> list2;  // armazena assinatura do sinal
+  QVector<PHB_ITEM> list3; // armazena codeblock
+  QVector<bool> list4;     // ativo (true) ou liberado (false)
   QMutex * mutex;
 };
 
