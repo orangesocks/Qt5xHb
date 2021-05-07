@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -31,7 +31,7 @@ CLASS QOAuth2AuthorizationCodeFlow INHERIT QAbstractOAuth2
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QOAuth2AuthorizationCodeFlow
+PROCEDURE destroyObject() CLASS QOAuth2AuthorizationCodeFlow
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -50,6 +50,8 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
@@ -58,85 +60,79 @@ RETURN
 #endif
 
 /*
-explicit QOAuth2AuthorizationCodeFlow(QObject *parent = nullptr)
+QOAuth2AuthorizationCodeFlow( QObject * parent = nullptr )
 */
-void QOAuth2AuthorizationCodeFlow_new1 ()
+void QOAuth2AuthorizationCodeFlow_new1()
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
-  QOAuth2AuthorizationCodeFlow * o = new QOAuth2AuthorizationCodeFlow ( OPQOBJECT(1,nullptr) );
-  _qt5xhb_returnNewObject( o, false );
+  QOAuth2AuthorizationCodeFlow * obj = new QOAuth2AuthorizationCodeFlow( OPQOBJECT(1,nullptr) );
+  Qt5xHb::returnNewObject( obj, false );
 #endif
 }
 
 /*
-explicit QOAuth2AuthorizationCodeFlow(QNetworkAccessManager *manager, QObject *parent = nullptr)
+QOAuth2AuthorizationCodeFlow( QNetworkAccessManager * manager, QObject * parent = nullptr )
 */
-void QOAuth2AuthorizationCodeFlow_new2 ()
+void QOAuth2AuthorizationCodeFlow_new2()
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
-  QOAuth2AuthorizationCodeFlow * o = new QOAuth2AuthorizationCodeFlow ( PQNETWORKACCESSMANAGER(1), OPQOBJECT(2,nullptr) );
-  _qt5xhb_returnNewObject( o, false );
+  QOAuth2AuthorizationCodeFlow * obj = new QOAuth2AuthorizationCodeFlow( PQNETWORKACCESSMANAGER(1), OPQOBJECT(2,nullptr) );
+  Qt5xHb::returnNewObject( obj, false );
 #endif
 }
 
 /*
-QOAuth2AuthorizationCodeFlow(const QString &clientIdentifier, QNetworkAccessManager *manager, QObject *parent = nullptr)
+QOAuth2AuthorizationCodeFlow( const QString & clientIdentifier, QNetworkAccessManager * manager, QObject * parent = nullptr )
 */
-void QOAuth2AuthorizationCodeFlow_new3 ()
+void QOAuth2AuthorizationCodeFlow_new3()
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
-  QOAuth2AuthorizationCodeFlow * o = new QOAuth2AuthorizationCodeFlow ( PQSTRING(1), PQNETWORKACCESSMANAGER(2), OPQOBJECT(3,nullptr) );
-  _qt5xhb_returnNewObject( o, false );
+  QOAuth2AuthorizationCodeFlow * obj = new QOAuth2AuthorizationCodeFlow( PQSTRING(1), PQNETWORKACCESSMANAGER(2), OPQOBJECT(3,nullptr) );
+  Qt5xHb::returnNewObject( obj, false );
 #endif
 }
 
 /*
-QOAuth2AuthorizationCodeFlow(const QUrl &authorizationUrl, const QUrl &accessTokenUrl, QNetworkAccessManager *manager, QObject *parent = nullptr)
+QOAuth2AuthorizationCodeFlow( const QUrl & authorizationUrl, const QUrl & accessTokenUrl, QNetworkAccessManager * manager, QObject * parent = nullptr )
 */
-void QOAuth2AuthorizationCodeFlow_new4 ()
+void QOAuth2AuthorizationCodeFlow_new4()
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
-  QOAuth2AuthorizationCodeFlow * o = new QOAuth2AuthorizationCodeFlow ( *PQURL(1), *PQURL(2), PQNETWORKACCESSMANAGER(3), OPQOBJECT(4,nullptr) );
-  _qt5xhb_returnNewObject( o, false );
+  QOAuth2AuthorizationCodeFlow * obj = new QOAuth2AuthorizationCodeFlow( *PQURL(1), *PQURL(2), PQNETWORKACCESSMANAGER(3), OPQOBJECT(4,nullptr) );
+  Qt5xHb::returnNewObject( obj, false );
 #endif
 }
 
 /*
-QOAuth2AuthorizationCodeFlow(const QString &clientIdentifier, const QUrl &authorizationUrl, const QUrl &accessTokenUrl, QNetworkAccessManager *manager, QObject *parent = nullptr)
+QOAuth2AuthorizationCodeFlow( const QString & clientIdentifier, const QUrl & authorizationUrl, const QUrl & accessTokenUrl, QNetworkAccessManager * manager, QObject * parent = nullptr )
 */
-void QOAuth2AuthorizationCodeFlow_new5 ()
+void QOAuth2AuthorizationCodeFlow_new5()
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
-  QOAuth2AuthorizationCodeFlow * o = new QOAuth2AuthorizationCodeFlow ( PQSTRING(1), *PQURL(2), *PQURL(3), PQNETWORKACCESSMANAGER(4), OPQOBJECT(5,nullptr) );
-  _qt5xhb_returnNewObject( o, false );
+  QOAuth2AuthorizationCodeFlow * obj = new QOAuth2AuthorizationCodeFlow( PQSTRING(1), *PQURL(2), *PQURL(3), PQNETWORKACCESSMANAGER(4), OPQOBJECT(5,nullptr) );
+  Qt5xHb::returnNewObject( obj, false );
 #endif
 }
-
-//[1]explicit QOAuth2AuthorizationCodeFlow(QObject *parent = nullptr)
-//[2]explicit QOAuth2AuthorizationCodeFlow(QNetworkAccessManager *manager, QObject *parent = nullptr)
-//[3]QOAuth2AuthorizationCodeFlow(const QString &clientIdentifier, QNetworkAccessManager *manager, QObject *parent = nullptr)
-//[4]QOAuth2AuthorizationCodeFlow(const QUrl &authorizationUrl, const QUrl &accessTokenUrl, QNetworkAccessManager *manager, QObject *parent = nullptr)
-//[5]QOAuth2AuthorizationCodeFlow(const QString &clientIdentifier, const QUrl &authorizationUrl, const QUrl &accessTokenUrl, QNetworkAccessManager *manager, QObject *parent = nullptr)
 
 HB_FUNC_STATIC( QOAUTH2AUTHORIZATIONCODEFLOW_NEW )
 {
-  if( ISBETWEEN(0,1) && (ISQOBJECT(1)||ISNIL(1)) )
+  if( ISBETWEEN(0,1) && (ISQOBJECT(1)||HB_ISNIL(1)) )
   {
     QOAuth2AuthorizationCodeFlow_new1();
   }
-  else if( ISBETWEEN(1,2) && ISQNETWORKACCESSMANAGER(1) && (ISQOBJECT(2)||ISNIL(2)) )
+  else if( ISBETWEEN(1,2) && ISQNETWORKACCESSMANAGER(1) && (ISQOBJECT(2)||HB_ISNIL(2)) )
   {
     QOAuth2AuthorizationCodeFlow_new2();
   }
-  else if( ISBETWEEN(2,3) && ISCHAR(1) && ISQNETWORKACCESSMANAGER(2) && (ISQOBJECT(3)||ISNIL(3)) )
+  else if( ISBETWEEN(2,3) && HB_ISCHAR(1) && ISQNETWORKACCESSMANAGER(2) && (ISQOBJECT(3)||HB_ISNIL(3)) )
   {
     QOAuth2AuthorizationCodeFlow_new3();
   }
-  else if( ISBETWEEN(3,4) && ISQURL(1) && ISQURL(2) && ISQNETWORKACCESSMANAGER(3) && (ISQOBJECT(4)||ISNIL(4)) )
+  else if( ISBETWEEN(3,4) && ISQURL(1) && ISQURL(2) && ISQNETWORKACCESSMANAGER(3) && (ISQOBJECT(4)||HB_ISNIL(4)) )
   {
     QOAuth2AuthorizationCodeFlow_new4();
   }
-  else if( ISBETWEEN(4,5) && ISCHAR(1) && ISQURL(2) && ISQURL(3) && ISQNETWORKACCESSMANAGER(4) && (ISQOBJECT(5)||ISNIL(5)) )
+  else if( ISBETWEEN(4,5) && HB_ISCHAR(1) && ISQURL(2) && ISQURL(3) && ISQNETWORKACCESSMANAGER(4) && (ISQOBJECT(5)||HB_ISNIL(5)) )
   {
     QOAuth2AuthorizationCodeFlow_new5();
   }
@@ -152,10 +148,12 @@ HB_FUNC_STATIC( QOAUTH2AUTHORIZATIONCODEFLOW_NEW )
 HB_FUNC_STATIC( QOAUTH2AUTHORIZATIONCODEFLOW_DELETE )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
-  QOAuth2AuthorizationCodeFlow * obj = (QOAuth2AuthorizationCodeFlow *) _qt5xhb_itemGetPtrStackSelfItem();
+  QOAuth2AuthorizationCodeFlow * obj = (QOAuth2AuthorizationCodeFlow *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -174,7 +172,7 @@ QUrl accessTokenUrl() const
 HB_FUNC_STATIC( QOAUTH2AUTHORIZATIONCODEFLOW_ACCESSTOKENURL )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
-  QOAuth2AuthorizationCodeFlow * obj = (QOAuth2AuthorizationCodeFlow *) _qt5xhb_itemGetPtrStackSelfItem();
+  QOAuth2AuthorizationCodeFlow * obj = (QOAuth2AuthorizationCodeFlow *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -182,8 +180,8 @@ HB_FUNC_STATIC( QOAUTH2AUTHORIZATIONCODEFLOW_ACCESSTOKENURL )
     if( ISNUMPAR(0) )
     {
 #endif
-      QUrl * ptr = new QUrl( obj->accessTokenUrl () );
-      _qt5xhb_createReturnClass ( ptr, "QURL", true );
+      QUrl * ptr = new QUrl( obj->accessTokenUrl() );
+      Qt5xHb::createReturnClass( ptr, "QURL", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -196,12 +194,12 @@ HB_FUNC_STATIC( QOAUTH2AUTHORIZATIONCODEFLOW_ACCESSTOKENURL )
 }
 
 /*
-void setAccessTokenUrl(const QUrl &accessTokenUrl)
+void setAccessTokenUrl( const QUrl & accessTokenUrl )
 */
 HB_FUNC_STATIC( QOAUTH2AUTHORIZATIONCODEFLOW_SETACCESSTOKENURL )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
-  QOAuth2AuthorizationCodeFlow * obj = (QOAuth2AuthorizationCodeFlow *) _qt5xhb_itemGetPtrStackSelfItem();
+  QOAuth2AuthorizationCodeFlow * obj = (QOAuth2AuthorizationCodeFlow *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -209,7 +207,7 @@ HB_FUNC_STATIC( QOAUTH2AUTHORIZATIONCODEFLOW_SETACCESSTOKENURL )
     if( ISNUMPAR(1) && ISQURL(1) )
     {
 #endif
-      obj->setAccessTokenUrl ( *PQURL(1) );
+      obj->setAccessTokenUrl( *PQURL(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -224,12 +222,12 @@ HB_FUNC_STATIC( QOAUTH2AUTHORIZATIONCODEFLOW_SETACCESSTOKENURL )
 }
 
 /*
-void grant() override (slot)
+void grant() override
 */
 HB_FUNC_STATIC( QOAUTH2AUTHORIZATIONCODEFLOW_GRANT )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
-  QOAuth2AuthorizationCodeFlow * obj = (QOAuth2AuthorizationCodeFlow *) _qt5xhb_itemGetPtrStackSelfItem();
+  QOAuth2AuthorizationCodeFlow * obj = (QOAuth2AuthorizationCodeFlow *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -237,7 +235,7 @@ HB_FUNC_STATIC( QOAUTH2AUTHORIZATIONCODEFLOW_GRANT )
     if( ISNUMPAR(0) )
     {
 #endif
-      obj->grant ();
+      obj->grant();
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -252,12 +250,12 @@ HB_FUNC_STATIC( QOAUTH2AUTHORIZATIONCODEFLOW_GRANT )
 }
 
 /*
-void refreshAccessToken() (slot)
+void refreshAccessToken()
 */
 HB_FUNC_STATIC( QOAUTH2AUTHORIZATIONCODEFLOW_REFRESHACCESSTOKEN )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
-  QOAuth2AuthorizationCodeFlow * obj = (QOAuth2AuthorizationCodeFlow *) _qt5xhb_itemGetPtrStackSelfItem();
+  QOAuth2AuthorizationCodeFlow * obj = (QOAuth2AuthorizationCodeFlow *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -265,7 +263,7 @@ HB_FUNC_STATIC( QOAUTH2AUTHORIZATIONCODEFLOW_REFRESHACCESSTOKEN )
     if( ISNUMPAR(0) )
     {
 #endif
-      obj->refreshAccessToken ();
+      obj->refreshAccessToken();
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -279,19 +277,7 @@ HB_FUNC_STATIC( QOAUTH2AUTHORIZATIONCODEFLOW_REFRESHACCESSTOKEN )
 #endif
 }
 
-/*
-QUrl buildAuthenticateUrl(const QVariantMap &parameters = QVariantMap()) [protected]
-*/
-
-/*
-void requestAccessToken(const QString &code) [protected]
-*/
-
-/*
-void resourceOwnerAuthorization(const QUrl &url, const QVariantMap &parameters = QVariantMap()) override [protected]
-*/
-
-void QOAuth2AuthorizationCodeFlowSlots_connect_signal ( const QString & signal, const QString & slot );
+void QOAuth2AuthorizationCodeFlowSlots_connect_signal( const QString & signal, const QString & slot );
 
 HB_FUNC_STATIC( QOAUTH2AUTHORIZATIONCODEFLOW_ONACCESSTOKENURLCHANGED )
 {

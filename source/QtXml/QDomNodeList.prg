@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -40,7 +40,7 @@ CLASS QDomNodeList
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QDomNodeList
+PROCEDURE destroyObject() CLASS QDomNodeList
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -63,25 +63,22 @@ RETURN
 #endif
 
 /*
-QDomNodeList ()
+QDomNodeList()
 */
-void QDomNodeList_new1 ()
+void QDomNodeList_new1()
 {
-  QDomNodeList * o = new QDomNodeList ();
-  _qt5xhb_returnNewObject( o, true );
+  QDomNodeList * obj = new QDomNodeList();
+  Qt5xHb::returnNewObject( obj, true );
 }
 
 /*
-QDomNodeList ( const QDomNodeList & n )
+QDomNodeList( const QDomNodeList & n )
 */
-void QDomNodeList_new2 ()
+void QDomNodeList_new2()
 {
-  QDomNodeList * o = new QDomNodeList ( *PQDOMNODELIST(1) );
-  _qt5xhb_returnNewObject( o, true );
+  QDomNodeList * obj = new QDomNodeList( *PQDOMNODELIST(1) );
+  Qt5xHb::returnNewObject( obj, true );
 }
-
-//[1]QDomNodeList ()
-//[2]QDomNodeList ( const QDomNodeList & n )
 
 HB_FUNC_STATIC( QDOMNODELIST_NEW )
 {
@@ -101,7 +98,7 @@ HB_FUNC_STATIC( QDOMNODELIST_NEW )
 
 HB_FUNC_STATIC( QDOMNODELIST_DELETE )
 {
-  QDomNodeList * obj = (QDomNodeList *) _qt5xhb_itemGetPtrStackSelfItem();
+  QDomNodeList * obj = (QDomNodeList *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -117,20 +114,20 @@ HB_FUNC_STATIC( QDOMNODELIST_DELETE )
 }
 
 /*
-QDomNode at ( int index ) const
+QDomNode at( int index ) const
 */
 HB_FUNC_STATIC( QDOMNODELIST_AT )
 {
-  QDomNodeList * obj = (QDomNodeList *) _qt5xhb_itemGetPtrStackSelfItem();
+  QDomNodeList * obj = (QDomNodeList *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      QDomNode * ptr = new QDomNode( obj->at ( PINT(1) ) );
-      _qt5xhb_createReturnClass ( ptr, "QDOMNODE", true );
+      QDomNode * ptr = new QDomNode( obj->at( PINT(1) ) );
+      Qt5xHb::createReturnClass( ptr, "QDOMNODE", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -142,11 +139,11 @@ HB_FUNC_STATIC( QDOMNODELIST_AT )
 }
 
 /*
-int count () const
+int count() const
 */
 HB_FUNC_STATIC( QDOMNODELIST_COUNT )
 {
-  QDomNodeList * obj = (QDomNodeList *) _qt5xhb_itemGetPtrStackSelfItem();
+  QDomNodeList * obj = (QDomNodeList *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -154,7 +151,7 @@ HB_FUNC_STATIC( QDOMNODELIST_COUNT )
     if( ISNUMPAR(0) )
     {
 #endif
-      RINT( obj->count () );
+      RINT( obj->count() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -166,11 +163,11 @@ HB_FUNC_STATIC( QDOMNODELIST_COUNT )
 }
 
 /*
-bool isEmpty () const
+bool isEmpty() const
 */
 HB_FUNC_STATIC( QDOMNODELIST_ISEMPTY )
 {
-  QDomNodeList * obj = (QDomNodeList *) _qt5xhb_itemGetPtrStackSelfItem();
+  QDomNodeList * obj = (QDomNodeList *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -178,7 +175,7 @@ HB_FUNC_STATIC( QDOMNODELIST_ISEMPTY )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->isEmpty () );
+      RBOOL( obj->isEmpty() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -190,20 +187,20 @@ HB_FUNC_STATIC( QDOMNODELIST_ISEMPTY )
 }
 
 /*
-QDomNode item ( int index ) const
+QDomNode item( int index ) const
 */
 HB_FUNC_STATIC( QDOMNODELIST_ITEM )
 {
-  QDomNodeList * obj = (QDomNodeList *) _qt5xhb_itemGetPtrStackSelfItem();
+  QDomNodeList * obj = (QDomNodeList *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      QDomNode * ptr = new QDomNode( obj->item ( PINT(1) ) );
-      _qt5xhb_createReturnClass ( ptr, "QDOMNODE", true );
+      QDomNode * ptr = new QDomNode( obj->item( PINT(1) ) );
+      Qt5xHb::createReturnClass( ptr, "QDOMNODE", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -215,11 +212,11 @@ HB_FUNC_STATIC( QDOMNODELIST_ITEM )
 }
 
 /*
-uint length () const
+uint length() const
 */
 HB_FUNC_STATIC( QDOMNODELIST_LENGTH )
 {
-  QDomNodeList * obj = (QDomNodeList *) _qt5xhb_itemGetPtrStackSelfItem();
+  QDomNodeList * obj = (QDomNodeList *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -227,7 +224,7 @@ HB_FUNC_STATIC( QDOMNODELIST_LENGTH )
     if( ISNUMPAR(0) )
     {
 #endif
-      RUINT( obj->length () );
+      RUINT( obj->length() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -239,11 +236,11 @@ HB_FUNC_STATIC( QDOMNODELIST_LENGTH )
 }
 
 /*
-int size () const
+int size() const
 */
 HB_FUNC_STATIC( QDOMNODELIST_SIZE )
 {
-  QDomNodeList * obj = (QDomNodeList *) _qt5xhb_itemGetPtrStackSelfItem();
+  QDomNodeList * obj = (QDomNodeList *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -251,7 +248,7 @@ HB_FUNC_STATIC( QDOMNODELIST_SIZE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RINT( obj->size () );
+      RINT( obj->size() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -266,7 +263,7 @@ HB_FUNC_STATIC( QDOMNODELIST_NEWFROM )
 {
   PHB_ITEM self = hb_stackSelfItem();
 
-  if( hb_pcount() == 1 && ISOBJECT(1) )
+  if( hb_pcount() == 1 && HB_ISOBJECT(1) )
   {
     PHB_ITEM ptr = hb_itemPutPtr( NULL, (void *) hb_itemGetPtr( hb_objSendMsg( hb_param(1, HB_IT_OBJECT ), "POINTER", 0 ) ) );
     hb_objSendMsg( self, "_pointer", 1, ptr );
@@ -275,7 +272,7 @@ HB_FUNC_STATIC( QDOMNODELIST_NEWFROM )
     hb_objSendMsg( self, "_self_destruction", 1, des );
     hb_itemRelease( des );
   }
-  else if( hb_pcount() == 1 && ISPOINTER(1) )
+  else if( hb_pcount() == 1 && HB_ISPOINTER(1) )
   {
     PHB_ITEM ptr = hb_itemPutPtr( NULL, (void *) hb_itemGetPtr( hb_param(1, HB_IT_POINTER ) ) );
     hb_objSendMsg( self, "_pointer", 1, ptr );
@@ -311,7 +308,7 @@ HB_FUNC_STATIC( QDOMNODELIST_SETSELFDESTRUCTION )
 {
   PHB_ITEM self = hb_stackSelfItem();
 
-  if( hb_pcount() == 1 && ISLOG(1) )
+  if( hb_pcount() == 1 && HB_ISLOG(1) )
   {
     PHB_ITEM des = hb_itemPutL( NULL, hb_parl(1) );
     hb_objSendMsg( self, "_self_destruction", 1, des );

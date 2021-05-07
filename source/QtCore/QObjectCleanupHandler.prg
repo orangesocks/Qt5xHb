@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -29,7 +29,7 @@ CLASS QObjectCleanupHandler INHERIT QObject
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QObjectCleanupHandler
+PROCEDURE destroyObject() CLASS QObjectCleanupHandler
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -46,6 +46,8 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #include <QtCore/QObjectCleanupHandler>
@@ -58,8 +60,8 @@ HB_FUNC_STATIC( QOBJECTCLEANUPHANDLER_NEW )
 {
   if( ISNUMPAR(0) )
   {
-    QObjectCleanupHandler * o = new QObjectCleanupHandler ();
-    _qt5xhb_returnNewObject( o, false );
+    QObjectCleanupHandler * obj = new QObjectCleanupHandler();
+    Qt5xHb::returnNewObject( obj, false );
   }
   else
   {
@@ -69,10 +71,12 @@ HB_FUNC_STATIC( QOBJECTCLEANUPHANDLER_NEW )
 
 HB_FUNC_STATIC( QOBJECTCLEANUPHANDLER_DELETE )
 {
-  QObjectCleanupHandler * obj = (QObjectCleanupHandler *) _qt5xhb_itemGetPtrStackSelfItem();
+  QObjectCleanupHandler * obj = (QObjectCleanupHandler *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -85,11 +89,11 @@ HB_FUNC_STATIC( QOBJECTCLEANUPHANDLER_DELETE )
 }
 
 /*
-QObject* add(QObject* object)
+QObject * add( QObject * object )
 */
 HB_FUNC_STATIC( QOBJECTCLEANUPHANDLER_ADD )
 {
-  QObjectCleanupHandler * obj = (QObjectCleanupHandler *) _qt5xhb_itemGetPtrStackSelfItem();
+  QObjectCleanupHandler * obj = (QObjectCleanupHandler *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -97,8 +101,8 @@ HB_FUNC_STATIC( QOBJECTCLEANUPHANDLER_ADD )
     if( ISNUMPAR(1) && ISQOBJECT(1) )
     {
 #endif
-      QObject * ptr = obj->add ( PQOBJECT(1) );
-      _qt5xhb_createReturnQObjectClass ( ptr, "QOBJECT" );
+      QObject * ptr = obj->add( PQOBJECT(1) );
+      Qt5xHb::createReturnQObjectClass( ptr, "QOBJECT" );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -110,11 +114,11 @@ HB_FUNC_STATIC( QOBJECTCLEANUPHANDLER_ADD )
 }
 
 /*
-void remove(QObject *object)
+void remove( QObject * object )
 */
 HB_FUNC_STATIC( QOBJECTCLEANUPHANDLER_REMOVE )
 {
-  QObjectCleanupHandler * obj = (QObjectCleanupHandler *) _qt5xhb_itemGetPtrStackSelfItem();
+  QObjectCleanupHandler * obj = (QObjectCleanupHandler *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -122,7 +126,7 @@ HB_FUNC_STATIC( QOBJECTCLEANUPHANDLER_REMOVE )
     if( ISNUMPAR(1) && ISQOBJECT(1) )
     {
 #endif
-      obj->remove ( PQOBJECT(1) );
+      obj->remove( PQOBJECT(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -140,7 +144,7 @@ bool isEmpty() const
 */
 HB_FUNC_STATIC( QOBJECTCLEANUPHANDLER_ISEMPTY )
 {
-  QObjectCleanupHandler * obj = (QObjectCleanupHandler *) _qt5xhb_itemGetPtrStackSelfItem();
+  QObjectCleanupHandler * obj = (QObjectCleanupHandler *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -148,7 +152,7 @@ HB_FUNC_STATIC( QOBJECTCLEANUPHANDLER_ISEMPTY )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->isEmpty () );
+      RBOOL( obj->isEmpty() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -164,7 +168,7 @@ void clear()
 */
 HB_FUNC_STATIC( QOBJECTCLEANUPHANDLER_CLEAR )
 {
-  QObjectCleanupHandler * obj = (QObjectCleanupHandler *) _qt5xhb_itemGetPtrStackSelfItem();
+  QObjectCleanupHandler * obj = (QObjectCleanupHandler *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -172,7 +176,7 @@ HB_FUNC_STATIC( QOBJECTCLEANUPHANDLER_CLEAR )
     if( ISNUMPAR(0) )
     {
 #endif
-      obj->clear ();
+      obj->clear();
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else

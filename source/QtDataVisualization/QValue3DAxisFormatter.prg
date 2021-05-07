@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -24,7 +24,7 @@ CLASS QValue3DAxisFormatter INHERIT QObject
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QValue3DAxisFormatter
+PROCEDURE destroyObject() CLASS QValue3DAxisFormatter
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -41,6 +41,8 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #include <QtDataVisualization/QValue3DAxisFormatter>
@@ -49,14 +51,14 @@ RETURN
 using namespace QtDataVisualization;
 
 /*
-explicit QValue3DAxisFormatter(QObject *parent = Q_NULLPTR)
+QValue3DAxisFormatter( QObject * parent = nullptr )
 */
 HB_FUNC_STATIC( QVALUE3DAXISFORMATTER_NEW )
 {
-  if( ISBETWEEN(0,1) && (ISQOBJECT(1)||ISNIL(1)) )
+  if( ISBETWEEN(0,1) && (ISQOBJECT(1)||HB_ISNIL(1)) )
   {
-    QValue3DAxisFormatter * o = new QValue3DAxisFormatter ( OPQOBJECT(1,Q_NULLPTR) );
-    _qt5xhb_returnNewObject( o, false );
+    QValue3DAxisFormatter * obj = new QValue3DAxisFormatter( OPQOBJECT(1,nullptr) );
+    Qt5xHb::returnNewObject( obj, false );
   }
   else
   {
@@ -65,18 +67,16 @@ HB_FUNC_STATIC( QVALUE3DAXISFORMATTER_NEW )
 }
 
 /*
-explicit QValue3DAxisFormatter(QValue3DAxisFormatterPrivate *d, QObject *parent = Q_NULLPTR) [protected]
-*/
-
-/*
 virtual ~QValue3DAxisFormatter()
 */
 HB_FUNC_STATIC( QVALUE3DAXISFORMATTER_DELETE )
 {
-  QValue3DAxisFormatter * obj = (QValue3DAxisFormatter *) _qt5xhb_itemGetPtrStackSelfItem();
+  QValue3DAxisFormatter * obj = (QValue3DAxisFormatter *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -87,77 +87,5 @@ HB_FUNC_STATIC( QVALUE3DAXISFORMATTER_DELETE )
 
   hb_itemReturn( hb_stackSelfItem() );
 }
-
-/*
-void setAllowNegatives(bool allow) [protected]
-*/
-
-/*
-bool allowNegatives() const [protected]
-*/
-
-/*
-void setAllowZero(bool allow) [protected]
-*/
-
-/*
-bool allowZero() const [protected]
-*/
-
-/*
-virtual QValue3DAxisFormatter *createNewInstance() const [protected]
-*/
-
-/*
-virtual void recalculate() [protected]
-*/
-
-/*
-virtual QString stringForValue(qreal value, const QString &format) const [protected]
-*/
-
-/*
-virtual float positionAt(float value) const [protected]
-*/
-
-/*
-virtual float valueAt(float position) const [protected]
-*/
-
-/*
-virtual void populateCopy(QValue3DAxisFormatter &copy) const [protected]
-*/
-
-/*
-void markDirty(bool labelsChange = false) [protected]
-*/
-
-/*
-QValue3DAxis *axis() const [protected]
-*/
-
-/*
-QVector<float> &gridPositions() const [protected]
-*/
-
-/*
-QVector<float> &subGridPositions() const [protected]
-*/
-
-/*
-QVector<float> &labelPositions() const [protected]
-*/
-
-/*
-QStringList &labelStrings() const [protected]
-*/
-
-/*
-void setLocale(const QLocale &locale) [protected]
-*/
-
-/*
-QLocale locale() const [protected]
-*/
 
 #pragma ENDDUMP

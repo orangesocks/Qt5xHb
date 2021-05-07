@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -56,7 +56,7 @@ CLASS QSettings INHERIT QObject
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QSettings
+PROCEDURE destroyObject() CLASS QSettings
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -73,6 +73,8 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #include <QtCore/QSettings>
@@ -81,75 +83,69 @@ RETURN
 #include <QtCore/QStringList>
 
 /*
-QSettings ( const QString & organization, const QString & application = QString(), QObject * parent = 0 )
+QSettings( const QString & organization, const QString & application = QString(), QObject * parent = 0 )
 */
-void QSettings_new1 ()
+void QSettings_new1()
 {
-  QSettings * o = new QSettings ( PQSTRING(1), OPQSTRING(2,QString()), OPQOBJECT(3,0) );
-  _qt5xhb_returnNewObject( o, false );
+  QSettings * obj = new QSettings( PQSTRING(1), OPQSTRING(2,QString()), OPQOBJECT(3,0) );
+  Qt5xHb::returnNewObject( obj, false );
 }
 
 /*
-QSettings ( Scope scope, const QString & organization, const QString & application = QString(), QObject * parent = 0 )
+QSettings( QSettings::Scope scope, const QString & organization, const QString & application = QString(), QObject * parent = 0 )
 */
-void QSettings_new2 ()
+void QSettings_new2()
 {
-  QSettings * o = new QSettings ( (QSettings::Scope) hb_parni(1), PQSTRING(2), OPQSTRING(3,QString()), OPQOBJECT(4,0) );
-  _qt5xhb_returnNewObject( o, false );
+  QSettings * obj = new QSettings( (QSettings::Scope) hb_parni(1), PQSTRING(2), OPQSTRING(3,QString()), OPQOBJECT(4,0) );
+  Qt5xHb::returnNewObject( obj, false );
 }
 
 /*
-QSettings ( Format format, Scope scope, const QString & organization, const QString & application = QString(), QObject * parent = 0 )
+QSettings( QSettings::Format format, QSettings::Scope scope, const QString & organization, const QString & application = QString(), QObject * parent = 0 )
 */
-void QSettings_new3 ()
+void QSettings_new3()
 {
-  QSettings * o = new QSettings ( (QSettings::Format) hb_parni(1), (QSettings::Scope) hb_parni(2), PQSTRING(3), OPQSTRING(4,QString()), OPQOBJECT(5,0) );
-  _qt5xhb_returnNewObject( o, false );
+  QSettings * obj = new QSettings( (QSettings::Format) hb_parni(1), (QSettings::Scope) hb_parni(2), PQSTRING(3), OPQSTRING(4,QString()), OPQOBJECT(5,0) );
+  Qt5xHb::returnNewObject( obj, false );
 }
 
 /*
-QSettings ( const QString & fileName, Format format, QObject * parent = 0 )
+QSettings( const QString & fileName, QSettings::Format format, QObject * parent = 0 )
 */
-void QSettings_new4 ()
+void QSettings_new4()
 {
-  QSettings * o = new QSettings ( PQSTRING(1), (QSettings::Format) hb_parni(2), OPQOBJECT(3,0) );
-  _qt5xhb_returnNewObject( o, false );
+  QSettings * obj = new QSettings( PQSTRING(1), (QSettings::Format) hb_parni(2), OPQOBJECT(3,0) );
+  Qt5xHb::returnNewObject( obj, false );
 }
 
 /*
-QSettings ( QObject * parent = 0 )
+QSettings( QObject * parent = 0 )
 */
-void QSettings_new5 ()
+void QSettings_new5()
 {
-  QSettings * o = new QSettings ( OPQOBJECT(1,0) );
-  _qt5xhb_returnNewObject( o, false );
+  QSettings * obj = new QSettings( OPQOBJECT(1,0) );
+  Qt5xHb::returnNewObject( obj, false );
 }
-
-//[1]QSettings ( const QString & organization, const QString & application = QString(), QObject * parent = 0 )
-//[2]QSettings ( Scope scope, const QString & organization, const QString & application = QString(), QObject * parent = 0 )
-//[3]QSettings ( Format format, Scope scope, const QString & organization, const QString & application = QString(), QObject * parent = 0 )
-//[4]QSettings ( const QString & fileName, Format format, QObject * parent = 0 )
-//[5]QSettings ( QObject * parent = 0 )
 
 HB_FUNC_STATIC( QSETTINGS_NEW )
 {
-  if( ISBETWEEN(1,3) && ISCHAR(1) && ISOPTCHAR(2) && ISOPTQOBJECT(3) )
+  if( ISBETWEEN(1,3) && HB_ISCHAR(1) && ( HB_ISCHAR(2)||HB_ISNIL(2)) && (ISQOBJECT(3)||HB_ISNIL(3)) )
   {
     QSettings_new1();
   }
-  else if( ISBETWEEN(2,4) && ISNUM(1) && ISCHAR(2) && ISOPTCHAR(3) && ISOPTQOBJECT(4) )
+  else if( ISBETWEEN(2,4) && HB_ISNUM(1) && HB_ISCHAR(2) && ( HB_ISCHAR(3)||HB_ISNIL(3)) && (ISQOBJECT(4)||HB_ISNIL(4)) )
   {
     QSettings_new2();
   }
-  else if( ISBETWEEN(3,5) && ISNUM(1) && ISNUM(2) && ISCHAR(3) && ISOPTCHAR(4) && ISOPTQOBJECT(5) )
+  else if( ISBETWEEN(3,5) && HB_ISNUM(1) && HB_ISNUM(2) && HB_ISCHAR(3) && ( HB_ISCHAR(4)||HB_ISNIL(4)) && (ISQOBJECT(5)||HB_ISNIL(5)) )
   {
     QSettings_new3();
   }
-  else if( ISBETWEEN(2,3) && ISCHAR(1) && ISNUM(2) && ISOPTQOBJECT(3) )
+  else if( ISBETWEEN(2,3) && HB_ISCHAR(1) && HB_ISNUM(2) && (ISQOBJECT(3)||HB_ISNIL(3)) )
   {
     QSettings_new4();
   }
-  else if( ISBETWEEN(0,1) && ISOPTQOBJECT(1) )
+  else if( ISBETWEEN(0,1) && (ISQOBJECT(1)||HB_ISNIL(1)) )
   {
     QSettings_new5();
   }
@@ -161,10 +157,12 @@ HB_FUNC_STATIC( QSETTINGS_NEW )
 
 HB_FUNC_STATIC( QSETTINGS_DELETE )
 {
-  QSettings * obj = (QSettings *) _qt5xhb_itemGetPtrStackSelfItem();
+  QSettings * obj = (QSettings *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -177,11 +175,11 @@ HB_FUNC_STATIC( QSETTINGS_DELETE )
 }
 
 /*
-QStringList allKeys () const
+QStringList allKeys() const
 */
 HB_FUNC_STATIC( QSETTINGS_ALLKEYS )
 {
-  QSettings * obj = (QSettings *) _qt5xhb_itemGetPtrStackSelfItem();
+  QSettings * obj = (QSettings *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -189,7 +187,7 @@ HB_FUNC_STATIC( QSETTINGS_ALLKEYS )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRINGLIST( obj->allKeys () );
+      RQSTRINGLIST( obj->allKeys() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -201,11 +199,11 @@ HB_FUNC_STATIC( QSETTINGS_ALLKEYS )
 }
 
 /*
-QString applicationName () const
+QString applicationName() const
 */
 HB_FUNC_STATIC( QSETTINGS_APPLICATIONNAME )
 {
-  QSettings * obj = (QSettings *) _qt5xhb_itemGetPtrStackSelfItem();
+  QSettings * obj = (QSettings *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -213,7 +211,7 @@ HB_FUNC_STATIC( QSETTINGS_APPLICATIONNAME )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRING( obj->applicationName () );
+      RQSTRING( obj->applicationName() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -225,19 +223,19 @@ HB_FUNC_STATIC( QSETTINGS_APPLICATIONNAME )
 }
 
 /*
-void beginGroup ( const QString & prefix )
+void beginGroup( const QString & prefix )
 */
 HB_FUNC_STATIC( QSETTINGS_BEGINGROUP )
 {
-  QSettings * obj = (QSettings *) _qt5xhb_itemGetPtrStackSelfItem();
+  QSettings * obj = (QSettings *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISCHAR(1) )
+    if( ISNUMPAR(1) && HB_ISCHAR(1) )
     {
 #endif
-      obj->beginGroup ( PQSTRING(1) );
+      obj->beginGroup( PQSTRING(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -251,19 +249,19 @@ HB_FUNC_STATIC( QSETTINGS_BEGINGROUP )
 }
 
 /*
-int beginReadArray ( const QString & prefix )
+int beginReadArray( const QString & prefix )
 */
 HB_FUNC_STATIC( QSETTINGS_BEGINREADARRAY )
 {
-  QSettings * obj = (QSettings *) _qt5xhb_itemGetPtrStackSelfItem();
+  QSettings * obj = (QSettings *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISCHAR(1) )
+    if( ISNUMPAR(1) && HB_ISCHAR(1) )
     {
 #endif
-      RINT( obj->beginReadArray ( PQSTRING(1) ) );
+      RINT( obj->beginReadArray( PQSTRING(1) ) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -275,19 +273,19 @@ HB_FUNC_STATIC( QSETTINGS_BEGINREADARRAY )
 }
 
 /*
-void beginWriteArray ( const QString & prefix, int size = -1 )
+void beginWriteArray( const QString & prefix, int size = -1 )
 */
 HB_FUNC_STATIC( QSETTINGS_BEGINWRITEARRAY )
 {
-  QSettings * obj = (QSettings *) _qt5xhb_itemGetPtrStackSelfItem();
+  QSettings * obj = (QSettings *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISBETWEEN(1,2) && ISCHAR(1) && ISOPTNUM(2) )
+    if( ISBETWEEN(1,2) && HB_ISCHAR(1) && (HB_ISNUM(2)||HB_ISNIL(2)) )
     {
 #endif
-      obj->beginWriteArray ( PQSTRING(1), OPINT(2,-1) );
+      obj->beginWriteArray( PQSTRING(1), OPINT(2,-1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -301,11 +299,11 @@ HB_FUNC_STATIC( QSETTINGS_BEGINWRITEARRAY )
 }
 
 /*
-QStringList childGroups () const
+QStringList childGroups() const
 */
 HB_FUNC_STATIC( QSETTINGS_CHILDGROUPS )
 {
-  QSettings * obj = (QSettings *) _qt5xhb_itemGetPtrStackSelfItem();
+  QSettings * obj = (QSettings *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -313,7 +311,7 @@ HB_FUNC_STATIC( QSETTINGS_CHILDGROUPS )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRINGLIST( obj->childGroups () );
+      RQSTRINGLIST( obj->childGroups() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -325,11 +323,11 @@ HB_FUNC_STATIC( QSETTINGS_CHILDGROUPS )
 }
 
 /*
-QStringList childKeys () const
+QStringList childKeys() const
 */
 HB_FUNC_STATIC( QSETTINGS_CHILDKEYS )
 {
-  QSettings * obj = (QSettings *) _qt5xhb_itemGetPtrStackSelfItem();
+  QSettings * obj = (QSettings *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -337,7 +335,7 @@ HB_FUNC_STATIC( QSETTINGS_CHILDKEYS )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRINGLIST( obj->childKeys () );
+      RQSTRINGLIST( obj->childKeys() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -349,11 +347,11 @@ HB_FUNC_STATIC( QSETTINGS_CHILDKEYS )
 }
 
 /*
-void clear ()
+void clear()
 */
 HB_FUNC_STATIC( QSETTINGS_CLEAR )
 {
-  QSettings * obj = (QSettings *) _qt5xhb_itemGetPtrStackSelfItem();
+  QSettings * obj = (QSettings *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -361,7 +359,7 @@ HB_FUNC_STATIC( QSETTINGS_CLEAR )
     if( ISNUMPAR(0) )
     {
 #endif
-      obj->clear ();
+      obj->clear();
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -375,19 +373,19 @@ HB_FUNC_STATIC( QSETTINGS_CLEAR )
 }
 
 /*
-bool contains ( const QString & key ) const
+bool contains( const QString & key ) const
 */
 HB_FUNC_STATIC( QSETTINGS_CONTAINS )
 {
-  QSettings * obj = (QSettings *) _qt5xhb_itemGetPtrStackSelfItem();
+  QSettings * obj = (QSettings *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISCHAR(1) )
+    if( ISNUMPAR(1) && HB_ISCHAR(1) )
     {
 #endif
-      RBOOL( obj->contains ( PQSTRING(1) ) );
+      RBOOL( obj->contains( PQSTRING(1) ) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -399,11 +397,11 @@ HB_FUNC_STATIC( QSETTINGS_CONTAINS )
 }
 
 /*
-void endArray ()
+void endArray()
 */
 HB_FUNC_STATIC( QSETTINGS_ENDARRAY )
 {
-  QSettings * obj = (QSettings *) _qt5xhb_itemGetPtrStackSelfItem();
+  QSettings * obj = (QSettings *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -411,7 +409,7 @@ HB_FUNC_STATIC( QSETTINGS_ENDARRAY )
     if( ISNUMPAR(0) )
     {
 #endif
-      obj->endArray ();
+      obj->endArray();
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -425,11 +423,11 @@ HB_FUNC_STATIC( QSETTINGS_ENDARRAY )
 }
 
 /*
-void endGroup ()
+void endGroup()
 */
 HB_FUNC_STATIC( QSETTINGS_ENDGROUP )
 {
-  QSettings * obj = (QSettings *) _qt5xhb_itemGetPtrStackSelfItem();
+  QSettings * obj = (QSettings *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -437,7 +435,7 @@ HB_FUNC_STATIC( QSETTINGS_ENDGROUP )
     if( ISNUMPAR(0) )
     {
 #endif
-      obj->endGroup ();
+      obj->endGroup();
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -451,11 +449,11 @@ HB_FUNC_STATIC( QSETTINGS_ENDGROUP )
 }
 
 /*
-bool fallbacksEnabled () const
+bool fallbacksEnabled() const
 */
 HB_FUNC_STATIC( QSETTINGS_FALLBACKSENABLED )
 {
-  QSettings * obj = (QSettings *) _qt5xhb_itemGetPtrStackSelfItem();
+  QSettings * obj = (QSettings *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -463,7 +461,7 @@ HB_FUNC_STATIC( QSETTINGS_FALLBACKSENABLED )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->fallbacksEnabled () );
+      RBOOL( obj->fallbacksEnabled() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -475,11 +473,11 @@ HB_FUNC_STATIC( QSETTINGS_FALLBACKSENABLED )
 }
 
 /*
-QString fileName () const
+QString fileName() const
 */
 HB_FUNC_STATIC( QSETTINGS_FILENAME )
 {
-  QSettings * obj = (QSettings *) _qt5xhb_itemGetPtrStackSelfItem();
+  QSettings * obj = (QSettings *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -487,7 +485,7 @@ HB_FUNC_STATIC( QSETTINGS_FILENAME )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRING( obj->fileName () );
+      RQSTRING( obj->fileName() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -499,11 +497,11 @@ HB_FUNC_STATIC( QSETTINGS_FILENAME )
 }
 
 /*
-Format format () const
+QSettings::Format format() const
 */
 HB_FUNC_STATIC( QSETTINGS_FORMAT )
 {
-  QSettings * obj = (QSettings *) _qt5xhb_itemGetPtrStackSelfItem();
+  QSettings * obj = (QSettings *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -511,7 +509,7 @@ HB_FUNC_STATIC( QSETTINGS_FORMAT )
     if( ISNUMPAR(0) )
     {
 #endif
-      RENUM( obj->format () );
+      RENUM( obj->format() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -523,11 +521,11 @@ HB_FUNC_STATIC( QSETTINGS_FORMAT )
 }
 
 /*
-QString group () const
+QString group() const
 */
 HB_FUNC_STATIC( QSETTINGS_GROUP )
 {
-  QSettings * obj = (QSettings *) _qt5xhb_itemGetPtrStackSelfItem();
+  QSettings * obj = (QSettings *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -535,7 +533,7 @@ HB_FUNC_STATIC( QSETTINGS_GROUP )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRING( obj->group () );
+      RQSTRING( obj->group() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -547,11 +545,11 @@ HB_FUNC_STATIC( QSETTINGS_GROUP )
 }
 
 /*
-QTextCodec * iniCodec () const
+QTextCodec * iniCodec() const
 */
 HB_FUNC_STATIC( QSETTINGS_INICODEC )
 {
-  QSettings * obj = (QSettings *) _qt5xhb_itemGetPtrStackSelfItem();
+  QSettings * obj = (QSettings *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -559,8 +557,8 @@ HB_FUNC_STATIC( QSETTINGS_INICODEC )
     if( ISNUMPAR(0) )
     {
 #endif
-      QTextCodec * ptr = obj->iniCodec ();
-      _qt5xhb_createReturnClass ( ptr, "QTEXTCODEC", false );
+      QTextCodec * ptr = obj->iniCodec();
+      Qt5xHb::createReturnClass( ptr, "QTEXTCODEC", false );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -572,11 +570,11 @@ HB_FUNC_STATIC( QSETTINGS_INICODEC )
 }
 
 /*
-bool isWritable () const
+bool isWritable() const
 */
 HB_FUNC_STATIC( QSETTINGS_ISWRITABLE )
 {
-  QSettings * obj = (QSettings *) _qt5xhb_itemGetPtrStackSelfItem();
+  QSettings * obj = (QSettings *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -584,7 +582,7 @@ HB_FUNC_STATIC( QSETTINGS_ISWRITABLE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->isWritable () );
+      RBOOL( obj->isWritable() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -596,11 +594,11 @@ HB_FUNC_STATIC( QSETTINGS_ISWRITABLE )
 }
 
 /*
-QString organizationName () const
+QString organizationName() const
 */
 HB_FUNC_STATIC( QSETTINGS_ORGANIZATIONNAME )
 {
-  QSettings * obj = (QSettings *) _qt5xhb_itemGetPtrStackSelfItem();
+  QSettings * obj = (QSettings *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -608,7 +606,7 @@ HB_FUNC_STATIC( QSETTINGS_ORGANIZATIONNAME )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRING( obj->organizationName () );
+      RQSTRING( obj->organizationName() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -620,19 +618,19 @@ HB_FUNC_STATIC( QSETTINGS_ORGANIZATIONNAME )
 }
 
 /*
-void remove ( const QString & key )
+void remove( const QString & key )
 */
 HB_FUNC_STATIC( QSETTINGS_REMOVE )
 {
-  QSettings * obj = (QSettings *) _qt5xhb_itemGetPtrStackSelfItem();
+  QSettings * obj = (QSettings *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISCHAR(1) )
+    if( ISNUMPAR(1) && HB_ISCHAR(1) )
     {
 #endif
-      obj->remove ( PQSTRING(1) );
+      obj->remove( PQSTRING(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -646,11 +644,11 @@ HB_FUNC_STATIC( QSETTINGS_REMOVE )
 }
 
 /*
-Scope scope () const
+QSettings::Scope scope() const
 */
 HB_FUNC_STATIC( QSETTINGS_SCOPE )
 {
-  QSettings * obj = (QSettings *) _qt5xhb_itemGetPtrStackSelfItem();
+  QSettings * obj = (QSettings *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -658,7 +656,7 @@ HB_FUNC_STATIC( QSETTINGS_SCOPE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RENUM( obj->scope () );
+      RENUM( obj->scope() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -670,19 +668,19 @@ HB_FUNC_STATIC( QSETTINGS_SCOPE )
 }
 
 /*
-void setArrayIndex ( int i )
+void setArrayIndex( int i )
 */
 HB_FUNC_STATIC( QSETTINGS_SETARRAYINDEX )
 {
-  QSettings * obj = (QSettings *) _qt5xhb_itemGetPtrStackSelfItem();
+  QSettings * obj = (QSettings *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setArrayIndex ( PINT(1) );
+      obj->setArrayIndex( PINT(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -696,19 +694,19 @@ HB_FUNC_STATIC( QSETTINGS_SETARRAYINDEX )
 }
 
 /*
-void setFallbacksEnabled ( bool b )
+void setFallbacksEnabled( bool b )
 */
 HB_FUNC_STATIC( QSETTINGS_SETFALLBACKSENABLED )
 {
-  QSettings * obj = (QSettings *) _qt5xhb_itemGetPtrStackSelfItem();
+  QSettings * obj = (QSettings *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISLOG(1) )
+    if( ISNUMPAR(1) && HB_ISLOG(1) )
     {
 #endif
-      obj->setFallbacksEnabled ( PBOOL(1) );
+      obj->setFallbacksEnabled( PBOOL(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -722,30 +720,30 @@ HB_FUNC_STATIC( QSETTINGS_SETFALLBACKSENABLED )
 }
 
 /*
-void setIniCodec ( QTextCodec * codec )
+void setIniCodec( QTextCodec * codec )
 */
-void QSettings_setIniCodec1 ()
+void QSettings_setIniCodec1()
 {
-  QSettings * obj = (QSettings *) _qt5xhb_itemGetPtrStackSelfItem();
+  QSettings * obj = (QSettings *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
-      obj->setIniCodec ( PQTEXTCODEC(1) );
+    obj->setIniCodec( PQTEXTCODEC(1) );
   }
 
   hb_itemReturn( hb_stackSelfItem() );
 }
 
 /*
-void setIniCodec ( const char * codecName )
+void setIniCodec( const char * codecName )
 */
-void QSettings_setIniCodec2 ()
+void QSettings_setIniCodec2()
 {
-  QSettings * obj = (QSettings *) _qt5xhb_itemGetPtrStackSelfItem();
+  QSettings * obj = (QSettings *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
-      obj->setIniCodec ( PCONSTCHAR(1) );
+    obj->setIniCodec( PCONSTCHAR(1) );
   }
 
   hb_itemReturn( hb_stackSelfItem() );
@@ -757,7 +755,7 @@ HB_FUNC_STATIC( QSETTINGS_SETINICODEC )
   {
     QSettings_setIniCodec1();
   }
-  else if( ISNUMPAR(1) && ISCHAR(1) )
+  else if( ISNUMPAR(1) && HB_ISCHAR(1) )
   {
     QSettings_setIniCodec2();
   }
@@ -768,19 +766,19 @@ HB_FUNC_STATIC( QSETTINGS_SETINICODEC )
 }
 
 /*
-void setValue ( const QString & key, const QVariant & value )
+void setValue( const QString & key, const QVariant & value )
 */
 HB_FUNC_STATIC( QSETTINGS_SETVALUE )
 {
-  QSettings * obj = (QSettings *) _qt5xhb_itemGetPtrStackSelfItem();
+  QSettings * obj = (QSettings *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(2) && ISCHAR(1) && ISQVARIANT(2) )
+    if( ISNUMPAR(2) && HB_ISCHAR(1) && ISQVARIANT(2) )
     {
 #endif
-      obj->setValue ( PQSTRING(1), *PQVARIANT(2) );
+      obj->setValue( PQSTRING(1), *PQVARIANT(2) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -794,11 +792,11 @@ HB_FUNC_STATIC( QSETTINGS_SETVALUE )
 }
 
 /*
-Status status () const
+QSettings::Status status() const
 */
 HB_FUNC_STATIC( QSETTINGS_STATUS )
 {
-  QSettings * obj = (QSettings *) _qt5xhb_itemGetPtrStackSelfItem();
+  QSettings * obj = (QSettings *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -806,7 +804,7 @@ HB_FUNC_STATIC( QSETTINGS_STATUS )
     if( ISNUMPAR(0) )
     {
 #endif
-      RENUM( obj->status () );
+      RENUM( obj->status() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -818,11 +816,11 @@ HB_FUNC_STATIC( QSETTINGS_STATUS )
 }
 
 /*
-void sync ()
+void sync()
 */
 HB_FUNC_STATIC( QSETTINGS_SYNC )
 {
-  QSettings * obj = (QSettings *) _qt5xhb_itemGetPtrStackSelfItem();
+  QSettings * obj = (QSettings *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -830,7 +828,7 @@ HB_FUNC_STATIC( QSETTINGS_SYNC )
     if( ISNUMPAR(0) )
     {
 #endif
-      obj->sync ();
+      obj->sync();
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -844,20 +842,20 @@ HB_FUNC_STATIC( QSETTINGS_SYNC )
 }
 
 /*
-QVariant value ( const QString & key, const QVariant & defaultValue = QVariant() ) const
+QVariant value( const QString & key, const QVariant & defaultValue = QVariant() ) const
 */
 HB_FUNC_STATIC( QSETTINGS_VALUE )
 {
-  QSettings * obj = (QSettings *) _qt5xhb_itemGetPtrStackSelfItem();
+  QSettings * obj = (QSettings *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISBETWEEN(1,2) && ISCHAR(1) && (ISQVARIANT(2)||ISNIL(2)) )
+    if( ISBETWEEN(1,2) && HB_ISCHAR(1) && (ISQVARIANT(2)||HB_ISNIL(2)) )
     {
 #endif
-      QVariant * ptr = new QVariant( obj->value ( PQSTRING(1), ISNIL(2)? QVariant() : *(QVariant *) _qt5xhb_itemGetPtr(2) ) );
-      _qt5xhb_createReturnClass ( ptr, "QVARIANT", true );
+      QVariant * ptr = new QVariant( obj->value( PQSTRING(1), HB_ISNIL(2)? QVariant() : *(QVariant *) Qt5xHb::itemGetPtr(2) ) );
+      Qt5xHb::createReturnClass( ptr, "QVARIANT", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -869,15 +867,15 @@ HB_FUNC_STATIC( QSETTINGS_VALUE )
 }
 
 /*
-static Format defaultFormat ()
+static QSettings::Format defaultFormat()
 */
 HB_FUNC_STATIC( QSETTINGS_DEFAULTFORMAT )
 {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(0) )
+  if( ISNUMPAR(0) )
   {
 #endif
-      RENUM( QSettings::defaultFormat () );
+    RENUM( QSettings::defaultFormat() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
   }
   else
@@ -888,15 +886,15 @@ HB_FUNC_STATIC( QSETTINGS_DEFAULTFORMAT )
 }
 
 /*
-static void setDefaultFormat ( Format format )
+static void setDefaultFormat( QSettings::Format format )
 */
 HB_FUNC_STATIC( QSETTINGS_SETDEFAULTFORMAT )
 {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+  if( ISNUMPAR(1) && HB_ISNUM(1) )
   {
 #endif
-      QSettings::setDefaultFormat ( (QSettings::Format) hb_parni(1) );
+    QSettings::setDefaultFormat( (QSettings::Format) hb_parni(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
   }
   else
@@ -909,15 +907,15 @@ HB_FUNC_STATIC( QSETTINGS_SETDEFAULTFORMAT )
 }
 
 /*
-static void setPath ( Format format, Scope scope, const QString & path )
+static void setPath( QSettings::Format format, QSettings::Scope scope, const QString & path )
 */
 HB_FUNC_STATIC( QSETTINGS_SETPATH )
 {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(3) && ISNUM(1) && ISNUM(2) && ISCHAR(3) )
+  if( ISNUMPAR(3) && HB_ISNUM(1) && HB_ISNUM(2) && HB_ISCHAR(3) )
   {
 #endif
-      QSettings::setPath ( (QSettings::Format) hb_parni(1), (QSettings::Scope) hb_parni(2), PQSTRING(3) );
+    QSettings::setPath( (QSettings::Format) hb_parni(1), (QSettings::Scope) hb_parni(2), PQSTRING(3) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
   }
   else

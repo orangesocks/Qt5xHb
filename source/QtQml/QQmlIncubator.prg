@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -43,7 +43,7 @@ CLASS QQmlIncubator
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QQmlIncubator
+PROCEDURE destroyObject() CLASS QQmlIncubator
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -66,14 +66,14 @@ RETURN
 #endif
 
 /*
-QQmlIncubator(IncubationMode mode = Asynchronous)
+QQmlIncubator( QQmlIncubator::IncubationMode mode = QQmlIncubator::Asynchronous )
 */
 HB_FUNC_STATIC( QQMLINCUBATOR_NEW )
 {
-  if( ISBETWEEN(0,1) && ISOPTNUM(1) )
+  if( ISBETWEEN(0,1) && (HB_ISNUM(1)||HB_ISNIL(1)) )
   {
-    QQmlIncubator * o = new QQmlIncubator ( ISNIL(1)? (QQmlIncubator::IncubationMode) QQmlIncubator::Asynchronous : (QQmlIncubator::IncubationMode) hb_parni(1) );
-    _qt5xhb_returnNewObject( o, true );
+    QQmlIncubator * obj = new QQmlIncubator( HB_ISNIL(1)? (QQmlIncubator::IncubationMode) QQmlIncubator::Asynchronous : (QQmlIncubator::IncubationMode) hb_parni(1) );
+    Qt5xHb::returnNewObject( obj, true );
   }
   else
   {
@@ -83,7 +83,7 @@ HB_FUNC_STATIC( QQMLINCUBATOR_NEW )
 
 HB_FUNC_STATIC( QQMLINCUBATOR_DELETE )
 {
-  QQmlIncubator * obj = (QQmlIncubator *) _qt5xhb_itemGetPtrStackSelfItem();
+  QQmlIncubator * obj = (QQmlIncubator *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -103,7 +103,7 @@ void clear()
 */
 HB_FUNC_STATIC( QQMLINCUBATOR_CLEAR )
 {
-  QQmlIncubator * obj = (QQmlIncubator *) _qt5xhb_itemGetPtrStackSelfItem();
+  QQmlIncubator * obj = (QQmlIncubator *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -111,7 +111,7 @@ HB_FUNC_STATIC( QQMLINCUBATOR_CLEAR )
     if( ISNUMPAR(0) )
     {
 #endif
-      obj->clear ();
+      obj->clear();
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -129,7 +129,7 @@ void forceCompletion()
 */
 HB_FUNC_STATIC( QQMLINCUBATOR_FORCECOMPLETION )
 {
-  QQmlIncubator * obj = (QQmlIncubator *) _qt5xhb_itemGetPtrStackSelfItem();
+  QQmlIncubator * obj = (QQmlIncubator *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -137,7 +137,7 @@ HB_FUNC_STATIC( QQMLINCUBATOR_FORCECOMPLETION )
     if( ISNUMPAR(0) )
     {
 #endif
-      obj->forceCompletion ();
+      obj->forceCompletion();
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -151,11 +151,11 @@ HB_FUNC_STATIC( QQMLINCUBATOR_FORCECOMPLETION )
 }
 
 /*
-IncubationMode incubationMode() const
+QQmlIncubator::IncubationMode incubationMode() const
 */
 HB_FUNC_STATIC( QQMLINCUBATOR_INCUBATIONMODE )
 {
-  QQmlIncubator * obj = (QQmlIncubator *) _qt5xhb_itemGetPtrStackSelfItem();
+  QQmlIncubator * obj = (QQmlIncubator *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -163,7 +163,7 @@ HB_FUNC_STATIC( QQMLINCUBATOR_INCUBATIONMODE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RENUM( obj->incubationMode () );
+      RENUM( obj->incubationMode() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -179,7 +179,7 @@ bool isError() const
 */
 HB_FUNC_STATIC( QQMLINCUBATOR_ISERROR )
 {
-  QQmlIncubator * obj = (QQmlIncubator *) _qt5xhb_itemGetPtrStackSelfItem();
+  QQmlIncubator * obj = (QQmlIncubator *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -187,7 +187,7 @@ HB_FUNC_STATIC( QQMLINCUBATOR_ISERROR )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->isError () );
+      RBOOL( obj->isError() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -203,7 +203,7 @@ bool isLoading() const
 */
 HB_FUNC_STATIC( QQMLINCUBATOR_ISLOADING )
 {
-  QQmlIncubator * obj = (QQmlIncubator *) _qt5xhb_itemGetPtrStackSelfItem();
+  QQmlIncubator * obj = (QQmlIncubator *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -211,7 +211,7 @@ HB_FUNC_STATIC( QQMLINCUBATOR_ISLOADING )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->isLoading () );
+      RBOOL( obj->isLoading() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -227,7 +227,7 @@ bool isNull() const
 */
 HB_FUNC_STATIC( QQMLINCUBATOR_ISNULL )
 {
-  QQmlIncubator * obj = (QQmlIncubator *) _qt5xhb_itemGetPtrStackSelfItem();
+  QQmlIncubator * obj = (QQmlIncubator *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -235,7 +235,7 @@ HB_FUNC_STATIC( QQMLINCUBATOR_ISNULL )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->isNull () );
+      RBOOL( obj->isNull() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -251,7 +251,7 @@ bool isReady() const
 */
 HB_FUNC_STATIC( QQMLINCUBATOR_ISREADY )
 {
-  QQmlIncubator * obj = (QQmlIncubator *) _qt5xhb_itemGetPtrStackSelfItem();
+  QQmlIncubator * obj = (QQmlIncubator *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -259,7 +259,7 @@ HB_FUNC_STATIC( QQMLINCUBATOR_ISREADY )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->isReady () );
+      RBOOL( obj->isReady() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -275,7 +275,7 @@ QObject * object() const
 */
 HB_FUNC_STATIC( QQMLINCUBATOR_OBJECT )
 {
-  QQmlIncubator * obj = (QQmlIncubator *) _qt5xhb_itemGetPtrStackSelfItem();
+  QQmlIncubator * obj = (QQmlIncubator *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -283,8 +283,8 @@ HB_FUNC_STATIC( QQMLINCUBATOR_OBJECT )
     if( ISNUMPAR(0) )
     {
 #endif
-      QObject * ptr = obj->object ();
-      _qt5xhb_createReturnQObjectClass ( ptr, "QOBJECT" );
+      QObject * ptr = obj->object();
+      Qt5xHb::createReturnQObjectClass( ptr, "QOBJECT" );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -296,11 +296,11 @@ HB_FUNC_STATIC( QQMLINCUBATOR_OBJECT )
 }
 
 /*
-Status status() const
+QQmlIncubator::Status status() const
 */
 HB_FUNC_STATIC( QQMLINCUBATOR_STATUS )
 {
-  QQmlIncubator * obj = (QQmlIncubator *) _qt5xhb_itemGetPtrStackSelfItem();
+  QQmlIncubator * obj = (QQmlIncubator *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -308,7 +308,7 @@ HB_FUNC_STATIC( QQMLINCUBATOR_STATUS )
     if( ISNUMPAR(0) )
     {
 #endif
-      RENUM( obj->status () );
+      RENUM( obj->status() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -323,7 +323,7 @@ HB_FUNC_STATIC( QQMLINCUBATOR_NEWFROM )
 {
   PHB_ITEM self = hb_stackSelfItem();
 
-  if( hb_pcount() == 1 && ISOBJECT(1) )
+  if( hb_pcount() == 1 && HB_ISOBJECT(1) )
   {
     PHB_ITEM ptr = hb_itemPutPtr( NULL, (void *) hb_itemGetPtr( hb_objSendMsg( hb_param(1, HB_IT_OBJECT ), "POINTER", 0 ) ) );
     hb_objSendMsg( self, "_pointer", 1, ptr );
@@ -332,7 +332,7 @@ HB_FUNC_STATIC( QQMLINCUBATOR_NEWFROM )
     hb_objSendMsg( self, "_self_destruction", 1, des );
     hb_itemRelease( des );
   }
-  else if( hb_pcount() == 1 && ISPOINTER(1) )
+  else if( hb_pcount() == 1 && HB_ISPOINTER(1) )
   {
     PHB_ITEM ptr = hb_itemPutPtr( NULL, (void *) hb_itemGetPtr( hb_param(1, HB_IT_POINTER ) ) );
     hb_objSendMsg( self, "_pointer", 1, ptr );
@@ -368,7 +368,7 @@ HB_FUNC_STATIC( QQMLINCUBATOR_SETSELFDESTRUCTION )
 {
   PHB_ITEM self = hb_stackSelfItem();
 
-  if( hb_pcount() == 1 && ISLOG(1) )
+  if( hb_pcount() == 1 && HB_ISLOG(1) )
   {
     PHB_ITEM des = hb_itemPutL( NULL, hb_parl(1) );
     hb_objSendMsg( self, "_self_destruction", 1, des );

@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -13,34 +13,34 @@
 #ifndef QT5XHB_MACROS_QTWEBKIT_H
 #define QT5XHB_MACROS_QTWEBKIT_H
 
-#define ISQWEBDATABASE(n)                                   _qt5xhb_isObjectDerivedFrom(n,"QWebDatabase")
-#define ISQWEBELEMENT(n)                                    _qt5xhb_isObjectDerivedFrom(n,"QWebElement")
-#define ISQWEBELEMENTCOLLECTION(n)                          _qt5xhb_isObjectDerivedFrom(n,"QWebElementCollection")
-#define ISQWEBHISTORY(n)                                    _qt5xhb_isObjectDerivedFrom(n,"QWebHistory")
-#define ISQWEBHISTORYINTERFACE(n)                           _qt5xhb_isObjectDerivedFrom(n,"QWebHistoryInterface")
-#define ISQWEBHISTORYITEM(n)                                _qt5xhb_isObjectDerivedFrom(n,"QWebHistoryItem")
-#define ISQWEBPLUGINFACTORY(n)                              _qt5xhb_isObjectDerivedFrom(n,"QWebPluginFactory")
-#define ISQWEBSECURITYORIGIN(n)                             _qt5xhb_isObjectDerivedFrom(n,"QWebSecurityOrigin")
-#define ISQWEBSETTINGS(n)                                   _qt5xhb_isObjectDerivedFrom(n,"QWebSettings")
+#define ISQWEBDATABASE( n )                                 Qt5xHb::isObjectDerivedFrom( n, "QWebDatabase" )
+#define ISQWEBELEMENT( n )                                  Qt5xHb::isObjectDerivedFrom( n, "QWebElement" )
+#define ISQWEBELEMENTCOLLECTION( n )                        Qt5xHb::isObjectDerivedFrom( n, "QWebElementCollection" )
+#define ISQWEBHISTORY( n )                                  Qt5xHb::isObjectDerivedFrom( n, "QWebHistory" )
+#define ISQWEBHISTORYINTERFACE( n )                         Qt5xHb::isObjectDerivedFrom( n, "QWebHistoryInterface" )
+#define ISQWEBHISTORYITEM( n )                              Qt5xHb::isObjectDerivedFrom( n, "QWebHistoryItem" )
+#define ISQWEBPLUGINFACTORY( n )                            Qt5xHb::isObjectDerivedFrom( n, "QWebPluginFactory" )
+#define ISQWEBSECURITYORIGIN( n )                           Qt5xHb::isObjectDerivedFrom( n, "QWebSecurityOrigin" )
+#define ISQWEBSETTINGS( n )                                 Qt5xHb::isObjectDerivedFrom( n, "QWebSettings" )
 
-#define PQWEBDATABASE(n)                                    (QWebDatabase *) _qt5xhb_itemGetPtr(n)
-#define PQWEBELEMENT(n)                                     (QWebElement *) _qt5xhb_itemGetPtr(n)
-#define PQWEBELEMENTCOLLECTION(n)                           (QWebElementCollection *) _qt5xhb_itemGetPtr(n)
-#define PQWEBHISTORY(n)                                     (QWebHistory *) _qt5xhb_itemGetPtr(n)
-#define PQWEBHISTORYINTERFACE(n)                            (QWebHistoryInterface *) _qt5xhb_itemGetPtr(n)
-#define PQWEBHISTORYITEM(n)                                 (QWebHistoryItem *) _qt5xhb_itemGetPtr(n)
-#define PQWEBPLUGINFACTORY(n)                               (QWebPluginFactory *) _qt5xhb_itemGetPtr(n)
-#define PQWEBSECURITYORIGIN(n)                              (QWebSecurityOrigin *) _qt5xhb_itemGetPtr(n)
-#define PQWEBSETTINGS(n)                                    (QWebSettings *) _qt5xhb_itemGetPtr(n)
+#define PQWEBDATABASE( n )                                  static_cast< QWebDatabase * >( Qt5xHb::itemGetPtr( n ) )
+#define PQWEBELEMENT( n )                                   static_cast< QWebElement * >( Qt5xHb::itemGetPtr( n ) )
+#define PQWEBELEMENTCOLLECTION( n )                         static_cast< QWebElementCollection * >( Qt5xHb::itemGetPtr( n ) )
+#define PQWEBHISTORY( n )                                   static_cast< QWebHistory * >( Qt5xHb::itemGetPtr( n ) )
+#define PQWEBHISTORYINTERFACE( n )                          static_cast< QWebHistoryInterface * >( Qt5xHb::itemGetPtr( n ) )
+#define PQWEBHISTORYITEM( n )                               static_cast< QWebHistoryItem * >( Qt5xHb::itemGetPtr( n ) )
+#define PQWEBPLUGINFACTORY( n )                             static_cast< QWebPluginFactory * >( Qt5xHb::itemGetPtr( n ) )
+#define PQWEBSECURITYORIGIN( n )                            static_cast< QWebSecurityOrigin * >( Qt5xHb::itemGetPtr( n ) )
+#define PQWEBSETTINGS( n )                                  static_cast< QWebSettings * >( Qt5xHb::itemGetPtr( n ) )
 
-#define OPQWEBDATABASE(n,v)                                 ISNIL(n)? v : (QWebDatabase *) _qt5xhb_itemGetPtr(n)
-#define OPQWEBELEMENT(n,v)                                  ISNIL(n)? v : (QWebElement *) _qt5xhb_itemGetPtr(n)
-#define OPQWEBELEMENTCOLLECTION(n,v)                        ISNIL(n)? v : (QWebElementCollection *) _qt5xhb_itemGetPtr(n)
-#define OPQWEBHISTORY(n,v)                                  ISNIL(n)? v : (QWebHistory *) _qt5xhb_itemGetPtr(n)
-#define OPQWEBHISTORYINTERFACE(n,v)                         ISNIL(n)? v : (QWebHistoryInterface *) _qt5xhb_itemGetPtr(n)
-#define OPQWEBHISTORYITEM(n,v)                              ISNIL(n)? v : (QWebHistoryItem *) _qt5xhb_itemGetPtr(n)
-#define OPQWEBPLUGINFACTORY(n,v)                            ISNIL(n)? v : (QWebPluginFactory *) _qt5xhb_itemGetPtr(n)
-#define OPQWEBSECURITYORIGIN(n,v)                           ISNIL(n)? v : (QWebSecurityOrigin *) _qt5xhb_itemGetPtr(n)
-#define OPQWEBSETTINGS(n,v)                                 ISNIL(n)? v : (QWebSettings *) _qt5xhb_itemGetPtr(n)
+#define OPQWEBDATABASE( n, v )                              HB_ISNIL( n ) ? v : static_cast< QWebDatabase * >( Qt5xHb::itemGetPtr( n ) )
+#define OPQWEBELEMENT( n, v )                               HB_ISNIL( n ) ? v : static_cast< QWebElement * >( Qt5xHb::itemGetPtr( n ) )
+#define OPQWEBELEMENTCOLLECTION( n, v )                     HB_ISNIL( n ) ? v : static_cast< QWebElementCollection * >( Qt5xHb::itemGetPtr( n ) )
+#define OPQWEBHISTORY( n, v )                               HB_ISNIL( n ) ? v : static_cast< QWebHistory * >( Qt5xHb::itemGetPtr( n ) )
+#define OPQWEBHISTORYINTERFACE( n, v )                      HB_ISNIL( n ) ? v : static_cast< QWebHistoryInterface * >( Qt5xHb::itemGetPtr( n ) )
+#define OPQWEBHISTORYITEM( n, v )                           HB_ISNIL( n ) ? v : static_cast< QWebHistoryItem * >( Qt5xHb::itemGetPtr( n ) )
+#define OPQWEBPLUGINFACTORY( n, v )                         HB_ISNIL( n ) ? v : static_cast< QWebPluginFactory * >( Qt5xHb::itemGetPtr( n ) )
+#define OPQWEBSECURITYORIGIN( n, v )                        HB_ISNIL( n ) ? v : static_cast< QWebSecurityOrigin * >( Qt5xHb::itemGetPtr( n ) )
+#define OPQWEBSETTINGS( n, v )                              HB_ISNIL( n ) ? v : static_cast< QWebSettings * >( Qt5xHb::itemGetPtr( n ) )
 
 #endif /* QT5XHB_MACROS_QTWEBKIT_H */

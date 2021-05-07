@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -50,7 +50,7 @@ CLASS QScriptContext
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QScriptContext
+PROCEDURE destroyObject() CLASS QScriptContext
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -77,7 +77,7 @@ RETURN
 
 HB_FUNC_STATIC( QSCRIPTCONTEXT_DELETE )
 {
-  QScriptContext * obj = (QScriptContext *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScriptContext * obj = (QScriptContext *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -97,7 +97,7 @@ QScriptValue activationObject() const
 */
 HB_FUNC_STATIC( QSCRIPTCONTEXT_ACTIVATIONOBJECT )
 {
-  QScriptContext * obj = (QScriptContext *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScriptContext * obj = (QScriptContext *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -105,8 +105,8 @@ HB_FUNC_STATIC( QSCRIPTCONTEXT_ACTIVATIONOBJECT )
     if( ISNUMPAR(0) )
     {
 #endif
-      QScriptValue * ptr = new QScriptValue( obj->activationObject () );
-      _qt5xhb_createReturnClass ( ptr, "QSCRIPTVALUE", true );
+      QScriptValue * ptr = new QScriptValue( obj->activationObject() );
+      Qt5xHb::createReturnClass( ptr, "QSCRIPTVALUE", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -118,20 +118,20 @@ HB_FUNC_STATIC( QSCRIPTCONTEXT_ACTIVATIONOBJECT )
 }
 
 /*
-QScriptValue argument(int index) const
+QScriptValue argument( int index ) const
 */
 HB_FUNC_STATIC( QSCRIPTCONTEXT_ARGUMENT )
 {
-  QScriptContext * obj = (QScriptContext *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScriptContext * obj = (QScriptContext *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      QScriptValue * ptr = new QScriptValue( obj->argument ( PINT(1) ) );
-      _qt5xhb_createReturnClass ( ptr, "QSCRIPTVALUE", true );
+      QScriptValue * ptr = new QScriptValue( obj->argument( PINT(1) ) );
+      Qt5xHb::createReturnClass( ptr, "QSCRIPTVALUE", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -147,7 +147,7 @@ int argumentCount() const
 */
 HB_FUNC_STATIC( QSCRIPTCONTEXT_ARGUMENTCOUNT )
 {
-  QScriptContext * obj = (QScriptContext *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScriptContext * obj = (QScriptContext *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -155,7 +155,7 @@ HB_FUNC_STATIC( QSCRIPTCONTEXT_ARGUMENTCOUNT )
     if( ISNUMPAR(0) )
     {
 #endif
-      RINT( obj->argumentCount () );
+      RINT( obj->argumentCount() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -171,7 +171,7 @@ QScriptValue argumentsObject() const
 */
 HB_FUNC_STATIC( QSCRIPTCONTEXT_ARGUMENTSOBJECT )
 {
-  QScriptContext * obj = (QScriptContext *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScriptContext * obj = (QScriptContext *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -179,8 +179,8 @@ HB_FUNC_STATIC( QSCRIPTCONTEXT_ARGUMENTSOBJECT )
     if( ISNUMPAR(0) )
     {
 #endif
-      QScriptValue * ptr = new QScriptValue( obj->argumentsObject () );
-      _qt5xhb_createReturnClass ( ptr, "QSCRIPTVALUE", true );
+      QScriptValue * ptr = new QScriptValue( obj->argumentsObject() );
+      Qt5xHb::createReturnClass( ptr, "QSCRIPTVALUE", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -196,7 +196,7 @@ QStringList backtrace() const
 */
 HB_FUNC_STATIC( QSCRIPTCONTEXT_BACKTRACE )
 {
-  QScriptContext * obj = (QScriptContext *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScriptContext * obj = (QScriptContext *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -204,7 +204,7 @@ HB_FUNC_STATIC( QSCRIPTCONTEXT_BACKTRACE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRINGLIST( obj->backtrace () );
+      RQSTRINGLIST( obj->backtrace() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -220,7 +220,7 @@ QScriptValue callee() const
 */
 HB_FUNC_STATIC( QSCRIPTCONTEXT_CALLEE )
 {
-  QScriptContext * obj = (QScriptContext *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScriptContext * obj = (QScriptContext *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -228,8 +228,8 @@ HB_FUNC_STATIC( QSCRIPTCONTEXT_CALLEE )
     if( ISNUMPAR(0) )
     {
 #endif
-      QScriptValue * ptr = new QScriptValue( obj->callee () );
-      _qt5xhb_createReturnClass ( ptr, "QSCRIPTVALUE", true );
+      QScriptValue * ptr = new QScriptValue( obj->callee() );
+      Qt5xHb::createReturnClass( ptr, "QSCRIPTVALUE", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -245,7 +245,7 @@ QScriptEngine * engine() const
 */
 HB_FUNC_STATIC( QSCRIPTCONTEXT_ENGINE )
 {
-  QScriptContext * obj = (QScriptContext *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScriptContext * obj = (QScriptContext *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -253,8 +253,8 @@ HB_FUNC_STATIC( QSCRIPTCONTEXT_ENGINE )
     if( ISNUMPAR(0) )
     {
 #endif
-      QScriptEngine * ptr = obj->engine ();
-      _qt5xhb_createReturnQObjectClass ( ptr, "QSCRIPTENGINE" );
+      QScriptEngine * ptr = obj->engine();
+      Qt5xHb::createReturnQObjectClass( ptr, "QSCRIPTENGINE" );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -270,7 +270,7 @@ bool isCalledAsConstructor() const
 */
 HB_FUNC_STATIC( QSCRIPTCONTEXT_ISCALLEDASCONSTRUCTOR )
 {
-  QScriptContext * obj = (QScriptContext *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScriptContext * obj = (QScriptContext *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -278,7 +278,7 @@ HB_FUNC_STATIC( QSCRIPTCONTEXT_ISCALLEDASCONSTRUCTOR )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->isCalledAsConstructor () );
+      RBOOL( obj->isCalledAsConstructor() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -294,7 +294,7 @@ QScriptContext * parentContext() const
 */
 HB_FUNC_STATIC( QSCRIPTCONTEXT_PARENTCONTEXT )
 {
-  QScriptContext * obj = (QScriptContext *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScriptContext * obj = (QScriptContext *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -302,8 +302,8 @@ HB_FUNC_STATIC( QSCRIPTCONTEXT_PARENTCONTEXT )
     if( ISNUMPAR(0) )
     {
 #endif
-      QScriptContext * ptr = obj->parentContext ();
-      _qt5xhb_createReturnClass ( ptr, "QSCRIPTCONTEXT", false );
+      QScriptContext * ptr = obj->parentContext();
+      Qt5xHb::createReturnClass( ptr, "QSCRIPTCONTEXT", false );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -315,11 +315,11 @@ HB_FUNC_STATIC( QSCRIPTCONTEXT_PARENTCONTEXT )
 }
 
 /*
-void setActivationObject(const QScriptValue & activation)
+void setActivationObject( const QScriptValue & activation )
 */
 HB_FUNC_STATIC( QSCRIPTCONTEXT_SETACTIVATIONOBJECT )
 {
-  QScriptContext * obj = (QScriptContext *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScriptContext * obj = (QScriptContext *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -327,7 +327,7 @@ HB_FUNC_STATIC( QSCRIPTCONTEXT_SETACTIVATIONOBJECT )
     if( ISNUMPAR(1) && ISQSCRIPTVALUE(1) )
     {
 #endif
-      obj->setActivationObject ( *PQSCRIPTVALUE(1) );
+      obj->setActivationObject( *PQSCRIPTVALUE(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -341,11 +341,11 @@ HB_FUNC_STATIC( QSCRIPTCONTEXT_SETACTIVATIONOBJECT )
 }
 
 /*
-void setThisObject(const QScriptValue & thisObject)
+void setThisObject( const QScriptValue & thisObject )
 */
 HB_FUNC_STATIC( QSCRIPTCONTEXT_SETTHISOBJECT )
 {
-  QScriptContext * obj = (QScriptContext *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScriptContext * obj = (QScriptContext *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -353,7 +353,7 @@ HB_FUNC_STATIC( QSCRIPTCONTEXT_SETTHISOBJECT )
     if( ISNUMPAR(1) && ISQSCRIPTVALUE(1) )
     {
 #endif
-      obj->setThisObject ( *PQSCRIPTVALUE(1) );
+      obj->setThisObject( *PQSCRIPTVALUE(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -367,11 +367,11 @@ HB_FUNC_STATIC( QSCRIPTCONTEXT_SETTHISOBJECT )
 }
 
 /*
-ExecutionState state() const
+QScriptContext::ExecutionState state() const
 */
 HB_FUNC_STATIC( QSCRIPTCONTEXT_STATE )
 {
-  QScriptContext * obj = (QScriptContext *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScriptContext * obj = (QScriptContext *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -379,7 +379,7 @@ HB_FUNC_STATIC( QSCRIPTCONTEXT_STATE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RENUM( obj->state () );
+      RENUM( obj->state() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -395,7 +395,7 @@ QScriptValue thisObject() const
 */
 HB_FUNC_STATIC( QSCRIPTCONTEXT_THISOBJECT )
 {
-  QScriptContext * obj = (QScriptContext *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScriptContext * obj = (QScriptContext *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -403,8 +403,8 @@ HB_FUNC_STATIC( QSCRIPTCONTEXT_THISOBJECT )
     if( ISNUMPAR(0) )
     {
 #endif
-      QScriptValue * ptr = new QScriptValue( obj->thisObject () );
-      _qt5xhb_createReturnClass ( ptr, "QSCRIPTVALUE", true );
+      QScriptValue * ptr = new QScriptValue( obj->thisObject() );
+      Qt5xHb::createReturnClass( ptr, "QSCRIPTVALUE", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -416,43 +416,40 @@ HB_FUNC_STATIC( QSCRIPTCONTEXT_THISOBJECT )
 }
 
 /*
-QScriptValue throwError(Error error, const QString & text)
+QScriptValue throwError( QScriptContext::Error error, const QString & text )
 */
-void QScriptContext_throwError1 ()
+void QScriptContext_throwError1()
 {
-  QScriptContext * obj = (QScriptContext *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScriptContext * obj = (QScriptContext *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
-      QScriptValue * ptr = new QScriptValue( obj->throwError ( (QScriptContext::Error) hb_parni(1), PQSTRING(2) ) );
-      _qt5xhb_createReturnClass ( ptr, "QSCRIPTVALUE", true );
+    QScriptValue * ptr = new QScriptValue( obj->throwError( (QScriptContext::Error) hb_parni(1), PQSTRING(2) ) );
+    Qt5xHb::createReturnClass( ptr, "QSCRIPTVALUE", true );
   }
 }
 
 /*
-QScriptValue throwError(const QString & text)
+QScriptValue throwError( const QString & text )
 */
-void QScriptContext_throwError2 ()
+void QScriptContext_throwError2()
 {
-  QScriptContext * obj = (QScriptContext *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScriptContext * obj = (QScriptContext *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
-      QScriptValue * ptr = new QScriptValue( obj->throwError ( PQSTRING(1) ) );
-      _qt5xhb_createReturnClass ( ptr, "QSCRIPTVALUE", true );
+    QScriptValue * ptr = new QScriptValue( obj->throwError( PQSTRING(1) ) );
+    Qt5xHb::createReturnClass( ptr, "QSCRIPTVALUE", true );
   }
 }
 
-//[1]QScriptValue throwError(Error error, const QString & text)
-//[2]QScriptValue throwError(const QString & text)
-
 HB_FUNC_STATIC( QSCRIPTCONTEXT_THROWERROR )
 {
-  if( ISNUMPAR(2) && ISNUM(1) && ISCHAR(2) )
+  if( ISNUMPAR(2) && HB_ISNUM(1) && HB_ISCHAR(2) )
   {
     QScriptContext_throwError1();
   }
-  else if( ISNUMPAR(1) && ISCHAR(1) )
+  else if( ISNUMPAR(1) && HB_ISCHAR(1) )
   {
     QScriptContext_throwError2();
   }
@@ -463,11 +460,11 @@ HB_FUNC_STATIC( QSCRIPTCONTEXT_THROWERROR )
 }
 
 /*
-QScriptValue throwValue(const QScriptValue & value)
+QScriptValue throwValue( const QScriptValue & value )
 */
 HB_FUNC_STATIC( QSCRIPTCONTEXT_THROWVALUE )
 {
-  QScriptContext * obj = (QScriptContext *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScriptContext * obj = (QScriptContext *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -475,8 +472,8 @@ HB_FUNC_STATIC( QSCRIPTCONTEXT_THROWVALUE )
     if( ISNUMPAR(1) && ISQSCRIPTVALUE(1) )
     {
 #endif
-      QScriptValue * ptr = new QScriptValue( obj->throwValue ( *PQSCRIPTVALUE(1) ) );
-      _qt5xhb_createReturnClass ( ptr, "QSCRIPTVALUE", true );
+      QScriptValue * ptr = new QScriptValue( obj->throwValue( *PQSCRIPTVALUE(1) ) );
+      Qt5xHb::createReturnClass( ptr, "QSCRIPTVALUE", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -492,7 +489,7 @@ QString toString() const
 */
 HB_FUNC_STATIC( QSCRIPTCONTEXT_TOSTRING )
 {
-  QScriptContext * obj = (QScriptContext *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScriptContext * obj = (QScriptContext *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -500,7 +497,7 @@ HB_FUNC_STATIC( QSCRIPTCONTEXT_TOSTRING )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRING( obj->toString () );
+      RQSTRING( obj->toString() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -515,7 +512,7 @@ HB_FUNC_STATIC( QSCRIPTCONTEXT_NEWFROM )
 {
   PHB_ITEM self = hb_stackSelfItem();
 
-  if( hb_pcount() == 1 && ISOBJECT(1) )
+  if( hb_pcount() == 1 && HB_ISOBJECT(1) )
   {
     PHB_ITEM ptr = hb_itemPutPtr( NULL, (void *) hb_itemGetPtr( hb_objSendMsg( hb_param(1, HB_IT_OBJECT ), "POINTER", 0 ) ) );
     hb_objSendMsg( self, "_pointer", 1, ptr );
@@ -524,7 +521,7 @@ HB_FUNC_STATIC( QSCRIPTCONTEXT_NEWFROM )
     hb_objSendMsg( self, "_self_destruction", 1, des );
     hb_itemRelease( des );
   }
-  else if( hb_pcount() == 1 && ISPOINTER(1) )
+  else if( hb_pcount() == 1 && HB_ISPOINTER(1) )
   {
     PHB_ITEM ptr = hb_itemPutPtr( NULL, (void *) hb_itemGetPtr( hb_param(1, HB_IT_POINTER ) ) );
     hb_objSendMsg( self, "_pointer", 1, ptr );
@@ -560,7 +557,7 @@ HB_FUNC_STATIC( QSCRIPTCONTEXT_SETSELFDESTRUCTION )
 {
   PHB_ITEM self = hb_stackSelfItem();
 
-  if( hb_pcount() == 1 && ISLOG(1) )
+  if( hb_pcount() == 1 && HB_ISLOG(1) )
   {
     PHB_ITEM des = hb_itemPutL( NULL, hb_parl(1) );
     hb_objSendMsg( self, "_self_destruction", 1, des );

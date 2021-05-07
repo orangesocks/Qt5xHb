@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -42,7 +42,7 @@ CLASS QUndoCommand
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QUndoCommand
+PROCEDURE destroyObject() CLASS QUndoCommand
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -65,33 +65,30 @@ RETURN
 #endif
 
 /*
-QUndoCommand(QUndoCommand * parent = 0)
+QUndoCommand( QUndoCommand * parent = 0 )
 */
-void QUndoCommand_new1 ()
+void QUndoCommand_new1()
 {
-  QUndoCommand * o = new QUndoCommand ( ISNIL(1)? 0 : (QUndoCommand *) _qt5xhb_itemGetPtr(1) );
-  _qt5xhb_returnNewObject( o, false );
+  QUndoCommand * obj = new QUndoCommand( HB_ISNIL(1)? 0 : (QUndoCommand *) Qt5xHb::itemGetPtr(1) );
+  Qt5xHb::returnNewObject( obj, false );
 }
 
 /*
-QUndoCommand(const QString & text, QUndoCommand * parent = 0)
+QUndoCommand( const QString & text, QUndoCommand * parent = 0 )
 */
-void QUndoCommand_new2 ()
+void QUndoCommand_new2()
 {
-  QUndoCommand * o = new QUndoCommand ( PQSTRING(1), ISNIL(2)? 0 : (QUndoCommand *) _qt5xhb_itemGetPtr(2) );
-  _qt5xhb_returnNewObject( o, false );
+  QUndoCommand * obj = new QUndoCommand( PQSTRING(1), HB_ISNIL(2)? 0 : (QUndoCommand *) Qt5xHb::itemGetPtr(2) );
+  Qt5xHb::returnNewObject( obj, false );
 }
-
-//[1]QUndoCommand(QUndoCommand * parent = 0)
-//[2]QUndoCommand(const QString & text, QUndoCommand * parent = 0)
 
 HB_FUNC_STATIC( QUNDOCOMMAND_NEW )
 {
-  if( ISBETWEEN(0,1) && (ISQUNDOCOMMAND(1)||ISNIL(1)) )
+  if( ISBETWEEN(0,1) && (ISQUNDOCOMMAND(1)||HB_ISNIL(1)) )
   {
     QUndoCommand_new1();
   }
-  else if( ISBETWEEN(1,2) && ISCHAR(1) && (ISQUNDOCOMMAND(2)||ISNIL(2)) )
+  else if( ISBETWEEN(1,2) && HB_ISCHAR(1) && (ISQUNDOCOMMAND(2)||HB_ISNIL(2)) )
   {
     QUndoCommand_new2();
   }
@@ -103,7 +100,7 @@ HB_FUNC_STATIC( QUNDOCOMMAND_NEW )
 
 HB_FUNC_STATIC( QUNDOCOMMAND_DELETE )
 {
-  QUndoCommand * obj = (QUndoCommand *) _qt5xhb_itemGetPtrStackSelfItem();
+  QUndoCommand * obj = (QUndoCommand *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -123,7 +120,7 @@ QString actionText() const
 */
 HB_FUNC_STATIC( QUNDOCOMMAND_ACTIONTEXT )
 {
-  QUndoCommand * obj = (QUndoCommand *) _qt5xhb_itemGetPtrStackSelfItem();
+  QUndoCommand * obj = (QUndoCommand *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -131,7 +128,7 @@ HB_FUNC_STATIC( QUNDOCOMMAND_ACTIONTEXT )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRING( obj->actionText () );
+      RQSTRING( obj->actionText() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -143,20 +140,20 @@ HB_FUNC_STATIC( QUNDOCOMMAND_ACTIONTEXT )
 }
 
 /*
-const QUndoCommand * child(int index) const
+const QUndoCommand * child( int index ) const
 */
 HB_FUNC_STATIC( QUNDOCOMMAND_CHILD )
 {
-  QUndoCommand * obj = (QUndoCommand *) _qt5xhb_itemGetPtrStackSelfItem();
+  QUndoCommand * obj = (QUndoCommand *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      const QUndoCommand * ptr = obj->child ( PINT(1) );
-      _qt5xhb_createReturnClass ( ptr, "QUNDOCOMMAND", false );
+      const QUndoCommand * ptr = obj->child( PINT(1) );
+      Qt5xHb::createReturnClass( ptr, "QUNDOCOMMAND", false );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -172,7 +169,7 @@ int childCount() const
 */
 HB_FUNC_STATIC( QUNDOCOMMAND_CHILDCOUNT )
 {
-  QUndoCommand * obj = (QUndoCommand *) _qt5xhb_itemGetPtrStackSelfItem();
+  QUndoCommand * obj = (QUndoCommand *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -180,7 +177,7 @@ HB_FUNC_STATIC( QUNDOCOMMAND_CHILDCOUNT )
     if( ISNUMPAR(0) )
     {
 #endif
-      RINT( obj->childCount () );
+      RINT( obj->childCount() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -196,7 +193,7 @@ virtual int id() const
 */
 HB_FUNC_STATIC( QUNDOCOMMAND_ID )
 {
-  QUndoCommand * obj = (QUndoCommand *) _qt5xhb_itemGetPtrStackSelfItem();
+  QUndoCommand * obj = (QUndoCommand *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -204,7 +201,7 @@ HB_FUNC_STATIC( QUNDOCOMMAND_ID )
     if( ISNUMPAR(0) )
     {
 #endif
-      RINT( obj->id () );
+      RINT( obj->id() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -216,11 +213,11 @@ HB_FUNC_STATIC( QUNDOCOMMAND_ID )
 }
 
 /*
-virtual bool mergeWith(const QUndoCommand * command)
+virtual bool mergeWith( const QUndoCommand * command )
 */
 HB_FUNC_STATIC( QUNDOCOMMAND_MERGEWITH )
 {
-  QUndoCommand * obj = (QUndoCommand *) _qt5xhb_itemGetPtrStackSelfItem();
+  QUndoCommand * obj = (QUndoCommand *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -228,7 +225,7 @@ HB_FUNC_STATIC( QUNDOCOMMAND_MERGEWITH )
     if( ISNUMPAR(1) && ISQUNDOCOMMAND(1) )
     {
 #endif
-      RBOOL( obj->mergeWith ( PQUNDOCOMMAND(1) ) );
+      RBOOL( obj->mergeWith( PQUNDOCOMMAND(1) ) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -244,7 +241,7 @@ virtual void redo()
 */
 HB_FUNC_STATIC( QUNDOCOMMAND_REDO )
 {
-  QUndoCommand * obj = (QUndoCommand *) _qt5xhb_itemGetPtrStackSelfItem();
+  QUndoCommand * obj = (QUndoCommand *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -252,7 +249,7 @@ HB_FUNC_STATIC( QUNDOCOMMAND_REDO )
     if( ISNUMPAR(0) )
     {
 #endif
-      obj->redo ();
+      obj->redo();
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -266,19 +263,19 @@ HB_FUNC_STATIC( QUNDOCOMMAND_REDO )
 }
 
 /*
-void setText(const QString & text)
+void setText( const QString & text )
 */
 HB_FUNC_STATIC( QUNDOCOMMAND_SETTEXT )
 {
-  QUndoCommand * obj = (QUndoCommand *) _qt5xhb_itemGetPtrStackSelfItem();
+  QUndoCommand * obj = (QUndoCommand *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISCHAR(1) )
+    if( ISNUMPAR(1) && HB_ISCHAR(1) )
     {
 #endif
-      obj->setText ( PQSTRING(1) );
+      obj->setText( PQSTRING(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -296,7 +293,7 @@ QString text() const
 */
 HB_FUNC_STATIC( QUNDOCOMMAND_TEXT )
 {
-  QUndoCommand * obj = (QUndoCommand *) _qt5xhb_itemGetPtrStackSelfItem();
+  QUndoCommand * obj = (QUndoCommand *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -304,7 +301,7 @@ HB_FUNC_STATIC( QUNDOCOMMAND_TEXT )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRING( obj->text () );
+      RQSTRING( obj->text() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -320,7 +317,7 @@ virtual void undo()
 */
 HB_FUNC_STATIC( QUNDOCOMMAND_UNDO )
 {
-  QUndoCommand * obj = (QUndoCommand *) _qt5xhb_itemGetPtrStackSelfItem();
+  QUndoCommand * obj = (QUndoCommand *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -328,7 +325,7 @@ HB_FUNC_STATIC( QUNDOCOMMAND_UNDO )
     if( ISNUMPAR(0) )
     {
 #endif
-      obj->undo ();
+      obj->undo();
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -345,7 +342,7 @@ HB_FUNC_STATIC( QUNDOCOMMAND_NEWFROM )
 {
   PHB_ITEM self = hb_stackSelfItem();
 
-  if( hb_pcount() == 1 && ISOBJECT(1) )
+  if( hb_pcount() == 1 && HB_ISOBJECT(1) )
   {
     PHB_ITEM ptr = hb_itemPutPtr( NULL, (void *) hb_itemGetPtr( hb_objSendMsg( hb_param(1, HB_IT_OBJECT ), "POINTER", 0 ) ) );
     hb_objSendMsg( self, "_pointer", 1, ptr );
@@ -354,7 +351,7 @@ HB_FUNC_STATIC( QUNDOCOMMAND_NEWFROM )
     hb_objSendMsg( self, "_self_destruction", 1, des );
     hb_itemRelease( des );
   }
-  else if( hb_pcount() == 1 && ISPOINTER(1) )
+  else if( hb_pcount() == 1 && HB_ISPOINTER(1) )
   {
     PHB_ITEM ptr = hb_itemPutPtr( NULL, (void *) hb_itemGetPtr( hb_param(1, HB_IT_POINTER ) ) );
     hb_objSendMsg( self, "_pointer", 1, ptr );
@@ -390,7 +387,7 @@ HB_FUNC_STATIC( QUNDOCOMMAND_SETSELFDESTRUCTION )
 {
   PHB_ITEM self = hb_stackSelfItem();
 
-  if( hb_pcount() == 1 && ISLOG(1) )
+  if( hb_pcount() == 1 && HB_ISLOG(1) )
   {
     PHB_ITEM des = hb_itemPutL( NULL, hb_parl(1) );
     hb_objSendMsg( self, "_self_destruction", 1, des );

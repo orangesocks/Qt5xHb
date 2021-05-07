@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -38,7 +38,7 @@ CLASS QStringMatcher
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QStringMatcher
+PROCEDURE destroyObject() CLASS QStringMatcher
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -63,43 +63,38 @@ RETURN
 /*
 QStringMatcher()
 */
-void QStringMatcher_new1 ()
+void QStringMatcher_new1()
 {
-  QStringMatcher * o = new QStringMatcher ();
-  _qt5xhb_returnNewObject( o, true );
+  QStringMatcher * obj = new QStringMatcher();
+  Qt5xHb::returnNewObject( obj, true );
 }
 
 /*
-QStringMatcher(const QString &pattern,Qt::CaseSensitivity cs = Qt::CaseSensitive)
+QStringMatcher( const QString & pattern, Qt::CaseSensitivity cs = Qt::CaseSensitive )
 */
-void QStringMatcher_new2 ()
+void QStringMatcher_new2()
 {
-  QStringMatcher * o = new QStringMatcher ( PQSTRING(1), ISNIL(2)? (Qt::CaseSensitivity) Qt::CaseSensitive : (Qt::CaseSensitivity) hb_parni(2) );
-  _qt5xhb_returnNewObject( o, true );
+  QStringMatcher * obj = new QStringMatcher( PQSTRING(1), HB_ISNIL(2)? (Qt::CaseSensitivity) Qt::CaseSensitive : (Qt::CaseSensitivity) hb_parni(2) );
+  Qt5xHb::returnNewObject( obj, true );
 }
 
 /*
-QStringMatcher(const QChar *uc, int len,Qt::CaseSensitivity cs = Qt::CaseSensitive)
+QStringMatcher( const QChar * uc, int len, Qt::CaseSensitivity cs = Qt::CaseSensitive )
 */
-void QStringMatcher_new3 ()
+void QStringMatcher_new3()
 {
-  QStringMatcher * o = new QStringMatcher ( PQCHAR(1), PINT(2), ISNIL(3)? (Qt::CaseSensitivity) Qt::CaseSensitive : (Qt::CaseSensitivity) hb_parni(3) );
-  _qt5xhb_returnNewObject( o, true );
+  QStringMatcher * obj = new QStringMatcher( PQCHAR(1), PINT(2), HB_ISNIL(3)? (Qt::CaseSensitivity) Qt::CaseSensitive : (Qt::CaseSensitivity) hb_parni(3) );
+  Qt5xHb::returnNewObject( obj, true );
 }
 
 /*
-QStringMatcher(const QStringMatcher &other)
+QStringMatcher( const QStringMatcher & other )
 */
-void QStringMatcher_new4 ()
+void QStringMatcher_new4()
 {
-  QStringMatcher * o = new QStringMatcher ( *PQSTRINGMATCHER(1) );
-  _qt5xhb_returnNewObject( o, true );
+  QStringMatcher * obj = new QStringMatcher( *PQSTRINGMATCHER(1) );
+  Qt5xHb::returnNewObject( obj, true );
 }
-
-//QStringMatcher()
-//QStringMatcher(const QString &pattern,Qt::CaseSensitivity cs = Qt::CaseSensitive)
-//QStringMatcher(const QChar *uc, int len,Qt::CaseSensitivity cs = Qt::CaseSensitive)
-//QStringMatcher(const QStringMatcher &other)
 
 HB_FUNC_STATIC( QSTRINGMATCHER_NEW )
 {
@@ -107,11 +102,11 @@ HB_FUNC_STATIC( QSTRINGMATCHER_NEW )
   {
     QStringMatcher_new1();
   }
-  else if( ISBETWEEN(1,2) && ISCHAR(1) && ISOPTNUM(2) )
+  else if( ISBETWEEN(1,2) && HB_ISCHAR(1) && ( HB_ISNUM(2)||HB_ISNIL(2)) )
   {
     QStringMatcher_new2();
   }
-  else if( ISBETWEEN(2,3) && ISQCHAR(1) && ISNUM(2) && ISOPTNUM(3) )
+  else if( ISBETWEEN(2,3) && ISQCHAR(1) && HB_ISNUM(2) && ( HB_ISNUM(3)||HB_ISNIL(3)) )
   {
     QStringMatcher_new3();
   }
@@ -127,7 +122,7 @@ HB_FUNC_STATIC( QSTRINGMATCHER_NEW )
 
 HB_FUNC_STATIC( QSTRINGMATCHER_DELETE )
 {
-  QStringMatcher * obj = (QStringMatcher *) _qt5xhb_itemGetPtrStackSelfItem();
+  QStringMatcher * obj = (QStringMatcher *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -143,19 +138,19 @@ HB_FUNC_STATIC( QSTRINGMATCHER_DELETE )
 }
 
 /*
-void setPattern(const QString &pattern)
+void setPattern( const QString & pattern )
 */
 HB_FUNC_STATIC( QSTRINGMATCHER_SETPATTERN )
 {
-  QStringMatcher * obj = (QStringMatcher *) _qt5xhb_itemGetPtrStackSelfItem();
+  QStringMatcher * obj = (QStringMatcher *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISCHAR(1) )
+    if( ISNUMPAR(1) && HB_ISCHAR(1) )
     {
 #endif
-      obj->setPattern ( PQSTRING(1) );
+      obj->setPattern( PQSTRING(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -169,19 +164,19 @@ HB_FUNC_STATIC( QSTRINGMATCHER_SETPATTERN )
 }
 
 /*
-void setCaseSensitivity(Qt::CaseSensitivity cs)
+void setCaseSensitivity( Qt::CaseSensitivity cs )
 */
 HB_FUNC_STATIC( QSTRINGMATCHER_SETCASESENSITIVITY )
 {
-  QStringMatcher * obj = (QStringMatcher *) _qt5xhb_itemGetPtrStackSelfItem();
+  QStringMatcher * obj = (QStringMatcher *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setCaseSensitivity ( (Qt::CaseSensitivity) hb_parni(1) );
+      obj->setCaseSensitivity( (Qt::CaseSensitivity) hb_parni(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -195,41 +190,38 @@ HB_FUNC_STATIC( QSTRINGMATCHER_SETCASESENSITIVITY )
 }
 
 /*
-int indexIn(const QString &str, int from = 0) const
+int indexIn( const QString & str, int from = 0 ) const
 */
-void QStringMatcher_indexIn1 ()
+void QStringMatcher_indexIn1()
 {
-  QStringMatcher * obj = (QStringMatcher *) _qt5xhb_itemGetPtrStackSelfItem();
+  QStringMatcher * obj = (QStringMatcher *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
-      RINT( obj->indexIn ( PQSTRING(1), OPINT(2,0) ) );
+    RINT( obj->indexIn( PQSTRING(1), OPINT(2,0) ) );
   }
 }
 
 /*
-int indexIn(const QChar *str, int length, int from = 0) const
+int indexIn( const QChar * str, int length, int from = 0 ) const
 */
-void QStringMatcher_indexIn2 ()
+void QStringMatcher_indexIn2()
 {
-  QStringMatcher * obj = (QStringMatcher *) _qt5xhb_itemGetPtrStackSelfItem();
+  QStringMatcher * obj = (QStringMatcher *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
-      RINT( obj->indexIn ( PQCHAR(1), PINT(2), OPINT(3,0) ) );
+    RINT( obj->indexIn( PQCHAR(1), PINT(2), OPINT(3,0) ) );
   }
 }
 
-//[1]int indexIn(const QString &str, int from = 0) const
-//[2]int indexIn(const QChar *str, int length, int from = 0) const
-
 HB_FUNC_STATIC( QSTRINGMATCHER_INDEXIN )
 {
-  if( ISBETWEEN(1,2) && ISCHAR(1) && ISOPTNUM(2) )
+  if( ISBETWEEN(1,2) && HB_ISCHAR(1) && ( HB_ISNUM(2)||HB_ISNIL(2)) )
   {
     QStringMatcher_indexIn1();
   }
-  else if( ISBETWEEN(2,3) && ISQCHAR(1) && ISNUM(2) && ISOPTNUM(3) )
+  else if( ISBETWEEN(2,3) && ISQCHAR(1) && HB_ISNUM(2) && ( HB_ISNUM(3)||HB_ISNIL(3)) )
   {
     QStringMatcher_indexIn2();
   }
@@ -244,7 +236,7 @@ QString pattern() const
 */
 HB_FUNC_STATIC( QSTRINGMATCHER_PATTERN )
 {
-  QStringMatcher * obj = (QStringMatcher *) _qt5xhb_itemGetPtrStackSelfItem();
+  QStringMatcher * obj = (QStringMatcher *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -252,7 +244,7 @@ HB_FUNC_STATIC( QSTRINGMATCHER_PATTERN )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRING( obj->pattern () );
+      RQSTRING( obj->pattern() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -268,7 +260,7 @@ Qt::CaseSensitivity caseSensitivity() const
 */
 HB_FUNC_STATIC( QSTRINGMATCHER_CASESENSITIVITY )
 {
-  QStringMatcher * obj = (QStringMatcher *) _qt5xhb_itemGetPtrStackSelfItem();
+  QStringMatcher * obj = (QStringMatcher *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -276,7 +268,7 @@ HB_FUNC_STATIC( QSTRINGMATCHER_CASESENSITIVITY )
     if( ISNUMPAR(0) )
     {
 #endif
-      RENUM( obj->caseSensitivity () );
+      RENUM( obj->caseSensitivity() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -291,7 +283,7 @@ HB_FUNC_STATIC( QSTRINGMATCHER_NEWFROM )
 {
   PHB_ITEM self = hb_stackSelfItem();
 
-  if( hb_pcount() == 1 && ISOBJECT(1) )
+  if( hb_pcount() == 1 && HB_ISOBJECT(1) )
   {
     PHB_ITEM ptr = hb_itemPutPtr( NULL, (void *) hb_itemGetPtr( hb_objSendMsg( hb_param(1, HB_IT_OBJECT ), "POINTER", 0 ) ) );
     hb_objSendMsg( self, "_pointer", 1, ptr );
@@ -300,7 +292,7 @@ HB_FUNC_STATIC( QSTRINGMATCHER_NEWFROM )
     hb_objSendMsg( self, "_self_destruction", 1, des );
     hb_itemRelease( des );
   }
-  else if( hb_pcount() == 1 && ISPOINTER(1) )
+  else if( hb_pcount() == 1 && HB_ISPOINTER(1) )
   {
     PHB_ITEM ptr = hb_itemPutPtr( NULL, (void *) hb_itemGetPtr( hb_param(1, HB_IT_POINTER ) ) );
     hb_objSendMsg( self, "_pointer", 1, ptr );
@@ -336,7 +328,7 @@ HB_FUNC_STATIC( QSTRINGMATCHER_SETSELFDESTRUCTION )
 {
   PHB_ITEM self = hb_stackSelfItem();
 
-  if( hb_pcount() == 1 && ISLOG(1) )
+  if( hb_pcount() == 1 && HB_ISLOG(1) )
   {
     PHB_ITEM des = hb_itemPutL( NULL, hb_parl(1) );
     hb_objSendMsg( self, "_self_destruction", 1, des );

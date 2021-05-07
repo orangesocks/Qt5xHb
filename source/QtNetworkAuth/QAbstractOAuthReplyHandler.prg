@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -28,7 +28,7 @@ CLASS QAbstractOAuthReplyHandler INHERIT QObject
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QAbstractOAuthReplyHandler
+PROCEDURE destroyObject() CLASS QAbstractOAuthReplyHandler
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -47,6 +47,8 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
@@ -55,23 +57,17 @@ RETURN
 #endif
 
 /*
-explicit QAbstractOAuthReplyHandler(QObject *parent = nullptr) (abstract)
-*/
-
-/*
-QAbstractOAuthReplyHandler(QObjectPrivate &d, QObject *parent = nullptr) [protected]
-*/
-
-/*
 virtual ~QAbstractOAuthReplyHandler()
 */
 HB_FUNC_STATIC( QABSTRACTOAUTHREPLYHANDLER_DELETE )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
-  QAbstractOAuthReplyHandler * obj = (QAbstractOAuthReplyHandler *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAbstractOAuthReplyHandler * obj = (QAbstractOAuthReplyHandler *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -90,7 +86,7 @@ virtual QString callback() const = 0
 HB_FUNC_STATIC( QABSTRACTOAUTHREPLYHANDLER_CALLBACK )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
-  QAbstractOAuthReplyHandler * obj = (QAbstractOAuthReplyHandler *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAbstractOAuthReplyHandler * obj = (QAbstractOAuthReplyHandler *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -98,7 +94,7 @@ HB_FUNC_STATIC( QABSTRACTOAUTHREPLYHANDLER_CALLBACK )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRING( obj->callback () );
+      RQSTRING( obj->callback() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -111,12 +107,12 @@ HB_FUNC_STATIC( QABSTRACTOAUTHREPLYHANDLER_CALLBACK )
 }
 
 /*
-virtual void networkReplyFinished(QNetworkReply *reply) = 0 (slot)
+virtual void networkReplyFinished( QNetworkReply * reply ) = 0
 */
 HB_FUNC_STATIC( QABSTRACTOAUTHREPLYHANDLER_NETWORKREPLYFINISHED )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
-  QAbstractOAuthReplyHandler * obj = (QAbstractOAuthReplyHandler *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAbstractOAuthReplyHandler * obj = (QAbstractOAuthReplyHandler *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -124,7 +120,7 @@ HB_FUNC_STATIC( QABSTRACTOAUTHREPLYHANDLER_NETWORKREPLYFINISHED )
     if( ISNUMPAR(1) && ISQNETWORKREPLY(1) )
     {
 #endif
-      obj->networkReplyFinished ( PQNETWORKREPLY(1) );
+      obj->networkReplyFinished( PQNETWORKREPLY(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -138,7 +134,7 @@ HB_FUNC_STATIC( QABSTRACTOAUTHREPLYHANDLER_NETWORKREPLYFINISHED )
 #endif
 }
 
-void QAbstractOAuthReplyHandlerSlots_connect_signal ( const QString & signal, const QString & slot );
+void QAbstractOAuthReplyHandlerSlots_connect_signal( const QString & signal, const QString & slot );
 
 HB_FUNC_STATIC( QABSTRACTOAUTHREPLYHANDLER_ONCALLBACKDATARECEIVED )
 {

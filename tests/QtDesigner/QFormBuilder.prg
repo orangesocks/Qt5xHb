@@ -2,13 +2,13 @@
 
   Qt5xHb Project - Test Program
 
-  Copyright (C) 2019 Marcos Antonio Gambeta
+  Copyright (C) 2021 Marcos Antonio Gambeta
 
   E-mail:
   marcosgambeta AT outlook DOT com
 
   Website:
-  https://github.com/marcosgambeta/Qt5xHb
+  https://github.com/magsoftinfo/qt5xhb
 
 */
 
@@ -18,7 +18,7 @@
 REQUEST HB_GT_WIN
 #endif
 
-PROCEDURE Main ()
+PROCEDURE Main()
 
    LOCAL oApp
    LOCAl oFormBuilder
@@ -36,36 +36,36 @@ PROCEDURE Main ()
    // sendo oWindow a janela com os controles
 
    oFormBuilder := QFormBuilder():new()
-   oFile := QFile():new("QFormBuilder.ui")
-   oFile:open(QIODevice_ReadOnly)
-   oWindow := oFormBuilder:load(oFile)
+   oFile := QFile():new( "QFormBuilder.ui" )
+   oFile:open( QIODevice_ReadOnly )
+   oWindow := oFormBuilder:load( oFile )
    oFile:close()
    oFile:delete()
    oFormBuilder:delete()
 
    // aqui personalizamos os widgets (aparência, ações e eventos)
 
-   oPushButton := QPushButton():newFrom( oWindow:findChild("pushButton") )
-   ? oPushButton:onClicked({||qout("PushButton clicked")})
+   oPushButton := QPushButton():newFrom( oWindow:findChild( "pushButton" ) )
+   ? oPushButton:onClicked( {||qout( "PushButton clicked" )} )
 
-   oCommandLinkButton := QCommandLinkButton():newFrom( oWindow:findChild("commandLinkButton") )
-   ? oCommandLinkButton:onClicked({||qout("CommandLinkButton clicked")})
-   oCommandLinkButton:setStyleSheet("background-color: yellow")
+   oCommandLinkButton := QCommandLinkButton():newFrom( oWindow:findChild( "commandLinkButton" ) )
+   ? oCommandLinkButton:onClicked( {||qout( "CommandLinkButton clicked" )} )
+   oCommandLinkButton:setStyleSheet( "background-color: yellow" )
 
-   oComboBox := QComboBox():newFrom( oWindow:findChild("comboBox") )
-   oComboBox:addItem("Item 1")
-   oComboBox:addItem("Item 2")
-   oComboBox:addItem("Item 3")
-   oComboBox:addItem("Item 4")
-   oComboBox:addItem("Item 5")
+   oComboBox := QComboBox():newFrom( oWindow:findChild( "comboBox" ) )
+   oComboBox:addItem( "Item 1" )
+   oComboBox:addItem( "Item 2" )
+   oComboBox:addItem( "Item 3" )
+   oComboBox:addItem( "Item 4" )
+   oComboBox:addItem( "Item 5" )
 
-   oLineEdit := QLineEdit():newFrom( oWindow:findChild("lineEdit") )
-   oLineEdit:setText("testando QLineEdit")
-   ? oLineEdit:onFocusInEvent({||qout("focusin")})
-   ? oLineEdit:onFocusOutEvent({||qout("focusout")})
+   oLineEdit := QLineEdit():newFrom( oWindow:findChild( "lineEdit" ) )
+   oLineEdit:setText( "testando QLineEdit" )
+   ? oLineEdit:onFocusInEvent( {||qout( "focusin" )} )
+   ? oLineEdit:onFocusOutEvent( {||qout( "focusout" )} )
 
-   oLCDNumber := QLCDNumber():newFrom( oWindow:findChild("lcdNumber") )
-   oLCDNumber:display(1234)
+   oLCDNumber := QLCDNumber():newFrom( oWindow:findChild( "lcdNumber" ) )
+   oLCDNumber:display( 1234 )
 
    oWindow:show()
 

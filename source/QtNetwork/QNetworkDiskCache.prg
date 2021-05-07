@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -39,7 +39,7 @@ CLASS QNetworkDiskCache INHERIT QAbstractNetworkCache
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QNetworkDiskCache
+PROCEDURE destroyObject() CLASS QNetworkDiskCache
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -56,6 +56,8 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #include <QtNetwork/QNetworkDiskCache>
@@ -64,14 +66,14 @@ RETURN
 #include <QtCore/QIODevice>
 
 /*
-explicit QNetworkDiskCache(QObject *parent = Q_NULLPTR)
+QNetworkDiskCache( QObject * parent = nullptr )
 */
 HB_FUNC_STATIC( QNETWORKDISKCACHE_NEW )
 {
-  if( ISBETWEEN(0,1) && (ISQOBJECT(1)||ISNIL(1)) )
+  if( ISBETWEEN(0,1) && (ISQOBJECT(1)||HB_ISNIL(1)) )
   {
-    QNetworkDiskCache * o = new QNetworkDiskCache ( OPQOBJECT(1,0) );
-    _qt5xhb_returnNewObject( o, false );
+    QNetworkDiskCache * obj = new QNetworkDiskCache( OPQOBJECT(1,nullptr) );
+    Qt5xHb::returnNewObject( obj, false );
   }
   else
   {
@@ -84,10 +86,12 @@ HB_FUNC_STATIC( QNETWORKDISKCACHE_NEW )
 */
 HB_FUNC_STATIC( QNETWORKDISKCACHE_DELETE )
 {
-  QNetworkDiskCache * obj = (QNetworkDiskCache *) _qt5xhb_itemGetPtrStackSelfItem();
+  QNetworkDiskCache * obj = (QNetworkDiskCache *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -104,7 +108,7 @@ QString cacheDirectory() const
 */
 HB_FUNC_STATIC( QNETWORKDISKCACHE_CACHEDIRECTORY )
 {
-  QNetworkDiskCache * obj = (QNetworkDiskCache *) _qt5xhb_itemGetPtrStackSelfItem();
+  QNetworkDiskCache * obj = (QNetworkDiskCache *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -112,7 +116,7 @@ HB_FUNC_STATIC( QNETWORKDISKCACHE_CACHEDIRECTORY )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRING( obj->cacheDirectory () );
+      RQSTRING( obj->cacheDirectory() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -124,19 +128,19 @@ HB_FUNC_STATIC( QNETWORKDISKCACHE_CACHEDIRECTORY )
 }
 
 /*
-void setCacheDirectory(const QString &cacheDir)
+void setCacheDirectory( const QString & cacheDir )
 */
 HB_FUNC_STATIC( QNETWORKDISKCACHE_SETCACHEDIRECTORY )
 {
-  QNetworkDiskCache * obj = (QNetworkDiskCache *) _qt5xhb_itemGetPtrStackSelfItem();
+  QNetworkDiskCache * obj = (QNetworkDiskCache *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISCHAR(1) )
+    if( ISNUMPAR(1) && HB_ISCHAR(1) )
     {
 #endif
-      obj->setCacheDirectory ( PQSTRING(1) );
+      obj->setCacheDirectory( PQSTRING(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -154,7 +158,7 @@ qint64 maximumCacheSize() const
 */
 HB_FUNC_STATIC( QNETWORKDISKCACHE_MAXIMUMCACHESIZE )
 {
-  QNetworkDiskCache * obj = (QNetworkDiskCache *) _qt5xhb_itemGetPtrStackSelfItem();
+  QNetworkDiskCache * obj = (QNetworkDiskCache *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -162,7 +166,7 @@ HB_FUNC_STATIC( QNETWORKDISKCACHE_MAXIMUMCACHESIZE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQINT64( obj->maximumCacheSize () );
+      RQINT64( obj->maximumCacheSize() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -174,19 +178,19 @@ HB_FUNC_STATIC( QNETWORKDISKCACHE_MAXIMUMCACHESIZE )
 }
 
 /*
-void setMaximumCacheSize(qint64 size)
+void setMaximumCacheSize( qint64 size )
 */
 HB_FUNC_STATIC( QNETWORKDISKCACHE_SETMAXIMUMCACHESIZE )
 {
-  QNetworkDiskCache * obj = (QNetworkDiskCache *) _qt5xhb_itemGetPtrStackSelfItem();
+  QNetworkDiskCache * obj = (QNetworkDiskCache *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setMaximumCacheSize ( PQINT64(1) );
+      obj->setMaximumCacheSize( PQINT64(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -204,7 +208,7 @@ qint64 cacheSize() const Q_DECL_OVERRIDE
 */
 HB_FUNC_STATIC( QNETWORKDISKCACHE_CACHESIZE )
 {
-  QNetworkDiskCache * obj = (QNetworkDiskCache *) _qt5xhb_itemGetPtrStackSelfItem();
+  QNetworkDiskCache * obj = (QNetworkDiskCache *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -212,7 +216,7 @@ HB_FUNC_STATIC( QNETWORKDISKCACHE_CACHESIZE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQINT64( obj->cacheSize () );
+      RQINT64( obj->cacheSize() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -224,11 +228,11 @@ HB_FUNC_STATIC( QNETWORKDISKCACHE_CACHESIZE )
 }
 
 /*
-QNetworkCacheMetaData metaData(const QUrl &url) Q_DECL_OVERRIDE
+QNetworkCacheMetaData metaData( const QUrl & url ) Q_DECL_OVERRIDE
 */
 HB_FUNC_STATIC( QNETWORKDISKCACHE_METADATA )
 {
-  QNetworkDiskCache * obj = (QNetworkDiskCache *) _qt5xhb_itemGetPtrStackSelfItem();
+  QNetworkDiskCache * obj = (QNetworkDiskCache *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -236,8 +240,8 @@ HB_FUNC_STATIC( QNETWORKDISKCACHE_METADATA )
     if( ISNUMPAR(1) && ISQURL(1) )
     {
 #endif
-      QNetworkCacheMetaData * ptr = new QNetworkCacheMetaData( obj->metaData ( *PQURL(1) ) );
-      _qt5xhb_createReturnClass ( ptr, "QNETWORKCACHEMETADATA", true );
+      QNetworkCacheMetaData * ptr = new QNetworkCacheMetaData( obj->metaData( *PQURL(1) ) );
+      Qt5xHb::createReturnClass( ptr, "QNETWORKCACHEMETADATA", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -249,11 +253,11 @@ HB_FUNC_STATIC( QNETWORKDISKCACHE_METADATA )
 }
 
 /*
-void updateMetaData(const QNetworkCacheMetaData &metaData) Q_DECL_OVERRIDE
+void updateMetaData( const QNetworkCacheMetaData & metaData ) Q_DECL_OVERRIDE
 */
 HB_FUNC_STATIC( QNETWORKDISKCACHE_UPDATEMETADATA )
 {
-  QNetworkDiskCache * obj = (QNetworkDiskCache *) _qt5xhb_itemGetPtrStackSelfItem();
+  QNetworkDiskCache * obj = (QNetworkDiskCache *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -261,7 +265,7 @@ HB_FUNC_STATIC( QNETWORKDISKCACHE_UPDATEMETADATA )
     if( ISNUMPAR(1) && ISQNETWORKCACHEMETADATA(1) )
     {
 #endif
-      obj->updateMetaData ( *PQNETWORKCACHEMETADATA(1) );
+      obj->updateMetaData( *PQNETWORKCACHEMETADATA(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -275,11 +279,11 @@ HB_FUNC_STATIC( QNETWORKDISKCACHE_UPDATEMETADATA )
 }
 
 /*
-QIODevice *data(const QUrl &url) Q_DECL_OVERRIDE
+QIODevice * data( const QUrl & url ) Q_DECL_OVERRIDE
 */
 HB_FUNC_STATIC( QNETWORKDISKCACHE_DATA )
 {
-  QNetworkDiskCache * obj = (QNetworkDiskCache *) _qt5xhb_itemGetPtrStackSelfItem();
+  QNetworkDiskCache * obj = (QNetworkDiskCache *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -287,8 +291,8 @@ HB_FUNC_STATIC( QNETWORKDISKCACHE_DATA )
     if( ISNUMPAR(1) && ISQURL(1) )
     {
 #endif
-      QIODevice * ptr = obj->data ( *PQURL(1) );
-      _qt5xhb_createReturnQObjectClass ( ptr, "QIODEVICE" );
+      QIODevice * ptr = obj->data( *PQURL(1) );
+      Qt5xHb::createReturnQObjectClass( ptr, "QIODEVICE" );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -300,11 +304,11 @@ HB_FUNC_STATIC( QNETWORKDISKCACHE_DATA )
 }
 
 /*
-bool remove(const QUrl &url) Q_DECL_OVERRIDE
+bool remove( const QUrl & url ) Q_DECL_OVERRIDE
 */
 HB_FUNC_STATIC( QNETWORKDISKCACHE_REMOVE )
 {
-  QNetworkDiskCache * obj = (QNetworkDiskCache *) _qt5xhb_itemGetPtrStackSelfItem();
+  QNetworkDiskCache * obj = (QNetworkDiskCache *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -312,7 +316,7 @@ HB_FUNC_STATIC( QNETWORKDISKCACHE_REMOVE )
     if( ISNUMPAR(1) && ISQURL(1) )
     {
 #endif
-      RBOOL( obj->remove ( *PQURL(1) ) );
+      RBOOL( obj->remove( *PQURL(1) ) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -324,11 +328,11 @@ HB_FUNC_STATIC( QNETWORKDISKCACHE_REMOVE )
 }
 
 /*
-QIODevice *prepare(const QNetworkCacheMetaData &metaData) Q_DECL_OVERRIDE
+QIODevice * prepare( const QNetworkCacheMetaData & metaData ) Q_DECL_OVERRIDE
 */
 HB_FUNC_STATIC( QNETWORKDISKCACHE_PREPARE )
 {
-  QNetworkDiskCache * obj = (QNetworkDiskCache *) _qt5xhb_itemGetPtrStackSelfItem();
+  QNetworkDiskCache * obj = (QNetworkDiskCache *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -336,8 +340,8 @@ HB_FUNC_STATIC( QNETWORKDISKCACHE_PREPARE )
     if( ISNUMPAR(1) && ISQNETWORKCACHEMETADATA(1) )
     {
 #endif
-      QIODevice * ptr = obj->prepare ( *PQNETWORKCACHEMETADATA(1) );
-      _qt5xhb_createReturnQObjectClass ( ptr, "QIODEVICE" );
+      QIODevice * ptr = obj->prepare( *PQNETWORKCACHEMETADATA(1) );
+      Qt5xHb::createReturnQObjectClass( ptr, "QIODEVICE" );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -349,11 +353,11 @@ HB_FUNC_STATIC( QNETWORKDISKCACHE_PREPARE )
 }
 
 /*
-void insert(QIODevice *device) Q_DECL_OVERRIDE
+void insert( QIODevice * device ) Q_DECL_OVERRIDE
 */
 HB_FUNC_STATIC( QNETWORKDISKCACHE_INSERT )
 {
-  QNetworkDiskCache * obj = (QNetworkDiskCache *) _qt5xhb_itemGetPtrStackSelfItem();
+  QNetworkDiskCache * obj = (QNetworkDiskCache *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -361,7 +365,7 @@ HB_FUNC_STATIC( QNETWORKDISKCACHE_INSERT )
     if( ISNUMPAR(1) && ISQIODEVICE(1) )
     {
 #endif
-      obj->insert ( PQIODEVICE(1) );
+      obj->insert( PQIODEVICE(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -375,20 +379,20 @@ HB_FUNC_STATIC( QNETWORKDISKCACHE_INSERT )
 }
 
 /*
-QNetworkCacheMetaData fileMetaData(const QString &fileName) const
+QNetworkCacheMetaData fileMetaData( const QString & fileName ) const
 */
 HB_FUNC_STATIC( QNETWORKDISKCACHE_FILEMETADATA )
 {
-  QNetworkDiskCache * obj = (QNetworkDiskCache *) _qt5xhb_itemGetPtrStackSelfItem();
+  QNetworkDiskCache * obj = (QNetworkDiskCache *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISCHAR(1) )
+    if( ISNUMPAR(1) && HB_ISCHAR(1) )
     {
 #endif
-      QNetworkCacheMetaData * ptr = new QNetworkCacheMetaData( obj->fileMetaData ( PQSTRING(1) ) );
-      _qt5xhb_createReturnClass ( ptr, "QNETWORKCACHEMETADATA", true );
+      QNetworkCacheMetaData * ptr = new QNetworkCacheMetaData( obj->fileMetaData( PQSTRING(1) ) );
+      Qt5xHb::createReturnClass( ptr, "QNETWORKCACHEMETADATA", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -400,11 +404,11 @@ HB_FUNC_STATIC( QNETWORKDISKCACHE_FILEMETADATA )
 }
 
 /*
-void clear() Q_DECL_OVERRIDE (slot)
+void clear() Q_DECL_OVERRIDE
 */
 HB_FUNC_STATIC( QNETWORKDISKCACHE_CLEAR )
 {
-  QNetworkDiskCache * obj = (QNetworkDiskCache *) _qt5xhb_itemGetPtrStackSelfItem();
+  QNetworkDiskCache * obj = (QNetworkDiskCache *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -412,7 +416,7 @@ HB_FUNC_STATIC( QNETWORKDISKCACHE_CLEAR )
     if( ISNUMPAR(0) )
     {
 #endif
-      obj->clear ();
+      obj->clear();
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -424,9 +428,5 @@ HB_FUNC_STATIC( QNETWORKDISKCACHE_CLEAR )
 
   hb_itemReturn( hb_stackSelfItem() );
 }
-
-/*
-virtual qint64 expire() [protected]
-*/
 
 #pragma ENDDUMP

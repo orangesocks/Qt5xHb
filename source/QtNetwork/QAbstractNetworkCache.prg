@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -33,7 +33,7 @@ CLASS QAbstractNetworkCache INHERIT QObject
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QAbstractNetworkCache
+PROCEDURE destroyObject() CLASS QAbstractNetworkCache
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -50,6 +50,8 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #include <QtNetwork/QAbstractNetworkCache>
@@ -58,22 +60,16 @@ RETURN
 #include <QtCore/QIODevice>
 
 /*
-explicit QAbstractNetworkCache(QObject *parent = Q_NULLPTR) [protected]
-*/
-
-/*
-QAbstractNetworkCache(QAbstractNetworkCachePrivate &dd, QObject *parent) [protected]
-*/
-
-/*
 virtual ~QAbstractNetworkCache()
 */
 HB_FUNC_STATIC( QABSTRACTNETWORKCACHE_DELETE )
 {
-  QAbstractNetworkCache * obj = (QAbstractNetworkCache *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAbstractNetworkCache * obj = (QAbstractNetworkCache *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -86,11 +82,11 @@ HB_FUNC_STATIC( QABSTRACTNETWORKCACHE_DELETE )
 }
 
 /*
-virtual qint64 cacheSize () const = 0
+virtual qint64 cacheSize() const = 0
 */
 HB_FUNC_STATIC( QABSTRACTNETWORKCACHE_CACHESIZE )
 {
-  QAbstractNetworkCache * obj = (QAbstractNetworkCache *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAbstractNetworkCache * obj = (QAbstractNetworkCache *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -98,7 +94,7 @@ HB_FUNC_STATIC( QABSTRACTNETWORKCACHE_CACHESIZE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQINT64( obj->cacheSize () );
+      RQINT64( obj->cacheSize() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -110,11 +106,11 @@ HB_FUNC_STATIC( QABSTRACTNETWORKCACHE_CACHESIZE )
 }
 
 /*
-virtual QIODevice * data ( const QUrl & url ) = 0
+virtual QIODevice * data( const QUrl & url ) = 0
 */
 HB_FUNC_STATIC( QABSTRACTNETWORKCACHE_DATA )
 {
-  QAbstractNetworkCache * obj = (QAbstractNetworkCache *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAbstractNetworkCache * obj = (QAbstractNetworkCache *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -122,8 +118,8 @@ HB_FUNC_STATIC( QABSTRACTNETWORKCACHE_DATA )
     if( ISNUMPAR(1) && ISQURL(1) )
     {
 #endif
-      QIODevice * ptr = obj->data ( *PQURL(1) );
-      _qt5xhb_createReturnQObjectClass ( ptr, "QIODEVICE" );
+      QIODevice * ptr = obj->data( *PQURL(1) );
+      Qt5xHb::createReturnQObjectClass( ptr, "QIODEVICE" );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -135,11 +131,11 @@ HB_FUNC_STATIC( QABSTRACTNETWORKCACHE_DATA )
 }
 
 /*
-virtual void insert ( QIODevice * device ) = 0
+virtual void insert( QIODevice * device ) = 0
 */
 HB_FUNC_STATIC( QABSTRACTNETWORKCACHE_INSERT )
 {
-  QAbstractNetworkCache * obj = (QAbstractNetworkCache *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAbstractNetworkCache * obj = (QAbstractNetworkCache *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -147,7 +143,7 @@ HB_FUNC_STATIC( QABSTRACTNETWORKCACHE_INSERT )
     if( ISNUMPAR(1) && ISQIODEVICE(1) )
     {
 #endif
-      obj->insert ( PQIODEVICE(1) );
+      obj->insert( PQIODEVICE(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -161,11 +157,11 @@ HB_FUNC_STATIC( QABSTRACTNETWORKCACHE_INSERT )
 }
 
 /*
-virtual QNetworkCacheMetaData metaData ( const QUrl & url ) = 0
+virtual QNetworkCacheMetaData metaData( const QUrl & url ) = 0
 */
 HB_FUNC_STATIC( QABSTRACTNETWORKCACHE_METADATA )
 {
-  QAbstractNetworkCache * obj = (QAbstractNetworkCache *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAbstractNetworkCache * obj = (QAbstractNetworkCache *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -173,8 +169,8 @@ HB_FUNC_STATIC( QABSTRACTNETWORKCACHE_METADATA )
     if( ISNUMPAR(1) && ISQURL(1) )
     {
 #endif
-      QNetworkCacheMetaData * ptr = new QNetworkCacheMetaData( obj->metaData ( *PQURL(1) ) );
-      _qt5xhb_createReturnClass ( ptr, "QNETWORKCACHEMETADATA", true );
+      QNetworkCacheMetaData * ptr = new QNetworkCacheMetaData( obj->metaData( *PQURL(1) ) );
+      Qt5xHb::createReturnClass( ptr, "QNETWORKCACHEMETADATA", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -186,11 +182,11 @@ HB_FUNC_STATIC( QABSTRACTNETWORKCACHE_METADATA )
 }
 
 /*
-virtual QIODevice * prepare ( const QNetworkCacheMetaData & metaData ) = 0
+virtual QIODevice * prepare( const QNetworkCacheMetaData & metaData ) = 0
 */
 HB_FUNC_STATIC( QABSTRACTNETWORKCACHE_PREPARE )
 {
-  QAbstractNetworkCache * obj = (QAbstractNetworkCache *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAbstractNetworkCache * obj = (QAbstractNetworkCache *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -198,8 +194,8 @@ HB_FUNC_STATIC( QABSTRACTNETWORKCACHE_PREPARE )
     if( ISNUMPAR(1) && ISQNETWORKCACHEMETADATA(1) )
     {
 #endif
-      QIODevice * ptr = obj->prepare ( *PQNETWORKCACHEMETADATA(1) );
-      _qt5xhb_createReturnQObjectClass ( ptr, "QIODEVICE" );
+      QIODevice * ptr = obj->prepare( *PQNETWORKCACHEMETADATA(1) );
+      Qt5xHb::createReturnQObjectClass( ptr, "QIODEVICE" );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -211,11 +207,11 @@ HB_FUNC_STATIC( QABSTRACTNETWORKCACHE_PREPARE )
 }
 
 /*
-virtual bool remove ( const QUrl & url ) = 0
+virtual bool remove( const QUrl & url ) = 0
 */
 HB_FUNC_STATIC( QABSTRACTNETWORKCACHE_REMOVE )
 {
-  QAbstractNetworkCache * obj = (QAbstractNetworkCache *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAbstractNetworkCache * obj = (QAbstractNetworkCache *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -223,7 +219,7 @@ HB_FUNC_STATIC( QABSTRACTNETWORKCACHE_REMOVE )
     if( ISNUMPAR(1) && ISQURL(1) )
     {
 #endif
-      RBOOL( obj->remove ( *PQURL(1) ) );
+      RBOOL( obj->remove( *PQURL(1) ) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -235,11 +231,11 @@ HB_FUNC_STATIC( QABSTRACTNETWORKCACHE_REMOVE )
 }
 
 /*
-virtual void updateMetaData ( const QNetworkCacheMetaData & metaData ) = 0
+virtual void updateMetaData( const QNetworkCacheMetaData & metaData ) = 0
 */
 HB_FUNC_STATIC( QABSTRACTNETWORKCACHE_UPDATEMETADATA )
 {
-  QAbstractNetworkCache * obj = (QAbstractNetworkCache *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAbstractNetworkCache * obj = (QAbstractNetworkCache *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -247,7 +243,7 @@ HB_FUNC_STATIC( QABSTRACTNETWORKCACHE_UPDATEMETADATA )
     if( ISNUMPAR(1) && ISQNETWORKCACHEMETADATA(1) )
     {
 #endif
-      obj->updateMetaData ( *PQNETWORKCACHEMETADATA(1) );
+      obj->updateMetaData( *PQNETWORKCACHEMETADATA(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -261,11 +257,11 @@ HB_FUNC_STATIC( QABSTRACTNETWORKCACHE_UPDATEMETADATA )
 }
 
 /*
-virtual void clear () = 0 (slot)
+virtual void clear () = 0
 */
 HB_FUNC_STATIC( QABSTRACTNETWORKCACHE_CLEAR )
 {
-  QAbstractNetworkCache * obj = (QAbstractNetworkCache *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAbstractNetworkCache * obj = (QAbstractNetworkCache *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -273,7 +269,7 @@ HB_FUNC_STATIC( QABSTRACTNETWORKCACHE_CLEAR )
     if( ISNUMPAR(0) )
     {
 #endif
-      obj->clear ();
+      obj->clear();
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else

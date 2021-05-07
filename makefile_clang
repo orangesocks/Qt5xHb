@@ -1,7 +1,7 @@
 #
 # Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 #
-# Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+# Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 #
 # Makefile for Windows/MSys2/CLang
 #
@@ -20,8 +20,8 @@ HB_BIN_DIR = $(HBDIR)/bin
 HB_INC_DIR = $(HBDIR)/include
 
 QT5XHB_INC_DIR = include
-QT5XHB_OBJ_DIR = obj/$(QTVERSION)/$(QTANGLEOROPENGL)/$(QTCOMP)/$(QT32OR64)/$(QTPLATFORM)/$(HBCOMP)/$(HBVER)
-QT5XHB_LIB_DIR = lib/$(QTVERSION)/$(QTANGLEOROPENGL)/$(QTCOMP)/$(QT32OR64)/$(QTPLATFORM)/$(HBCOMP)/$(HBVER)
+QT5XHB_OBJ_DIR = obj/$(QTPLATFORM)/$(QTCOMP)
+QT5XHB_LIB_DIR = lib/$(QTPLATFORM)/$(QTCOMP)
 QT5XHB_SRC_DIR = source
 
 OBJEXT = .o
@@ -65,6 +65,18 @@ ifneq (,$(findstring 5.11,$(shell qmake -v)))
 endif
 # Qt 5.12.x require C++11
 ifneq (,$(findstring 5.12,$(shell qmake -v)))
+    CFLAGS += -std=c++11
+endif
+# Qt 5.13.x require C++11
+ifneq (,$(findstring 5.13,$(shell qmake -v)))
+    CFLAGS += -std=c++11
+endif
+# Qt 5.14.x require C++11
+ifneq (,$(findstring 5.14,$(shell qmake -v)))
+    CFLAGS += -std=c++11
+endif
+# Qt 5.15.x require C++11
+ifneq (,$(findstring 5.15,$(shell qmake -v)))
     CFLAGS += -std=c++11
 endif
 CFLAGS += -c -O2 -frtti -fexceptions -mthreads -Wall -DUNICODE

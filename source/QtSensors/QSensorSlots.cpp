@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -12,216 +12,286 @@
 
 #include "QSensorSlots.h"
 
-QSensorSlots::QSensorSlots(QObject *parent) : QObject(parent)
+QSensorSlots::QSensorSlots( QObject *parent ) : QObject( parent )
 {
 }
 
 QSensorSlots::~QSensorSlots()
 {
 }
+
 #if (QT_VERSION >= QT_VERSION_CHECK(5,1,0))
 void QSensorSlots::busyChanged()
 {
   QObject *object = qobject_cast<QObject *>(sender());
-  PHB_ITEM cb = Signals_return_codeblock( object, "busyChanged()" );
+
+  PHB_ITEM cb = Qt5xHb::Signals_return_codeblock( object, "busyChanged()" );
+
   if( cb )
   {
-    PHB_ITEM psender = Signals_return_qobject ( (QObject *) object, "QSENSOR" );
-    hb_vmEvalBlockV( (PHB_ITEM) cb, 1, psender );
+    PHB_ITEM psender = Qt5xHb::Signals_return_qobject( (QObject *) object, "QSENSOR" );
+
+    hb_vmEvalBlockV( cb, 1, psender );
+
     hb_itemRelease( psender );
   }
 }
 #endif
+
 #if (QT_VERSION >= QT_VERSION_CHECK(5,1,0))
 void QSensorSlots::activeChanged()
 {
   QObject *object = qobject_cast<QObject *>(sender());
-  PHB_ITEM cb = Signals_return_codeblock( object, "activeChanged()" );
+
+  PHB_ITEM cb = Qt5xHb::Signals_return_codeblock( object, "activeChanged()" );
+
   if( cb )
   {
-    PHB_ITEM psender = Signals_return_qobject ( (QObject *) object, "QSENSOR" );
-    hb_vmEvalBlockV( (PHB_ITEM) cb, 1, psender );
+    PHB_ITEM psender = Qt5xHb::Signals_return_qobject( (QObject *) object, "QSENSOR" );
+
+    hb_vmEvalBlockV( cb, 1, psender );
+
     hb_itemRelease( psender );
   }
 }
 #endif
+
 #if (QT_VERSION >= QT_VERSION_CHECK(5,1,0))
 void QSensorSlots::readingChanged()
 {
   QObject *object = qobject_cast<QObject *>(sender());
-  PHB_ITEM cb = Signals_return_codeblock( object, "readingChanged()" );
+
+  PHB_ITEM cb = Qt5xHb::Signals_return_codeblock( object, "readingChanged()" );
+
   if( cb )
   {
-    PHB_ITEM psender = Signals_return_qobject ( (QObject *) object, "QSENSOR" );
-    hb_vmEvalBlockV( (PHB_ITEM) cb, 1, psender );
+    PHB_ITEM psender = Qt5xHb::Signals_return_qobject( (QObject *) object, "QSENSOR" );
+
+    hb_vmEvalBlockV( cb, 1, psender );
+
     hb_itemRelease( psender );
   }
 }
 #endif
+
 #if (QT_VERSION >= QT_VERSION_CHECK(5,1,0))
 void QSensorSlots::sensorError( int error )
 {
   QObject *object = qobject_cast<QObject *>(sender());
-  PHB_ITEM cb = Signals_return_codeblock( object, "sensorError(int)" );
+
+  PHB_ITEM cb = Qt5xHb::Signals_return_codeblock( object, "sensorError(int)" );
+
   if( cb )
   {
-    PHB_ITEM psender = Signals_return_qobject ( (QObject *) object, "QSENSOR" );
+    PHB_ITEM psender = Qt5xHb::Signals_return_qobject( (QObject *) object, "QSENSOR" );
     PHB_ITEM perror = hb_itemPutNI( NULL, error );
-    hb_vmEvalBlockV( (PHB_ITEM) cb, 2, psender, perror );
+
+    hb_vmEvalBlockV( cb, 2, psender, perror );
+
     hb_itemRelease( psender );
     hb_itemRelease( perror );
   }
 }
 #endif
+
 #if (QT_VERSION >= QT_VERSION_CHECK(5,1,0))
 void QSensorSlots::availableSensorsChanged()
 {
   QObject *object = qobject_cast<QObject *>(sender());
-  PHB_ITEM cb = Signals_return_codeblock( object, "availableSensorsChanged()" );
+
+  PHB_ITEM cb = Qt5xHb::Signals_return_codeblock( object, "availableSensorsChanged()" );
+
   if( cb )
   {
-    PHB_ITEM psender = Signals_return_qobject ( (QObject *) object, "QSENSOR" );
-    hb_vmEvalBlockV( (PHB_ITEM) cb, 1, psender );
+    PHB_ITEM psender = Qt5xHb::Signals_return_qobject( (QObject *) object, "QSENSOR" );
+
+    hb_vmEvalBlockV( cb, 1, psender );
+
     hb_itemRelease( psender );
   }
 }
 #endif
+
 #if (QT_VERSION >= QT_VERSION_CHECK(5,1,0))
 void QSensorSlots::alwaysOnChanged()
 {
   QObject *object = qobject_cast<QObject *>(sender());
-  PHB_ITEM cb = Signals_return_codeblock( object, "alwaysOnChanged()" );
+
+  PHB_ITEM cb = Qt5xHb::Signals_return_codeblock( object, "alwaysOnChanged()" );
+
   if( cb )
   {
-    PHB_ITEM psender = Signals_return_qobject ( (QObject *) object, "QSENSOR" );
-    hb_vmEvalBlockV( (PHB_ITEM) cb, 1, psender );
+    PHB_ITEM psender = Qt5xHb::Signals_return_qobject( (QObject *) object, "QSENSOR" );
+
+    hb_vmEvalBlockV( cb, 1, psender );
+
     hb_itemRelease( psender );
   }
 }
 #endif
+
 #if (QT_VERSION >= QT_VERSION_CHECK(5,1,0))
 void QSensorSlots::dataRateChanged()
 {
   QObject *object = qobject_cast<QObject *>(sender());
-  PHB_ITEM cb = Signals_return_codeblock( object, "dataRateChanged()" );
+
+  PHB_ITEM cb = Qt5xHb::Signals_return_codeblock( object, "dataRateChanged()" );
+
   if( cb )
   {
-    PHB_ITEM psender = Signals_return_qobject ( (QObject *) object, "QSENSOR" );
-    hb_vmEvalBlockV( (PHB_ITEM) cb, 1, psender );
+    PHB_ITEM psender = Qt5xHb::Signals_return_qobject( (QObject *) object, "QSENSOR" );
+
+    hb_vmEvalBlockV( cb, 1, psender );
+
     hb_itemRelease( psender );
   }
 }
 #endif
+
 #if (QT_VERSION >= QT_VERSION_CHECK(5,1,0))
 void QSensorSlots::skipDuplicatesChanged( bool skipDuplicates )
 {
   QObject *object = qobject_cast<QObject *>(sender());
-  PHB_ITEM cb = Signals_return_codeblock( object, "skipDuplicatesChanged(bool)" );
+
+  PHB_ITEM cb = Qt5xHb::Signals_return_codeblock( object, "skipDuplicatesChanged(bool)" );
+
   if( cb )
   {
-    PHB_ITEM psender = Signals_return_qobject ( (QObject *) object, "QSENSOR" );
+    PHB_ITEM psender = Qt5xHb::Signals_return_qobject( (QObject *) object, "QSENSOR" );
     PHB_ITEM pskipDuplicates = hb_itemPutL( NULL, skipDuplicates );
-    hb_vmEvalBlockV( (PHB_ITEM) cb, 2, psender, pskipDuplicates );
+
+    hb_vmEvalBlockV( cb, 2, psender, pskipDuplicates );
+
     hb_itemRelease( psender );
     hb_itemRelease( pskipDuplicates );
   }
 }
 #endif
+
 #if (QT_VERSION >= QT_VERSION_CHECK(5,1,0))
 void QSensorSlots::axesOrientationModeChanged( QSensor::AxesOrientationMode axesOrientationMode )
 {
   QObject *object = qobject_cast<QObject *>(sender());
-  PHB_ITEM cb = Signals_return_codeblock( object, "axesOrientationModeChanged(QSensor::AxesOrientationMode)" );
+
+  PHB_ITEM cb = Qt5xHb::Signals_return_codeblock( object, "axesOrientationModeChanged(QSensor::AxesOrientationMode)" );
+
   if( cb )
   {
-    PHB_ITEM psender = Signals_return_qobject ( (QObject *) object, "QSENSOR" );
+    PHB_ITEM psender = Qt5xHb::Signals_return_qobject( (QObject *) object, "QSENSOR" );
     PHB_ITEM paxesOrientationMode = hb_itemPutNI( NULL, (int) axesOrientationMode );
-    hb_vmEvalBlockV( (PHB_ITEM) cb, 2, psender, paxesOrientationMode );
+
+    hb_vmEvalBlockV( cb, 2, psender, paxesOrientationMode );
+
     hb_itemRelease( psender );
     hb_itemRelease( paxesOrientationMode );
   }
 }
 #endif
+
 #if (QT_VERSION >= QT_VERSION_CHECK(5,1,0))
 void QSensorSlots::currentOrientationChanged( int currentOrientation )
 {
   QObject *object = qobject_cast<QObject *>(sender());
-  PHB_ITEM cb = Signals_return_codeblock( object, "currentOrientationChanged(int)" );
+
+  PHB_ITEM cb = Qt5xHb::Signals_return_codeblock( object, "currentOrientationChanged(int)" );
+
   if( cb )
   {
-    PHB_ITEM psender = Signals_return_qobject ( (QObject *) object, "QSENSOR" );
+    PHB_ITEM psender = Qt5xHb::Signals_return_qobject( (QObject *) object, "QSENSOR" );
     PHB_ITEM pcurrentOrientation = hb_itemPutNI( NULL, currentOrientation );
-    hb_vmEvalBlockV( (PHB_ITEM) cb, 2, psender, pcurrentOrientation );
+
+    hb_vmEvalBlockV( cb, 2, psender, pcurrentOrientation );
+
     hb_itemRelease( psender );
     hb_itemRelease( pcurrentOrientation );
   }
 }
 #endif
+
 #if (QT_VERSION >= QT_VERSION_CHECK(5,1,0))
 void QSensorSlots::userOrientationChanged( int userOrientation )
 {
   QObject *object = qobject_cast<QObject *>(sender());
-  PHB_ITEM cb = Signals_return_codeblock( object, "userOrientationChanged(int)" );
+
+  PHB_ITEM cb = Qt5xHb::Signals_return_codeblock( object, "userOrientationChanged(int)" );
+
   if( cb )
   {
-    PHB_ITEM psender = Signals_return_qobject ( (QObject *) object, "QSENSOR" );
+    PHB_ITEM psender = Qt5xHb::Signals_return_qobject( (QObject *) object, "QSENSOR" );
     PHB_ITEM puserOrientation = hb_itemPutNI( NULL, userOrientation );
-    hb_vmEvalBlockV( (PHB_ITEM) cb, 2, psender, puserOrientation );
+
+    hb_vmEvalBlockV( cb, 2, psender, puserOrientation );
+
     hb_itemRelease( psender );
     hb_itemRelease( puserOrientation );
   }
 }
 #endif
+
 #if (QT_VERSION >= QT_VERSION_CHECK(5,1,0))
 void QSensorSlots::maxBufferSizeChanged( int maxBufferSize )
 {
   QObject *object = qobject_cast<QObject *>(sender());
-  PHB_ITEM cb = Signals_return_codeblock( object, "maxBufferSizeChanged(int)" );
+
+  PHB_ITEM cb = Qt5xHb::Signals_return_codeblock( object, "maxBufferSizeChanged(int)" );
+
   if( cb )
   {
-    PHB_ITEM psender = Signals_return_qobject ( (QObject *) object, "QSENSOR" );
+    PHB_ITEM psender = Qt5xHb::Signals_return_qobject( (QObject *) object, "QSENSOR" );
     PHB_ITEM pmaxBufferSize = hb_itemPutNI( NULL, maxBufferSize );
-    hb_vmEvalBlockV( (PHB_ITEM) cb, 2, psender, pmaxBufferSize );
+
+    hb_vmEvalBlockV( cb, 2, psender, pmaxBufferSize );
+
     hb_itemRelease( psender );
     hb_itemRelease( pmaxBufferSize );
   }
 }
 #endif
+
 #if (QT_VERSION >= QT_VERSION_CHECK(5,1,0))
 void QSensorSlots::efficientBufferSizeChanged( int efficientBufferSize )
 {
   QObject *object = qobject_cast<QObject *>(sender());
-  PHB_ITEM cb = Signals_return_codeblock( object, "efficientBufferSizeChanged(int)" );
+
+  PHB_ITEM cb = Qt5xHb::Signals_return_codeblock( object, "efficientBufferSizeChanged(int)" );
+
   if( cb )
   {
-    PHB_ITEM psender = Signals_return_qobject ( (QObject *) object, "QSENSOR" );
+    PHB_ITEM psender = Qt5xHb::Signals_return_qobject( (QObject *) object, "QSENSOR" );
     PHB_ITEM pefficientBufferSize = hb_itemPutNI( NULL, efficientBufferSize );
-    hb_vmEvalBlockV( (PHB_ITEM) cb, 2, psender, pefficientBufferSize );
+
+    hb_vmEvalBlockV( cb, 2, psender, pefficientBufferSize );
+
     hb_itemRelease( psender );
     hb_itemRelease( pefficientBufferSize );
   }
 }
 #endif
+
 #if (QT_VERSION >= QT_VERSION_CHECK(5,1,0))
 void QSensorSlots::bufferSizeChanged( int bufferSize )
 {
   QObject *object = qobject_cast<QObject *>(sender());
-  PHB_ITEM cb = Signals_return_codeblock( object, "bufferSizeChanged(int)" );
+
+  PHB_ITEM cb = Qt5xHb::Signals_return_codeblock( object, "bufferSizeChanged(int)" );
+
   if( cb )
   {
-    PHB_ITEM psender = Signals_return_qobject ( (QObject *) object, "QSENSOR" );
+    PHB_ITEM psender = Qt5xHb::Signals_return_qobject( (QObject *) object, "QSENSOR" );
     PHB_ITEM pbufferSize = hb_itemPutNI( NULL, bufferSize );
-    hb_vmEvalBlockV( (PHB_ITEM) cb, 2, psender, pbufferSize );
+
+    hb_vmEvalBlockV( cb, 2, psender, pbufferSize );
+
     hb_itemRelease( psender );
     hb_itemRelease( pbufferSize );
   }
 }
 #endif
 
-void QSensorSlots_connect_signal ( const QString & signal, const QString & slot )
+void QSensorSlots_connect_signal( const QString & signal, const QString & slot )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,1,0))
-  QSensor * obj = (QSensor *) hb_itemGetPtr( hb_objSendMsg( hb_stackSelfItem(), "POINTER", 0 ) );
+  QSensor * obj = (QSensor *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -234,7 +304,7 @@ void QSensorSlots_connect_signal ( const QString & signal, const QString & slot 
       s->setParent( QCoreApplication::instance() );
     }
 
-    hb_retl( Signals_connection_disconnection( s, signal, slot ) );
+    hb_retl( Qt5xHb::Signals_connection_disconnection( s, signal, slot ) );
   }
   else
   {

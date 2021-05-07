@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -39,7 +39,7 @@ CLASS QCryptographicHash
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QCryptographicHash
+PROCEDURE destroyObject() CLASS QCryptographicHash
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -62,14 +62,14 @@ RETURN
 #endif
 
 /*
-QCryptographicHash(Algorithm method)
+QCryptographicHash( QCryptographicHash::Algorithm method )
 */
 HB_FUNC_STATIC( QCRYPTOGRAPHICHASH_NEW )
 {
-  if( ISNUMPAR(1) && ISNUM(1) )
+  if( ISNUMPAR(1) && HB_ISNUM(1) )
   {
-    QCryptographicHash * o = new QCryptographicHash ( (QCryptographicHash::Algorithm) hb_parni(1) );
-    _qt5xhb_returnNewObject( o, true );
+    QCryptographicHash * obj = new QCryptographicHash( (QCryptographicHash::Algorithm) hb_parni(1) );
+    Qt5xHb::returnNewObject( obj, true );
   }
   else
   {
@@ -79,7 +79,7 @@ HB_FUNC_STATIC( QCRYPTOGRAPHICHASH_NEW )
 
 HB_FUNC_STATIC( QCRYPTOGRAPHICHASH_DELETE )
 {
-  QCryptographicHash * obj = (QCryptographicHash *) _qt5xhb_itemGetPtrStackSelfItem();
+  QCryptographicHash * obj = (QCryptographicHash *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -99,7 +99,7 @@ void reset()
 */
 HB_FUNC_STATIC( QCRYPTOGRAPHICHASH_RESET )
 {
-  QCryptographicHash * obj = (QCryptographicHash *) _qt5xhb_itemGetPtrStackSelfItem();
+  QCryptographicHash * obj = (QCryptographicHash *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -107,7 +107,7 @@ HB_FUNC_STATIC( QCRYPTOGRAPHICHASH_RESET )
     if( ISNUMPAR(0) )
     {
 #endif
-      obj->reset ();
+      obj->reset();
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -121,55 +121,51 @@ HB_FUNC_STATIC( QCRYPTOGRAPHICHASH_RESET )
 }
 
 /*
-void addData(const char *data, int length)
+void addData( const char * data, int length )
 */
-void QCryptographicHash_addData1 ()
+void QCryptographicHash_addData1()
 {
-  QCryptographicHash * obj = (QCryptographicHash *) _qt5xhb_itemGetPtrStackSelfItem();
+  QCryptographicHash * obj = (QCryptographicHash *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
-      obj->addData ( PCONSTCHAR(1), PINT(2) );
+    obj->addData( PCONSTCHAR(1), PINT(2) );
   }
 
   hb_itemReturn( hb_stackSelfItem() );
 }
 
 /*
-void addData(const QByteArray &data)
+void addData( const QByteArray & data )
 */
-void QCryptographicHash_addData2 ()
+void QCryptographicHash_addData2()
 {
-  QCryptographicHash * obj = (QCryptographicHash *) _qt5xhb_itemGetPtrStackSelfItem();
+  QCryptographicHash * obj = (QCryptographicHash *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
-      obj->addData ( *PQBYTEARRAY(1) );
+    obj->addData( *PQBYTEARRAY(1) );
   }
 
   hb_itemReturn( hb_stackSelfItem() );
 }
 
 /*
-bool addData(QIODevice* device)
+bool addData( QIODevice * device )
 */
-void QCryptographicHash_addData3 ()
+void QCryptographicHash_addData3()
 {
-  QCryptographicHash * obj = (QCryptographicHash *) _qt5xhb_itemGetPtrStackSelfItem();
+  QCryptographicHash * obj = (QCryptographicHash *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
-      RBOOL( obj->addData ( PQIODEVICE(1) ) );
+    RBOOL( obj->addData( PQIODEVICE(1) ) );
   }
 }
-
-//[1]void addData(const char *data, int length)
-//[2]void addData(const QByteArray &data)
-//[3]bool addData(QIODevice* device)
 
 HB_FUNC_STATIC( QCRYPTOGRAPHICHASH_ADDDATA )
 {
-  if( ISNUMPAR(2) && ISCHAR(1) && ISNUM(2) )
+  if( ISNUMPAR(2) && HB_ISCHAR(1) && HB_ISNUM(2) )
   {
     QCryptographicHash_addData1();
   }
@@ -192,7 +188,7 @@ QByteArray result() const
 */
 HB_FUNC_STATIC( QCRYPTOGRAPHICHASH_RESULT )
 {
-  QCryptographicHash * obj = (QCryptographicHash *) _qt5xhb_itemGetPtrStackSelfItem();
+  QCryptographicHash * obj = (QCryptographicHash *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -200,8 +196,8 @@ HB_FUNC_STATIC( QCRYPTOGRAPHICHASH_RESULT )
     if( ISNUMPAR(0) )
     {
 #endif
-      QByteArray * ptr = new QByteArray( obj->result () );
-      _qt5xhb_createReturnClass ( ptr, "QBYTEARRAY", true );
+      QByteArray * ptr = new QByteArray( obj->result() );
+      Qt5xHb::createReturnClass( ptr, "QBYTEARRAY", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -213,16 +209,16 @@ HB_FUNC_STATIC( QCRYPTOGRAPHICHASH_RESULT )
 }
 
 /*
-static QByteArray hash(const QByteArray &data, Algorithm method)
+static QByteArray hash( const QByteArray & data, QCryptographicHash::Algorithm method )
 */
 HB_FUNC_STATIC( QCRYPTOGRAPHICHASH_HASH )
 {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(2) && ISQBYTEARRAY(1) && ISNUM(2) )
+  if( ISNUMPAR(2) && ISQBYTEARRAY(1) && HB_ISNUM(2) )
   {
 #endif
-      QByteArray * ptr = new QByteArray( QCryptographicHash::hash ( *PQBYTEARRAY(1), (QCryptographicHash::Algorithm) hb_parni(2) ) );
-      _qt5xhb_createReturnClass ( ptr, "QBYTEARRAY", true );
+    QByteArray * ptr = new QByteArray( QCryptographicHash::hash( *PQBYTEARRAY(1), (QCryptographicHash::Algorithm) hb_parni(2) ) );
+    Qt5xHb::createReturnClass( ptr, "QBYTEARRAY", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
   }
   else
@@ -233,16 +229,16 @@ HB_FUNC_STATIC( QCRYPTOGRAPHICHASH_HASH )
 }
 
 /*
-static int QCryptographicHash::hashLength(QCryptographicHash::Algorithm method)
+static int hashLength( QCryptographicHash::Algorithm method )
 */
 HB_FUNC_STATIC( QCRYPTOGRAPHICHASH_HASHLENGTH )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,12,0))
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+  if( ISNUMPAR(1) && HB_ISNUM(1) )
   {
 #endif
-      RINT( QCryptographicHash::hashLength ( (QCryptographicHash::Algorithm) hb_parni(1) ) );
+    RINT( QCryptographicHash::hashLength( (QCryptographicHash::Algorithm) hb_parni(1) ) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
   }
   else
@@ -257,7 +253,7 @@ HB_FUNC_STATIC( QCRYPTOGRAPHICHASH_NEWFROM )
 {
   PHB_ITEM self = hb_stackSelfItem();
 
-  if( hb_pcount() == 1 && ISOBJECT(1) )
+  if( hb_pcount() == 1 && HB_ISOBJECT(1) )
   {
     PHB_ITEM ptr = hb_itemPutPtr( NULL, (void *) hb_itemGetPtr( hb_objSendMsg( hb_param(1, HB_IT_OBJECT ), "POINTER", 0 ) ) );
     hb_objSendMsg( self, "_pointer", 1, ptr );
@@ -266,7 +262,7 @@ HB_FUNC_STATIC( QCRYPTOGRAPHICHASH_NEWFROM )
     hb_objSendMsg( self, "_self_destruction", 1, des );
     hb_itemRelease( des );
   }
-  else if( hb_pcount() == 1 && ISPOINTER(1) )
+  else if( hb_pcount() == 1 && HB_ISPOINTER(1) )
   {
     PHB_ITEM ptr = hb_itemPutPtr( NULL, (void *) hb_itemGetPtr( hb_param(1, HB_IT_POINTER ) ) );
     hb_objSendMsg( self, "_pointer", 1, ptr );
@@ -302,7 +298,7 @@ HB_FUNC_STATIC( QCRYPTOGRAPHICHASH_SETSELFDESTRUCTION )
 {
   PHB_ITEM self = hb_stackSelfItem();
 
-  if( hb_pcount() == 1 && ISLOG(1) )
+  if( hb_pcount() == 1 && HB_ISLOG(1) )
   {
     PHB_ITEM des = hb_itemPutL( NULL, hb_parl(1) );
     hb_objSendMsg( self, "_self_destruction", 1, des );

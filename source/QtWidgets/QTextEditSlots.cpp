@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -12,102 +12,137 @@
 
 #include "QTextEditSlots.h"
 
-QTextEditSlots::QTextEditSlots(QObject *parent) : QObject(parent)
+QTextEditSlots::QTextEditSlots( QObject *parent ) : QObject( parent )
 {
 }
 
 QTextEditSlots::~QTextEditSlots()
 {
 }
+
 void QTextEditSlots::copyAvailable( bool yes )
 {
   QObject *object = qobject_cast<QObject *>(sender());
-  PHB_ITEM cb = Signals_return_codeblock( object, "copyAvailable(bool)" );
+
+  PHB_ITEM cb = Qt5xHb::Signals_return_codeblock( object, "copyAvailable(bool)" );
+
   if( cb )
   {
-    PHB_ITEM psender = Signals_return_qobject ( (QObject *) object, "QTEXTEDIT" );
+    PHB_ITEM psender = Qt5xHb::Signals_return_qobject( (QObject *) object, "QTEXTEDIT" );
     PHB_ITEM pyes = hb_itemPutL( NULL, yes );
-    hb_vmEvalBlockV( (PHB_ITEM) cb, 2, psender, pyes );
+
+    hb_vmEvalBlockV( cb, 2, psender, pyes );
+
     hb_itemRelease( psender );
     hb_itemRelease( pyes );
   }
 }
+
 void QTextEditSlots::currentCharFormatChanged( const QTextCharFormat & f )
 {
   QObject *object = qobject_cast<QObject *>(sender());
-  PHB_ITEM cb = Signals_return_codeblock( object, "currentCharFormatChanged(QTextCharFormat)" );
+
+  PHB_ITEM cb = Qt5xHb::Signals_return_codeblock( object, "currentCharFormatChanged(QTextCharFormat)" );
+
   if( cb )
   {
-    PHB_ITEM psender = Signals_return_qobject ( (QObject *) object, "QTEXTEDIT" );
-    PHB_ITEM pf = Signals_return_object( (void *) &f, "QTEXTCHARFORMAT" );
-    hb_vmEvalBlockV( (PHB_ITEM) cb, 2, psender, pf );
+    PHB_ITEM psender = Qt5xHb::Signals_return_qobject( (QObject *) object, "QTEXTEDIT" );
+    PHB_ITEM pf = Qt5xHb::Signals_return_object( (void *) &f, "QTEXTCHARFORMAT" );
+
+    hb_vmEvalBlockV( cb, 2, psender, pf );
+
     hb_itemRelease( psender );
     hb_itemRelease( pf );
   }
 }
+
 void QTextEditSlots::cursorPositionChanged()
 {
   QObject *object = qobject_cast<QObject *>(sender());
-  PHB_ITEM cb = Signals_return_codeblock( object, "cursorPositionChanged()" );
+
+  PHB_ITEM cb = Qt5xHb::Signals_return_codeblock( object, "cursorPositionChanged()" );
+
   if( cb )
   {
-    PHB_ITEM psender = Signals_return_qobject ( (QObject *) object, "QTEXTEDIT" );
-    hb_vmEvalBlockV( (PHB_ITEM) cb, 1, psender );
+    PHB_ITEM psender = Qt5xHb::Signals_return_qobject( (QObject *) object, "QTEXTEDIT" );
+
+    hb_vmEvalBlockV( cb, 1, psender );
+
     hb_itemRelease( psender );
   }
 }
+
 void QTextEditSlots::redoAvailable( bool available )
 {
   QObject *object = qobject_cast<QObject *>(sender());
-  PHB_ITEM cb = Signals_return_codeblock( object, "redoAvailable(bool)" );
+
+  PHB_ITEM cb = Qt5xHb::Signals_return_codeblock( object, "redoAvailable(bool)" );
+
   if( cb )
   {
-    PHB_ITEM psender = Signals_return_qobject ( (QObject *) object, "QTEXTEDIT" );
+    PHB_ITEM psender = Qt5xHb::Signals_return_qobject( (QObject *) object, "QTEXTEDIT" );
     PHB_ITEM pavailable = hb_itemPutL( NULL, available );
-    hb_vmEvalBlockV( (PHB_ITEM) cb, 2, psender, pavailable );
-    hb_itemRelease( psender );
-    hb_itemRelease( pavailable );
-  }
-}
-void QTextEditSlots::selectionChanged()
-{
-  QObject *object = qobject_cast<QObject *>(sender());
-  PHB_ITEM cb = Signals_return_codeblock( object, "selectionChanged()" );
-  if( cb )
-  {
-    PHB_ITEM psender = Signals_return_qobject ( (QObject *) object, "QTEXTEDIT" );
-    hb_vmEvalBlockV( (PHB_ITEM) cb, 1, psender );
-    hb_itemRelease( psender );
-  }
-}
-void QTextEditSlots::textChanged()
-{
-  QObject *object = qobject_cast<QObject *>(sender());
-  PHB_ITEM cb = Signals_return_codeblock( object, "textChanged()" );
-  if( cb )
-  {
-    PHB_ITEM psender = Signals_return_qobject ( (QObject *) object, "QTEXTEDIT" );
-    hb_vmEvalBlockV( (PHB_ITEM) cb, 1, psender );
-    hb_itemRelease( psender );
-  }
-}
-void QTextEditSlots::undoAvailable( bool available )
-{
-  QObject *object = qobject_cast<QObject *>(sender());
-  PHB_ITEM cb = Signals_return_codeblock( object, "undoAvailable(bool)" );
-  if( cb )
-  {
-    PHB_ITEM psender = Signals_return_qobject ( (QObject *) object, "QTEXTEDIT" );
-    PHB_ITEM pavailable = hb_itemPutL( NULL, available );
-    hb_vmEvalBlockV( (PHB_ITEM) cb, 2, psender, pavailable );
+
+    hb_vmEvalBlockV( cb, 2, psender, pavailable );
+
     hb_itemRelease( psender );
     hb_itemRelease( pavailable );
   }
 }
 
-void QTextEditSlots_connect_signal ( const QString & signal, const QString & slot )
+void QTextEditSlots::selectionChanged()
 {
-  QTextEdit * obj = (QTextEdit *) hb_itemGetPtr( hb_objSendMsg( hb_stackSelfItem(), "POINTER", 0 ) );
+  QObject *object = qobject_cast<QObject *>(sender());
+
+  PHB_ITEM cb = Qt5xHb::Signals_return_codeblock( object, "selectionChanged()" );
+
+  if( cb )
+  {
+    PHB_ITEM psender = Qt5xHb::Signals_return_qobject( (QObject *) object, "QTEXTEDIT" );
+
+    hb_vmEvalBlockV( cb, 1, psender );
+
+    hb_itemRelease( psender );
+  }
+}
+
+void QTextEditSlots::textChanged()
+{
+  QObject *object = qobject_cast<QObject *>(sender());
+
+  PHB_ITEM cb = Qt5xHb::Signals_return_codeblock( object, "textChanged()" );
+
+  if( cb )
+  {
+    PHB_ITEM psender = Qt5xHb::Signals_return_qobject( (QObject *) object, "QTEXTEDIT" );
+
+    hb_vmEvalBlockV( cb, 1, psender );
+
+    hb_itemRelease( psender );
+  }
+}
+
+void QTextEditSlots::undoAvailable( bool available )
+{
+  QObject *object = qobject_cast<QObject *>(sender());
+
+  PHB_ITEM cb = Qt5xHb::Signals_return_codeblock( object, "undoAvailable(bool)" );
+
+  if( cb )
+  {
+    PHB_ITEM psender = Qt5xHb::Signals_return_qobject( (QObject *) object, "QTEXTEDIT" );
+    PHB_ITEM pavailable = hb_itemPutL( NULL, available );
+
+    hb_vmEvalBlockV( cb, 2, psender, pavailable );
+
+    hb_itemRelease( psender );
+    hb_itemRelease( pavailable );
+  }
+}
+
+void QTextEditSlots_connect_signal( const QString & signal, const QString & slot )
+{
+  QTextEdit * obj = (QTextEdit *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -120,7 +155,7 @@ void QTextEditSlots_connect_signal ( const QString & signal, const QString & slo
       s->setParent( QCoreApplication::instance() );
     }
 
-    hb_retl( Signals_connection_disconnection( s, signal, slot ) );
+    hb_retl( Qt5xHb::Signals_connection_disconnection( s, signal, slot ) );
   }
   else
   {

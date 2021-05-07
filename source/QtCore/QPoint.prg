@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -39,7 +39,7 @@ CLASS QPoint
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QPoint
+PROCEDURE destroyObject() CLASS QPoint
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -64,23 +64,20 @@ RETURN
 /*
 QPoint()
 */
-void QPoint_new1 ()
+void QPoint_new1()
 {
-  QPoint * o = new QPoint ();
-  _qt5xhb_returnNewObject( o, true );
+  QPoint * obj = new QPoint();
+  Qt5xHb::returnNewObject( obj, true );
 }
 
 /*
-QPoint(int xpos, int ypos)
+QPoint( int xpos, int ypos )
 */
-void QPoint_new2 ()
+void QPoint_new2()
 {
-  QPoint * o = new QPoint ( PINT(1), PINT(2) );
-  _qt5xhb_returnNewObject( o, true );
+  QPoint * obj = new QPoint( PINT(1), PINT(2) );
+  Qt5xHb::returnNewObject( obj, true );
 }
-
-//[1]QPoint()
-//[2]QPoint(int xpos, int ypos)
 
 HB_FUNC_STATIC( QPOINT_NEW )
 {
@@ -88,7 +85,7 @@ HB_FUNC_STATIC( QPOINT_NEW )
   {
     QPoint_new1();
   }
-  else if( ISNUMPAR(2) && ISNUM(1) && ISNUM(2) )
+  else if( ISNUMPAR(2) && HB_ISNUM(1) && HB_ISNUM(2) )
   {
     QPoint_new2();
   }
@@ -100,7 +97,7 @@ HB_FUNC_STATIC( QPOINT_NEW )
 
 HB_FUNC_STATIC( QPOINT_DELETE )
 {
-  QPoint * obj = (QPoint *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPoint * obj = (QPoint *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -120,7 +117,7 @@ bool isNull() const
 */
 HB_FUNC_STATIC( QPOINT_ISNULL )
 {
-  QPoint * obj = (QPoint *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPoint * obj = (QPoint *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -128,7 +125,7 @@ HB_FUNC_STATIC( QPOINT_ISNULL )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->isNull () );
+      RBOOL( obj->isNull() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -144,7 +141,7 @@ int manhattanLength() const
 */
 HB_FUNC_STATIC( QPOINT_MANHATTANLENGTH )
 {
-  QPoint * obj = (QPoint *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPoint * obj = (QPoint *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -152,7 +149,7 @@ HB_FUNC_STATIC( QPOINT_MANHATTANLENGTH )
     if( ISNUMPAR(0) )
     {
 #endif
-      RINT( obj->manhattanLength () );
+      RINT( obj->manhattanLength() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -164,19 +161,19 @@ HB_FUNC_STATIC( QPOINT_MANHATTANLENGTH )
 }
 
 /*
-void setX(int x)
+void setX( int x )
 */
 HB_FUNC_STATIC( QPOINT_SETX )
 {
-  QPoint * obj = (QPoint *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPoint * obj = (QPoint *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setX ( PINT(1) );
+      obj->setX( PINT(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -190,19 +187,19 @@ HB_FUNC_STATIC( QPOINT_SETX )
 }
 
 /*
-void setY(int y)
+void setY( int y )
 */
 HB_FUNC_STATIC( QPOINT_SETY )
 {
-  QPoint * obj = (QPoint *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPoint * obj = (QPoint *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setY ( PINT(1) );
+      obj->setY( PINT(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -220,7 +217,7 @@ int x() const
 */
 HB_FUNC_STATIC( QPOINT_X )
 {
-  QPoint * obj = (QPoint *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPoint * obj = (QPoint *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -228,7 +225,7 @@ HB_FUNC_STATIC( QPOINT_X )
     if( ISNUMPAR(0) )
     {
 #endif
-      RINT( obj->x () );
+      RINT( obj->x() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -244,7 +241,7 @@ int y() const
 */
 HB_FUNC_STATIC( QPOINT_Y )
 {
-  QPoint * obj = (QPoint *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPoint * obj = (QPoint *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -252,7 +249,7 @@ HB_FUNC_STATIC( QPOINT_Y )
     if( ISNUMPAR(0) )
     {
 #endif
-      RINT( obj->y () );
+      RINT( obj->y() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -267,7 +264,7 @@ HB_FUNC_STATIC( QPOINT_NEWFROM )
 {
   PHB_ITEM self = hb_stackSelfItem();
 
-  if( hb_pcount() == 1 && ISOBJECT(1) )
+  if( hb_pcount() == 1 && HB_ISOBJECT(1) )
   {
     PHB_ITEM ptr = hb_itemPutPtr( NULL, (void *) hb_itemGetPtr( hb_objSendMsg( hb_param(1, HB_IT_OBJECT ), "POINTER", 0 ) ) );
     hb_objSendMsg( self, "_pointer", 1, ptr );
@@ -276,7 +273,7 @@ HB_FUNC_STATIC( QPOINT_NEWFROM )
     hb_objSendMsg( self, "_self_destruction", 1, des );
     hb_itemRelease( des );
   }
-  else if( hb_pcount() == 1 && ISPOINTER(1) )
+  else if( hb_pcount() == 1 && HB_ISPOINTER(1) )
   {
     PHB_ITEM ptr = hb_itemPutPtr( NULL, (void *) hb_itemGetPtr( hb_param(1, HB_IT_POINTER ) ) );
     hb_objSendMsg( self, "_pointer", 1, ptr );
@@ -312,7 +309,7 @@ HB_FUNC_STATIC( QPOINT_SETSELFDESTRUCTION )
 {
   PHB_ITEM self = hb_stackSelfItem();
 
-  if( hb_pcount() == 1 && ISLOG(1) )
+  if( hb_pcount() == 1 && HB_ISLOG(1) )
   {
     PHB_ITEM des = hb_itemPutL( NULL, hb_parl(1) );
     hb_objSendMsg( self, "_self_destruction", 1, des );

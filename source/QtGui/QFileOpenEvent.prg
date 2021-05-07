@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -27,7 +27,7 @@ CLASS QFileOpenEvent INHERIT QEvent
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QFileOpenEvent
+PROCEDURE destroyObject() CLASS QFileOpenEvent
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -53,7 +53,7 @@ RETURN
 
 HB_FUNC_STATIC( QFILEOPENEVENT_DELETE )
 {
-  QFileOpenEvent * obj = (QFileOpenEvent *) _qt5xhb_itemGetPtrStackSelfItem();
+  QFileOpenEvent * obj = (QFileOpenEvent *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -69,11 +69,11 @@ HB_FUNC_STATIC( QFILEOPENEVENT_DELETE )
 }
 
 /*
-QString file () const
+QString file() const
 */
 HB_FUNC_STATIC( QFILEOPENEVENT_FILE )
 {
-  QFileOpenEvent * obj = (QFileOpenEvent *) _qt5xhb_itemGetPtrStackSelfItem();
+  QFileOpenEvent * obj = (QFileOpenEvent *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -81,7 +81,7 @@ HB_FUNC_STATIC( QFILEOPENEVENT_FILE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRING( obj->file () );
+      RQSTRING( obj->file() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -93,19 +93,19 @@ HB_FUNC_STATIC( QFILEOPENEVENT_FILE )
 }
 
 /*
-bool openFile ( QFile & file, QIODevice::OpenMode flags ) const
+bool openFile( QFile & file, QIODevice::OpenMode flags ) const
 */
 HB_FUNC_STATIC( QFILEOPENEVENT_OPENFILE )
 {
-  QFileOpenEvent * obj = (QFileOpenEvent *) _qt5xhb_itemGetPtrStackSelfItem();
+  QFileOpenEvent * obj = (QFileOpenEvent *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(2) && ISQFILE(1) && ISNUM(2) )
+    if( ISNUMPAR(2) && ISQFILE(1) && HB_ISNUM(2) )
     {
 #endif
-      RBOOL( obj->openFile ( *PQFILE(1), (QIODevice::OpenMode) hb_parni(2) ) );
+      RBOOL( obj->openFile( *PQFILE(1), (QIODevice::OpenMode) hb_parni(2) ) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -117,11 +117,11 @@ HB_FUNC_STATIC( QFILEOPENEVENT_OPENFILE )
 }
 
 /*
-QUrl url () const
+QUrl url() const
 */
 HB_FUNC_STATIC( QFILEOPENEVENT_URL )
 {
-  QFileOpenEvent * obj = (QFileOpenEvent *) _qt5xhb_itemGetPtrStackSelfItem();
+  QFileOpenEvent * obj = (QFileOpenEvent *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -129,8 +129,8 @@ HB_FUNC_STATIC( QFILEOPENEVENT_URL )
     if( ISNUMPAR(0) )
     {
 #endif
-      QUrl * ptr = new QUrl( obj->url () );
-      _qt5xhb_createReturnClass ( ptr, "QURL", true );
+      QUrl * ptr = new QUrl( obj->url() );
+      Qt5xHb::createReturnClass( ptr, "QURL", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else

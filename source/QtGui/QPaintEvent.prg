@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -28,7 +28,7 @@ CLASS QPaintEvent INHERIT QEvent
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QPaintEvent
+PROCEDURE destroyObject() CLASS QPaintEvent
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -51,25 +51,22 @@ RETURN
 #endif
 
 /*
-QPaintEvent ( const QRegion & paintRegion )
+QPaintEvent( const QRegion & paintRegion )
 */
-void QPaintEvent_new1 ()
+void QPaintEvent_new1()
 {
-  QPaintEvent * o = new QPaintEvent ( *PQREGION(1) );
-  _qt5xhb_returnNewObject( o, false );
+  QPaintEvent * obj = new QPaintEvent( *PQREGION(1) );
+  Qt5xHb::returnNewObject( obj, false );
 }
 
 /*
-QPaintEvent ( const QRect & paintRect )
+QPaintEvent( const QRect & paintRect )
 */
-void QPaintEvent_new2 ()
+void QPaintEvent_new2()
 {
-  QPaintEvent * o = new QPaintEvent ( *PQRECT(1) );
-  _qt5xhb_returnNewObject( o, false );
+  QPaintEvent * obj = new QPaintEvent( *PQRECT(1) );
+  Qt5xHb::returnNewObject( obj, false );
 }
-
-//[1]QPaintEvent ( const QRegion & paintRegion )
-//[2]QPaintEvent ( const QRect & paintRect )
 
 HB_FUNC_STATIC( QPAINTEVENT_NEW )
 {
@@ -89,7 +86,7 @@ HB_FUNC_STATIC( QPAINTEVENT_NEW )
 
 HB_FUNC_STATIC( QPAINTEVENT_DELETE )
 {
-  QPaintEvent * obj = (QPaintEvent *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPaintEvent * obj = (QPaintEvent *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -105,11 +102,11 @@ HB_FUNC_STATIC( QPAINTEVENT_DELETE )
 }
 
 /*
-const QRect & rect () const
+const QRect & rect() const
 */
 HB_FUNC_STATIC( QPAINTEVENT_RECT )
 {
-  QPaintEvent * obj = (QPaintEvent *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPaintEvent * obj = (QPaintEvent *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -117,8 +114,8 @@ HB_FUNC_STATIC( QPAINTEVENT_RECT )
     if( ISNUMPAR(0) )
     {
 #endif
-      const QRect * ptr = &obj->rect ();
-      _qt5xhb_createReturnClass ( ptr, "QRECT", false );
+      const QRect * ptr = &obj->rect();
+      Qt5xHb::createReturnClass( ptr, "QRECT", false );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -130,11 +127,11 @@ HB_FUNC_STATIC( QPAINTEVENT_RECT )
 }
 
 /*
-const QRegion & region () const
+const QRegion & region() const
 */
 HB_FUNC_STATIC( QPAINTEVENT_REGION )
 {
-  QPaintEvent * obj = (QPaintEvent *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPaintEvent * obj = (QPaintEvent *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -142,8 +139,8 @@ HB_FUNC_STATIC( QPAINTEVENT_REGION )
     if( ISNUMPAR(0) )
     {
 #endif
-      const QRegion * ptr = &obj->region ();
-      _qt5xhb_createReturnClass ( ptr, "QREGION", false );
+      const QRegion * ptr = &obj->region();
+      Qt5xHb::createReturnClass( ptr, "QREGION", false );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else

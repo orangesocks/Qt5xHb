@@ -2,13 +2,13 @@
 
   Qt5xHb Project - Test Program
 
-  Copyright (C) 2019 Marcos Antonio Gambeta
+  Copyright (C) 2021 Marcos Antonio Gambeta
 
   E-mail:
   marcosgambeta AT outlook DOT com
 
   Website:
-  https://github.com/marcosgambeta/Qt5xHb
+  https://github.com/magsoftinfo/qt5xhb
 
 */
 
@@ -18,7 +18,7 @@
 REQUEST HB_GT_WIN
 #endif
 
-PROCEDURE Main ()
+PROCEDURE Main()
 
    LOCAL oApp
    LOCAL oWindow
@@ -27,32 +27,32 @@ PROCEDURE Main ()
    oApp := QApplication():new()
 
    oWindow := QWidget():new()
-   oWindow:resize(640,480)
+   oWindow:resize( 640, 480 )
+
+   oButton := QPushButton():new( "Mostrar janela de diálogo", oWindow )
+   oButton:move( 20, 20 )
+   ? oButton:onClicked( {||dialog( oWindow )} )
+
    oWindow:show()
 
-   oButton := QPushButton():new("Mostrar janela de diálogo",oWindow)
-   oButton:move(20,20)
-   oButton:show()
-   ? oButton:onClicked({||dialog(oWindow)})
-
    oApp:exec()
-   
+
    oWindow:delete()
-   
+
    oApp:delete()
 
 RETURN
 
-STATIC FUNCTION dialog (oWindow)
+STATIC FUNCTION dialog( oWindow )
 
    LOCAL oFileDialog
 
-   oFileDialog := QFileDialog():new(oWindow)
+   oFileDialog := QFileDialog():new( oWindow )
 
-   ? oFileDialog:onFileSelected({|oSender,cFile|qout(oSender:classname()),qout(cFile)})
+   ? oFileDialog:onFileSelected( {|oSender,cFile|qout( oSender:classname() ), qout( cFile )} )
 
    oFileDialog:exec()
-   
+
    ? oFileDialog:onFileSelected()
 
    oFileDialog:delete()

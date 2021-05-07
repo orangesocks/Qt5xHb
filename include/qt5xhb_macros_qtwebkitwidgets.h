@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -13,25 +13,25 @@
 #ifndef QT5XHB_MACROS_QTWEBKITWIDGETS_H
 #define QT5XHB_MACROS_QTWEBKITWIDGETS_H
 
-#define ISQGRAPHICSWEBVIEW(n)                               _qt5xhb_isObjectDerivedFrom(n,"QGraphicsWebView")
-#define ISQWEBFRAME(n)                                      _qt5xhb_isObjectDerivedFrom(n,"QWebFrame")
-#define ISQWEBHITTESTRESULT(n)                              _qt5xhb_isObjectDerivedFrom(n,"QWebHitTestResult")
-#define ISQWEBINSPECTOR(n)                                  _qt5xhb_isObjectDerivedFrom(n,"QWebInspector")
-#define ISQWEBPAGE(n)                                       _qt5xhb_isObjectDerivedFrom(n,"QWebPage")
-#define ISQWEBVIEW(n)                                       _qt5xhb_isObjectDerivedFrom(n,"QWebView")
+#define ISQGRAPHICSWEBVIEW( n )                             Qt5xHb::isObjectDerivedFrom( n, "QGraphicsWebView" )
+#define ISQWEBFRAME( n )                                    Qt5xHb::isObjectDerivedFrom( n, "QWebFrame" )
+#define ISQWEBHITTESTRESULT( n )                            Qt5xHb::isObjectDerivedFrom( n, "QWebHitTestResult" )
+#define ISQWEBINSPECTOR( n )                                Qt5xHb::isObjectDerivedFrom( n, "QWebInspector" )
+#define ISQWEBPAGE( n )                                     Qt5xHb::isObjectDerivedFrom( n, "QWebPage" )
+#define ISQWEBVIEW( n )                                     Qt5xHb::isObjectDerivedFrom( n, "QWebView" )
 
-#define PQGRAPHICSWEBVIEW(n)                                (QGraphicsWebView *) _qt5xhb_itemGetPtr(n)
-#define PQWEBFRAME(n)                                       (QWebFrame *) _qt5xhb_itemGetPtr(n)
-#define PQWEBHITTESTRESULT(n)                               (QWebHitTestResult *) _qt5xhb_itemGetPtr(n)
-#define PQWEBINSPECTOR(n)                                   (QWebInspector *) _qt5xhb_itemGetPtr(n)
-#define PQWEBPAGE(n)                                        (QWebPage *) _qt5xhb_itemGetPtr(n)
-#define PQWEBVIEW(n)                                        (QWebView *) _qt5xhb_itemGetPtr(n)
+#define PQGRAPHICSWEBVIEW( n )                              static_cast< QGraphicsWebView * >( Qt5xHb::itemGetPtr( n ) )
+#define PQWEBFRAME( n )                                     static_cast< QWebFrame * >( Qt5xHb::itemGetPtr( n ) )
+#define PQWEBHITTESTRESULT( n )                             static_cast< QWebHitTestResult * >( Qt5xHb::itemGetPtr( n ) )
+#define PQWEBINSPECTOR( n )                                 static_cast< QWebInspector * >( Qt5xHb::itemGetPtr( n ) )
+#define PQWEBPAGE( n )                                      static_cast< QWebPage * >( Qt5xHb::itemGetPtr( n ) )
+#define PQWEBVIEW( n )                                      static_cast< QWebView * >( Qt5xHb::itemGetPtr( n ) )
 
-#define OPQGRAPHICSWEBVIEW(n,v)                             ISNIL(n)? v : (QGraphicsWebView *) _qt5xhb_itemGetPtr(n)
-#define OPQWEBFRAME(n,v)                                    ISNIL(n)? v : (QWebFrame *) _qt5xhb_itemGetPtr(n)
-#define OPQWEBHITTESTRESULT(n,v)                            ISNIL(n)? v : (QWebHitTestResult *) _qt5xhb_itemGetPtr(n)
-#define OPQWEBINSPECTOR(n,v)                                ISNIL(n)? v : (QWebInspector *) _qt5xhb_itemGetPtr(n)
-#define OPQWEBPAGE(n,v)                                     ISNIL(n)? v : (QWebPage *) _qt5xhb_itemGetPtr(n)
-#define OPQWEBVIEW(n,v)                                     ISNIL(n)? v : (QWebView *) _qt5xhb_itemGetPtr(n)
+#define OPQGRAPHICSWEBVIEW( n, v )                          HB_ISNIL( n ) ? v : static_cast< QGraphicsWebView * >( Qt5xHb::itemGetPtr( n ) )
+#define OPQWEBFRAME( n, v )                                 HB_ISNIL( n ) ? v : static_cast< QWebFrame * >( Qt5xHb::itemGetPtr( n ) )
+#define OPQWEBHITTESTRESULT( n, v )                         HB_ISNIL( n ) ? v : static_cast< QWebHitTestResult * >( Qt5xHb::itemGetPtr( n ) )
+#define OPQWEBINSPECTOR( n, v )                             HB_ISNIL( n ) ? v : static_cast< QWebInspector * >( Qt5xHb::itemGetPtr( n ) )
+#define OPQWEBPAGE( n, v )                                  HB_ISNIL( n ) ? v : static_cast< QWebPage * >( Qt5xHb::itemGetPtr( n ) )
+#define OPQWEBVIEW( n, v )                                  HB_ISNIL( n ) ? v : static_cast< QWebView * >( Qt5xHb::itemGetPtr( n ) )
 
 #endif /* QT5XHB_MACROS_QTWEBKITWIDGETS_H */

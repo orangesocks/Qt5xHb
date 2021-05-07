@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -27,7 +27,7 @@ CLASS QMediaContainerControl INHERIT QMediaControl
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QMediaContainerControl
+PROCEDURE destroyObject() CLASS QMediaContainerControl
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -44,6 +44,8 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #include <QtMultimedia/QMediaContainerControl>
@@ -52,18 +54,16 @@ RETURN
 #include <QtCore/QStringList>
 
 /*
-explicit QMediaContainerControl(QObject *parent = Q_NULLPTR) [protected]
-*/
-
-/*
 virtual ~QMediaContainerControl()
 */
 HB_FUNC_STATIC( QMEDIACONTAINERCONTROL_DELETE )
 {
-  QMediaContainerControl * obj = (QMediaContainerControl *) _qt5xhb_itemGetPtrStackSelfItem();
+  QMediaContainerControl * obj = (QMediaContainerControl *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -76,19 +76,19 @@ HB_FUNC_STATIC( QMEDIACONTAINERCONTROL_DELETE )
 }
 
 /*
-virtual QString containerDescription(const QString & formatMimeType) const = 0
+virtual QString containerDescription( const QString & formatMimeType ) const = 0
 */
 HB_FUNC_STATIC( QMEDIACONTAINERCONTROL_CONTAINERDESCRIPTION )
 {
-  QMediaContainerControl * obj = (QMediaContainerControl *) _qt5xhb_itemGetPtrStackSelfItem();
+  QMediaContainerControl * obj = (QMediaContainerControl *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISCHAR(1) )
+    if( ISNUMPAR(1) && HB_ISCHAR(1) )
     {
 #endif
-      RQSTRING( obj->containerDescription ( PQSTRING(1) ) );
+      RQSTRING( obj->containerDescription( PQSTRING(1) ) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -104,7 +104,7 @@ virtual QString containerFormat() const = 0
 */
 HB_FUNC_STATIC( QMEDIACONTAINERCONTROL_CONTAINERFORMAT )
 {
-  QMediaContainerControl * obj = (QMediaContainerControl *) _qt5xhb_itemGetPtrStackSelfItem();
+  QMediaContainerControl * obj = (QMediaContainerControl *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -112,7 +112,7 @@ HB_FUNC_STATIC( QMEDIACONTAINERCONTROL_CONTAINERFORMAT )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRING( obj->containerFormat () );
+      RQSTRING( obj->containerFormat() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -124,19 +124,19 @@ HB_FUNC_STATIC( QMEDIACONTAINERCONTROL_CONTAINERFORMAT )
 }
 
 /*
-virtual void setContainerFormat(const QString & format) = 0
+virtual void setContainerFormat( const QString & format ) = 0
 */
 HB_FUNC_STATIC( QMEDIACONTAINERCONTROL_SETCONTAINERFORMAT )
 {
-  QMediaContainerControl * obj = (QMediaContainerControl *) _qt5xhb_itemGetPtrStackSelfItem();
+  QMediaContainerControl * obj = (QMediaContainerControl *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISCHAR(1) )
+    if( ISNUMPAR(1) && HB_ISCHAR(1) )
     {
 #endif
-      obj->setContainerFormat ( PQSTRING(1) );
+      obj->setContainerFormat( PQSTRING(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -154,7 +154,7 @@ virtual QStringList supportedContainers() const = 0
 */
 HB_FUNC_STATIC( QMEDIACONTAINERCONTROL_SUPPORTEDCONTAINERS )
 {
-  QMediaContainerControl * obj = (QMediaContainerControl *) _qt5xhb_itemGetPtrStackSelfItem();
+  QMediaContainerControl * obj = (QMediaContainerControl *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -162,7 +162,7 @@ HB_FUNC_STATIC( QMEDIACONTAINERCONTROL_SUPPORTEDCONTAINERS )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRINGLIST( obj->supportedContainers () );
+      RQSTRINGLIST( obj->supportedContainers() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else

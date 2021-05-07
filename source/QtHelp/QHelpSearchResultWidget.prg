@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -27,7 +27,7 @@ CLASS QHelpSearchResultWidget INHERIT QWidget
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QHelpSearchResultWidget
+PROCEDURE destroyObject() CLASS QHelpSearchResultWidget
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -44,6 +44,8 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #include <QtHelp/QHelpSearchResultWidget>
@@ -51,10 +53,12 @@ RETURN
 
 HB_FUNC_STATIC( QHELPSEARCHRESULTWIDGET_DELETE )
 {
-  QHelpSearchResultWidget * obj = (QHelpSearchResultWidget *) _qt5xhb_itemGetPtrStackSelfItem();
+  QHelpSearchResultWidget * obj = (QHelpSearchResultWidget *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -67,11 +71,11 @@ HB_FUNC_STATIC( QHELPSEARCHRESULTWIDGET_DELETE )
 }
 
 /*
-QUrl linkAt ( const QPoint & point )
+QUrl linkAt( const QPoint & point )
 */
 HB_FUNC_STATIC( QHELPSEARCHRESULTWIDGET_LINKAT )
 {
-  QHelpSearchResultWidget * obj = (QHelpSearchResultWidget *) _qt5xhb_itemGetPtrStackSelfItem();
+  QHelpSearchResultWidget * obj = (QHelpSearchResultWidget *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -79,8 +83,8 @@ HB_FUNC_STATIC( QHELPSEARCHRESULTWIDGET_LINKAT )
     if( ISNUMPAR(1) && ISQPOINT(1) )
     {
 #endif
-      QUrl * ptr = new QUrl( obj->linkAt ( *PQPOINT(1) ) );
-      _qt5xhb_createReturnClass ( ptr, "QURL", true );
+      QUrl * ptr = new QUrl( obj->linkAt( *PQPOINT(1) ) );
+      Qt5xHb::createReturnClass( ptr, "QURL", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -91,7 +95,7 @@ HB_FUNC_STATIC( QHELPSEARCHRESULTWIDGET_LINKAT )
   }
 }
 
-void QHelpSearchResultWidgetSlots_connect_signal ( const QString & signal, const QString & slot );
+void QHelpSearchResultWidgetSlots_connect_signal( const QString & signal, const QString & slot );
 
 HB_FUNC_STATIC( QHELPSEARCHRESULTWIDGET_ONREQUESTSHOWLINK )
 {

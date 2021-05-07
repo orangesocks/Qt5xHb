@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -29,7 +29,7 @@ CLASS QPlaceMatchReply INHERIT QPlaceReply
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QPlaceMatchReply
+PROCEDURE destroyObject() CLASS QPlaceMatchReply
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -48,6 +48,8 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #if (QT_VERSION >= QT_VERSION_CHECK(5,4,0))
@@ -56,15 +58,15 @@ RETURN
 #endif
 
 /*
-explicit QPlaceMatchReply(QObject *parent = 0)
+QPlaceMatchReply( QObject * parent = 0 )
 */
 HB_FUNC_STATIC( QPLACEMATCHREPLY_NEW )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,4,0))
-  if( ISBETWEEN(0,1) && (ISQOBJECT(1)||ISNIL(1)) )
+  if( ISBETWEEN(0,1) && (ISQOBJECT(1)||HB_ISNIL(1)) )
   {
-    QPlaceMatchReply * o = new QPlaceMatchReply ( OPQOBJECT(1,0) );
-    _qt5xhb_returnNewObject( o, false );
+    QPlaceMatchReply * obj = new QPlaceMatchReply( OPQOBJECT(1,0) );
+    Qt5xHb::returnNewObject( obj, false );
   }
   else
   {
@@ -76,10 +78,12 @@ HB_FUNC_STATIC( QPLACEMATCHREPLY_NEW )
 HB_FUNC_STATIC( QPLACEMATCHREPLY_DELETE )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,4,0))
-  QPlaceMatchReply * obj = (QPlaceMatchReply *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPlaceMatchReply * obj = (QPlaceMatchReply *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -98,7 +102,7 @@ QPlaceReply::Type type() const
 HB_FUNC_STATIC( QPLACEMATCHREPLY_TYPE )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,4,0))
-  QPlaceMatchReply * obj = (QPlaceMatchReply *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPlaceMatchReply * obj = (QPlaceMatchReply *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -106,7 +110,7 @@ HB_FUNC_STATIC( QPLACEMATCHREPLY_TYPE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RENUM( obj->type () );
+      RENUM( obj->type() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -124,7 +128,7 @@ QList<QPlace> places() const
 HB_FUNC_STATIC( QPLACEMATCHREPLY_PLACES )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,4,0))
-  QPlaceMatchReply * obj = (QPlaceMatchReply *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPlaceMatchReply * obj = (QPlaceMatchReply *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -132,13 +136,12 @@ HB_FUNC_STATIC( QPLACEMATCHREPLY_PLACES )
     if( ISNUMPAR(0) )
     {
 #endif
-      QList<QPlace> list = obj->places ();
+      QList<QPlace> list = obj->places();
       PHB_DYNS pDynSym = hb_dynsymFindName( "QPLACE" );
       PHB_ITEM pArray = hb_itemArrayNew(0);
-      int i;
-      for(i=0;i<list.count();i++)
+      if( pDynSym )
       {
-        if( pDynSym )
+        for( int i = 0; i < list.count(); i++ )
         {
           hb_vmPushDynSym( pDynSym );
           hb_vmPushNil();
@@ -146,7 +149,7 @@ HB_FUNC_STATIC( QPLACEMATCHREPLY_PLACES )
           PHB_ITEM pObject = hb_itemNew( NULL );
           hb_itemCopy( pObject, hb_stackReturnItem() );
           PHB_ITEM pItem = hb_itemNew( NULL );
-          hb_itemPutPtr( pItem, (QPlace *) new QPlace ( list[i] ) );
+          hb_itemPutPtr( pItem, (QPlace *) new QPlace( list[i] ) );
           hb_objSendMsg( pObject, "_POINTER", 1, pItem );
           hb_itemRelease( pItem );
           PHB_ITEM pDestroy = hb_itemNew( NULL );
@@ -156,10 +159,10 @@ HB_FUNC_STATIC( QPLACEMATCHREPLY_PLACES )
           hb_arrayAddForward( pArray, pObject );
           hb_itemRelease( pObject );
         }
-        else
-        {
-          hb_errRT_BASE( EG_NOFUNC, 1001, NULL, "QPLACE", HB_ERR_ARGS_BASEPARAMS );
-        }
+      }
+      else
+      {
+        hb_errRT_BASE( EG_NOFUNC, 1001, NULL, "QPLACE", HB_ERR_ARGS_BASEPARAMS );
       }
       hb_itemReturnRelease(pArray);
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
@@ -179,7 +182,7 @@ QPlaceMatchRequest request() const
 HB_FUNC_STATIC( QPLACEMATCHREPLY_REQUEST )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,4,0))
-  QPlaceMatchReply * obj = (QPlaceMatchReply *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPlaceMatchReply * obj = (QPlaceMatchReply *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -187,8 +190,8 @@ HB_FUNC_STATIC( QPLACEMATCHREPLY_REQUEST )
     if( ISNUMPAR(0) )
     {
 #endif
-      QPlaceMatchRequest * ptr = new QPlaceMatchRequest( obj->request () );
-      _qt5xhb_createReturnClass ( ptr, "QPLACEMATCHREQUEST", true );
+      QPlaceMatchRequest * ptr = new QPlaceMatchRequest( obj->request() );
+      Qt5xHb::createReturnClass( ptr, "QPLACEMATCHREQUEST", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else

@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -33,7 +33,7 @@ CLASS QInAppStore INHERIT QObject
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QInAppStore
+PROCEDURE destroyObject() CLASS QInAppStore
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -50,20 +50,22 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #include <QtPurchasing/QInAppStore>
 #endif
 
 /*
-explicit QInAppStore(QObject *parent = Q_NULLPTR)
+QInAppStore( QObject * parent = nullptr )
 */
 HB_FUNC_STATIC( QINAPPSTORE_NEW )
 {
-  if( ISBETWEEN(0,1) && (ISQOBJECT(1)||ISNIL(1)) )
+  if( ISBETWEEN(0,1) && (ISQOBJECT(1)||HB_ISNIL(1)) )
   {
-    QInAppStore * o = new QInAppStore ( OPQOBJECT(1,Q_NULLPTR) );
-    _qt5xhb_returnNewObject( o, false );
+    QInAppStore * obj = new QInAppStore( OPQOBJECT(1,nullptr) );
+    Qt5xHb::returnNewObject( obj, false );
   }
   else
   {
@@ -76,10 +78,12 @@ HB_FUNC_STATIC( QINAPPSTORE_NEW )
 */
 HB_FUNC_STATIC( QINAPPSTORE_DELETE )
 {
-  QInAppStore * obj = (QInAppStore *) _qt5xhb_itemGetPtrStackSelfItem();
+  QInAppStore * obj = (QInAppStore *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -96,7 +100,7 @@ Q_INVOKABLE void restorePurchases()
 */
 HB_FUNC_STATIC( QINAPPSTORE_RESTOREPURCHASES )
 {
-  QInAppStore * obj = (QInAppStore *) _qt5xhb_itemGetPtrStackSelfItem();
+  QInAppStore * obj = (QInAppStore *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -104,7 +108,7 @@ HB_FUNC_STATIC( QINAPPSTORE_RESTOREPURCHASES )
     if( ISNUMPAR(0) )
     {
 #endif
-      obj->restorePurchases ();
+      obj->restorePurchases();
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -118,19 +122,19 @@ HB_FUNC_STATIC( QINAPPSTORE_RESTOREPURCHASES )
 }
 
 /*
-Q_INVOKABLE void registerProduct(QInAppProduct::ProductType productType, const QString &identifier)
+Q_INVOKABLE void registerProduct( QInAppProduct::ProductType productType, const QString & identifier )
 */
 HB_FUNC_STATIC( QINAPPSTORE_REGISTERPRODUCT )
 {
-  QInAppStore * obj = (QInAppStore *) _qt5xhb_itemGetPtrStackSelfItem();
+  QInAppStore * obj = (QInAppStore *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(2) && ISNUM(1) && ISCHAR(2) )
+    if( ISNUMPAR(2) && HB_ISNUM(1) && HB_ISCHAR(2) )
     {
 #endif
-      obj->registerProduct ( (QInAppProduct::ProductType) hb_parni(1), PQSTRING(2) );
+      obj->registerProduct( (QInAppProduct::ProductType) hb_parni(1), PQSTRING(2) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -144,20 +148,20 @@ HB_FUNC_STATIC( QINAPPSTORE_REGISTERPRODUCT )
 }
 
 /*
-Q_INVOKABLE QInAppProduct *registeredProduct(const QString &identifier) const
+Q_INVOKABLE QInAppProduct * registeredProduct( const QString & identifier ) const
 */
 HB_FUNC_STATIC( QINAPPSTORE_REGISTEREDPRODUCT )
 {
-  QInAppStore * obj = (QInAppStore *) _qt5xhb_itemGetPtrStackSelfItem();
+  QInAppStore * obj = (QInAppStore *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISCHAR(1) )
+    if( ISNUMPAR(1) && HB_ISCHAR(1) )
     {
 #endif
-      QInAppProduct * ptr = obj->registeredProduct ( PQSTRING(1) );
-      _qt5xhb_createReturnQObjectClass ( ptr, "QINAPPPRODUCT" );
+      QInAppProduct * ptr = obj->registeredProduct( PQSTRING(1) );
+      Qt5xHb::createReturnQObjectClass( ptr, "QINAPPPRODUCT" );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -169,19 +173,19 @@ HB_FUNC_STATIC( QINAPPSTORE_REGISTEREDPRODUCT )
 }
 
 /*
-Q_INVOKABLE void setPlatformProperty(const QString &propertyName, const QString &value)
+Q_INVOKABLE void setPlatformProperty( const QString & propertyName, const QString & value )
 */
 HB_FUNC_STATIC( QINAPPSTORE_SETPLATFORMPROPERTY )
 {
-  QInAppStore * obj = (QInAppStore *) _qt5xhb_itemGetPtrStackSelfItem();
+  QInAppStore * obj = (QInAppStore *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(2) && ISCHAR(1) && ISCHAR(2) )
+    if( ISNUMPAR(2) && HB_ISCHAR(1) && HB_ISCHAR(2) )
     {
 #endif
-      obj->setPlatformProperty ( PQSTRING(1), PQSTRING(2) );
+      obj->setPlatformProperty( PQSTRING(1), PQSTRING(2) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -194,19 +198,7 @@ HB_FUNC_STATIC( QINAPPSTORE_SETPLATFORMPROPERTY )
   hb_itemReturn( hb_stackSelfItem() );
 }
 
-/*
-void registerPendingProducts() [private] (slot)
-*/
-
-/*
-void registerProduct(QInAppProduct *) [private] (slot)
-*/
-
-/*
-void setupBackend() [private]
-*/
-
-void QInAppStoreSlots_connect_signal ( const QString & signal, const QString & slot );
+void QInAppStoreSlots_connect_signal( const QString & signal, const QString & slot );
 
 HB_FUNC_STATIC( QINAPPSTORE_ONPRODUCTREGISTERED )
 {

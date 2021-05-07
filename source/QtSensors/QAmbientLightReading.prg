@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -25,7 +25,7 @@ CLASS QAmbientLightReading INHERIT QSensorReading
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QAmbientLightReading
+PROCEDURE destroyObject() CLASS QAmbientLightReading
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -44,6 +44,8 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #if (QT_VERSION >= QT_VERSION_CHECK(5,1,0))
@@ -54,10 +56,12 @@ RETURN
 HB_FUNC_STATIC( QAMBIENTLIGHTREADING_DELETE )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,1,0))
-  QAmbientLightReading * obj = (QAmbientLightReading *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAmbientLightReading * obj = (QAmbientLightReading *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -71,12 +75,12 @@ HB_FUNC_STATIC( QAMBIENTLIGHTREADING_DELETE )
 }
 
 /*
-LightLevel lightLevel() const
+QAmbientLightReading::LightLevel lightLevel() const
 */
 HB_FUNC_STATIC( QAMBIENTLIGHTREADING_LIGHTLEVEL )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,1,0))
-  QAmbientLightReading * obj = (QAmbientLightReading *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAmbientLightReading * obj = (QAmbientLightReading *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -84,7 +88,7 @@ HB_FUNC_STATIC( QAMBIENTLIGHTREADING_LIGHTLEVEL )
     if( ISNUMPAR(0) )
     {
 #endif
-      RENUM( obj->lightLevel () );
+      RENUM( obj->lightLevel() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -97,20 +101,20 @@ HB_FUNC_STATIC( QAMBIENTLIGHTREADING_LIGHTLEVEL )
 }
 
 /*
-void setLightLevel(LightLevel lightLevel)
+void setLightLevel( QAmbientLightReading::LightLevel lightLevel )
 */
 HB_FUNC_STATIC( QAMBIENTLIGHTREADING_SETLIGHTLEVEL )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,1,0))
-  QAmbientLightReading * obj = (QAmbientLightReading *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAmbientLightReading * obj = (QAmbientLightReading *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setLightLevel ( (QAmbientLightReading::LightLevel) hb_parni(1) );
+      obj->setLightLevel( (QAmbientLightReading::LightLevel) hb_parni(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else

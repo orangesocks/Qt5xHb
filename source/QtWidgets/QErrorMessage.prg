@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -26,7 +26,7 @@ CLASS QErrorMessage INHERIT QDialog
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QErrorMessage
+PROCEDURE destroyObject() CLASS QErrorMessage
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -43,20 +43,22 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #include <QtWidgets/QErrorMessage>
 #endif
 
 /*
-explicit QErrorMessage ( QWidget * parent = 0 )
+QErrorMessage( QWidget * parent = 0 )
 */
 HB_FUNC_STATIC( QERRORMESSAGE_NEW )
 {
-  if( ISBETWEEN(0,1) && (ISQWIDGET(1)||ISNIL(1)) )
+  if( ISBETWEEN(0,1) && (ISQWIDGET(1)||HB_ISNIL(1)) )
   {
-    QErrorMessage * o = new QErrorMessage ( OPQWIDGET(1,0) );
-    _qt5xhb_returnNewObject( o, false );
+    QErrorMessage * obj = new QErrorMessage( OPQWIDGET(1,0) );
+    Qt5xHb::returnNewObject( obj, false );
   }
   else
   {
@@ -66,10 +68,12 @@ HB_FUNC_STATIC( QERRORMESSAGE_NEW )
 
 HB_FUNC_STATIC( QERRORMESSAGE_DELETE )
 {
-  QErrorMessage * obj = (QErrorMessage *) _qt5xhb_itemGetPtrStackSelfItem();
+  QErrorMessage * obj = (QErrorMessage *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -82,45 +86,42 @@ HB_FUNC_STATIC( QERRORMESSAGE_DELETE )
 }
 
 /*
-void showMessage ( const QString & message )
+void showMessage( const QString & message )
 */
-void QErrorMessage_showMessage1 ()
+void QErrorMessage_showMessage1()
 {
-  QErrorMessage * obj = (QErrorMessage *) _qt5xhb_itemGetPtrStackSelfItem();
+  QErrorMessage * obj = (QErrorMessage *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
-      obj->showMessage ( PQSTRING(1) );
+    obj->showMessage( PQSTRING(1) );
   }
 
   hb_itemReturn( hb_stackSelfItem() );
 }
 
 /*
-void showMessage ( const QString & message, const QString & type )
+void showMessage( const QString & message, const QString & type )
 */
-void QErrorMessage_showMessage2 ()
+void QErrorMessage_showMessage2()
 {
-  QErrorMessage * obj = (QErrorMessage *) _qt5xhb_itemGetPtrStackSelfItem();
+  QErrorMessage * obj = (QErrorMessage *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
-      obj->showMessage ( PQSTRING(1), PQSTRING(2) );
+    obj->showMessage( PQSTRING(1), PQSTRING(2) );
   }
 
   hb_itemReturn( hb_stackSelfItem() );
 }
 
-//[1]void showMessage ( const QString & message )
-//[2]void showMessage ( const QString & message, const QString & type )
-
 HB_FUNC_STATIC( QERRORMESSAGE_SHOWMESSAGE )
 {
-  if( ISNUMPAR(1) && ISCHAR(1) )
+  if( ISNUMPAR(1) && HB_ISCHAR(1) )
   {
     QErrorMessage_showMessage1();
   }
-  else if( ISNUMPAR(2) && ISCHAR(1) && ISCHAR(2) )
+  else if( ISNUMPAR(2) && HB_ISCHAR(1) && HB_ISCHAR(2) )
   {
     QErrorMessage_showMessage2();
   }
@@ -131,16 +132,16 @@ HB_FUNC_STATIC( QERRORMESSAGE_SHOWMESSAGE )
 }
 
 /*
-static QErrorMessage * qtHandler ()
+static QErrorMessage * qtHandler()
 */
 HB_FUNC_STATIC( QERRORMESSAGE_QTHANDLER )
 {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(0) )
+  if( ISNUMPAR(0) )
   {
 #endif
-      QErrorMessage * ptr = QErrorMessage::qtHandler ();
-      _qt5xhb_createReturnQWidgetClass ( ptr, "QERRORMESSAGE" );
+    QErrorMessage * ptr = QErrorMessage::qtHandler();
+    Qt5xHb::createReturnQWidgetClass( ptr, "QERRORMESSAGE" );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
   }
   else

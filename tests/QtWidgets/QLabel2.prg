@@ -2,19 +2,19 @@
 
   Qt5xHb Project - Test Program
 
-  Copyright (C) 2019 Marcos Antonio Gambeta
+  Copyright (C) 2021 Marcos Antonio Gambeta
 
   E-mail:
   marcosgambeta AT outlook DOT com
 
   Website:
-  https://github.com/marcosgambeta/Qt5xHb
+  https://github.com/magsoftinfo/qt5xhb
 
 */
 
 #include "qt5xhb.ch"
 
-PROCEDURE Main ()
+PROCEDURE Main()
 
    LOCAL oApp
    LOCAL oWindow
@@ -23,12 +23,12 @@ PROCEDURE Main ()
    oApp := QApplication():new()
 
    oWindow := QWidget():new()
-   oWindow:setWindowTitle("Teste")
-   oWindow:resize(640,480)
+   oWindow:setWindowTitle( "Teste" )
+   oWindow:resize( 640, 480 )
 
-   oLabel := QLabel():new("Teste com a classe <font color=red><b>QLabel</b></font>",oWindow)
-   oLabel:move(20,20)
-   oLabel:setTooltip("Eu sou um QLabel")
+   oLabel := QLabel():new( "Teste com a classe <font color=red><b>QLabel</b></font>", oWindow )
+   oLabel:move( 20, 20 )
+   oLabel:setTooltip( "Eu sou um QLabel" )
 
    oWindow:show()
 

@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -28,7 +28,7 @@ CLASS QDomEntity INHERIT QDomNode
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QDomEntity
+PROCEDURE destroyObject() CLASS QDomEntity
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -51,25 +51,22 @@ RETURN
 #endif
 
 /*
-QDomEntity ()
+QDomEntity()
 */
-void QDomEntity_new1 ()
+void QDomEntity_new1()
 {
-  QDomEntity * o = new QDomEntity ();
-  _qt5xhb_returnNewObject( o, true );
+  QDomEntity * obj = new QDomEntity();
+  Qt5xHb::returnNewObject( obj, true );
 }
 
 /*
-QDomEntity ( const QDomEntity & x )
+QDomEntity( const QDomEntity & x )
 */
-void QDomEntity_new2 ()
+void QDomEntity_new2()
 {
-  QDomEntity * o = new QDomEntity ( *PQDOMENTITY(1) );
-  _qt5xhb_returnNewObject( o, true );
+  QDomEntity * obj = new QDomEntity( *PQDOMENTITY(1) );
+  Qt5xHb::returnNewObject( obj, true );
 }
-
-//[1]QDomEntity ()
-//[2]QDomEntity ( const QDomEntity & x )
 
 HB_FUNC_STATIC( QDOMENTITY_NEW )
 {
@@ -89,7 +86,7 @@ HB_FUNC_STATIC( QDOMENTITY_NEW )
 
 HB_FUNC_STATIC( QDOMENTITY_DELETE )
 {
-  QDomEntity * obj = (QDomEntity *) _qt5xhb_itemGetPtrStackSelfItem();
+  QDomEntity * obj = (QDomEntity *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -105,11 +102,11 @@ HB_FUNC_STATIC( QDOMENTITY_DELETE )
 }
 
 /*
-QDomNode::NodeType nodeType () const
+QDomNode::NodeType nodeType() const
 */
 HB_FUNC_STATIC( QDOMENTITY_NODETYPE )
 {
-  QDomEntity * obj = (QDomEntity *) _qt5xhb_itemGetPtrStackSelfItem();
+  QDomEntity * obj = (QDomEntity *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -117,7 +114,7 @@ HB_FUNC_STATIC( QDOMENTITY_NODETYPE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RENUM( obj->nodeType () );
+      RENUM( obj->nodeType() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -129,11 +126,11 @@ HB_FUNC_STATIC( QDOMENTITY_NODETYPE )
 }
 
 /*
-QString notationName () const
+QString notationName() const
 */
 HB_FUNC_STATIC( QDOMENTITY_NOTATIONNAME )
 {
-  QDomEntity * obj = (QDomEntity *) _qt5xhb_itemGetPtrStackSelfItem();
+  QDomEntity * obj = (QDomEntity *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -141,7 +138,7 @@ HB_FUNC_STATIC( QDOMENTITY_NOTATIONNAME )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRING( obj->notationName () );
+      RQSTRING( obj->notationName() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -153,11 +150,11 @@ HB_FUNC_STATIC( QDOMENTITY_NOTATIONNAME )
 }
 
 /*
-QString publicId () const
+QString publicId() const
 */
 HB_FUNC_STATIC( QDOMENTITY_PUBLICID )
 {
-  QDomEntity * obj = (QDomEntity *) _qt5xhb_itemGetPtrStackSelfItem();
+  QDomEntity * obj = (QDomEntity *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -165,7 +162,7 @@ HB_FUNC_STATIC( QDOMENTITY_PUBLICID )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRING( obj->publicId () );
+      RQSTRING( obj->publicId() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -177,11 +174,11 @@ HB_FUNC_STATIC( QDOMENTITY_PUBLICID )
 }
 
 /*
-QString systemId () const
+QString systemId() const
 */
 HB_FUNC_STATIC( QDOMENTITY_SYSTEMID )
 {
-  QDomEntity * obj = (QDomEntity *) _qt5xhb_itemGetPtrStackSelfItem();
+  QDomEntity * obj = (QDomEntity *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -189,7 +186,7 @@ HB_FUNC_STATIC( QDOMENTITY_SYSTEMID )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRING( obj->systemId () );
+      RQSTRING( obj->systemId() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else

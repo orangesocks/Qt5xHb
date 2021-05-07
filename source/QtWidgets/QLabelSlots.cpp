@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -12,43 +12,53 @@
 
 #include "QLabelSlots.h"
 
-QLabelSlots::QLabelSlots(QObject *parent) : QObject(parent)
+QLabelSlots::QLabelSlots( QObject *parent ) : QObject( parent )
 {
 }
 
 QLabelSlots::~QLabelSlots()
 {
 }
+
 void QLabelSlots::linkActivated( const QString & link )
 {
   QObject *object = qobject_cast<QObject *>(sender());
-  PHB_ITEM cb = Signals_return_codeblock( object, "linkActivated(QString)" );
+
+  PHB_ITEM cb = Qt5xHb::Signals_return_codeblock( object, "linkActivated(QString)" );
+
   if( cb )
   {
-    PHB_ITEM psender = Signals_return_qobject ( (QObject *) object, "QLABEL" );
+    PHB_ITEM psender = Qt5xHb::Signals_return_qobject( (QObject *) object, "QLABEL" );
     PHB_ITEM plink = hb_itemPutC( NULL, QSTRINGTOSTRING(link) );
-    hb_vmEvalBlockV( (PHB_ITEM) cb, 2, psender, plink );
-    hb_itemRelease( psender );
-    hb_itemRelease( plink );
-  }
-}
-void QLabelSlots::linkHovered( const QString & link )
-{
-  QObject *object = qobject_cast<QObject *>(sender());
-  PHB_ITEM cb = Signals_return_codeblock( object, "linkHovered(QString)" );
-  if( cb )
-  {
-    PHB_ITEM psender = Signals_return_qobject ( (QObject *) object, "QLABEL" );
-    PHB_ITEM plink = hb_itemPutC( NULL, QSTRINGTOSTRING(link) );
-    hb_vmEvalBlockV( (PHB_ITEM) cb, 2, psender, plink );
+
+    hb_vmEvalBlockV( cb, 2, psender, plink );
+
     hb_itemRelease( psender );
     hb_itemRelease( plink );
   }
 }
 
-void QLabelSlots_connect_signal ( const QString & signal, const QString & slot )
+void QLabelSlots::linkHovered( const QString & link )
 {
-  QLabel * obj = (QLabel *) hb_itemGetPtr( hb_objSendMsg( hb_stackSelfItem(), "POINTER", 0 ) );
+  QObject *object = qobject_cast<QObject *>(sender());
+
+  PHB_ITEM cb = Qt5xHb::Signals_return_codeblock( object, "linkHovered(QString)" );
+
+  if( cb )
+  {
+    PHB_ITEM psender = Qt5xHb::Signals_return_qobject( (QObject *) object, "QLABEL" );
+    PHB_ITEM plink = hb_itemPutC( NULL, QSTRINGTOSTRING(link) );
+
+    hb_vmEvalBlockV( cb, 2, psender, plink );
+
+    hb_itemRelease( psender );
+    hb_itemRelease( plink );
+  }
+}
+
+void QLabelSlots_connect_signal( const QString & signal, const QString & slot )
+{
+  QLabel * obj = (QLabel *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -61,7 +71,7 @@ void QLabelSlots_connect_signal ( const QString & signal, const QString & slot )
       s->setParent( QCoreApplication::instance() );
     }
 
-    hb_retl( Signals_connection_disconnection( s, signal, slot ) );
+    hb_retl( Qt5xHb::Signals_connection_disconnection( s, signal, slot ) );
   }
   else
   {

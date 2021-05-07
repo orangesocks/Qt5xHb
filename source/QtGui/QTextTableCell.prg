@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -47,7 +47,7 @@ CLASS QTextTableCell
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QTextTableCell
+PROCEDURE destroyObject() CLASS QTextTableCell
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -74,23 +74,20 @@ RETURN
 /*
 QTextTableCell()
 */
-void QTextTableCell_new1 ()
+void QTextTableCell_new1()
 {
-  QTextTableCell * o = new QTextTableCell ();
-  _qt5xhb_returnNewObject( o, true );
+  QTextTableCell * obj = new QTextTableCell();
+  Qt5xHb::returnNewObject( obj, true );
 }
 
 /*
-QTextTableCell(const QTextTableCell &o)
+QTextTableCell( const QTextTableCell & o )
 */
-void QTextTableCell_new2 ()
+void QTextTableCell_new2()
 {
-  QTextTableCell * o = new QTextTableCell ( *PQTEXTTABLECELL(1) );
-  _qt5xhb_returnNewObject( o, true );
+  QTextTableCell * obj = new QTextTableCell( *PQTEXTTABLECELL(1) );
+  Qt5xHb::returnNewObject( obj, true );
 }
-
-//[1]QTextTableCell()
-//[2]QTextTableCell(const QTextTableCell &o)
 
 HB_FUNC_STATIC( QTEXTTABLECELL_NEW )
 {
@@ -110,7 +107,7 @@ HB_FUNC_STATIC( QTEXTTABLECELL_NEW )
 
 HB_FUNC_STATIC( QTEXTTABLECELL_DELETE )
 {
-  QTextTableCell * obj = (QTextTableCell *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTextTableCell * obj = (QTextTableCell *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -126,11 +123,11 @@ HB_FUNC_STATIC( QTEXTTABLECELL_DELETE )
 }
 
 /*
-void setFormat(const QTextCharFormat &format)
+void setFormat( const QTextCharFormat & format )
 */
 HB_FUNC_STATIC( QTEXTTABLECELL_SETFORMAT )
 {
-  QTextTableCell * obj = (QTextTableCell *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTextTableCell * obj = (QTextTableCell *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -138,7 +135,7 @@ HB_FUNC_STATIC( QTEXTTABLECELL_SETFORMAT )
     if( ISNUMPAR(1) && ISQTEXTCHARFORMAT(1) )
     {
 #endif
-      obj->setFormat ( *PQTEXTCHARFORMAT(1) );
+      obj->setFormat( *PQTEXTCHARFORMAT(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -156,7 +153,7 @@ QTextCharFormat format() const
 */
 HB_FUNC_STATIC( QTEXTTABLECELL_FORMAT )
 {
-  QTextTableCell * obj = (QTextTableCell *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTextTableCell * obj = (QTextTableCell *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -164,8 +161,8 @@ HB_FUNC_STATIC( QTEXTTABLECELL_FORMAT )
     if( ISNUMPAR(0) )
     {
 #endif
-      QTextCharFormat * ptr = new QTextCharFormat( obj->format () );
-      _qt5xhb_createReturnClass ( ptr, "QTEXTCHARFORMAT", true );
+      QTextCharFormat * ptr = new QTextCharFormat( obj->format() );
+      Qt5xHb::createReturnClass( ptr, "QTEXTCHARFORMAT", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -181,7 +178,7 @@ int row() const
 */
 HB_FUNC_STATIC( QTEXTTABLECELL_ROW )
 {
-  QTextTableCell * obj = (QTextTableCell *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTextTableCell * obj = (QTextTableCell *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -189,7 +186,7 @@ HB_FUNC_STATIC( QTEXTTABLECELL_ROW )
     if( ISNUMPAR(0) )
     {
 #endif
-      RINT( obj->row () );
+      RINT( obj->row() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -205,7 +202,7 @@ int column() const
 */
 HB_FUNC_STATIC( QTEXTTABLECELL_COLUMN )
 {
-  QTextTableCell * obj = (QTextTableCell *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTextTableCell * obj = (QTextTableCell *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -213,7 +210,7 @@ HB_FUNC_STATIC( QTEXTTABLECELL_COLUMN )
     if( ISNUMPAR(0) )
     {
 #endif
-      RINT( obj->column () );
+      RINT( obj->column() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -229,7 +226,7 @@ int rowSpan() const
 */
 HB_FUNC_STATIC( QTEXTTABLECELL_ROWSPAN )
 {
-  QTextTableCell * obj = (QTextTableCell *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTextTableCell * obj = (QTextTableCell *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -237,7 +234,7 @@ HB_FUNC_STATIC( QTEXTTABLECELL_ROWSPAN )
     if( ISNUMPAR(0) )
     {
 #endif
-      RINT( obj->rowSpan () );
+      RINT( obj->rowSpan() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -253,7 +250,7 @@ int columnSpan() const
 */
 HB_FUNC_STATIC( QTEXTTABLECELL_COLUMNSPAN )
 {
-  QTextTableCell * obj = (QTextTableCell *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTextTableCell * obj = (QTextTableCell *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -261,7 +258,7 @@ HB_FUNC_STATIC( QTEXTTABLECELL_COLUMNSPAN )
     if( ISNUMPAR(0) )
     {
 #endif
-      RINT( obj->columnSpan () );
+      RINT( obj->columnSpan() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -277,7 +274,7 @@ bool isValid() const
 */
 HB_FUNC_STATIC( QTEXTTABLECELL_ISVALID )
 {
-  QTextTableCell * obj = (QTextTableCell *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTextTableCell * obj = (QTextTableCell *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -285,7 +282,7 @@ HB_FUNC_STATIC( QTEXTTABLECELL_ISVALID )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->isValid () );
+      RBOOL( obj->isValid() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -301,7 +298,7 @@ QTextCursor firstCursorPosition() const
 */
 HB_FUNC_STATIC( QTEXTTABLECELL_FIRSTCURSORPOSITION )
 {
-  QTextTableCell * obj = (QTextTableCell *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTextTableCell * obj = (QTextTableCell *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -309,8 +306,8 @@ HB_FUNC_STATIC( QTEXTTABLECELL_FIRSTCURSORPOSITION )
     if( ISNUMPAR(0) )
     {
 #endif
-      QTextCursor * ptr = new QTextCursor( obj->firstCursorPosition () );
-      _qt5xhb_createReturnClass ( ptr, "QTEXTCURSOR", true );
+      QTextCursor * ptr = new QTextCursor( obj->firstCursorPosition() );
+      Qt5xHb::createReturnClass( ptr, "QTEXTCURSOR", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -326,7 +323,7 @@ QTextCursor lastCursorPosition() const
 */
 HB_FUNC_STATIC( QTEXTTABLECELL_LASTCURSORPOSITION )
 {
-  QTextTableCell * obj = (QTextTableCell *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTextTableCell * obj = (QTextTableCell *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -334,8 +331,8 @@ HB_FUNC_STATIC( QTEXTTABLECELL_LASTCURSORPOSITION )
     if( ISNUMPAR(0) )
     {
 #endif
-      QTextCursor * ptr = new QTextCursor( obj->lastCursorPosition () );
-      _qt5xhb_createReturnClass ( ptr, "QTEXTCURSOR", true );
+      QTextCursor * ptr = new QTextCursor( obj->lastCursorPosition() );
+      Qt5xHb::createReturnClass( ptr, "QTEXTCURSOR", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -351,7 +348,7 @@ int firstPosition() const
 */
 HB_FUNC_STATIC( QTEXTTABLECELL_FIRSTPOSITION )
 {
-  QTextTableCell * obj = (QTextTableCell *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTextTableCell * obj = (QTextTableCell *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -359,7 +356,7 @@ HB_FUNC_STATIC( QTEXTTABLECELL_FIRSTPOSITION )
     if( ISNUMPAR(0) )
     {
 #endif
-      RINT( obj->firstPosition () );
+      RINT( obj->firstPosition() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -375,7 +372,7 @@ int lastPosition() const
 */
 HB_FUNC_STATIC( QTEXTTABLECELL_LASTPOSITION )
 {
-  QTextTableCell * obj = (QTextTableCell *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTextTableCell * obj = (QTextTableCell *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -383,7 +380,7 @@ HB_FUNC_STATIC( QTEXTTABLECELL_LASTPOSITION )
     if( ISNUMPAR(0) )
     {
 #endif
-      RINT( obj->lastPosition () );
+      RINT( obj->lastPosition() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -399,7 +396,7 @@ int tableCellFormatIndex() const
 */
 HB_FUNC_STATIC( QTEXTTABLECELL_TABLECELLFORMATINDEX )
 {
-  QTextTableCell * obj = (QTextTableCell *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTextTableCell * obj = (QTextTableCell *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -407,7 +404,7 @@ HB_FUNC_STATIC( QTEXTTABLECELL_TABLECELLFORMATINDEX )
     if( ISNUMPAR(0) )
     {
 #endif
-      RINT( obj->tableCellFormatIndex () );
+      RINT( obj->tableCellFormatIndex() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -422,7 +419,7 @@ HB_FUNC_STATIC( QTEXTTABLECELL_NEWFROM )
 {
   PHB_ITEM self = hb_stackSelfItem();
 
-  if( hb_pcount() == 1 && ISOBJECT(1) )
+  if( hb_pcount() == 1 && HB_ISOBJECT(1) )
   {
     PHB_ITEM ptr = hb_itemPutPtr( NULL, (void *) hb_itemGetPtr( hb_objSendMsg( hb_param(1, HB_IT_OBJECT ), "POINTER", 0 ) ) );
     hb_objSendMsg( self, "_pointer", 1, ptr );
@@ -431,7 +428,7 @@ HB_FUNC_STATIC( QTEXTTABLECELL_NEWFROM )
     hb_objSendMsg( self, "_self_destruction", 1, des );
     hb_itemRelease( des );
   }
-  else if( hb_pcount() == 1 && ISPOINTER(1) )
+  else if( hb_pcount() == 1 && HB_ISPOINTER(1) )
   {
     PHB_ITEM ptr = hb_itemPutPtr( NULL, (void *) hb_itemGetPtr( hb_param(1, HB_IT_POINTER ) ) );
     hb_objSendMsg( self, "_pointer", 1, ptr );
@@ -467,7 +464,7 @@ HB_FUNC_STATIC( QTEXTTABLECELL_SETSELFDESTRUCTION )
 {
   PHB_ITEM self = hb_stackSelfItem();
 
-  if( hb_pcount() == 1 && ISLOG(1) )
+  if( hb_pcount() == 1 && HB_ISLOG(1) )
   {
     PHB_ITEM des = hb_itemPutL( NULL, hb_parl(1) );
     hb_objSendMsg( self, "_self_destruction", 1, des );

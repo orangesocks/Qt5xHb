@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -32,7 +32,7 @@ CLASS Q3DObject INHERIT QObject
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS Q3DObject
+PROCEDURE destroyObject() CLASS Q3DObject
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -49,6 +49,8 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #include <QtDataVisualization/Q3DObject>
@@ -59,14 +61,14 @@ RETURN
 using namespace QtDataVisualization;
 
 /*
-explicit Q3DObject(QObject *parent = Q_NULLPTR)
+Q3DObject( QObject * parent = nullptr )
 */
 HB_FUNC_STATIC( Q3DOBJECT_NEW )
 {
-  if( ISBETWEEN(0,1) && (ISQOBJECT(1)||ISNIL(1)) )
+  if( ISBETWEEN(0,1) && (ISQOBJECT(1)||HB_ISNIL(1)) )
   {
-    Q3DObject * o = new Q3DObject ( OPQOBJECT(1,Q_NULLPTR) );
-    _qt5xhb_returnNewObject( o, false );
+    Q3DObject * obj = new Q3DObject( OPQOBJECT(1,nullptr) );
+    Qt5xHb::returnNewObject( obj, false );
   }
   else
   {
@@ -79,10 +81,12 @@ virtual ~Q3DObject()
 */
 HB_FUNC_STATIC( Q3DOBJECT_DELETE )
 {
-  Q3DObject * obj = (Q3DObject *) _qt5xhb_itemGetPtrStackSelfItem();
+  Q3DObject * obj = (Q3DObject *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -95,11 +99,11 @@ HB_FUNC_STATIC( Q3DOBJECT_DELETE )
 }
 
 /*
-Q3DScene *parentScene()
+Q3DScene * parentScene()
 */
 HB_FUNC_STATIC( Q3DOBJECT_PARENTSCENE )
 {
-  Q3DObject * obj = (Q3DObject *) _qt5xhb_itemGetPtrStackSelfItem();
+  Q3DObject * obj = (Q3DObject *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -107,8 +111,8 @@ HB_FUNC_STATIC( Q3DOBJECT_PARENTSCENE )
     if( ISNUMPAR(0) )
     {
 #endif
-      Q3DScene * ptr = obj->parentScene ();
-      _qt5xhb_createReturnQObjectClass ( ptr, "Q3DSCENE" );
+      Q3DScene * ptr = obj->parentScene();
+      Qt5xHb::createReturnQObjectClass( ptr, "Q3DSCENE" );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -124,7 +128,7 @@ QVector3D position() const
 */
 HB_FUNC_STATIC( Q3DOBJECT_POSITION )
 {
-  Q3DObject * obj = (Q3DObject *) _qt5xhb_itemGetPtrStackSelfItem();
+  Q3DObject * obj = (Q3DObject *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -132,8 +136,8 @@ HB_FUNC_STATIC( Q3DOBJECT_POSITION )
     if( ISNUMPAR(0) )
     {
 #endif
-      QVector3D * ptr = new QVector3D( obj->position () );
-      _qt5xhb_createReturnClass ( ptr, "QVECTOR3D", true );
+      QVector3D * ptr = new QVector3D( obj->position() );
+      Qt5xHb::createReturnClass( ptr, "QVECTOR3D", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -145,11 +149,11 @@ HB_FUNC_STATIC( Q3DOBJECT_POSITION )
 }
 
 /*
-void setPosition(const QVector3D &position)
+void setPosition( const QVector3D & position )
 */
 HB_FUNC_STATIC( Q3DOBJECT_SETPOSITION )
 {
-  Q3DObject * obj = (Q3DObject *) _qt5xhb_itemGetPtrStackSelfItem();
+  Q3DObject * obj = (Q3DObject *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -157,7 +161,7 @@ HB_FUNC_STATIC( Q3DOBJECT_SETPOSITION )
     if( ISNUMPAR(1) && ISQVECTOR3D(1) )
     {
 #endif
-      obj->setPosition ( *PQVECTOR3D(1) );
+      obj->setPosition( *PQVECTOR3D(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -171,11 +175,11 @@ HB_FUNC_STATIC( Q3DOBJECT_SETPOSITION )
 }
 
 /*
-virtual void copyValuesFrom(const Q3DObject &source)
+virtual void copyValuesFrom( const Q3DObject & source )
 */
 HB_FUNC_STATIC( Q3DOBJECT_COPYVALUESFROM )
 {
-  Q3DObject * obj = (Q3DObject *) _qt5xhb_itemGetPtrStackSelfItem();
+  Q3DObject * obj = (Q3DObject *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -183,7 +187,7 @@ HB_FUNC_STATIC( Q3DOBJECT_COPYVALUESFROM )
     if( ISNUMPAR(1) && ISQ3DOBJECT(1) )
     {
 #endif
-      obj->copyValuesFrom ( *PQ3DOBJECT(1) );
+      obj->copyValuesFrom( *PQ3DOBJECT(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -196,15 +200,7 @@ HB_FUNC_STATIC( Q3DOBJECT_COPYVALUESFROM )
   hb_itemReturn( hb_stackSelfItem() );
 }
 
-/*
-void setDirty(bool dirty) [protected]
-*/
-
-/*
-bool isDirty() const [protected]
-*/
-
-void Q3DObjectSlots_connect_signal ( const QString & signal, const QString & slot );
+void Q3DObjectSlots_connect_signal( const QString & signal, const QString & slot );
 
 HB_FUNC_STATIC( Q3DOBJECT_ONPOSITIONCHANGED )
 {

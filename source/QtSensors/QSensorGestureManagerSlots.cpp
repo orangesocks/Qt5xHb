@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -12,31 +12,36 @@
 
 #include "QSensorGestureManagerSlots.h"
 
-QSensorGestureManagerSlots::QSensorGestureManagerSlots(QObject *parent) : QObject(parent)
+QSensorGestureManagerSlots::QSensorGestureManagerSlots( QObject *parent ) : QObject( parent )
 {
 }
 
 QSensorGestureManagerSlots::~QSensorGestureManagerSlots()
 {
 }
+
 #if (QT_VERSION >= QT_VERSION_CHECK(5,1,0))
 void QSensorGestureManagerSlots::newSensorGestureAvailable()
 {
   QObject *object = qobject_cast<QObject *>(sender());
-  PHB_ITEM cb = Signals_return_codeblock( object, "newSensorGestureAvailable()" );
+
+  PHB_ITEM cb = Qt5xHb::Signals_return_codeblock( object, "newSensorGestureAvailable()" );
+
   if( cb )
   {
-    PHB_ITEM psender = Signals_return_qobject ( (QObject *) object, "QSENSORGESTUREMANAGER" );
-    hb_vmEvalBlockV( (PHB_ITEM) cb, 1, psender );
+    PHB_ITEM psender = Qt5xHb::Signals_return_qobject( (QObject *) object, "QSENSORGESTUREMANAGER" );
+
+    hb_vmEvalBlockV( cb, 1, psender );
+
     hb_itemRelease( psender );
   }
 }
 #endif
 
-void QSensorGestureManagerSlots_connect_signal ( const QString & signal, const QString & slot )
+void QSensorGestureManagerSlots_connect_signal( const QString & signal, const QString & slot )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,1,0))
-  QSensorGestureManager * obj = (QSensorGestureManager *) hb_itemGetPtr( hb_objSendMsg( hb_stackSelfItem(), "POINTER", 0 ) );
+  QSensorGestureManager * obj = (QSensorGestureManager *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -49,7 +54,7 @@ void QSensorGestureManagerSlots_connect_signal ( const QString & signal, const Q
       s->setParent( QCoreApplication::instance() );
     }
 
-    hb_retl( Signals_connection_disconnection( s, signal, slot ) );
+    hb_retl( Qt5xHb::Signals_connection_disconnection( s, signal, slot ) );
   }
   else
   {

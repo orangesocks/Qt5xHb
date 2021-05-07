@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -12,46 +12,56 @@
 
 #include "QModbusReplySlots.h"
 
-QModbusReplySlots::QModbusReplySlots(QObject *parent) : QObject(parent)
+QModbusReplySlots::QModbusReplySlots( QObject *parent ) : QObject( parent )
 {
 }
 
 QModbusReplySlots::~QModbusReplySlots()
 {
 }
+
 #if (QT_VERSION >= QT_VERSION_CHECK(5,8,0))
 void QModbusReplySlots::finished()
 {
   QObject *object = qobject_cast<QObject *>(sender());
-  PHB_ITEM cb = Signals_return_codeblock( object, "finished()" );
+
+  PHB_ITEM cb = Qt5xHb::Signals_return_codeblock( object, "finished()" );
+
   if( cb )
   {
-    PHB_ITEM psender = Signals_return_qobject ( (QObject *) object, "QMODBUSREPLY" );
-    hb_vmEvalBlockV( (PHB_ITEM) cb, 1, psender );
+    PHB_ITEM psender = Qt5xHb::Signals_return_qobject( (QObject *) object, "QMODBUSREPLY" );
+
+    hb_vmEvalBlockV( cb, 1, psender );
+
     hb_itemRelease( psender );
   }
 }
 #endif
+
 #if (QT_VERSION >= QT_VERSION_CHECK(5,8,0))
 void QModbusReplySlots::errorOccurred( QModbusDevice::Error error )
 {
   QObject *object = qobject_cast<QObject *>(sender());
-  PHB_ITEM cb = Signals_return_codeblock( object, "errorOccurred(QModbusDevice::Error)" );
+
+  PHB_ITEM cb = Qt5xHb::Signals_return_codeblock( object, "errorOccurred(QModbusDevice::Error)" );
+
   if( cb )
   {
-    PHB_ITEM psender = Signals_return_qobject ( (QObject *) object, "QMODBUSREPLY" );
+    PHB_ITEM psender = Qt5xHb::Signals_return_qobject( (QObject *) object, "QMODBUSREPLY" );
     PHB_ITEM perror = hb_itemPutNI( NULL, (int) error );
-    hb_vmEvalBlockV( (PHB_ITEM) cb, 2, psender, perror );
+
+    hb_vmEvalBlockV( cb, 2, psender, perror );
+
     hb_itemRelease( psender );
     hb_itemRelease( perror );
   }
 }
 #endif
 
-void QModbusReplySlots_connect_signal ( const QString & signal, const QString & slot )
+void QModbusReplySlots_connect_signal( const QString & signal, const QString & slot )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,8,0))
-  QModbusReply * obj = (QModbusReply *) hb_itemGetPtr( hb_objSendMsg( hb_stackSelfItem(), "POINTER", 0 ) );
+  QModbusReply * obj = (QModbusReply *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -64,7 +74,7 @@ void QModbusReplySlots_connect_signal ( const QString & signal, const QString & 
       s->setParent( QCoreApplication::instance() );
     }
 
-    hb_retl( Signals_connection_disconnection( s, signal, slot ) );
+    hb_retl( Qt5xHb::Signals_connection_disconnection( s, signal, slot ) );
   }
   else
   {

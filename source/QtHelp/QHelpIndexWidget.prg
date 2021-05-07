@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -27,7 +27,7 @@ CLASS QHelpIndexWidget INHERIT QListView
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QHelpIndexWidget
+PROCEDURE destroyObject() CLASS QHelpIndexWidget
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -44,6 +44,8 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #include <QtHelp/QHelpIndexWidget>
@@ -51,10 +53,12 @@ RETURN
 
 HB_FUNC_STATIC( QHELPINDEXWIDGET_DELETE )
 {
-  QHelpIndexWidget * obj = (QHelpIndexWidget *) _qt5xhb_itemGetPtrStackSelfItem();
+  QHelpIndexWidget * obj = (QHelpIndexWidget *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -67,11 +71,11 @@ HB_FUNC_STATIC( QHELPINDEXWIDGET_DELETE )
 }
 
 /*
-void activateCurrentItem ()
+void activateCurrentItem()
 */
 HB_FUNC_STATIC( QHELPINDEXWIDGET_ACTIVATECURRENTITEM )
 {
-  QHelpIndexWidget * obj = (QHelpIndexWidget *) _qt5xhb_itemGetPtrStackSelfItem();
+  QHelpIndexWidget * obj = (QHelpIndexWidget *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -79,7 +83,7 @@ HB_FUNC_STATIC( QHELPINDEXWIDGET_ACTIVATECURRENTITEM )
     if( ISNUMPAR(0) )
     {
 #endif
-      obj->activateCurrentItem ();
+      obj->activateCurrentItem();
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -93,19 +97,19 @@ HB_FUNC_STATIC( QHELPINDEXWIDGET_ACTIVATECURRENTITEM )
 }
 
 /*
-void filterIndices ( const QString & filter, const QString & wildcard = QString() )
+void filterIndices( const QString & filter, const QString & wildcard = QString() )
 */
 HB_FUNC_STATIC( QHELPINDEXWIDGET_FILTERINDICES )
 {
-  QHelpIndexWidget * obj = (QHelpIndexWidget *) _qt5xhb_itemGetPtrStackSelfItem();
+  QHelpIndexWidget * obj = (QHelpIndexWidget *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISBETWEEN(1,2) && ISCHAR(1) && ISOPTCHAR(2) )
+    if( ISBETWEEN(1,2) && HB_ISCHAR(1) && (HB_ISCHAR(2)||HB_ISNIL(2)) )
     {
 #endif
-      obj->filterIndices ( PQSTRING(1), OPQSTRING(2,QString()) );
+      obj->filterIndices( PQSTRING(1), OPQSTRING(2,QString()) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -118,7 +122,7 @@ HB_FUNC_STATIC( QHELPINDEXWIDGET_FILTERINDICES )
   hb_itemReturn( hb_stackSelfItem() );
 }
 
-void QHelpIndexWidgetSlots_connect_signal ( const QString & signal, const QString & slot );
+void QHelpIndexWidgetSlots_connect_signal( const QString & signal, const QString & slot );
 
 HB_FUNC_STATIC( QHELPINDEXWIDGET_ONLINKACTIVATED )
 {

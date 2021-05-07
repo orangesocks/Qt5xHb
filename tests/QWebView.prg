@@ -2,19 +2,19 @@
 
   Qt5xHb Project - Test Program
 
-  Copyright (C) 2019 Marcos Antonio Gambeta
+  Copyright (C) 2021 Marcos Antonio Gambeta
 
   E-mail:
   marcosgambeta AT outlook DOT com
 
   Website:
-  https://github.com/marcosgambeta/Qt5xHb
+  https://github.com/magsoftinfo/qt5xhb
 
 */
 
 #include "qt5xhb.ch"
 
-PROCEDURE Main ()
+PROCEDURE Main()
 
    LOCAL oApp
    LOCAL oWindow
@@ -23,12 +23,12 @@ PROCEDURE Main ()
    oApp := QApplication():new()
 
    oWindow := QWidget():new()
-   oWindow:setWindowTitle("Teste da classe QWebView")
-   oWindow:resize(800,600)
+   oWindow:setWindowTitle( "Teste da classe QWebView" )
+   oWindow:resize( 800, 600 )
    oWindow:show()
 
-   oWebView := QWebView():new(oWindow)
-   oWebView:setUrl(QUrl():new("https://github.com/marcosgambeta/Qt5xHb"))
+   oWebView := QWebView():new( oWindow )
+   oWebView:setUrl( QUrl():new( "https://github.com/magsoftinfo/qt5xhb" ) )
    oWebView:show()
 
    oApp:exec()

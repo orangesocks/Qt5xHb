@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -13,13 +13,13 @@
 #ifndef QTPOSITIONING_CH
 #define QTPOSITIONING_CH
 
-#define "QGeoAreaMonitorSource.ch"
-#define "QGeoCoordinate.ch"
-#define "QGeoPositionInfo.ch"
-#define "QGeoPositionInfoSource.ch"
-#define "QGeoSatelliteInfo.ch"
-#define "QGeoSatelliteInfoSource.ch"
-#define "QGeoShape.ch"
-#define "QNmeaPositionInfoSource.ch"
+#include "QGeoAreaMonitorSource.ch"
+#include "QGeoCoordinate.ch"
+#include "QGeoPositionInfo.ch"
+#include "QGeoPositionInfoSource.ch"
+#include "QGeoSatelliteInfo.ch"
+#include "QGeoSatelliteInfoSource.ch"
+#include "QGeoShape.ch"
+#include "QNmeaPositionInfoSource.ch"
 
 #endif /* QTPOSITIONING_CH */

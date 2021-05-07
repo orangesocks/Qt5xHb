@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -13,37 +13,37 @@
 #ifndef QT5XHB_MACROS_QTOPENGL_H
 #define QT5XHB_MACROS_QTOPENGL_H
 
-#define ISQGLBUFFER(n)                                      _qt5xhb_isObjectDerivedFrom(n,"QGLBuffer")
-#define ISQGLCOLORMAP(n)                                    _qt5xhb_isObjectDerivedFrom(n,"QGLColormap")
-#define ISQGLCONTEXT(n)                                     _qt5xhb_isObjectDerivedFrom(n,"QGLContext")
-#define ISQGLFORMAT(n)                                      _qt5xhb_isObjectDerivedFrom(n,"QGLFormat")
-#define ISQGLFRAMEBUFFEROBJECT(n)                           _qt5xhb_isObjectDerivedFrom(n,"QGLFramebufferObject")
-#define ISQGLFRAMEBUFFEROBJECTFORMAT(n)                     _qt5xhb_isObjectDerivedFrom(n,"QGLFramebufferObjectFormat")
-#define ISQGLFUNCTIONS(n)                                   _qt5xhb_isObjectDerivedFrom(n,"QGLFunctions")
-#define ISQGLPIXELBUFFER(n)                                 _qt5xhb_isObjectDerivedFrom(n,"QGLPixelBuffer")
-#define ISQGLSHADER(n)                                      _qt5xhb_isObjectDerivedFrom(n,"QGLShader")
-#define ISQGLWIDGET(n)                                      _qt5xhb_isObjectDerivedFrom(n,"QGLWidget")
+#define ISQGLBUFFER( n )                                    Qt5xHb::isObjectDerivedFrom( n, "QGLBuffer" )
+#define ISQGLCOLORMAP( n )                                  Qt5xHb::isObjectDerivedFrom( n, "QGLColormap" )
+#define ISQGLCONTEXT( n )                                   Qt5xHb::isObjectDerivedFrom( n, "QGLContext" )
+#define ISQGLFORMAT( n )                                    Qt5xHb::isObjectDerivedFrom( n, "QGLFormat" )
+#define ISQGLFRAMEBUFFEROBJECT( n )                         Qt5xHb::isObjectDerivedFrom( n, "QGLFramebufferObject" )
+#define ISQGLFRAMEBUFFEROBJECTFORMAT( n )                   Qt5xHb::isObjectDerivedFrom( n, "QGLFramebufferObjectFormat" )
+#define ISQGLFUNCTIONS( n )                                 Qt5xHb::isObjectDerivedFrom( n, "QGLFunctions" )
+#define ISQGLPIXELBUFFER( n )                               Qt5xHb::isObjectDerivedFrom( n, "QGLPixelBuffer" )
+#define ISQGLSHADER( n )                                    Qt5xHb::isObjectDerivedFrom( n, "QGLShader" )
+#define ISQGLWIDGET( n )                                    Qt5xHb::isObjectDerivedFrom( n, "QGLWidget" )
 
-#define PQGLBUFFER(n)                                       (QGLBuffer *) _qt5xhb_itemGetPtr(n)
-#define PQGLCOLORMAP(n)                                     (QGLColormap *) _qt5xhb_itemGetPtr(n)
-#define PQGLCONTEXT(n)                                      (QGLContext *) _qt5xhb_itemGetPtr(n)
-#define PQGLFORMAT(n)                                       (QGLFormat *) _qt5xhb_itemGetPtr(n)
-#define PQGLFRAMEBUFFEROBJECT(n)                            (QGLFramebufferObject *) _qt5xhb_itemGetPtr(n)
-#define PQGLFRAMEBUFFEROBJECTFORMAT(n)                      (QGLFramebufferObjectFormat *) _qt5xhb_itemGetPtr(n)
-#define PQGLFUNCTIONS(n)                                    (QGLFunctions *) _qt5xhb_itemGetPtr(n)
-#define PQGLPIXELBUFFER(n)                                  (QGLPixelBuffer *) _qt5xhb_itemGetPtr(n)
-#define PQGLSHADER(n)                                       (QGLShader *) _qt5xhb_itemGetPtr(n)
-#define PQGLWIDGET(n)                                       (QGLWidget *) _qt5xhb_itemGetPtr(n)
+#define PQGLBUFFER( n )                                     static_cast< QGLBuffer * >( Qt5xHb::itemGetPtr( n ) )
+#define PQGLCOLORMAP( n )                                   static_cast< QGLColormap * >( Qt5xHb::itemGetPtr( n ) )
+#define PQGLCONTEXT( n )                                    static_cast< QGLContext * >( Qt5xHb::itemGetPtr( n ) )
+#define PQGLFORMAT( n )                                     static_cast< QGLFormat * >( Qt5xHb::itemGetPtr( n ) )
+#define PQGLFRAMEBUFFEROBJECT( n )                          static_cast< QGLFramebufferObject * >( Qt5xHb::itemGetPtr( n ) )
+#define PQGLFRAMEBUFFEROBJECTFORMAT( n )                    static_cast< QGLFramebufferObjectFormat * >( Qt5xHb::itemGetPtr( n ) )
+#define PQGLFUNCTIONS( n )                                  static_cast< QGLFunctions * >( Qt5xHb::itemGetPtr( n ) )
+#define PQGLPIXELBUFFER( n )                                static_cast< QGLPixelBuffer * >( Qt5xHb::itemGetPtr( n ) )
+#define PQGLSHADER( n )                                     static_cast< QGLShader * >( Qt5xHb::itemGetPtr( n ) )
+#define PQGLWIDGET( n )                                     static_cast< QGLWidget * >( Qt5xHb::itemGetPtr( n ) )
 
-#define OPQGLBUFFER(n,v)                                    ISNIL(n)? v : (QGLBuffer *) _qt5xhb_itemGetPtr(n)
-#define OPQGLCOLORMAP(n,v)                                  ISNIL(n)? v : (QGLColormap *) _qt5xhb_itemGetPtr(n)
-#define OPQGLCONTEXT(n,v)                                   ISNIL(n)? v : (QGLContext *) _qt5xhb_itemGetPtr(n)
-#define OPQGLFORMAT(n,v)                                    ISNIL(n)? v : (QGLFormat *) _qt5xhb_itemGetPtr(n)
-#define OPQGLFRAMEBUFFEROBJECT(n,v)                         ISNIL(n)? v : (QGLFramebufferObject *) _qt5xhb_itemGetPtr(n)
-#define OPQGLFRAMEBUFFEROBJECTFORMAT(n,v)                   ISNIL(n)? v : (QGLFramebufferObjectFormat *) _qt5xhb_itemGetPtr(n)
-#define OPQGLFUNCTIONS(n,v)                                 ISNIL(n)? v : (QGLFunctions *) _qt5xhb_itemGetPtr(n)
-#define OPQGLPIXELBUFFER(n,v)                               ISNIL(n)? v : (QGLPixelBuffer *) _qt5xhb_itemGetPtr(n)
-#define OPQGLSHADER(n,v)                                    ISNIL(n)? v : (QGLShader *) _qt5xhb_itemGetPtr(n)
-#define OPQGLWIDGET(n,v)                                    ISNIL(n)? v : (QGLWidget *) _qt5xhb_itemGetPtr(n)
+#define OPQGLBUFFER( n, v )                                 HB_ISNIL( n ) ? v : static_cast< QGLBuffer * >( Qt5xHb::itemGetPtr( n ) )
+#define OPQGLCOLORMAP( n, v )                               HB_ISNIL( n ) ? v : static_cast< QGLColormap * >( Qt5xHb::itemGetPtr( n ) )
+#define OPQGLCONTEXT( n, v )                                HB_ISNIL( n ) ? v : static_cast< QGLContext * >( Qt5xHb::itemGetPtr( n ) )
+#define OPQGLFORMAT( n, v )                                 HB_ISNIL( n ) ? v : static_cast< QGLFormat * >( Qt5xHb::itemGetPtr( n ) )
+#define OPQGLFRAMEBUFFEROBJECT( n, v )                      HB_ISNIL( n ) ? v : static_cast< QGLFramebufferObject * >( Qt5xHb::itemGetPtr( n ) )
+#define OPQGLFRAMEBUFFEROBJECTFORMAT( n, v )                HB_ISNIL( n ) ? v : static_cast< QGLFramebufferObjectFormat * >( Qt5xHb::itemGetPtr( n ) )
+#define OPQGLFUNCTIONS( n, v )                              HB_ISNIL( n ) ? v : static_cast< QGLFunctions * >( Qt5xHb::itemGetPtr( n ) )
+#define OPQGLPIXELBUFFER( n, v )                            HB_ISNIL( n ) ? v : static_cast< QGLPixelBuffer * >( Qt5xHb::itemGetPtr( n ) )
+#define OPQGLSHADER( n, v )                                 HB_ISNIL( n ) ? v : static_cast< QGLShader * >( Qt5xHb::itemGetPtr( n ) )
+#define OPQGLWIDGET( n, v )                                 HB_ISNIL( n ) ? v : static_cast< QGLWidget * >( Qt5xHb::itemGetPtr( n ) )
 
 #endif /* QT5XHB_MACROS_QTOPENGL_H */

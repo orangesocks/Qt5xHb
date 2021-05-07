@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -28,7 +28,7 @@ CLASS QCommandLinkButton INHERIT QPushButton
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QCommandLinkButton
+PROCEDURE destroyObject() CLASS QCommandLinkButton
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -45,53 +45,51 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #include <QtWidgets/QCommandLinkButton>
 #endif
 
 /*
-QCommandLinkButton ( QWidget * parent = 0 )
+QCommandLinkButton( QWidget * parent = 0 )
 */
-void QCommandLinkButton_new1 ()
+void QCommandLinkButton_new1()
 {
-  QCommandLinkButton * o = new QCommandLinkButton ( OPQWIDGET(1,0) );
-  _qt5xhb_returnNewObject( o, false );
+  QCommandLinkButton * obj = new QCommandLinkButton( OPQWIDGET(1,0) );
+  Qt5xHb::returnNewObject( obj, false );
 }
 
 /*
-QCommandLinkButton ( const QString & text, QWidget * parent = 0 )
+QCommandLinkButton( const QString & text, QWidget * parent = 0 )
 */
-void QCommandLinkButton_new2 ()
+void QCommandLinkButton_new2()
 {
-  QCommandLinkButton * o = new QCommandLinkButton ( PQSTRING(1), OPQWIDGET(2,0) );
-  _qt5xhb_returnNewObject( o, false );
+  QCommandLinkButton * obj = new QCommandLinkButton( PQSTRING(1), OPQWIDGET(2,0) );
+  Qt5xHb::returnNewObject( obj, false );
 }
 
 /*
-QCommandLinkButton ( const QString & text, const QString & description, QWidget * parent = 0 )
+QCommandLinkButton( const QString & text, const QString & description, QWidget * parent = 0 )
 */
-void QCommandLinkButton_new3 ()
+void QCommandLinkButton_new3()
 {
-  QCommandLinkButton * o = new QCommandLinkButton ( PQSTRING(1), PQSTRING(2), OPQWIDGET(3,0) );
-  _qt5xhb_returnNewObject( o, false );
+  QCommandLinkButton * obj = new QCommandLinkButton( PQSTRING(1), PQSTRING(2), OPQWIDGET(3,0) );
+  Qt5xHb::returnNewObject( obj, false );
 }
-
-//[1]QCommandLinkButton ( QWidget * parent = 0 )
-//[2]QCommandLinkButton ( const QString & text, QWidget * parent = 0 )
-//[3]QCommandLinkButton ( const QString & text, const QString & description, QWidget * parent = 0 )
 
 HB_FUNC_STATIC( QCOMMANDLINKBUTTON_NEW )
 {
-  if( ISBETWEEN(0,1) && ISOPTQWIDGET(1) )
+  if( ISBETWEEN(0,1) && (ISQWIDGET(1)||HB_ISNIL(1)) )
   {
     QCommandLinkButton_new1();
   }
-  else if( ISBETWEEN(1,2) && ISCHAR(1) && ISOPTQWIDGET(2) )
+  else if( ISBETWEEN(1,2) && HB_ISCHAR(1) && (ISQWIDGET(2)||HB_ISNIL(2)) )
   {
     QCommandLinkButton_new2();
   }
-  else if( ISBETWEEN(2,3) && ISCHAR(1) && ISCHAR(2) && ISOPTQWIDGET(3) )
+  else if( ISBETWEEN(2,3) && HB_ISCHAR(1) && HB_ISCHAR(2) && (ISQWIDGET(3)||HB_ISNIL(3)) )
   {
     QCommandLinkButton_new3();
   }
@@ -103,10 +101,12 @@ HB_FUNC_STATIC( QCOMMANDLINKBUTTON_NEW )
 
 HB_FUNC_STATIC( QCOMMANDLINKBUTTON_DELETE )
 {
-  QCommandLinkButton * obj = (QCommandLinkButton *) _qt5xhb_itemGetPtrStackSelfItem();
+  QCommandLinkButton * obj = (QCommandLinkButton *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -119,11 +119,11 @@ HB_FUNC_STATIC( QCOMMANDLINKBUTTON_DELETE )
 }
 
 /*
-QString description () const
+QString description() const
 */
 HB_FUNC_STATIC( QCOMMANDLINKBUTTON_DESCRIPTION )
 {
-  QCommandLinkButton * obj = (QCommandLinkButton *) _qt5xhb_itemGetPtrStackSelfItem();
+  QCommandLinkButton * obj = (QCommandLinkButton *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -131,7 +131,7 @@ HB_FUNC_STATIC( QCOMMANDLINKBUTTON_DESCRIPTION )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRING( obj->description () );
+      RQSTRING( obj->description() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -143,19 +143,19 @@ HB_FUNC_STATIC( QCOMMANDLINKBUTTON_DESCRIPTION )
 }
 
 /*
-void setDescription ( const QString & description )
+void setDescription( const QString & description )
 */
 HB_FUNC_STATIC( QCOMMANDLINKBUTTON_SETDESCRIPTION )
 {
-  QCommandLinkButton * obj = (QCommandLinkButton *) _qt5xhb_itemGetPtrStackSelfItem();
+  QCommandLinkButton * obj = (QCommandLinkButton *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISCHAR(1) )
+    if( ISNUMPAR(1) && HB_ISCHAR(1) )
     {
 #endif
-      obj->setDescription ( PQSTRING(1) );
+      obj->setDescription( PQSTRING(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -169,11 +169,11 @@ HB_FUNC_STATIC( QCOMMANDLINKBUTTON_SETDESCRIPTION )
 }
 
 /*
-bool isFlat () const
+bool isFlat() const
 */
 HB_FUNC_STATIC( QCOMMANDLINKBUTTON_ISFLAT )
 {
-  QCommandLinkButton * obj = (QCommandLinkButton *) _qt5xhb_itemGetPtrStackSelfItem();
+  QCommandLinkButton * obj = (QCommandLinkButton *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -181,7 +181,7 @@ HB_FUNC_STATIC( QCOMMANDLINKBUTTON_ISFLAT )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->isFlat () );
+      RBOOL( obj->isFlat() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -193,19 +193,19 @@ HB_FUNC_STATIC( QCOMMANDLINKBUTTON_ISFLAT )
 }
 
 /*
-void setFlat ( bool )
+void setFlat( bool )
 */
 HB_FUNC_STATIC( QCOMMANDLINKBUTTON_SETFLAT )
 {
-  QCommandLinkButton * obj = (QCommandLinkButton *) _qt5xhb_itemGetPtrStackSelfItem();
+  QCommandLinkButton * obj = (QCommandLinkButton *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISLOG(1) )
+    if( ISNUMPAR(1) && HB_ISLOG(1) )
     {
 #endif
-      obj->setFlat ( PBOOL(1) );
+      obj->setFlat( PBOOL(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else

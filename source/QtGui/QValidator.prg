@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -28,7 +28,7 @@ CLASS QValidator INHERIT QObject
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QValidator
+PROCEDURE destroyObject() CLASS QValidator
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -45,6 +45,8 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #include <QtGui/QValidator>
@@ -52,10 +54,12 @@ RETURN
 
 HB_FUNC_STATIC( QVALIDATOR_DELETE )
 {
-  QValidator * obj = (QValidator *) _qt5xhb_itemGetPtrStackSelfItem();
+  QValidator * obj = (QValidator *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -68,20 +72,20 @@ HB_FUNC_STATIC( QVALIDATOR_DELETE )
 }
 
 /*
-virtual void fixup ( QString & input ) const
+virtual void fixup( QString & input ) const
 */
 HB_FUNC_STATIC( QVALIDATOR_FIXUP )
 {
-  QValidator * obj = (QValidator *) _qt5xhb_itemGetPtrStackSelfItem();
+  QValidator * obj = (QValidator *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISCHAR(1) )
+    if( ISNUMPAR(1) && HB_ISCHAR(1) )
     {
 #endif
       QString par1 = hb_parc(1);
-      obj->fixup ( par1 );
+      obj->fixup( par1 );
       hb_storc( QSTRINGTOSTRING(par1), 1);
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
@@ -96,11 +100,11 @@ HB_FUNC_STATIC( QVALIDATOR_FIXUP )
 }
 
 /*
-QLocale locale () const
+QLocale locale() const
 */
 HB_FUNC_STATIC( QVALIDATOR_LOCALE )
 {
-  QValidator * obj = (QValidator *) _qt5xhb_itemGetPtrStackSelfItem();
+  QValidator * obj = (QValidator *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -108,8 +112,8 @@ HB_FUNC_STATIC( QVALIDATOR_LOCALE )
     if( ISNUMPAR(0) )
     {
 #endif
-      QLocale * ptr = new QLocale( obj->locale () );
-      _qt5xhb_createReturnClass ( ptr, "QLOCALE", true );
+      QLocale * ptr = new QLocale( obj->locale() );
+      Qt5xHb::createReturnClass( ptr, "QLOCALE", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -121,11 +125,11 @@ HB_FUNC_STATIC( QVALIDATOR_LOCALE )
 }
 
 /*
-void setLocale ( const QLocale & locale )
+void setLocale( const QLocale & locale )
 */
 HB_FUNC_STATIC( QVALIDATOR_SETLOCALE )
 {
-  QValidator * obj = (QValidator *) _qt5xhb_itemGetPtrStackSelfItem();
+  QValidator * obj = (QValidator *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -133,7 +137,7 @@ HB_FUNC_STATIC( QVALIDATOR_SETLOCALE )
     if( ISNUMPAR(1) && ISQLOCALE(1) )
     {
 #endif
-      obj->setLocale ( *PQLOCALE(1) );
+      obj->setLocale( *PQLOCALE(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -147,23 +151,23 @@ HB_FUNC_STATIC( QVALIDATOR_SETLOCALE )
 }
 
 /*
-virtual State validate ( QString & input, int & pos ) const = 0
+virtual QValidator::State validate( QString & input, int & pos ) const = 0
 */
 HB_FUNC_STATIC( QVALIDATOR_VALIDATE )
 {
-  QValidator * obj = (QValidator *) _qt5xhb_itemGetPtrStackSelfItem();
+  QValidator * obj = (QValidator *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(2) && ISCHAR(1) && ISNUM(2) )
+    if( ISNUMPAR(2) && HB_ISCHAR(1) && HB_ISNUM(2) )
     {
 #endif
       QString par1 = hb_parc(1);
-int par2;
-      RENUM( obj->validate ( par1, par2 ) );
+      int par2;
+      RENUM( obj->validate( par1, par2 ) );
       hb_storc( QSTRINGTOSTRING(par1), 1);
-hb_storni( par2, 2 );
+      hb_storni( par2, 2 );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else

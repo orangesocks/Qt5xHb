@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -26,7 +26,7 @@ CLASS QStyleOptionFocusRect INHERIT QStyleOption
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QStyleOptionFocusRect
+PROCEDURE destroyObject() CLASS QStyleOptionFocusRect
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -51,28 +51,20 @@ RETURN
 /*
 QStyleOptionFocusRect()
 */
-void QStyleOptionFocusRect_new1 ()
+void QStyleOptionFocusRect_new1()
 {
-  QStyleOptionFocusRect * o = new QStyleOptionFocusRect ();
-  _qt5xhb_returnNewObject( o, true );
+  QStyleOptionFocusRect * obj = new QStyleOptionFocusRect();
+  Qt5xHb::returnNewObject( obj, true );
 }
 
 /*
-QStyleOptionFocusRect(const QStyleOptionFocusRect &other)
+QStyleOptionFocusRect( const QStyleOptionFocusRect & other )
 */
-void QStyleOptionFocusRect_new2 ()
+void QStyleOptionFocusRect_new2()
 {
-  QStyleOptionFocusRect * o = new QStyleOptionFocusRect ( *PQSTYLEOPTIONFOCUSRECT(1) );
-  _qt5xhb_returnNewObject( o, true );
+  QStyleOptionFocusRect * obj = new QStyleOptionFocusRect( *PQSTYLEOPTIONFOCUSRECT(1) );
+  Qt5xHb::returnNewObject( obj, true );
 }
-
-/*
-QStyleOptionFocusRect(int version) [protected]
-*/
-
-//[1]QStyleOptionFocusRect()
-//[2]QStyleOptionFocusRect(const QStyleOptionFocusRect &other)
-//[3]QStyleOptionFocusRect(int version) [protected]
 
 HB_FUNC_STATIC( QSTYLEOPTIONFOCUSRECT_NEW )
 {
@@ -95,14 +87,14 @@ QColor backgroundColor
 */
 HB_FUNC_STATIC( QSTYLEOPTIONFOCUSRECT_BACKGROUNDCOLOR )
 {
-  QStyleOptionFocusRect * obj = (QStyleOptionFocusRect *) _qt5xhb_itemGetPtrStackSelfItem();
+  QStyleOptionFocusRect * obj = (QStyleOptionFocusRect *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
     if( ISNUMPAR(0) )
     {
-      QColor * ptr = new QColor( obj->backgroundColor  );
-      _qt5xhb_createReturnClass ( ptr, "QCOLOR", true );
+      QColor * ptr = new QColor( obj->backgroundColor );
+      Qt5xHb::createReturnClass( ptr, "QCOLOR", true );
     }
     else
     {
@@ -112,13 +104,13 @@ HB_FUNC_STATIC( QSTYLEOPTIONFOCUSRECT_BACKGROUNDCOLOR )
 }
 HB_FUNC_STATIC( QSTYLEOPTIONFOCUSRECT_SETBACKGROUNDCOLOR )
 {
-  QStyleOptionFocusRect * obj = (QStyleOptionFocusRect *) _qt5xhb_itemGetPtrStackSelfItem();
+  QStyleOptionFocusRect * obj = (QStyleOptionFocusRect *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
     if( ISNUMPAR(1) && ISQCOLOR(1) )
     {
-      obj->backgroundColor = *PQCOLOR(1);
+      obj->backgroundColor= *PQCOLOR(1);
     }
     else
     {

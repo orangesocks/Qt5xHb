@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -40,7 +40,7 @@ CLASS QHelpSearchEngine INHERIT QObject
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QHelpSearchEngine
+PROCEDURE destroyObject() CLASS QHelpSearchEngine
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -57,6 +57,8 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #include <QtHelp/QHelpSearchEngine>
@@ -66,14 +68,14 @@ RETURN
 #include <QtHelp/QHelpSearchResultWidget>
 
 /*
-QHelpSearchEngine ( QHelpEngineCore * helpEngine, QObject * parent = 0 )
+QHelpSearchEngine( QHelpEngineCore * helpEngine, QObject * parent = 0 )
 */
 HB_FUNC_STATIC( QHELPSEARCHENGINE_NEW )
 {
-  if( ISBETWEEN(1,2) && ISQHELPENGINECORE(1) && (ISQOBJECT(2)||ISNIL(2)) )
+  if( ISBETWEEN(1,2) && ISQHELPENGINECORE(1) && (ISQOBJECT(2)||HB_ISNIL(2)) )
   {
-    QHelpSearchEngine * o = new QHelpSearchEngine ( PQHELPENGINECORE(1), OPQOBJECT(2,0) );
-    _qt5xhb_returnNewObject( o, false );
+    QHelpSearchEngine * obj = new QHelpSearchEngine( PQHELPENGINECORE(1), OPQOBJECT(2,0) );
+    Qt5xHb::returnNewObject( obj, false );
   }
   else
   {
@@ -83,10 +85,12 @@ HB_FUNC_STATIC( QHELPSEARCHENGINE_NEW )
 
 HB_FUNC_STATIC( QHELPSEARCHENGINE_DELETE )
 {
-  QHelpSearchEngine * obj = (QHelpSearchEngine *) _qt5xhb_itemGetPtrStackSelfItem();
+  QHelpSearchEngine * obj = (QHelpSearchEngine *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -99,11 +103,11 @@ HB_FUNC_STATIC( QHELPSEARCHENGINE_DELETE )
 }
 
 /*
-int hitCount () const
+int hitCount() const
 */
 HB_FUNC_STATIC( QHELPSEARCHENGINE_HITCOUNT )
 {
-  QHelpSearchEngine * obj = (QHelpSearchEngine *) _qt5xhb_itemGetPtrStackSelfItem();
+  QHelpSearchEngine * obj = (QHelpSearchEngine *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -111,7 +115,7 @@ HB_FUNC_STATIC( QHELPSEARCHENGINE_HITCOUNT )
     if( ISNUMPAR(0) )
     {
 #endif
-      RINT( obj->hitCount () );
+      RINT( obj->hitCount() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -123,11 +127,11 @@ HB_FUNC_STATIC( QHELPSEARCHENGINE_HITCOUNT )
 }
 
 /*
-QList<QHelpSearchQuery> query () const
+QList<QHelpSearchQuery> query() const
 */
 HB_FUNC_STATIC( QHELPSEARCHENGINE_QUERY )
 {
-  QHelpSearchEngine * obj = (QHelpSearchEngine *) _qt5xhb_itemGetPtrStackSelfItem();
+  QHelpSearchEngine * obj = (QHelpSearchEngine *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -135,13 +139,12 @@ HB_FUNC_STATIC( QHELPSEARCHENGINE_QUERY )
     if( ISNUMPAR(0) )
     {
 #endif
-      QList<QHelpSearchQuery> list = obj->query ();
+      QList<QHelpSearchQuery> list = obj->query();
       PHB_DYNS pDynSym = hb_dynsymFindName( "QHELPSEARCHQUERY" );
       PHB_ITEM pArray = hb_itemArrayNew(0);
-      int i;
-      for(i=0;i<list.count();i++)
+      if( pDynSym )
       {
-        if( pDynSym )
+        for( int i = 0; i < list.count(); i++ )
         {
           hb_vmPushDynSym( pDynSym );
           hb_vmPushNil();
@@ -149,7 +152,7 @@ HB_FUNC_STATIC( QHELPSEARCHENGINE_QUERY )
           PHB_ITEM pObject = hb_itemNew( NULL );
           hb_itemCopy( pObject, hb_stackReturnItem() );
           PHB_ITEM pItem = hb_itemNew( NULL );
-          hb_itemPutPtr( pItem, (QHelpSearchQuery *) new QHelpSearchQuery ( list[i] ) );
+          hb_itemPutPtr( pItem, (QHelpSearchQuery *) new QHelpSearchQuery( list[i] ) );
           hb_objSendMsg( pObject, "_POINTER", 1, pItem );
           hb_itemRelease( pItem );
           PHB_ITEM pDestroy = hb_itemNew( NULL );
@@ -159,10 +162,10 @@ HB_FUNC_STATIC( QHELPSEARCHENGINE_QUERY )
           hb_arrayAddForward( pArray, pObject );
           hb_itemRelease( pObject );
         }
-        else
-        {
-          hb_errRT_BASE( EG_NOFUNC, 1001, NULL, "QHELPSEARCHQUERY", HB_ERR_ARGS_BASEPARAMS );
-        }
+      }
+      else
+      {
+        hb_errRT_BASE( EG_NOFUNC, 1001, NULL, "QHELPSEARCHQUERY", HB_ERR_ARGS_BASEPARAMS );
       }
       hb_itemReturnRelease(pArray);
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
@@ -176,11 +179,11 @@ HB_FUNC_STATIC( QHELPSEARCHENGINE_QUERY )
 }
 
 /*
-QHelpSearchQueryWidget * queryWidget ()
+QHelpSearchQueryWidget * queryWidget()
 */
 HB_FUNC_STATIC( QHELPSEARCHENGINE_QUERYWIDGET )
 {
-  QHelpSearchEngine * obj = (QHelpSearchEngine *) _qt5xhb_itemGetPtrStackSelfItem();
+  QHelpSearchEngine * obj = (QHelpSearchEngine *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -188,8 +191,8 @@ HB_FUNC_STATIC( QHELPSEARCHENGINE_QUERYWIDGET )
     if( ISNUMPAR(0) )
     {
 #endif
-      QHelpSearchQueryWidget * ptr = obj->queryWidget ();
-      _qt5xhb_createReturnQWidgetClass ( ptr, "QHELPSEARCHQUERYWIDGET" );
+      QHelpSearchQueryWidget * ptr = obj->queryWidget();
+      Qt5xHb::createReturnQWidgetClass( ptr, "QHELPSEARCHQUERYWIDGET" );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -201,11 +204,11 @@ HB_FUNC_STATIC( QHELPSEARCHENGINE_QUERYWIDGET )
 }
 
 /*
-QHelpSearchResultWidget * resultWidget ()
+QHelpSearchResultWidget * resultWidget()
 */
 HB_FUNC_STATIC( QHELPSEARCHENGINE_RESULTWIDGET )
 {
-  QHelpSearchEngine * obj = (QHelpSearchEngine *) _qt5xhb_itemGetPtrStackSelfItem();
+  QHelpSearchEngine * obj = (QHelpSearchEngine *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -213,8 +216,8 @@ HB_FUNC_STATIC( QHELPSEARCHENGINE_RESULTWIDGET )
     if( ISNUMPAR(0) )
     {
 #endif
-      QHelpSearchResultWidget * ptr = obj->resultWidget ();
-      _qt5xhb_createReturnQWidgetClass ( ptr, "QHELPSEARCHRESULTWIDGET" );
+      QHelpSearchResultWidget * ptr = obj->resultWidget();
+      Qt5xHb::createReturnQWidgetClass( ptr, "QHELPSEARCHRESULTWIDGET" );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -226,11 +229,11 @@ HB_FUNC_STATIC( QHELPSEARCHENGINE_RESULTWIDGET )
 }
 
 /*
-void cancelIndexing ()
+void cancelIndexing()
 */
 HB_FUNC_STATIC( QHELPSEARCHENGINE_CANCELINDEXING )
 {
-  QHelpSearchEngine * obj = (QHelpSearchEngine *) _qt5xhb_itemGetPtrStackSelfItem();
+  QHelpSearchEngine * obj = (QHelpSearchEngine *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -238,7 +241,7 @@ HB_FUNC_STATIC( QHELPSEARCHENGINE_CANCELINDEXING )
     if( ISNUMPAR(0) )
     {
 #endif
-      obj->cancelIndexing ();
+      obj->cancelIndexing();
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -252,11 +255,11 @@ HB_FUNC_STATIC( QHELPSEARCHENGINE_CANCELINDEXING )
 }
 
 /*
-void cancelSearching ()
+void cancelSearching()
 */
 HB_FUNC_STATIC( QHELPSEARCHENGINE_CANCELSEARCHING )
 {
-  QHelpSearchEngine * obj = (QHelpSearchEngine *) _qt5xhb_itemGetPtrStackSelfItem();
+  QHelpSearchEngine * obj = (QHelpSearchEngine *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -264,7 +267,7 @@ HB_FUNC_STATIC( QHELPSEARCHENGINE_CANCELSEARCHING )
     if( ISNUMPAR(0) )
     {
 #endif
-      obj->cancelSearching ();
+      obj->cancelSearching();
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -278,11 +281,11 @@ HB_FUNC_STATIC( QHELPSEARCHENGINE_CANCELSEARCHING )
 }
 
 /*
-void reindexDocumentation ()
+void reindexDocumentation()
 */
 HB_FUNC_STATIC( QHELPSEARCHENGINE_REINDEXDOCUMENTATION )
 {
-  QHelpSearchEngine * obj = (QHelpSearchEngine *) _qt5xhb_itemGetPtrStackSelfItem();
+  QHelpSearchEngine * obj = (QHelpSearchEngine *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -290,7 +293,7 @@ HB_FUNC_STATIC( QHELPSEARCHENGINE_REINDEXDOCUMENTATION )
     if( ISNUMPAR(0) )
     {
 #endif
-      obj->reindexDocumentation ();
+      obj->reindexDocumentation();
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -304,27 +307,27 @@ HB_FUNC_STATIC( QHELPSEARCHENGINE_REINDEXDOCUMENTATION )
 }
 
 /*
-void search ( const QList<QHelpSearchQuery> & queryList )
+void search( const QList<QHelpSearchQuery> & queryList )
 */
 HB_FUNC_STATIC( QHELPSEARCHENGINE_SEARCH )
 {
-  QHelpSearchEngine * obj = (QHelpSearchEngine *) _qt5xhb_itemGetPtrStackSelfItem();
+  QHelpSearchEngine * obj = (QHelpSearchEngine *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISARRAY(1) )
+    if( ISNUMPAR(1) && HB_ISARRAY(1) )
     {
 #endif
       QList<QHelpSearchQuery> par1;
-PHB_ITEM aList1 = hb_param(1, HB_IT_ARRAY);
-int i1;
-int nLen1 = hb_arrayLen(aList1);
-for (i1=0;i1<nLen1;i1++)
-{
-  par1 << *(QHelpSearchQuery *) hb_itemGetPtr( hb_objSendMsg( hb_arrayGetItemPtr( aList1, i1+1 ), "POINTER", 0 ) );
-}
-      obj->search ( par1 );
+      PHB_ITEM aList1 = hb_param(1, HB_IT_ARRAY);
+      int i1;
+      int nLen1 = hb_arrayLen(aList1);
+      for (i1=0;i1<nLen1;i1++)
+      {
+        par1 << *(QHelpSearchQuery *) hb_itemGetPtr( hb_objSendMsg( hb_arrayGetItemPtr( aList1, i1+1 ), "POINTER", 0 ) );
+      }
+      obj->search( par1 );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -337,7 +340,7 @@ for (i1=0;i1<nLen1;i1++)
   hb_itemReturn( hb_stackSelfItem() );
 }
 
-void QHelpSearchEngineSlots_connect_signal ( const QString & signal, const QString & slot );
+void QHelpSearchEngineSlots_connect_signal( const QString & signal, const QString & slot );
 
 HB_FUNC_STATIC( QHELPSEARCHENGINE_ONINDEXINGFINISHED )
 {

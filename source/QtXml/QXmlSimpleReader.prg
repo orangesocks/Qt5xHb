@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -26,7 +26,7 @@ CLASS QXmlSimpleReader INHERIT QXmlReader
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QXmlSimpleReader
+PROCEDURE destroyObject() CLASS QXmlSimpleReader
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -49,14 +49,14 @@ RETURN
 #endif
 
 /*
-QXmlSimpleReader ()
+QXmlSimpleReader()
 */
 HB_FUNC_STATIC( QXMLSIMPLEREADER_NEW )
 {
   if( ISNUMPAR(0) )
   {
-    QXmlSimpleReader * o = new QXmlSimpleReader ();
-    _qt5xhb_returnNewObject( o, true );
+    QXmlSimpleReader * obj = new QXmlSimpleReader();
+    Qt5xHb::returnNewObject( obj, true );
   }
   else
   {
@@ -66,7 +66,7 @@ HB_FUNC_STATIC( QXMLSIMPLEREADER_NEW )
 
 HB_FUNC_STATIC( QXMLSIMPLEREADER_DELETE )
 {
-  QXmlSimpleReader * obj = (QXmlSimpleReader *) _qt5xhb_itemGetPtrStackSelfItem();
+  QXmlSimpleReader * obj = (QXmlSimpleReader *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -82,19 +82,19 @@ HB_FUNC_STATIC( QXMLSIMPLEREADER_DELETE )
 }
 
 /*
-virtual bool parse ( const QXmlInputSource * input, bool incremental )
+virtual bool parse( const QXmlInputSource * input, bool incremental )
 */
 HB_FUNC_STATIC( QXMLSIMPLEREADER_PARSE )
 {
-  QXmlSimpleReader * obj = (QXmlSimpleReader *) _qt5xhb_itemGetPtrStackSelfItem();
+  QXmlSimpleReader * obj = (QXmlSimpleReader *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(2) && ISQXMLINPUTSOURCE(1) && ISLOG(2) )
+    if( ISNUMPAR(2) && ISQXMLINPUTSOURCE(1) && HB_ISLOG(2) )
     {
 #endif
-      RBOOL( obj->parse ( PQXMLINPUTSOURCE(1), PBOOL(2) ) );
+      RBOOL( obj->parse( PQXMLINPUTSOURCE(1), PBOOL(2) ) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -106,11 +106,11 @@ HB_FUNC_STATIC( QXMLSIMPLEREADER_PARSE )
 }
 
 /*
-virtual bool parseContinue ()
+virtual bool parseContinue()
 */
 HB_FUNC_STATIC( QXMLSIMPLEREADER_PARSECONTINUE )
 {
-  QXmlSimpleReader * obj = (QXmlSimpleReader *) _qt5xhb_itemGetPtrStackSelfItem();
+  QXmlSimpleReader * obj = (QXmlSimpleReader *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -118,7 +118,7 @@ HB_FUNC_STATIC( QXMLSIMPLEREADER_PARSECONTINUE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->parseContinue () );
+      RBOOL( obj->parseContinue() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else

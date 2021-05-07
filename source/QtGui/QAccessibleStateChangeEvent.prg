@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -23,7 +23,7 @@ CLASS QAccessibleStateChangeEvent INHERIT QAccessibleEvent
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QAccessibleStateChangeEvent
+PROCEDURE destroyObject() CLASS QAccessibleStateChangeEvent
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -47,7 +47,7 @@ RETURN
 
 HB_FUNC_STATIC( QACCESSIBLESTATECHANGEEVENT_DELETE )
 {
-  QAccessibleStateChangeEvent * obj = (QAccessibleStateChangeEvent *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAccessibleStateChangeEvent * obj = (QAccessibleStateChangeEvent *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {

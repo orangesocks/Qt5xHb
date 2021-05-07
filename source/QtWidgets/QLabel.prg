@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -66,7 +66,7 @@ CLASS QLabel INHERIT QFrame
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QLabel
+PROCEDURE destroyObject() CLASS QLabel
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -83,6 +83,8 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #include <QtWidgets/QLabel>
@@ -91,33 +93,30 @@ RETURN
 #include <QtGui/QMovie>
 
 /*
-QLabel ( QWidget * parent = 0, Qt::WindowFlags f = 0 )
+QLabel( QWidget * parent = 0, Qt::WindowFlags f = 0 )
 */
-void QLabel_new1 ()
+void QLabel_new1()
 {
-  QLabel * o = new QLabel ( OPQWIDGET(1,0), ISNIL(2)? (Qt::WindowFlags) 0 : (Qt::WindowFlags) hb_parni(2) );
-  _qt5xhb_returnNewObject( o, false );
+  QLabel * obj = new QLabel( OPQWIDGET(1,0), HB_ISNIL(2)? (Qt::WindowFlags) 0 : (Qt::WindowFlags) hb_parni(2) );
+  Qt5xHb::returnNewObject( obj, false );
 }
 
 /*
-QLabel ( const QString & text, QWidget * parent = 0, Qt::WindowFlags f = 0 )
+QLabel( const QString & text, QWidget * parent = 0, Qt::WindowFlags f = 0 )
 */
-void QLabel_new2 ()
+void QLabel_new2()
 {
-  QLabel * o = new QLabel ( PQSTRING(1), OPQWIDGET(2,0), ISNIL(3)? (Qt::WindowFlags) 0 : (Qt::WindowFlags) hb_parni(3) );
-  _qt5xhb_returnNewObject( o, false );
+  QLabel * obj = new QLabel( PQSTRING(1), OPQWIDGET(2,0), HB_ISNIL(3)? (Qt::WindowFlags) 0 : (Qt::WindowFlags) hb_parni(3) );
+  Qt5xHb::returnNewObject( obj, false );
 }
-
-//[1]QLabel ( QWidget * parent = 0, Qt::WindowFlags f = 0 )
-//[2]QLabel ( const QString & text, QWidget * parent = 0, Qt::WindowFlags f = 0 )
 
 HB_FUNC_STATIC( QLABEL_NEW )
 {
-  if( ISBETWEEN(0,2) && ISOPTQWIDGET(1) && ISOPTNUM(2) )
+  if( ISBETWEEN(0,2) && (ISQWIDGET(1)||HB_ISNIL(1)) && ( HB_ISNUM(2)||HB_ISNIL(2)) )
   {
     QLabel_new1();
   }
-  else if( ISBETWEEN(1,3) && ISCHAR(1) && ISOPTQWIDGET(2) && ISOPTNUM(3) )
+  else if( ISBETWEEN(1,3) && HB_ISCHAR(1) && (ISQWIDGET(2)||HB_ISNIL(2)) && ( HB_ISNUM(3)||HB_ISNIL(3)) )
   {
     QLabel_new2();
   }
@@ -129,10 +128,12 @@ HB_FUNC_STATIC( QLABEL_NEW )
 
 HB_FUNC_STATIC( QLABEL_DELETE )
 {
-  QLabel * obj = (QLabel *) _qt5xhb_itemGetPtrStackSelfItem();
+  QLabel * obj = (QLabel *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -145,11 +146,11 @@ HB_FUNC_STATIC( QLABEL_DELETE )
 }
 
 /*
-Qt::Alignment alignment () const
+Qt::Alignment alignment() const
 */
 HB_FUNC_STATIC( QLABEL_ALIGNMENT )
 {
-  QLabel * obj = (QLabel *) _qt5xhb_itemGetPtrStackSelfItem();
+  QLabel * obj = (QLabel *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -157,7 +158,7 @@ HB_FUNC_STATIC( QLABEL_ALIGNMENT )
     if( ISNUMPAR(0) )
     {
 #endif
-      RENUM( obj->alignment () );
+      RENUM( obj->alignment() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -169,11 +170,11 @@ HB_FUNC_STATIC( QLABEL_ALIGNMENT )
 }
 
 /*
-QWidget * buddy () const
+QWidget * buddy() const
 */
 HB_FUNC_STATIC( QLABEL_BUDDY )
 {
-  QLabel * obj = (QLabel *) _qt5xhb_itemGetPtrStackSelfItem();
+  QLabel * obj = (QLabel *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -181,8 +182,8 @@ HB_FUNC_STATIC( QLABEL_BUDDY )
     if( ISNUMPAR(0) )
     {
 #endif
-      QWidget * ptr = obj->buddy ();
-      _qt5xhb_createReturnQWidgetClass ( ptr, "QWIDGET" );
+      QWidget * ptr = obj->buddy();
+      Qt5xHb::createReturnQWidgetClass( ptr, "QWIDGET" );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -194,11 +195,11 @@ HB_FUNC_STATIC( QLABEL_BUDDY )
 }
 
 /*
-bool hasScaledContents () const
+bool hasScaledContents() const
 */
 HB_FUNC_STATIC( QLABEL_HASSCALEDCONTENTS )
 {
-  QLabel * obj = (QLabel *) _qt5xhb_itemGetPtrStackSelfItem();
+  QLabel * obj = (QLabel *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -206,7 +207,7 @@ HB_FUNC_STATIC( QLABEL_HASSCALEDCONTENTS )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->hasScaledContents () );
+      RBOOL( obj->hasScaledContents() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -218,11 +219,11 @@ HB_FUNC_STATIC( QLABEL_HASSCALEDCONTENTS )
 }
 
 /*
-bool hasSelectedText () const
+bool hasSelectedText() const
 */
 HB_FUNC_STATIC( QLABEL_HASSELECTEDTEXT )
 {
-  QLabel * obj = (QLabel *) _qt5xhb_itemGetPtrStackSelfItem();
+  QLabel * obj = (QLabel *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -230,7 +231,7 @@ HB_FUNC_STATIC( QLABEL_HASSELECTEDTEXT )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->hasSelectedText () );
+      RBOOL( obj->hasSelectedText() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -242,11 +243,11 @@ HB_FUNC_STATIC( QLABEL_HASSELECTEDTEXT )
 }
 
 /*
-int indent () const
+int indent() const
 */
 HB_FUNC_STATIC( QLABEL_INDENT )
 {
-  QLabel * obj = (QLabel *) _qt5xhb_itemGetPtrStackSelfItem();
+  QLabel * obj = (QLabel *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -254,7 +255,7 @@ HB_FUNC_STATIC( QLABEL_INDENT )
     if( ISNUMPAR(0) )
     {
 #endif
-      RINT( obj->indent () );
+      RINT( obj->indent() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -266,11 +267,11 @@ HB_FUNC_STATIC( QLABEL_INDENT )
 }
 
 /*
-int margin () const
+int margin() const
 */
 HB_FUNC_STATIC( QLABEL_MARGIN )
 {
-  QLabel * obj = (QLabel *) _qt5xhb_itemGetPtrStackSelfItem();
+  QLabel * obj = (QLabel *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -278,7 +279,7 @@ HB_FUNC_STATIC( QLABEL_MARGIN )
     if( ISNUMPAR(0) )
     {
 #endif
-      RINT( obj->margin () );
+      RINT( obj->margin() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -290,11 +291,11 @@ HB_FUNC_STATIC( QLABEL_MARGIN )
 }
 
 /*
-QMovie * movie () const
+QMovie * movie() const
 */
 HB_FUNC_STATIC( QLABEL_MOVIE )
 {
-  QLabel * obj = (QLabel *) _qt5xhb_itemGetPtrStackSelfItem();
+  QLabel * obj = (QLabel *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -302,8 +303,8 @@ HB_FUNC_STATIC( QLABEL_MOVIE )
     if( ISNUMPAR(0) )
     {
 #endif
-      QMovie * ptr = obj->movie ();
-      _qt5xhb_createReturnQObjectClass ( ptr, "QMOVIE" );
+      QMovie * ptr = obj->movie();
+      Qt5xHb::createReturnQObjectClass( ptr, "QMOVIE" );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -315,11 +316,11 @@ HB_FUNC_STATIC( QLABEL_MOVIE )
 }
 
 /*
-bool openExternalLinks () const
+bool openExternalLinks() const
 */
 HB_FUNC_STATIC( QLABEL_OPENEXTERNALLINKS )
 {
-  QLabel * obj = (QLabel *) _qt5xhb_itemGetPtrStackSelfItem();
+  QLabel * obj = (QLabel *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -327,7 +328,7 @@ HB_FUNC_STATIC( QLABEL_OPENEXTERNALLINKS )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->openExternalLinks () );
+      RBOOL( obj->openExternalLinks() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -339,11 +340,11 @@ HB_FUNC_STATIC( QLABEL_OPENEXTERNALLINKS )
 }
 
 /*
-const QPicture * picture () const
+const QPicture * picture() const
 */
 HB_FUNC_STATIC( QLABEL_PICTURE )
 {
-  QLabel * obj = (QLabel *) _qt5xhb_itemGetPtrStackSelfItem();
+  QLabel * obj = (QLabel *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -351,8 +352,8 @@ HB_FUNC_STATIC( QLABEL_PICTURE )
     if( ISNUMPAR(0) )
     {
 #endif
-      const QPicture * ptr = obj->picture ();
-      _qt5xhb_createReturnClass ( ptr, "QPICTURE", false );
+      const QPicture * ptr = obj->picture();
+      Qt5xHb::createReturnClass( ptr, "QPICTURE", false );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -364,11 +365,11 @@ HB_FUNC_STATIC( QLABEL_PICTURE )
 }
 
 /*
-const QPixmap * pixmap () const
+const QPixmap * pixmap() const
 */
 HB_FUNC_STATIC( QLABEL_PIXMAP )
 {
-  QLabel * obj = (QLabel *) _qt5xhb_itemGetPtrStackSelfItem();
+  QLabel * obj = (QLabel *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -376,8 +377,8 @@ HB_FUNC_STATIC( QLABEL_PIXMAP )
     if( ISNUMPAR(0) )
     {
 #endif
-      const QPixmap * ptr = obj->pixmap ();
-      _qt5xhb_createReturnClass ( ptr, "QPIXMAP", false );
+      const QPixmap * ptr = obj->pixmap();
+      Qt5xHb::createReturnClass( ptr, "QPIXMAP", false );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -389,11 +390,11 @@ HB_FUNC_STATIC( QLABEL_PIXMAP )
 }
 
 /*
-QString selectedText () const
+QString selectedText() const
 */
 HB_FUNC_STATIC( QLABEL_SELECTEDTEXT )
 {
-  QLabel * obj = (QLabel *) _qt5xhb_itemGetPtrStackSelfItem();
+  QLabel * obj = (QLabel *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -401,7 +402,7 @@ HB_FUNC_STATIC( QLABEL_SELECTEDTEXT )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRING( obj->selectedText () );
+      RQSTRING( obj->selectedText() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -413,19 +414,19 @@ HB_FUNC_STATIC( QLABEL_SELECTEDTEXT )
 }
 
 /*
-void setAlignment ( Qt::Alignment )
+void setAlignment( Qt::Alignment )
 */
 HB_FUNC_STATIC( QLABEL_SETALIGNMENT )
 {
-  QLabel * obj = (QLabel *) _qt5xhb_itemGetPtrStackSelfItem();
+  QLabel * obj = (QLabel *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setAlignment ( (Qt::Alignment) hb_parni(1) );
+      obj->setAlignment( (Qt::Alignment) hb_parni(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -439,19 +440,19 @@ HB_FUNC_STATIC( QLABEL_SETALIGNMENT )
 }
 
 /*
-void setBuddy ( QWidget * buddy )
+void setBuddy( QWidget * buddy = 0 )
 */
 HB_FUNC_STATIC( QLABEL_SETBUDDY )
 {
-  QLabel * obj = (QLabel *) _qt5xhb_itemGetPtrStackSelfItem();
+  QLabel * obj = (QLabel *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISBETWEEN(0,1) && (ISQWIDGET(1)||ISNIL(1)) )
+    if( ISBETWEEN(0,1) && (ISQWIDGET(1)||HB_ISNIL(1)) )
     {
 #endif
-      obj->setBuddy ( OPQWIDGET(1,0) );
+      obj->setBuddy( OPQWIDGET(1,0) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -465,19 +466,19 @@ HB_FUNC_STATIC( QLABEL_SETBUDDY )
 }
 
 /*
-void setIndent ( int )
+void setIndent( int )
 */
 HB_FUNC_STATIC( QLABEL_SETINDENT )
 {
-  QLabel * obj = (QLabel *) _qt5xhb_itemGetPtrStackSelfItem();
+  QLabel * obj = (QLabel *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setIndent ( PINT(1) );
+      obj->setIndent( PINT(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -491,19 +492,19 @@ HB_FUNC_STATIC( QLABEL_SETINDENT )
 }
 
 /*
-void setMargin ( int )
+void setMargin( int )
 */
 HB_FUNC_STATIC( QLABEL_SETMARGIN )
 {
-  QLabel * obj = (QLabel *) _qt5xhb_itemGetPtrStackSelfItem();
+  QLabel * obj = (QLabel *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setMargin ( PINT(1) );
+      obj->setMargin( PINT(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -517,19 +518,19 @@ HB_FUNC_STATIC( QLABEL_SETMARGIN )
 }
 
 /*
-void setOpenExternalLinks ( bool open )
+void setOpenExternalLinks( bool open )
 */
 HB_FUNC_STATIC( QLABEL_SETOPENEXTERNALLINKS )
 {
-  QLabel * obj = (QLabel *) _qt5xhb_itemGetPtrStackSelfItem();
+  QLabel * obj = (QLabel *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISLOG(1) )
+    if( ISNUMPAR(1) && HB_ISLOG(1) )
     {
 #endif
-      obj->setOpenExternalLinks ( PBOOL(1) );
+      obj->setOpenExternalLinks( PBOOL(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -543,19 +544,19 @@ HB_FUNC_STATIC( QLABEL_SETOPENEXTERNALLINKS )
 }
 
 /*
-void setScaledContents ( bool )
+void setScaledContents( bool )
 */
 HB_FUNC_STATIC( QLABEL_SETSCALEDCONTENTS )
 {
-  QLabel * obj = (QLabel *) _qt5xhb_itemGetPtrStackSelfItem();
+  QLabel * obj = (QLabel *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISLOG(1) )
+    if( ISNUMPAR(1) && HB_ISLOG(1) )
     {
 #endif
-      obj->setScaledContents ( PBOOL(1) );
+      obj->setScaledContents( PBOOL(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -569,19 +570,19 @@ HB_FUNC_STATIC( QLABEL_SETSCALEDCONTENTS )
 }
 
 /*
-void setSelection ( int start, int length )
+void setSelection( int start, int length )
 */
 HB_FUNC_STATIC( QLABEL_SETSELECTION )
 {
-  QLabel * obj = (QLabel *) _qt5xhb_itemGetPtrStackSelfItem();
+  QLabel * obj = (QLabel *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(2) && ISNUM(1) && ISNUM(2) )
+    if( ISNUMPAR(2) && HB_ISNUM(1) && HB_ISNUM(2) )
     {
 #endif
-      obj->setSelection ( PINT(1), PINT(2) );
+      obj->setSelection( PINT(1), PINT(2) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -595,19 +596,19 @@ HB_FUNC_STATIC( QLABEL_SETSELECTION )
 }
 
 /*
-void setTextFormat ( Qt::TextFormat )
+void setTextFormat( Qt::TextFormat )
 */
 HB_FUNC_STATIC( QLABEL_SETTEXTFORMAT )
 {
-  QLabel * obj = (QLabel *) _qt5xhb_itemGetPtrStackSelfItem();
+  QLabel * obj = (QLabel *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setTextFormat ( (Qt::TextFormat) hb_parni(1) );
+      obj->setTextFormat( (Qt::TextFormat) hb_parni(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -621,19 +622,19 @@ HB_FUNC_STATIC( QLABEL_SETTEXTFORMAT )
 }
 
 /*
-void setTextInteractionFlags ( Qt::TextInteractionFlags flags )
+void setTextInteractionFlags( Qt::TextInteractionFlags flags )
 */
 HB_FUNC_STATIC( QLABEL_SETTEXTINTERACTIONFLAGS )
 {
-  QLabel * obj = (QLabel *) _qt5xhb_itemGetPtrStackSelfItem();
+  QLabel * obj = (QLabel *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setTextInteractionFlags ( (Qt::TextInteractionFlags) hb_parni(1) );
+      obj->setTextInteractionFlags( (Qt::TextInteractionFlags) hb_parni(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -647,19 +648,19 @@ HB_FUNC_STATIC( QLABEL_SETTEXTINTERACTIONFLAGS )
 }
 
 /*
-void setWordWrap ( bool on )
+void setWordWrap( bool on )
 */
 HB_FUNC_STATIC( QLABEL_SETWORDWRAP )
 {
-  QLabel * obj = (QLabel *) _qt5xhb_itemGetPtrStackSelfItem();
+  QLabel * obj = (QLabel *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISLOG(1) )
+    if( ISNUMPAR(1) && HB_ISLOG(1) )
     {
 #endif
-      obj->setWordWrap ( PBOOL(1) );
+      obj->setWordWrap( PBOOL(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -673,11 +674,11 @@ HB_FUNC_STATIC( QLABEL_SETWORDWRAP )
 }
 
 /*
-QString text () const
+QString text() const
 */
 HB_FUNC_STATIC( QLABEL_TEXT )
 {
-  QLabel * obj = (QLabel *) _qt5xhb_itemGetPtrStackSelfItem();
+  QLabel * obj = (QLabel *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -685,7 +686,7 @@ HB_FUNC_STATIC( QLABEL_TEXT )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRING( obj->text () );
+      RQSTRING( obj->text() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -697,11 +698,11 @@ HB_FUNC_STATIC( QLABEL_TEXT )
 }
 
 /*
-Qt::TextFormat textFormat () const
+Qt::TextFormat textFormat() const
 */
 HB_FUNC_STATIC( QLABEL_TEXTFORMAT )
 {
-  QLabel * obj = (QLabel *) _qt5xhb_itemGetPtrStackSelfItem();
+  QLabel * obj = (QLabel *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -709,7 +710,7 @@ HB_FUNC_STATIC( QLABEL_TEXTFORMAT )
     if( ISNUMPAR(0) )
     {
 #endif
-      RENUM( obj->textFormat () );
+      RENUM( obj->textFormat() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -721,11 +722,11 @@ HB_FUNC_STATIC( QLABEL_TEXTFORMAT )
 }
 
 /*
-Qt::TextInteractionFlags textInteractionFlags () const
+Qt::TextInteractionFlags textInteractionFlags() const
 */
 HB_FUNC_STATIC( QLABEL_TEXTINTERACTIONFLAGS )
 {
-  QLabel * obj = (QLabel *) _qt5xhb_itemGetPtrStackSelfItem();
+  QLabel * obj = (QLabel *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -733,7 +734,7 @@ HB_FUNC_STATIC( QLABEL_TEXTINTERACTIONFLAGS )
     if( ISNUMPAR(0) )
     {
 #endif
-      RENUM( obj->textInteractionFlags () );
+      RENUM( obj->textInteractionFlags() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -745,11 +746,11 @@ HB_FUNC_STATIC( QLABEL_TEXTINTERACTIONFLAGS )
 }
 
 /*
-bool wordWrap () const
+bool wordWrap() const
 */
 HB_FUNC_STATIC( QLABEL_WORDWRAP )
 {
-  QLabel * obj = (QLabel *) _qt5xhb_itemGetPtrStackSelfItem();
+  QLabel * obj = (QLabel *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -757,7 +758,7 @@ HB_FUNC_STATIC( QLABEL_WORDWRAP )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->wordWrap () );
+      RBOOL( obj->wordWrap() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -769,19 +770,19 @@ HB_FUNC_STATIC( QLABEL_WORDWRAP )
 }
 
 /*
-virtual int heightForWidth ( int w ) const
+virtual int heightForWidth( int w ) const
 */
 HB_FUNC_STATIC( QLABEL_HEIGHTFORWIDTH )
 {
-  QLabel * obj = (QLabel *) _qt5xhb_itemGetPtrStackSelfItem();
+  QLabel * obj = (QLabel *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      RINT( obj->heightForWidth ( PINT(1) ) );
+      RINT( obj->heightForWidth( PINT(1) ) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -793,11 +794,11 @@ HB_FUNC_STATIC( QLABEL_HEIGHTFORWIDTH )
 }
 
 /*
-virtual QSize minimumSizeHint () const
+virtual QSize minimumSizeHint() const
 */
 HB_FUNC_STATIC( QLABEL_MINIMUMSIZEHINT )
 {
-  QLabel * obj = (QLabel *) _qt5xhb_itemGetPtrStackSelfItem();
+  QLabel * obj = (QLabel *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -805,8 +806,8 @@ HB_FUNC_STATIC( QLABEL_MINIMUMSIZEHINT )
     if( ISNUMPAR(0) )
     {
 #endif
-      QSize * ptr = new QSize( obj->minimumSizeHint () );
-      _qt5xhb_createReturnClass ( ptr, "QSIZE", true );
+      QSize * ptr = new QSize( obj->minimumSizeHint() );
+      Qt5xHb::createReturnClass( ptr, "QSIZE", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -818,11 +819,11 @@ HB_FUNC_STATIC( QLABEL_MINIMUMSIZEHINT )
 }
 
 /*
-virtual QSize sizeHint () const
+virtual QSize sizeHint() const
 */
 HB_FUNC_STATIC( QLABEL_SIZEHINT )
 {
-  QLabel * obj = (QLabel *) _qt5xhb_itemGetPtrStackSelfItem();
+  QLabel * obj = (QLabel *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -830,8 +831,8 @@ HB_FUNC_STATIC( QLABEL_SIZEHINT )
     if( ISNUMPAR(0) )
     {
 #endif
-      QSize * ptr = new QSize( obj->sizeHint () );
-      _qt5xhb_createReturnClass ( ptr, "QSIZE", true );
+      QSize * ptr = new QSize( obj->sizeHint() );
+      Qt5xHb::createReturnClass( ptr, "QSIZE", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -843,11 +844,11 @@ HB_FUNC_STATIC( QLABEL_SIZEHINT )
 }
 
 /*
-void clear ()
+void clear()
 */
 HB_FUNC_STATIC( QLABEL_CLEAR )
 {
-  QLabel * obj = (QLabel *) _qt5xhb_itemGetPtrStackSelfItem();
+  QLabel * obj = (QLabel *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -855,7 +856,7 @@ HB_FUNC_STATIC( QLABEL_CLEAR )
     if( ISNUMPAR(0) )
     {
 #endif
-      obj->clear ();
+      obj->clear();
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -869,11 +870,11 @@ HB_FUNC_STATIC( QLABEL_CLEAR )
 }
 
 /*
-void setMovie ( QMovie * movie )
+void setMovie( QMovie * movie )
 */
 HB_FUNC_STATIC( QLABEL_SETMOVIE )
 {
-  QLabel * obj = (QLabel *) _qt5xhb_itemGetPtrStackSelfItem();
+  QLabel * obj = (QLabel *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -881,7 +882,7 @@ HB_FUNC_STATIC( QLABEL_SETMOVIE )
     if( ISNUMPAR(1) && ISQMOVIE(1) )
     {
 #endif
-      obj->setMovie ( PQMOVIE(1) );
+      obj->setMovie( PQMOVIE(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -895,41 +896,38 @@ HB_FUNC_STATIC( QLABEL_SETMOVIE )
 }
 
 /*
-void setNum ( int num )
+void setNum( int num )
 */
-void QLabel_setNum1 ()
+void QLabel_setNum1()
 {
-  QLabel * obj = (QLabel *) _qt5xhb_itemGetPtrStackSelfItem();
+  QLabel * obj = (QLabel *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
-      obj->setNum ( PINT(1) );
+    obj->setNum( PINT(1) );
   }
 
   hb_itemReturn( hb_stackSelfItem() );
 }
 
 /*
-void setNum ( double num )
+void setNum( double num )
 */
-void QLabel_setNum2 ()
+void QLabel_setNum2()
 {
-  QLabel * obj = (QLabel *) _qt5xhb_itemGetPtrStackSelfItem();
+  QLabel * obj = (QLabel *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
-      obj->setNum ( PDOUBLE(1) );
+    obj->setNum( PDOUBLE(1) );
   }
 
   hb_itemReturn( hb_stackSelfItem() );
 }
 
-//[1]void setNum ( int num )
-//[2]void setNum ( double num )
-
 HB_FUNC_STATIC( QLABEL_SETNUM )
 {
-  if( ISNUMPAR(1) && ISNUM(1) )
+  if( ISNUMPAR(1) && HB_ISNUM(1) )
   {
     PHB_ITEM pNum = hb_param(1, HB_IT_NUMERIC);
 
@@ -956,11 +954,11 @@ HB_FUNC_STATIC( QLABEL_SETNUM )
 }
 
 /*
-void setPicture ( const QPicture & picture )
+void setPicture( const QPicture & picture )
 */
 HB_FUNC_STATIC( QLABEL_SETPICTURE )
 {
-  QLabel * obj = (QLabel *) _qt5xhb_itemGetPtrStackSelfItem();
+  QLabel * obj = (QLabel *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -968,7 +966,7 @@ HB_FUNC_STATIC( QLABEL_SETPICTURE )
     if( ISNUMPAR(1) && ISQPICTURE(1) )
     {
 #endif
-      obj->setPicture ( *PQPICTURE(1) );
+      obj->setPicture( *PQPICTURE(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -982,11 +980,11 @@ HB_FUNC_STATIC( QLABEL_SETPICTURE )
 }
 
 /*
-void setPixmap ( const QPixmap & )
+void setPixmap( const QPixmap & )
 */
 HB_FUNC_STATIC( QLABEL_SETPIXMAP )
 {
-  QLabel * obj = (QLabel *) _qt5xhb_itemGetPtrStackSelfItem();
+  QLabel * obj = (QLabel *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -994,7 +992,7 @@ HB_FUNC_STATIC( QLABEL_SETPIXMAP )
     if( ISNUMPAR(1) && ISQPIXMAP(1) )
     {
 #endif
-      obj->setPixmap ( *PQPIXMAP(1) );
+      obj->setPixmap( *PQPIXMAP(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -1008,19 +1006,19 @@ HB_FUNC_STATIC( QLABEL_SETPIXMAP )
 }
 
 /*
-void setText ( const QString & )
+void setText( const QString & )
 */
 HB_FUNC_STATIC( QLABEL_SETTEXT )
 {
-  QLabel * obj = (QLabel *) _qt5xhb_itemGetPtrStackSelfItem();
+  QLabel * obj = (QLabel *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISCHAR(1) )
+    if( ISNUMPAR(1) && HB_ISCHAR(1) )
     {
 #endif
-      obj->setText ( PQSTRING(1) );
+      obj->setText( PQSTRING(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -1033,7 +1031,7 @@ HB_FUNC_STATIC( QLABEL_SETTEXT )
   hb_itemReturn( hb_stackSelfItem() );
 }
 
-void QLabelSlots_connect_signal ( const QString & signal, const QString & slot );
+void QLabelSlots_connect_signal( const QString & signal, const QString & slot );
 
 HB_FUNC_STATIC( QLABEL_ONLINKACTIVATED )
 {

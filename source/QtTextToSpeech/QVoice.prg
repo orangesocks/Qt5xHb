@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -38,7 +38,7 @@ CLASS QVoice
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QVoice
+PROCEDURE destroyObject() CLASS QVoice
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -63,32 +63,24 @@ RETURN
 /*
 QVoice()
 */
-void QVoice_new1 ()
+void QVoice_new1()
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
-  QVoice * o = new QVoice ();
-  _qt5xhb_returnNewObject( o, true );
+  QVoice * obj = new QVoice();
+  Qt5xHb::returnNewObject( obj, true );
 #endif
 }
 
 /*
-QVoice(const QVoice &other)
+QVoice( const QVoice & other )
 */
-void QVoice_new2 ()
+void QVoice_new2()
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
-  QVoice * o = new QVoice ( *PQVOICE(1) );
-  _qt5xhb_returnNewObject( o, true );
+  QVoice * obj = new QVoice( *PQVOICE(1) );
+  Qt5xHb::returnNewObject( obj, true );
 #endif
 }
-
-/*
-QVoice(const QString &name, Gender gender, Age age, const QVariant &data) [private]
-*/
-
-//[1]QVoice()
-//[2]QVoice(const QVoice &other)
-//[3]QVoice(const QString &name, Gender gender, Age age, const QVariant &data) [private]
 
 HB_FUNC_STATIC( QVOICE_NEW )
 {
@@ -112,7 +104,7 @@ HB_FUNC_STATIC( QVOICE_NEW )
 HB_FUNC_STATIC( QVOICE_DELETE )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
-  QVoice * obj = (QVoice *) _qt5xhb_itemGetPtrStackSelfItem();
+  QVoice * obj = (QVoice *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -134,7 +126,7 @@ QString name() const
 HB_FUNC_STATIC( QVOICE_NAME )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
-  QVoice * obj = (QVoice *) _qt5xhb_itemGetPtrStackSelfItem();
+  QVoice * obj = (QVoice *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -142,7 +134,7 @@ HB_FUNC_STATIC( QVOICE_NAME )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRING( obj->name () );
+      RQSTRING( obj->name() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -155,12 +147,12 @@ HB_FUNC_STATIC( QVOICE_NAME )
 }
 
 /*
-Gender gender() const
+QVoice::Gender gender() const
 */
 HB_FUNC_STATIC( QVOICE_GENDER )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
-  QVoice * obj = (QVoice *) _qt5xhb_itemGetPtrStackSelfItem();
+  QVoice * obj = (QVoice *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -168,7 +160,7 @@ HB_FUNC_STATIC( QVOICE_GENDER )
     if( ISNUMPAR(0) )
     {
 #endif
-      RENUM( obj->gender () );
+      RENUM( obj->gender() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -181,12 +173,12 @@ HB_FUNC_STATIC( QVOICE_GENDER )
 }
 
 /*
-Age age() const
+QVoice::Age age() const
 */
 HB_FUNC_STATIC( QVOICE_AGE )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
-  QVoice * obj = (QVoice *) _qt5xhb_itemGetPtrStackSelfItem();
+  QVoice * obj = (QVoice *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -194,7 +186,7 @@ HB_FUNC_STATIC( QVOICE_AGE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RENUM( obj->age () );
+      RENUM( obj->age() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -207,16 +199,16 @@ HB_FUNC_STATIC( QVOICE_AGE )
 }
 
 /*
-static QString genderName(QVoice::Gender gender)
+static QString genderName( QVoice::Gender gender )
 */
 HB_FUNC_STATIC( QVOICE_GENDERNAME )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+  if( ISNUMPAR(1) && HB_ISNUM(1) )
   {
 #endif
-      RQSTRING( QVoice::genderName ( (QVoice::Gender) hb_parni(1) ) );
+    RQSTRING( QVoice::genderName( (QVoice::Gender) hb_parni(1) ) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
   }
   else
@@ -228,16 +220,16 @@ HB_FUNC_STATIC( QVOICE_GENDERNAME )
 }
 
 /*
-static QString ageName(QVoice::Age age)
+static QString ageName( QVoice::Age age )
 */
 HB_FUNC_STATIC( QVOICE_AGENAME )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+  if( ISNUMPAR(1) && HB_ISNUM(1) )
   {
 #endif
-      RQSTRING( QVoice::ageName ( (QVoice::Age) hb_parni(1) ) );
+    RQSTRING( QVoice::ageName( (QVoice::Age) hb_parni(1) ) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
   }
   else
@@ -248,31 +240,11 @@ HB_FUNC_STATIC( QVOICE_AGENAME )
 #endif
 }
 
-/*
-void setName(const QString &name) [private]
-*/
-
-/*
-void setGender(Gender gender) [private]
-*/
-
-/*
-void setAge(Age age) [private]
-*/
-
-/*
-void setData(const QVariant &data) [private]
-*/
-
-/*
-QVariant data() const [private]
-*/
-
 HB_FUNC_STATIC( QVOICE_NEWFROM )
 {
   PHB_ITEM self = hb_stackSelfItem();
 
-  if( hb_pcount() == 1 && ISOBJECT(1) )
+  if( hb_pcount() == 1 && HB_ISOBJECT(1) )
   {
     PHB_ITEM ptr = hb_itemPutPtr( NULL, (void *) hb_itemGetPtr( hb_objSendMsg( hb_param(1, HB_IT_OBJECT ), "POINTER", 0 ) ) );
     hb_objSendMsg( self, "_pointer", 1, ptr );
@@ -281,7 +253,7 @@ HB_FUNC_STATIC( QVOICE_NEWFROM )
     hb_objSendMsg( self, "_self_destruction", 1, des );
     hb_itemRelease( des );
   }
-  else if( hb_pcount() == 1 && ISPOINTER(1) )
+  else if( hb_pcount() == 1 && HB_ISPOINTER(1) )
   {
     PHB_ITEM ptr = hb_itemPutPtr( NULL, (void *) hb_itemGetPtr( hb_param(1, HB_IT_POINTER ) ) );
     hb_objSendMsg( self, "_pointer", 1, ptr );
@@ -317,7 +289,7 @@ HB_FUNC_STATIC( QVOICE_SETSELFDESTRUCTION )
 {
   PHB_ITEM self = hb_stackSelfItem();
 
-  if( hb_pcount() == 1 && ISLOG(1) )
+  if( hb_pcount() == 1 && HB_ISLOG(1) )
   {
     PHB_ITEM des = hb_itemPutL( NULL, hb_parl(1) );
     hb_objSendMsg( self, "_self_destruction", 1, des );

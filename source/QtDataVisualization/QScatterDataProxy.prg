@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -41,7 +41,7 @@ CLASS QScatterDataProxy INHERIT QAbstractDataProxy
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QScatterDataProxy
+PROCEDURE destroyObject() CLASS QScatterDataProxy
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -58,6 +58,8 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #include <QtDataVisualization/QScatterDataProxy>
@@ -68,14 +70,14 @@ RETURN
 using namespace QtDataVisualization;
 
 /*
-explicit QScatterDataProxy(QObject *parent = Q_NULLPTR)
+QScatterDataProxy( QObject * parent = nullptr )
 */
 HB_FUNC_STATIC( QSCATTERDATAPROXY_NEW )
 {
-  if( ISBETWEEN(0,1) && (ISQOBJECT(1)||ISNIL(1)) )
+  if( ISBETWEEN(0,1) && (ISQOBJECT(1)||HB_ISNIL(1)) )
   {
-    QScatterDataProxy * o = new QScatterDataProxy ( OPQOBJECT(1,Q_NULLPTR) );
-    _qt5xhb_returnNewObject( o, false );
+    QScatterDataProxy * obj = new QScatterDataProxy( OPQOBJECT(1,nullptr) );
+    Qt5xHb::returnNewObject( obj, false );
   }
   else
   {
@@ -84,18 +86,16 @@ HB_FUNC_STATIC( QSCATTERDATAPROXY_NEW )
 }
 
 /*
-explicit QScatterDataProxy(QScatterDataProxyPrivate *d, QObject *parent = Q_NULLPTR) [protected]
-*/
-
-/*
 virtual ~QScatterDataProxy()
 */
 HB_FUNC_STATIC( QSCATTERDATAPROXY_DELETE )
 {
-  QScatterDataProxy * obj = (QScatterDataProxy *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScatterDataProxy * obj = (QScatterDataProxy *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -112,7 +112,7 @@ int itemCount() const
 */
 HB_FUNC_STATIC( QSCATTERDATAPROXY_ITEMCOUNT )
 {
-  QScatterDataProxy * obj = (QScatterDataProxy *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScatterDataProxy * obj = (QScatterDataProxy *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -120,7 +120,7 @@ HB_FUNC_STATIC( QSCATTERDATAPROXY_ITEMCOUNT )
     if( ISNUMPAR(0) )
     {
 #endif
-      RINT( obj->itemCount () );
+      RINT( obj->itemCount() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -132,11 +132,11 @@ HB_FUNC_STATIC( QSCATTERDATAPROXY_ITEMCOUNT )
 }
 
 /*
-QScatter3DSeries *series() const
+QScatter3DSeries * series() const
 */
 HB_FUNC_STATIC( QSCATTERDATAPROXY_SERIES )
 {
-  QScatterDataProxy * obj = (QScatterDataProxy *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScatterDataProxy * obj = (QScatterDataProxy *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -144,8 +144,8 @@ HB_FUNC_STATIC( QSCATTERDATAPROXY_SERIES )
     if( ISNUMPAR(0) )
     {
 #endif
-      QScatter3DSeries * ptr = obj->series ();
-      _qt5xhb_createReturnQObjectClass ( ptr, "QSCATTER3DSERIES" );
+      QScatter3DSeries * ptr = obj->series();
+      Qt5xHb::createReturnQObjectClass( ptr, "QSCATTER3DSERIES" );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -157,24 +157,20 @@ HB_FUNC_STATIC( QSCATTERDATAPROXY_SERIES )
 }
 
 /*
-const QScatterDataArray *array() const
-*/
-
-/*
-const QScatterDataItem *itemAt(int index) const
+const QScatterDataItem * itemAt( int index ) const
 */
 HB_FUNC_STATIC( QSCATTERDATAPROXY_ITEMAT )
 {
-  QScatterDataProxy * obj = (QScatterDataProxy *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScatterDataProxy * obj = (QScatterDataProxy *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      const QScatterDataItem * ptr = obj->itemAt ( PINT(1) );
-      _qt5xhb_createReturnClass ( ptr, "QSCATTERDATAITEM", false );
+      const QScatterDataItem * ptr = obj->itemAt( PINT(1) );
+      Qt5xHb::createReturnClass( ptr, "QSCATTERDATAITEM", false );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -186,23 +182,19 @@ HB_FUNC_STATIC( QSCATTERDATAPROXY_ITEMAT )
 }
 
 /*
-void resetArray(QScatterDataArray *newArray)
-*/
-
-/*
-void setItem(int index, const QScatterDataItem &item)
+void setItem( int index, const QScatterDataItem & item )
 */
 HB_FUNC_STATIC( QSCATTERDATAPROXY_SETITEM )
 {
-  QScatterDataProxy * obj = (QScatterDataProxy *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScatterDataProxy * obj = (QScatterDataProxy *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(2) && ISNUM(1) && ISQSCATTERDATAITEM(2) )
+    if( ISNUMPAR(2) && HB_ISNUM(1) && ISQSCATTERDATAITEM(2) )
     {
 #endif
-      obj->setItem ( PINT(1), *PQSCATTERDATAITEM(2) );
+      obj->setItem( PINT(1), *PQSCATTERDATAITEM(2) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -216,15 +208,11 @@ HB_FUNC_STATIC( QSCATTERDATAPROXY_SETITEM )
 }
 
 /*
-void setItems(int index, const QScatterDataArray &items)
-*/
-
-/*
-int addItem(const QScatterDataItem &item)
+int addItem( const QScatterDataItem & item )
 */
 HB_FUNC_STATIC( QSCATTERDATAPROXY_ADDITEM )
 {
-  QScatterDataProxy * obj = (QScatterDataProxy *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScatterDataProxy * obj = (QScatterDataProxy *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -232,7 +220,7 @@ HB_FUNC_STATIC( QSCATTERDATAPROXY_ADDITEM )
     if( ISNUMPAR(1) && ISQSCATTERDATAITEM(1) )
     {
 #endif
-      RINT( obj->addItem ( *PQSCATTERDATAITEM(1) ) );
+      RINT( obj->addItem( *PQSCATTERDATAITEM(1) ) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -244,23 +232,19 @@ HB_FUNC_STATIC( QSCATTERDATAPROXY_ADDITEM )
 }
 
 /*
-int addItems(const QScatterDataArray &items)
-*/
-
-/*
-void insertItem(int index, const QScatterDataItem &item)
+void insertItem( int index, const QScatterDataItem & item )
 */
 HB_FUNC_STATIC( QSCATTERDATAPROXY_INSERTITEM )
 {
-  QScatterDataProxy * obj = (QScatterDataProxy *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScatterDataProxy * obj = (QScatterDataProxy *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(2) && ISNUM(1) && ISQSCATTERDATAITEM(2) )
+    if( ISNUMPAR(2) && HB_ISNUM(1) && ISQSCATTERDATAITEM(2) )
     {
 #endif
-      obj->insertItem ( PINT(1), *PQSCATTERDATAITEM(2) );
+      obj->insertItem( PINT(1), *PQSCATTERDATAITEM(2) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -274,23 +258,19 @@ HB_FUNC_STATIC( QSCATTERDATAPROXY_INSERTITEM )
 }
 
 /*
-void insertItems(int index, const QScatterDataArray &items)
-*/
-
-/*
-void removeItems(int index, int removeCount)
+void removeItems( int index, int removeCount )
 */
 HB_FUNC_STATIC( QSCATTERDATAPROXY_REMOVEITEMS )
 {
-  QScatterDataProxy * obj = (QScatterDataProxy *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScatterDataProxy * obj = (QScatterDataProxy *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(2) && ISNUM(1) && ISNUM(2) )
+    if( ISNUMPAR(2) && HB_ISNUM(1) && HB_ISNUM(2) )
     {
 #endif
-      obj->removeItems ( PINT(1), PINT(2) );
+      obj->removeItems( PINT(1), PINT(2) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -303,7 +283,7 @@ HB_FUNC_STATIC( QSCATTERDATAPROXY_REMOVEITEMS )
   hb_itemReturn( hb_stackSelfItem() );
 }
 
-void QScatterDataProxySlots_connect_signal ( const QString & signal, const QString & slot );
+void QScatterDataProxySlots_connect_signal( const QString & signal, const QString & slot );
 
 HB_FUNC_STATIC( QSCATTERDATAPROXY_ONARRAYRESET )
 {

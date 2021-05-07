@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -30,7 +30,7 @@ CLASS QWebInspector INHERIT QWidget
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QWebInspector
+PROCEDURE destroyObject() CLASS QWebInspector
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -47,20 +47,22 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #include <QtWebKitWidgets/QWebInspector>
 #endif
 
 /*
-QWebInspector ( QWidget * parent = 0 )
+QWebInspector( QWidget * parent = 0 )
 */
 HB_FUNC_STATIC( QWEBINSPECTOR_NEW )
 {
-  if( ISBETWEEN(0,1) && (ISQWIDGET(1)||ISNIL(1)) )
+  if( ISBETWEEN(0,1) && (ISQWIDGET(1)||HB_ISNIL(1)) )
   {
-    QWebInspector * o = new QWebInspector ( OPQWIDGET(1,0) );
-    _qt5xhb_returnNewObject( o, false );
+    QWebInspector * obj = new QWebInspector( OPQWIDGET(1,0) );
+    Qt5xHb::returnNewObject( obj, false );
   }
   else
   {
@@ -73,10 +75,12 @@ HB_FUNC_STATIC( QWEBINSPECTOR_NEW )
 */
 HB_FUNC_STATIC( QWEBINSPECTOR_DELETE )
 {
-  QWebInspector * obj = (QWebInspector *) _qt5xhb_itemGetPtrStackSelfItem();
+  QWebInspector * obj = (QWebInspector *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -89,11 +93,11 @@ HB_FUNC_STATIC( QWEBINSPECTOR_DELETE )
 }
 
 /*
-QWebPage * page () const
+QWebPage * page() const
 */
 HB_FUNC_STATIC( QWEBINSPECTOR_PAGE )
 {
-  QWebInspector * obj = (QWebInspector *) _qt5xhb_itemGetPtrStackSelfItem();
+  QWebInspector * obj = (QWebInspector *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -101,8 +105,8 @@ HB_FUNC_STATIC( QWEBINSPECTOR_PAGE )
     if( ISNUMPAR(0) )
     {
 #endif
-      QWebPage * ptr = obj->page ();
-      _qt5xhb_createReturnQObjectClass ( ptr, "QWEBPAGE" );
+      QWebPage * ptr = obj->page();
+      Qt5xHb::createReturnQObjectClass( ptr, "QWEBPAGE" );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -114,11 +118,11 @@ HB_FUNC_STATIC( QWEBINSPECTOR_PAGE )
 }
 
 /*
-void setPage ( QWebPage * page )
+void setPage( QWebPage * page )
 */
 HB_FUNC_STATIC( QWEBINSPECTOR_SETPAGE )
 {
-  QWebInspector * obj = (QWebInspector *) _qt5xhb_itemGetPtrStackSelfItem();
+  QWebInspector * obj = (QWebInspector *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -126,7 +130,7 @@ HB_FUNC_STATIC( QWEBINSPECTOR_SETPAGE )
     if( ISNUMPAR(1) && ISQWEBPAGE(1) )
     {
 #endif
-      obj->setPage ( PQWEBPAGE(1) );
+      obj->setPage( PQWEBPAGE(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -140,11 +144,11 @@ HB_FUNC_STATIC( QWEBINSPECTOR_SETPAGE )
 }
 
 /*
-virtual bool event ( QEvent * ev )
+virtual bool event( QEvent * ev )
 */
 HB_FUNC_STATIC( QWEBINSPECTOR_EVENT )
 {
-  QWebInspector * obj = (QWebInspector *) _qt5xhb_itemGetPtrStackSelfItem();
+  QWebInspector * obj = (QWebInspector *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -152,7 +156,7 @@ HB_FUNC_STATIC( QWEBINSPECTOR_EVENT )
     if( ISNUMPAR(1) && ISQEVENT(1) )
     {
 #endif
-      RBOOL( obj->event ( PQEVENT(1) ) );
+      RBOOL( obj->event( PQEVENT(1) ) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -164,11 +168,11 @@ HB_FUNC_STATIC( QWEBINSPECTOR_EVENT )
 }
 
 /*
-virtual QSize sizeHint () const
+virtual QSize sizeHint() const
 */
 HB_FUNC_STATIC( QWEBINSPECTOR_SIZEHINT )
 {
-  QWebInspector * obj = (QWebInspector *) _qt5xhb_itemGetPtrStackSelfItem();
+  QWebInspector * obj = (QWebInspector *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -176,8 +180,8 @@ HB_FUNC_STATIC( QWEBINSPECTOR_SIZEHINT )
     if( ISNUMPAR(0) )
     {
 #endif
-      QSize * ptr = new QSize( obj->sizeHint () );
-      _qt5xhb_createReturnClass ( ptr, "QSIZE", true );
+      QSize * ptr = new QSize( obj->sizeHint() );
+      Qt5xHb::createReturnClass( ptr, "QSIZE", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else

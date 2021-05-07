@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -39,7 +39,7 @@ CLASS QTextTableFormat INHERIT QTextFrameFormat
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QTextTableFormat
+PROCEDURE destroyObject() CLASS QTextTableFormat
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -68,8 +68,8 @@ HB_FUNC_STATIC( QTEXTTABLEFORMAT_NEW )
 {
   if( ISNUMPAR(0) )
   {
-    QTextTableFormat * o = new QTextTableFormat ();
-    _qt5xhb_returnNewObject( o, true );
+    QTextTableFormat * obj = new QTextTableFormat();
+    Qt5xHb::returnNewObject( obj, true );
   }
   else
   {
@@ -79,7 +79,7 @@ HB_FUNC_STATIC( QTEXTTABLEFORMAT_NEW )
 
 HB_FUNC_STATIC( QTEXTTABLEFORMAT_DELETE )
 {
-  QTextTableFormat * obj = (QTextTableFormat *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTextTableFormat * obj = (QTextTableFormat *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -99,7 +99,7 @@ bool isValid() const
 */
 HB_FUNC_STATIC( QTEXTTABLEFORMAT_ISVALID )
 {
-  QTextTableFormat * obj = (QTextTableFormat *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTextTableFormat * obj = (QTextTableFormat *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -107,7 +107,7 @@ HB_FUNC_STATIC( QTEXTTABLEFORMAT_ISVALID )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->isValid () );
+      RBOOL( obj->isValid() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -123,7 +123,7 @@ int columns() const
 */
 HB_FUNC_STATIC( QTEXTTABLEFORMAT_COLUMNS )
 {
-  QTextTableFormat * obj = (QTextTableFormat *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTextTableFormat * obj = (QTextTableFormat *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -131,7 +131,7 @@ HB_FUNC_STATIC( QTEXTTABLEFORMAT_COLUMNS )
     if( ISNUMPAR(0) )
     {
 #endif
-      RINT( obj->columns () );
+      RINT( obj->columns() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -143,19 +143,19 @@ HB_FUNC_STATIC( QTEXTTABLEFORMAT_COLUMNS )
 }
 
 /*
-void setColumns(int columns)
+void setColumns( int columns )
 */
 HB_FUNC_STATIC( QTEXTTABLEFORMAT_SETCOLUMNS )
 {
-  QTextTableFormat * obj = (QTextTableFormat *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTextTableFormat * obj = (QTextTableFormat *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setColumns ( PINT(1) );
+      obj->setColumns( PINT(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -169,27 +169,27 @@ HB_FUNC_STATIC( QTEXTTABLEFORMAT_SETCOLUMNS )
 }
 
 /*
-void setColumnWidthConstraints(const QVector<QTextLength> &constraints)
+void setColumnWidthConstraints( const QVector<QTextLength> & constraints )
 */
 HB_FUNC_STATIC( QTEXTTABLEFORMAT_SETCOLUMNWIDTHCONSTRAINTS )
 {
-  QTextTableFormat * obj = (QTextTableFormat *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTextTableFormat * obj = (QTextTableFormat *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISARRAY(1) )
+    if( ISNUMPAR(1) && HB_ISARRAY(1) )
     {
 #endif
       QVector<QTextLength> par1;
-PHB_ITEM aList1 = hb_param(1, HB_IT_ARRAY);
-int i1;
-int nLen1 = hb_arrayLen(aList1);
-for (i1=0;i1<nLen1;i1++)
-{
-  par1 << *(QTextLength *) hb_itemGetPtr( hb_objSendMsg( hb_arrayGetItemPtr( aList1, i1+1 ), "POINTER", 0 ) );
-}
-      obj->setColumnWidthConstraints ( par1 );
+      PHB_ITEM aList1 = hb_param(1, HB_IT_ARRAY);
+      int i1;
+      int nLen1 = hb_arrayLen(aList1);
+      for (i1=0;i1<nLen1;i1++)
+      {
+        par1 << *(QTextLength *) hb_itemGetPtr( hb_objSendMsg( hb_arrayGetItemPtr( aList1, i1+1 ), "POINTER", 0 ) );
+      }
+      obj->setColumnWidthConstraints( par1 );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -207,7 +207,7 @@ QVector<QTextLength> columnWidthConstraints() const
 */
 HB_FUNC_STATIC( QTEXTTABLEFORMAT_COLUMNWIDTHCONSTRAINTS )
 {
-  QTextTableFormat * obj = (QTextTableFormat *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTextTableFormat * obj = (QTextTableFormat *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -215,13 +215,12 @@ HB_FUNC_STATIC( QTEXTTABLEFORMAT_COLUMNWIDTHCONSTRAINTS )
     if( ISNUMPAR(0) )
     {
 #endif
-      QVector<QTextLength> list = obj->columnWidthConstraints ();
+      QVector<QTextLength> list = obj->columnWidthConstraints();
       PHB_DYNS pDynSym = hb_dynsymFindName( "QTEXTLENGTH" );
       PHB_ITEM pArray = hb_itemArrayNew(0);
-      int i;
-      for(i=0;i<list.count();i++)
+      if( pDynSym )
       {
-        if( pDynSym )
+        for( int i = 0; i < list.count(); i++ )
         {
           hb_vmPushDynSym( pDynSym );
           hb_vmPushNil();
@@ -229,7 +228,7 @@ HB_FUNC_STATIC( QTEXTTABLEFORMAT_COLUMNWIDTHCONSTRAINTS )
           PHB_ITEM pObject = hb_itemNew( NULL );
           hb_itemCopy( pObject, hb_stackReturnItem() );
           PHB_ITEM pItem = hb_itemNew( NULL );
-          hb_itemPutPtr( pItem, (QTextLength *) new QTextLength ( list[i] ) );
+          hb_itemPutPtr( pItem, (QTextLength *) new QTextLength( list[i] ) );
           hb_objSendMsg( pObject, "_POINTER", 1, pItem );
           hb_itemRelease( pItem );
           PHB_ITEM pDestroy = hb_itemNew( NULL );
@@ -239,10 +238,10 @@ HB_FUNC_STATIC( QTEXTTABLEFORMAT_COLUMNWIDTHCONSTRAINTS )
           hb_arrayAddForward( pArray, pObject );
           hb_itemRelease( pObject );
         }
-        else
-        {
-          hb_errRT_BASE( EG_NOFUNC, 1001, NULL, "QTEXTLENGTH", HB_ERR_ARGS_BASEPARAMS );
-        }
+      }
+      else
+      {
+        hb_errRT_BASE( EG_NOFUNC, 1001, NULL, "QTEXTLENGTH", HB_ERR_ARGS_BASEPARAMS );
       }
       hb_itemReturnRelease(pArray);
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
@@ -260,7 +259,7 @@ void clearColumnWidthConstraints()
 */
 HB_FUNC_STATIC( QTEXTTABLEFORMAT_CLEARCOLUMNWIDTHCONSTRAINTS )
 {
-  QTextTableFormat * obj = (QTextTableFormat *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTextTableFormat * obj = (QTextTableFormat *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -268,7 +267,7 @@ HB_FUNC_STATIC( QTEXTTABLEFORMAT_CLEARCOLUMNWIDTHCONSTRAINTS )
     if( ISNUMPAR(0) )
     {
 #endif
-      obj->clearColumnWidthConstraints ();
+      obj->clearColumnWidthConstraints();
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -286,7 +285,7 @@ qreal cellSpacing() const
 */
 HB_FUNC_STATIC( QTEXTTABLEFORMAT_CELLSPACING )
 {
-  QTextTableFormat * obj = (QTextTableFormat *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTextTableFormat * obj = (QTextTableFormat *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -294,7 +293,7 @@ HB_FUNC_STATIC( QTEXTTABLEFORMAT_CELLSPACING )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQREAL( obj->cellSpacing () );
+      RQREAL( obj->cellSpacing() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -306,19 +305,19 @@ HB_FUNC_STATIC( QTEXTTABLEFORMAT_CELLSPACING )
 }
 
 /*
-void setCellSpacing(qreal spacing)
+void setCellSpacing( qreal spacing )
 */
 HB_FUNC_STATIC( QTEXTTABLEFORMAT_SETCELLSPACING )
 {
-  QTextTableFormat * obj = (QTextTableFormat *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTextTableFormat * obj = (QTextTableFormat *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setCellSpacing ( PQREAL(1) );
+      obj->setCellSpacing( PQREAL(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -336,7 +335,7 @@ qreal cellPadding() const
 */
 HB_FUNC_STATIC( QTEXTTABLEFORMAT_CELLPADDING )
 {
-  QTextTableFormat * obj = (QTextTableFormat *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTextTableFormat * obj = (QTextTableFormat *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -344,7 +343,7 @@ HB_FUNC_STATIC( QTEXTTABLEFORMAT_CELLPADDING )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQREAL( obj->cellPadding () );
+      RQREAL( obj->cellPadding() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -356,19 +355,19 @@ HB_FUNC_STATIC( QTEXTTABLEFORMAT_CELLPADDING )
 }
 
 /*
-void setCellPadding(qreal padding)
+void setCellPadding( qreal padding )
 */
 HB_FUNC_STATIC( QTEXTTABLEFORMAT_SETCELLPADDING )
 {
-  QTextTableFormat * obj = (QTextTableFormat *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTextTableFormat * obj = (QTextTableFormat *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setCellPadding ( PQREAL(1) );
+      obj->setCellPadding( PQREAL(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -382,19 +381,19 @@ HB_FUNC_STATIC( QTEXTTABLEFORMAT_SETCELLPADDING )
 }
 
 /*
-void setAlignment(Qt::Alignment alignment)
+void setAlignment( Qt::Alignment alignment )
 */
 HB_FUNC_STATIC( QTEXTTABLEFORMAT_SETALIGNMENT )
 {
-  QTextTableFormat * obj = (QTextTableFormat *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTextTableFormat * obj = (QTextTableFormat *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setAlignment ( (Qt::Alignment) hb_parni(1) );
+      obj->setAlignment( (Qt::Alignment) hb_parni(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -412,7 +411,7 @@ Qt::Alignment alignment() const
 */
 HB_FUNC_STATIC( QTEXTTABLEFORMAT_ALIGNMENT )
 {
-  QTextTableFormat * obj = (QTextTableFormat *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTextTableFormat * obj = (QTextTableFormat *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -420,7 +419,7 @@ HB_FUNC_STATIC( QTEXTTABLEFORMAT_ALIGNMENT )
     if( ISNUMPAR(0) )
     {
 #endif
-      RENUM( obj->alignment () );
+      RENUM( obj->alignment() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -432,19 +431,19 @@ HB_FUNC_STATIC( QTEXTTABLEFORMAT_ALIGNMENT )
 }
 
 /*
-void setHeaderRowCount(int count)
+void setHeaderRowCount( int count )
 */
 HB_FUNC_STATIC( QTEXTTABLEFORMAT_SETHEADERROWCOUNT )
 {
-  QTextTableFormat * obj = (QTextTableFormat *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTextTableFormat * obj = (QTextTableFormat *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setHeaderRowCount ( PINT(1) );
+      obj->setHeaderRowCount( PINT(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -462,7 +461,7 @@ int headerRowCount() const
 */
 HB_FUNC_STATIC( QTEXTTABLEFORMAT_HEADERROWCOUNT )
 {
-  QTextTableFormat * obj = (QTextTableFormat *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTextTableFormat * obj = (QTextTableFormat *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -470,7 +469,7 @@ HB_FUNC_STATIC( QTEXTTABLEFORMAT_HEADERROWCOUNT )
     if( ISNUMPAR(0) )
     {
 #endif
-      RINT( obj->headerRowCount () );
+      RINT( obj->headerRowCount() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else

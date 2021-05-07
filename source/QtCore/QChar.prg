@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -11,6 +11,9 @@
 */
 
 #include "hbclass.ch"
+
+#ifndef QT5XHB_NO_REQUESTS
+#endif
 
 CLASS QChar
 
@@ -72,7 +75,7 @@ CLASS QChar
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QChar
+PROCEDURE destroyObject() CLASS QChar
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -80,10 +83,10 @@ RETURN
 
 #pragma BEGINDUMP
 
-#include <Qt>
+#include <QtCore/Qt>
 
 #ifndef __XHARBOUR__
-#include <QChar>
+#include <QtCore/QChar>
 #endif
 
 #include "qt5xhb_common.h"
@@ -91,125 +94,107 @@ RETURN
 #include "qt5xhb_utils.h"
 
 #ifdef __XHARBOUR__
-#include <QChar>
+#include <QtCore/QChar>
 #endif
 
 /*
-QChar ()
+QChar()
 */
 HB_FUNC_STATIC( QCHAR_NEW1 )
 {
-  QChar * o = new QChar ();
-  _qt5xhb_returnNewObject( o, false );
+  QChar * obj = new QChar();
+  Qt5xHb::returnNewObject( obj, true );
 }
 
 /*
-QChar ( char ch )
+QChar( char ch )
 */
 HB_FUNC_STATIC( QCHAR_NEW2 )
 {
-  char par1 = ISCHAR(1)? (char) hb_parc(1)[0] : (ISNUM(1)? hb_parni(1) : 0);
-  QChar * o = new QChar ( par1 );
-  _qt5xhb_returnNewObject( o, false );
+  QChar * obj = new QChar( PCHAR(1) );
+  Qt5xHb::returnNewObject( obj, true );
 }
 
 /*
-QChar ( uchar ch )
+QChar( uchar ch )
 */
 HB_FUNC_STATIC( QCHAR_NEW3 )
 {
-  uchar par1 = ISCHAR(1)? (uchar) hb_parc(1)[0] : (ISNUM(1)? hb_parni(1) : 0);
-  QChar * o = new QChar ( par1 );
-  _qt5xhb_returnNewObject( o, false );
+  QChar * obj = new QChar( PUCHAR(1) );
+  Qt5xHb::returnNewObject( obj, true );
 }
 
 /*
-QChar ( QLatin1Char ch )
+QChar( QLatin1Char ch )
 */
 HB_FUNC_STATIC( QCHAR_NEW4 )
 {
-  QChar * o = new QChar ();
-  _qt5xhb_returnNewObject( o, false );
+  QChar * obj = new QChar( *PQLATIN1CHAR(1) );
+  Qt5xHb::returnNewObject( obj, true );
 }
 
 /*
-QChar ( uchar cell, uchar row )
+QChar( uchar cell, uchar row )
 */
 HB_FUNC_STATIC( QCHAR_NEW5 )
 {
-  uchar par1 = ISCHAR(1)? (uchar) hb_parc(1)[0] : (ISNUM(1)? hb_parni(1) : 0);
-  uchar par2 = ISCHAR(2)? (uchar) hb_parc(2)[0] : (ISNUM(2)? hb_parni(2) : 0);
-  QChar * o = new QChar ( par1, par2 );
-  _qt5xhb_returnNewObject( o, false );
+  QChar * obj = new QChar( PUCHAR(1), PUCHAR(2) );
+  Qt5xHb::returnNewObject( obj, true );
 }
 
 /*
-QChar ( ushort code )
+QChar( ushort code )
 */
 HB_FUNC_STATIC( QCHAR_NEW6 )
 {
-  ushort par1 = hb_parni(1);
-  QChar * o = new QChar ( par1 );
-  _qt5xhb_returnNewObject( o, false );
+  QChar * obj = new QChar( PUSHORT(1) );
+  Qt5xHb::returnNewObject( obj, true );
 }
 
 /*
-QChar ( short code )
+QChar( short code )
 */
 HB_FUNC_STATIC( QCHAR_NEW7 )
 {
-  short par1 = hb_parni(1);
-  QChar * o = new QChar ( par1 );
-  _qt5xhb_returnNewObject( o, false );
+  QChar * obj = new QChar( PSHORT(1) );
+  Qt5xHb::returnNewObject( obj, true );
 }
 
 /*
-QChar ( uint code )
+QChar( uint code )
 */
 HB_FUNC_STATIC( QCHAR_NEW8 )
 {
-  uint par1 = hb_parni(1);
-  QChar * o = new QChar ( par1 );
-  _qt5xhb_returnNewObject( o, false );
+  QChar * obj = new QChar( PUINT(1) );
+  Qt5xHb::returnNewObject( obj, true );
 }
 
 /*
-QChar ( int code )
+QChar( int code )
 */
 HB_FUNC_STATIC( QCHAR_NEW9 )
 {
-  QChar * o = new QChar ( PINT(1) );
-  _qt5xhb_returnNewObject( o, false );
+  QChar * obj = new QChar( PINT(1) );
+  Qt5xHb::returnNewObject( obj, true );
 }
 
 /*
-QChar ( SpecialCharacter ch )
+QChar( QChar::SpecialCharacter ch )
 */
 HB_FUNC_STATIC( QCHAR_NEW10 )
 {
-  QChar * o = new QChar ( (QChar::SpecialCharacter) hb_parni(1) );
-  _qt5xhb_returnNewObject( o, false );
+  QChar * obj = new QChar( (QChar::SpecialCharacter) hb_parni(1) );
+  Qt5xHb::returnNewObject( obj, true );
 }
 
-//[01]QChar ()
-//[02]QChar ( char ch )
-//[03]QChar ( uchar ch )
-//[04]QChar ( QLatin1Char ch )
-//[05]QChar ( uchar cell, uchar row )
-//[06]QChar ( ushort code )
-//[07]QChar ( short code )
-//[08]QChar ( uint code )
-//[09]QChar ( int code )
-//[10]QChar ( SpecialCharacter ch )
-
-HB_FUNC_STATIC( QCHAR_NEW ) // TODO: completar implementação
+HB_FUNC_STATIC( QCHAR_NEW )
 {
   HB_FUNC_EXEC( QCHAR_NEW1 );
 }
 
 HB_FUNC_STATIC( QCHAR_DELETE )
 {
-  QChar * obj = (QChar *) _qt5xhb_itemGetPtrStackSelfItem();
+  QChar * obj = (QChar *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -225,647 +210,775 @@ HB_FUNC_STATIC( QCHAR_DELETE )
 }
 
 /*
-Category category () const
+QChar::Category category() const
 */
 HB_FUNC_STATIC( QCHAR_CATEGORY )
 {
-  QChar * obj = (QChar *) _qt5xhb_itemGetPtrStackSelfItem();
+  QChar * obj = (QChar *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
-      RENUM( obj->category () );
+#endif
+      RENUM( obj->category() );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
 /*
-uchar cell () const
+uchar cell() const
 */
 HB_FUNC_STATIC( QCHAR_CELL )
 {
-  QChar * obj = (QChar *) _qt5xhb_itemGetPtrStackSelfItem();
+  QChar * obj = (QChar *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
-      hb_retni( obj->cell () );
+#endif
+      hb_retni( obj->cell() );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
 /*
-unsigned char combiningClass () const
+unsigned char combiningClass() const
 */
 HB_FUNC_STATIC( QCHAR_COMBININGCLASS )
 {
-  QChar * obj = (QChar *) _qt5xhb_itemGetPtrStackSelfItem();
+  QChar * obj = (QChar *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
-      hb_retni( obj->combiningClass () );
+#endif
+      hb_retni( obj->combiningClass() );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
 /*
-Decomposition decompositionTag () const
+QChar::Decomposition decompositionTag() const
 */
 HB_FUNC_STATIC( QCHAR_DECOMPOSITIONTAG )
 {
-  QChar * obj = (QChar *) _qt5xhb_itemGetPtrStackSelfItem();
+  QChar * obj = (QChar *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
-      RENUM( obj->decompositionTag () );
+#endif
+      RENUM( obj->decompositionTag() );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
 /*
-int digitValue () const
+int digitValue() const
 */
 HB_FUNC_STATIC( QCHAR_DIGITVALUE )
 {
-  QChar * obj = (QChar *) _qt5xhb_itemGetPtrStackSelfItem();
+  QChar * obj = (QChar *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
-      RINT( obj->digitValue () );
+#endif
+      RINT( obj->digitValue() );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
 /*
-Direction direction () const
+QChar::Direction direction() const
 */
 HB_FUNC_STATIC( QCHAR_DIRECTION )
 {
-  QChar * obj = (QChar *) _qt5xhb_itemGetPtrStackSelfItem();
+  QChar * obj = (QChar *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
-      RENUM( obj->direction () );
+#endif
+      RENUM( obj->direction() );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
 /*
-bool hasMirrored () const
+bool hasMirrored() const
 */
 HB_FUNC_STATIC( QCHAR_HASMIRRORED )
 {
-  QChar * obj = (QChar *) _qt5xhb_itemGetPtrStackSelfItem();
+  QChar * obj = (QChar *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
-      RBOOL( obj->hasMirrored () );
+#endif
+      RBOOL( obj->hasMirrored() );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
 /*
-bool isDigit () const
+bool isDigit() const
 */
 HB_FUNC_STATIC( QCHAR_ISDIGIT )
 {
-  QChar * obj = (QChar *) _qt5xhb_itemGetPtrStackSelfItem();
+  QChar * obj = (QChar *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
-      RBOOL( obj->isDigit () );
+#endif
+      RBOOL( obj->isDigit() );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
 /*
-bool isHighSurrogate () const
+bool isHighSurrogate() const
 */
 HB_FUNC_STATIC( QCHAR_ISHIGHSURROGATE )
 {
-  QChar * obj = (QChar *) _qt5xhb_itemGetPtrStackSelfItem();
+  QChar * obj = (QChar *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
-      RBOOL( obj->isHighSurrogate () );
+#endif
+      RBOOL( obj->isHighSurrogate() );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
 /*
-bool isLetter () const
+bool isLetter() const
 */
 HB_FUNC_STATIC( QCHAR_ISLETTER )
 {
-  QChar * obj = (QChar *) _qt5xhb_itemGetPtrStackSelfItem();
+  QChar * obj = (QChar *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
-      RBOOL( obj->isLetter () );
+#endif
+      RBOOL( obj->isLetter() );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
 /*
-bool isLetterOrNumber () const
+bool isLetterOrNumber() const
 */
 HB_FUNC_STATIC( QCHAR_ISLETTERORNUMBER )
 {
-  QChar * obj = (QChar *) _qt5xhb_itemGetPtrStackSelfItem();
+  QChar * obj = (QChar *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
-      RBOOL( obj->isLetterOrNumber () );
+#endif
+      RBOOL( obj->isLetterOrNumber() );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
 /*
-bool isLowSurrogate () const
+bool isLowSurrogate() const
 */
 HB_FUNC_STATIC( QCHAR_ISLOWSURROGATE )
 {
-  QChar * obj = (QChar *) _qt5xhb_itemGetPtrStackSelfItem();
+  QChar * obj = (QChar *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
-      RBOOL( obj->isLowSurrogate () );
+#endif
+      RBOOL( obj->isLowSurrogate() );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
 /*
-bool isLower () const
+bool isLower() const
 */
 HB_FUNC_STATIC( QCHAR_ISLOWER )
 {
-  QChar * obj = (QChar *) _qt5xhb_itemGetPtrStackSelfItem();
+  QChar * obj = (QChar *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
-      RBOOL( obj->isLower () );
+#endif
+      RBOOL( obj->isLower() );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
 /*
-bool isMark () const
+bool isMark() const
 */
 HB_FUNC_STATIC( QCHAR_ISMARK )
 {
-  QChar * obj = (QChar *) _qt5xhb_itemGetPtrStackSelfItem();
+  QChar * obj = (QChar *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
-      RBOOL( obj->isMark () );
+#endif
+      RBOOL( obj->isMark() );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
 /*
-bool isNull () const
+bool isNull() const
 */
 HB_FUNC_STATIC( QCHAR_ISNULL )
 {
-  QChar * obj = (QChar *) _qt5xhb_itemGetPtrStackSelfItem();
+  QChar * obj = (QChar *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
-      RBOOL( obj->isNull () );
+#endif
+      RBOOL( obj->isNull() );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
 /*
-bool isNumber () const
+bool isNumber() const
 */
 HB_FUNC_STATIC( QCHAR_ISNUMBER )
 {
-  QChar * obj = (QChar *) _qt5xhb_itemGetPtrStackSelfItem();
+  QChar * obj = (QChar *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
-      RBOOL( obj->isNumber () );
+#endif
+      RBOOL( obj->isNumber() );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
 /*
-bool isPrint () const
+bool isPrint() const
 */
 HB_FUNC_STATIC( QCHAR_ISPRINT )
 {
-  QChar * obj = (QChar *) _qt5xhb_itemGetPtrStackSelfItem();
+  QChar * obj = (QChar *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
-      RBOOL( obj->isPrint () );
+#endif
+      RBOOL( obj->isPrint() );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
 /*
-bool isPunct () const
+bool isPunct() const
 */
 HB_FUNC_STATIC( QCHAR_ISPUNCT )
 {
-  QChar * obj = (QChar *) _qt5xhb_itemGetPtrStackSelfItem();
+  QChar * obj = (QChar *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
-      RBOOL( obj->isPunct () );
+#endif
+      RBOOL( obj->isPunct() );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
 /*
-bool isSpace () const
+bool isSpace() const
 */
 HB_FUNC_STATIC( QCHAR_ISSPACE )
 {
-  QChar * obj = (QChar *) _qt5xhb_itemGetPtrStackSelfItem();
+  QChar * obj = (QChar *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
-      RBOOL( obj->isSpace () );
+#endif
+      RBOOL( obj->isSpace() );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
 /*
-bool isSymbol () const
+bool isSymbol() const
 */
 HB_FUNC_STATIC( QCHAR_ISSYMBOL )
 {
-  QChar * obj = (QChar *) _qt5xhb_itemGetPtrStackSelfItem();
+  QChar * obj = (QChar *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
-      RBOOL( obj->isSymbol () );
+#endif
+      RBOOL( obj->isSymbol() );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
 /*
-bool isTitleCase () const
+bool isTitleCase() const
 */
 HB_FUNC_STATIC( QCHAR_ISTITLECASE )
 {
-  QChar * obj = (QChar *) _qt5xhb_itemGetPtrStackSelfItem();
+  QChar * obj = (QChar *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
-      RBOOL( obj->isTitleCase () );
+#endif
+      RBOOL( obj->isTitleCase() );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
 /*
-bool isUpper () const
+bool isUpper() const
 */
 HB_FUNC_STATIC( QCHAR_ISUPPER )
 {
-  QChar * obj = (QChar *) _qt5xhb_itemGetPtrStackSelfItem();
+  QChar * obj = (QChar *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
-      RBOOL( obj->isUpper () );
+#endif
+      RBOOL( obj->isUpper() );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
 /*
-Joining joining () const
+QChar::Joining joining() const
 */
 HB_FUNC_STATIC( QCHAR_JOINING )
 {
-  QChar * obj = (QChar *) _qt5xhb_itemGetPtrStackSelfItem();
+  QChar * obj = (QChar *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
-      RENUM( obj->joining () );
+#endif
+      RENUM( obj->joining() );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
 /*
-QChar mirroredChar () const
+QChar mirroredChar() const
 */
 HB_FUNC_STATIC( QCHAR_MIRROREDCHAR )
 {
-  QChar * obj = (QChar *) _qt5xhb_itemGetPtrStackSelfItem();
+  QChar * obj = (QChar *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
-      QChar * ptr = new QChar( obj->mirroredChar () );
-      _qt5xhb_createReturnClass ( ptr, "QCHAR", true );
+#endif
+      QChar * ptr = new QChar( obj->mirroredChar() );
+      Qt5xHb::createReturnClass( ptr, "QCHAR", true );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
 /*
-uchar row () const
+uchar row() const
 */
 HB_FUNC_STATIC( QCHAR_ROW )
 {
-  QChar * obj = (QChar *) _qt5xhb_itemGetPtrStackSelfItem();
+  QChar * obj = (QChar *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
-      hb_retni( obj->row () );
+#endif
+      hb_retni( obj->row() );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
 /*
-QChar toCaseFolded () const
+QChar toCaseFolded() const
 */
 HB_FUNC_STATIC( QCHAR_TOCASEFOLDED )
 {
-  QChar * obj = (QChar *) _qt5xhb_itemGetPtrStackSelfItem();
+  QChar * obj = (QChar *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
-      QChar * ptr = new QChar( obj->toCaseFolded () );
-      _qt5xhb_createReturnClass ( ptr, "QCHAR", true );
+#endif
+      QChar * ptr = new QChar( obj->toCaseFolded() );
+      Qt5xHb::createReturnClass( ptr, "QCHAR", true );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
 /*
-char toLatin1 () const
+char toLatin1() const
 */
 HB_FUNC_STATIC( QCHAR_TOLATIN1 )
 {
-  QChar * obj = (QChar *) _qt5xhb_itemGetPtrStackSelfItem();
+  QChar * obj = (QChar *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
-      hb_retni( obj->toLatin1 () );
+#endif
+      hb_retni( obj->toLatin1() );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
 /*
-QChar toLower () const
+QChar toLower() const
 */
 HB_FUNC_STATIC( QCHAR_TOLOWER )
 {
-  QChar * obj = (QChar *) _qt5xhb_itemGetPtrStackSelfItem();
+  QChar * obj = (QChar *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
-      QChar * ptr = new QChar( obj->toLower () );
-      _qt5xhb_createReturnClass ( ptr, "QCHAR", true );
+#endif
+      QChar * ptr = new QChar( obj->toLower() );
+      Qt5xHb::createReturnClass( ptr, "QCHAR", true );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
 /*
-QChar toTitleCase () const
+QChar toTitleCase() const
 */
 HB_FUNC_STATIC( QCHAR_TOTITLECASE )
 {
-  QChar * obj = (QChar *) _qt5xhb_itemGetPtrStackSelfItem();
+  QChar * obj = (QChar *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
-      QChar * ptr = new QChar( obj->toTitleCase () );
-      _qt5xhb_createReturnClass ( ptr, "QCHAR", true );
+#endif
+      QChar * ptr = new QChar( obj->toTitleCase() );
+      Qt5xHb::createReturnClass( ptr, "QCHAR", true );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
 /*
-QChar toUpper () const
+QChar toUpper() const
 */
 HB_FUNC_STATIC( QCHAR_TOUPPER )
 {
-  QChar * obj = (QChar *) _qt5xhb_itemGetPtrStackSelfItem();
+  QChar * obj = (QChar *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
-      QChar * ptr = new QChar( obj->toUpper () );
-      _qt5xhb_createReturnClass ( ptr, "QCHAR", true );
+#endif
+      QChar * ptr = new QChar( obj->toUpper() );
+      Qt5xHb::createReturnClass( ptr, "QCHAR", true );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
 /*
-ushort unicode () const
+ushort unicode() const
 */
 HB_FUNC_STATIC( QCHAR_UNICODE )
 {
-  QChar * obj = (QChar *) _qt5xhb_itemGetPtrStackSelfItem();
+  QChar * obj = (QChar *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
-      RUSHORT( obj->unicode () );
+#endif
+      RUSHORT( obj->unicode() );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
 /*
-UnicodeVersion unicodeVersion () const
+QChar::UnicodeVersion unicodeVersion() const
 */
 HB_FUNC_STATIC( QCHAR_UNICODEVERSION )
 {
-  QChar * obj = (QChar *) _qt5xhb_itemGetPtrStackSelfItem();
+  QChar * obj = (QChar *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     if( ISNUMPAR(0) )
     {
-      RENUM( obj->unicodeVersion () );
+#endif
+      RENUM( obj->unicodeVersion() );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
     {
       hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
     }
+#endif
   }
 }
 
@@ -873,7 +986,7 @@ HB_FUNC_STATIC( QCHAR_NEWFROM )
 {
   PHB_ITEM self = hb_stackSelfItem();
 
-  if( hb_pcount() == 1 && ISOBJECT(1) )
+  if( hb_pcount() == 1 && HB_ISOBJECT(1) )
   {
     PHB_ITEM ptr = hb_itemPutPtr( NULL, (void *) hb_itemGetPtr( hb_objSendMsg( hb_param(1, HB_IT_OBJECT ), "POINTER", 0 ) ) );
     hb_objSendMsg( self, "_pointer", 1, ptr );
@@ -882,7 +995,7 @@ HB_FUNC_STATIC( QCHAR_NEWFROM )
     hb_objSendMsg( self, "_self_destruction", 1, des );
     hb_itemRelease( des );
   }
-  else if( hb_pcount() == 1 && ISPOINTER(1) )
+  else if( hb_pcount() == 1 && HB_ISPOINTER(1) )
   {
     PHB_ITEM ptr = hb_itemPutPtr( NULL, (void *) hb_itemGetPtr( hb_param(1, HB_IT_POINTER ) ) );
     hb_objSendMsg( self, "_pointer", 1, ptr );
@@ -918,7 +1031,7 @@ HB_FUNC_STATIC( QCHAR_SETSELFDESTRUCTION )
 {
   PHB_ITEM self = hb_stackSelfItem();
 
-  if( hb_pcount() == 1 && ISLOG(1) )
+  if( hb_pcount() == 1 && HB_ISLOG(1) )
   {
     PHB_ITEM des = hb_itemPutL( NULL, hb_parl(1) );
     hb_objSendMsg( self, "_self_destruction", 1, des );

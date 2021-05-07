@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -12,58 +12,73 @@
 
 #include "QInAppStoreSlots.h"
 
-QInAppStoreSlots::QInAppStoreSlots(QObject *parent) : QObject(parent)
+QInAppStoreSlots::QInAppStoreSlots( QObject *parent ) : QObject( parent )
 {
 }
 
 QInAppStoreSlots::~QInAppStoreSlots()
 {
 }
+
 void QInAppStoreSlots::productRegistered( QInAppProduct * product )
 {
   QObject *object = qobject_cast<QObject *>(sender());
-  PHB_ITEM cb = Signals_return_codeblock( object, "productRegistered(QInAppProduct*)" );
+
+  PHB_ITEM cb = Qt5xHb::Signals_return_codeblock( object, "productRegistered(QInAppProduct*)" );
+
   if( cb )
   {
-    PHB_ITEM psender = Signals_return_qobject ( (QObject *) object, "QINAPPSTORE" );
-    PHB_ITEM pproduct = Signals_return_qobject( (QObject *) product, "QINAPPPRODUCT" );
-    hb_vmEvalBlockV( (PHB_ITEM) cb, 2, psender, pproduct );
+    PHB_ITEM psender = Qt5xHb::Signals_return_qobject( (QObject *) object, "QINAPPSTORE" );
+    PHB_ITEM pproduct = Qt5xHb::Signals_return_qobject( (QObject *) product, "QINAPPPRODUCT" );
+
+    hb_vmEvalBlockV( cb, 2, psender, pproduct );
+
     hb_itemRelease( psender );
     hb_itemRelease( pproduct );
   }
 }
+
 void QInAppStoreSlots::productUnknown( QInAppProduct::ProductType productType, const QString & identifier )
 {
   QObject *object = qobject_cast<QObject *>(sender());
-  PHB_ITEM cb = Signals_return_codeblock( object, "productUnknown(QInAppProduct::ProductType,QString)" );
+
+  PHB_ITEM cb = Qt5xHb::Signals_return_codeblock( object, "productUnknown(QInAppProduct::ProductType,QString)" );
+
   if( cb )
   {
-    PHB_ITEM psender = Signals_return_qobject ( (QObject *) object, "QINAPPSTORE" );
+    PHB_ITEM psender = Qt5xHb::Signals_return_qobject( (QObject *) object, "QINAPPSTORE" );
     PHB_ITEM pproductType = hb_itemPutNI( NULL, (int) productType );
     PHB_ITEM pidentifier = hb_itemPutC( NULL, QSTRINGTOSTRING(identifier) );
-    hb_vmEvalBlockV( (PHB_ITEM) cb, 3, psender, pproductType, pidentifier );
+
+    hb_vmEvalBlockV( cb, 3, psender, pproductType, pidentifier );
+
     hb_itemRelease( psender );
     hb_itemRelease( pproductType );
     hb_itemRelease( pidentifier );
   }
 }
+
 void QInAppStoreSlots::transactionReady( QInAppTransaction * transaction )
 {
   QObject *object = qobject_cast<QObject *>(sender());
-  PHB_ITEM cb = Signals_return_codeblock( object, "transactionReady(QInAppTransaction*)" );
+
+  PHB_ITEM cb = Qt5xHb::Signals_return_codeblock( object, "transactionReady(QInAppTransaction*)" );
+
   if( cb )
   {
-    PHB_ITEM psender = Signals_return_qobject ( (QObject *) object, "QINAPPSTORE" );
-    PHB_ITEM ptransaction = Signals_return_qobject( (QObject *) transaction, "QINAPPTRANSACTION" );
-    hb_vmEvalBlockV( (PHB_ITEM) cb, 2, psender, ptransaction );
+    PHB_ITEM psender = Qt5xHb::Signals_return_qobject( (QObject *) object, "QINAPPSTORE" );
+    PHB_ITEM ptransaction = Qt5xHb::Signals_return_qobject( (QObject *) transaction, "QINAPPTRANSACTION" );
+
+    hb_vmEvalBlockV( cb, 2, psender, ptransaction );
+
     hb_itemRelease( psender );
     hb_itemRelease( ptransaction );
   }
 }
 
-void QInAppStoreSlots_connect_signal ( const QString & signal, const QString & slot )
+void QInAppStoreSlots_connect_signal( const QString & signal, const QString & slot )
 {
-  QInAppStore * obj = (QInAppStore *) hb_itemGetPtr( hb_objSendMsg( hb_stackSelfItem(), "POINTER", 0 ) );
+  QInAppStore * obj = (QInAppStore *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -76,7 +91,7 @@ void QInAppStoreSlots_connect_signal ( const QString & signal, const QString & s
       s->setParent( QCoreApplication::instance() );
     }
 
-    hb_retl( Signals_connection_disconnection( s, signal, slot ) );
+    hb_retl( Qt5xHb::Signals_connection_disconnection( s, signal, slot ) );
   }
   else
   {

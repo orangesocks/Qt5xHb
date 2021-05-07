@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -33,7 +33,7 @@ CLASS QAccessibleApplication INHERIT QAccessibleObject
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QAccessibleApplication
+PROCEDURE destroyObject() CLASS QAccessibleApplication
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -64,8 +64,8 @@ HB_FUNC_STATIC( QACCESSIBLEAPPLICATION_NEW )
 {
   if( ISNUMPAR(0) )
   {
-    QAccessibleApplication * o = new QAccessibleApplication ();
-    _qt5xhb_returnNewObject( o, false );
+    QAccessibleApplication * obj = new QAccessibleApplication();
+    Qt5xHb::returnNewObject( obj, true );
   }
   else
   {
@@ -74,11 +74,11 @@ HB_FUNC_STATIC( QACCESSIBLEAPPLICATION_NEW )
 }
 
 /*
-QWindow *window() const
+QWindow * window() const
 */
 HB_FUNC_STATIC( QACCESSIBLEAPPLICATION_WINDOW )
 {
-  QAccessibleApplication * obj = (QAccessibleApplication *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAccessibleApplication * obj = (QAccessibleApplication *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -86,8 +86,8 @@ HB_FUNC_STATIC( QACCESSIBLEAPPLICATION_WINDOW )
     if( ISNUMPAR(0) )
     {
 #endif
-      QWindow * ptr = obj->window ();
-      _qt5xhb_createReturnQObjectClass ( ptr, "QWINDOW" );
+      QWindow * ptr = obj->window();
+      Qt5xHb::createReturnQObjectClass( ptr, "QWINDOW" );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -103,7 +103,7 @@ int childCount() const
 */
 HB_FUNC_STATIC( QACCESSIBLEAPPLICATION_CHILDCOUNT )
 {
-  QAccessibleApplication * obj = (QAccessibleApplication *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAccessibleApplication * obj = (QAccessibleApplication *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -111,7 +111,7 @@ HB_FUNC_STATIC( QACCESSIBLEAPPLICATION_CHILDCOUNT )
     if( ISNUMPAR(0) )
     {
 #endif
-      RINT( obj->childCount () );
+      RINT( obj->childCount() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -123,11 +123,11 @@ HB_FUNC_STATIC( QACCESSIBLEAPPLICATION_CHILDCOUNT )
 }
 
 /*
-int indexOfChild(const QAccessibleInterface*) const
+int indexOfChild( const QAccessibleInterface * ) const
 */
 HB_FUNC_STATIC( QACCESSIBLEAPPLICATION_INDEXOFCHILD )
 {
-  QAccessibleApplication * obj = (QAccessibleApplication *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAccessibleApplication * obj = (QAccessibleApplication *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -135,7 +135,7 @@ HB_FUNC_STATIC( QACCESSIBLEAPPLICATION_INDEXOFCHILD )
     if( ISNUMPAR(1) && ISQACCESSIBLEINTERFACE(1) )
     {
 #endif
-      RINT( obj->indexOfChild ( PQACCESSIBLEINTERFACE(1) ) );
+      RINT( obj->indexOfChild( PQACCESSIBLEINTERFACE(1) ) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -147,11 +147,11 @@ HB_FUNC_STATIC( QACCESSIBLEAPPLICATION_INDEXOFCHILD )
 }
 
 /*
-QAccessibleInterface *focusChild() const
+QAccessibleInterface * focusChild() const
 */
 HB_FUNC_STATIC( QACCESSIBLEAPPLICATION_FOCUSCHILD )
 {
-  QAccessibleApplication * obj = (QAccessibleApplication *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAccessibleApplication * obj = (QAccessibleApplication *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -159,8 +159,8 @@ HB_FUNC_STATIC( QACCESSIBLEAPPLICATION_FOCUSCHILD )
     if( ISNUMPAR(0) )
     {
 #endif
-      QAccessibleInterface * ptr = obj->focusChild ();
-      _qt5xhb_createReturnClass ( ptr, "QACCESSIBLEINTERFACE", false );
+      QAccessibleInterface * ptr = obj->focusChild();
+      Qt5xHb::createReturnClass( ptr, "QACCESSIBLEINTERFACE", false );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -172,11 +172,11 @@ HB_FUNC_STATIC( QACCESSIBLEAPPLICATION_FOCUSCHILD )
 }
 
 /*
-QAccessibleInterface *parent() const
+QAccessibleInterface * parent() const
 */
 HB_FUNC_STATIC( QACCESSIBLEAPPLICATION_PARENT )
 {
-  QAccessibleApplication * obj = (QAccessibleApplication *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAccessibleApplication * obj = (QAccessibleApplication *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -184,8 +184,8 @@ HB_FUNC_STATIC( QACCESSIBLEAPPLICATION_PARENT )
     if( ISNUMPAR(0) )
     {
 #endif
-      QAccessibleInterface * ptr = obj->parent ();
-      _qt5xhb_createReturnClass ( ptr, "QACCESSIBLEINTERFACE", false );
+      QAccessibleInterface * ptr = obj->parent();
+      Qt5xHb::createReturnClass( ptr, "QACCESSIBLEINTERFACE", false );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -197,20 +197,20 @@ HB_FUNC_STATIC( QACCESSIBLEAPPLICATION_PARENT )
 }
 
 /*
-QAccessibleInterface *child(int index) const
+QAccessibleInterface * child( int index ) const
 */
 HB_FUNC_STATIC( QACCESSIBLEAPPLICATION_CHILD )
 {
-  QAccessibleApplication * obj = (QAccessibleApplication *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAccessibleApplication * obj = (QAccessibleApplication *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      QAccessibleInterface * ptr = obj->child ( PINT(1) );
-      _qt5xhb_createReturnClass ( ptr, "QACCESSIBLEINTERFACE", false );
+      QAccessibleInterface * ptr = obj->child( PINT(1) );
+      Qt5xHb::createReturnClass( ptr, "QACCESSIBLEINTERFACE", false );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -222,19 +222,19 @@ HB_FUNC_STATIC( QACCESSIBLEAPPLICATION_CHILD )
 }
 
 /*
-QString text(QAccessible::Text t) const
+QString text( QAccessible::Text t ) const
 */
 HB_FUNC_STATIC( QACCESSIBLEAPPLICATION_TEXT )
 {
-  QAccessibleApplication * obj = (QAccessibleApplication *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAccessibleApplication * obj = (QAccessibleApplication *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      RQSTRING( obj->text ( (QAccessible::Text) hb_parni(1) ) );
+      RQSTRING( obj->text( (QAccessible::Text) hb_parni(1) ) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -250,7 +250,7 @@ QAccessible::Role role() const
 */
 HB_FUNC_STATIC( QACCESSIBLEAPPLICATION_ROLE )
 {
-  QAccessibleApplication * obj = (QAccessibleApplication *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAccessibleApplication * obj = (QAccessibleApplication *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -258,7 +258,7 @@ HB_FUNC_STATIC( QACCESSIBLEAPPLICATION_ROLE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RENUM( obj->role () );
+      RENUM( obj->role() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else

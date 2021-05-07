@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -41,7 +41,7 @@ CLASS QDateTimeAxis INHERIT QAbstractAxis
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QDateTimeAxis
+PROCEDURE destroyObject() CLASS QDateTimeAxis
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -60,6 +60,8 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #if (QT_VERSION >= QT_VERSION_CHECK(5,7,0))
@@ -72,15 +74,15 @@ RETURN
 using namespace QtCharts;
 
 /*
-explicit QDateTimeAxis(QObject *parent = Q_NULLPTR)
+QDateTimeAxis( QObject * parent = nullptr )
 */
 HB_FUNC_STATIC( QDATETIMEAXIS_NEW )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,7,0))
-  if( ISBETWEEN(0,1) && (ISQOBJECT(1)||ISNIL(1)) )
+  if( ISBETWEEN(0,1) && (ISQOBJECT(1)||HB_ISNIL(1)) )
   {
-    QDateTimeAxis * o = new QDateTimeAxis ( OPQOBJECT(1,Q_NULLPTR) );
-    _qt5xhb_returnNewObject( o, false );
+    QDateTimeAxis * obj = new QDateTimeAxis( OPQOBJECT(1,nullptr) );
+    Qt5xHb::returnNewObject( obj, false );
   }
   else
   {
@@ -90,19 +92,17 @@ HB_FUNC_STATIC( QDATETIMEAXIS_NEW )
 }
 
 /*
-QDateTimeAxis(QDateTimeAxisPrivate &d, QObject *parent = Q_NULLPTR) [protected]
-*/
-
-/*
 ~QDateTimeAxis()
 */
 HB_FUNC_STATIC( QDATETIMEAXIS_DELETE )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,7,0))
-  QDateTimeAxis * obj = (QDateTimeAxis *) _qt5xhb_itemGetPtrStackSelfItem();
+  QDateTimeAxis * obj = (QDateTimeAxis *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -121,7 +121,7 @@ QDateTime min() const
 HB_FUNC_STATIC( QDATETIMEAXIS_MIN )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,7,0))
-  QDateTimeAxis * obj = (QDateTimeAxis *) _qt5xhb_itemGetPtrStackSelfItem();
+  QDateTimeAxis * obj = (QDateTimeAxis *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -129,8 +129,8 @@ HB_FUNC_STATIC( QDATETIMEAXIS_MIN )
     if( ISNUMPAR(0) )
     {
 #endif
-      QDateTime * ptr = new QDateTime( obj->min () );
-      _qt5xhb_createReturnClass ( ptr, "QDATETIME", true );
+      QDateTime * ptr = new QDateTime( obj->min() );
+      Qt5xHb::createReturnClass( ptr, "QDATETIME", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -143,12 +143,12 @@ HB_FUNC_STATIC( QDATETIMEAXIS_MIN )
 }
 
 /*
-void setMin(QDateTime min)
+void setMin( QDateTime min )
 */
 HB_FUNC_STATIC( QDATETIMEAXIS_SETMIN )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,7,0))
-  QDateTimeAxis * obj = (QDateTimeAxis *) _qt5xhb_itemGetPtrStackSelfItem();
+  QDateTimeAxis * obj = (QDateTimeAxis *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -156,7 +156,7 @@ HB_FUNC_STATIC( QDATETIMEAXIS_SETMIN )
     if( ISNUMPAR(1) && ISQDATETIME(1) )
     {
 #endif
-      obj->setMin ( *PQDATETIME(1) );
+      obj->setMin( *PQDATETIME(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -176,7 +176,7 @@ QDateTime max() const
 HB_FUNC_STATIC( QDATETIMEAXIS_MAX )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,7,0))
-  QDateTimeAxis * obj = (QDateTimeAxis *) _qt5xhb_itemGetPtrStackSelfItem();
+  QDateTimeAxis * obj = (QDateTimeAxis *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -184,8 +184,8 @@ HB_FUNC_STATIC( QDATETIMEAXIS_MAX )
     if( ISNUMPAR(0) )
     {
 #endif
-      QDateTime * ptr = new QDateTime( obj->max () );
-      _qt5xhb_createReturnClass ( ptr, "QDATETIME", true );
+      QDateTime * ptr = new QDateTime( obj->max() );
+      Qt5xHb::createReturnClass( ptr, "QDATETIME", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -198,12 +198,12 @@ HB_FUNC_STATIC( QDATETIMEAXIS_MAX )
 }
 
 /*
-void setMax(QDateTime max)
+void setMax( QDateTime max )
 */
 HB_FUNC_STATIC( QDATETIMEAXIS_SETMAX )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,7,0))
-  QDateTimeAxis * obj = (QDateTimeAxis *) _qt5xhb_itemGetPtrStackSelfItem();
+  QDateTimeAxis * obj = (QDateTimeAxis *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -211,7 +211,7 @@ HB_FUNC_STATIC( QDATETIMEAXIS_SETMAX )
     if( ISNUMPAR(1) && ISQDATETIME(1) )
     {
 #endif
-      obj->setMax ( *PQDATETIME(1) );
+      obj->setMax( *PQDATETIME(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -231,7 +231,7 @@ QString format() const
 HB_FUNC_STATIC( QDATETIMEAXIS_FORMAT )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,7,0))
-  QDateTimeAxis * obj = (QDateTimeAxis *) _qt5xhb_itemGetPtrStackSelfItem();
+  QDateTimeAxis * obj = (QDateTimeAxis *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -239,7 +239,7 @@ HB_FUNC_STATIC( QDATETIMEAXIS_FORMAT )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRING( obj->format () );
+      RQSTRING( obj->format() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -252,20 +252,20 @@ HB_FUNC_STATIC( QDATETIMEAXIS_FORMAT )
 }
 
 /*
-void setFormat(QString format)
+void setFormat( QString format )
 */
 HB_FUNC_STATIC( QDATETIMEAXIS_SETFORMAT )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,7,0))
-  QDateTimeAxis * obj = (QDateTimeAxis *) _qt5xhb_itemGetPtrStackSelfItem();
+  QDateTimeAxis * obj = (QDateTimeAxis *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISCHAR(1) )
+    if( ISNUMPAR(1) && HB_ISCHAR(1) )
     {
 #endif
-      obj->setFormat ( PQSTRING(1) );
+      obj->setFormat( PQSTRING(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -285,7 +285,7 @@ int tickCount() const
 HB_FUNC_STATIC( QDATETIMEAXIS_TICKCOUNT )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,7,0))
-  QDateTimeAxis * obj = (QDateTimeAxis *) _qt5xhb_itemGetPtrStackSelfItem();
+  QDateTimeAxis * obj = (QDateTimeAxis *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -293,7 +293,7 @@ HB_FUNC_STATIC( QDATETIMEAXIS_TICKCOUNT )
     if( ISNUMPAR(0) )
     {
 #endif
-      RINT( obj->tickCount () );
+      RINT( obj->tickCount() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -306,20 +306,20 @@ HB_FUNC_STATIC( QDATETIMEAXIS_TICKCOUNT )
 }
 
 /*
-void setTickCount(int count)
+void setTickCount( int count )
 */
 HB_FUNC_STATIC( QDATETIMEAXIS_SETTICKCOUNT )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,7,0))
-  QDateTimeAxis * obj = (QDateTimeAxis *) _qt5xhb_itemGetPtrStackSelfItem();
+  QDateTimeAxis * obj = (QDateTimeAxis *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setTickCount ( PINT(1) );
+      obj->setTickCount( PINT(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -334,12 +334,12 @@ HB_FUNC_STATIC( QDATETIMEAXIS_SETTICKCOUNT )
 }
 
 /*
-AxisType type() const
+QAbstractAxis::AxisType type() const
 */
 HB_FUNC_STATIC( QDATETIMEAXIS_TYPE )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,7,0))
-  QDateTimeAxis * obj = (QDateTimeAxis *) _qt5xhb_itemGetPtrStackSelfItem();
+  QDateTimeAxis * obj = (QDateTimeAxis *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -347,7 +347,7 @@ HB_FUNC_STATIC( QDATETIMEAXIS_TYPE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RENUM( obj->type () );
+      RENUM( obj->type() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -360,12 +360,12 @@ HB_FUNC_STATIC( QDATETIMEAXIS_TYPE )
 }
 
 /*
-void setRange(QDateTime min, QDateTime max)
+void setRange( QDateTime min, QDateTime max )
 */
 HB_FUNC_STATIC( QDATETIMEAXIS_SETRANGE )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,7,0))
-  QDateTimeAxis * obj = (QDateTimeAxis *) _qt5xhb_itemGetPtrStackSelfItem();
+  QDateTimeAxis * obj = (QDateTimeAxis *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -373,7 +373,7 @@ HB_FUNC_STATIC( QDATETIMEAXIS_SETRANGE )
     if( ISNUMPAR(2) && ISQDATETIME(1) && ISQDATETIME(2) )
     {
 #endif
-      obj->setRange ( *PQDATETIME(1), *PQDATETIME(2) );
+      obj->setRange( *PQDATETIME(1), *PQDATETIME(2) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -387,7 +387,7 @@ HB_FUNC_STATIC( QDATETIMEAXIS_SETRANGE )
 #endif
 }
 
-void QDateTimeAxisSlots_connect_signal ( const QString & signal, const QString & slot );
+void QDateTimeAxisSlots_connect_signal( const QString & signal, const QString & slot );
 
 HB_FUNC_STATIC( QDATETIMEAXIS_ONFORMATCHANGED )
 {

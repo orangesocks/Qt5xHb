@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -47,7 +47,7 @@ CLASS QEasingCurve
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QEasingCurve
+PROCEDURE destroyObject() CLASS QEasingCurve
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -72,29 +72,26 @@ RETURN
 #include <QtCore/QPointF>
 
 /*
-QEasingCurve ( Type type = Linear )
+QEasingCurve( QEasingCurve::Type type = QEasingCurve::Linear )
 */
-void QEasingCurve_new1 ()
+void QEasingCurve_new1()
 {
-  QEasingCurve * o = new QEasingCurve ( ISNIL(1)? (QEasingCurve::Type) QEasingCurve::Linear : (QEasingCurve::Type) hb_parni(1) );
-  _qt5xhb_returnNewObject( o, true );
+  QEasingCurve * obj = new QEasingCurve( HB_ISNIL(1)? (QEasingCurve::Type) QEasingCurve::Linear : (QEasingCurve::Type) hb_parni(1) );
+  Qt5xHb::returnNewObject( obj, true );
 }
 
 /*
-QEasingCurve ( const QEasingCurve & other )
+QEasingCurve( const QEasingCurve & other )
 */
-void QEasingCurve_new2 ()
+void QEasingCurve_new2()
 {
-  QEasingCurve * o = new QEasingCurve ( *PQEASINGCURVE(1) );
-  _qt5xhb_returnNewObject( o, true );
+  QEasingCurve * obj = new QEasingCurve( *PQEASINGCURVE(1) );
+  Qt5xHb::returnNewObject( obj, true );
 }
-
-//[1]QEasingCurve(Type type = Linear)
-//[2]QEasingCurve(const QEasingCurve & other)
 
 HB_FUNC_STATIC( QEASINGCURVE_NEW )
 {
-  if( ISBETWEEN(0,1) && ISOPTNUM(1) )
+  if( ISBETWEEN(0,1) && ( HB_ISNUM(1)||HB_ISNIL(1)) )
   {
     QEasingCurve_new1();
   }
@@ -110,7 +107,7 @@ HB_FUNC_STATIC( QEASINGCURVE_NEW )
 
 HB_FUNC_STATIC( QEASINGCURVE_DELETE )
 {
-  QEasingCurve * obj = (QEasingCurve *) _qt5xhb_itemGetPtrStackSelfItem();
+  QEasingCurve * obj = (QEasingCurve *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -126,11 +123,11 @@ HB_FUNC_STATIC( QEASINGCURVE_DELETE )
 }
 
 /*
-void addCubicBezierSegment(const QPointF & c1, const QPointF & c2, const QPointF & endPoint)
+void addCubicBezierSegment( const QPointF & c1, const QPointF & c2, const QPointF & endPoint )
 */
 HB_FUNC_STATIC( QEASINGCURVE_ADDCUBICBEZIERSEGMENT )
 {
-  QEasingCurve * obj = (QEasingCurve *) _qt5xhb_itemGetPtrStackSelfItem();
+  QEasingCurve * obj = (QEasingCurve *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -138,7 +135,7 @@ HB_FUNC_STATIC( QEASINGCURVE_ADDCUBICBEZIERSEGMENT )
     if( ISNUMPAR(3) && ISQPOINTF(1) && ISQPOINTF(2) && ISQPOINTF(3) )
     {
 #endif
-      obj->addCubicBezierSegment ( *PQPOINTF(1), *PQPOINTF(2), *PQPOINTF(3) );
+      obj->addCubicBezierSegment( *PQPOINTF(1), *PQPOINTF(2), *PQPOINTF(3) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -152,19 +149,19 @@ HB_FUNC_STATIC( QEASINGCURVE_ADDCUBICBEZIERSEGMENT )
 }
 
 /*
-void addTCBSegment(const QPointF & nextPoint, qreal t, qreal c, qreal b)
+void addTCBSegment( const QPointF & nextPoint, qreal t, qreal c, qreal b )
 */
 HB_FUNC_STATIC( QEASINGCURVE_ADDTCBSEGMENT )
 {
-  QEasingCurve * obj = (QEasingCurve *) _qt5xhb_itemGetPtrStackSelfItem();
+  QEasingCurve * obj = (QEasingCurve *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(4) && ISQPOINTF(1) && ISNUM(2) && ISNUM(3) && ISNUM(4) )
+    if( ISNUMPAR(4) && ISQPOINTF(1) && HB_ISNUM(2) && HB_ISNUM(3) && HB_ISNUM(4) )
     {
 #endif
-      obj->addTCBSegment ( *PQPOINTF(1), PQREAL(2), PQREAL(3), PQREAL(4) );
+      obj->addTCBSegment( *PQPOINTF(1), PQREAL(2), PQREAL(3), PQREAL(4) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -182,7 +179,7 @@ qreal amplitude() const
 */
 HB_FUNC_STATIC( QEASINGCURVE_AMPLITUDE )
 {
-  QEasingCurve * obj = (QEasingCurve *) _qt5xhb_itemGetPtrStackSelfItem();
+  QEasingCurve * obj = (QEasingCurve *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -190,7 +187,7 @@ HB_FUNC_STATIC( QEASINGCURVE_AMPLITUDE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQREAL( obj->amplitude () );
+      RQREAL( obj->amplitude() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -206,7 +203,7 @@ qreal overshoot() const
 */
 HB_FUNC_STATIC( QEASINGCURVE_OVERSHOOT )
 {
-  QEasingCurve * obj = (QEasingCurve *) _qt5xhb_itemGetPtrStackSelfItem();
+  QEasingCurve * obj = (QEasingCurve *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -214,7 +211,7 @@ HB_FUNC_STATIC( QEASINGCURVE_OVERSHOOT )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQREAL( obj->overshoot () );
+      RQREAL( obj->overshoot() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -230,7 +227,7 @@ qreal period() const
 */
 HB_FUNC_STATIC( QEASINGCURVE_PERIOD )
 {
-  QEasingCurve * obj = (QEasingCurve *) _qt5xhb_itemGetPtrStackSelfItem();
+  QEasingCurve * obj = (QEasingCurve *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -238,7 +235,7 @@ HB_FUNC_STATIC( QEASINGCURVE_PERIOD )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQREAL( obj->period () );
+      RQREAL( obj->period() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -250,19 +247,19 @@ HB_FUNC_STATIC( QEASINGCURVE_PERIOD )
 }
 
 /*
-void setAmplitude(qreal amplitude)
+void setAmplitude( qreal amplitude )
 */
 HB_FUNC_STATIC( QEASINGCURVE_SETAMPLITUDE )
 {
-  QEasingCurve * obj = (QEasingCurve *) _qt5xhb_itemGetPtrStackSelfItem();
+  QEasingCurve * obj = (QEasingCurve *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setAmplitude ( PQREAL(1) );
+      obj->setAmplitude( PQREAL(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -276,19 +273,19 @@ HB_FUNC_STATIC( QEASINGCURVE_SETAMPLITUDE )
 }
 
 /*
-void setOvershoot(qreal overshoot)
+void setOvershoot( qreal overshoot )
 */
 HB_FUNC_STATIC( QEASINGCURVE_SETOVERSHOOT )
 {
-  QEasingCurve * obj = (QEasingCurve *) _qt5xhb_itemGetPtrStackSelfItem();
+  QEasingCurve * obj = (QEasingCurve *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setOvershoot ( PQREAL(1) );
+      obj->setOvershoot( PQREAL(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -302,19 +299,19 @@ HB_FUNC_STATIC( QEASINGCURVE_SETOVERSHOOT )
 }
 
 /*
-void setPeriod(qreal period)
+void setPeriod( qreal period )
 */
 HB_FUNC_STATIC( QEASINGCURVE_SETPERIOD )
 {
-  QEasingCurve * obj = (QEasingCurve *) _qt5xhb_itemGetPtrStackSelfItem();
+  QEasingCurve * obj = (QEasingCurve *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setPeriod ( PQREAL(1) );
+      obj->setPeriod( PQREAL(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -328,19 +325,19 @@ HB_FUNC_STATIC( QEASINGCURVE_SETPERIOD )
 }
 
 /*
-void setType(Type type)
+void setType( QEasingCurve::Type type )
 */
 HB_FUNC_STATIC( QEASINGCURVE_SETTYPE )
 {
-  QEasingCurve * obj = (QEasingCurve *) _qt5xhb_itemGetPtrStackSelfItem();
+  QEasingCurve * obj = (QEasingCurve *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setType ( (QEasingCurve::Type) hb_parni(1) );
+      obj->setType( (QEasingCurve::Type) hb_parni(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -354,11 +351,11 @@ HB_FUNC_STATIC( QEASINGCURVE_SETTYPE )
 }
 
 /*
-void swap(QEasingCurve & other)
+void swap( QEasingCurve & other )
 */
 HB_FUNC_STATIC( QEASINGCURVE_SWAP )
 {
-  QEasingCurve * obj = (QEasingCurve *) _qt5xhb_itemGetPtrStackSelfItem();
+  QEasingCurve * obj = (QEasingCurve *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -366,7 +363,7 @@ HB_FUNC_STATIC( QEASINGCURVE_SWAP )
     if( ISNUMPAR(1) && ISQEASINGCURVE(1) )
     {
 #endif
-      obj->swap ( *PQEASINGCURVE(1) );
+      obj->swap( *PQEASINGCURVE(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -384,7 +381,7 @@ QVector<QPointF> toCubicSpline() const
 */
 HB_FUNC_STATIC( QEASINGCURVE_TOCUBICSPLINE )
 {
-  QEasingCurve * obj = (QEasingCurve *) _qt5xhb_itemGetPtrStackSelfItem();
+  QEasingCurve * obj = (QEasingCurve *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -392,13 +389,12 @@ HB_FUNC_STATIC( QEASINGCURVE_TOCUBICSPLINE )
     if( ISNUMPAR(0) )
     {
 #endif
-      QVector<QPointF> list = obj->toCubicSpline ();
+      QVector<QPointF> list = obj->toCubicSpline();
       PHB_DYNS pDynSym = hb_dynsymFindName( "QPOINTF" );
       PHB_ITEM pArray = hb_itemArrayNew(0);
-      int i;
-      for(i=0;i<list.count();i++)
+      if( pDynSym )
       {
-        if( pDynSym )
+        for( int i = 0; i < list.count(); i++ )
         {
           hb_vmPushDynSym( pDynSym );
           hb_vmPushNil();
@@ -406,7 +402,7 @@ HB_FUNC_STATIC( QEASINGCURVE_TOCUBICSPLINE )
           PHB_ITEM pObject = hb_itemNew( NULL );
           hb_itemCopy( pObject, hb_stackReturnItem() );
           PHB_ITEM pItem = hb_itemNew( NULL );
-          hb_itemPutPtr( pItem, (QPointF *) new QPointF ( list[i] ) );
+          hb_itemPutPtr( pItem, (QPointF *) new QPointF( list[i] ) );
           hb_objSendMsg( pObject, "_POINTER", 1, pItem );
           hb_itemRelease( pItem );
           PHB_ITEM pDestroy = hb_itemNew( NULL );
@@ -416,10 +412,10 @@ HB_FUNC_STATIC( QEASINGCURVE_TOCUBICSPLINE )
           hb_arrayAddForward( pArray, pObject );
           hb_itemRelease( pObject );
         }
-        else
-        {
-          hb_errRT_BASE( EG_NOFUNC, 1001, NULL, "QPOINTF", HB_ERR_ARGS_BASEPARAMS );
-        }
+      }
+      else
+      {
+        hb_errRT_BASE( EG_NOFUNC, 1001, NULL, "QPOINTF", HB_ERR_ARGS_BASEPARAMS );
       }
       hb_itemReturnRelease(pArray);
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
@@ -433,11 +429,11 @@ HB_FUNC_STATIC( QEASINGCURVE_TOCUBICSPLINE )
 }
 
 /*
-Type type() const
+QEasingCurve::Type type() const
 */
 HB_FUNC_STATIC( QEASINGCURVE_TYPE )
 {
-  QEasingCurve * obj = (QEasingCurve *) _qt5xhb_itemGetPtrStackSelfItem();
+  QEasingCurve * obj = (QEasingCurve *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -445,7 +441,7 @@ HB_FUNC_STATIC( QEASINGCURVE_TYPE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RENUM( obj->type () );
+      RENUM( obj->type() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -457,19 +453,19 @@ HB_FUNC_STATIC( QEASINGCURVE_TYPE )
 }
 
 /*
-qreal valueForProgress(qreal progress) const
+qreal valueForProgress( qreal progress ) const
 */
 HB_FUNC_STATIC( QEASINGCURVE_VALUEFORPROGRESS )
 {
-  QEasingCurve * obj = (QEasingCurve *) _qt5xhb_itemGetPtrStackSelfItem();
+  QEasingCurve * obj = (QEasingCurve *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      RQREAL( obj->valueForProgress ( PQREAL(1) ) );
+      RQREAL( obj->valueForProgress( PQREAL(1) ) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -484,7 +480,7 @@ HB_FUNC_STATIC( QEASINGCURVE_NEWFROM )
 {
   PHB_ITEM self = hb_stackSelfItem();
 
-  if( hb_pcount() == 1 && ISOBJECT(1) )
+  if( hb_pcount() == 1 && HB_ISOBJECT(1) )
   {
     PHB_ITEM ptr = hb_itemPutPtr( NULL, (void *) hb_itemGetPtr( hb_objSendMsg( hb_param(1, HB_IT_OBJECT ), "POINTER", 0 ) ) );
     hb_objSendMsg( self, "_pointer", 1, ptr );
@@ -493,7 +489,7 @@ HB_FUNC_STATIC( QEASINGCURVE_NEWFROM )
     hb_objSendMsg( self, "_self_destruction", 1, des );
     hb_itemRelease( des );
   }
-  else if( hb_pcount() == 1 && ISPOINTER(1) )
+  else if( hb_pcount() == 1 && HB_ISPOINTER(1) )
   {
     PHB_ITEM ptr = hb_itemPutPtr( NULL, (void *) hb_itemGetPtr( hb_param(1, HB_IT_POINTER ) ) );
     hb_objSendMsg( self, "_pointer", 1, ptr );
@@ -529,7 +525,7 @@ HB_FUNC_STATIC( QEASINGCURVE_SETSELFDESTRUCTION )
 {
   PHB_ITEM self = hb_stackSelfItem();
 
-  if( hb_pcount() == 1 && ISLOG(1) )
+  if( hb_pcount() == 1 && HB_ISLOG(1) )
   {
     PHB_ITEM des = hb_itemPutL( NULL, hb_parl(1) );
     hb_objSendMsg( self, "_self_destruction", 1, des );

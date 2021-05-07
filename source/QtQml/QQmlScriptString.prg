@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -39,7 +39,7 @@ CLASS QQmlScriptString
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QQmlScriptString
+PROCEDURE destroyObject() CLASS QQmlScriptString
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -64,23 +64,20 @@ RETURN
 /*
 QQmlScriptString()
 */
-void QQmlScriptString_new1 ()
+void QQmlScriptString_new1()
 {
-  QQmlScriptString * o = new QQmlScriptString ();
-  _qt5xhb_returnNewObject( o, true );
+  QQmlScriptString * obj = new QQmlScriptString();
+  Qt5xHb::returnNewObject( obj, true );
 }
 
 /*
-QQmlScriptString(const QQmlScriptString & other)
+QQmlScriptString( const QQmlScriptString & other )
 */
-void QQmlScriptString_new2 ()
+void QQmlScriptString_new2()
 {
-  QQmlScriptString * o = new QQmlScriptString ( *PQQMLSCRIPTSTRING(1) );
-  _qt5xhb_returnNewObject( o, true );
+  QQmlScriptString * obj = new QQmlScriptString( *PQQMLSCRIPTSTRING(1) );
+  Qt5xHb::returnNewObject( obj, true );
 }
-
-//[1]QQmlScriptString()
-//[2]QQmlScriptString(const QQmlScriptString & other)
 
 HB_FUNC_STATIC( QQMLSCRIPTSTRING_NEW )
 {
@@ -100,7 +97,7 @@ HB_FUNC_STATIC( QQMLSCRIPTSTRING_NEW )
 
 HB_FUNC_STATIC( QQMLSCRIPTSTRING_DELETE )
 {
-  QQmlScriptString * obj = (QQmlScriptString *) _qt5xhb_itemGetPtrStackSelfItem();
+  QQmlScriptString * obj = (QQmlScriptString *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -116,20 +113,20 @@ HB_FUNC_STATIC( QQMLSCRIPTSTRING_DELETE )
 }
 
 /*
-bool booleanLiteral(bool * ok) const
+bool booleanLiteral( bool * ok ) const
 */
 HB_FUNC_STATIC( QQMLSCRIPTSTRING_BOOLEANLITERAL )
 {
-  QQmlScriptString * obj = (QQmlScriptString *) _qt5xhb_itemGetPtrStackSelfItem();
+  QQmlScriptString * obj = (QQmlScriptString *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISLOG(1) )
+    if( ISNUMPAR(1) && HB_ISLOG(1) )
     {
 #endif
       bool par1;
-      RBOOL( obj->booleanLiteral ( &par1 ) );
+      RBOOL( obj->booleanLiteral( &par1 ) );
       hb_storl( par1, 1 );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
@@ -146,7 +143,7 @@ bool isEmpty() const
 */
 HB_FUNC_STATIC( QQMLSCRIPTSTRING_ISEMPTY )
 {
-  QQmlScriptString * obj = (QQmlScriptString *) _qt5xhb_itemGetPtrStackSelfItem();
+  QQmlScriptString * obj = (QQmlScriptString *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -154,7 +151,7 @@ HB_FUNC_STATIC( QQMLSCRIPTSTRING_ISEMPTY )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->isEmpty () );
+      RBOOL( obj->isEmpty() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -170,7 +167,7 @@ bool isNullLiteral() const
 */
 HB_FUNC_STATIC( QQMLSCRIPTSTRING_ISNULLLITERAL )
 {
-  QQmlScriptString * obj = (QQmlScriptString *) _qt5xhb_itemGetPtrStackSelfItem();
+  QQmlScriptString * obj = (QQmlScriptString *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -178,7 +175,7 @@ HB_FUNC_STATIC( QQMLSCRIPTSTRING_ISNULLLITERAL )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->isNullLiteral () );
+      RBOOL( obj->isNullLiteral() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -194,7 +191,7 @@ bool isUndefinedLiteral() const
 */
 HB_FUNC_STATIC( QQMLSCRIPTSTRING_ISUNDEFINEDLITERAL )
 {
-  QQmlScriptString * obj = (QQmlScriptString *) _qt5xhb_itemGetPtrStackSelfItem();
+  QQmlScriptString * obj = (QQmlScriptString *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -202,7 +199,7 @@ HB_FUNC_STATIC( QQMLSCRIPTSTRING_ISUNDEFINEDLITERAL )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->isUndefinedLiteral () );
+      RBOOL( obj->isUndefinedLiteral() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -214,20 +211,20 @@ HB_FUNC_STATIC( QQMLSCRIPTSTRING_ISUNDEFINEDLITERAL )
 }
 
 /*
-qreal numberLiteral(bool * ok) const
+qreal numberLiteral( bool * ok ) const
 */
 HB_FUNC_STATIC( QQMLSCRIPTSTRING_NUMBERLITERAL )
 {
-  QQmlScriptString * obj = (QQmlScriptString *) _qt5xhb_itemGetPtrStackSelfItem();
+  QQmlScriptString * obj = (QQmlScriptString *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISLOG(1) )
+    if( ISNUMPAR(1) && HB_ISLOG(1) )
     {
 #endif
       bool par1;
-      RQREAL( obj->numberLiteral ( &par1 ) );
+      RQREAL( obj->numberLiteral( &par1 ) );
       hb_storl( par1, 1 );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
@@ -244,7 +241,7 @@ QString stringLiteral() const
 */
 HB_FUNC_STATIC( QQMLSCRIPTSTRING_STRINGLITERAL )
 {
-  QQmlScriptString * obj = (QQmlScriptString *) _qt5xhb_itemGetPtrStackSelfItem();
+  QQmlScriptString * obj = (QQmlScriptString *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -252,7 +249,7 @@ HB_FUNC_STATIC( QQMLSCRIPTSTRING_STRINGLITERAL )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRING( obj->stringLiteral () );
+      RQSTRING( obj->stringLiteral() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -267,7 +264,7 @@ HB_FUNC_STATIC( QQMLSCRIPTSTRING_NEWFROM )
 {
   PHB_ITEM self = hb_stackSelfItem();
 
-  if( hb_pcount() == 1 && ISOBJECT(1) )
+  if( hb_pcount() == 1 && HB_ISOBJECT(1) )
   {
     PHB_ITEM ptr = hb_itemPutPtr( NULL, (void *) hb_itemGetPtr( hb_objSendMsg( hb_param(1, HB_IT_OBJECT ), "POINTER", 0 ) ) );
     hb_objSendMsg( self, "_pointer", 1, ptr );
@@ -276,7 +273,7 @@ HB_FUNC_STATIC( QQMLSCRIPTSTRING_NEWFROM )
     hb_objSendMsg( self, "_self_destruction", 1, des );
     hb_itemRelease( des );
   }
-  else if( hb_pcount() == 1 && ISPOINTER(1) )
+  else if( hb_pcount() == 1 && HB_ISPOINTER(1) )
   {
     PHB_ITEM ptr = hb_itemPutPtr( NULL, (void *) hb_itemGetPtr( hb_param(1, HB_IT_POINTER ) ) );
     hb_objSendMsg( self, "_pointer", 1, ptr );
@@ -312,7 +309,7 @@ HB_FUNC_STATIC( QQMLSCRIPTSTRING_SETSELFDESTRUCTION )
 {
   PHB_ITEM self = hb_stackSelfItem();
 
-  if( hb_pcount() == 1 && ISLOG(1) )
+  if( hb_pcount() == 1 && HB_ISLOG(1) )
   {
     PHB_ITEM des = hb_itemPutL( NULL, hb_parl(1) );
     hb_objSendMsg( self, "_self_destruction", 1, des );

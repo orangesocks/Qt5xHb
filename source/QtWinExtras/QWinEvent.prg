@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -24,7 +24,7 @@ CLASS QWinEvent INHERIT QEvent
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QWinEvent
+PROCEDURE destroyObject() CLASS QWinEvent
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -51,15 +51,15 @@ RETURN
 #endif
 
 /*
-QWinEvent(int type)
+QWinEvent( int type )
 */
 HB_FUNC_STATIC( QWINEVENT_NEW )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,2,0))
-  if( ISNUMPAR(1) && ISNUM(1) )
+  if( ISNUMPAR(1) && HB_ISNUM(1) )
   {
-    QWinEvent * o = new QWinEvent ( PINT(1) );
-    _qt5xhb_returnNewObject( o, false );
+    QWinEvent * obj = new QWinEvent( PINT(1) );
+    Qt5xHb::returnNewObject( obj, false );
   }
   else
   {
@@ -71,7 +71,7 @@ HB_FUNC_STATIC( QWINEVENT_NEW )
 HB_FUNC_STATIC( QWINEVENT_DELETE )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,2,0))
-  QWinEvent * obj = (QWinEvent *) _qt5xhb_itemGetPtrStackSelfItem();
+  QWinEvent * obj = (QWinEvent *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {

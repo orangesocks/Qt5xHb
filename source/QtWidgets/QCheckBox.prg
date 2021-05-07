@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -33,7 +33,7 @@ CLASS QCheckBox INHERIT QAbstractButton
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QCheckBox
+PROCEDURE destroyObject() CLASS QCheckBox
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -50,39 +50,38 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #include <QtWidgets/QCheckBox>
 #endif
 
 /*
-explicit QCheckBox ( QWidget * parent = 0 )
+QCheckBox( QWidget * parent = 0 )
 */
-void QCheckBox_new1 ()
+void QCheckBox_new1()
 {
-  QCheckBox * o = new QCheckBox ( OPQWIDGET(1,0) );
-  _qt5xhb_returnNewObject( o, false );
+  QCheckBox * obj = new QCheckBox( OPQWIDGET(1,0) );
+  Qt5xHb::returnNewObject( obj, false );
 }
 
 /*
-explicit QCheckBox ( const QString & text, QWidget * parent = 0 )
+QCheckBox( const QString & text, QWidget * parent = 0 )
 */
-void QCheckBox_new2 ()
+void QCheckBox_new2()
 {
-  QCheckBox * o = new QCheckBox ( PQSTRING(1), OPQWIDGET(2,0) );
-  _qt5xhb_returnNewObject( o, false );
+  QCheckBox * obj = new QCheckBox( PQSTRING(1), OPQWIDGET(2,0) );
+  Qt5xHb::returnNewObject( obj, false );
 }
-
-//[1]explicit QCheckBox ( QWidget * parent = 0 )
-//[2]explicit QCheckBox ( const QString & text, QWidget * parent = 0 )
 
 HB_FUNC_STATIC( QCHECKBOX_NEW )
 {
-  if( ISBETWEEN(0,1) && ISOPTQWIDGET(1) )
+  if( ISBETWEEN(0,1) && (ISQWIDGET(1)||HB_ISNIL(1)) )
   {
     QCheckBox_new1 ();
   }
-  else if( ISBETWEEN(1,2) && ISCHAR(1) && ISOPTQWIDGET(2) )
+  else if( ISBETWEEN(1,2) && HB_ISCHAR(1) && (ISQWIDGET(2)||HB_ISNIL(2)) )
   {
     QCheckBox_new2 ();
   }
@@ -94,10 +93,12 @@ HB_FUNC_STATIC( QCHECKBOX_NEW )
 
 HB_FUNC_STATIC( QCHECKBOX_DELETE )
 {
-  QCheckBox * obj = (QCheckBox *) _qt5xhb_itemGetPtrStackSelfItem();
+  QCheckBox * obj = (QCheckBox *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -110,11 +111,11 @@ HB_FUNC_STATIC( QCHECKBOX_DELETE )
 }
 
 /*
-Qt::CheckState checkState () const
+Qt::CheckState checkState() const
 */
 HB_FUNC_STATIC( QCHECKBOX_CHECKSTATE )
 {
-  QCheckBox * obj = (QCheckBox *) _qt5xhb_itemGetPtrStackSelfItem();
+  QCheckBox * obj = (QCheckBox *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -122,7 +123,7 @@ HB_FUNC_STATIC( QCHECKBOX_CHECKSTATE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RENUM( obj->checkState () );
+      RENUM( obj->checkState() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -134,11 +135,11 @@ HB_FUNC_STATIC( QCHECKBOX_CHECKSTATE )
 }
 
 /*
-bool isTristate () const
+bool isTristate() const
 */
 HB_FUNC_STATIC( QCHECKBOX_ISTRISTATE )
 {
-  QCheckBox * obj = (QCheckBox *) _qt5xhb_itemGetPtrStackSelfItem();
+  QCheckBox * obj = (QCheckBox *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -146,7 +147,7 @@ HB_FUNC_STATIC( QCHECKBOX_ISTRISTATE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->isTristate () );
+      RBOOL( obj->isTristate() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -158,19 +159,19 @@ HB_FUNC_STATIC( QCHECKBOX_ISTRISTATE )
 }
 
 /*
-void setCheckState ( Qt::CheckState state )
+void setCheckState( Qt::CheckState state )
 */
 HB_FUNC_STATIC( QCHECKBOX_SETCHECKSTATE )
 {
-  QCheckBox * obj = (QCheckBox *) _qt5xhb_itemGetPtrStackSelfItem();
+  QCheckBox * obj = (QCheckBox *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setCheckState ( (Qt::CheckState) hb_parni(1) );
+      obj->setCheckState( (Qt::CheckState) hb_parni(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -184,19 +185,19 @@ HB_FUNC_STATIC( QCHECKBOX_SETCHECKSTATE )
 }
 
 /*
-void setTristate ( bool y = true )
+void setTristate( bool y = true )
 */
 HB_FUNC_STATIC( QCHECKBOX_SETTRISTATE )
 {
-  QCheckBox * obj = (QCheckBox *) _qt5xhb_itemGetPtrStackSelfItem();
+  QCheckBox * obj = (QCheckBox *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISBETWEEN(0,1) && ISOPTLOG(1) )
+    if( ISBETWEEN(0,1) && (HB_ISLOG(1)||HB_ISNIL(1)) )
     {
 #endif
-      obj->setTristate ( OPBOOL(1,true) );
+      obj->setTristate( OPBOOL(1,true) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -210,11 +211,11 @@ HB_FUNC_STATIC( QCHECKBOX_SETTRISTATE )
 }
 
 /*
-QSize minimumSizeHint () const
+QSize minimumSizeHint() const
 */
 HB_FUNC_STATIC( QCHECKBOX_MINIMUMSIZEHINT )
 {
-  QCheckBox * obj = (QCheckBox *) _qt5xhb_itemGetPtrStackSelfItem();
+  QCheckBox * obj = (QCheckBox *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -222,8 +223,8 @@ HB_FUNC_STATIC( QCHECKBOX_MINIMUMSIZEHINT )
     if( ISNUMPAR(0) )
     {
 #endif
-      QSize * ptr = new QSize( obj->minimumSizeHint () );
-      _qt5xhb_createReturnClass ( ptr, "QSIZE", true );
+      QSize * ptr = new QSize( obj->minimumSizeHint() );
+      Qt5xHb::createReturnClass( ptr, "QSIZE", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -235,11 +236,11 @@ HB_FUNC_STATIC( QCHECKBOX_MINIMUMSIZEHINT )
 }
 
 /*
-QSize sizeHint () const
+QSize sizeHint() const
 */
 HB_FUNC_STATIC( QCHECKBOX_SIZEHINT )
 {
-  QCheckBox * obj = (QCheckBox *) _qt5xhb_itemGetPtrStackSelfItem();
+  QCheckBox * obj = (QCheckBox *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -247,8 +248,8 @@ HB_FUNC_STATIC( QCHECKBOX_SIZEHINT )
     if( ISNUMPAR(0) )
     {
 #endif
-      QSize * ptr = new QSize( obj->sizeHint () );
-      _qt5xhb_createReturnClass ( ptr, "QSIZE", true );
+      QSize * ptr = new QSize( obj->sizeHint() );
+      Qt5xHb::createReturnClass( ptr, "QSIZE", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -259,7 +260,7 @@ HB_FUNC_STATIC( QCHECKBOX_SIZEHINT )
   }
 }
 
-void QCheckBoxSlots_connect_signal ( const QString & signal, const QString & slot );
+void QCheckBoxSlots_connect_signal( const QString & signal, const QString & slot );
 
 HB_FUNC_STATIC( QCHECKBOX_ONSTATECHANGED )
 {

@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -40,7 +40,7 @@ CLASS QDnsServiceRecord
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QDnsServiceRecord
+PROCEDURE destroyObject() CLASS QDnsServiceRecord
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -65,23 +65,20 @@ RETURN
 /*
 QDnsServiceRecord()
 */
-void QDnsServiceRecord_new1 ()
+void QDnsServiceRecord_new1()
 {
-  QDnsServiceRecord * o = new QDnsServiceRecord ();
-  _qt5xhb_returnNewObject( o, true );
+  QDnsServiceRecord * obj = new QDnsServiceRecord();
+  Qt5xHb::returnNewObject( obj, true );
 }
 
 /*
-QDnsServiceRecord(const QDnsServiceRecord & other)
+QDnsServiceRecord( const QDnsServiceRecord & other )
 */
-void QDnsServiceRecord_new2 ()
+void QDnsServiceRecord_new2()
 {
-  QDnsServiceRecord * o = new QDnsServiceRecord ( *PQDNSSERVICERECORD(1) );
-  _qt5xhb_returnNewObject( o, true );
+  QDnsServiceRecord * obj = new QDnsServiceRecord( *PQDNSSERVICERECORD(1) );
+  Qt5xHb::returnNewObject( obj, true );
 }
-
-//[1]QDnsServiceRecord()
-//[2]QDnsServiceRecord(const QDnsServiceRecord & other)
 
 HB_FUNC_STATIC( QDNSSERVICERECORD_NEW )
 {
@@ -104,7 +101,7 @@ HB_FUNC_STATIC( QDNSSERVICERECORD_NEW )
 */
 HB_FUNC_STATIC( QDNSSERVICERECORD_DELETE )
 {
-  QDnsServiceRecord * obj = (QDnsServiceRecord *) _qt5xhb_itemGetPtrStackSelfItem();
+  QDnsServiceRecord * obj = (QDnsServiceRecord *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -124,7 +121,7 @@ QString name() const
 */
 HB_FUNC_STATIC( QDNSSERVICERECORD_NAME )
 {
-  QDnsServiceRecord * obj = (QDnsServiceRecord *) _qt5xhb_itemGetPtrStackSelfItem();
+  QDnsServiceRecord * obj = (QDnsServiceRecord *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -132,7 +129,7 @@ HB_FUNC_STATIC( QDNSSERVICERECORD_NAME )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRING( obj->name () );
+      RQSTRING( obj->name() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -148,7 +145,7 @@ quint16 port() const
 */
 HB_FUNC_STATIC( QDNSSERVICERECORD_PORT )
 {
-  QDnsServiceRecord * obj = (QDnsServiceRecord *) _qt5xhb_itemGetPtrStackSelfItem();
+  QDnsServiceRecord * obj = (QDnsServiceRecord *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -156,7 +153,7 @@ HB_FUNC_STATIC( QDNSSERVICERECORD_PORT )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQUINT16( obj->port () );
+      RQUINT16( obj->port() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -172,7 +169,7 @@ quint16 priority() const
 */
 HB_FUNC_STATIC( QDNSSERVICERECORD_PRIORITY )
 {
-  QDnsServiceRecord * obj = (QDnsServiceRecord *) _qt5xhb_itemGetPtrStackSelfItem();
+  QDnsServiceRecord * obj = (QDnsServiceRecord *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -180,7 +177,7 @@ HB_FUNC_STATIC( QDNSSERVICERECORD_PRIORITY )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQUINT16( obj->priority () );
+      RQUINT16( obj->priority() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -192,11 +189,11 @@ HB_FUNC_STATIC( QDNSSERVICERECORD_PRIORITY )
 }
 
 /*
-void swap(QDnsServiceRecord &other) Q_DECL_NOTHROW
+void swap( QDnsServiceRecord & other ) Q_DECL_NOTHROW
 */
 HB_FUNC_STATIC( QDNSSERVICERECORD_SWAP )
 {
-  QDnsServiceRecord * obj = (QDnsServiceRecord *) _qt5xhb_itemGetPtrStackSelfItem();
+  QDnsServiceRecord * obj = (QDnsServiceRecord *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -204,7 +201,7 @@ HB_FUNC_STATIC( QDNSSERVICERECORD_SWAP )
     if( ISNUMPAR(1) && ISQDNSSERVICERECORD(1) )
     {
 #endif
-      obj->swap ( *PQDNSSERVICERECORD(1) );
+      obj->swap( *PQDNSSERVICERECORD(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -222,7 +219,7 @@ QString target() const
 */
 HB_FUNC_STATIC( QDNSSERVICERECORD_TARGET )
 {
-  QDnsServiceRecord * obj = (QDnsServiceRecord *) _qt5xhb_itemGetPtrStackSelfItem();
+  QDnsServiceRecord * obj = (QDnsServiceRecord *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -230,7 +227,7 @@ HB_FUNC_STATIC( QDNSSERVICERECORD_TARGET )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRING( obj->target () );
+      RQSTRING( obj->target() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -246,7 +243,7 @@ quint32 timeToLive() const
 */
 HB_FUNC_STATIC( QDNSSERVICERECORD_TIMETOLIVE )
 {
-  QDnsServiceRecord * obj = (QDnsServiceRecord *) _qt5xhb_itemGetPtrStackSelfItem();
+  QDnsServiceRecord * obj = (QDnsServiceRecord *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -254,7 +251,7 @@ HB_FUNC_STATIC( QDNSSERVICERECORD_TIMETOLIVE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQUINT32( obj->timeToLive () );
+      RQUINT32( obj->timeToLive() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -270,7 +267,7 @@ quint16 weight() const
 */
 HB_FUNC_STATIC( QDNSSERVICERECORD_WEIGHT )
 {
-  QDnsServiceRecord * obj = (QDnsServiceRecord *) _qt5xhb_itemGetPtrStackSelfItem();
+  QDnsServiceRecord * obj = (QDnsServiceRecord *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -278,7 +275,7 @@ HB_FUNC_STATIC( QDNSSERVICERECORD_WEIGHT )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQUINT16( obj->weight () );
+      RQUINT16( obj->weight() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -293,7 +290,7 @@ HB_FUNC_STATIC( QDNSSERVICERECORD_NEWFROM )
 {
   PHB_ITEM self = hb_stackSelfItem();
 
-  if( hb_pcount() == 1 && ISOBJECT(1) )
+  if( hb_pcount() == 1 && HB_ISOBJECT(1) )
   {
     PHB_ITEM ptr = hb_itemPutPtr( NULL, (void *) hb_itemGetPtr( hb_objSendMsg( hb_param(1, HB_IT_OBJECT ), "POINTER", 0 ) ) );
     hb_objSendMsg( self, "_pointer", 1, ptr );
@@ -302,7 +299,7 @@ HB_FUNC_STATIC( QDNSSERVICERECORD_NEWFROM )
     hb_objSendMsg( self, "_self_destruction", 1, des );
     hb_itemRelease( des );
   }
-  else if( hb_pcount() == 1 && ISPOINTER(1) )
+  else if( hb_pcount() == 1 && HB_ISPOINTER(1) )
   {
     PHB_ITEM ptr = hb_itemPutPtr( NULL, (void *) hb_itemGetPtr( hb_param(1, HB_IT_POINTER ) ) );
     hb_objSendMsg( self, "_pointer", 1, ptr );
@@ -338,7 +335,7 @@ HB_FUNC_STATIC( QDNSSERVICERECORD_SETSELFDESTRUCTION )
 {
   PHB_ITEM self = hb_stackSelfItem();
 
-  if( hb_pcount() == 1 && ISLOG(1) )
+  if( hb_pcount() == 1 && HB_ISLOG(1) )
   {
     PHB_ITEM des = hb_itemPutL( NULL, hb_parl(1) );
     hb_objSendMsg( self, "_self_destruction", 1, des );

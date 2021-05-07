@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -12,41 +12,51 @@
 
 #include "QTcpServerSlots.h"
 
-QTcpServerSlots::QTcpServerSlots(QObject *parent) : QObject(parent)
+QTcpServerSlots::QTcpServerSlots( QObject *parent ) : QObject( parent )
 {
 }
 
 QTcpServerSlots::~QTcpServerSlots()
 {
 }
+
 void QTcpServerSlots::acceptError( QAbstractSocket::SocketError socketError )
 {
   QObject *object = qobject_cast<QObject *>(sender());
-  PHB_ITEM cb = Signals_return_codeblock( object, "acceptError(QAbstractSocket::SocketError)" );
+
+  PHB_ITEM cb = Qt5xHb::Signals_return_codeblock( object, "acceptError(QAbstractSocket::SocketError)" );
+
   if( cb )
   {
-    PHB_ITEM psender = Signals_return_qobject ( (QObject *) object, "QTCPSERVER" );
+    PHB_ITEM psender = Qt5xHb::Signals_return_qobject( (QObject *) object, "QTCPSERVER" );
     PHB_ITEM psocketError = hb_itemPutNI( NULL, (int) socketError );
-    hb_vmEvalBlockV( (PHB_ITEM) cb, 2, psender, psocketError );
+
+    hb_vmEvalBlockV( cb, 2, psender, psocketError );
+
     hb_itemRelease( psender );
     hb_itemRelease( psocketError );
   }
 }
+
 void QTcpServerSlots::newConnection()
 {
   QObject *object = qobject_cast<QObject *>(sender());
-  PHB_ITEM cb = Signals_return_codeblock( object, "newConnection()" );
+
+  PHB_ITEM cb = Qt5xHb::Signals_return_codeblock( object, "newConnection()" );
+
   if( cb )
   {
-    PHB_ITEM psender = Signals_return_qobject ( (QObject *) object, "QTCPSERVER" );
-    hb_vmEvalBlockV( (PHB_ITEM) cb, 1, psender );
+    PHB_ITEM psender = Qt5xHb::Signals_return_qobject( (QObject *) object, "QTCPSERVER" );
+
+    hb_vmEvalBlockV( cb, 1, psender );
+
     hb_itemRelease( psender );
   }
 }
 
-void QTcpServerSlots_connect_signal ( const QString & signal, const QString & slot )
+void QTcpServerSlots_connect_signal( const QString & signal, const QString & slot )
 {
-  QTcpServer * obj = (QTcpServer *) hb_itemGetPtr( hb_objSendMsg( hb_stackSelfItem(), "POINTER", 0 ) );
+  QTcpServer * obj = (QTcpServer *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -59,7 +69,7 @@ void QTcpServerSlots_connect_signal ( const QString & signal, const QString & sl
       s->setParent( QCoreApplication::instance() );
     }
 
-    hb_retl( Signals_connection_disconnection( s, signal, slot ) );
+    hb_retl( Qt5xHb::Signals_connection_disconnection( s, signal, slot ) );
   }
   else
   {

@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -28,7 +28,7 @@ CLASS QCameraCaptureDestinationControl INHERIT QMediaObject
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QCameraCaptureDestinationControl
+PROCEDURE destroyObject() CLASS QCameraCaptureDestinationControl
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -45,24 +45,24 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #include <QtMultimedia/QCameraCaptureDestinationControl>
 #endif
 
 /*
-explicit QCameraCaptureDestinationControl(QObject *parent = Q_NULLPTR) [protected]
-*/
-
-/*
 ~QCameraCaptureDestinationControl()
 */
 HB_FUNC_STATIC( QCAMERACAPTUREDESTINATIONCONTROL_DELETE )
 {
-  QCameraCaptureDestinationControl * obj = (QCameraCaptureDestinationControl *) _qt5xhb_itemGetPtrStackSelfItem();
+  QCameraCaptureDestinationControl * obj = (QCameraCaptureDestinationControl *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -79,7 +79,7 @@ virtual QCameraImageCapture::CaptureDestinations captureDestination() const = 0
 */
 HB_FUNC_STATIC( QCAMERACAPTUREDESTINATIONCONTROL_CAPTUREDESTINATION )
 {
-  QCameraCaptureDestinationControl * obj = (QCameraCaptureDestinationControl *) _qt5xhb_itemGetPtrStackSelfItem();
+  QCameraCaptureDestinationControl * obj = (QCameraCaptureDestinationControl *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -87,7 +87,7 @@ HB_FUNC_STATIC( QCAMERACAPTUREDESTINATIONCONTROL_CAPTUREDESTINATION )
     if( ISNUMPAR(0) )
     {
 #endif
-      RENUM( obj->captureDestination () );
+      RENUM( obj->captureDestination() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -99,19 +99,19 @@ HB_FUNC_STATIC( QCAMERACAPTUREDESTINATIONCONTROL_CAPTUREDESTINATION )
 }
 
 /*
-virtual bool isCaptureDestinationSupported(QCameraImageCapture::CaptureDestinations destination) const = 0
+virtual bool isCaptureDestinationSupported( QCameraImageCapture::CaptureDestinations destination ) const = 0
 */
 HB_FUNC_STATIC( QCAMERACAPTUREDESTINATIONCONTROL_ISCAPTUREDESTINATIONSUPPORTED )
 {
-  QCameraCaptureDestinationControl * obj = (QCameraCaptureDestinationControl *) _qt5xhb_itemGetPtrStackSelfItem();
+  QCameraCaptureDestinationControl * obj = (QCameraCaptureDestinationControl *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      RBOOL( obj->isCaptureDestinationSupported ( (QCameraImageCapture::CaptureDestinations) hb_parni(1) ) );
+      RBOOL( obj->isCaptureDestinationSupported( (QCameraImageCapture::CaptureDestinations) hb_parni(1) ) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -123,19 +123,19 @@ HB_FUNC_STATIC( QCAMERACAPTUREDESTINATIONCONTROL_ISCAPTUREDESTINATIONSUPPORTED )
 }
 
 /*
-virtual void setCaptureDestination(QCameraImageCapture::CaptureDestinations destination) = 0
+virtual void setCaptureDestination( QCameraImageCapture::CaptureDestinations destination ) = 0
 */
 HB_FUNC_STATIC( QCAMERACAPTUREDESTINATIONCONTROL_SETCAPTUREDESTINATION )
 {
-  QCameraCaptureDestinationControl * obj = (QCameraCaptureDestinationControl *) _qt5xhb_itemGetPtrStackSelfItem();
+  QCameraCaptureDestinationControl * obj = (QCameraCaptureDestinationControl *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setCaptureDestination ( (QCameraImageCapture::CaptureDestinations) hb_parni(1) );
+      obj->setCaptureDestination( (QCameraImageCapture::CaptureDestinations) hb_parni(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -148,7 +148,7 @@ HB_FUNC_STATIC( QCAMERACAPTUREDESTINATIONCONTROL_SETCAPTUREDESTINATION )
   hb_itemReturn( hb_stackSelfItem() );
 }
 
-void QCameraCaptureDestinationControlSlots_connect_signal ( const QString & signal, const QString & slot );
+void QCameraCaptureDestinationControlSlots_connect_signal( const QString & signal, const QString & slot );
 
 HB_FUNC_STATIC( QCAMERACAPTUREDESTINATIONCONTROL_ONCAPTUREDESTINATIONCHANGED )
 {

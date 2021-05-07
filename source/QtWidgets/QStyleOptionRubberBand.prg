@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -27,7 +27,7 @@ CLASS QStyleOptionRubberBand INHERIT QStyleOption
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QStyleOptionRubberBand
+PROCEDURE destroyObject() CLASS QStyleOptionRubberBand
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -52,28 +52,20 @@ RETURN
 /*
 QStyleOptionRubberBand()
 */
-void QStyleOptionRubberBand_new1 ()
+void QStyleOptionRubberBand_new1()
 {
-  QStyleOptionRubberBand * o = new QStyleOptionRubberBand ();
-  _qt5xhb_returnNewObject( o, true );
+  QStyleOptionRubberBand * obj = new QStyleOptionRubberBand();
+  Qt5xHb::returnNewObject( obj, true );
 }
 
 /*
-QStyleOptionRubberBand(const QStyleOptionRubberBand &other)
+QStyleOptionRubberBand( const QStyleOptionRubberBand & other )
 */
-void QStyleOptionRubberBand_new2 ()
+void QStyleOptionRubberBand_new2()
 {
-  QStyleOptionRubberBand * o = new QStyleOptionRubberBand ( *PQSTYLEOPTIONRUBBERBAND(1) );
-  _qt5xhb_returnNewObject( o, true );
+  QStyleOptionRubberBand * obj = new QStyleOptionRubberBand( *PQSTYLEOPTIONRUBBERBAND(1) );
+  Qt5xHb::returnNewObject( obj, true );
 }
-
-/*
-QStyleOptionRubberBand(int version) [protected]
-*/
-
-//[1]QStyleOptionRubberBand()
-//[2]QStyleOptionRubberBand(const QStyleOptionRubberBand &other)
-//[3]QStyleOptionRubberBand(int version) [protected]
 
 HB_FUNC_STATIC( QSTYLEOPTIONRUBBERBAND_NEW )
 {
@@ -96,13 +88,13 @@ QRubberBand::Shape shape
 */
 HB_FUNC_STATIC( QSTYLEOPTIONRUBBERBAND_SHAPE )
 {
-  QStyleOptionRubberBand * obj = (QStyleOptionRubberBand *) _qt5xhb_itemGetPtrStackSelfItem();
+  QStyleOptionRubberBand * obj = (QStyleOptionRubberBand *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
     if( ISNUMPAR(0) )
     {
-      RENUM( obj->shape  );
+      RENUM( obj->shape );
     }
     else
     {
@@ -112,13 +104,13 @@ HB_FUNC_STATIC( QSTYLEOPTIONRUBBERBAND_SHAPE )
 }
 HB_FUNC_STATIC( QSTYLEOPTIONRUBBERBAND_SETSHAPE )
 {
-  QStyleOptionRubberBand * obj = (QStyleOptionRubberBand *) _qt5xhb_itemGetPtrStackSelfItem();
+  QStyleOptionRubberBand * obj = (QStyleOptionRubberBand *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
-      obj->shape = (QRubberBand::Shape) hb_parni(1);
+      obj->shape= (QRubberBand::Shape) hb_parni(1);
     }
     else
     {
@@ -134,13 +126,13 @@ bool opaque
 */
 HB_FUNC_STATIC( QSTYLEOPTIONRUBBERBAND_OPAQUE )
 {
-  QStyleOptionRubberBand * obj = (QStyleOptionRubberBand *) _qt5xhb_itemGetPtrStackSelfItem();
+  QStyleOptionRubberBand * obj = (QStyleOptionRubberBand *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
     if( ISNUMPAR(0) )
     {
-      RBOOL( obj->opaque  );
+      RBOOL( obj->opaque );
     }
     else
     {
@@ -150,13 +142,13 @@ HB_FUNC_STATIC( QSTYLEOPTIONRUBBERBAND_OPAQUE )
 }
 HB_FUNC_STATIC( QSTYLEOPTIONRUBBERBAND_SETOPAQUE )
 {
-  QStyleOptionRubberBand * obj = (QStyleOptionRubberBand *) _qt5xhb_itemGetPtrStackSelfItem();
+  QStyleOptionRubberBand * obj = (QStyleOptionRubberBand *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
-    if( ISNUMPAR(1) && ISLOG(1) )
+    if( ISNUMPAR(1) && HB_ISLOG(1) )
     {
-      obj->opaque = PBOOL(1);
+      obj->opaque= PBOOL(1);
     }
     else
     {

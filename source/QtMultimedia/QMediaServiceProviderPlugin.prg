@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -26,7 +26,7 @@ CLASS QMediaServiceProviderPlugin INHERIT QObject,QMediaServiceProviderFactoryIn
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QMediaServiceProviderPlugin
+PROCEDURE destroyObject() CLASS QMediaServiceProviderPlugin
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -43,6 +43,8 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #include <QtMultimedia/QMediaServiceProviderPlugin>
@@ -52,10 +54,12 @@ RETURN
 
 HB_FUNC_STATIC( QMEDIASERVICEPROVIDERPLUGIN_DELETE )
 {
-  QMediaServiceProviderPlugin * obj = (QMediaServiceProviderPlugin *) _qt5xhb_itemGetPtrStackSelfItem();
+  QMediaServiceProviderPlugin * obj = (QMediaServiceProviderPlugin *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -68,20 +72,20 @@ HB_FUNC_STATIC( QMEDIASERVICEPROVIDERPLUGIN_DELETE )
 }
 
 /*
-virtual QMediaService* create(const QString& key) override = 0
+virtual QMediaService * create( const QString & key ) override = 0
 */
 HB_FUNC_STATIC( QMEDIASERVICEPROVIDERPLUGIN_CREATE )
 {
-  QMediaServiceProviderPlugin * obj = (QMediaServiceProviderPlugin *) _qt5xhb_itemGetPtrStackSelfItem();
+  QMediaServiceProviderPlugin * obj = (QMediaServiceProviderPlugin *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISCHAR(1) )
+    if( ISNUMPAR(1) && HB_ISCHAR(1) )
     {
 #endif
-      QMediaService * ptr = obj->create ( PQSTRING(1) );
-      _qt5xhb_createReturnQObjectClass ( ptr, "QMEDIASERVICE" );
+      QMediaService * ptr = obj->create( PQSTRING(1) );
+      Qt5xHb::createReturnQObjectClass( ptr, "QMEDIASERVICE" );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -93,11 +97,11 @@ HB_FUNC_STATIC( QMEDIASERVICEPROVIDERPLUGIN_CREATE )
 }
 
 /*
-virtual void release(QMediaService *service) override = 0
+virtual void release( QMediaService * service ) override = 0
 */
 HB_FUNC_STATIC( QMEDIASERVICEPROVIDERPLUGIN_RELEASE )
 {
-  QMediaServiceProviderPlugin * obj = (QMediaServiceProviderPlugin *) _qt5xhb_itemGetPtrStackSelfItem();
+  QMediaServiceProviderPlugin * obj = (QMediaServiceProviderPlugin *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -105,7 +109,7 @@ HB_FUNC_STATIC( QMEDIASERVICEPROVIDERPLUGIN_RELEASE )
     if( ISNUMPAR(1) && ISQMEDIASERVICE(1) )
     {
 #endif
-      obj->release ( PQMEDIASERVICE(1) );
+      obj->release( PQMEDIASERVICE(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else

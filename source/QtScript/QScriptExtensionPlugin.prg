@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -27,7 +27,7 @@ CLASS QScriptExtensionPlugin INHERIT QObject
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QScriptExtensionPlugin
+PROCEDURE destroyObject() CLASS QScriptExtensionPlugin
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -44,6 +44,8 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #include <QtScript/QScriptExtensionPlugin>
@@ -53,10 +55,12 @@ RETURN
 
 HB_FUNC_STATIC( QSCRIPTEXTENSIONPLUGIN_DELETE )
 {
-  QScriptExtensionPlugin * obj = (QScriptExtensionPlugin *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScriptExtensionPlugin * obj = (QScriptExtensionPlugin *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -69,20 +73,20 @@ HB_FUNC_STATIC( QSCRIPTEXTENSIONPLUGIN_DELETE )
 }
 
 /*
-QScriptValue setupPackage(const QString & key, QScriptEngine * engine) const
+QScriptValue setupPackage( const QString & key, QScriptEngine * engine ) const
 */
 HB_FUNC_STATIC( QSCRIPTEXTENSIONPLUGIN_SETUPPACKAGE )
 {
-  QScriptExtensionPlugin * obj = (QScriptExtensionPlugin *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScriptExtensionPlugin * obj = (QScriptExtensionPlugin *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(2) && ISCHAR(1) && ISQSCRIPTENGINE(2) )
+    if( ISNUMPAR(2) && HB_ISCHAR(1) && ISQSCRIPTENGINE(2) )
     {
 #endif
-      QScriptValue * ptr = new QScriptValue( obj->setupPackage ( PQSTRING(1), PQSCRIPTENGINE(2) ) );
-      _qt5xhb_createReturnClass ( ptr, "QSCRIPTVALUE", true );
+      QScriptValue * ptr = new QScriptValue( obj->setupPackage( PQSTRING(1), PQSCRIPTENGINE(2) ) );
+      Qt5xHb::createReturnClass( ptr, "QSCRIPTVALUE", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -94,19 +98,19 @@ HB_FUNC_STATIC( QSCRIPTEXTENSIONPLUGIN_SETUPPACKAGE )
 }
 
 /*
-virtual void initialize(const QString & key, QScriptEngine * engine) = 0
+virtual void initialize( const QString & key, QScriptEngine * engine ) = 0
 */
 HB_FUNC_STATIC( QSCRIPTEXTENSIONPLUGIN_INITIALIZE )
 {
-  QScriptExtensionPlugin * obj = (QScriptExtensionPlugin *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScriptExtensionPlugin * obj = (QScriptExtensionPlugin *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(2) && ISCHAR(1) && ISQSCRIPTENGINE(2) )
+    if( ISNUMPAR(2) && HB_ISCHAR(1) && ISQSCRIPTENGINE(2) )
     {
 #endif
-      obj->initialize ( PQSTRING(1), PQSCRIPTENGINE(2) );
+      obj->initialize( PQSTRING(1), PQSCRIPTENGINE(2) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -124,7 +128,7 @@ virtual QStringList keys() const = 0
 */
 HB_FUNC_STATIC( QSCRIPTEXTENSIONPLUGIN_KEYS )
 {
-  QScriptExtensionPlugin * obj = (QScriptExtensionPlugin *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScriptExtensionPlugin * obj = (QScriptExtensionPlugin *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -132,7 +136,7 @@ HB_FUNC_STATIC( QSCRIPTEXTENSIONPLUGIN_KEYS )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRINGLIST( obj->keys () );
+      RQSTRINGLIST( obj->keys() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else

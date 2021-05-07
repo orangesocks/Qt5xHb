@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -42,7 +42,7 @@ CLASS QSurfaceDataItem
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QSurfaceDataItem
+PROCEDURE destroyObject() CLASS QSurfaceDataItem
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -69,33 +69,29 @@ using namespace QtDataVisualization;
 /*
 QSurfaceDataItem()
 */
-void QSurfaceDataItem_new1 ()
+void QSurfaceDataItem_new1()
 {
-  QSurfaceDataItem * o = new QSurfaceDataItem ();
-  _qt5xhb_returnNewObject( o, true );
+  QSurfaceDataItem * obj = new QSurfaceDataItem();
+  Qt5xHb::returnNewObject( obj, true );
 }
 
 /*
-QSurfaceDataItem(const QVector3D &position)
+QSurfaceDataItem( const QVector3D & position )
 */
-void QSurfaceDataItem_new2 ()
+void QSurfaceDataItem_new2()
 {
-  QSurfaceDataItem * o = new QSurfaceDataItem ( *PQVECTOR3D(1) );
-  _qt5xhb_returnNewObject( o, true );
+  QSurfaceDataItem * obj = new QSurfaceDataItem( *PQVECTOR3D(1) );
+  Qt5xHb::returnNewObject( obj, true );
 }
 
 /*
-QSurfaceDataItem(const QSurfaceDataItem &other)
+QSurfaceDataItem( const QSurfaceDataItem & other )
 */
-void QSurfaceDataItem_new3 ()
+void QSurfaceDataItem_new3()
 {
-  QSurfaceDataItem * o = new QSurfaceDataItem ( *PQSURFACEDATAITEM(1) );
-  _qt5xhb_returnNewObject( o, true );
+  QSurfaceDataItem * obj = new QSurfaceDataItem( *PQSURFACEDATAITEM(1) );
+  Qt5xHb::returnNewObject( obj, true );
 }
-
-//[1]QSurfaceDataItem()
-//[2]QSurfaceDataItem(const QVector3D &position)
-//[3]QSurfaceDataItem(const QSurfaceDataItem &other)
 
 HB_FUNC_STATIC( QSURFACEDATAITEM_NEW )
 {
@@ -122,7 +118,7 @@ HB_FUNC_STATIC( QSURFACEDATAITEM_NEW )
 */
 HB_FUNC_STATIC( QSURFACEDATAITEM_DELETE )
 {
-  QSurfaceDataItem * obj = (QSurfaceDataItem *) _qt5xhb_itemGetPtrStackSelfItem();
+  QSurfaceDataItem * obj = (QSurfaceDataItem *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -138,11 +134,11 @@ HB_FUNC_STATIC( QSURFACEDATAITEM_DELETE )
 }
 
 /*
-void setPosition(const QVector3D &pos)
+void setPosition( const QVector3D & pos )
 */
 HB_FUNC_STATIC( QSURFACEDATAITEM_SETPOSITION )
 {
-  QSurfaceDataItem * obj = (QSurfaceDataItem *) _qt5xhb_itemGetPtrStackSelfItem();
+  QSurfaceDataItem * obj = (QSurfaceDataItem *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -150,7 +146,7 @@ HB_FUNC_STATIC( QSURFACEDATAITEM_SETPOSITION )
     if( ISNUMPAR(1) && ISQVECTOR3D(1) )
     {
 #endif
-      obj->setPosition ( *PQVECTOR3D(1) );
+      obj->setPosition( *PQVECTOR3D(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -168,7 +164,7 @@ QVector3D position() const
 */
 HB_FUNC_STATIC( QSURFACEDATAITEM_POSITION )
 {
-  QSurfaceDataItem * obj = (QSurfaceDataItem *) _qt5xhb_itemGetPtrStackSelfItem();
+  QSurfaceDataItem * obj = (QSurfaceDataItem *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -176,8 +172,8 @@ HB_FUNC_STATIC( QSURFACEDATAITEM_POSITION )
     if( ISNUMPAR(0) )
     {
 #endif
-      QVector3D * ptr = new QVector3D( obj->position () );
-      _qt5xhb_createReturnClass ( ptr, "QVECTOR3D", true );
+      QVector3D * ptr = new QVector3D( obj->position() );
+      Qt5xHb::createReturnClass( ptr, "QVECTOR3D", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -189,19 +185,19 @@ HB_FUNC_STATIC( QSURFACEDATAITEM_POSITION )
 }
 
 /*
-void setX(float value)
+void setX( float value )
 */
 HB_FUNC_STATIC( QSURFACEDATAITEM_SETX )
 {
-  QSurfaceDataItem * obj = (QSurfaceDataItem *) _qt5xhb_itemGetPtrStackSelfItem();
+  QSurfaceDataItem * obj = (QSurfaceDataItem *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setX ( PFLOAT(1) );
+      obj->setX( PFLOAT(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -215,19 +211,19 @@ HB_FUNC_STATIC( QSURFACEDATAITEM_SETX )
 }
 
 /*
-void setY(float value)
+void setY( float value )
 */
 HB_FUNC_STATIC( QSURFACEDATAITEM_SETY )
 {
-  QSurfaceDataItem * obj = (QSurfaceDataItem *) _qt5xhb_itemGetPtrStackSelfItem();
+  QSurfaceDataItem * obj = (QSurfaceDataItem *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setY ( PFLOAT(1) );
+      obj->setY( PFLOAT(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -241,19 +237,19 @@ HB_FUNC_STATIC( QSURFACEDATAITEM_SETY )
 }
 
 /*
-void setZ(float value)
+void setZ( float value )
 */
 HB_FUNC_STATIC( QSURFACEDATAITEM_SETZ )
 {
-  QSurfaceDataItem * obj = (QSurfaceDataItem *) _qt5xhb_itemGetPtrStackSelfItem();
+  QSurfaceDataItem * obj = (QSurfaceDataItem *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setZ ( PFLOAT(1) );
+      obj->setZ( PFLOAT(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -271,7 +267,7 @@ float x() const
 */
 HB_FUNC_STATIC( QSURFACEDATAITEM_X )
 {
-  QSurfaceDataItem * obj = (QSurfaceDataItem *) _qt5xhb_itemGetPtrStackSelfItem();
+  QSurfaceDataItem * obj = (QSurfaceDataItem *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -279,7 +275,7 @@ HB_FUNC_STATIC( QSURFACEDATAITEM_X )
     if( ISNUMPAR(0) )
     {
 #endif
-      RFLOAT( obj->x () );
+      RFLOAT( obj->x() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -295,7 +291,7 @@ float y() const
 */
 HB_FUNC_STATIC( QSURFACEDATAITEM_Y )
 {
-  QSurfaceDataItem * obj = (QSurfaceDataItem *) _qt5xhb_itemGetPtrStackSelfItem();
+  QSurfaceDataItem * obj = (QSurfaceDataItem *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -303,7 +299,7 @@ HB_FUNC_STATIC( QSURFACEDATAITEM_Y )
     if( ISNUMPAR(0) )
     {
 #endif
-      RFLOAT( obj->y () );
+      RFLOAT( obj->y() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -319,7 +315,7 @@ float z() const
 */
 HB_FUNC_STATIC( QSURFACEDATAITEM_Z )
 {
-  QSurfaceDataItem * obj = (QSurfaceDataItem *) _qt5xhb_itemGetPtrStackSelfItem();
+  QSurfaceDataItem * obj = (QSurfaceDataItem *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -327,7 +323,7 @@ HB_FUNC_STATIC( QSURFACEDATAITEM_Z )
     if( ISNUMPAR(0) )
     {
 #endif
-      RFLOAT( obj->z () );
+      RFLOAT( obj->z() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -338,15 +334,11 @@ HB_FUNC_STATIC( QSURFACEDATAITEM_Z )
   }
 }
 
-/*
-void createExtraData() [protected]
-*/
-
 HB_FUNC_STATIC( QSURFACEDATAITEM_NEWFROM )
 {
   PHB_ITEM self = hb_stackSelfItem();
 
-  if( hb_pcount() == 1 && ISOBJECT(1) )
+  if( hb_pcount() == 1 && HB_ISOBJECT(1) )
   {
     PHB_ITEM ptr = hb_itemPutPtr( NULL, (void *) hb_itemGetPtr( hb_objSendMsg( hb_param(1, HB_IT_OBJECT ), "POINTER", 0 ) ) );
     hb_objSendMsg( self, "_pointer", 1, ptr );
@@ -355,7 +347,7 @@ HB_FUNC_STATIC( QSURFACEDATAITEM_NEWFROM )
     hb_objSendMsg( self, "_self_destruction", 1, des );
     hb_itemRelease( des );
   }
-  else if( hb_pcount() == 1 && ISPOINTER(1) )
+  else if( hb_pcount() == 1 && HB_ISPOINTER(1) )
   {
     PHB_ITEM ptr = hb_itemPutPtr( NULL, (void *) hb_itemGetPtr( hb_param(1, HB_IT_POINTER ) ) );
     hb_objSendMsg( self, "_pointer", 1, ptr );
@@ -391,7 +383,7 @@ HB_FUNC_STATIC( QSURFACEDATAITEM_SETSELFDESTRUCTION )
 {
   PHB_ITEM self = hb_stackSelfItem();
 
-  if( hb_pcount() == 1 && ISLOG(1) )
+  if( hb_pcount() == 1 && HB_ISLOG(1) )
   {
     PHB_ITEM des = hb_itemPutL( NULL, hb_parl(1) );
     hb_objSendMsg( self, "_self_destruction", 1, des );

@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -12,32 +12,37 @@
 
 #include "QHelpIndexWidgetSlots.h"
 
-QHelpIndexWidgetSlots::QHelpIndexWidgetSlots(QObject *parent) : QObject(parent)
+QHelpIndexWidgetSlots::QHelpIndexWidgetSlots( QObject *parent ) : QObject( parent )
 {
 }
 
 QHelpIndexWidgetSlots::~QHelpIndexWidgetSlots()
 {
 }
+
 void QHelpIndexWidgetSlots::linkActivated( const QUrl & link, const QString & keyword )
 {
   QObject *object = qobject_cast<QObject *>(sender());
-  PHB_ITEM cb = Signals_return_codeblock( object, "linkActivated(QUrl,QString)" );
+
+  PHB_ITEM cb = Qt5xHb::Signals_return_codeblock( object, "linkActivated(QUrl,QString)" );
+
   if( cb )
   {
-    PHB_ITEM psender = Signals_return_qobject ( (QObject *) object, "QHELPINDEXWIDGET" );
-    PHB_ITEM plink = Signals_return_object( (void *) &link, "QURL" );
+    PHB_ITEM psender = Qt5xHb::Signals_return_qobject( (QObject *) object, "QHELPINDEXWIDGET" );
+    PHB_ITEM plink = Qt5xHb::Signals_return_object( (void *) &link, "QURL" );
     PHB_ITEM pkeyword = hb_itemPutC( NULL, QSTRINGTOSTRING(keyword) );
-    hb_vmEvalBlockV( (PHB_ITEM) cb, 3, psender, plink, pkeyword );
+
+    hb_vmEvalBlockV( cb, 3, psender, plink, pkeyword );
+
     hb_itemRelease( psender );
     hb_itemRelease( plink );
     hb_itemRelease( pkeyword );
   }
 }
 
-void QHelpIndexWidgetSlots_connect_signal ( const QString & signal, const QString & slot )
+void QHelpIndexWidgetSlots_connect_signal( const QString & signal, const QString & slot )
 {
-  QHelpIndexWidget * obj = (QHelpIndexWidget *) hb_itemGetPtr( hb_objSendMsg( hb_stackSelfItem(), "POINTER", 0 ) );
+  QHelpIndexWidget * obj = (QHelpIndexWidget *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -50,7 +55,7 @@ void QHelpIndexWidgetSlots_connect_signal ( const QString & signal, const QStrin
       s->setParent( QCoreApplication::instance() );
     }
 
-    hb_retl( Signals_connection_disconnection( s, signal, slot ) );
+    hb_retl( Qt5xHb::Signals_connection_disconnection( s, signal, slot ) );
   }
   else
   {

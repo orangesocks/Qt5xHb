@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -24,7 +24,7 @@ CLASS QAltimeterFilter INHERIT QSensorFilter
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QAltimeterFilter
+PROCEDURE destroyObject() CLASS QAltimeterFilter
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -53,7 +53,7 @@ RETURN
 HB_FUNC_STATIC( QALTIMETERFILTER_DELETE )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,1,0))
-  QAltimeterFilter * obj = (QAltimeterFilter *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAltimeterFilter * obj = (QAltimeterFilter *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -70,12 +70,12 @@ HB_FUNC_STATIC( QALTIMETERFILTER_DELETE )
 }
 
 /*
-virtual bool filter(QAltimeterReading *reading) = 0
+virtual bool filter( QAltimeterReading * reading ) = 0
 */
 HB_FUNC_STATIC( QALTIMETERFILTER_FILTER )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,1,0))
-  QAltimeterFilter * obj = (QAltimeterFilter *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAltimeterFilter * obj = (QAltimeterFilter *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -83,7 +83,7 @@ HB_FUNC_STATIC( QALTIMETERFILTER_FILTER )
     if( ISNUMPAR(1) && ISQALTIMETERREADING(1) )
     {
 #endif
-      RBOOL( obj->filter ( PQALTIMETERREADING(1) ) );
+      RBOOL( obj->filter( PQALTIMETERREADING(1) ) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else

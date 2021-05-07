@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -12,54 +12,69 @@
 
 #include "QVideoDeviceSelectorControlSlots.h"
 
-QVideoDeviceSelectorControlSlots::QVideoDeviceSelectorControlSlots(QObject *parent) : QObject(parent)
+QVideoDeviceSelectorControlSlots::QVideoDeviceSelectorControlSlots( QObject *parent ) : QObject( parent )
 {
 }
 
 QVideoDeviceSelectorControlSlots::~QVideoDeviceSelectorControlSlots()
 {
 }
+
 void QVideoDeviceSelectorControlSlots::devicesChanged()
 {
   QObject *object = qobject_cast<QObject *>(sender());
-  PHB_ITEM cb = Signals_return_codeblock( object, "devicesChanged()" );
+
+  PHB_ITEM cb = Qt5xHb::Signals_return_codeblock( object, "devicesChanged()" );
+
   if( cb )
   {
-    PHB_ITEM psender = Signals_return_qobject ( (QObject *) object, "QVIDEODEVICESELECTORCONTROL" );
-    hb_vmEvalBlockV( (PHB_ITEM) cb, 1, psender );
+    PHB_ITEM psender = Qt5xHb::Signals_return_qobject( (QObject *) object, "QVIDEODEVICESELECTORCONTROL" );
+
+    hb_vmEvalBlockV( cb, 1, psender );
+
     hb_itemRelease( psender );
   }
 }
+
 void QVideoDeviceSelectorControlSlots::selectedDeviceChanged( int index )
 {
   QObject *object = qobject_cast<QObject *>(sender());
-  PHB_ITEM cb = Signals_return_codeblock( object, "selectedDeviceChanged(int)" );
+
+  PHB_ITEM cb = Qt5xHb::Signals_return_codeblock( object, "selectedDeviceChanged(int)" );
+
   if( cb )
   {
-    PHB_ITEM psender = Signals_return_qobject ( (QObject *) object, "QVIDEODEVICESELECTORCONTROL" );
+    PHB_ITEM psender = Qt5xHb::Signals_return_qobject( (QObject *) object, "QVIDEODEVICESELECTORCONTROL" );
     PHB_ITEM pindex = hb_itemPutNI( NULL, index );
-    hb_vmEvalBlockV( (PHB_ITEM) cb, 2, psender, pindex );
+
+    hb_vmEvalBlockV( cb, 2, psender, pindex );
+
     hb_itemRelease( psender );
     hb_itemRelease( pindex );
   }
 }
+
 void QVideoDeviceSelectorControlSlots::selectedDeviceChanged( const QString & name )
 {
   QObject *object = qobject_cast<QObject *>(sender());
-  PHB_ITEM cb = Signals_return_codeblock( object, "selectedDeviceChanged(QString)" );
+
+  PHB_ITEM cb = Qt5xHb::Signals_return_codeblock( object, "selectedDeviceChanged(QString)" );
+
   if( cb )
   {
-    PHB_ITEM psender = Signals_return_qobject ( (QObject *) object, "QVIDEODEVICESELECTORCONTROL" );
+    PHB_ITEM psender = Qt5xHb::Signals_return_qobject( (QObject *) object, "QVIDEODEVICESELECTORCONTROL" );
     PHB_ITEM pname = hb_itemPutC( NULL, QSTRINGTOSTRING(name) );
-    hb_vmEvalBlockV( (PHB_ITEM) cb, 2, psender, pname );
+
+    hb_vmEvalBlockV( cb, 2, psender, pname );
+
     hb_itemRelease( psender );
     hb_itemRelease( pname );
   }
 }
 
-void QVideoDeviceSelectorControlSlots_connect_signal ( const QString & signal, const QString & slot )
+void QVideoDeviceSelectorControlSlots_connect_signal( const QString & signal, const QString & slot )
 {
-  QVideoDeviceSelectorControl * obj = (QVideoDeviceSelectorControl *) hb_itemGetPtr( hb_objSendMsg( hb_stackSelfItem(), "POINTER", 0 ) );
+  QVideoDeviceSelectorControl * obj = (QVideoDeviceSelectorControl *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -72,7 +87,7 @@ void QVideoDeviceSelectorControlSlots_connect_signal ( const QString & signal, c
       s->setParent( QCoreApplication::instance() );
     }
 
-    hb_retl( Signals_connection_disconnection( s, signal, slot ) );
+    hb_retl( Qt5xHb::Signals_connection_disconnection( s, signal, slot ) );
   }
   else
   {

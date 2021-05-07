@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -30,7 +30,7 @@ CLASS QNetworkCookieJar INHERIT QObject
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QNetworkCookieJar
+PROCEDURE destroyObject() CLASS QNetworkCookieJar
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -47,6 +47,8 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #include <QtNetwork/QNetworkCookieJar>
@@ -55,14 +57,14 @@ RETURN
 #include <QtNetwork/QNetworkCookie>
 
 /*
-explicit QNetworkCookieJar(QObject *parent = Q_NULLPTR)
+QNetworkCookieJar( QObject * parent = nullptr )
 */
 HB_FUNC_STATIC( QNETWORKCOOKIEJAR_NEW )
 {
-  if( ISBETWEEN(0,1) && (ISQOBJECT(1)||ISNIL(1)) )
+  if( ISBETWEEN(0,1) && (ISQOBJECT(1)||HB_ISNIL(1)) )
   {
-    QNetworkCookieJar * o = new QNetworkCookieJar ( OPQOBJECT(1,0) );
-    _qt5xhb_returnNewObject( o, false );
+    QNetworkCookieJar * obj = new QNetworkCookieJar( OPQOBJECT(1,nullptr) );
+    Qt5xHb::returnNewObject( obj, false );
   }
   else
   {
@@ -75,10 +77,12 @@ virtual ~QNetworkCookieJar()
 */
 HB_FUNC_STATIC( QNETWORKCOOKIEJAR_DELETE )
 {
-  QNetworkCookieJar * obj = (QNetworkCookieJar *) _qt5xhb_itemGetPtrStackSelfItem();
+  QNetworkCookieJar * obj = (QNetworkCookieJar *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -91,11 +95,11 @@ HB_FUNC_STATIC( QNETWORKCOOKIEJAR_DELETE )
 }
 
 /*
-virtual QList<QNetworkCookie> cookiesForUrl ( const QUrl & url ) const
+virtual QList<QNetworkCookie> cookiesForUrl( const QUrl & url ) const
 */
 HB_FUNC_STATIC( QNETWORKCOOKIEJAR_COOKIESFORURL )
 {
-  QNetworkCookieJar * obj = (QNetworkCookieJar *) _qt5xhb_itemGetPtrStackSelfItem();
+  QNetworkCookieJar * obj = (QNetworkCookieJar *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -103,13 +107,12 @@ HB_FUNC_STATIC( QNETWORKCOOKIEJAR_COOKIESFORURL )
     if( ISNUMPAR(1) && ISQURL(1) )
     {
 #endif
-      QList<QNetworkCookie> list = obj->cookiesForUrl ( *PQURL(1) );
+      QList<QNetworkCookie> list = obj->cookiesForUrl( *PQURL(1) );
       PHB_DYNS pDynSym = hb_dynsymFindName( "QNETWORKCOOKIE" );
       PHB_ITEM pArray = hb_itemArrayNew(0);
-      int i;
-      for(i=0;i<list.count();i++)
+      if( pDynSym )
       {
-        if( pDynSym )
+        for( int i = 0; i < list.count(); i++ )
         {
           hb_vmPushDynSym( pDynSym );
           hb_vmPushNil();
@@ -117,7 +120,7 @@ HB_FUNC_STATIC( QNETWORKCOOKIEJAR_COOKIESFORURL )
           PHB_ITEM pObject = hb_itemNew( NULL );
           hb_itemCopy( pObject, hb_stackReturnItem() );
           PHB_ITEM pItem = hb_itemNew( NULL );
-          hb_itemPutPtr( pItem, (QNetworkCookie *) new QNetworkCookie ( list[i] ) );
+          hb_itemPutPtr( pItem, (QNetworkCookie *) new QNetworkCookie( list[i] ) );
           hb_objSendMsg( pObject, "_POINTER", 1, pItem );
           hb_itemRelease( pItem );
           PHB_ITEM pDestroy = hb_itemNew( NULL );
@@ -127,10 +130,10 @@ HB_FUNC_STATIC( QNETWORKCOOKIEJAR_COOKIESFORURL )
           hb_arrayAddForward( pArray, pObject );
           hb_itemRelease( pObject );
         }
-        else
-        {
-          hb_errRT_BASE( EG_NOFUNC, 1001, NULL, "QNETWORKCOOKIE", HB_ERR_ARGS_BASEPARAMS );
-        }
+      }
+      else
+      {
+        hb_errRT_BASE( EG_NOFUNC, 1001, NULL, "QNETWORKCOOKIE", HB_ERR_ARGS_BASEPARAMS );
       }
       hb_itemReturnRelease(pArray);
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
@@ -144,27 +147,27 @@ HB_FUNC_STATIC( QNETWORKCOOKIEJAR_COOKIESFORURL )
 }
 
 /*
-virtual bool setCookiesFromUrl ( const QList<QNetworkCookie> & cookieList, const QUrl & url )
+virtual bool setCookiesFromUrl( const QList<QNetworkCookie> & cookieList, const QUrl & url )
 */
 HB_FUNC_STATIC( QNETWORKCOOKIEJAR_SETCOOKIESFROMURL )
 {
-  QNetworkCookieJar * obj = (QNetworkCookieJar *) _qt5xhb_itemGetPtrStackSelfItem();
+  QNetworkCookieJar * obj = (QNetworkCookieJar *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(2) && ISARRAY(1) && ISQURL(2) )
+    if( ISNUMPAR(2) && HB_ISARRAY(1) && ISQURL(2) )
     {
 #endif
       QList<QNetworkCookie> par1;
-PHB_ITEM aList1 = hb_param(1, HB_IT_ARRAY);
-int i1;
-int nLen1 = hb_arrayLen(aList1);
-for (i1=0;i1<nLen1;i1++)
-{
-  par1 << *(QNetworkCookie *) hb_itemGetPtr( hb_objSendMsg( hb_arrayGetItemPtr( aList1, i1+1 ), "POINTER", 0 ) );
-}
-      RBOOL( obj->setCookiesFromUrl ( par1, *PQURL(2) ) );
+      PHB_ITEM aList1 = hb_param(1, HB_IT_ARRAY);
+      int i1;
+      int nLen1 = hb_arrayLen(aList1);
+      for (i1=0;i1<nLen1;i1++)
+      {
+        par1 << *(QNetworkCookie *) hb_itemGetPtr( hb_objSendMsg( hb_arrayGetItemPtr( aList1, i1+1 ), "POINTER", 0 ) );
+      }
+      RBOOL( obj->setCookiesFromUrl( par1, *PQURL(2) ) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -176,11 +179,11 @@ for (i1=0;i1<nLen1;i1++)
 }
 
 /*
-virtual bool insertCookie(const QNetworkCookie &cookie)
+virtual bool insertCookie( const QNetworkCookie & cookie )
 */
 HB_FUNC_STATIC( QNETWORKCOOKIEJAR_INSERTCOOKIE )
 {
-  QNetworkCookieJar * obj = (QNetworkCookieJar *) _qt5xhb_itemGetPtrStackSelfItem();
+  QNetworkCookieJar * obj = (QNetworkCookieJar *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -188,7 +191,7 @@ HB_FUNC_STATIC( QNETWORKCOOKIEJAR_INSERTCOOKIE )
     if( ISNUMPAR(1) && ISQNETWORKCOOKIE(1) )
     {
 #endif
-      RBOOL( obj->insertCookie ( *PQNETWORKCOOKIE(1) ) );
+      RBOOL( obj->insertCookie( *PQNETWORKCOOKIE(1) ) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -200,11 +203,11 @@ HB_FUNC_STATIC( QNETWORKCOOKIEJAR_INSERTCOOKIE )
 }
 
 /*
-virtual bool updateCookie(const QNetworkCookie &cookie)
+virtual bool updateCookie( const QNetworkCookie & cookie )
 */
 HB_FUNC_STATIC( QNETWORKCOOKIEJAR_UPDATECOOKIE )
 {
-  QNetworkCookieJar * obj = (QNetworkCookieJar *) _qt5xhb_itemGetPtrStackSelfItem();
+  QNetworkCookieJar * obj = (QNetworkCookieJar *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -212,7 +215,7 @@ HB_FUNC_STATIC( QNETWORKCOOKIEJAR_UPDATECOOKIE )
     if( ISNUMPAR(1) && ISQNETWORKCOOKIE(1) )
     {
 #endif
-      RBOOL( obj->updateCookie ( *PQNETWORKCOOKIE(1) ) );
+      RBOOL( obj->updateCookie( *PQNETWORKCOOKIE(1) ) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -224,11 +227,11 @@ HB_FUNC_STATIC( QNETWORKCOOKIEJAR_UPDATECOOKIE )
 }
 
 /*
-virtual bool deleteCookie(const QNetworkCookie &cookie)
+virtual bool deleteCookie( const QNetworkCookie & cookie )
 */
 HB_FUNC_STATIC( QNETWORKCOOKIEJAR_DELETECOOKIE )
 {
-  QNetworkCookieJar * obj = (QNetworkCookieJar *) _qt5xhb_itemGetPtrStackSelfItem();
+  QNetworkCookieJar * obj = (QNetworkCookieJar *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -236,7 +239,7 @@ HB_FUNC_STATIC( QNETWORKCOOKIEJAR_DELETECOOKIE )
     if( ISNUMPAR(1) && ISQNETWORKCOOKIE(1) )
     {
 #endif
-      RBOOL( obj->deleteCookie ( *PQNETWORKCOOKIE(1) ) );
+      RBOOL( obj->deleteCookie( *PQNETWORKCOOKIE(1) ) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -246,17 +249,5 @@ HB_FUNC_STATIC( QNETWORKCOOKIEJAR_DELETECOOKIE )
 #endif
   }
 }
-
-/*
-QList<QNetworkCookie> allCookies() const [protected]
-*/
-
-/*
-void setAllCookies(const QList<QNetworkCookie> &cookieList) [protected]
-*/
-
-/*
-virtual bool validateCookie(const QNetworkCookie &cookie, const QUrl &url) const protected]
-*/
 
 #pragma ENDDUMP

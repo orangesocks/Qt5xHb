@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -36,7 +36,7 @@ CLASS QStyleOptionGroupBox INHERIT QStyleOptionComplex
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QStyleOptionGroupBox
+PROCEDURE destroyObject() CLASS QStyleOptionGroupBox
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -61,28 +61,20 @@ RETURN
 /*
 QStyleOptionGroupBox()
 */
-void QStyleOptionGroupBox_new1 ()
+void QStyleOptionGroupBox_new1()
 {
-  QStyleOptionGroupBox * o = new QStyleOptionGroupBox ();
-  _qt5xhb_returnNewObject( o, true );
+  QStyleOptionGroupBox * obj = new QStyleOptionGroupBox();
+  Qt5xHb::returnNewObject( obj, true );
 }
 
 /*
-QStyleOptionGroupBox(const QStyleOptionGroupBox &other)
+QStyleOptionGroupBox( const QStyleOptionGroupBox & other )
 */
-void QStyleOptionGroupBox_new2 ()
+void QStyleOptionGroupBox_new2()
 {
-  QStyleOptionGroupBox * o = new QStyleOptionGroupBox ( *PQSTYLEOPTIONGROUPBOX(1) );
-  _qt5xhb_returnNewObject( o, true );
+  QStyleOptionGroupBox * obj = new QStyleOptionGroupBox( *PQSTYLEOPTIONGROUPBOX(1) );
+  Qt5xHb::returnNewObject( obj, true );
 }
-
-/*
-QStyleOptionGroupBox(int version) [protected]
-*/
-
-//[1]QStyleOptionGroupBox()
-//[2]QStyleOptionGroupBox(const QStyleOptionGroupBox &other)
-//[3]QStyleOptionGroupBox(int version) [protected]
 
 HB_FUNC_STATIC( QSTYLEOPTIONGROUPBOX_NEW )
 {
@@ -105,13 +97,13 @@ QStyleOptionFrame::FrameFeatures features
 */
 HB_FUNC_STATIC( QSTYLEOPTIONGROUPBOX_FEATURES )
 {
-  QStyleOptionGroupBox * obj = (QStyleOptionGroupBox *) _qt5xhb_itemGetPtrStackSelfItem();
+  QStyleOptionGroupBox * obj = (QStyleOptionGroupBox *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
     if( ISNUMPAR(0) )
     {
-      RENUM( obj->features  );
+      RENUM( obj->features );
     }
     else
     {
@@ -121,13 +113,13 @@ HB_FUNC_STATIC( QSTYLEOPTIONGROUPBOX_FEATURES )
 }
 HB_FUNC_STATIC( QSTYLEOPTIONGROUPBOX_SETFEATURES )
 {
-  QStyleOptionGroupBox * obj = (QStyleOptionGroupBox *) _qt5xhb_itemGetPtrStackSelfItem();
+  QStyleOptionGroupBox * obj = (QStyleOptionGroupBox *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
-      obj->features = (QStyleOptionFrame::FrameFeatures) hb_parni(1);
+      obj->features= (QStyleOptionFrame::FrameFeatures) hb_parni(1);
     }
     else
     {
@@ -143,13 +135,13 @@ QString text
 */
 HB_FUNC_STATIC( QSTYLEOPTIONGROUPBOX_TEXT )
 {
-  QStyleOptionGroupBox * obj = (QStyleOptionGroupBox *) _qt5xhb_itemGetPtrStackSelfItem();
+  QStyleOptionGroupBox * obj = (QStyleOptionGroupBox *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
     if( ISNUMPAR(0) )
     {
-      RQSTRING( obj->text  );
+      RQSTRING( obj->text );
     }
     else
     {
@@ -159,13 +151,13 @@ HB_FUNC_STATIC( QSTYLEOPTIONGROUPBOX_TEXT )
 }
 HB_FUNC_STATIC( QSTYLEOPTIONGROUPBOX_SETTEXT )
 {
-  QStyleOptionGroupBox * obj = (QStyleOptionGroupBox *) _qt5xhb_itemGetPtrStackSelfItem();
+  QStyleOptionGroupBox * obj = (QStyleOptionGroupBox *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
-    if( ISNUMPAR(1) && ISCHAR(1) )
+    if( ISNUMPAR(1) && HB_ISCHAR(1) )
     {
-      obj->text = PQSTRING(1);
+      obj->text= PQSTRING(1);
     }
     else
     {
@@ -181,13 +173,13 @@ Qt::Alignment textAlignment
 */
 HB_FUNC_STATIC( QSTYLEOPTIONGROUPBOX_TEXTALIGNMENT )
 {
-  QStyleOptionGroupBox * obj = (QStyleOptionGroupBox *) _qt5xhb_itemGetPtrStackSelfItem();
+  QStyleOptionGroupBox * obj = (QStyleOptionGroupBox *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
     if( ISNUMPAR(0) )
     {
-      RENUM( obj->textAlignment  );
+      RENUM( obj->textAlignment );
     }
     else
     {
@@ -197,13 +189,13 @@ HB_FUNC_STATIC( QSTYLEOPTIONGROUPBOX_TEXTALIGNMENT )
 }
 HB_FUNC_STATIC( QSTYLEOPTIONGROUPBOX_SETTEXTALIGNMENT )
 {
-  QStyleOptionGroupBox * obj = (QStyleOptionGroupBox *) _qt5xhb_itemGetPtrStackSelfItem();
+  QStyleOptionGroupBox * obj = (QStyleOptionGroupBox *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
-      obj->textAlignment = (Qt::Alignment) hb_parni(1);
+      obj->textAlignment= (Qt::Alignment) hb_parni(1);
     }
     else
     {
@@ -219,14 +211,14 @@ QColor textColor
 */
 HB_FUNC_STATIC( QSTYLEOPTIONGROUPBOX_TEXTCOLOR )
 {
-  QStyleOptionGroupBox * obj = (QStyleOptionGroupBox *) _qt5xhb_itemGetPtrStackSelfItem();
+  QStyleOptionGroupBox * obj = (QStyleOptionGroupBox *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
     if( ISNUMPAR(0) )
     {
-      QColor * ptr = new QColor( obj->textColor  );
-      _qt5xhb_createReturnClass ( ptr, "QCOLOR", true );
+      QColor * ptr = new QColor( obj->textColor );
+      Qt5xHb::createReturnClass( ptr, "QCOLOR", true );
     }
     else
     {
@@ -236,13 +228,13 @@ HB_FUNC_STATIC( QSTYLEOPTIONGROUPBOX_TEXTCOLOR )
 }
 HB_FUNC_STATIC( QSTYLEOPTIONGROUPBOX_SETTEXTCOLOR )
 {
-  QStyleOptionGroupBox * obj = (QStyleOptionGroupBox *) _qt5xhb_itemGetPtrStackSelfItem();
+  QStyleOptionGroupBox * obj = (QStyleOptionGroupBox *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
     if( ISNUMPAR(1) && ISQCOLOR(1) )
     {
-      obj->textColor = *PQCOLOR(1);
+      obj->textColor= *PQCOLOR(1);
     }
     else
     {
@@ -258,13 +250,13 @@ int lineWidth
 */
 HB_FUNC_STATIC( QSTYLEOPTIONGROUPBOX_LINEWIDTH )
 {
-  QStyleOptionGroupBox * obj = (QStyleOptionGroupBox *) _qt5xhb_itemGetPtrStackSelfItem();
+  QStyleOptionGroupBox * obj = (QStyleOptionGroupBox *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
     if( ISNUMPAR(0) )
     {
-      RINT( obj->lineWidth  );
+      RINT( obj->lineWidth );
     }
     else
     {
@@ -274,13 +266,13 @@ HB_FUNC_STATIC( QSTYLEOPTIONGROUPBOX_LINEWIDTH )
 }
 HB_FUNC_STATIC( QSTYLEOPTIONGROUPBOX_SETLINEWIDTH )
 {
-  QStyleOptionGroupBox * obj = (QStyleOptionGroupBox *) _qt5xhb_itemGetPtrStackSelfItem();
+  QStyleOptionGroupBox * obj = (QStyleOptionGroupBox *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
-      obj->lineWidth = PINT(1);
+      obj->lineWidth= PINT(1);
     }
     else
     {
@@ -296,13 +288,13 @@ int midLineWidth
 */
 HB_FUNC_STATIC( QSTYLEOPTIONGROUPBOX_MIDLINEWIDTH )
 {
-  QStyleOptionGroupBox * obj = (QStyleOptionGroupBox *) _qt5xhb_itemGetPtrStackSelfItem();
+  QStyleOptionGroupBox * obj = (QStyleOptionGroupBox *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
     if( ISNUMPAR(0) )
     {
-      RINT( obj->midLineWidth  );
+      RINT( obj->midLineWidth );
     }
     else
     {
@@ -312,13 +304,13 @@ HB_FUNC_STATIC( QSTYLEOPTIONGROUPBOX_MIDLINEWIDTH )
 }
 HB_FUNC_STATIC( QSTYLEOPTIONGROUPBOX_SETMIDLINEWIDTH )
 {
-  QStyleOptionGroupBox * obj = (QStyleOptionGroupBox *) _qt5xhb_itemGetPtrStackSelfItem();
+  QStyleOptionGroupBox * obj = (QStyleOptionGroupBox *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
-      obj->midLineWidth = PINT(1);
+      obj->midLineWidth= PINT(1);
     }
     else
     {

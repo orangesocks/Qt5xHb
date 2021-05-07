@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -24,7 +24,7 @@ CLASS QSGVertexColorMaterial INHERIT QSGMaterial
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QSGVertexColorMaterial
+PROCEDURE destroyObject() CLASS QSGVertexColorMaterial
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -53,8 +53,8 @@ HB_FUNC_STATIC( QSGVERTEXCOLORMATERIAL_NEW )
 {
   if( ISNUMPAR(0) )
   {
-    QSGVertexColorMaterial * o = new QSGVertexColorMaterial ();
-    _qt5xhb_returnNewObject( o, false );
+    QSGVertexColorMaterial * obj = new QSGVertexColorMaterial();
+    Qt5xHb::returnNewObject( obj, true );
   }
   else
   {
@@ -64,7 +64,7 @@ HB_FUNC_STATIC( QSGVERTEXCOLORMATERIAL_NEW )
 
 HB_FUNC_STATIC( QSGVERTEXCOLORMATERIAL_DELETE )
 {
-  QSGVertexColorMaterial * obj = (QSGVertexColorMaterial *) _qt5xhb_itemGetPtrStackSelfItem();
+  QSGVertexColorMaterial * obj = (QSGVertexColorMaterial *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {

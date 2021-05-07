@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -28,7 +28,7 @@ CLASS QDBusPendingCallWatcher INHERIT QObject,QDBusPendingCall
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QDBusPendingCallWatcher
+PROCEDURE destroyObject() CLASS QDBusPendingCallWatcher
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -45,20 +45,22 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #include <QtDBus/QDBusPendingCallWatcher>
 #endif
 
 /*
-explicit QDBusPendingCallWatcher(const QDBusPendingCall &call, QObject *parent = 0)
+QDBusPendingCallWatcher( const QDBusPendingCall & call, QObject * parent = 0 )
 */
 HB_FUNC_STATIC( QDBUSPENDINGCALLWATCHER_NEW )
 {
-  if( ISBETWEEN(1,2) && ISQDBUSPENDINGCALL(1) && (ISQOBJECT(2)||ISNIL(2)) )
+  if( ISBETWEEN(1,2) && ISQDBUSPENDINGCALL(1) && (ISQOBJECT(2)||HB_ISNIL(2)) )
   {
-    QDBusPendingCallWatcher * o = new QDBusPendingCallWatcher ( *PQDBUSPENDINGCALL(1), OPQOBJECT(2,0) );
-    _qt5xhb_returnNewObject( o, false );
+    QDBusPendingCallWatcher * obj = new QDBusPendingCallWatcher( *PQDBUSPENDINGCALL(1), OPQOBJECT(2,0) );
+    Qt5xHb::returnNewObject( obj, false );
   }
   else
   {
@@ -68,10 +70,12 @@ HB_FUNC_STATIC( QDBUSPENDINGCALLWATCHER_NEW )
 
 HB_FUNC_STATIC( QDBUSPENDINGCALLWATCHER_DELETE )
 {
-  QDBusPendingCallWatcher * obj = (QDBusPendingCallWatcher *) _qt5xhb_itemGetPtrStackSelfItem();
+  QDBusPendingCallWatcher * obj = (QDBusPendingCallWatcher *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -88,7 +92,7 @@ bool isFinished() const
 */
 HB_FUNC_STATIC( QDBUSPENDINGCALLWATCHER_ISFINISHED )
 {
-  QDBusPendingCallWatcher * obj = (QDBusPendingCallWatcher *) _qt5xhb_itemGetPtrStackSelfItem();
+  QDBusPendingCallWatcher * obj = (QDBusPendingCallWatcher *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -96,7 +100,7 @@ HB_FUNC_STATIC( QDBUSPENDINGCALLWATCHER_ISFINISHED )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->isFinished () );
+      RBOOL( obj->isFinished() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -112,7 +116,7 @@ void waitForFinished()
 */
 HB_FUNC_STATIC( QDBUSPENDINGCALLWATCHER_WAITFORFINISHED )
 {
-  QDBusPendingCallWatcher * obj = (QDBusPendingCallWatcher *) _qt5xhb_itemGetPtrStackSelfItem();
+  QDBusPendingCallWatcher * obj = (QDBusPendingCallWatcher *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -120,7 +124,7 @@ HB_FUNC_STATIC( QDBUSPENDINGCALLWATCHER_WAITFORFINISHED )
     if( ISNUMPAR(0) )
     {
 #endif
-      obj->waitForFinished ();
+      obj->waitForFinished();
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -133,7 +137,7 @@ HB_FUNC_STATIC( QDBUSPENDINGCALLWATCHER_WAITFORFINISHED )
   hb_itemReturn( hb_stackSelfItem() );
 }
 
-void QDBusPendingCallWatcherSlots_connect_signal ( const QString & signal, const QString & slot );
+void QDBusPendingCallWatcherSlots_connect_signal( const QString & signal, const QString & slot );
 
 HB_FUNC_STATIC( QDBUSPENDINGCALLWATCHER_ONFINISHED )
 {

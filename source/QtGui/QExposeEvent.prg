@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -26,7 +26,7 @@ CLASS QExposeEvent INHERIT QEvent
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QExposeEvent
+PROCEDURE destroyObject() CLASS QExposeEvent
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -49,14 +49,14 @@ RETURN
 #endif
 
 /*
-QExposeEvent(const QRegion & rgn)
+QExposeEvent( const QRegion & rgn )
 */
 HB_FUNC_STATIC( QEXPOSEEVENT_NEW )
 {
   if( ISNUMPAR(1) && ISQREGION(1) )
   {
-    QExposeEvent * o = new QExposeEvent ( *PQREGION(1) );
-    _qt5xhb_returnNewObject( o, false );
+    QExposeEvent * obj = new QExposeEvent( *PQREGION(1) );
+    Qt5xHb::returnNewObject( obj, false );
   }
   else
   {
@@ -66,7 +66,7 @@ HB_FUNC_STATIC( QEXPOSEEVENT_NEW )
 
 HB_FUNC_STATIC( QEXPOSEEVENT_DELETE )
 {
-  QExposeEvent * obj = (QExposeEvent *) _qt5xhb_itemGetPtrStackSelfItem();
+  QExposeEvent * obj = (QExposeEvent *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -86,7 +86,7 @@ const QRegion & region() const
 */
 HB_FUNC_STATIC( QEXPOSEEVENT_REGION )
 {
-  QExposeEvent * obj = (QExposeEvent *) _qt5xhb_itemGetPtrStackSelfItem();
+  QExposeEvent * obj = (QExposeEvent *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -94,8 +94,8 @@ HB_FUNC_STATIC( QEXPOSEEVENT_REGION )
     if( ISNUMPAR(0) )
     {
 #endif
-      const QRegion * ptr = &obj->region ();
-      _qt5xhb_createReturnClass ( ptr, "QREGION", false );
+      const QRegion * ptr = &obj->region();
+      Qt5xHb::createReturnClass( ptr, "QREGION", false );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else

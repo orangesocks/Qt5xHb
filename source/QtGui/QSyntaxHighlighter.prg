@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -28,7 +28,7 @@ CLASS QSyntaxHighlighter INHERIT QObject
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QSyntaxHighlighter
+PROCEDURE destroyObject() CLASS QSyntaxHighlighter
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -45,6 +45,8 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #include <QtGui/QSyntaxHighlighter>
@@ -53,22 +55,16 @@ RETURN
 #include <QtGui/QTextDocument>
 
 /*
-explicit QSyntaxHighlighter(QObject *parent)
-*/
-
-/*
-explicit QSyntaxHighlighter(QTextDocument *parent)
-*/
-
-/*
 virtual ~QSyntaxHighlighter()
 */
 HB_FUNC_STATIC( QSYNTAXHIGHLIGHTER_DELETE )
 {
-  QSyntaxHighlighter * obj = (QSyntaxHighlighter *) _qt5xhb_itemGetPtrStackSelfItem();
+  QSyntaxHighlighter * obj = (QSyntaxHighlighter *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -81,11 +77,11 @@ HB_FUNC_STATIC( QSYNTAXHIGHLIGHTER_DELETE )
 }
 
 /*
-void setDocument(QTextDocument *doc)
+void setDocument( QTextDocument * doc )
 */
 HB_FUNC_STATIC( QSYNTAXHIGHLIGHTER_SETDOCUMENT )
 {
-  QSyntaxHighlighter * obj = (QSyntaxHighlighter *) _qt5xhb_itemGetPtrStackSelfItem();
+  QSyntaxHighlighter * obj = (QSyntaxHighlighter *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -93,7 +89,7 @@ HB_FUNC_STATIC( QSYNTAXHIGHLIGHTER_SETDOCUMENT )
     if( ISNUMPAR(1) && ISQTEXTDOCUMENT(1) )
     {
 #endif
-      obj->setDocument ( PQTEXTDOCUMENT(1) );
+      obj->setDocument( PQTEXTDOCUMENT(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -107,11 +103,11 @@ HB_FUNC_STATIC( QSYNTAXHIGHLIGHTER_SETDOCUMENT )
 }
 
 /*
-QTextDocument *document() const
+QTextDocument * document() const
 */
 HB_FUNC_STATIC( QSYNTAXHIGHLIGHTER_DOCUMENT )
 {
-  QSyntaxHighlighter * obj = (QSyntaxHighlighter *) _qt5xhb_itemGetPtrStackSelfItem();
+  QSyntaxHighlighter * obj = (QSyntaxHighlighter *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -119,8 +115,8 @@ HB_FUNC_STATIC( QSYNTAXHIGHLIGHTER_DOCUMENT )
     if( ISNUMPAR(0) )
     {
 #endif
-      QTextDocument * ptr = obj->document ();
-      _qt5xhb_createReturnQObjectClass ( ptr, "QTEXTDOCUMENT" );
+      QTextDocument * ptr = obj->document();
+      Qt5xHb::createReturnQObjectClass( ptr, "QTEXTDOCUMENT" );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -136,7 +132,7 @@ void rehighlight()
 */
 HB_FUNC_STATIC( QSYNTAXHIGHLIGHTER_REHIGHLIGHT )
 {
-  QSyntaxHighlighter * obj = (QSyntaxHighlighter *) _qt5xhb_itemGetPtrStackSelfItem();
+  QSyntaxHighlighter * obj = (QSyntaxHighlighter *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -144,7 +140,7 @@ HB_FUNC_STATIC( QSYNTAXHIGHLIGHTER_REHIGHLIGHT )
     if( ISNUMPAR(0) )
     {
 #endif
-      obj->rehighlight ();
+      obj->rehighlight();
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -158,11 +154,11 @@ HB_FUNC_STATIC( QSYNTAXHIGHLIGHTER_REHIGHLIGHT )
 }
 
 /*
-void rehighlightBlock(const QTextBlock &block)
+void rehighlightBlock( const QTextBlock & block )
 */
 HB_FUNC_STATIC( QSYNTAXHIGHLIGHTER_REHIGHLIGHTBLOCK )
 {
-  QSyntaxHighlighter * obj = (QSyntaxHighlighter *) _qt5xhb_itemGetPtrStackSelfItem();
+  QSyntaxHighlighter * obj = (QSyntaxHighlighter *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -170,7 +166,7 @@ HB_FUNC_STATIC( QSYNTAXHIGHLIGHTER_REHIGHLIGHTBLOCK )
     if( ISNUMPAR(1) && ISQTEXTBLOCK(1) )
     {
 #endif
-      obj->rehighlightBlock ( *PQTEXTBLOCK(1) );
+      obj->rehighlightBlock( *PQTEXTBLOCK(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else

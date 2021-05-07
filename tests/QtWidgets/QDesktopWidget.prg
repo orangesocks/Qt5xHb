@@ -2,13 +2,13 @@
 
   Qt5xHb Project - Test Program
 
-  Copyright (C) 2019 Marcos Antonio Gambeta
+  Copyright (C) 2021 Marcos Antonio Gambeta
 
   E-mail:
   marcosgambeta AT outlook DOT com
 
   Website:
-  https://github.com/marcosgambeta/Qt5xHb
+  https://github.com/magsoftinfo/qt5xhb
 
 */
 
@@ -18,7 +18,7 @@
 REQUEST HB_GT_WIN
 #endif
 
-PROCEDURE Main ()
+PROCEDURE Main()
 
    LOCAL oApp
    LOCAL oWindow
@@ -27,12 +27,11 @@ PROCEDURE Main ()
    oApp := QApplication():new()
 
    oWindow := QWidget():new()
-   oWindow:setWindowTitle("Teste")
-   oWindow:resize(640,480)
-   oWindow:show()
+   oWindow:setWindowTitle( "Teste" )
+   oWindow:resize( 640, 480 )
 
    oDesktopWidget := QApplication():desktop()
-   
+
    ? "isVirtualDesktop = "
    ?? oDesktopWidget:isVirtualDesktop()
 
@@ -43,7 +42,9 @@ PROCEDURE Main ()
    ?? oDesktopWidget:screenCount()
 
    ? "screenNumber = "
-   ?? oDesktopWidget:screenNumber(oWindow)
+   ?? oDesktopWidget:screenNumber( oWindow )
+
+   oWindow:show()
 
    oApp:exec()
 

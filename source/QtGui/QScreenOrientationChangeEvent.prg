@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -27,7 +27,7 @@ CLASS QScreenOrientationChangeEvent INHERIT QEvent
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QScreenOrientationChangeEvent
+PROCEDURE destroyObject() CLASS QScreenOrientationChangeEvent
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -52,14 +52,14 @@ RETURN
 #include <QtGui/QScreen>
 
 /*
-QScreenOrientationChangeEvent(QScreen *screen, Qt::ScreenOrientation orientation)
+QScreenOrientationChangeEvent( QScreen * screen, Qt::ScreenOrientation orientation )
 */
 HB_FUNC_STATIC( QSCREENORIENTATIONCHANGEEVENT_NEW )
 {
-  if( ISNUMPAR(2) && ISQSCREEN(1) && ISNUM(2) )
+  if( ISNUMPAR(2) && ISQSCREEN(1) && HB_ISNUM(2) )
   {
-    QScreenOrientationChangeEvent * o = new QScreenOrientationChangeEvent ( PQSCREEN(1), (Qt::ScreenOrientation) hb_parni(2) );
-    _qt5xhb_returnNewObject( o, false );
+    QScreenOrientationChangeEvent * obj = new QScreenOrientationChangeEvent( PQSCREEN(1), (Qt::ScreenOrientation) hb_parni(2) );
+    Qt5xHb::returnNewObject( obj, false );
   }
   else
   {
@@ -69,7 +69,7 @@ HB_FUNC_STATIC( QSCREENORIENTATIONCHANGEEVENT_NEW )
 
 HB_FUNC_STATIC( QSCREENORIENTATIONCHANGEEVENT_DELETE )
 {
-  QScreenOrientationChangeEvent * obj = (QScreenOrientationChangeEvent *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScreenOrientationChangeEvent * obj = (QScreenOrientationChangeEvent *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -85,11 +85,11 @@ HB_FUNC_STATIC( QSCREENORIENTATIONCHANGEEVENT_DELETE )
 }
 
 /*
-QScreen *screen() const
+QScreen * screen() const
 */
 HB_FUNC_STATIC( QSCREENORIENTATIONCHANGEEVENT_SCREEN )
 {
-  QScreenOrientationChangeEvent * obj = (QScreenOrientationChangeEvent *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScreenOrientationChangeEvent * obj = (QScreenOrientationChangeEvent *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -97,8 +97,8 @@ HB_FUNC_STATIC( QSCREENORIENTATIONCHANGEEVENT_SCREEN )
     if( ISNUMPAR(0) )
     {
 #endif
-      QScreen * ptr = obj->screen ();
-      _qt5xhb_createReturnQObjectClass ( ptr, "QSCREEN" );
+      QScreen * ptr = obj->screen();
+      Qt5xHb::createReturnQObjectClass( ptr, "QSCREEN" );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -114,7 +114,7 @@ Qt::ScreenOrientation orientation() const
 */
 HB_FUNC_STATIC( QSCREENORIENTATIONCHANGEEVENT_ORIENTATION )
 {
-  QScreenOrientationChangeEvent * obj = (QScreenOrientationChangeEvent *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScreenOrientationChangeEvent * obj = (QScreenOrientationChangeEvent *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -122,7 +122,7 @@ HB_FUNC_STATIC( QSCREENORIENTATIONCHANGEEVENT_ORIENTATION )
     if( ISNUMPAR(0) )
     {
 #endif
-      RENUM( obj->orientation () );
+      RENUM( obj->orientation() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else

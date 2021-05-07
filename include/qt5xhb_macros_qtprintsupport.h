@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -13,31 +13,31 @@
 #ifndef QT5XHB_MACROS_QTPRINTSUPPORT_H
 #define QT5XHB_MACROS_QTPRINTSUPPORT_H
 
-#define ISQABSTRACTPRINTDIALOG(n)                           _qt5xhb_isObjectDerivedFrom(n,"QAbstractPrintDialog")
-#define ISQPAGESETUPDIALOG(n)                               _qt5xhb_isObjectDerivedFrom(n,"QPageSetupDialog")
-#define ISQPRINTDIALOG(n)                                   _qt5xhb_isObjectDerivedFrom(n,"QPrintDialog")
-#define ISQPRINTENGINE(n)                                   _qt5xhb_isObjectDerivedFrom(n,"QPrintEngine")
-#define ISQPRINTER(n)                                       _qt5xhb_isObjectDerivedFrom(n,"QPrinter")
-#define ISQPRINTERINFO(n)                                   _qt5xhb_isObjectDerivedFrom(n,"QPrinterInfo")
-#define ISQPRINTPREVIEWDIALOG(n)                            _qt5xhb_isObjectDerivedFrom(n,"QPrintPreviewDialog")
-#define ISQPRINTPREVIEWWIDGET(n)                            _qt5xhb_isObjectDerivedFrom(n,"QPrintPreviewWidget")
+#define ISQABSTRACTPRINTDIALOG( n )                         Qt5xHb::isObjectDerivedFrom( n, "QAbstractPrintDialog" )
+#define ISQPAGESETUPDIALOG( n )                             Qt5xHb::isObjectDerivedFrom( n, "QPageSetupDialog" )
+#define ISQPRINTDIALOG( n )                                 Qt5xHb::isObjectDerivedFrom( n, "QPrintDialog" )
+#define ISQPRINTENGINE( n )                                 Qt5xHb::isObjectDerivedFrom( n, "QPrintEngine" )
+#define ISQPRINTER( n )                                     Qt5xHb::isObjectDerivedFrom( n, "QPrinter" )
+#define ISQPRINTERINFO( n )                                 Qt5xHb::isObjectDerivedFrom( n, "QPrinterInfo" )
+#define ISQPRINTPREVIEWDIALOG( n )                          Qt5xHb::isObjectDerivedFrom( n, "QPrintPreviewDialog" )
+#define ISQPRINTPREVIEWWIDGET( n )                          Qt5xHb::isObjectDerivedFrom( n, "QPrintPreviewWidget" )
 
-#define PQABSTRACTPRINTDIALOG(n)                            (QAbstractPrintDialog *) _qt5xhb_itemGetPtr(n)
-#define PQPAGESETUPDIALOG(n)                                (QPageSetupDialog *) _qt5xhb_itemGetPtr(n)
-#define PQPRINTDIALOG(n)                                    (QPrintDialog *) _qt5xhb_itemGetPtr(n)
-#define PQPRINTENGINE(n)                                    (QPrintEngine *) _qt5xhb_itemGetPtr(n)
-#define PQPRINTER(n)                                        (QPrinter *) _qt5xhb_itemGetPtr(n)
-#define PQPRINTERINFO(n)                                    (QPrinterInfo *) _qt5xhb_itemGetPtr(n)
-#define PQPRINTPREVIEWDIALOG(n)                             (QPrintPreviewDialog *) _qt5xhb_itemGetPtr(n)
-#define PQPRINTPREVIEWWIDGET(n)                             (QPrintPreviewWidget *) _qt5xhb_itemGetPtr(n)
+#define PQABSTRACTPRINTDIALOG( n )                          static_cast< QAbstractPrintDialog * >( Qt5xHb::itemGetPtr( n ) )
+#define PQPAGESETUPDIALOG( n )                              static_cast< QPageSetupDialog * >( Qt5xHb::itemGetPtr( n ) )
+#define PQPRINTDIALOG( n )                                  static_cast< QPrintDialog * >( Qt5xHb::itemGetPtr( n ) )
+#define PQPRINTENGINE( n )                                  static_cast< QPrintEngine * >( Qt5xHb::itemGetPtr( n ) )
+#define PQPRINTER( n )                                      static_cast< QPrinter * >( Qt5xHb::itemGetPtr( n ) )
+#define PQPRINTERINFO( n )                                  static_cast< QPrinterInfo * >( Qt5xHb::itemGetPtr( n ) )
+#define PQPRINTPREVIEWDIALOG( n )                           static_cast< QPrintPreviewDialog * >( Qt5xHb::itemGetPtr( n ) )
+#define PQPRINTPREVIEWWIDGET( n )                           static_cast< QPrintPreviewWidget * >( Qt5xHb::itemGetPtr( n ) )
 
-#define OPQABSTRACTPRINTDIALOG(n,v)                         ISNIL(n)? v : (QAbstractPrintDialog *) _qt5xhb_itemGetPtr(n)
-#define OPQPAGESETUPDIALOG(n,v)                             ISNIL(n)? v : (QPageSetupDialog *) _qt5xhb_itemGetPtr(n)
-#define OPQPRINTDIALOG(n,v)                                 ISNIL(n)? v : (QPrintDialog *) _qt5xhb_itemGetPtr(n)
-#define OPQPRINTENGINE(n,v)                                 ISNIL(n)? v : (QPrintEngine *) _qt5xhb_itemGetPtr(n)
-#define OPQPRINTER(n,v)                                     ISNIL(n)? v : (QPrinter *) _qt5xhb_itemGetPtr(n)
-#define OPQPRINTERINFO(n,v)                                 ISNIL(n)? v : (QPrinterInfo *) _qt5xhb_itemGetPtr(n)
-#define OPQPRINTPREVIEWDIALOG(n,v)                          ISNIL(n)? v : (QPrintPreviewDialog *) _qt5xhb_itemGetPtr(n)
-#define OPQPRINTPREVIEWWIDGET(n,v)                          ISNIL(n)? v : (QPrintPreviewWidget *) _qt5xhb_itemGetPtr(n)
+#define OPQABSTRACTPRINTDIALOG( n, v )                      HB_ISNIL( n ) ? v : static_cast< QAbstractPrintDialog * >( Qt5xHb::itemGetPtr( n ) )
+#define OPQPAGESETUPDIALOG( n, v )                          HB_ISNIL( n ) ? v : static_cast< QPageSetupDialog * >( Qt5xHb::itemGetPtr( n ) )
+#define OPQPRINTDIALOG( n, v )                              HB_ISNIL( n ) ? v : static_cast< QPrintDialog * >( Qt5xHb::itemGetPtr( n ) )
+#define OPQPRINTENGINE( n, v )                              HB_ISNIL( n ) ? v : static_cast< QPrintEngine * >( Qt5xHb::itemGetPtr( n ) )
+#define OPQPRINTER( n, v )                                  HB_ISNIL( n ) ? v : static_cast< QPrinter * >( Qt5xHb::itemGetPtr( n ) )
+#define OPQPRINTERINFO( n, v )                              HB_ISNIL( n ) ? v : static_cast< QPrinterInfo * >( Qt5xHb::itemGetPtr( n ) )
+#define OPQPRINTPREVIEWDIALOG( n, v )                       HB_ISNIL( n ) ? v : static_cast< QPrintPreviewDialog * >( Qt5xHb::itemGetPtr( n ) )
+#define OPQPRINTPREVIEWWIDGET( n, v )                       HB_ISNIL( n ) ? v : static_cast< QPrintPreviewWidget * >( Qt5xHb::itemGetPtr( n ) )
 
 #endif /* QT5XHB_MACROS_QTPRINTSUPPORT_H */

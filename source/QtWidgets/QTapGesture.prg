@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -26,7 +26,7 @@ CLASS QTapGesture INHERIT QGesture
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QTapGesture
+PROCEDURE destroyObject() CLASS QTapGesture
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -43,6 +43,8 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #include <QtWidgets/QTapGesture>
@@ -50,10 +52,12 @@ RETURN
 
 HB_FUNC_STATIC( QTAPGESTURE_DELETE )
 {
-  QTapGesture * obj = (QTapGesture *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTapGesture * obj = (QTapGesture *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -70,7 +74,7 @@ QPointF position() const
 */
 HB_FUNC_STATIC( QTAPGESTURE_POSITION )
 {
-  QTapGesture * obj = (QTapGesture *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTapGesture * obj = (QTapGesture *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -78,8 +82,8 @@ HB_FUNC_STATIC( QTAPGESTURE_POSITION )
     if( ISNUMPAR(0) )
     {
 #endif
-      QPointF * ptr = new QPointF( obj->position () );
-      _qt5xhb_createReturnClass ( ptr, "QPOINTF", true );
+      QPointF * ptr = new QPointF( obj->position() );
+      Qt5xHb::createReturnClass( ptr, "QPOINTF", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -91,11 +95,11 @@ HB_FUNC_STATIC( QTAPGESTURE_POSITION )
 }
 
 /*
-void setPosition(const QPointF & pos)
+void setPosition( const QPointF & pos )
 */
 HB_FUNC_STATIC( QTAPGESTURE_SETPOSITION )
 {
-  QTapGesture * obj = (QTapGesture *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTapGesture * obj = (QTapGesture *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -103,7 +107,7 @@ HB_FUNC_STATIC( QTAPGESTURE_SETPOSITION )
     if( ISNUMPAR(1) && ISQPOINTF(1) )
     {
 #endif
-      obj->setPosition ( *PQPOINTF(1) );
+      obj->setPosition( *PQPOINTF(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else

@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -25,7 +25,7 @@ CLASS QGraphicsSceneEvent INHERIT QEvent
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QGraphicsSceneEvent
+PROCEDURE destroyObject() CLASS QGraphicsSceneEvent
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -49,7 +49,7 @@ RETURN
 
 HB_FUNC_STATIC( QGRAPHICSSCENEEVENT_DELETE )
 {
-  QGraphicsSceneEvent * obj = (QGraphicsSceneEvent *) _qt5xhb_itemGetPtrStackSelfItem();
+  QGraphicsSceneEvent * obj = (QGraphicsSceneEvent *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -65,11 +65,11 @@ HB_FUNC_STATIC( QGRAPHICSSCENEEVENT_DELETE )
 }
 
 /*
-QWidget * widget () const
+QWidget * widget() const
 */
 HB_FUNC_STATIC( QGRAPHICSSCENEEVENT_WIDGET )
 {
-  QGraphicsSceneEvent * obj = (QGraphicsSceneEvent *) _qt5xhb_itemGetPtrStackSelfItem();
+  QGraphicsSceneEvent * obj = (QGraphicsSceneEvent *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -77,8 +77,8 @@ HB_FUNC_STATIC( QGRAPHICSSCENEEVENT_WIDGET )
     if( ISNUMPAR(0) )
     {
 #endif
-      QWidget * ptr = obj->widget ();
-      _qt5xhb_createReturnQWidgetClass ( ptr, "QWIDGET" );
+      QWidget * ptr = obj->widget();
+      Qt5xHb::createReturnQWidgetClass( ptr, "QWIDGET" );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else

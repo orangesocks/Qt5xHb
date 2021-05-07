@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -12,33 +12,38 @@
 
 #include "QModbusClientSlots.h"
 
-QModbusClientSlots::QModbusClientSlots(QObject *parent) : QObject(parent)
+QModbusClientSlots::QModbusClientSlots( QObject *parent ) : QObject( parent )
 {
 }
 
 QModbusClientSlots::~QModbusClientSlots()
 {
 }
+
 #if (QT_VERSION >= QT_VERSION_CHECK(5,8,0))
 void QModbusClientSlots::timeoutChanged( int newTimeout )
 {
   QObject *object = qobject_cast<QObject *>(sender());
-  PHB_ITEM cb = Signals_return_codeblock( object, "timeoutChanged(int)" );
+
+  PHB_ITEM cb = Qt5xHb::Signals_return_codeblock( object, "timeoutChanged(int)" );
+
   if( cb )
   {
-    PHB_ITEM psender = Signals_return_qobject ( (QObject *) object, "QMODBUSCLIENT" );
+    PHB_ITEM psender = Qt5xHb::Signals_return_qobject( (QObject *) object, "QMODBUSCLIENT" );
     PHB_ITEM pnewTimeout = hb_itemPutNI( NULL, newTimeout );
-    hb_vmEvalBlockV( (PHB_ITEM) cb, 2, psender, pnewTimeout );
+
+    hb_vmEvalBlockV( cb, 2, psender, pnewTimeout );
+
     hb_itemRelease( psender );
     hb_itemRelease( pnewTimeout );
   }
 }
 #endif
 
-void QModbusClientSlots_connect_signal ( const QString & signal, const QString & slot )
+void QModbusClientSlots_connect_signal( const QString & signal, const QString & slot )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,8,0))
-  QModbusClient * obj = (QModbusClient *) hb_itemGetPtr( hb_objSendMsg( hb_stackSelfItem(), "POINTER", 0 ) );
+  QModbusClient * obj = (QModbusClient *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -51,7 +56,7 @@ void QModbusClientSlots_connect_signal ( const QString & signal, const QString &
       s->setParent( QCoreApplication::instance() );
     }
 
-    hb_retl( Signals_connection_disconnection( s, signal, slot ) );
+    hb_retl( Qt5xHb::Signals_connection_disconnection( s, signal, slot ) );
   }
   else
   {

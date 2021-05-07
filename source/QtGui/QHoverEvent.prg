@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -24,7 +24,7 @@ CLASS QHoverEvent INHERIT QEvent
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QHoverEvent
+PROCEDURE destroyObject() CLASS QHoverEvent
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -47,14 +47,14 @@ RETURN
 #endif
 
 /*
-QHoverEvent ( Type type, const QPoint & pos, const QPoint & oldPos )
+QHoverEvent( QEvent::Type type, const QPoint & pos, const QPoint & oldPos )
 */
 HB_FUNC_STATIC( QHOVEREVENT_NEW )
 {
-  if( ISNUMPAR(3) && ISNUM(1) && ISQPOINT(2) && ISQPOINT(3) )
+  if( ISNUMPAR(3) && HB_ISNUM(1) && ISQPOINT(2) && ISQPOINT(3) )
   {
-    QHoverEvent * o = new QHoverEvent ( (QEvent::Type) hb_parni(1), *PQPOINT(2), *PQPOINT(3) );
-    _qt5xhb_returnNewObject( o, false );
+    QHoverEvent * obj = new QHoverEvent( (QEvent::Type) hb_parni(1), *PQPOINT(2), *PQPOINT(3) );
+    Qt5xHb::returnNewObject( obj, false );
   }
   else
   {
@@ -64,7 +64,7 @@ HB_FUNC_STATIC( QHOVEREVENT_NEW )
 
 HB_FUNC_STATIC( QHOVEREVENT_DELETE )
 {
-  QHoverEvent * obj = (QHoverEvent *) _qt5xhb_itemGetPtrStackSelfItem();
+  QHoverEvent * obj = (QHoverEvent *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {

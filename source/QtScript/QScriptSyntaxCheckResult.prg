@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -37,7 +37,7 @@ CLASS QScriptSyntaxCheckResult
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QScriptSyntaxCheckResult
+PROCEDURE destroyObject() CLASS QScriptSyntaxCheckResult
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -60,14 +60,14 @@ RETURN
 #endif
 
 /*
-QScriptSyntaxCheckResult(const QScriptSyntaxCheckResult & other)
+QScriptSyntaxCheckResult( const QScriptSyntaxCheckResult & other )
 */
 HB_FUNC_STATIC( QSCRIPTSYNTAXCHECKRESULT_NEW )
 {
   if( ISNUMPAR(1) && ISQSCRIPTSYNTAXCHECKRESULT(1) )
   {
-    QScriptSyntaxCheckResult * o = new QScriptSyntaxCheckResult ( *PQSCRIPTSYNTAXCHECKRESULT(1) );
-    _qt5xhb_returnNewObject( o, true );
+    QScriptSyntaxCheckResult * obj = new QScriptSyntaxCheckResult( *PQSCRIPTSYNTAXCHECKRESULT(1) );
+    Qt5xHb::returnNewObject( obj, true );
   }
   else
   {
@@ -77,7 +77,7 @@ HB_FUNC_STATIC( QSCRIPTSYNTAXCHECKRESULT_NEW )
 
 HB_FUNC_STATIC( QSCRIPTSYNTAXCHECKRESULT_DELETE )
 {
-  QScriptSyntaxCheckResult * obj = (QScriptSyntaxCheckResult *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScriptSyntaxCheckResult * obj = (QScriptSyntaxCheckResult *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -97,7 +97,7 @@ int errorColumnNumber() const
 */
 HB_FUNC_STATIC( QSCRIPTSYNTAXCHECKRESULT_ERRORCOLUMNNUMBER )
 {
-  QScriptSyntaxCheckResult * obj = (QScriptSyntaxCheckResult *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScriptSyntaxCheckResult * obj = (QScriptSyntaxCheckResult *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -105,7 +105,7 @@ HB_FUNC_STATIC( QSCRIPTSYNTAXCHECKRESULT_ERRORCOLUMNNUMBER )
     if( ISNUMPAR(0) )
     {
 #endif
-      RINT( obj->errorColumnNumber () );
+      RINT( obj->errorColumnNumber() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -121,7 +121,7 @@ int errorLineNumber() const
 */
 HB_FUNC_STATIC( QSCRIPTSYNTAXCHECKRESULT_ERRORLINENUMBER )
 {
-  QScriptSyntaxCheckResult * obj = (QScriptSyntaxCheckResult *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScriptSyntaxCheckResult * obj = (QScriptSyntaxCheckResult *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -129,7 +129,7 @@ HB_FUNC_STATIC( QSCRIPTSYNTAXCHECKRESULT_ERRORLINENUMBER )
     if( ISNUMPAR(0) )
     {
 #endif
-      RINT( obj->errorLineNumber () );
+      RINT( obj->errorLineNumber() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -145,7 +145,7 @@ QString errorMessage() const
 */
 HB_FUNC_STATIC( QSCRIPTSYNTAXCHECKRESULT_ERRORMESSAGE )
 {
-  QScriptSyntaxCheckResult * obj = (QScriptSyntaxCheckResult *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScriptSyntaxCheckResult * obj = (QScriptSyntaxCheckResult *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -153,7 +153,7 @@ HB_FUNC_STATIC( QSCRIPTSYNTAXCHECKRESULT_ERRORMESSAGE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRING( obj->errorMessage () );
+      RQSTRING( obj->errorMessage() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -165,11 +165,11 @@ HB_FUNC_STATIC( QSCRIPTSYNTAXCHECKRESULT_ERRORMESSAGE )
 }
 
 /*
-State state() const
+QScriptSyntaxCheckResult::State state() const
 */
 HB_FUNC_STATIC( QSCRIPTSYNTAXCHECKRESULT_STATE )
 {
-  QScriptSyntaxCheckResult * obj = (QScriptSyntaxCheckResult *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScriptSyntaxCheckResult * obj = (QScriptSyntaxCheckResult *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -177,7 +177,7 @@ HB_FUNC_STATIC( QSCRIPTSYNTAXCHECKRESULT_STATE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RENUM( obj->state () );
+      RENUM( obj->state() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -192,7 +192,7 @@ HB_FUNC_STATIC( QSCRIPTSYNTAXCHECKRESULT_NEWFROM )
 {
   PHB_ITEM self = hb_stackSelfItem();
 
-  if( hb_pcount() == 1 && ISOBJECT(1) )
+  if( hb_pcount() == 1 && HB_ISOBJECT(1) )
   {
     PHB_ITEM ptr = hb_itemPutPtr( NULL, (void *) hb_itemGetPtr( hb_objSendMsg( hb_param(1, HB_IT_OBJECT ), "POINTER", 0 ) ) );
     hb_objSendMsg( self, "_pointer", 1, ptr );
@@ -201,7 +201,7 @@ HB_FUNC_STATIC( QSCRIPTSYNTAXCHECKRESULT_NEWFROM )
     hb_objSendMsg( self, "_self_destruction", 1, des );
     hb_itemRelease( des );
   }
-  else if( hb_pcount() == 1 && ISPOINTER(1) )
+  else if( hb_pcount() == 1 && HB_ISPOINTER(1) )
   {
     PHB_ITEM ptr = hb_itemPutPtr( NULL, (void *) hb_itemGetPtr( hb_param(1, HB_IT_POINTER ) ) );
     hb_objSendMsg( self, "_pointer", 1, ptr );
@@ -237,7 +237,7 @@ HB_FUNC_STATIC( QSCRIPTSYNTAXCHECKRESULT_SETSELFDESTRUCTION )
 {
   PHB_ITEM self = hb_stackSelfItem();
 
-  if( hb_pcount() == 1 && ISLOG(1) )
+  if( hb_pcount() == 1 && HB_ISLOG(1) )
   {
     PHB_ITEM des = hb_itemPutL( NULL, hb_parl(1) );
     hb_objSendMsg( self, "_self_destruction", 1, des );

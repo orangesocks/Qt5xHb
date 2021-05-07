@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -35,7 +35,7 @@ CLASS QGeoRouteReply INHERIT QObject
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QGeoRouteReply
+PROCEDURE destroyObject() CLASS QGeoRouteReply
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -54,6 +54,8 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #if (QT_VERSION >= QT_VERSION_CHECK(5,4,0))
@@ -62,15 +64,15 @@ RETURN
 #endif
 
 /*
-QGeoRouteReply(Error error, const QString &errorString, QObject *parent = 0)
+QGeoRouteReply( QGeoRouteReply::Error error, const QString & errorString, QObject * parent = 0 )
 */
 HB_FUNC_STATIC( QGEOROUTEREPLY_NEW )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,4,0))
-  if( ISBETWEEN(2,3) && ISNUM(1) && ISCHAR(2) && (ISQOBJECT(3)||ISNIL(3)) )
+  if( ISBETWEEN(2,3) && HB_ISNUM(1) && HB_ISCHAR(2) && (ISQOBJECT(3)||HB_ISNIL(3)) )
   {
-    QGeoRouteReply * o = new QGeoRouteReply ( (QGeoRouteReply::Error) hb_parni(1), PQSTRING(2), OPQOBJECT(3,0) );
-    _qt5xhb_returnNewObject( o, false );
+    QGeoRouteReply * obj = new QGeoRouteReply( (QGeoRouteReply::Error) hb_parni(1), PQSTRING(2), OPQOBJECT(3,0) );
+    Qt5xHb::returnNewObject( obj, false );
   }
   else
   {
@@ -82,10 +84,12 @@ HB_FUNC_STATIC( QGEOROUTEREPLY_NEW )
 HB_FUNC_STATIC( QGEOROUTEREPLY_DELETE )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,4,0))
-  QGeoRouteReply * obj = (QGeoRouteReply *) _qt5xhb_itemGetPtrStackSelfItem();
+  QGeoRouteReply * obj = (QGeoRouteReply *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -104,7 +108,7 @@ bool isFinished() const
 HB_FUNC_STATIC( QGEOROUTEREPLY_ISFINISHED )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,4,0))
-  QGeoRouteReply * obj = (QGeoRouteReply *) _qt5xhb_itemGetPtrStackSelfItem();
+  QGeoRouteReply * obj = (QGeoRouteReply *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -112,7 +116,7 @@ HB_FUNC_STATIC( QGEOROUTEREPLY_ISFINISHED )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->isFinished () );
+      RBOOL( obj->isFinished() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -125,12 +129,12 @@ HB_FUNC_STATIC( QGEOROUTEREPLY_ISFINISHED )
 }
 
 /*
-Error error() const
+QGeoRouteReply::Error error() const
 */
 HB_FUNC_STATIC( QGEOROUTEREPLY_ERROR )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,4,0))
-  QGeoRouteReply * obj = (QGeoRouteReply *) _qt5xhb_itemGetPtrStackSelfItem();
+  QGeoRouteReply * obj = (QGeoRouteReply *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -138,7 +142,7 @@ HB_FUNC_STATIC( QGEOROUTEREPLY_ERROR )
     if( ISNUMPAR(0) )
     {
 #endif
-      RENUM( obj->error () );
+      RENUM( obj->error() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -156,7 +160,7 @@ QString errorString() const
 HB_FUNC_STATIC( QGEOROUTEREPLY_ERRORSTRING )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,4,0))
-  QGeoRouteReply * obj = (QGeoRouteReply *) _qt5xhb_itemGetPtrStackSelfItem();
+  QGeoRouteReply * obj = (QGeoRouteReply *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -164,7 +168,7 @@ HB_FUNC_STATIC( QGEOROUTEREPLY_ERRORSTRING )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRING( obj->errorString () );
+      RQSTRING( obj->errorString() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -182,7 +186,7 @@ QGeoRouteRequest request() const
 HB_FUNC_STATIC( QGEOROUTEREPLY_REQUEST )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,4,0))
-  QGeoRouteReply * obj = (QGeoRouteReply *) _qt5xhb_itemGetPtrStackSelfItem();
+  QGeoRouteReply * obj = (QGeoRouteReply *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -190,8 +194,8 @@ HB_FUNC_STATIC( QGEOROUTEREPLY_REQUEST )
     if( ISNUMPAR(0) )
     {
 #endif
-      QGeoRouteRequest * ptr = new QGeoRouteRequest( obj->request () );
-      _qt5xhb_createReturnClass ( ptr, "QGEOROUTEREQUEST", true );
+      QGeoRouteRequest * ptr = new QGeoRouteRequest( obj->request() );
+      Qt5xHb::createReturnClass( ptr, "QGEOROUTEREQUEST", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -209,7 +213,7 @@ QList<QGeoRoute> routes() const
 HB_FUNC_STATIC( QGEOROUTEREPLY_ROUTES )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,4,0))
-  QGeoRouteReply * obj = (QGeoRouteReply *) _qt5xhb_itemGetPtrStackSelfItem();
+  QGeoRouteReply * obj = (QGeoRouteReply *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -217,13 +221,12 @@ HB_FUNC_STATIC( QGEOROUTEREPLY_ROUTES )
     if( ISNUMPAR(0) )
     {
 #endif
-      QList<QGeoRoute> list = obj->routes ();
+      QList<QGeoRoute> list = obj->routes();
       PHB_DYNS pDynSym = hb_dynsymFindName( "QGEOROUTE" );
       PHB_ITEM pArray = hb_itemArrayNew(0);
-      int i;
-      for(i=0;i<list.count();i++)
+      if( pDynSym )
       {
-        if( pDynSym )
+        for( int i = 0; i < list.count(); i++ )
         {
           hb_vmPushDynSym( pDynSym );
           hb_vmPushNil();
@@ -231,7 +234,7 @@ HB_FUNC_STATIC( QGEOROUTEREPLY_ROUTES )
           PHB_ITEM pObject = hb_itemNew( NULL );
           hb_itemCopy( pObject, hb_stackReturnItem() );
           PHB_ITEM pItem = hb_itemNew( NULL );
-          hb_itemPutPtr( pItem, (QGeoRoute *) new QGeoRoute ( list[i] ) );
+          hb_itemPutPtr( pItem, (QGeoRoute *) new QGeoRoute( list[i] ) );
           hb_objSendMsg( pObject, "_POINTER", 1, pItem );
           hb_itemRelease( pItem );
           PHB_ITEM pDestroy = hb_itemNew( NULL );
@@ -241,10 +244,10 @@ HB_FUNC_STATIC( QGEOROUTEREPLY_ROUTES )
           hb_arrayAddForward( pArray, pObject );
           hb_itemRelease( pObject );
         }
-        else
-        {
-          hb_errRT_BASE( EG_NOFUNC, 1001, NULL, "QGEOROUTE", HB_ERR_ARGS_BASEPARAMS );
-        }
+      }
+      else
+      {
+        hb_errRT_BASE( EG_NOFUNC, 1001, NULL, "QGEOROUTE", HB_ERR_ARGS_BASEPARAMS );
       }
       hb_itemReturnRelease(pArray);
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
@@ -264,7 +267,7 @@ virtual void abort()
 HB_FUNC_STATIC( QGEOROUTEREPLY_ABORT )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,4,0))
-  QGeoRouteReply * obj = (QGeoRouteReply *) _qt5xhb_itemGetPtrStackSelfItem();
+  QGeoRouteReply * obj = (QGeoRouteReply *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -272,7 +275,7 @@ HB_FUNC_STATIC( QGEOROUTEREPLY_ABORT )
     if( ISNUMPAR(0) )
     {
 #endif
-      obj->abort ();
+      obj->abort();
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -286,7 +289,7 @@ HB_FUNC_STATIC( QGEOROUTEREPLY_ABORT )
 #endif
 }
 
-void QGeoRouteReplySlots_connect_signal ( const QString & signal, const QString & slot );
+void QGeoRouteReplySlots_connect_signal( const QString & signal, const QString & slot );
 
 HB_FUNC_STATIC( QGEOROUTEREPLY_ONFINISHED )
 {

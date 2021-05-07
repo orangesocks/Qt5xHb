@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -34,7 +34,7 @@ CLASS QLogValue3DAxisFormatter INHERIT QValue3DAxisFormatter
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QLogValue3DAxisFormatter
+PROCEDURE destroyObject() CLASS QLogValue3DAxisFormatter
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -51,6 +51,8 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #include <QtDataVisualization/QLogValue3DAxisFormatter>
@@ -59,14 +61,14 @@ RETURN
 using namespace QtDataVisualization;
 
 /*
-explicit QLogValue3DAxisFormatter(QObject *parent = Q_NULLPTR)
+QLogValue3DAxisFormatter( QObject * parent = nullptr )
 */
 HB_FUNC_STATIC( QLOGVALUE3DAXISFORMATTER_NEW )
 {
-  if( ISBETWEEN(0,1) && (ISQOBJECT(1)||ISNIL(1)) )
+  if( ISBETWEEN(0,1) && (ISQOBJECT(1)||HB_ISNIL(1)) )
   {
-    QLogValue3DAxisFormatter * o = new QLogValue3DAxisFormatter ( OPQOBJECT(1,Q_NULLPTR) );
-    _qt5xhb_returnNewObject( o, false );
+    QLogValue3DAxisFormatter * obj = new QLogValue3DAxisFormatter( OPQOBJECT(1,nullptr) );
+    Qt5xHb::returnNewObject( obj, false );
   }
   else
   {
@@ -75,18 +77,16 @@ HB_FUNC_STATIC( QLOGVALUE3DAXISFORMATTER_NEW )
 }
 
 /*
-explicit QLogValue3DAxisFormatter(QLogValue3DAxisFormatterPrivate *d, QObject *parent = Q_NULLPTR) [protected]
-*/
-
-/*
 virtual ~QLogValue3DAxisFormatter()
 */
 HB_FUNC_STATIC( QLOGVALUE3DAXISFORMATTER_DELETE )
 {
-  QLogValue3DAxisFormatter * obj = (QLogValue3DAxisFormatter *) _qt5xhb_itemGetPtrStackSelfItem();
+  QLogValue3DAxisFormatter * obj = (QLogValue3DAxisFormatter *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -103,7 +103,7 @@ qreal base() const
 */
 HB_FUNC_STATIC( QLOGVALUE3DAXISFORMATTER_BASE )
 {
-  QLogValue3DAxisFormatter * obj = (QLogValue3DAxisFormatter *) _qt5xhb_itemGetPtrStackSelfItem();
+  QLogValue3DAxisFormatter * obj = (QLogValue3DAxisFormatter *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -111,7 +111,7 @@ HB_FUNC_STATIC( QLOGVALUE3DAXISFORMATTER_BASE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQREAL( obj->base () );
+      RQREAL( obj->base() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -123,19 +123,19 @@ HB_FUNC_STATIC( QLOGVALUE3DAXISFORMATTER_BASE )
 }
 
 /*
-void setBase(qreal base)
+void setBase( qreal base )
 */
 HB_FUNC_STATIC( QLOGVALUE3DAXISFORMATTER_SETBASE )
 {
-  QLogValue3DAxisFormatter * obj = (QLogValue3DAxisFormatter *) _qt5xhb_itemGetPtrStackSelfItem();
+  QLogValue3DAxisFormatter * obj = (QLogValue3DAxisFormatter *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setBase ( PQREAL(1) );
+      obj->setBase( PQREAL(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -153,7 +153,7 @@ bool autoSubGrid() const
 */
 HB_FUNC_STATIC( QLOGVALUE3DAXISFORMATTER_AUTOSUBGRID )
 {
-  QLogValue3DAxisFormatter * obj = (QLogValue3DAxisFormatter *) _qt5xhb_itemGetPtrStackSelfItem();
+  QLogValue3DAxisFormatter * obj = (QLogValue3DAxisFormatter *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -161,7 +161,7 @@ HB_FUNC_STATIC( QLOGVALUE3DAXISFORMATTER_AUTOSUBGRID )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->autoSubGrid () );
+      RBOOL( obj->autoSubGrid() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -173,19 +173,19 @@ HB_FUNC_STATIC( QLOGVALUE3DAXISFORMATTER_AUTOSUBGRID )
 }
 
 /*
-void setAutoSubGrid(bool enabled)
+void setAutoSubGrid( bool enabled )
 */
 HB_FUNC_STATIC( QLOGVALUE3DAXISFORMATTER_SETAUTOSUBGRID )
 {
-  QLogValue3DAxisFormatter * obj = (QLogValue3DAxisFormatter *) _qt5xhb_itemGetPtrStackSelfItem();
+  QLogValue3DAxisFormatter * obj = (QLogValue3DAxisFormatter *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISLOG(1) )
+    if( ISNUMPAR(1) && HB_ISLOG(1) )
     {
 #endif
-      obj->setAutoSubGrid ( PBOOL(1) );
+      obj->setAutoSubGrid( PBOOL(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -203,7 +203,7 @@ bool showEdgeLabels() const
 */
 HB_FUNC_STATIC( QLOGVALUE3DAXISFORMATTER_SHOWEDGELABELS )
 {
-  QLogValue3DAxisFormatter * obj = (QLogValue3DAxisFormatter *) _qt5xhb_itemGetPtrStackSelfItem();
+  QLogValue3DAxisFormatter * obj = (QLogValue3DAxisFormatter *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -211,7 +211,7 @@ HB_FUNC_STATIC( QLOGVALUE3DAXISFORMATTER_SHOWEDGELABELS )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->showEdgeLabels () );
+      RBOOL( obj->showEdgeLabels() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -223,19 +223,19 @@ HB_FUNC_STATIC( QLOGVALUE3DAXISFORMATTER_SHOWEDGELABELS )
 }
 
 /*
-void setShowEdgeLabels(bool enabled)
+void setShowEdgeLabels( bool enabled )
 */
 HB_FUNC_STATIC( QLOGVALUE3DAXISFORMATTER_SETSHOWEDGELABELS )
 {
-  QLogValue3DAxisFormatter * obj = (QLogValue3DAxisFormatter *) _qt5xhb_itemGetPtrStackSelfItem();
+  QLogValue3DAxisFormatter * obj = (QLogValue3DAxisFormatter *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISLOG(1) )
+    if( ISNUMPAR(1) && HB_ISLOG(1) )
     {
 #endif
-      obj->setShowEdgeLabels ( PBOOL(1) );
+      obj->setShowEdgeLabels( PBOOL(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -248,27 +248,7 @@ HB_FUNC_STATIC( QLOGVALUE3DAXISFORMATTER_SETSHOWEDGELABELS )
   hb_itemReturn( hb_stackSelfItem() );
 }
 
-/*
-virtual QValue3DAxisFormatter *createNewInstance() const [protected]
-*/
-
-/*
-virtual void recalculate() [protected]
-*/
-
-/*
-virtual float positionAt(float value) const [protected]
-*/
-
-/*
-virtual float valueAt(float position) const [protected]
-*/
-
-/*
-virtual void populateCopy(QValue3DAxisFormatter &copy) const [protected]
-*/
-
-void QLogValue3DAxisFormatterSlots_connect_signal ( const QString & signal, const QString & slot );
+void QLogValue3DAxisFormatterSlots_connect_signal( const QString & signal, const QString & slot );
 
 HB_FUNC_STATIC( QLOGVALUE3DAXISFORMATTER_ONAUTOSUBGRIDCHANGED )
 {

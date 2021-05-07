@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -13,25 +13,25 @@
 #ifndef QT5XHB_MACROS_QTWEBENGINEWIDGETS_H
 #define QT5XHB_MACROS_QTWEBENGINEWIDGETS_H
 
-#define ISQWEBENGINECERTIFICATEERROR(n)                     _qt5xhb_isObjectDerivedFrom(n,"QWebEngineCertificateError")
-#define ISQWEBENGINEHISTORY(n)                              _qt5xhb_isObjectDerivedFrom(n,"QWebEngineHistory")
-#define ISQWEBENGINEHISTORYITEM(n)                          _qt5xhb_isObjectDerivedFrom(n,"QWebEngineHistoryItem")
-#define ISQWEBENGINEPAGE(n)                                 _qt5xhb_isObjectDerivedFrom(n,"QWebEnginePage")
-#define ISQWEBENGINESETTINGS(n)                             _qt5xhb_isObjectDerivedFrom(n,"QWebEngineSettings")
-#define ISQWEBENGINEVIEW(n)                                 _qt5xhb_isObjectDerivedFrom(n,"QWebEngineView")
+#define ISQWEBENGINECERTIFICATEERROR( n )                   Qt5xHb::isObjectDerivedFrom( n, "QWebEngineCertificateError" )
+#define ISQWEBENGINEHISTORY( n )                            Qt5xHb::isObjectDerivedFrom( n, "QWebEngineHistory" )
+#define ISQWEBENGINEHISTORYITEM( n )                        Qt5xHb::isObjectDerivedFrom( n, "QWebEngineHistoryItem" )
+#define ISQWEBENGINEPAGE( n )                               Qt5xHb::isObjectDerivedFrom( n, "QWebEnginePage" )
+#define ISQWEBENGINESETTINGS( n )                           Qt5xHb::isObjectDerivedFrom( n, "QWebEngineSettings" )
+#define ISQWEBENGINEVIEW( n )                               Qt5xHb::isObjectDerivedFrom( n, "QWebEngineView" )
 
-#define PQWEBENGINECERTIFICATEERROR(n)                      (QWebEngineCertificateError *) _qt5xhb_itemGetPtr(n)
-#define PQWEBENGINEHISTORY(n)                               (QWebEngineHistory *) _qt5xhb_itemGetPtr(n)
-#define PQWEBENGINEHISTORYITEM(n)                           (QWebEngineHistoryItem *) _qt5xhb_itemGetPtr(n)
-#define PQWEBENGINEPAGE(n)                                  (QWebEnginePage *) _qt5xhb_itemGetPtr(n)
-#define PQWEBENGINESETTINGS(n)                              (QWebEngineSettings *) _qt5xhb_itemGetPtr(n)
-#define PQWEBENGINEVIEW(n)                                  (QWebEngineView *) _qt5xhb_itemGetPtr(n)
+#define PQWEBENGINECERTIFICATEERROR( n )                    static_cast< QWebEngineCertificateError * >( Qt5xHb::itemGetPtr( n ) )
+#define PQWEBENGINEHISTORY( n )                             static_cast< QWebEngineHistory * >( Qt5xHb::itemGetPtr( n ) )
+#define PQWEBENGINEHISTORYITEM( n )                         static_cast< QWebEngineHistoryItem * >( Qt5xHb::itemGetPtr( n ) )
+#define PQWEBENGINEPAGE( n )                                static_cast< QWebEnginePage * >( Qt5xHb::itemGetPtr( n ) )
+#define PQWEBENGINESETTINGS( n )                            static_cast< QWebEngineSettings * >( Qt5xHb::itemGetPtr( n ) )
+#define PQWEBENGINEVIEW( n )                                static_cast< QWebEngineView * >( Qt5xHb::itemGetPtr( n ) )
 
-#define OPQWEBENGINECERTIFICATEERROR(n,v)                   ISNIL(n)? v : (QWebEngineCertificateError *) _qt5xhb_itemGetPtr(n)
-#define OPQWEBENGINEHISTORY(n,v)                            ISNIL(n)? v : (QWebEngineHistory *) _qt5xhb_itemGetPtr(n)
-#define OPQWEBENGINEHISTORYITEM(n,v)                        ISNIL(n)? v : (QWebEngineHistoryItem *) _qt5xhb_itemGetPtr(n)
-#define OPQWEBENGINEPAGE(n,v)                               ISNIL(n)? v : (QWebEnginePage *) _qt5xhb_itemGetPtr(n)
-#define OPQWEBENGINESETTINGS(n,v)                           ISNIL(n)? v : (QWebEngineSettings *) _qt5xhb_itemGetPtr(n)
-#define OPQWEBENGINEVIEW(n,v)                               ISNIL(n)? v : (QWebEngineView *) _qt5xhb_itemGetPtr(n)
+#define OPQWEBENGINECERTIFICATEERROR( n, v )                HB_ISNIL( n ) ? v : static_cast< QWebEngineCertificateError * >( Qt5xHb::itemGetPtr( n ) )
+#define OPQWEBENGINEHISTORY( n, v )                         HB_ISNIL( n ) ? v : static_cast< QWebEngineHistory * >( Qt5xHb::itemGetPtr( n ) )
+#define OPQWEBENGINEHISTORYITEM( n, v )                     HB_ISNIL( n ) ? v : static_cast< QWebEngineHistoryItem * >( Qt5xHb::itemGetPtr( n ) )
+#define OPQWEBENGINEPAGE( n, v )                            HB_ISNIL( n ) ? v : static_cast< QWebEnginePage * >( Qt5xHb::itemGetPtr( n ) )
+#define OPQWEBENGINESETTINGS( n, v )                        HB_ISNIL( n ) ? v : static_cast< QWebEngineSettings * >( Qt5xHb::itemGetPtr( n ) )
+#define OPQWEBENGINEVIEW( n, v )                            HB_ISNIL( n ) ? v : static_cast< QWebEngineView * >( Qt5xHb::itemGetPtr( n ) )
 
 #endif /* QT5XHB_MACROS_QTWEBENGINEWIDGETS_H */

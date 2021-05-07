@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -39,7 +39,7 @@ CLASS QTableWidgetSelectionRange
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QTableWidgetSelectionRange
+PROCEDURE destroyObject() CLASS QTableWidgetSelectionRange
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -64,33 +64,29 @@ RETURN
 /*
 QTableWidgetSelectionRange()
 */
-void QTableWidgetSelectionRange_new1 ()
+void QTableWidgetSelectionRange_new1()
 {
-  QTableWidgetSelectionRange * o = new QTableWidgetSelectionRange ();
-  _qt5xhb_returnNewObject( o, true );
+  QTableWidgetSelectionRange * obj = new QTableWidgetSelectionRange();
+  Qt5xHb::returnNewObject( obj, true );
 }
 
 /*
-QTableWidgetSelectionRange(int top, int left, int bottom, int right)
+QTableWidgetSelectionRange( int top, int left, int bottom, int right )
 */
-void QTableWidgetSelectionRange_new2 ()
+void QTableWidgetSelectionRange_new2()
 {
-  QTableWidgetSelectionRange * o = new QTableWidgetSelectionRange ( PINT(1), PINT(2), PINT(3), PINT(4) );
-  _qt5xhb_returnNewObject( o, true );
+  QTableWidgetSelectionRange * obj = new QTableWidgetSelectionRange( PINT(1), PINT(2), PINT(3), PINT(4) );
+  Qt5xHb::returnNewObject( obj, true );
 }
 
 /*
-QTableWidgetSelectionRange(const QTableWidgetSelectionRange & other)
+QTableWidgetSelectionRange( const QTableWidgetSelectionRange & other )
 */
-void QTableWidgetSelectionRange_new3 ()
+void QTableWidgetSelectionRange_new3()
 {
-  QTableWidgetSelectionRange * o = new QTableWidgetSelectionRange ( *PQTABLEWIDGETSELECTIONRANGE(1) );
-  _qt5xhb_returnNewObject( o, true );
+  QTableWidgetSelectionRange * obj = new QTableWidgetSelectionRange( *PQTABLEWIDGETSELECTIONRANGE(1) );
+  Qt5xHb::returnNewObject( obj, true );
 }
-
-//[1]QTableWidgetSelectionRange()
-//[2]QTableWidgetSelectionRange(int top, int left, int bottom, int right)
-//[3]QTableWidgetSelectionRange(const QTableWidgetSelectionRange & other)
 
 HB_FUNC_STATIC( QTABLEWIDGETSELECTIONRANGE_NEW )
 {
@@ -98,7 +94,7 @@ HB_FUNC_STATIC( QTABLEWIDGETSELECTIONRANGE_NEW )
   {
     QTableWidgetSelectionRange_new1();
   }
-  else if( ISNUMPAR(4) && ISNUM(1) && ISNUM(2) && ISNUM(3) && ISNUM(4) )
+  else if( ISNUMPAR(4) && HB_ISNUM(1) && HB_ISNUM(2) && HB_ISNUM(3) && HB_ISNUM(4) )
   {
     QTableWidgetSelectionRange_new2();
   }
@@ -114,7 +110,7 @@ HB_FUNC_STATIC( QTABLEWIDGETSELECTIONRANGE_NEW )
 
 HB_FUNC_STATIC( QTABLEWIDGETSELECTIONRANGE_DELETE )
 {
-  QTableWidgetSelectionRange * obj = (QTableWidgetSelectionRange *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTableWidgetSelectionRange * obj = (QTableWidgetSelectionRange *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -134,7 +130,7 @@ int bottomRow() const
 */
 HB_FUNC_STATIC( QTABLEWIDGETSELECTIONRANGE_BOTTOMROW )
 {
-  QTableWidgetSelectionRange * obj = (QTableWidgetSelectionRange *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTableWidgetSelectionRange * obj = (QTableWidgetSelectionRange *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -142,7 +138,7 @@ HB_FUNC_STATIC( QTABLEWIDGETSELECTIONRANGE_BOTTOMROW )
     if( ISNUMPAR(0) )
     {
 #endif
-      RINT( obj->bottomRow () );
+      RINT( obj->bottomRow() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -158,7 +154,7 @@ int columnCount() const
 */
 HB_FUNC_STATIC( QTABLEWIDGETSELECTIONRANGE_COLUMNCOUNT )
 {
-  QTableWidgetSelectionRange * obj = (QTableWidgetSelectionRange *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTableWidgetSelectionRange * obj = (QTableWidgetSelectionRange *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -166,7 +162,7 @@ HB_FUNC_STATIC( QTABLEWIDGETSELECTIONRANGE_COLUMNCOUNT )
     if( ISNUMPAR(0) )
     {
 #endif
-      RINT( obj->columnCount () );
+      RINT( obj->columnCount() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -182,7 +178,7 @@ int leftColumn() const
 */
 HB_FUNC_STATIC( QTABLEWIDGETSELECTIONRANGE_LEFTCOLUMN )
 {
-  QTableWidgetSelectionRange * obj = (QTableWidgetSelectionRange *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTableWidgetSelectionRange * obj = (QTableWidgetSelectionRange *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -190,7 +186,7 @@ HB_FUNC_STATIC( QTABLEWIDGETSELECTIONRANGE_LEFTCOLUMN )
     if( ISNUMPAR(0) )
     {
 #endif
-      RINT( obj->leftColumn () );
+      RINT( obj->leftColumn() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -206,7 +202,7 @@ int rightColumn() const
 */
 HB_FUNC_STATIC( QTABLEWIDGETSELECTIONRANGE_RIGHTCOLUMN )
 {
-  QTableWidgetSelectionRange * obj = (QTableWidgetSelectionRange *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTableWidgetSelectionRange * obj = (QTableWidgetSelectionRange *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -214,7 +210,7 @@ HB_FUNC_STATIC( QTABLEWIDGETSELECTIONRANGE_RIGHTCOLUMN )
     if( ISNUMPAR(0) )
     {
 #endif
-      RINT( obj->rightColumn () );
+      RINT( obj->rightColumn() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -230,7 +226,7 @@ int rowCount() const
 */
 HB_FUNC_STATIC( QTABLEWIDGETSELECTIONRANGE_ROWCOUNT )
 {
-  QTableWidgetSelectionRange * obj = (QTableWidgetSelectionRange *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTableWidgetSelectionRange * obj = (QTableWidgetSelectionRange *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -238,7 +234,7 @@ HB_FUNC_STATIC( QTABLEWIDGETSELECTIONRANGE_ROWCOUNT )
     if( ISNUMPAR(0) )
     {
 #endif
-      RINT( obj->rowCount () );
+      RINT( obj->rowCount() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -254,7 +250,7 @@ int topRow() const
 */
 HB_FUNC_STATIC( QTABLEWIDGETSELECTIONRANGE_TOPROW )
 {
-  QTableWidgetSelectionRange * obj = (QTableWidgetSelectionRange *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTableWidgetSelectionRange * obj = (QTableWidgetSelectionRange *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -262,7 +258,7 @@ HB_FUNC_STATIC( QTABLEWIDGETSELECTIONRANGE_TOPROW )
     if( ISNUMPAR(0) )
     {
 #endif
-      RINT( obj->topRow () );
+      RINT( obj->topRow() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -277,7 +273,7 @@ HB_FUNC_STATIC( QTABLEWIDGETSELECTIONRANGE_NEWFROM )
 {
   PHB_ITEM self = hb_stackSelfItem();
 
-  if( hb_pcount() == 1 && ISOBJECT(1) )
+  if( hb_pcount() == 1 && HB_ISOBJECT(1) )
   {
     PHB_ITEM ptr = hb_itemPutPtr( NULL, (void *) hb_itemGetPtr( hb_objSendMsg( hb_param(1, HB_IT_OBJECT ), "POINTER", 0 ) ) );
     hb_objSendMsg( self, "_pointer", 1, ptr );
@@ -286,7 +282,7 @@ HB_FUNC_STATIC( QTABLEWIDGETSELECTIONRANGE_NEWFROM )
     hb_objSendMsg( self, "_self_destruction", 1, des );
     hb_itemRelease( des );
   }
-  else if( hb_pcount() == 1 && ISPOINTER(1) )
+  else if( hb_pcount() == 1 && HB_ISPOINTER(1) )
   {
     PHB_ITEM ptr = hb_itemPutPtr( NULL, (void *) hb_itemGetPtr( hb_param(1, HB_IT_POINTER ) ) );
     hb_objSendMsg( self, "_pointer", 1, ptr );
@@ -322,7 +318,7 @@ HB_FUNC_STATIC( QTABLEWIDGETSELECTIONRANGE_SETSELFDESTRUCTION )
 {
   PHB_ITEM self = hb_stackSelfItem();
 
-  if( hb_pcount() == 1 && ISLOG(1) )
+  if( hb_pcount() == 1 && HB_ISLOG(1) )
   {
     PHB_ITEM des = hb_itemPutL( NULL, hb_parl(1) );
     hb_objSendMsg( self, "_self_destruction", 1, des );

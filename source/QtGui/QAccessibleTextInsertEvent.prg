@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -26,7 +26,7 @@ CLASS QAccessibleTextInsertEvent INHERIT QAccessibleTextCursorEvent
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QAccessibleTextInsertEvent
+PROCEDURE destroyObject() CLASS QAccessibleTextInsertEvent
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -49,14 +49,14 @@ RETURN
 #endif
 
 /*
-QAccessibleTextInsertEvent(QObject *obj, int position, const QString &text)
+QAccessibleTextInsertEvent( QObject * obj, int position, const QString & text )
 */
 HB_FUNC_STATIC( QACCESSIBLETEXTINSERTEVENT_NEW )
 {
-  if( ISNUMPAR(3) && ISQOBJECT(1) && ISNUM(2) && ISCHAR(3) )
+  if( ISNUMPAR(3) && ISQOBJECT(1) && HB_ISNUM(2) && HB_ISCHAR(3) )
   {
-    QAccessibleTextInsertEvent * o = new QAccessibleTextInsertEvent ( PQOBJECT(1), PINT(2), PQSTRING(3) );
-    _qt5xhb_returnNewObject( o, false );
+    QAccessibleTextInsertEvent * obj = new QAccessibleTextInsertEvent( PQOBJECT(1), PINT(2), PQSTRING(3) );
+    Qt5xHb::returnNewObject( obj, true );
   }
   else
   {
@@ -66,7 +66,7 @@ HB_FUNC_STATIC( QACCESSIBLETEXTINSERTEVENT_NEW )
 
 HB_FUNC_STATIC( QACCESSIBLETEXTINSERTEVENT_DELETE )
 {
-  QAccessibleTextInsertEvent * obj = (QAccessibleTextInsertEvent *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAccessibleTextInsertEvent * obj = (QAccessibleTextInsertEvent *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -86,7 +86,7 @@ QString textInserted() const
 */
 HB_FUNC_STATIC( QACCESSIBLETEXTINSERTEVENT_TEXTINSERTED )
 {
-  QAccessibleTextInsertEvent * obj = (QAccessibleTextInsertEvent *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAccessibleTextInsertEvent * obj = (QAccessibleTextInsertEvent *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -94,7 +94,7 @@ HB_FUNC_STATIC( QACCESSIBLETEXTINSERTEVENT_TEXTINSERTED )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRING( obj->textInserted () );
+      RQSTRING( obj->textInserted() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -110,7 +110,7 @@ int changePosition() const
 */
 HB_FUNC_STATIC( QACCESSIBLETEXTINSERTEVENT_CHANGEPOSITION )
 {
-  QAccessibleTextInsertEvent * obj = (QAccessibleTextInsertEvent *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAccessibleTextInsertEvent * obj = (QAccessibleTextInsertEvent *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -118,7 +118,7 @@ HB_FUNC_STATIC( QACCESSIBLETEXTINSERTEVENT_CHANGEPOSITION )
     if( ISNUMPAR(0) )
     {
 #endif
-      RINT( obj->changePosition () );
+      RINT( obj->changePosition() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else

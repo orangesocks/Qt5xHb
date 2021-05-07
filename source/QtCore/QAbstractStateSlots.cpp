@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -12,39 +12,49 @@
 
 #include "QAbstractStateSlots.h"
 
-QAbstractStateSlots::QAbstractStateSlots(QObject *parent) : QObject(parent)
+QAbstractStateSlots::QAbstractStateSlots( QObject *parent ) : QObject( parent )
 {
 }
 
 QAbstractStateSlots::~QAbstractStateSlots()
 {
 }
+
 void QAbstractStateSlots::entered()
 {
   QObject *object = qobject_cast<QObject *>(sender());
-  PHB_ITEM cb = Signals_return_codeblock( object, "entered()" );
+
+  PHB_ITEM cb = Qt5xHb::Signals_return_codeblock( object, "entered()" );
+
   if( cb )
   {
-    PHB_ITEM psender = Signals_return_qobject ( (QObject *) object, "QABSTRACTSTATE" );
-    hb_vmEvalBlockV( (PHB_ITEM) cb, 1, psender );
-    hb_itemRelease( psender );
-  }
-}
-void QAbstractStateSlots::exited()
-{
-  QObject *object = qobject_cast<QObject *>(sender());
-  PHB_ITEM cb = Signals_return_codeblock( object, "exited()" );
-  if( cb )
-  {
-    PHB_ITEM psender = Signals_return_qobject ( (QObject *) object, "QABSTRACTSTATE" );
-    hb_vmEvalBlockV( (PHB_ITEM) cb, 1, psender );
+    PHB_ITEM psender = Qt5xHb::Signals_return_qobject( (QObject *) object, "QABSTRACTSTATE" );
+
+    hb_vmEvalBlockV( cb, 1, psender );
+
     hb_itemRelease( psender );
   }
 }
 
-void QAbstractStateSlots_connect_signal ( const QString & signal, const QString & slot )
+void QAbstractStateSlots::exited()
 {
-  QAbstractState * obj = (QAbstractState *) hb_itemGetPtr( hb_objSendMsg( hb_stackSelfItem(), "POINTER", 0 ) );
+  QObject *object = qobject_cast<QObject *>(sender());
+
+  PHB_ITEM cb = Qt5xHb::Signals_return_codeblock( object, "exited()" );
+
+  if( cb )
+  {
+    PHB_ITEM psender = Qt5xHb::Signals_return_qobject( (QObject *) object, "QABSTRACTSTATE" );
+
+    hb_vmEvalBlockV( cb, 1, psender );
+
+    hb_itemRelease( psender );
+  }
+}
+
+void QAbstractStateSlots_connect_signal( const QString & signal, const QString & slot )
+{
+  QAbstractState * obj = (QAbstractState *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -57,7 +67,7 @@ void QAbstractStateSlots_connect_signal ( const QString & signal, const QString 
       s->setParent( QCoreApplication::instance() );
     }
 
-    hb_retl( Signals_connection_disconnection( s, signal, slot ) );
+    hb_retl( Qt5xHb::Signals_connection_disconnection( s, signal, slot ) );
   }
   else
   {

@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -27,7 +27,7 @@ CLASS QResizeEvent INHERIT QEvent
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QResizeEvent
+PROCEDURE destroyObject() CLASS QResizeEvent
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -50,14 +50,14 @@ RETURN
 #endif
 
 /*
-QResizeEvent(const QSize &size, const QSize &oldSize)
+QResizeEvent( const QSize & size, const QSize & oldSize )
 */
 HB_FUNC_STATIC( QRESIZEEVENT_NEW )
 {
   if( ISNUMPAR(2) && ISQSIZE(1) && ISQSIZE(2) )
   {
-    QResizeEvent * o = new QResizeEvent ( *PQSIZE(1), *PQSIZE(2) );
-    _qt5xhb_returnNewObject( o, false );
+    QResizeEvent * obj = new QResizeEvent( *PQSIZE(1), *PQSIZE(2) );
+    Qt5xHb::returnNewObject( obj, false );
   }
   else
   {
@@ -67,7 +67,7 @@ HB_FUNC_STATIC( QRESIZEEVENT_NEW )
 
 HB_FUNC_STATIC( QRESIZEEVENT_DELETE )
 {
-  QResizeEvent * obj = (QResizeEvent *) _qt5xhb_itemGetPtrStackSelfItem();
+  QResizeEvent * obj = (QResizeEvent *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -83,11 +83,11 @@ HB_FUNC_STATIC( QRESIZEEVENT_DELETE )
 }
 
 /*
-const QSize &size() const
+const QSize & size() const
 */
 HB_FUNC_STATIC( QRESIZEEVENT_SIZE )
 {
-  QResizeEvent * obj = (QResizeEvent *) _qt5xhb_itemGetPtrStackSelfItem();
+  QResizeEvent * obj = (QResizeEvent *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -95,8 +95,8 @@ HB_FUNC_STATIC( QRESIZEEVENT_SIZE )
     if( ISNUMPAR(0) )
     {
 #endif
-      const QSize * ptr = &obj->size ();
-      _qt5xhb_createReturnClass ( ptr, "QSIZE", false );
+      const QSize * ptr = &obj->size();
+      Qt5xHb::createReturnClass( ptr, "QSIZE", false );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -108,11 +108,11 @@ HB_FUNC_STATIC( QRESIZEEVENT_SIZE )
 }
 
 /*
-const QSize &oldSize() const
+const QSize & oldSize() const
 */
 HB_FUNC_STATIC( QRESIZEEVENT_OLDSIZE )
 {
-  QResizeEvent * obj = (QResizeEvent *) _qt5xhb_itemGetPtrStackSelfItem();
+  QResizeEvent * obj = (QResizeEvent *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -120,8 +120,8 @@ HB_FUNC_STATIC( QRESIZEEVENT_OLDSIZE )
     if( ISNUMPAR(0) )
     {
 #endif
-      const QSize * ptr = &obj->oldSize ();
-      _qt5xhb_createReturnClass ( ptr, "QSIZE", false );
+      const QSize * ptr = &obj->oldSize();
+      Qt5xHb::createReturnClass( ptr, "QSIZE", false );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else

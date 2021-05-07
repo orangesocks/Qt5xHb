@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -32,7 +32,7 @@ CLASS QDomDocumentType INHERIT QDomNode
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QDomDocumentType
+PROCEDURE destroyObject() CLASS QDomDocumentType
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -55,25 +55,22 @@ RETURN
 #endif
 
 /*
-QDomDocumentType ()
+QDomDocumentType()
 */
-void QDomDocumentType_new1 ()
+void QDomDocumentType_new1()
 {
-  QDomDocumentType * o = new QDomDocumentType ();
-  _qt5xhb_returnNewObject( o, true );
+  QDomDocumentType * obj = new QDomDocumentType();
+  Qt5xHb::returnNewObject( obj, true );
 }
 
 /*
-QDomDocumentType ( const QDomDocumentType & n )
+QDomDocumentType( const QDomDocumentType & n )
 */
-void QDomDocumentType_new2 ()
+void QDomDocumentType_new2()
 {
-  QDomDocumentType * o = new QDomDocumentType ( *PQDOMDOCUMENTTYPE(1) );
-  _qt5xhb_returnNewObject( o, true );
+  QDomDocumentType * obj = new QDomDocumentType( *PQDOMDOCUMENTTYPE(1) );
+  Qt5xHb::returnNewObject( obj, true );
 }
-
-//[1]QDomDocumentType ()
-//[2]QDomDocumentType ( const QDomDocumentType & n )
 
 HB_FUNC_STATIC( QDOMDOCUMENTTYPE_NEW )
 {
@@ -93,7 +90,7 @@ HB_FUNC_STATIC( QDOMDOCUMENTTYPE_NEW )
 
 HB_FUNC_STATIC( QDOMDOCUMENTTYPE_DELETE )
 {
-  QDomDocumentType * obj = (QDomDocumentType *) _qt5xhb_itemGetPtrStackSelfItem();
+  QDomDocumentType * obj = (QDomDocumentType *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -109,11 +106,11 @@ HB_FUNC_STATIC( QDOMDOCUMENTTYPE_DELETE )
 }
 
 /*
-QDomNamedNodeMap entities () const
+QDomNamedNodeMap entities() const
 */
 HB_FUNC_STATIC( QDOMDOCUMENTTYPE_ENTITIES )
 {
-  QDomDocumentType * obj = (QDomDocumentType *) _qt5xhb_itemGetPtrStackSelfItem();
+  QDomDocumentType * obj = (QDomDocumentType *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -121,8 +118,8 @@ HB_FUNC_STATIC( QDOMDOCUMENTTYPE_ENTITIES )
     if( ISNUMPAR(0) )
     {
 #endif
-      QDomNamedNodeMap * ptr = new QDomNamedNodeMap( obj->entities () );
-      _qt5xhb_createReturnClass ( ptr, "QDOMNAMEDNODEMAP", true );
+      QDomNamedNodeMap * ptr = new QDomNamedNodeMap( obj->entities() );
+      Qt5xHb::createReturnClass( ptr, "QDOMNAMEDNODEMAP", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -134,11 +131,11 @@ HB_FUNC_STATIC( QDOMDOCUMENTTYPE_ENTITIES )
 }
 
 /*
-QString internalSubset () const
+QString internalSubset() const
 */
 HB_FUNC_STATIC( QDOMDOCUMENTTYPE_INTERNALSUBSET )
 {
-  QDomDocumentType * obj = (QDomDocumentType *) _qt5xhb_itemGetPtrStackSelfItem();
+  QDomDocumentType * obj = (QDomDocumentType *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -146,7 +143,7 @@ HB_FUNC_STATIC( QDOMDOCUMENTTYPE_INTERNALSUBSET )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRING( obj->internalSubset () );
+      RQSTRING( obj->internalSubset() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -158,11 +155,11 @@ HB_FUNC_STATIC( QDOMDOCUMENTTYPE_INTERNALSUBSET )
 }
 
 /*
-QString name () const
+QString name() const
 */
 HB_FUNC_STATIC( QDOMDOCUMENTTYPE_NAME )
 {
-  QDomDocumentType * obj = (QDomDocumentType *) _qt5xhb_itemGetPtrStackSelfItem();
+  QDomDocumentType * obj = (QDomDocumentType *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -170,7 +167,7 @@ HB_FUNC_STATIC( QDOMDOCUMENTTYPE_NAME )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRING( obj->name () );
+      RQSTRING( obj->name() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -182,11 +179,11 @@ HB_FUNC_STATIC( QDOMDOCUMENTTYPE_NAME )
 }
 
 /*
-QDomNode::NodeType nodeType () const
+QDomNode::NodeType nodeType() const
 */
 HB_FUNC_STATIC( QDOMDOCUMENTTYPE_NODETYPE )
 {
-  QDomDocumentType * obj = (QDomDocumentType *) _qt5xhb_itemGetPtrStackSelfItem();
+  QDomDocumentType * obj = (QDomDocumentType *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -194,7 +191,7 @@ HB_FUNC_STATIC( QDOMDOCUMENTTYPE_NODETYPE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RENUM( obj->nodeType () );
+      RENUM( obj->nodeType() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -206,11 +203,11 @@ HB_FUNC_STATIC( QDOMDOCUMENTTYPE_NODETYPE )
 }
 
 /*
-QDomNamedNodeMap notations () const
+QDomNamedNodeMap notations() const
 */
 HB_FUNC_STATIC( QDOMDOCUMENTTYPE_NOTATIONS )
 {
-  QDomDocumentType * obj = (QDomDocumentType *) _qt5xhb_itemGetPtrStackSelfItem();
+  QDomDocumentType * obj = (QDomDocumentType *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -218,8 +215,8 @@ HB_FUNC_STATIC( QDOMDOCUMENTTYPE_NOTATIONS )
     if( ISNUMPAR(0) )
     {
 #endif
-      QDomNamedNodeMap * ptr = new QDomNamedNodeMap( obj->notations () );
-      _qt5xhb_createReturnClass ( ptr, "QDOMNAMEDNODEMAP", true );
+      QDomNamedNodeMap * ptr = new QDomNamedNodeMap( obj->notations() );
+      Qt5xHb::createReturnClass( ptr, "QDOMNAMEDNODEMAP", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -231,11 +228,11 @@ HB_FUNC_STATIC( QDOMDOCUMENTTYPE_NOTATIONS )
 }
 
 /*
-QString publicId () const
+QString publicId() const
 */
 HB_FUNC_STATIC( QDOMDOCUMENTTYPE_PUBLICID )
 {
-  QDomDocumentType * obj = (QDomDocumentType *) _qt5xhb_itemGetPtrStackSelfItem();
+  QDomDocumentType * obj = (QDomDocumentType *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -243,7 +240,7 @@ HB_FUNC_STATIC( QDOMDOCUMENTTYPE_PUBLICID )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRING( obj->publicId () );
+      RQSTRING( obj->publicId() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -255,11 +252,11 @@ HB_FUNC_STATIC( QDOMDOCUMENTTYPE_PUBLICID )
 }
 
 /*
-QString systemId () const
+QString systemId() const
 */
 HB_FUNC_STATIC( QDOMDOCUMENTTYPE_SYSTEMID )
 {
-  QDomDocumentType * obj = (QDomDocumentType *) _qt5xhb_itemGetPtrStackSelfItem();
+  QDomDocumentType * obj = (QDomDocumentType *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -267,7 +264,7 @@ HB_FUNC_STATIC( QDOMDOCUMENTTYPE_SYSTEMID )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRING( obj->systemId () );
+      RQSTRING( obj->systemId() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else

@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -67,7 +67,7 @@ CLASS QScreen INHERIT QObject
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QScreen
+PROCEDURE destroyObject() CLASS QScreen
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -84,6 +84,8 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #include <QtGui/QScreen>
@@ -93,10 +95,12 @@ RETURN
 
 HB_FUNC_STATIC( QSCREEN_DELETE )
 {
-  QScreen * obj = (QScreen *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScreen * obj = (QScreen *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -109,15 +113,11 @@ HB_FUNC_STATIC( QSCREEN_DELETE )
 }
 
 /*
-QPlatformScreen *handle() const
-*/
-
-/*
 QString name() const
 */
 HB_FUNC_STATIC( QSCREEN_NAME )
 {
-  QScreen * obj = (QScreen *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScreen * obj = (QScreen *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -125,7 +125,7 @@ HB_FUNC_STATIC( QSCREEN_NAME )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRING( obj->name () );
+      RQSTRING( obj->name() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -141,7 +141,7 @@ int depth() const
 */
 HB_FUNC_STATIC( QSCREEN_DEPTH )
 {
-  QScreen * obj = (QScreen *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScreen * obj = (QScreen *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -149,7 +149,7 @@ HB_FUNC_STATIC( QSCREEN_DEPTH )
     if( ISNUMPAR(0) )
     {
 #endif
-      RINT( obj->depth () );
+      RINT( obj->depth() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -165,7 +165,7 @@ QSize size() const
 */
 HB_FUNC_STATIC( QSCREEN_SIZE )
 {
-  QScreen * obj = (QScreen *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScreen * obj = (QScreen *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -173,8 +173,8 @@ HB_FUNC_STATIC( QSCREEN_SIZE )
     if( ISNUMPAR(0) )
     {
 #endif
-      QSize * ptr = new QSize( obj->size () );
-      _qt5xhb_createReturnClass ( ptr, "QSIZE", true );
+      QSize * ptr = new QSize( obj->size() );
+      Qt5xHb::createReturnClass( ptr, "QSIZE", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -190,7 +190,7 @@ QRect geometry() const
 */
 HB_FUNC_STATIC( QSCREEN_GEOMETRY )
 {
-  QScreen * obj = (QScreen *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScreen * obj = (QScreen *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -198,8 +198,8 @@ HB_FUNC_STATIC( QSCREEN_GEOMETRY )
     if( ISNUMPAR(0) )
     {
 #endif
-      QRect * ptr = new QRect( obj->geometry () );
-      _qt5xhb_createReturnClass ( ptr, "QRECT", true );
+      QRect * ptr = new QRect( obj->geometry() );
+      Qt5xHb::createReturnClass( ptr, "QRECT", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -215,7 +215,7 @@ QSizeF physicalSize() const
 */
 HB_FUNC_STATIC( QSCREEN_PHYSICALSIZE )
 {
-  QScreen * obj = (QScreen *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScreen * obj = (QScreen *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -223,8 +223,8 @@ HB_FUNC_STATIC( QSCREEN_PHYSICALSIZE )
     if( ISNUMPAR(0) )
     {
 #endif
-      QSizeF * ptr = new QSizeF( obj->physicalSize () );
-      _qt5xhb_createReturnClass ( ptr, "QSIZEF", true );
+      QSizeF * ptr = new QSizeF( obj->physicalSize() );
+      Qt5xHb::createReturnClass( ptr, "QSIZEF", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -240,7 +240,7 @@ qreal physicalDotsPerInchX() const
 */
 HB_FUNC_STATIC( QSCREEN_PHYSICALDOTSPERINCHX )
 {
-  QScreen * obj = (QScreen *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScreen * obj = (QScreen *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -248,7 +248,7 @@ HB_FUNC_STATIC( QSCREEN_PHYSICALDOTSPERINCHX )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQREAL( obj->physicalDotsPerInchX () );
+      RQREAL( obj->physicalDotsPerInchX() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -264,7 +264,7 @@ qreal physicalDotsPerInchY() const
 */
 HB_FUNC_STATIC( QSCREEN_PHYSICALDOTSPERINCHY )
 {
-  QScreen * obj = (QScreen *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScreen * obj = (QScreen *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -272,7 +272,7 @@ HB_FUNC_STATIC( QSCREEN_PHYSICALDOTSPERINCHY )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQREAL( obj->physicalDotsPerInchY () );
+      RQREAL( obj->physicalDotsPerInchY() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -288,7 +288,7 @@ qreal physicalDotsPerInch() const
 */
 HB_FUNC_STATIC( QSCREEN_PHYSICALDOTSPERINCH )
 {
-  QScreen * obj = (QScreen *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScreen * obj = (QScreen *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -296,7 +296,7 @@ HB_FUNC_STATIC( QSCREEN_PHYSICALDOTSPERINCH )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQREAL( obj->physicalDotsPerInch () );
+      RQREAL( obj->physicalDotsPerInch() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -312,7 +312,7 @@ qreal logicalDotsPerInchX() const
 */
 HB_FUNC_STATIC( QSCREEN_LOGICALDOTSPERINCHX )
 {
-  QScreen * obj = (QScreen *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScreen * obj = (QScreen *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -320,7 +320,7 @@ HB_FUNC_STATIC( QSCREEN_LOGICALDOTSPERINCHX )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQREAL( obj->logicalDotsPerInchX () );
+      RQREAL( obj->logicalDotsPerInchX() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -336,7 +336,7 @@ qreal logicalDotsPerInchY() const
 */
 HB_FUNC_STATIC( QSCREEN_LOGICALDOTSPERINCHY )
 {
-  QScreen * obj = (QScreen *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScreen * obj = (QScreen *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -344,7 +344,7 @@ HB_FUNC_STATIC( QSCREEN_LOGICALDOTSPERINCHY )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQREAL( obj->logicalDotsPerInchY () );
+      RQREAL( obj->logicalDotsPerInchY() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -360,7 +360,7 @@ qreal logicalDotsPerInch() const
 */
 HB_FUNC_STATIC( QSCREEN_LOGICALDOTSPERINCH )
 {
-  QScreen * obj = (QScreen *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScreen * obj = (QScreen *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -368,7 +368,7 @@ HB_FUNC_STATIC( QSCREEN_LOGICALDOTSPERINCH )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQREAL( obj->logicalDotsPerInch () );
+      RQREAL( obj->logicalDotsPerInch() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -384,7 +384,7 @@ qreal devicePixelRatio() const
 */
 HB_FUNC_STATIC( QSCREEN_DEVICEPIXELRATIO )
 {
-  QScreen * obj = (QScreen *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScreen * obj = (QScreen *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -392,7 +392,7 @@ HB_FUNC_STATIC( QSCREEN_DEVICEPIXELRATIO )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQREAL( obj->devicePixelRatio () );
+      RQREAL( obj->devicePixelRatio() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -408,7 +408,7 @@ QSize availableSize() const
 */
 HB_FUNC_STATIC( QSCREEN_AVAILABLESIZE )
 {
-  QScreen * obj = (QScreen *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScreen * obj = (QScreen *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -416,8 +416,8 @@ HB_FUNC_STATIC( QSCREEN_AVAILABLESIZE )
     if( ISNUMPAR(0) )
     {
 #endif
-      QSize * ptr = new QSize( obj->availableSize () );
-      _qt5xhb_createReturnClass ( ptr, "QSIZE", true );
+      QSize * ptr = new QSize( obj->availableSize() );
+      Qt5xHb::createReturnClass( ptr, "QSIZE", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -433,7 +433,7 @@ QRect availableGeometry() const
 */
 HB_FUNC_STATIC( QSCREEN_AVAILABLEGEOMETRY )
 {
-  QScreen * obj = (QScreen *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScreen * obj = (QScreen *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -441,8 +441,8 @@ HB_FUNC_STATIC( QSCREEN_AVAILABLEGEOMETRY )
     if( ISNUMPAR(0) )
     {
 #endif
-      QRect * ptr = new QRect( obj->availableGeometry () );
-      _qt5xhb_createReturnClass ( ptr, "QRECT", true );
+      QRect * ptr = new QRect( obj->availableGeometry() );
+      Qt5xHb::createReturnClass( ptr, "QRECT", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -454,11 +454,11 @@ HB_FUNC_STATIC( QSCREEN_AVAILABLEGEOMETRY )
 }
 
 /*
-QList<QScreen *> virtualSiblings() const // TODO: implementar método
+QList<QScreen *> virtualSiblings() const
 */
 HB_FUNC_STATIC( QSCREEN_VIRTUALSIBLINGS )
 {
-  QScreen * obj = (QScreen *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScreen * obj = (QScreen *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -466,13 +466,12 @@ HB_FUNC_STATIC( QSCREEN_VIRTUALSIBLINGS )
     if( ISNUMPAR(0) )
     {
 #endif
-      QList<QScreen *> list = obj->virtualSiblings ();
+      QList<QScreen *> list = obj->virtualSiblings();
       PHB_DYNS pDynSym = hb_dynsymFindName( "QSCREEN" );
       PHB_ITEM pArray = hb_itemArrayNew(0);
-      int i;
-      for(i=0;i<list.count();i++)
+      if( pDynSym )
       {
-        if( pDynSym )
+        for( int i = 0; i < list.count(); i++ )
         {
           hb_vmPushDynSym( pDynSym );
           hb_vmPushNil();
@@ -486,10 +485,10 @@ HB_FUNC_STATIC( QSCREEN_VIRTUALSIBLINGS )
           hb_arrayAddForward( pArray, pObject );
           hb_itemRelease( pObject );
         }
-        else
-        {
-          hb_errRT_BASE( EG_NOFUNC, 1001, NULL, "QSCREEN", HB_ERR_ARGS_BASEPARAMS );
-        }
+      }
+      else
+      {
+        hb_errRT_BASE( EG_NOFUNC, 1001, NULL, "QSCREEN", HB_ERR_ARGS_BASEPARAMS );
       }
       hb_itemReturnRelease(pArray);
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
@@ -507,7 +506,7 @@ QSize virtualSize() const
 */
 HB_FUNC_STATIC( QSCREEN_VIRTUALSIZE )
 {
-  QScreen * obj = (QScreen *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScreen * obj = (QScreen *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -515,8 +514,8 @@ HB_FUNC_STATIC( QSCREEN_VIRTUALSIZE )
     if( ISNUMPAR(0) )
     {
 #endif
-      QSize * ptr = new QSize( obj->virtualSize () );
-      _qt5xhb_createReturnClass ( ptr, "QSIZE", true );
+      QSize * ptr = new QSize( obj->virtualSize() );
+      Qt5xHb::createReturnClass( ptr, "QSIZE", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -532,7 +531,7 @@ QRect virtualGeometry() const
 */
 HB_FUNC_STATIC( QSCREEN_VIRTUALGEOMETRY )
 {
-  QScreen * obj = (QScreen *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScreen * obj = (QScreen *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -540,8 +539,8 @@ HB_FUNC_STATIC( QSCREEN_VIRTUALGEOMETRY )
     if( ISNUMPAR(0) )
     {
 #endif
-      QRect * ptr = new QRect( obj->virtualGeometry () );
-      _qt5xhb_createReturnClass ( ptr, "QRECT", true );
+      QRect * ptr = new QRect( obj->virtualGeometry() );
+      Qt5xHb::createReturnClass( ptr, "QRECT", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -557,7 +556,7 @@ QSize availableVirtualSize() const
 */
 HB_FUNC_STATIC( QSCREEN_AVAILABLEVIRTUALSIZE )
 {
-  QScreen * obj = (QScreen *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScreen * obj = (QScreen *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -565,8 +564,8 @@ HB_FUNC_STATIC( QSCREEN_AVAILABLEVIRTUALSIZE )
     if( ISNUMPAR(0) )
     {
 #endif
-      QSize * ptr = new QSize( obj->availableVirtualSize () );
-      _qt5xhb_createReturnClass ( ptr, "QSIZE", true );
+      QSize * ptr = new QSize( obj->availableVirtualSize() );
+      Qt5xHb::createReturnClass( ptr, "QSIZE", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -582,7 +581,7 @@ QRect availableVirtualGeometry() const
 */
 HB_FUNC_STATIC( QSCREEN_AVAILABLEVIRTUALGEOMETRY )
 {
-  QScreen * obj = (QScreen *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScreen * obj = (QScreen *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -590,8 +589,8 @@ HB_FUNC_STATIC( QSCREEN_AVAILABLEVIRTUALGEOMETRY )
     if( ISNUMPAR(0) )
     {
 #endif
-      QRect * ptr = new QRect( obj->availableVirtualGeometry () );
-      _qt5xhb_createReturnClass ( ptr, "QRECT", true );
+      QRect * ptr = new QRect( obj->availableVirtualGeometry() );
+      Qt5xHb::createReturnClass( ptr, "QRECT", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -607,7 +606,7 @@ Qt::ScreenOrientation primaryOrientation() const
 */
 HB_FUNC_STATIC( QSCREEN_PRIMARYORIENTATION )
 {
-  QScreen * obj = (QScreen *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScreen * obj = (QScreen *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -615,7 +614,7 @@ HB_FUNC_STATIC( QSCREEN_PRIMARYORIENTATION )
     if( ISNUMPAR(0) )
     {
 #endif
-      RENUM( obj->primaryOrientation () );
+      RENUM( obj->primaryOrientation() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -631,7 +630,7 @@ Qt::ScreenOrientation orientation() const
 */
 HB_FUNC_STATIC( QSCREEN_ORIENTATION )
 {
-  QScreen * obj = (QScreen *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScreen * obj = (QScreen *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -639,7 +638,7 @@ HB_FUNC_STATIC( QSCREEN_ORIENTATION )
     if( ISNUMPAR(0) )
     {
 #endif
-      RENUM( obj->orientation () );
+      RENUM( obj->orientation() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -655,7 +654,7 @@ Qt::ScreenOrientations orientationUpdateMask() const
 */
 HB_FUNC_STATIC( QSCREEN_ORIENTATIONUPDATEMASK )
 {
-  QScreen * obj = (QScreen *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScreen * obj = (QScreen *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -663,7 +662,7 @@ HB_FUNC_STATIC( QSCREEN_ORIENTATIONUPDATEMASK )
     if( ISNUMPAR(0) )
     {
 #endif
-      RENUM( obj->orientationUpdateMask () );
+      RENUM( obj->orientationUpdateMask() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -675,19 +674,19 @@ HB_FUNC_STATIC( QSCREEN_ORIENTATIONUPDATEMASK )
 }
 
 /*
-void setOrientationUpdateMask(Qt::ScreenOrientations mask)
+void setOrientationUpdateMask( Qt::ScreenOrientations mask )
 */
 HB_FUNC_STATIC( QSCREEN_SETORIENTATIONUPDATEMASK )
 {
-  QScreen * obj = (QScreen *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScreen * obj = (QScreen *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setOrientationUpdateMask ( (Qt::ScreenOrientations) hb_parni(1) );
+      obj->setOrientationUpdateMask( (Qt::ScreenOrientations) hb_parni(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -701,19 +700,19 @@ HB_FUNC_STATIC( QSCREEN_SETORIENTATIONUPDATEMASK )
 }
 
 /*
-int angleBetween(Qt::ScreenOrientation a, Qt::ScreenOrientation b) const
+int angleBetween( Qt::ScreenOrientation a, Qt::ScreenOrientation b ) const
 */
 HB_FUNC_STATIC( QSCREEN_ANGLEBETWEEN )
 {
-  QScreen * obj = (QScreen *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScreen * obj = (QScreen *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(2) && ISNUM(1) && ISNUM(2) )
+    if( ISNUMPAR(2) && HB_ISNUM(1) && HB_ISNUM(2) )
     {
 #endif
-      RINT( obj->angleBetween ( (Qt::ScreenOrientation) hb_parni(1), (Qt::ScreenOrientation) hb_parni(2) ) );
+      RINT( obj->angleBetween( (Qt::ScreenOrientation) hb_parni(1), (Qt::ScreenOrientation) hb_parni(2) ) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -725,20 +724,20 @@ HB_FUNC_STATIC( QSCREEN_ANGLEBETWEEN )
 }
 
 /*
-QTransform transformBetween(Qt::ScreenOrientation a, Qt::ScreenOrientation b, const QRect &target) const
+QTransform transformBetween( Qt::ScreenOrientation a, Qt::ScreenOrientation b, const QRect & target ) const
 */
 HB_FUNC_STATIC( QSCREEN_TRANSFORMBETWEEN )
 {
-  QScreen * obj = (QScreen *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScreen * obj = (QScreen *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(3) && ISNUM(1) && ISNUM(2) && ISQRECT(3) )
+    if( ISNUMPAR(3) && HB_ISNUM(1) && HB_ISNUM(2) && ISQRECT(3) )
     {
 #endif
-      QTransform * ptr = new QTransform( obj->transformBetween ( (Qt::ScreenOrientation) hb_parni(1), (Qt::ScreenOrientation) hb_parni(2), *PQRECT(3) ) );
-      _qt5xhb_createReturnClass ( ptr, "QTRANSFORM", true );
+      QTransform * ptr = new QTransform( obj->transformBetween( (Qt::ScreenOrientation) hb_parni(1), (Qt::ScreenOrientation) hb_parni(2), *PQRECT(3) ) );
+      Qt5xHb::createReturnClass( ptr, "QTRANSFORM", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -750,20 +749,20 @@ HB_FUNC_STATIC( QSCREEN_TRANSFORMBETWEEN )
 }
 
 /*
-QRect mapBetween(Qt::ScreenOrientation a, Qt::ScreenOrientation b, const QRect &rect) const
+QRect mapBetween( Qt::ScreenOrientation a, Qt::ScreenOrientation b, const QRect & rect ) const
 */
 HB_FUNC_STATIC( QSCREEN_MAPBETWEEN )
 {
-  QScreen * obj = (QScreen *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScreen * obj = (QScreen *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(3) && ISNUM(1) && ISNUM(2) && ISQRECT(3) )
+    if( ISNUMPAR(3) && HB_ISNUM(1) && HB_ISNUM(2) && ISQRECT(3) )
     {
 #endif
-      QRect * ptr = new QRect( obj->mapBetween ( (Qt::ScreenOrientation) hb_parni(1), (Qt::ScreenOrientation) hb_parni(2), *PQRECT(3) ) );
-      _qt5xhb_createReturnClass ( ptr, "QRECT", true );
+      QRect * ptr = new QRect( obj->mapBetween( (Qt::ScreenOrientation) hb_parni(1), (Qt::ScreenOrientation) hb_parni(2), *PQRECT(3) ) );
+      Qt5xHb::createReturnClass( ptr, "QRECT", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -775,19 +774,19 @@ HB_FUNC_STATIC( QSCREEN_MAPBETWEEN )
 }
 
 /*
-bool isPortrait(Qt::ScreenOrientation orientation) const
+bool isPortrait( Qt::ScreenOrientation orientation ) const
 */
 HB_FUNC_STATIC( QSCREEN_ISPORTRAIT )
 {
-  QScreen * obj = (QScreen *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScreen * obj = (QScreen *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      RBOOL( obj->isPortrait ( (Qt::ScreenOrientation) hb_parni(1) ) );
+      RBOOL( obj->isPortrait( (Qt::ScreenOrientation) hb_parni(1) ) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -799,19 +798,19 @@ HB_FUNC_STATIC( QSCREEN_ISPORTRAIT )
 }
 
 /*
-bool isLandscape(Qt::ScreenOrientation orientation) const
+bool isLandscape( Qt::ScreenOrientation orientation ) const
 */
 HB_FUNC_STATIC( QSCREEN_ISLANDSCAPE )
 {
-  QScreen * obj = (QScreen *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScreen * obj = (QScreen *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      RBOOL( obj->isLandscape ( (Qt::ScreenOrientation) hb_parni(1) ) );
+      RBOOL( obj->isLandscape( (Qt::ScreenOrientation) hb_parni(1) ) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -823,20 +822,20 @@ HB_FUNC_STATIC( QSCREEN_ISLANDSCAPE )
 }
 
 /*
-QPixmap grabWindow(WId window, int x = 0, int y = 0, int w = -1, int h = -1)
+QPixmap grabWindow( WId window, int x = 0, int y = 0, int w = -1, int h = -1 )
 */
 HB_FUNC_STATIC( QSCREEN_GRABWINDOW )
 {
-  QScreen * obj = (QScreen *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScreen * obj = (QScreen *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISBETWEEN(1,5) && ISPOINTER(1) && ISOPTNUM(2) && ISOPTNUM(3) && ISOPTNUM(4) && ISOPTNUM(5) )
+    if( ISBETWEEN(1,5) && HB_ISPOINTER(1) && (HB_ISNUM(2)||HB_ISNIL(2)) && (HB_ISNUM(3)||HB_ISNIL(3)) && (HB_ISNUM(4)||HB_ISNIL(4)) && (HB_ISNUM(5)||HB_ISNIL(5)) )
     {
 #endif
-      QPixmap * ptr = new QPixmap( obj->grabWindow ( (WId) hb_parptr(1), OPINT(2,0), OPINT(3,0), OPINT(4,-1), OPINT(5,-1) ) );
-      _qt5xhb_createReturnClass ( ptr, "QPIXMAP", true );
+      QPixmap * ptr = new QPixmap( obj->grabWindow( (WId) hb_parptr(1), OPINT(2,0), OPINT(3,0), OPINT(4,-1), OPINT(5,-1) ) );
+      Qt5xHb::createReturnClass( ptr, "QPIXMAP", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -852,7 +851,7 @@ qreal refreshRate() const
 */
 HB_FUNC_STATIC( QSCREEN_REFRESHRATE )
 {
-  QScreen * obj = (QScreen *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScreen * obj = (QScreen *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -860,7 +859,7 @@ HB_FUNC_STATIC( QSCREEN_REFRESHRATE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQREAL( obj->refreshRate () );
+      RQREAL( obj->refreshRate() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -871,7 +870,7 @@ HB_FUNC_STATIC( QSCREEN_REFRESHRATE )
   }
 }
 
-void QScreenSlots_connect_signal ( const QString & signal, const QString & slot );
+void QScreenSlots_connect_signal( const QString & signal, const QString & slot );
 
 HB_FUNC_STATIC( QSCREEN_ONGEOMETRYCHANGED )
 {

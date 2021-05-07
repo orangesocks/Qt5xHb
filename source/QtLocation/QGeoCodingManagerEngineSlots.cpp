@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -12,40 +12,50 @@
 
 #include "QGeoCodingManagerEngineSlots.h"
 
-QGeoCodingManagerEngineSlots::QGeoCodingManagerEngineSlots(QObject *parent) : QObject(parent)
+QGeoCodingManagerEngineSlots::QGeoCodingManagerEngineSlots( QObject *parent ) : QObject( parent )
 {
 }
 
 QGeoCodingManagerEngineSlots::~QGeoCodingManagerEngineSlots()
 {
 }
+
 #if (QT_VERSION >= QT_VERSION_CHECK(5,4,0))
 void QGeoCodingManagerEngineSlots::finished( QGeoCodeReply * reply )
 {
   QObject *object = qobject_cast<QObject *>(sender());
-  PHB_ITEM cb = Signals_return_codeblock( object, "finished(QGeoCodeReply*)" );
+
+  PHB_ITEM cb = Qt5xHb::Signals_return_codeblock( object, "finished(QGeoCodeReply*)" );
+
   if( cb )
   {
-    PHB_ITEM psender = Signals_return_qobject ( (QObject *) object, "QGEOCODINGMANAGERENGINE" );
-    PHB_ITEM preply = Signals_return_qobject( (QObject *) reply, "QGEOCODEREPLY" );
-    hb_vmEvalBlockV( (PHB_ITEM) cb, 2, psender, preply );
+    PHB_ITEM psender = Qt5xHb::Signals_return_qobject( (QObject *) object, "QGEOCODINGMANAGERENGINE" );
+    PHB_ITEM preply = Qt5xHb::Signals_return_qobject( (QObject *) reply, "QGEOCODEREPLY" );
+
+    hb_vmEvalBlockV( cb, 2, psender, preply );
+
     hb_itemRelease( psender );
     hb_itemRelease( preply );
   }
 }
 #endif
+
 #if (QT_VERSION >= QT_VERSION_CHECK(5,4,0))
 void QGeoCodingManagerEngineSlots::error( QGeoCodeReply * reply, QGeoCodeReply::Error error, QString errorString )
 {
   QObject *object = qobject_cast<QObject *>(sender());
-  PHB_ITEM cb = Signals_return_codeblock( object, "error(QGeoCodeReply*,QGeoCodeReply::Error,QString)" );
+
+  PHB_ITEM cb = Qt5xHb::Signals_return_codeblock( object, "error(QGeoCodeReply*,QGeoCodeReply::Error,QString)" );
+
   if( cb )
   {
-    PHB_ITEM psender = Signals_return_qobject ( (QObject *) object, "QGEOCODINGMANAGERENGINE" );
-    PHB_ITEM preply = Signals_return_qobject( (QObject *) reply, "QGEOCODEREPLY" );
+    PHB_ITEM psender = Qt5xHb::Signals_return_qobject( (QObject *) object, "QGEOCODINGMANAGERENGINE" );
+    PHB_ITEM preply = Qt5xHb::Signals_return_qobject( (QObject *) reply, "QGEOCODEREPLY" );
     PHB_ITEM perror = hb_itemPutNI( NULL, (int) error );
     PHB_ITEM perrorString = hb_itemPutC( NULL, (const char *) errorString.toLatin1().data() );
-    hb_vmEvalBlockV( (PHB_ITEM) cb, 4, psender, preply, perror, perrorString );
+
+    hb_vmEvalBlockV( cb, 4, psender, preply, perror, perrorString );
+
     hb_itemRelease( psender );
     hb_itemRelease( preply );
     hb_itemRelease( perror );
@@ -54,10 +64,10 @@ void QGeoCodingManagerEngineSlots::error( QGeoCodeReply * reply, QGeoCodeReply::
 }
 #endif
 
-void QGeoCodingManagerEngineSlots_connect_signal ( const QString & signal, const QString & slot )
+void QGeoCodingManagerEngineSlots_connect_signal( const QString & signal, const QString & slot )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,4,0))
-  QGeoCodingManagerEngine * obj = (QGeoCodingManagerEngine *) hb_itemGetPtr( hb_objSendMsg( hb_stackSelfItem(), "POINTER", 0 ) );
+  QGeoCodingManagerEngine * obj = (QGeoCodingManagerEngine *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -70,7 +80,7 @@ void QGeoCodingManagerEngineSlots_connect_signal ( const QString & signal, const
       s->setParent( QCoreApplication::instance() );
     }
 
-    hb_retl( Signals_connection_disconnection( s, signal, slot ) );
+    hb_retl( Qt5xHb::Signals_connection_disconnection( s, signal, slot ) );
   }
   else
   {

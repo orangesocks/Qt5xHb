@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -27,7 +27,7 @@ CLASS QDomNotation INHERIT QDomNode
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QDomNotation
+PROCEDURE destroyObject() CLASS QDomNotation
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -50,25 +50,22 @@ RETURN
 #endif
 
 /*
-QDomNotation ()
+QDomNotation()
 */
-void QDomNotation_new1 ()
+void QDomNotation_new1()
 {
-  QDomNotation * o = new QDomNotation ();
-  _qt5xhb_returnNewObject( o, true );
+  QDomNotation * obj = new QDomNotation();
+  Qt5xHb::returnNewObject( obj, true );
 }
 
 /*
-QDomNotation ( const QDomNotation & x )
+QDomNotation( const QDomNotation & x )
 */
-void QDomNotation_new2 ()
+void QDomNotation_new2()
 {
-  QDomNotation * o = new QDomNotation ();
-  _qt5xhb_returnNewObject( o, true );
+  QDomNotation * obj = new QDomNotation( *PQDOMNOTATION(1) );
+  Qt5xHb::returnNewObject( obj, true );
 }
-
-//[1]QDomNotation ()
-//[2]QDomNotation ( const QDomNotation & x )
 
 HB_FUNC_STATIC( QDOMNOTATION_NEW )
 {
@@ -88,7 +85,7 @@ HB_FUNC_STATIC( QDOMNOTATION_NEW )
 
 HB_FUNC_STATIC( QDOMNOTATION_DELETE )
 {
-  QDomNotation * obj = (QDomNotation *) _qt5xhb_itemGetPtrStackSelfItem();
+  QDomNotation * obj = (QDomNotation *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -104,11 +101,11 @@ HB_FUNC_STATIC( QDOMNOTATION_DELETE )
 }
 
 /*
-QDomNode::NodeType nodeType () const
+QDomNode::NodeType nodeType() const
 */
 HB_FUNC_STATIC( QDOMNOTATION_NODETYPE )
 {
-  QDomNotation * obj = (QDomNotation *) _qt5xhb_itemGetPtrStackSelfItem();
+  QDomNotation * obj = (QDomNotation *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -116,7 +113,7 @@ HB_FUNC_STATIC( QDOMNOTATION_NODETYPE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RENUM( obj->nodeType () );
+      RENUM( obj->nodeType() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -128,11 +125,11 @@ HB_FUNC_STATIC( QDOMNOTATION_NODETYPE )
 }
 
 /*
-QString publicId () const
+QString publicId() const
 */
 HB_FUNC_STATIC( QDOMNOTATION_PUBLICID )
 {
-  QDomNotation * obj = (QDomNotation *) _qt5xhb_itemGetPtrStackSelfItem();
+  QDomNotation * obj = (QDomNotation *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -140,7 +137,7 @@ HB_FUNC_STATIC( QDOMNOTATION_PUBLICID )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRING( obj->publicId () );
+      RQSTRING( obj->publicId() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -152,11 +149,11 @@ HB_FUNC_STATIC( QDOMNOTATION_PUBLICID )
 }
 
 /*
-QString systemId () const
+QString systemId() const
 */
 HB_FUNC_STATIC( QDOMNOTATION_SYSTEMID )
 {
-  QDomNotation * obj = (QDomNotation *) _qt5xhb_itemGetPtrStackSelfItem();
+  QDomNotation * obj = (QDomNotation *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -164,7 +161,7 @@ HB_FUNC_STATIC( QDOMNOTATION_SYSTEMID )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRING( obj->systemId () );
+      RQSTRING( obj->systemId() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else

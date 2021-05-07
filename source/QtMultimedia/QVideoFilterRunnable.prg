@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -34,7 +34,7 @@ CLASS QVideoFilterRunnable
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QVideoFilterRunnable
+PROCEDURE destroyObject() CLASS QVideoFilterRunnable
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -66,7 +66,7 @@ virtual ~QVideoFilterRunnable()
 HB_FUNC_STATIC( QVIDEOFILTERRUNNABLE_DELETE )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,5,0))
-  QVideoFilterRunnable * obj = (QVideoFilterRunnable *) _qt5xhb_itemGetPtrStackSelfItem();
+  QVideoFilterRunnable * obj = (QVideoFilterRunnable *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -83,21 +83,21 @@ HB_FUNC_STATIC( QVIDEOFILTERRUNNABLE_DELETE )
 }
 
 /*
-virtual QVideoFrame run(QVideoFrame *input, const QVideoSurfaceFormat &surfaceFormat, RunFlags flags) = 0
+virtual QVideoFrame run( QVideoFrame * input, const QVideoSurfaceFormat & surfaceFormat, QVideoFilterRunnable::RunFlags flags ) = 0
 */
 HB_FUNC_STATIC( QVIDEOFILTERRUNNABLE_RUN )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,5,0))
-  QVideoFilterRunnable * obj = (QVideoFilterRunnable *) _qt5xhb_itemGetPtrStackSelfItem();
+  QVideoFilterRunnable * obj = (QVideoFilterRunnable *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(3) && ISQVIDEOFRAME(1) && ISQVIDEOSURFACEFORMAT(2) && ISNUM(3) )
+    if( ISNUMPAR(3) && ISQVIDEOFRAME(1) && ISQVIDEOSURFACEFORMAT(2) && HB_ISNUM(3) )
     {
 #endif
-      QVideoFrame * ptr = new QVideoFrame( obj->run ( PQVIDEOFRAME(1), *PQVIDEOSURFACEFORMAT(2), (QVideoFilterRunnable::RunFlags) hb_parni(3) ) );
-      _qt5xhb_createReturnClass ( ptr, "QVIDEOFRAME", true );
+      QVideoFrame * ptr = new QVideoFrame( obj->run( PQVIDEOFRAME(1), *PQVIDEOSURFACEFORMAT(2), (QVideoFilterRunnable::RunFlags) hb_parni(3) ) );
+      Qt5xHb::createReturnClass( ptr, "QVIDEOFRAME", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else

@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -18,12 +18,13 @@
 CLASS QVirtualKeyboardExtensionPlugin INHERIT QObject
 
    METHOD delete
+   METHOD registerTypes
 
    DESTRUCTOR destroyObject
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QVirtualKeyboardExtensionPlugin
+PROCEDURE destroyObject() CLASS QVirtualKeyboardExtensionPlugin
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -40,6 +41,8 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #include <QtVirtualKeyboard/QVirtualKeyboardExtensionPlugin>
@@ -50,10 +53,12 @@ virtual ~QVirtualKeyboardExtensionPlugin()
 */
 HB_FUNC_STATIC( QVIRTUALKEYBOARDEXTENSIONPLUGIN_DELETE )
 {
-  QVirtualKeyboardExtensionPlugin * obj = (QVirtualKeyboardExtensionPlugin *) _qt5xhb_itemGetPtrStackSelfItem();
+  QVirtualKeyboardExtensionPlugin * obj = (QVirtualKeyboardExtensionPlugin *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -66,7 +71,29 @@ HB_FUNC_STATIC( QVIRTUALKEYBOARDEXTENSIONPLUGIN_DELETE )
 }
 
 /*
-virtual void registerTypes(const char *uri) const
+virtual void registerTypes( const char * uri ) const
 */
+HB_FUNC_STATIC( QVIRTUALKEYBOARDEXTENSIONPLUGIN_REGISTERTYPES )
+{
+  QVirtualKeyboardExtensionPlugin * obj = (QVirtualKeyboardExtensionPlugin *) Qt5xHb::itemGetPtrStackSelfItem();
+
+  if( obj )
+  {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
+    if( ISNUMPAR(1) && HB_ISCHAR(1) )
+    {
+#endif
+      obj->registerTypes( PCONSTCHAR(1) );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
+    }
+    else
+    {
+      hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
+    }
+#endif
+  }
+
+  hb_itemReturn( hb_stackSelfItem() );
+}
 
 #pragma ENDDUMP

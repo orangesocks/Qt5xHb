@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -40,7 +40,7 @@ CLASS QGraphicsScale INHERIT QGraphicsTransform
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QGraphicsScale
+PROCEDURE destroyObject() CLASS QGraphicsScale
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -57,20 +57,22 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #include <QtWidgets/QGraphicsScale>
 #endif
 
 /*
-QGraphicsScale ( QObject * parent = 0 )
+QGraphicsScale( QObject * parent = 0 )
 */
 HB_FUNC_STATIC( QGRAPHICSSCALE_NEW )
 {
-  if( ISBETWEEN(0,1) && (ISQOBJECT(1)||ISNIL(1)) )
+  if( ISBETWEEN(0,1) && (ISQOBJECT(1)||HB_ISNIL(1)) )
   {
-    QGraphicsScale * o = new QGraphicsScale ( OPQOBJECT(1,0) );
-    _qt5xhb_returnNewObject( o, false );
+    QGraphicsScale * obj = new QGraphicsScale( OPQOBJECT(1,0) );
+    Qt5xHb::returnNewObject( obj, false );
   }
   else
   {
@@ -80,10 +82,12 @@ HB_FUNC_STATIC( QGRAPHICSSCALE_NEW )
 
 HB_FUNC_STATIC( QGRAPHICSSCALE_DELETE )
 {
-  QGraphicsScale * obj = (QGraphicsScale *) _qt5xhb_itemGetPtrStackSelfItem();
+  QGraphicsScale * obj = (QGraphicsScale *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -96,11 +100,11 @@ HB_FUNC_STATIC( QGRAPHICSSCALE_DELETE )
 }
 
 /*
-QVector3D origin () const
+QVector3D origin() const
 */
 HB_FUNC_STATIC( QGRAPHICSSCALE_ORIGIN )
 {
-  QGraphicsScale * obj = (QGraphicsScale *) _qt5xhb_itemGetPtrStackSelfItem();
+  QGraphicsScale * obj = (QGraphicsScale *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -108,8 +112,8 @@ HB_FUNC_STATIC( QGRAPHICSSCALE_ORIGIN )
     if( ISNUMPAR(0) )
     {
 #endif
-      QVector3D * ptr = new QVector3D( obj->origin () );
-      _qt5xhb_createReturnClass ( ptr, "QVECTOR3D", true );
+      QVector3D * ptr = new QVector3D( obj->origin() );
+      Qt5xHb::createReturnClass( ptr, "QVECTOR3D", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -121,11 +125,11 @@ HB_FUNC_STATIC( QGRAPHICSSCALE_ORIGIN )
 }
 
 /*
-void setOrigin ( const QVector3D & point )
+void setOrigin( const QVector3D & point )
 */
 HB_FUNC_STATIC( QGRAPHICSSCALE_SETORIGIN )
 {
-  QGraphicsScale * obj = (QGraphicsScale *) _qt5xhb_itemGetPtrStackSelfItem();
+  QGraphicsScale * obj = (QGraphicsScale *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -133,7 +137,7 @@ HB_FUNC_STATIC( QGRAPHICSSCALE_SETORIGIN )
     if( ISNUMPAR(1) && ISQVECTOR3D(1) )
     {
 #endif
-      obj->setOrigin ( *PQVECTOR3D(1) );
+      obj->setOrigin( *PQVECTOR3D(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -147,19 +151,19 @@ HB_FUNC_STATIC( QGRAPHICSSCALE_SETORIGIN )
 }
 
 /*
-void setXScale ( qreal )
+void setXScale( qreal )
 */
 HB_FUNC_STATIC( QGRAPHICSSCALE_SETXSCALE )
 {
-  QGraphicsScale * obj = (QGraphicsScale *) _qt5xhb_itemGetPtrStackSelfItem();
+  QGraphicsScale * obj = (QGraphicsScale *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setXScale ( PQREAL(1) );
+      obj->setXScale( PQREAL(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -173,19 +177,19 @@ HB_FUNC_STATIC( QGRAPHICSSCALE_SETXSCALE )
 }
 
 /*
-void setYScale ( qreal )
+void setYScale( qreal )
 */
 HB_FUNC_STATIC( QGRAPHICSSCALE_SETYSCALE )
 {
-  QGraphicsScale * obj = (QGraphicsScale *) _qt5xhb_itemGetPtrStackSelfItem();
+  QGraphicsScale * obj = (QGraphicsScale *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setYScale ( PQREAL(1) );
+      obj->setYScale( PQREAL(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -199,19 +203,19 @@ HB_FUNC_STATIC( QGRAPHICSSCALE_SETYSCALE )
 }
 
 /*
-void setZScale ( qreal )
+void setZScale( qreal )
 */
 HB_FUNC_STATIC( QGRAPHICSSCALE_SETZSCALE )
 {
-  QGraphicsScale * obj = (QGraphicsScale *) _qt5xhb_itemGetPtrStackSelfItem();
+  QGraphicsScale * obj = (QGraphicsScale *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setZScale ( PQREAL(1) );
+      obj->setZScale( PQREAL(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -225,11 +229,11 @@ HB_FUNC_STATIC( QGRAPHICSSCALE_SETZSCALE )
 }
 
 /*
-qreal xScale () const
+qreal xScale() const
 */
 HB_FUNC_STATIC( QGRAPHICSSCALE_XSCALE )
 {
-  QGraphicsScale * obj = (QGraphicsScale *) _qt5xhb_itemGetPtrStackSelfItem();
+  QGraphicsScale * obj = (QGraphicsScale *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -237,7 +241,7 @@ HB_FUNC_STATIC( QGRAPHICSSCALE_XSCALE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQREAL( obj->xScale () );
+      RQREAL( obj->xScale() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -249,11 +253,11 @@ HB_FUNC_STATIC( QGRAPHICSSCALE_XSCALE )
 }
 
 /*
-qreal yScale () const
+qreal yScale() const
 */
 HB_FUNC_STATIC( QGRAPHICSSCALE_YSCALE )
 {
-  QGraphicsScale * obj = (QGraphicsScale *) _qt5xhb_itemGetPtrStackSelfItem();
+  QGraphicsScale * obj = (QGraphicsScale *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -261,7 +265,7 @@ HB_FUNC_STATIC( QGRAPHICSSCALE_YSCALE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQREAL( obj->yScale () );
+      RQREAL( obj->yScale() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -273,11 +277,11 @@ HB_FUNC_STATIC( QGRAPHICSSCALE_YSCALE )
 }
 
 /*
-qreal zScale () const
+qreal zScale() const
 */
 HB_FUNC_STATIC( QGRAPHICSSCALE_ZSCALE )
 {
-  QGraphicsScale * obj = (QGraphicsScale *) _qt5xhb_itemGetPtrStackSelfItem();
+  QGraphicsScale * obj = (QGraphicsScale *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -285,7 +289,7 @@ HB_FUNC_STATIC( QGRAPHICSSCALE_ZSCALE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQREAL( obj->zScale () );
+      RQREAL( obj->zScale() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -297,11 +301,11 @@ HB_FUNC_STATIC( QGRAPHICSSCALE_ZSCALE )
 }
 
 /*
-virtual void applyTo ( QMatrix4x4 * matrix ) const
+virtual void applyTo( QMatrix4x4 * matrix ) const
 */
 HB_FUNC_STATIC( QGRAPHICSSCALE_APPLYTO )
 {
-  QGraphicsScale * obj = (QGraphicsScale *) _qt5xhb_itemGetPtrStackSelfItem();
+  QGraphicsScale * obj = (QGraphicsScale *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -309,7 +313,7 @@ HB_FUNC_STATIC( QGRAPHICSSCALE_APPLYTO )
     if( ISNUMPAR(1) && ISQMATRIX4X4(1) )
     {
 #endif
-      obj->applyTo ( PQMATRIX4X4(1) );
+      obj->applyTo( PQMATRIX4X4(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -322,7 +326,7 @@ HB_FUNC_STATIC( QGRAPHICSSCALE_APPLYTO )
   hb_itemReturn( hb_stackSelfItem() );
 }
 
-void QGraphicsScaleSlots_connect_signal ( const QString & signal, const QString & slot );
+void QGraphicsScaleSlots_connect_signal( const QString & signal, const QString & slot );
 
 HB_FUNC_STATIC( QGRAPHICSSCALE_ONORIGINCHANGED )
 {

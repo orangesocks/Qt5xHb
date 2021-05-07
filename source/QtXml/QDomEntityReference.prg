@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -25,7 +25,7 @@ CLASS QDomEntityReference INHERIT QDomNode
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QDomEntityReference
+PROCEDURE destroyObject() CLASS QDomEntityReference
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -48,25 +48,22 @@ RETURN
 #endif
 
 /*
-QDomEntityReference ()
+QDomEntityReference()
 */
-void QDomEntityReference_new1 ()
+void QDomEntityReference_new1()
 {
-  QDomEntityReference * o = new QDomEntityReference ();
-  _qt5xhb_returnNewObject( o, true );
+  QDomEntityReference * obj = new QDomEntityReference();
+  Qt5xHb::returnNewObject( obj, true );
 }
 
 /*
-QDomEntityReference ( const QDomEntityReference & x )
+QDomEntityReference( const QDomEntityReference & x )
 */
-void QDomEntityReference_new2 ()
+void QDomEntityReference_new2()
 {
-  QDomEntityReference * o = new QDomEntityReference ( *PQDOMENTITYREFERENCE(1) );
-  _qt5xhb_returnNewObject( o, true );
+  QDomEntityReference * obj = new QDomEntityReference( *PQDOMENTITYREFERENCE(1) );
+  Qt5xHb::returnNewObject( obj, true );
 }
-
-//[1]QDomEntityReference ()
-//[2]QDomEntityReference ( const QDomEntityReference & x )
 
 HB_FUNC_STATIC( QDOMENTITYREFERENCE_NEW )
 {
@@ -86,7 +83,7 @@ HB_FUNC_STATIC( QDOMENTITYREFERENCE_NEW )
 
 HB_FUNC_STATIC( QDOMENTITYREFERENCE_DELETE )
 {
-  QDomEntityReference * obj = (QDomEntityReference *) _qt5xhb_itemGetPtrStackSelfItem();
+  QDomEntityReference * obj = (QDomEntityReference *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -102,11 +99,11 @@ HB_FUNC_STATIC( QDOMENTITYREFERENCE_DELETE )
 }
 
 /*
-QDomNode::NodeType nodeType () const
+QDomNode::NodeType nodeType() const
 */
 HB_FUNC_STATIC( QDOMENTITYREFERENCE_NODETYPE )
 {
-  QDomEntityReference * obj = (QDomEntityReference *) _qt5xhb_itemGetPtrStackSelfItem();
+  QDomEntityReference * obj = (QDomEntityReference *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -114,7 +111,7 @@ HB_FUNC_STATIC( QDOMENTITYREFERENCE_NODETYPE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RENUM( obj->nodeType () );
+      RENUM( obj->nodeType() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else

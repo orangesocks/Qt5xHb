@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -12,41 +12,51 @@
 
 #include "QPrintPreviewWidgetSlots.h"
 
-QPrintPreviewWidgetSlots::QPrintPreviewWidgetSlots(QObject *parent) : QObject(parent)
+QPrintPreviewWidgetSlots::QPrintPreviewWidgetSlots( QObject *parent ) : QObject( parent )
 {
 }
 
 QPrintPreviewWidgetSlots::~QPrintPreviewWidgetSlots()
 {
 }
+
 void QPrintPreviewWidgetSlots::paintRequested( QPrinter * printer )
 {
   QObject *object = qobject_cast<QObject *>(sender());
-  PHB_ITEM cb = Signals_return_codeblock( object, "paintRequested(QPrinter*)" );
+
+  PHB_ITEM cb = Qt5xHb::Signals_return_codeblock( object, "paintRequested(QPrinter*)" );
+
   if( cb )
   {
-    PHB_ITEM psender = Signals_return_qobject ( (QObject *) object, "QPRINTPREVIEWWIDGET" );
-    PHB_ITEM pprinter = Signals_return_object( (void *) printer, "QPRINTER" );
-    hb_vmEvalBlockV( (PHB_ITEM) cb, 2, psender, pprinter );
+    PHB_ITEM psender = Qt5xHb::Signals_return_qobject( (QObject *) object, "QPRINTPREVIEWWIDGET" );
+    PHB_ITEM pprinter = Qt5xHb::Signals_return_object( (void *) printer, "QPRINTER" );
+
+    hb_vmEvalBlockV( cb, 2, psender, pprinter );
+
     hb_itemRelease( psender );
     hb_itemRelease( pprinter );
   }
 }
+
 void QPrintPreviewWidgetSlots::previewChanged()
 {
   QObject *object = qobject_cast<QObject *>(sender());
-  PHB_ITEM cb = Signals_return_codeblock( object, "previewChanged()" );
+
+  PHB_ITEM cb = Qt5xHb::Signals_return_codeblock( object, "previewChanged()" );
+
   if( cb )
   {
-    PHB_ITEM psender = Signals_return_qobject ( (QObject *) object, "QPRINTPREVIEWWIDGET" );
-    hb_vmEvalBlockV( (PHB_ITEM) cb, 1, psender );
+    PHB_ITEM psender = Qt5xHb::Signals_return_qobject( (QObject *) object, "QPRINTPREVIEWWIDGET" );
+
+    hb_vmEvalBlockV( cb, 1, psender );
+
     hb_itemRelease( psender );
   }
 }
 
-void QPrintPreviewWidgetSlots_connect_signal ( const QString & signal, const QString & slot )
+void QPrintPreviewWidgetSlots_connect_signal( const QString & signal, const QString & slot )
 {
-  QPrintPreviewWidget * obj = (QPrintPreviewWidget *) hb_itemGetPtr( hb_objSendMsg( hb_stackSelfItem(), "POINTER", 0 ) );
+  QPrintPreviewWidget * obj = (QPrintPreviewWidget *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -59,7 +69,7 @@ void QPrintPreviewWidgetSlots_connect_signal ( const QString & signal, const QSt
       s->setParent( QCoreApplication::instance() );
     }
 
-    hb_retl( Signals_connection_disconnection( s, signal, slot ) );
+    hb_retl( Qt5xHb::Signals_connection_disconnection( s, signal, slot ) );
   }
   else
   {

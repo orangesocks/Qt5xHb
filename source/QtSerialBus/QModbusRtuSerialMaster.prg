@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -17,13 +17,16 @@
 
 CLASS QModbusRtuSerialMaster INHERIT QModbusClient
 
+   METHOD new
    METHOD delete
+   METHOD interFrameDelay
+   METHOD setInterFrameDelay
 
    DESTRUCTOR destroyObject
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QModbusRtuSerialMaster
+PROCEDURE destroyObject() CLASS QModbusRtuSerialMaster
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -42,6 +45,8 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #if (QT_VERSION >= QT_VERSION_CHECK(5,8,0))
@@ -50,11 +55,22 @@ RETURN
 #endif
 
 /*
-explicit QModbusRtuSerialMaster(QObject *parent = nullptr)
+QModbusRtuSerialMaster( QObject * parent = nullptr )
 */
-/*
-QModbusRtuSerialMaster(QModbusRtuSerialMasterPrivate &dd, QObject *parent = nullptr) [protected]
-*/
+HB_FUNC_STATIC( QMODBUSRTUSERIALMASTER_NEW )
+{
+#if (QT_VERSION >= QT_VERSION_CHECK(5,8,0))
+  if( ISBETWEEN(0,1) && (ISQOBJECT(1)||HB_ISNIL(1)) )
+  {
+    QModbusRtuSerialMaster * obj = new QModbusRtuSerialMaster( OPQOBJECT(1,nullptr) );
+    Qt5xHb::returnNewObject( obj, false );
+  }
+  else
+  {
+    hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
+  }
+#endif
+}
 
 /*
 ~QModbusRtuSerialMaster()
@@ -62,10 +78,12 @@ QModbusRtuSerialMaster(QModbusRtuSerialMasterPrivate &dd, QObject *parent = null
 HB_FUNC_STATIC( QMODBUSRTUSERIALMASTER_DELETE )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,8,0))
-  QModbusRtuSerialMaster * obj = (QModbusRtuSerialMaster *) _qt5xhb_itemGetPtrStackSelfItem();
+  QModbusRtuSerialMaster * obj = (QModbusRtuSerialMaster *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -81,17 +99,55 @@ HB_FUNC_STATIC( QMODBUSRTUSERIALMASTER_DELETE )
 /*
 int interFrameDelay() const
 */
+HB_FUNC_STATIC( QMODBUSRTUSERIALMASTER_INTERFRAMEDELAY )
+{
+#if (QT_VERSION >= QT_VERSION_CHECK(5,8,0))
+  QModbusRtuSerialMaster * obj = (QModbusRtuSerialMaster *) Qt5xHb::itemGetPtrStackSelfItem();
+
+  if( obj )
+  {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
+    if( ISNUMPAR(0) )
+    {
+#endif
+      RINT( obj->interFrameDelay() );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
+    }
+    else
+    {
+      hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
+    }
+#endif
+  }
+#endif
+}
 
 /*
-void setInterFrameDelay(int microseconds)
+void setInterFrameDelay( int microseconds )
 */
+HB_FUNC_STATIC( QMODBUSRTUSERIALMASTER_SETINTERFRAMEDELAY )
+{
+#if (QT_VERSION >= QT_VERSION_CHECK(5,8,0))
+  QModbusRtuSerialMaster * obj = (QModbusRtuSerialMaster *) Qt5xHb::itemGetPtrStackSelfItem();
 
-/*
-void close() override [protected]
-*/
+  if( obj )
+  {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
+    {
+#endif
+      obj->setInterFrameDelay( PINT(1) );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
+    }
+    else
+    {
+      hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
+    }
+#endif
+  }
 
-/*
-bool open() override [protected]
-*/
+  hb_itemReturn( hb_stackSelfItem() );
+#endif
+}
 
 #pragma ENDDUMP

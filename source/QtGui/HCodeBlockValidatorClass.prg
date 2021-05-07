@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -19,7 +19,7 @@ CLASS HCodeBlockValidator INHERIT QValidator
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS HCodeBlockValidator
+PROCEDURE destroyObject() CLASS HCodeBlockValidator
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -32,37 +32,34 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
-void HCodeBlockValidator_new1 ()
+/*
+explicit HCodeBlockValidator( QObject *parent = 0 )
+*/
+void HCodeBlockValidator_new1()
 {
-  HCodeBlockValidator * o = NULL;
-  o = new HCodeBlockValidator ( OPQOBJECT(1,0) );
-  PHB_ITEM self = hb_stackSelfItem();
-  PHB_ITEM ptr = hb_itemPutPtr( NULL,(HCodeBlockValidator *) o );
-  hb_objSendMsg( self, "_pointer", 1, ptr );
-  hb_itemRelease( ptr );
-  hb_itemReturn( self );
+  HCodeBlockValidator * o = new HCodeBlockValidator( OPQOBJECT(1,0) );
+  Qt5xHb::returnNewObject( o, false );
 }
 
-void HCodeBlockValidator_new2 ()
+/*
+HCodeBlockValidator( PHB_ITEM codeblock, QObject *parent = 0 )
+*/
+void HCodeBlockValidator_new2()
 {
-  HCodeBlockValidator * o = NULL;
-  PHB_ITEM block = hb_param( 1, HB_IT_BLOCK | HB_IT_SYMBOL );
-  o = new HCodeBlockValidator ( block, OPQOBJECT(2,0) );
-  PHB_ITEM self = hb_stackSelfItem();
-  PHB_ITEM ptr = hb_itemPutPtr( NULL,(HCodeBlockValidator *) o );
-  hb_objSendMsg( self, "_pointer", 1, ptr );
-  hb_itemRelease( ptr );
-  hb_itemReturn( self );
+  HCodeBlockValidator * o = new HCodeBlockValidator( PBLOCKORSYMBOL(1), OPQOBJECT(2,0) );
+  Qt5xHb::returnNewObject( o, false );
 }
 
 HB_FUNC_STATIC( HCODEBLOCKVALIDATOR_NEW )
 {
-  if( ISBETWEEN(0,1) && (ISQOBJECT(1)||ISNIL(1)) )
+  if( ISBETWEEN(0,1) && (ISQOBJECT(1)||HB_ISNIL(1)) )
   {
     HCodeBlockValidator_new1();
   }
-  else if( ISBETWEEN(1,2) && (ISQOBJECT(2)||ISNIL(2)) )
+  else if( ISBETWEEN(1,2) && (ISQOBJECT(2)||HB_ISNIL(2)) )
   {
     HCodeBlockValidator_new2();
   }
@@ -72,12 +69,17 @@ HB_FUNC_STATIC( HCODEBLOCKVALIDATOR_NEW )
   }
 }
 
+/*
+~HCodeBlockValidator()
+*/
 HB_FUNC_STATIC( HCODEBLOCKVALIDATOR_DELETE )
 {
-  HCodeBlockValidator * obj = (HCodeBlockValidator *) hb_itemGetPtr( hb_objSendMsg( hb_stackSelfItem(), "POINTER", 0 ) );
+  HCodeBlockValidator * obj = (HCodeBlockValidator *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -89,10 +91,16 @@ HB_FUNC_STATIC( HCODEBLOCKVALIDATOR_DELETE )
   hb_itemReturn( hb_stackSelfItem() );
 }
 
+/*
+QValidator::State validate( QString & input, int & pos ) const
+*/
 HB_FUNC_STATIC( HCODEBLOCKVALIDATOR_VALIDATE )
 {
 }
 
+/*
+void fixup( QString & input ) const
+*/
 HB_FUNC_STATIC( HCODEBLOCKVALIDATOR_FIXUP )
 {
 }

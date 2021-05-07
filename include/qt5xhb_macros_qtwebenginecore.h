@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -13,25 +13,25 @@
 #ifndef QT5XHB_MACROS_QTWEBENGINECORE_H
 #define QT5XHB_MACROS_QTWEBENGINECORE_H
 
-#define ISQWEBENGINECOOKIESTORE(n)                          _qt5xhb_isObjectDerivedFrom(n,"QWebEngineCookieStore")
-#define ISQWEBENGINEHTTPREQUEST(n)                          _qt5xhb_isObjectDerivedFrom(n,"QWebEngineHttpRequest")
-#define ISQWEBENGINEURLREQUESTINFO(n)                       _qt5xhb_isObjectDerivedFrom(n,"QWebEngineUrlRequestInfo")
-#define ISQWEBENGINEURLREQUESTINTERCEPTOR(n)                _qt5xhb_isObjectDerivedFrom(n,"QWebEngineUrlRequestInterceptor")
-#define ISQWEBENGINEURLREQUESTJOB(n)                        _qt5xhb_isObjectDerivedFrom(n,"QWebEngineUrlRequestJob")
-#define ISQWEBENGINEURLSCHEMEHANDLER(n)                     _qt5xhb_isObjectDerivedFrom(n,"QWebEngineUrlSchemeHandler")
+#define ISQWEBENGINECOOKIESTORE( n )                        Qt5xHb::isObjectDerivedFrom( n, "QWebEngineCookieStore" )
+#define ISQWEBENGINEHTTPREQUEST( n )                        Qt5xHb::isObjectDerivedFrom( n, "QWebEngineHttpRequest" )
+#define ISQWEBENGINEURLREQUESTINFO( n )                     Qt5xHb::isObjectDerivedFrom( n, "QWebEngineUrlRequestInfo" )
+#define ISQWEBENGINEURLREQUESTINTERCEPTOR( n )              Qt5xHb::isObjectDerivedFrom( n, "QWebEngineUrlRequestInterceptor" )
+#define ISQWEBENGINEURLREQUESTJOB( n )                      Qt5xHb::isObjectDerivedFrom( n, "QWebEngineUrlRequestJob" )
+#define ISQWEBENGINEURLSCHEMEHANDLER( n )                   Qt5xHb::isObjectDerivedFrom( n, "QWebEngineUrlSchemeHandler" )
 
-#define PQWEBENGINECOOKIESTORE(n)                           (QWebEngineCookieStore *) _qt5xhb_itemGetPtr(n)
-#define PQWEBENGINEHTTPREQUEST(n)                           (QWebEngineHttpRequest *) _qt5xhb_itemGetPtr(n)
-#define PQWEBENGINEURLREQUESTINFO(n)                        (QWebEngineUrlRequestInfo *) _qt5xhb_itemGetPtr(n)
-#define PQWEBENGINEURLREQUESTINTERCEPTOR(n)                 (QWebEngineUrlRequestInterceptor *) _qt5xhb_itemGetPtr(n)
-#define PQWEBENGINEURLREQUESTJOB(n)                         (QWebEngineUrlRequestJob *) _qt5xhb_itemGetPtr(n)
-#define PQWEBENGINEURLSCHEMEHANDLER(n)                      (QWebEngineUrlSchemeHandler *) _qt5xhb_itemGetPtr(n)
+#define PQWEBENGINECOOKIESTORE( n )                         static_cast< QWebEngineCookieStore * >( Qt5xHb::itemGetPtr( n ) )
+#define PQWEBENGINEHTTPREQUEST( n )                         static_cast< QWebEngineHttpRequest * >( Qt5xHb::itemGetPtr( n ) )
+#define PQWEBENGINEURLREQUESTINFO( n )                      static_cast< QWebEngineUrlRequestInfo * >( Qt5xHb::itemGetPtr( n ) )
+#define PQWEBENGINEURLREQUESTINTERCEPTOR( n )               static_cast< QWebEngineUrlRequestInterceptor * >( Qt5xHb::itemGetPtr( n ) )
+#define PQWEBENGINEURLREQUESTJOB( n )                       static_cast< QWebEngineUrlRequestJob * >( Qt5xHb::itemGetPtr( n ) )
+#define PQWEBENGINEURLSCHEMEHANDLER( n )                    static_cast< QWebEngineUrlSchemeHandler * >( Qt5xHb::itemGetPtr( n ) )
 
-#define OPQWEBENGINECOOKIESTORE(n,v)                        ISNIL(n)? v : (QWebEngineCookieStore *) _qt5xhb_itemGetPtr(n)
-#define OPQWEBENGINEHTTPREQUEST(n,v)                        ISNIL(n)? v : (QWebEngineHttpRequest *) _qt5xhb_itemGetPtr(n)
-#define OPQWEBENGINEURLREQUESTINFO(n,v)                     ISNIL(n)? v : (QWebEngineUrlRequestInfo *) _qt5xhb_itemGetPtr(n)
-#define OPQWEBENGINEURLREQUESTINTERCEPTOR(n,v)              ISNIL(n)? v : (QWebEngineUrlRequestInterceptor *) _qt5xhb_itemGetPtr(n)
-#define OPQWEBENGINEURLREQUESTJOB(n,v)                      ISNIL(n)? v : (QWebEngineUrlRequestJob *) _qt5xhb_itemGetPtr(n)
-#define OPQWEBENGINEURLSCHEMEHANDLER(n,v)                   ISNIL(n)? v : (QWebEngineUrlSchemeHandler *) _qt5xhb_itemGetPtr(n)
+#define OPQWEBENGINECOOKIESTORE( n, v )                     HB_ISNIL( n ) ? v : static_cast< QWebEngineCookieStore * >( Qt5xHb::itemGetPtr( n ) )
+#define OPQWEBENGINEHTTPREQUEST( n, v )                     HB_ISNIL( n ) ? v : static_cast< QWebEngineHttpRequest * >( Qt5xHb::itemGetPtr( n ) )
+#define OPQWEBENGINEURLREQUESTINFO( n, v )                  HB_ISNIL( n ) ? v : static_cast< QWebEngineUrlRequestInfo * >( Qt5xHb::itemGetPtr( n ) )
+#define OPQWEBENGINEURLREQUESTINTERCEPTOR( n, v )           HB_ISNIL( n ) ? v : static_cast< QWebEngineUrlRequestInterceptor * >( Qt5xHb::itemGetPtr( n ) )
+#define OPQWEBENGINEURLREQUESTJOB( n, v )                   HB_ISNIL( n ) ? v : static_cast< QWebEngineUrlRequestJob * >( Qt5xHb::itemGetPtr( n ) )
+#define OPQWEBENGINEURLSCHEMEHANDLER( n, v )                HB_ISNIL( n ) ? v : static_cast< QWebEngineUrlSchemeHandler * >( Qt5xHb::itemGetPtr( n ) )
 
 #endif /* QT5XHB_MACROS_QTWEBENGINECORE_H */

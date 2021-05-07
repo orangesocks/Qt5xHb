@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -27,7 +27,7 @@ CLASS QTranslator INHERIT QObject
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QTranslator
+PROCEDURE destroyObject() CLASS QTranslator
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -44,20 +44,22 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #include <QtCore/QTranslator>
 #endif
 
 /*
-QTranslator(QObject * parent = 0)
+QTranslator( QObject * parent = 0 )
 */
 HB_FUNC_STATIC( QTRANSLATOR_NEW )
 {
-  if( ISBETWEEN(0,1) && (ISQOBJECT(1)||ISNIL(1)) )
+  if( ISBETWEEN(0,1) && (ISQOBJECT(1)||HB_ISNIL(1)) )
   {
-    QTranslator * o = new QTranslator ( OPQOBJECT(1,0) );
-    _qt5xhb_returnNewObject( o, false );
+    QTranslator * obj = new QTranslator( OPQOBJECT(1,0) );
+    Qt5xHb::returnNewObject( obj, false );
   }
   else
   {
@@ -67,10 +69,12 @@ HB_FUNC_STATIC( QTRANSLATOR_NEW )
 
 HB_FUNC_STATIC( QTRANSLATOR_DELETE )
 {
-  QTranslator * obj = (QTranslator *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTranslator * obj = (QTranslator *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -87,7 +91,7 @@ virtual bool isEmpty() const
 */
 HB_FUNC_STATIC( QTRANSLATOR_ISEMPTY )
 {
-  QTranslator * obj = (QTranslator *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTranslator * obj = (QTranslator *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -95,7 +99,7 @@ HB_FUNC_STATIC( QTRANSLATOR_ISEMPTY )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->isEmpty () );
+      RBOOL( obj->isEmpty() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -107,59 +111,55 @@ HB_FUNC_STATIC( QTRANSLATOR_ISEMPTY )
 }
 
 /*
-bool load(const QString & filename, const QString & directory = QString(), const QString & search_delimiters = QString(), const QString & suffix = QString())
+bool load( const QString & filename, const QString & directory = QString(), const QString & search_delimiters = QString(), const QString & suffix = QString() )
 */
-void QTranslator_load1 ()
+void QTranslator_load1()
 {
-  QTranslator * obj = (QTranslator *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTranslator * obj = (QTranslator *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
-      RBOOL( obj->load ( PQSTRING(1), OPQSTRING(2,QString()), OPQSTRING(3,QString()), OPQSTRING(4,QString()) ) );
+    RBOOL( obj->load( PQSTRING(1), OPQSTRING(2,QString()), OPQSTRING(3,QString()), OPQSTRING(4,QString()) ) );
   }
 }
 
 /*
-bool load(const QLocale & locale, const QString & filename, const QString & prefix = QString(), const QString & directory = QString(), const QString & suffix = QString())
+bool load( const QLocale & locale, const QString & filename, const QString & prefix = QString(), const QString & directory = QString(), const QString & suffix = QString() )
 */
-void QTranslator_load2 ()
+void QTranslator_load2()
 {
-  QTranslator * obj = (QTranslator *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTranslator * obj = (QTranslator *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
-      RBOOL( obj->load ( *PQLOCALE(1), PQSTRING(2), OPQSTRING(3,QString()), OPQSTRING(4,QString()), OPQSTRING(5,QString()) ) );
+    RBOOL( obj->load( *PQLOCALE(1), PQSTRING(2), OPQSTRING(3,QString()), OPQSTRING(4,QString()), OPQSTRING(5,QString()) ) );
   }
 }
 
 /*
-bool load(const uchar * data, int len, const QString & directory = QString())
+bool load( const uchar * data, int len, const QString & directory = QString() )
 */
-void QTranslator_load3 ()
+void QTranslator_load3()
 {
-  QTranslator * obj = (QTranslator *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTranslator * obj = (QTranslator *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
-      RBOOL( obj->load ( PCONSTUCHAR(1), PINT(2), OPQSTRING(3,QString()) ) );
+    RBOOL( obj->load( PCONSTUCHAR(1), PINT(2), OPQSTRING(3,QString()) ) );
   }
 }
-
-//[1]bool load(const QString & filename, const QString & directory = QString(), const QString & search_delimiters = QString(), const QString & suffix = QString())
-//[2]bool load(const QLocale & locale, const QString & filename, const QString & prefix = QString(), const QString & directory = QString(), const QString & suffix = QString())
-//[3]bool load(const uchar * data, int len, const QString & directory = QString())
 
 HB_FUNC_STATIC( QTRANSLATOR_LOAD )
 {
-  if( ISBETWEEN(1,4) && ISCHAR(1) && ISOPTCHAR(2) && ISOPTCHAR(3) && ISOPTCHAR(4) )
+  if( ISBETWEEN(1,4) && HB_ISCHAR(1) && ( HB_ISCHAR(2)||HB_ISNIL(2)) && ( HB_ISCHAR(3)||HB_ISNIL(3)) && ( HB_ISCHAR(4)||HB_ISNIL(4)) )
   {
     QTranslator_load1();
   }
-  else if( ISBETWEEN(2,5) && ISQLOCALE(1) && ISCHAR(2) && ISOPTCHAR(3) && ISOPTCHAR(4) && ISOPTCHAR(5) )
+  else if( ISBETWEEN(2,5) && ISQLOCALE(1) && HB_ISCHAR(2) && ( HB_ISCHAR(3)||HB_ISNIL(3)) && ( HB_ISCHAR(4)||HB_ISNIL(4)) && ( HB_ISCHAR(5)||HB_ISNIL(5)) )
   {
     QTranslator_load2();
   }
-  else if( ISBETWEEN(2,3) && ISCHAR(1) && ISNUM(2) && ISOPTCHAR(3) )
+  else if( ISBETWEEN(2,3) && HB_ISCHAR(1) && HB_ISNUM(2) && ( HB_ISCHAR(3)||HB_ISNIL(3)) )
   {
     QTranslator_load3();
   }
@@ -170,19 +170,19 @@ HB_FUNC_STATIC( QTRANSLATOR_LOAD )
 }
 
 /*
-virtual QString translate(const char * context, const char * sourceText, const char * disambiguation = 0, int n = -1) const
+virtual QString translate( const char * context, const char * sourceText, const char * disambiguation = 0, int n = -1 ) const
 */
 HB_FUNC_STATIC( QTRANSLATOR_TRANSLATE )
 {
-  QTranslator * obj = (QTranslator *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTranslator * obj = (QTranslator *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISBETWEEN(2,4) && ISCHAR(1) && ISCHAR(2) && ISOPTCHAR(3) && ISOPTNUM(4) )
+    if( ISBETWEEN(2,4) && HB_ISCHAR(1) && HB_ISCHAR(2) && (HB_ISCHAR(3)||HB_ISNIL(3)) && (HB_ISNUM(4)||HB_ISNIL(4)) )
     {
 #endif
-      RQSTRING( obj->translate ( PCONSTCHAR(1), PCONSTCHAR(2), OPCONSTCHAR(3,0), OPINT(4,-1) ) );
+      RQSTRING( obj->translate( PCONSTCHAR(1), PCONSTCHAR(2), OPCONSTCHAR(3,0), OPINT(4,-1) ) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else

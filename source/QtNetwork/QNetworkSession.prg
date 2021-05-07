@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -55,7 +55,7 @@ CLASS QNetworkSession INHERIT QObject
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QNetworkSession
+PROCEDURE destroyObject() CLASS QNetworkSession
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -72,20 +72,22 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #include <QtNetwork/QNetworkSession>
 #endif
 
 /*
-explicit QNetworkSession(const QNetworkConfiguration &connConfig, QObject *parent = Q_NULLPTR)
+QNetworkSession( const QNetworkConfiguration & connConfig, QObject * parent = nullptr )
 */
 HB_FUNC_STATIC( QNETWORKSESSION_NEW )
 {
-  if( ISBETWEEN(1,2) && ISQNETWORKCONFIGURATION(1) && (ISQOBJECT(2)||ISNIL(2)) )
+  if( ISBETWEEN(1,2) && ISQNETWORKCONFIGURATION(1) && (ISQOBJECT(2)||HB_ISNIL(2)) )
   {
-    QNetworkSession * o = new QNetworkSession ( *PQNETWORKCONFIGURATION(1), OPQOBJECT(2,0) );
-    _qt5xhb_returnNewObject( o, false );
+    QNetworkSession * obj = new QNetworkSession( *PQNETWORKCONFIGURATION(1), OPQOBJECT(2,nullptr) );
+    Qt5xHb::returnNewObject( obj, false );
   }
   else
   {
@@ -98,10 +100,12 @@ virtual ~QNetworkSession()
 */
 HB_FUNC_STATIC( QNETWORKSESSION_DELETE )
 {
-  QNetworkSession * obj = (QNetworkSession *) _qt5xhb_itemGetPtrStackSelfItem();
+  QNetworkSession * obj = (QNetworkSession *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -114,11 +118,11 @@ HB_FUNC_STATIC( QNETWORKSESSION_DELETE )
 }
 
 /*
-quint64 activeTime () const
+quint64 activeTime() const
 */
 HB_FUNC_STATIC( QNETWORKSESSION_ACTIVETIME )
 {
-  QNetworkSession * obj = (QNetworkSession *) _qt5xhb_itemGetPtrStackSelfItem();
+  QNetworkSession * obj = (QNetworkSession *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -126,7 +130,7 @@ HB_FUNC_STATIC( QNETWORKSESSION_ACTIVETIME )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQUINT64( obj->activeTime () );
+      RQUINT64( obj->activeTime() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -138,11 +142,11 @@ HB_FUNC_STATIC( QNETWORKSESSION_ACTIVETIME )
 }
 
 /*
-quint64 bytesReceived () const
+quint64 bytesReceived() const
 */
 HB_FUNC_STATIC( QNETWORKSESSION_BYTESRECEIVED )
 {
-  QNetworkSession * obj = (QNetworkSession *) _qt5xhb_itemGetPtrStackSelfItem();
+  QNetworkSession * obj = (QNetworkSession *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -150,7 +154,7 @@ HB_FUNC_STATIC( QNETWORKSESSION_BYTESRECEIVED )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQUINT64( obj->bytesReceived () );
+      RQUINT64( obj->bytesReceived() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -162,11 +166,11 @@ HB_FUNC_STATIC( QNETWORKSESSION_BYTESRECEIVED )
 }
 
 /*
-quint64 bytesWritten () const
+quint64 bytesWritten() const
 */
 HB_FUNC_STATIC( QNETWORKSESSION_BYTESWRITTEN )
 {
-  QNetworkSession * obj = (QNetworkSession *) _qt5xhb_itemGetPtrStackSelfItem();
+  QNetworkSession * obj = (QNetworkSession *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -174,7 +178,7 @@ HB_FUNC_STATIC( QNETWORKSESSION_BYTESWRITTEN )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQUINT64( obj->bytesWritten () );
+      RQUINT64( obj->bytesWritten() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -186,11 +190,11 @@ HB_FUNC_STATIC( QNETWORKSESSION_BYTESWRITTEN )
 }
 
 /*
-QNetworkConfiguration configuration () const
+QNetworkConfiguration configuration() const
 */
 HB_FUNC_STATIC( QNETWORKSESSION_CONFIGURATION )
 {
-  QNetworkSession * obj = (QNetworkSession *) _qt5xhb_itemGetPtrStackSelfItem();
+  QNetworkSession * obj = (QNetworkSession *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -198,8 +202,8 @@ HB_FUNC_STATIC( QNETWORKSESSION_CONFIGURATION )
     if( ISNUMPAR(0) )
     {
 #endif
-      QNetworkConfiguration * ptr = new QNetworkConfiguration( obj->configuration () );
-      _qt5xhb_createReturnClass ( ptr, "QNETWORKCONFIGURATION", true );
+      QNetworkConfiguration * ptr = new QNetworkConfiguration( obj->configuration() );
+      Qt5xHb::createReturnClass( ptr, "QNETWORKCONFIGURATION", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -211,11 +215,11 @@ HB_FUNC_STATIC( QNETWORKSESSION_CONFIGURATION )
 }
 
 /*
-SessionError error () const
+QNetworkSession::SessionError error() const
 */
 HB_FUNC_STATIC( QNETWORKSESSION_ERROR )
 {
-  QNetworkSession * obj = (QNetworkSession *) _qt5xhb_itemGetPtrStackSelfItem();
+  QNetworkSession * obj = (QNetworkSession *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -223,7 +227,7 @@ HB_FUNC_STATIC( QNETWORKSESSION_ERROR )
     if( ISNUMPAR(0) )
     {
 #endif
-      RENUM( obj->error () );
+      RENUM( obj->error() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -235,11 +239,11 @@ HB_FUNC_STATIC( QNETWORKSESSION_ERROR )
 }
 
 /*
-QString errorString () const
+QString errorString() const
 */
 HB_FUNC_STATIC( QNETWORKSESSION_ERRORSTRING )
 {
-  QNetworkSession * obj = (QNetworkSession *) _qt5xhb_itemGetPtrStackSelfItem();
+  QNetworkSession * obj = (QNetworkSession *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -247,7 +251,7 @@ HB_FUNC_STATIC( QNETWORKSESSION_ERRORSTRING )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRING( obj->errorString () );
+      RQSTRING( obj->errorString() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -259,11 +263,11 @@ HB_FUNC_STATIC( QNETWORKSESSION_ERRORSTRING )
 }
 
 /*
-QNetworkInterface interface () const
+QNetworkInterface interface() const
 */
 HB_FUNC_STATIC( QNETWORKSESSION_INTERFACE )
 {
-  QNetworkSession * obj = (QNetworkSession *) _qt5xhb_itemGetPtrStackSelfItem();
+  QNetworkSession * obj = (QNetworkSession *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -271,8 +275,8 @@ HB_FUNC_STATIC( QNETWORKSESSION_INTERFACE )
     if( ISNUMPAR(0) )
     {
 #endif
-      QNetworkInterface * ptr = new QNetworkInterface( obj->interface () );
-      _qt5xhb_createReturnClass ( ptr, "QNETWORKINTERFACE", true );
+      QNetworkInterface * ptr = new QNetworkInterface( obj->interface() );
+      Qt5xHb::createReturnClass( ptr, "QNETWORKINTERFACE", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -284,11 +288,11 @@ HB_FUNC_STATIC( QNETWORKSESSION_INTERFACE )
 }
 
 /*
-bool isOpen () const
+bool isOpen() const
 */
 HB_FUNC_STATIC( QNETWORKSESSION_ISOPEN )
 {
-  QNetworkSession * obj = (QNetworkSession *) _qt5xhb_itemGetPtrStackSelfItem();
+  QNetworkSession * obj = (QNetworkSession *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -296,7 +300,7 @@ HB_FUNC_STATIC( QNETWORKSESSION_ISOPEN )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->isOpen () );
+      RBOOL( obj->isOpen() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -308,20 +312,20 @@ HB_FUNC_STATIC( QNETWORKSESSION_ISOPEN )
 }
 
 /*
-QVariant sessionProperty ( const QString & key ) const
+QVariant sessionProperty( const QString & key ) const
 */
 HB_FUNC_STATIC( QNETWORKSESSION_SESSIONPROPERTY )
 {
-  QNetworkSession * obj = (QNetworkSession *) _qt5xhb_itemGetPtrStackSelfItem();
+  QNetworkSession * obj = (QNetworkSession *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISCHAR(1) )
+    if( ISNUMPAR(1) && HB_ISCHAR(1) )
     {
 #endif
-      QVariant * ptr = new QVariant( obj->sessionProperty ( PQSTRING(1) ) );
-      _qt5xhb_createReturnClass ( ptr, "QVARIANT", true );
+      QVariant * ptr = new QVariant( obj->sessionProperty( PQSTRING(1) ) );
+      Qt5xHb::createReturnClass( ptr, "QVARIANT", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -333,19 +337,19 @@ HB_FUNC_STATIC( QNETWORKSESSION_SESSIONPROPERTY )
 }
 
 /*
-void setSessionProperty ( const QString & key, const QVariant & value )
+void setSessionProperty( const QString & key, const QVariant & value )
 */
 HB_FUNC_STATIC( QNETWORKSESSION_SETSESSIONPROPERTY )
 {
-  QNetworkSession * obj = (QNetworkSession *) _qt5xhb_itemGetPtrStackSelfItem();
+  QNetworkSession * obj = (QNetworkSession *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(2) && ISCHAR(1) && ISQVARIANT(2) )
+    if( ISNUMPAR(2) && HB_ISCHAR(1) && ISQVARIANT(2) )
     {
 #endif
-      obj->setSessionProperty ( PQSTRING(1), *PQVARIANT(2) );
+      obj->setSessionProperty( PQSTRING(1), *PQVARIANT(2) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -359,11 +363,11 @@ HB_FUNC_STATIC( QNETWORKSESSION_SETSESSIONPROPERTY )
 }
 
 /*
-State state () const
+QNetworkSession::State state() const
 */
 HB_FUNC_STATIC( QNETWORKSESSION_STATE )
 {
-  QNetworkSession * obj = (QNetworkSession *) _qt5xhb_itemGetPtrStackSelfItem();
+  QNetworkSession * obj = (QNetworkSession *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -371,7 +375,7 @@ HB_FUNC_STATIC( QNETWORKSESSION_STATE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RENUM( obj->state () );
+      RENUM( obj->state() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -383,19 +387,19 @@ HB_FUNC_STATIC( QNETWORKSESSION_STATE )
 }
 
 /*
-bool waitForOpened ( int msecs = 30000 )
+bool waitForOpened( int msecs = 30000 )
 */
 HB_FUNC_STATIC( QNETWORKSESSION_WAITFOROPENED )
 {
-  QNetworkSession * obj = (QNetworkSession *) _qt5xhb_itemGetPtrStackSelfItem();
+  QNetworkSession * obj = (QNetworkSession *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISBETWEEN(0,1) && ISOPTNUM(1) )
+    if( ISBETWEEN(0,1) && (HB_ISNUM(1)||HB_ISNIL(1)) )
     {
 #endif
-      RBOOL( obj->waitForOpened ( OPINT(1,30000) ) );
+      RBOOL( obj->waitForOpened( OPINT(1,30000) ) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -407,11 +411,11 @@ HB_FUNC_STATIC( QNETWORKSESSION_WAITFOROPENED )
 }
 
 /*
-void accept () (slot)
+void accept()
 */
 HB_FUNC_STATIC( QNETWORKSESSION_ACCEPT )
 {
-  QNetworkSession * obj = (QNetworkSession *) _qt5xhb_itemGetPtrStackSelfItem();
+  QNetworkSession * obj = (QNetworkSession *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -419,7 +423,7 @@ HB_FUNC_STATIC( QNETWORKSESSION_ACCEPT )
     if( ISNUMPAR(0) )
     {
 #endif
-      obj->accept ();
+      obj->accept();
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -433,11 +437,11 @@ HB_FUNC_STATIC( QNETWORKSESSION_ACCEPT )
 }
 
 /*
-void close () (slot)
+void close()
 */
 HB_FUNC_STATIC( QNETWORKSESSION_CLOSE )
 {
-  QNetworkSession * obj = (QNetworkSession *) _qt5xhb_itemGetPtrStackSelfItem();
+  QNetworkSession * obj = (QNetworkSession *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -445,7 +449,7 @@ HB_FUNC_STATIC( QNETWORKSESSION_CLOSE )
     if( ISNUMPAR(0) )
     {
 #endif
-      obj->close ();
+      obj->close();
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -459,11 +463,11 @@ HB_FUNC_STATIC( QNETWORKSESSION_CLOSE )
 }
 
 /*
-void ignore () (slot)
+void ignore()
 */
 HB_FUNC_STATIC( QNETWORKSESSION_IGNORE )
 {
-  QNetworkSession * obj = (QNetworkSession *) _qt5xhb_itemGetPtrStackSelfItem();
+  QNetworkSession * obj = (QNetworkSession *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -471,7 +475,7 @@ HB_FUNC_STATIC( QNETWORKSESSION_IGNORE )
     if( ISNUMPAR(0) )
     {
 #endif
-      obj->ignore ();
+      obj->ignore();
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -485,11 +489,11 @@ HB_FUNC_STATIC( QNETWORKSESSION_IGNORE )
 }
 
 /*
-void migrate () (slot)
+void migrate()
 */
 HB_FUNC_STATIC( QNETWORKSESSION_MIGRATE )
 {
-  QNetworkSession * obj = (QNetworkSession *) _qt5xhb_itemGetPtrStackSelfItem();
+  QNetworkSession * obj = (QNetworkSession *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -497,7 +501,7 @@ HB_FUNC_STATIC( QNETWORKSESSION_MIGRATE )
     if( ISNUMPAR(0) )
     {
 #endif
-      obj->migrate ();
+      obj->migrate();
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -511,11 +515,11 @@ HB_FUNC_STATIC( QNETWORKSESSION_MIGRATE )
 }
 
 /*
-void open () (slot)
+void open()
 */
 HB_FUNC_STATIC( QNETWORKSESSION_OPEN )
 {
-  QNetworkSession * obj = (QNetworkSession *) _qt5xhb_itemGetPtrStackSelfItem();
+  QNetworkSession * obj = (QNetworkSession *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -523,7 +527,7 @@ HB_FUNC_STATIC( QNETWORKSESSION_OPEN )
     if( ISNUMPAR(0) )
     {
 #endif
-      obj->open ();
+      obj->open();
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -537,11 +541,11 @@ HB_FUNC_STATIC( QNETWORKSESSION_OPEN )
 }
 
 /*
-void reject () (slot)
+void reject()
 */
 HB_FUNC_STATIC( QNETWORKSESSION_REJECT )
 {
-  QNetworkSession * obj = (QNetworkSession *) _qt5xhb_itemGetPtrStackSelfItem();
+  QNetworkSession * obj = (QNetworkSession *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -549,7 +553,7 @@ HB_FUNC_STATIC( QNETWORKSESSION_REJECT )
     if( ISNUMPAR(0) )
     {
 #endif
-      obj->reject ();
+      obj->reject();
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -563,11 +567,11 @@ HB_FUNC_STATIC( QNETWORKSESSION_REJECT )
 }
 
 /*
-void stop () (slot)
+void stop()
 */
 HB_FUNC_STATIC( QNETWORKSESSION_STOP )
 {
-  QNetworkSession * obj = (QNetworkSession *) _qt5xhb_itemGetPtrStackSelfItem();
+  QNetworkSession * obj = (QNetworkSession *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -575,7 +579,7 @@ HB_FUNC_STATIC( QNETWORKSESSION_STOP )
     if( ISNUMPAR(0) )
     {
 #endif
-      obj->stop ();
+      obj->stop();
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -593,7 +597,7 @@ QNetworkSession::UsagePolicies usagePolicies() const
 */
 HB_FUNC_STATIC( QNETWORKSESSION_USAGEPOLICIES )
 {
-  QNetworkSession * obj = (QNetworkSession *) _qt5xhb_itemGetPtrStackSelfItem();
+  QNetworkSession * obj = (QNetworkSession *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -601,7 +605,7 @@ HB_FUNC_STATIC( QNETWORKSESSION_USAGEPOLICIES )
     if( ISNUMPAR(0) )
     {
 #endif
-      RENUM( obj->usagePolicies () );
+      RENUM( obj->usagePolicies() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -612,15 +616,7 @@ HB_FUNC_STATIC( QNETWORKSESSION_USAGEPOLICIES )
   }
 }
 
-/*
-virtual void connectNotify(const QMetaMethod &signal) Q_DECL_OVERRIDE [protected]
-*/
-
-/*
-virtual void disconnectNotify(const QMetaMethod &signal) Q_DECL_OVERRIDE [protected]
-*/
-
-void QNetworkSessionSlots_connect_signal ( const QString & signal, const QString & slot );
+void QNetworkSessionSlots_connect_signal( const QString & signal, const QString & slot );
 
 HB_FUNC_STATIC( QNETWORKSESSION_ONCLOSED )
 {

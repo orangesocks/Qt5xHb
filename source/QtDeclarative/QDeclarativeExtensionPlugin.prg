@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -24,7 +24,7 @@ CLASS QDeclarativeExtensionPlugin INHERIT QObject
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QDeclarativeExtensionPlugin
+PROCEDURE destroyObject() CLASS QDeclarativeExtensionPlugin
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -41,25 +41,27 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #include <QtDeclarative/QDeclarativeExtensionPlugin>
 #endif
 
 /*
-virtual void initializeEngine ( QDeclarativeEngine * engine, const char * uri )
+virtual void initializeEngine( QDeclarativeEngine * engine, const char * uri )
 */
 HB_FUNC_STATIC( QDECLARATIVEEXTENSIONPLUGIN_INITIALIZEENGINE )
 {
-  QDeclarativeExtensionPlugin * obj = (QDeclarativeExtensionPlugin *) _qt5xhb_itemGetPtrStackSelfItem();
+  QDeclarativeExtensionPlugin * obj = (QDeclarativeExtensionPlugin *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(2) && ISQDECLARATIVEENGINE(1) && ISCHAR(2) )
+    if( ISNUMPAR(2) && ISQDECLARATIVEENGINE(1) && HB_ISCHAR(2) )
     {
 #endif
-      obj->initializeEngine ( PQDECLARATIVEENGINE(1), PCONSTCHAR(2) );
+      obj->initializeEngine( PQDECLARATIVEENGINE(1), PCONSTCHAR(2) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -73,19 +75,19 @@ HB_FUNC_STATIC( QDECLARATIVEEXTENSIONPLUGIN_INITIALIZEENGINE )
 }
 
 /*
-virtual void registerTypes ( const char * uri ) = 0
+virtual void registerTypes( const char * uri ) = 0
 */
 HB_FUNC_STATIC( QDECLARATIVEEXTENSIONPLUGIN_REGISTERTYPES )
 {
-  QDeclarativeExtensionPlugin * obj = (QDeclarativeExtensionPlugin *) _qt5xhb_itemGetPtrStackSelfItem();
+  QDeclarativeExtensionPlugin * obj = (QDeclarativeExtensionPlugin *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISCHAR(1) )
+    if( ISNUMPAR(1) && HB_ISCHAR(1) )
     {
 #endif
-      obj->registerTypes ( PCONSTCHAR(1) );
+      obj->registerTypes( PCONSTCHAR(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else

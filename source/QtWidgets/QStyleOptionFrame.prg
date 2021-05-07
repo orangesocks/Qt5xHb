@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -31,7 +31,7 @@ CLASS QStyleOptionFrame INHERIT QStyleOption
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QStyleOptionFrame
+PROCEDURE destroyObject() CLASS QStyleOptionFrame
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -56,28 +56,20 @@ RETURN
 /*
 QStyleOptionFrame()
 */
-void QStyleOptionFrame_new1 ()
+void QStyleOptionFrame_new1()
 {
-  QStyleOptionFrame * o = new QStyleOptionFrame ();
-  _qt5xhb_returnNewObject( o, true );
+  QStyleOptionFrame * obj = new QStyleOptionFrame();
+  Qt5xHb::returnNewObject( obj, true );
 }
 
 /*
-QStyleOptionFrame(const QStyleOptionFrame &other)
+QStyleOptionFrame( const QStyleOptionFrame & other )
 */
-void QStyleOptionFrame_new2 ()
+void QStyleOptionFrame_new2()
 {
-  QStyleOptionFrame * o = new QStyleOptionFrame ( *PQSTYLEOPTIONFRAME(1) );
-  _qt5xhb_returnNewObject( o, true );
+  QStyleOptionFrame * obj = new QStyleOptionFrame( *PQSTYLEOPTIONFRAME(1) );
+  Qt5xHb::returnNewObject( obj, true );
 }
-
-/*
-QStyleOptionFrame(int version) [protected]
-*/
-
-//[1]QStyleOptionFrame()
-//[2]QStyleOptionFrame(const QStyleOptionFrame &other)
-//[3]QStyleOptionFrame(int version) [protected]
 
 HB_FUNC_STATIC( QSTYLEOPTIONFRAME_NEW )
 {
@@ -100,13 +92,13 @@ int lineWidth
 */
 HB_FUNC_STATIC( QSTYLEOPTIONFRAME_LINEWIDTH )
 {
-  QStyleOptionFrame * obj = (QStyleOptionFrame *) _qt5xhb_itemGetPtrStackSelfItem();
+  QStyleOptionFrame * obj = (QStyleOptionFrame *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
     if( ISNUMPAR(0) )
     {
-      RINT( obj->lineWidth  );
+      RINT( obj->lineWidth );
     }
     else
     {
@@ -116,13 +108,13 @@ HB_FUNC_STATIC( QSTYLEOPTIONFRAME_LINEWIDTH )
 }
 HB_FUNC_STATIC( QSTYLEOPTIONFRAME_SETLINEWIDTH )
 {
-  QStyleOptionFrame * obj = (QStyleOptionFrame *) _qt5xhb_itemGetPtrStackSelfItem();
+  QStyleOptionFrame * obj = (QStyleOptionFrame *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
-      obj->lineWidth = PINT(1);
+      obj->lineWidth= PINT(1);
     }
     else
     {
@@ -138,13 +130,13 @@ int midLineWidth
 */
 HB_FUNC_STATIC( QSTYLEOPTIONFRAME_MIDLINEWIDTH )
 {
-  QStyleOptionFrame * obj = (QStyleOptionFrame *) _qt5xhb_itemGetPtrStackSelfItem();
+  QStyleOptionFrame * obj = (QStyleOptionFrame *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
     if( ISNUMPAR(0) )
     {
-      RINT( obj->midLineWidth  );
+      RINT( obj->midLineWidth );
     }
     else
     {
@@ -154,13 +146,13 @@ HB_FUNC_STATIC( QSTYLEOPTIONFRAME_MIDLINEWIDTH )
 }
 HB_FUNC_STATIC( QSTYLEOPTIONFRAME_SETMIDLINEWIDTH )
 {
-  QStyleOptionFrame * obj = (QStyleOptionFrame *) _qt5xhb_itemGetPtrStackSelfItem();
+  QStyleOptionFrame * obj = (QStyleOptionFrame *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
-      obj->midLineWidth = PINT(1);
+      obj->midLineWidth= PINT(1);
     }
     else
     {
@@ -176,13 +168,13 @@ FrameFeatures features
 */
 HB_FUNC_STATIC( QSTYLEOPTIONFRAME_FEATURES )
 {
-  QStyleOptionFrame * obj = (QStyleOptionFrame *) _qt5xhb_itemGetPtrStackSelfItem();
+  QStyleOptionFrame * obj = (QStyleOptionFrame *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
     if( ISNUMPAR(0) )
     {
-      RENUM( obj->features  );
+      RENUM( obj->features );
     }
     else
     {
@@ -192,13 +184,13 @@ HB_FUNC_STATIC( QSTYLEOPTIONFRAME_FEATURES )
 }
 HB_FUNC_STATIC( QSTYLEOPTIONFRAME_SETFEATURES )
 {
-  QStyleOptionFrame * obj = (QStyleOptionFrame *) _qt5xhb_itemGetPtrStackSelfItem();
+  QStyleOptionFrame * obj = (QStyleOptionFrame *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
-      obj->features = (QStyleOptionFrame::FrameFeatures) hb_parni(1);
+      obj->features= (QStyleOptionFrame::FrameFeatures) hb_parni(1);
     }
     else
     {
@@ -214,13 +206,13 @@ QFrame::Shape frameShape
 */
 HB_FUNC_STATIC( QSTYLEOPTIONFRAME_FRAMESHAPE )
 {
-  QStyleOptionFrame * obj = (QStyleOptionFrame *) _qt5xhb_itemGetPtrStackSelfItem();
+  QStyleOptionFrame * obj = (QStyleOptionFrame *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
     if( ISNUMPAR(0) )
     {
-      RENUM( obj->frameShape  );
+      RENUM( obj->frameShape );
     }
     else
     {
@@ -230,13 +222,13 @@ HB_FUNC_STATIC( QSTYLEOPTIONFRAME_FRAMESHAPE )
 }
 HB_FUNC_STATIC( QSTYLEOPTIONFRAME_SETFRAMESHAPE )
 {
-  QStyleOptionFrame * obj = (QStyleOptionFrame *) _qt5xhb_itemGetPtrStackSelfItem();
+  QStyleOptionFrame * obj = (QStyleOptionFrame *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
-      obj->frameShape = (QFrame::Shape) hb_parni(1);
+      obj->frameShape= (QFrame::Shape) hb_parni(1);
     }
     else
     {

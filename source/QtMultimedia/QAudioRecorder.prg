@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -32,7 +32,7 @@ CLASS QAudioRecorder INHERIT QMediaRecorder
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QAudioRecorder
+PROCEDURE destroyObject() CLASS QAudioRecorder
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -49,20 +49,22 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #include <QtMultimedia/QAudioRecorder>
 #endif
 
 /*
-explicit QAudioRecorder(QObject *parent = Q_NULLPTR)
+QAudioRecorder( QObject * parent = nullptr )
 */
 HB_FUNC_STATIC( QAUDIORECORDER_NEW )
 {
-  if( ISBETWEEN(0,1) && (ISQOBJECT(1)||ISNIL(1)) )
+  if( ISBETWEEN(0,1) && (ISQOBJECT(1)||HB_ISNIL(1)) )
   {
-    QAudioRecorder * o = new QAudioRecorder ( OPQOBJECT(1,0) );
-    _qt5xhb_returnNewObject( o, false );
+    QAudioRecorder * obj = new QAudioRecorder( OPQOBJECT(1,nullptr) );
+    Qt5xHb::returnNewObject( obj, false );
   }
   else
   {
@@ -75,10 +77,12 @@ HB_FUNC_STATIC( QAUDIORECORDER_NEW )
 */
 HB_FUNC_STATIC( QAUDIORECORDER_DELETE )
 {
-  QAudioRecorder * obj = (QAudioRecorder *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAudioRecorder * obj = (QAudioRecorder *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -95,7 +99,7 @@ QString audioInput() const
 */
 HB_FUNC_STATIC( QAUDIORECORDER_AUDIOINPUT )
 {
-  QAudioRecorder * obj = (QAudioRecorder *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAudioRecorder * obj = (QAudioRecorder *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -103,7 +107,7 @@ HB_FUNC_STATIC( QAUDIORECORDER_AUDIOINPUT )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRING( obj->audioInput () );
+      RQSTRING( obj->audioInput() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -115,19 +119,19 @@ HB_FUNC_STATIC( QAUDIORECORDER_AUDIOINPUT )
 }
 
 /*
-void setAudioInput(const QString & name)
+void setAudioInput( const QString & name )
 */
 HB_FUNC_STATIC( QAUDIORECORDER_SETAUDIOINPUT )
 {
-  QAudioRecorder * obj = (QAudioRecorder *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAudioRecorder * obj = (QAudioRecorder *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISCHAR(1) )
+    if( ISNUMPAR(1) && HB_ISCHAR(1) )
     {
 #endif
-      obj->setAudioInput ( PQSTRING(1) );
+      obj->setAudioInput( PQSTRING(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -141,19 +145,19 @@ HB_FUNC_STATIC( QAUDIORECORDER_SETAUDIOINPUT )
 }
 
 /*
-QString audioInputDescription(const QString & name) const
+QString audioInputDescription( const QString & name ) const
 */
 HB_FUNC_STATIC( QAUDIORECORDER_AUDIOINPUTDESCRIPTION )
 {
-  QAudioRecorder * obj = (QAudioRecorder *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAudioRecorder * obj = (QAudioRecorder *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISCHAR(1) )
+    if( ISNUMPAR(1) && HB_ISCHAR(1) )
     {
 #endif
-      RQSTRING( obj->audioInputDescription ( PQSTRING(1) ) );
+      RQSTRING( obj->audioInputDescription( PQSTRING(1) ) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -169,7 +173,7 @@ QStringList audioInputs() const
 */
 HB_FUNC_STATIC( QAUDIORECORDER_AUDIOINPUTS )
 {
-  QAudioRecorder * obj = (QAudioRecorder *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAudioRecorder * obj = (QAudioRecorder *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -177,7 +181,7 @@ HB_FUNC_STATIC( QAUDIORECORDER_AUDIOINPUTS )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRINGLIST( obj->audioInputs () );
+      RQSTRINGLIST( obj->audioInputs() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -193,7 +197,7 @@ QString defaultAudioInput() const
 */
 HB_FUNC_STATIC( QAUDIORECORDER_DEFAULTAUDIOINPUT )
 {
-  QAudioRecorder * obj = (QAudioRecorder *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAudioRecorder * obj = (QAudioRecorder *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -201,7 +205,7 @@ HB_FUNC_STATIC( QAUDIORECORDER_DEFAULTAUDIOINPUT )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRING( obj->defaultAudioInput () );
+      RQSTRING( obj->defaultAudioInput() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -212,7 +216,7 @@ HB_FUNC_STATIC( QAUDIORECORDER_DEFAULTAUDIOINPUT )
   }
 }
 
-void QAudioRecorderSlots_connect_signal ( const QString & signal, const QString & slot );
+void QAudioRecorderSlots_connect_signal( const QString & signal, const QString & slot );
 
 HB_FUNC_STATIC( QAUDIORECORDER_ONAUDIOINPUTCHANGED )
 {

@@ -2,13 +2,13 @@
 
   Qt5xHb Project - Test Program
 
-  Copyright (C) 2019 Marcos Antonio Gambeta
+  Copyright (C) 2021 Marcos Antonio Gambeta
 
   E-mail:
   marcosgambeta AT outlook DOT com
 
   Website:
-  https://github.com/marcosgambeta/Qt5xHb
+  https://github.com/magsoftinfo/qt5xhb
 
 */
 
@@ -17,7 +17,7 @@
 
 //STATIC s_mutex := hb_mutexCreate()
 
-PROCEDURE Main ()
+PROCEDURE Main()
 
    LOCAL oApp
    LOCAL oWebSocketServer
@@ -26,9 +26,9 @@ PROCEDURE Main ()
 
    oApp := QCoreApplication():new()
 
-   oWebSocketServer := QWebSocketServer():new("WebSocketServer", QWebSocketServer_NonSecureMode)
+   oWebSocketServer := QWebSocketServer():new( "WebSocketServer", QWebSocketServer_NonSecureMode )
 
-   IF oWebSocketServer:listen(QHostAddress():new("127.0.0.1"), 1234)
+   IF oWebSocketServer:listen( QHostAddress():new( "127.0.0.1" ), 1234 )
       ? "servidor ativo na porta 1234"
    ELSE
       ? "servidor inativo"
@@ -49,7 +49,7 @@ PROCEDURE Main ()
 
 RETURN
 
-STATIC FUNCTION newConnection (oWebSocketServer)
+STATIC FUNCTION newConnection( oWebSocketServer )
 
    LOCAL oSocket
 
@@ -59,9 +59,9 @@ STATIC FUNCTION newConnection (oWebSocketServer)
 
    oSocket := oWebSocketServer:nextPendingConnection()
 
-   oSocket:onDestroyed( {|oSender|qout(oSender:pointer),qout("socket destruido"),oSender:disconnectAll(.T.)} )
-   oSocket:onTextMessageReceived( {|oSender, cText|qout(oSender:pointer),qout("textMessageReceived="+cText),oSender:sendTextMessage(cText)} )
-   oSocket:onDisconnected( {|oSender|qout(oSender:pointer),qout("socket desconectado"),oSender:delete()} )
+   oSocket:onDestroyed( {|oSender|qout( oSender:pointer ), qout( "socket destruido" ), oSender:disconnectAll( .T. )} )
+   oSocket:onTextMessageReceived( {|oSender, cText|qout( oSender:pointer ), qout( "textMessageReceived=" + cText ), oSender:sendTextMessage( cText )} )
+   oSocket:onDisconnected( {|oSender|qout( oSender:pointer ), qout( "socket desconectado" ), oSender:delete()} )
 
 //   hb_mutexUnlock( s_mutex )
 

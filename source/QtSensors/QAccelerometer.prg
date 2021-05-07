@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -30,7 +30,7 @@ CLASS QAccelerometer INHERIT QSensor
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QAccelerometer
+PROCEDURE destroyObject() CLASS QAccelerometer
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -49,6 +49,8 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #if (QT_VERSION >= QT_VERSION_CHECK(5,1,0))
@@ -57,15 +59,15 @@ RETURN
 #endif
 
 /*
-QAccelerometer(QObject *parent = 0)
+QAccelerometer( QObject * parent = 0 )
 */
 HB_FUNC_STATIC( QACCELEROMETER_NEW )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,1,0))
-  if( ISBETWEEN(0,1) && (ISQOBJECT(1)||ISNIL(1)) )
+  if( ISBETWEEN(0,1) && (ISQOBJECT(1)||HB_ISNIL(1)) )
   {
-    QAccelerometer * o = new QAccelerometer ( OPQOBJECT(1,0) );
-    _qt5xhb_returnNewObject( o, false );
+    QAccelerometer * obj = new QAccelerometer( OPQOBJECT(1,0) );
+    Qt5xHb::returnNewObject( obj, false );
   }
   else
   {
@@ -77,10 +79,12 @@ HB_FUNC_STATIC( QACCELEROMETER_NEW )
 HB_FUNC_STATIC( QACCELEROMETER_DELETE )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,1,0))
-  QAccelerometer * obj = (QAccelerometer *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAccelerometer * obj = (QAccelerometer *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -94,12 +98,12 @@ HB_FUNC_STATIC( QACCELEROMETER_DELETE )
 }
 
 /*
-AccelerationMode accelerationMode() const
+QAccelerometer::AccelerationMode accelerationMode() const
 */
 HB_FUNC_STATIC( QACCELEROMETER_ACCELERATIONMODE )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,1,0))
-  QAccelerometer * obj = (QAccelerometer *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAccelerometer * obj = (QAccelerometer *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -107,7 +111,7 @@ HB_FUNC_STATIC( QACCELEROMETER_ACCELERATIONMODE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RENUM( obj->accelerationMode () );
+      RENUM( obj->accelerationMode() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -120,20 +124,20 @@ HB_FUNC_STATIC( QACCELEROMETER_ACCELERATIONMODE )
 }
 
 /*
-void setAccelerationMode(AccelerationMode accelerationMode)
+void setAccelerationMode( QAccelerometer::AccelerationMode accelerationMode )
 */
 HB_FUNC_STATIC( QACCELEROMETER_SETACCELERATIONMODE )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,1,0))
-  QAccelerometer * obj = (QAccelerometer *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAccelerometer * obj = (QAccelerometer *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setAccelerationMode ( (QAccelerometer::AccelerationMode) hb_parni(1) );
+      obj->setAccelerationMode( (QAccelerometer::AccelerationMode) hb_parni(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -148,12 +152,12 @@ HB_FUNC_STATIC( QACCELEROMETER_SETACCELERATIONMODE )
 }
 
 /*
-QAccelerometerReading *reading() const
+QAccelerometerReading * reading() const
 */
 HB_FUNC_STATIC( QACCELEROMETER_READING )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,1,0))
-  QAccelerometer * obj = (QAccelerometer *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAccelerometer * obj = (QAccelerometer *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -161,8 +165,8 @@ HB_FUNC_STATIC( QACCELEROMETER_READING )
     if( ISNUMPAR(0) )
     {
 #endif
-      QAccelerometerReading * ptr = obj->reading ();
-      _qt5xhb_createReturnQObjectClass ( ptr, "QACCELEROMETERREADING" );
+      QAccelerometerReading * ptr = obj->reading();
+      Qt5xHb::createReturnQObjectClass( ptr, "QACCELEROMETERREADING" );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -174,7 +178,7 @@ HB_FUNC_STATIC( QACCELEROMETER_READING )
 #endif
 }
 
-void QAccelerometerSlots_connect_signal ( const QString & signal, const QString & slot );
+void QAccelerometerSlots_connect_signal( const QString & signal, const QString & slot );
 
 HB_FUNC_STATIC( QACCELEROMETER_ONACCELERATIONMODECHANGED )
 {

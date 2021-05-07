@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -28,7 +28,7 @@ CLASS QInputMethodQueryEvent INHERIT QEvent
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QInputMethodQueryEvent
+PROCEDURE destroyObject() CLASS QInputMethodQueryEvent
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -51,14 +51,14 @@ RETURN
 #endif
 
 /*
-QInputMethodQueryEvent(Qt::InputMethodQueries queries)
+QInputMethodQueryEvent( Qt::InputMethodQueries queries )
 */
 HB_FUNC_STATIC( QINPUTMETHODQUERYEVENT_NEW )
 {
-  if( ISNUMPAR(1) && ISNUM(1) )
+  if( ISNUMPAR(1) && HB_ISNUM(1) )
   {
-    QInputMethodQueryEvent * o = new QInputMethodQueryEvent ( (Qt::InputMethodQueries) hb_parni(1) );
-    _qt5xhb_returnNewObject( o, false );
+    QInputMethodQueryEvent * obj = new QInputMethodQueryEvent( (Qt::InputMethodQueries) hb_parni(1) );
+    Qt5xHb::returnNewObject( obj, false );
   }
   else
   {
@@ -68,7 +68,7 @@ HB_FUNC_STATIC( QINPUTMETHODQUERYEVENT_NEW )
 
 HB_FUNC_STATIC( QINPUTMETHODQUERYEVENT_DELETE )
 {
-  QInputMethodQueryEvent * obj = (QInputMethodQueryEvent *) _qt5xhb_itemGetPtrStackSelfItem();
+  QInputMethodQueryEvent * obj = (QInputMethodQueryEvent *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -88,7 +88,7 @@ Qt::InputMethodQueries queries() const
 */
 HB_FUNC_STATIC( QINPUTMETHODQUERYEVENT_QUERIES )
 {
-  QInputMethodQueryEvent * obj = (QInputMethodQueryEvent *) _qt5xhb_itemGetPtrStackSelfItem();
+  QInputMethodQueryEvent * obj = (QInputMethodQueryEvent *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -96,7 +96,7 @@ HB_FUNC_STATIC( QINPUTMETHODQUERYEVENT_QUERIES )
     if( ISNUMPAR(0) )
     {
 #endif
-      RENUM( obj->queries () );
+      RENUM( obj->queries() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -108,19 +108,19 @@ HB_FUNC_STATIC( QINPUTMETHODQUERYEVENT_QUERIES )
 }
 
 /*
-void setValue(Qt::InputMethodQuery query, const QVariant & value)
+void setValue( Qt::InputMethodQuery query, const QVariant & value )
 */
 HB_FUNC_STATIC( QINPUTMETHODQUERYEVENT_SETVALUE )
 {
-  QInputMethodQueryEvent * obj = (QInputMethodQueryEvent *) _qt5xhb_itemGetPtrStackSelfItem();
+  QInputMethodQueryEvent * obj = (QInputMethodQueryEvent *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(2) && ISNUM(1) && ISQVARIANT(2) )
+    if( ISNUMPAR(2) && HB_ISNUM(1) && ISQVARIANT(2) )
     {
 #endif
-      obj->setValue ( (Qt::InputMethodQuery) hb_parni(1), *PQVARIANT(2) );
+      obj->setValue( (Qt::InputMethodQuery) hb_parni(1), *PQVARIANT(2) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -134,20 +134,20 @@ HB_FUNC_STATIC( QINPUTMETHODQUERYEVENT_SETVALUE )
 }
 
 /*
-QVariant value(Qt::InputMethodQuery query) const
+QVariant value( Qt::InputMethodQuery query ) const
 */
 HB_FUNC_STATIC( QINPUTMETHODQUERYEVENT_VALUE )
 {
-  QInputMethodQueryEvent * obj = (QInputMethodQueryEvent *) _qt5xhb_itemGetPtrStackSelfItem();
+  QInputMethodQueryEvent * obj = (QInputMethodQueryEvent *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      QVariant * ptr = new QVariant( obj->value ( (Qt::InputMethodQuery) hb_parni(1) ) );
-      _qt5xhb_createReturnClass ( ptr, "QVARIANT", true );
+      QVariant * ptr = new QVariant( obj->value( (Qt::InputMethodQuery) hb_parni(1) ) );
+      Qt5xHb::createReturnClass( ptr, "QVARIANT", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else

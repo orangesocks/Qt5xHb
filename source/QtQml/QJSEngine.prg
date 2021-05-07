@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -31,7 +31,7 @@ CLASS QJSEngine INHERIT QObject
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QJSEngine
+PROCEDURE destroyObject() CLASS QJSEngine
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -48,6 +48,8 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #include <QtQml/QJSEngine>
@@ -56,23 +58,20 @@ RETURN
 /*
 QJSEngine()
 */
-void QJSEngine_new1 ()
+void QJSEngine_new1()
 {
-  QJSEngine * o = new QJSEngine ();
-  _qt5xhb_returnNewObject( o, false );
+  QJSEngine * obj = new QJSEngine();
+  Qt5xHb::returnNewObject( obj, false );
 }
 
 /*
-QJSEngine(QObject * parent)
+QJSEngine( QObject * parent )
 */
-void QJSEngine_new2 ()
+void QJSEngine_new2()
 {
-  QJSEngine * o = new QJSEngine ( PQOBJECT(1) );
-  _qt5xhb_returnNewObject( o, false );
+  QJSEngine * obj = new QJSEngine( PQOBJECT(1) );
+  Qt5xHb::returnNewObject( obj, false );
 }
-
-//[1]QJSEngine()
-//[2]QJSEngine(QObject * parent)
 
 HB_FUNC_STATIC( QJSENGINE_NEW )
 {
@@ -92,10 +91,12 @@ HB_FUNC_STATIC( QJSENGINE_NEW )
 
 HB_FUNC_STATIC( QJSENGINE_DELETE )
 {
-  QJSEngine * obj = (QJSEngine *) _qt5xhb_itemGetPtrStackSelfItem();
+  QJSEngine * obj = (QJSEngine *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -112,7 +113,7 @@ void collectGarbage()
 */
 HB_FUNC_STATIC( QJSENGINE_COLLECTGARBAGE )
 {
-  QJSEngine * obj = (QJSEngine *) _qt5xhb_itemGetPtrStackSelfItem();
+  QJSEngine * obj = (QJSEngine *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -120,7 +121,7 @@ HB_FUNC_STATIC( QJSENGINE_COLLECTGARBAGE )
     if( ISNUMPAR(0) )
     {
 #endif
-      obj->collectGarbage ();
+      obj->collectGarbage();
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -134,20 +135,20 @@ HB_FUNC_STATIC( QJSENGINE_COLLECTGARBAGE )
 }
 
 /*
-QJSValue evaluate(const QString & program, const QString & fileName = QString(), int lineNumber = 1)
+QJSValue evaluate( const QString & program, const QString & fileName = QString(), int lineNumber = 1 )
 */
 HB_FUNC_STATIC( QJSENGINE_EVALUATE )
 {
-  QJSEngine * obj = (QJSEngine *) _qt5xhb_itemGetPtrStackSelfItem();
+  QJSEngine * obj = (QJSEngine *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISBETWEEN(1,3) && ISCHAR(1) && ISOPTCHAR(2) && ISOPTNUM(3) )
+    if( ISBETWEEN(1,3) && HB_ISCHAR(1) && (HB_ISCHAR(2)||HB_ISNIL(2)) && (HB_ISNUM(3)||HB_ISNIL(3)) )
     {
 #endif
-      QJSValue * ptr = new QJSValue( obj->evaluate ( PQSTRING(1), OPQSTRING(2,QString()), OPINT(3,1) ) );
-      _qt5xhb_createReturnClass ( ptr, "QJSVALUE", true );
+      QJSValue * ptr = new QJSValue( obj->evaluate( PQSTRING(1), OPQSTRING(2,QString()), OPINT(3,1) ) );
+      Qt5xHb::createReturnClass( ptr, "QJSVALUE", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -163,7 +164,7 @@ QJSValue globalObject() const
 */
 HB_FUNC_STATIC( QJSENGINE_GLOBALOBJECT )
 {
-  QJSEngine * obj = (QJSEngine *) _qt5xhb_itemGetPtrStackSelfItem();
+  QJSEngine * obj = (QJSEngine *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -171,8 +172,8 @@ HB_FUNC_STATIC( QJSENGINE_GLOBALOBJECT )
     if( ISNUMPAR(0) )
     {
 #endif
-      QJSValue * ptr = new QJSValue( obj->globalObject () );
-      _qt5xhb_createReturnClass ( ptr, "QJSVALUE", true );
+      QJSValue * ptr = new QJSValue( obj->globalObject() );
+      Qt5xHb::createReturnClass( ptr, "QJSVALUE", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -184,20 +185,20 @@ HB_FUNC_STATIC( QJSENGINE_GLOBALOBJECT )
 }
 
 /*
-QJSValue newArray(uint length = 0)
+QJSValue newArray( uint length = 0 )
 */
 HB_FUNC_STATIC( QJSENGINE_NEWARRAY )
 {
-  QJSEngine * obj = (QJSEngine *) _qt5xhb_itemGetPtrStackSelfItem();
+  QJSEngine * obj = (QJSEngine *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISBETWEEN(0,1) && ISOPTNUM(1) )
+    if( ISBETWEEN(0,1) && (HB_ISNUM(1)||HB_ISNIL(1)) )
     {
 #endif
-      QJSValue * ptr = new QJSValue( obj->newArray ( OPUINT(1,0) ) );
-      _qt5xhb_createReturnClass ( ptr, "QJSVALUE", true );
+      QJSValue * ptr = new QJSValue( obj->newArray( OPUINT(1,0) ) );
+      Qt5xHb::createReturnClass( ptr, "QJSVALUE", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -213,7 +214,7 @@ QJSValue newObject()
 */
 HB_FUNC_STATIC( QJSENGINE_NEWOBJECT )
 {
-  QJSEngine * obj = (QJSEngine *) _qt5xhb_itemGetPtrStackSelfItem();
+  QJSEngine * obj = (QJSEngine *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -221,8 +222,8 @@ HB_FUNC_STATIC( QJSENGINE_NEWOBJECT )
     if( ISNUMPAR(0) )
     {
 #endif
-      QJSValue * ptr = new QJSValue( obj->newObject () );
-      _qt5xhb_createReturnClass ( ptr, "QJSVALUE", true );
+      QJSValue * ptr = new QJSValue( obj->newObject() );
+      Qt5xHb::createReturnClass( ptr, "QJSVALUE", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -234,11 +235,11 @@ HB_FUNC_STATIC( QJSENGINE_NEWOBJECT )
 }
 
 /*
-QJSValue newQObject(QObject * object)
+QJSValue newQObject( QObject * object )
 */
 HB_FUNC_STATIC( QJSENGINE_NEWQOBJECT )
 {
-  QJSEngine * obj = (QJSEngine *) _qt5xhb_itemGetPtrStackSelfItem();
+  QJSEngine * obj = (QJSEngine *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -246,8 +247,8 @@ HB_FUNC_STATIC( QJSENGINE_NEWQOBJECT )
     if( ISNUMPAR(1) && ISQOBJECT(1) )
     {
 #endif
-      QJSValue * ptr = new QJSValue( obj->newQObject ( PQOBJECT(1) ) );
-      _qt5xhb_createReturnClass ( ptr, "QJSVALUE", true );
+      QJSValue * ptr = new QJSValue( obj->newQObject( PQOBJECT(1) ) );
+      Qt5xHb::createReturnClass( ptr, "QJSVALUE", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else

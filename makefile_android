@@ -1,7 +1,7 @@
 #
 # Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 #
-# Copyright (C) 2018 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+# Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 #
 # Makefile for Android
 #
@@ -28,8 +28,8 @@ HB_INC_DIR = $(HBDIR)/include
 #
 
 QT5XHB_INC_DIR = include
-QT5XHB_OBJ_DIR = obj/$(QTVERSION)/$(QTANGLEOROPENGL)/$(QTCOMP)/$(QT32OR64)/$(QTPLATFORM)/$(HBCOMP)/$(HBVER)
-QT5XHB_LIB_DIR = lib/$(QTVERSION)/$(QTANGLEOROPENGL)/$(QTCOMP)/$(QT32OR64)/$(QTPLATFORM)/$(HBCOMP)/$(HBVER)
+QT5XHB_OBJ_DIR = obj/$(QTPLATFORM)/$(QTCOMP)
+QT5XHB_LIB_DIR = lib/$(QTPLATFORM)/$(QTCOMP)
 QT5XHB_SRC_DIR = source
 
 #

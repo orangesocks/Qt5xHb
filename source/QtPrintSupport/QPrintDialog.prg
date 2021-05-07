@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -36,7 +36,7 @@ CLASS QPrintDialog INHERIT QAbstractPrintDialog
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QPrintDialog
+PROCEDURE destroyObject() CLASS QPrintDialog
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -53,39 +53,38 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #include <QtPrintSupport/QPrintDialog>
 #endif
 
 /*
-QPrintDialog ( QPrinter * printer, QWidget * parent = 0 )
+QPrintDialog( QPrinter * printer, QWidget * parent = 0 )
 */
-void QPrintDialog_new1 ()
+void QPrintDialog_new1()
 {
-  QPrintDialog * o = new QPrintDialog ( PQPRINTER(1), OPQWIDGET(2,0) );
-  _qt5xhb_returnNewObject( o, false );
+  QPrintDialog * obj = new QPrintDialog( PQPRINTER(1), OPQWIDGET(2,0) );
+  Qt5xHb::returnNewObject( obj, false );
 }
 
 /*
-QPrintDialog ( QWidget * parent = 0 )
+QPrintDialog( QWidget * parent = 0 )
 */
-void QPrintDialog_new2 ()
+void QPrintDialog_new2()
 {
-  QPrintDialog * o = new QPrintDialog ( OPQWIDGET(1,0) );
-  _qt5xhb_returnNewObject( o, false );
+  QPrintDialog * obj = new QPrintDialog( OPQWIDGET(1,0) );
+  Qt5xHb::returnNewObject( obj, false );
 }
-
-//[1]QPrintDialog ( QPrinter * printer, QWidget * parent = 0 )
-//[2]QPrintDialog ( QWidget * parent = 0 )
 
 HB_FUNC_STATIC( QPRINTDIALOG_NEW )
 {
-  if( ISBETWEEN(1,2) && ISQPRINTER(1) && ISOPTQWIDGET(2) )
+  if( ISBETWEEN(1,2) && ISQPRINTER(1) && (ISQWIDGET(2)||HB_ISNIL(2)) )
   {
     QPrintDialog_new1();
   }
-  else if( ISBETWEEN(0,1) && ISOPTQWIDGET(1) )
+  else if( ISBETWEEN(0,1) && (ISQWIDGET(1)||HB_ISNIL(1)) )
   {
     QPrintDialog_new2();
   }
@@ -97,10 +96,12 @@ HB_FUNC_STATIC( QPRINTDIALOG_NEW )
 
 HB_FUNC_STATIC( QPRINTDIALOG_DELETE )
 {
-  QPrintDialog * obj = (QPrintDialog *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPrintDialog * obj = (QPrintDialog *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -113,19 +114,19 @@ HB_FUNC_STATIC( QPRINTDIALOG_DELETE )
 }
 
 /*
-void open ( QObject * receiver, const char * member )
+void open( QObject * receiver, const char * member )
 */
 HB_FUNC_STATIC( QPRINTDIALOG_OPEN )
 {
-  QPrintDialog * obj = (QPrintDialog *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPrintDialog * obj = (QPrintDialog *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(2) && ISQOBJECT(1) && ISCHAR(2) )
+    if( ISNUMPAR(2) && ISQOBJECT(1) && HB_ISCHAR(2) )
     {
 #endif
-      obj->open ( PQOBJECT(1), PCONSTCHAR(2) );
+      obj->open( PQOBJECT(1), PCONSTCHAR(2) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -139,11 +140,11 @@ HB_FUNC_STATIC( QPRINTDIALOG_OPEN )
 }
 
 /*
-PrintDialogOptions options () const
+QAbstractPrintDialog::PrintDialogOptions options() const
 */
 HB_FUNC_STATIC( QPRINTDIALOG_OPTIONS )
 {
-  QPrintDialog * obj = (QPrintDialog *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPrintDialog * obj = (QPrintDialog *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -151,7 +152,7 @@ HB_FUNC_STATIC( QPRINTDIALOG_OPTIONS )
     if( ISNUMPAR(0) )
     {
 #endif
-      RENUM( obj->options () );
+      RENUM( obj->options() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -163,11 +164,11 @@ HB_FUNC_STATIC( QPRINTDIALOG_OPTIONS )
 }
 
 /*
-QPrinter * printer ()
+QPrinter * printer()
 */
 HB_FUNC_STATIC( QPRINTDIALOG_PRINTER )
 {
-  QPrintDialog * obj = (QPrintDialog *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPrintDialog * obj = (QPrintDialog *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -175,8 +176,8 @@ HB_FUNC_STATIC( QPRINTDIALOG_PRINTER )
     if( ISNUMPAR(0) )
     {
 #endif
-      QPrinter * ptr = obj->printer ();
-      _qt5xhb_createReturnClass ( ptr, "QPRINTER", false );
+      QPrinter * ptr = obj->printer();
+      Qt5xHb::createReturnClass( ptr, "QPRINTER", false );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -188,19 +189,19 @@ HB_FUNC_STATIC( QPRINTDIALOG_PRINTER )
 }
 
 /*
-void setOption ( PrintDialogOption option, bool on = true )
+void setOption( QAbstractPrintDialog::PrintDialogOption option, bool on = true )
 */
 HB_FUNC_STATIC( QPRINTDIALOG_SETOPTION )
 {
-  QPrintDialog * obj = (QPrintDialog *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPrintDialog * obj = (QPrintDialog *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISBETWEEN(1,2) && ISNUM(1) && ISOPTLOG(2) )
+    if( ISBETWEEN(1,2) && HB_ISNUM(1) && (HB_ISLOG(2)||HB_ISNIL(2)) )
     {
 #endif
-      obj->setOption ( (QPrintDialog::PrintDialogOption) hb_parni(1), OPBOOL(2,true) );
+      obj->setOption( (QAbstractPrintDialog::PrintDialogOption) hb_parni(1), OPBOOL(2,true) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -214,19 +215,19 @@ HB_FUNC_STATIC( QPRINTDIALOG_SETOPTION )
 }
 
 /*
-void setOptions ( PrintDialogOptions options )
+void setOptions( QAbstractPrintDialog::PrintDialogOptions options )
 */
 HB_FUNC_STATIC( QPRINTDIALOG_SETOPTIONS )
 {
-  QPrintDialog * obj = (QPrintDialog *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPrintDialog * obj = (QPrintDialog *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setOptions ( (QPrintDialog::PrintDialogOptions) hb_parni(1) );
+      obj->setOptions( (QAbstractPrintDialog::PrintDialogOptions) hb_parni(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -240,19 +241,19 @@ HB_FUNC_STATIC( QPRINTDIALOG_SETOPTIONS )
 }
 
 /*
-bool testOption ( PrintDialogOption option ) const
+bool testOption( QAbstractPrintDialog::PrintDialogOption option ) const
 */
 HB_FUNC_STATIC( QPRINTDIALOG_TESTOPTION )
 {
-  QPrintDialog * obj = (QPrintDialog *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPrintDialog * obj = (QPrintDialog *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      RBOOL( obj->testOption ( (QPrintDialog::PrintDialogOption) hb_parni(1) ) );
+      RBOOL( obj->testOption( (QAbstractPrintDialog::PrintDialogOption) hb_parni(1) ) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -264,19 +265,19 @@ HB_FUNC_STATIC( QPRINTDIALOG_TESTOPTION )
 }
 
 /*
-void done ( int result )
+void done( int result )
 */
 HB_FUNC_STATIC( QPRINTDIALOG_DONE )
 {
-  QPrintDialog * obj = (QPrintDialog *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPrintDialog * obj = (QPrintDialog *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->done ( PINT(1) );
+      obj->done( PINT(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -290,11 +291,11 @@ HB_FUNC_STATIC( QPRINTDIALOG_DONE )
 }
 
 /*
-int exec ()
+int exec()
 */
 HB_FUNC_STATIC( QPRINTDIALOG_EXEC )
 {
-  QPrintDialog * obj = (QPrintDialog *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPrintDialog * obj = (QPrintDialog *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -302,7 +303,7 @@ HB_FUNC_STATIC( QPRINTDIALOG_EXEC )
     if( ISNUMPAR(0) )
     {
 #endif
-      RINT( obj->exec () );
+      RINT( obj->exec() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -314,19 +315,19 @@ HB_FUNC_STATIC( QPRINTDIALOG_EXEC )
 }
 
 /*
-void setVisible ( bool visible )
+void setVisible( bool visible )
 */
 HB_FUNC_STATIC( QPRINTDIALOG_SETVISIBLE )
 {
-  QPrintDialog * obj = (QPrintDialog *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPrintDialog * obj = (QPrintDialog *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISLOG(1) )
+    if( ISNUMPAR(1) && HB_ISLOG(1) )
     {
 #endif
-      obj->setVisible ( PBOOL(1) );
+      obj->setVisible( PBOOL(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -339,7 +340,7 @@ HB_FUNC_STATIC( QPRINTDIALOG_SETVISIBLE )
   hb_itemReturn( hb_stackSelfItem() );
 }
 
-void QPrintDialogSlots_connect_signal ( const QString & signal, const QString & slot );
+void QPrintDialogSlots_connect_signal( const QString & signal, const QString & slot );
 
 HB_FUNC_STATIC( QPRINTDIALOG_ONACCEPTED )
 {

@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -29,7 +29,7 @@ CLASS QAccelerometerReading INHERIT QSensorReading
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QAccelerometerReading
+PROCEDURE destroyObject() CLASS QAccelerometerReading
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -48,6 +48,8 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #if (QT_VERSION >= QT_VERSION_CHECK(5,1,0))
@@ -58,10 +60,12 @@ RETURN
 HB_FUNC_STATIC( QACCELEROMETERREADING_DELETE )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,1,0))
-  QAccelerometerReading * obj = (QAccelerometerReading *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAccelerometerReading * obj = (QAccelerometerReading *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -80,7 +84,7 @@ qreal x() const
 HB_FUNC_STATIC( QACCELEROMETERREADING_X )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,1,0))
-  QAccelerometerReading * obj = (QAccelerometerReading *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAccelerometerReading * obj = (QAccelerometerReading *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -88,7 +92,7 @@ HB_FUNC_STATIC( QACCELEROMETERREADING_X )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQREAL( obj->x () );
+      RQREAL( obj->x() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -101,20 +105,20 @@ HB_FUNC_STATIC( QACCELEROMETERREADING_X )
 }
 
 /*
-void setX(qreal x)
+void setX( qreal x )
 */
 HB_FUNC_STATIC( QACCELEROMETERREADING_SETX )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,1,0))
-  QAccelerometerReading * obj = (QAccelerometerReading *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAccelerometerReading * obj = (QAccelerometerReading *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setX ( PQREAL(1) );
+      obj->setX( PQREAL(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -134,7 +138,7 @@ qreal y() const
 HB_FUNC_STATIC( QACCELEROMETERREADING_Y )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,1,0))
-  QAccelerometerReading * obj = (QAccelerometerReading *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAccelerometerReading * obj = (QAccelerometerReading *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -142,7 +146,7 @@ HB_FUNC_STATIC( QACCELEROMETERREADING_Y )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQREAL( obj->y () );
+      RQREAL( obj->y() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -155,20 +159,20 @@ HB_FUNC_STATIC( QACCELEROMETERREADING_Y )
 }
 
 /*
-void setY(qreal y)
+void setY( qreal y )
 */
 HB_FUNC_STATIC( QACCELEROMETERREADING_SETY )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,1,0))
-  QAccelerometerReading * obj = (QAccelerometerReading *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAccelerometerReading * obj = (QAccelerometerReading *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setY ( PQREAL(1) );
+      obj->setY( PQREAL(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -188,7 +192,7 @@ qreal z() const
 HB_FUNC_STATIC( QACCELEROMETERREADING_Z )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,1,0))
-  QAccelerometerReading * obj = (QAccelerometerReading *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAccelerometerReading * obj = (QAccelerometerReading *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -196,7 +200,7 @@ HB_FUNC_STATIC( QACCELEROMETERREADING_Z )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQREAL( obj->z () );
+      RQREAL( obj->z() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -209,20 +213,20 @@ HB_FUNC_STATIC( QACCELEROMETERREADING_Z )
 }
 
 /*
-void setZ(qreal z)
+void setZ( qreal z )
 */
 HB_FUNC_STATIC( QACCELEROMETERREADING_SETZ )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,1,0))
-  QAccelerometerReading * obj = (QAccelerometerReading *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAccelerometerReading * obj = (QAccelerometerReading *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setZ ( PQREAL(1) );
+      obj->setZ( PQREAL(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else

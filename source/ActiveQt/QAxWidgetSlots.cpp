@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -12,25 +12,30 @@
 
 #include "QAxWidgetSlots.h"
 
-QAxWidgetSlots::QAxWidgetSlots(QObject *parent) : QObject(parent)
+QAxWidgetSlots::QAxWidgetSlots( QObject *parent ) : QObject( parent )
 {
 }
 
 QAxWidgetSlots::~QAxWidgetSlots()
 {
 }
+
 void QAxWidgetSlots::exception( int code, const QString & source, const QString & desc, const QString & help )
 {
   QObject *object = qobject_cast<QObject *>(sender());
-  PHB_ITEM cb = Signals_return_codeblock( object, "exception(int,QString,QString,QString)" );
+
+  PHB_ITEM cb = Qt5xHb::Signals_return_codeblock( object, "exception(int,QString,QString,QString)" );
+
   if( cb )
   {
-    PHB_ITEM psender = Signals_return_qobject ( (QObject *) object, "QAXWIDGET" );
+    PHB_ITEM psender = Qt5xHb::Signals_return_qobject( (QObject *) object, "QAXWIDGET" );
     PHB_ITEM pcode = hb_itemPutNI( NULL, code );
     PHB_ITEM psource = hb_itemPutC( NULL, QSTRINGTOSTRING(source) );
     PHB_ITEM pdesc = hb_itemPutC( NULL, QSTRINGTOSTRING(desc) );
     PHB_ITEM phelp = hb_itemPutC( NULL, QSTRINGTOSTRING(help) );
-    hb_vmEvalBlockV( (PHB_ITEM) cb, 5, psender, pcode, psource, pdesc, phelp );
+
+    hb_vmEvalBlockV( cb, 5, psender, pcode, psource, pdesc, phelp );
+
     hb_itemRelease( psender );
     hb_itemRelease( pcode );
     hb_itemRelease( psource );
@@ -38,30 +43,40 @@ void QAxWidgetSlots::exception( int code, const QString & source, const QString 
     hb_itemRelease( phelp );
   }
 }
+
 void QAxWidgetSlots::propertyChanged( const QString & name )
 {
   QObject *object = qobject_cast<QObject *>(sender());
-  PHB_ITEM cb = Signals_return_codeblock( object, "propertyChanged(QString)" );
+
+  PHB_ITEM cb = Qt5xHb::Signals_return_codeblock( object, "propertyChanged(QString)" );
+
   if( cb )
   {
-    PHB_ITEM psender = Signals_return_qobject ( (QObject *) object, "QAXWIDGET" );
+    PHB_ITEM psender = Qt5xHb::Signals_return_qobject( (QObject *) object, "QAXWIDGET" );
     PHB_ITEM pname = hb_itemPutC( NULL, QSTRINGTOSTRING(name) );
-    hb_vmEvalBlockV( (PHB_ITEM) cb, 2, psender, pname );
+
+    hb_vmEvalBlockV( cb, 2, psender, pname );
+
     hb_itemRelease( psender );
     hb_itemRelease( pname );
   }
 }
+
 void QAxWidgetSlots::signal( const QString & name, int argc, void * argv )
 {
   QObject *object = qobject_cast<QObject *>(sender());
-  PHB_ITEM cb = Signals_return_codeblock( object, "signal(QString,int,void*)" );
+
+  PHB_ITEM cb = Qt5xHb::Signals_return_codeblock( object, "signal(QString,int,void*)" );
+
   if( cb )
   {
-    PHB_ITEM psender = Signals_return_qobject ( (QObject *) object, "QAXWIDGET" );
+    PHB_ITEM psender = Qt5xHb::Signals_return_qobject( (QObject *) object, "QAXWIDGET" );
     PHB_ITEM pname = hb_itemPutC( NULL, QSTRINGTOSTRING(name) );
     PHB_ITEM pargc = hb_itemPutNI( NULL, argc );
     PHB_ITEM pargv = hb_itemPutPtr( NULL, (void *) argv );
-    hb_vmEvalBlockV( (PHB_ITEM) cb, 4, psender, pname, pargc, pargv );
+
+    hb_vmEvalBlockV( cb, 4, psender, pname, pargc, pargv );
+
     hb_itemRelease( psender );
     hb_itemRelease( pname );
     hb_itemRelease( pargc );
@@ -69,9 +84,9 @@ void QAxWidgetSlots::signal( const QString & name, int argc, void * argv )
   }
 }
 
-void QAxWidgetSlots_connect_signal ( const QString & signal, const QString & slot )
+void QAxWidgetSlots_connect_signal( const QString & signal, const QString & slot )
 {
-  QAxWidget * obj = (QAxWidget *) hb_itemGetPtr( hb_objSendMsg( hb_stackSelfItem(), "POINTER", 0 ) );
+  QAxWidget * obj = (QAxWidget *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -84,7 +99,7 @@ void QAxWidgetSlots_connect_signal ( const QString & signal, const QString & slo
       s->setParent( QCoreApplication::instance() );
     }
 
-    hb_retl( Signals_connection_disconnection( s, signal, slot ) );
+    hb_retl( Qt5xHb::Signals_connection_disconnection( s, signal, slot ) );
   }
   else
   {

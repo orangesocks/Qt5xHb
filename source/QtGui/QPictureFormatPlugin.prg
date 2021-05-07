@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -26,7 +26,7 @@ CLASS QPictureFormatPlugin INHERIT QObject
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QPictureFormatPlugin
+PROCEDURE destroyObject() CLASS QPictureFormatPlugin
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -43,6 +43,8 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #include <QtGui/QPictureFormatPlugin>
@@ -50,10 +52,12 @@ RETURN
 
 HB_FUNC_STATIC( QPICTUREFORMATPLUGIN_DELETE )
 {
-  QPictureFormatPlugin * obj = (QPictureFormatPlugin *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPictureFormatPlugin * obj = (QPictureFormatPlugin *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -66,19 +70,19 @@ HB_FUNC_STATIC( QPICTUREFORMATPLUGIN_DELETE )
 }
 
 /*
-virtual bool loadPicture(const QString &format, const QString &filename, QPicture *pic)
+virtual bool loadPicture( const QString & format, const QString & filename, QPicture * pic )
 */
 HB_FUNC_STATIC( QPICTUREFORMATPLUGIN_LOADPICTURE )
 {
-  QPictureFormatPlugin * obj = (QPictureFormatPlugin *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPictureFormatPlugin * obj = (QPictureFormatPlugin *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(3) && ISCHAR(1) && ISCHAR(2) && ISQPICTURE(3) )
+    if( ISNUMPAR(3) && HB_ISCHAR(1) && HB_ISCHAR(2) && ISQPICTURE(3) )
     {
 #endif
-      RBOOL( obj->loadPicture ( PQSTRING(1), PQSTRING(2), PQPICTURE(3) ) );
+      RBOOL( obj->loadPicture( PQSTRING(1), PQSTRING(2), PQPICTURE(3) ) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -90,19 +94,19 @@ HB_FUNC_STATIC( QPICTUREFORMATPLUGIN_LOADPICTURE )
 }
 
 /*
-virtual bool savePicture(const QString &format, const QString &filename, const QPicture &pic)
+virtual bool savePicture( const QString & format, const QString & filename, const QPicture & pic )
 */
 HB_FUNC_STATIC( QPICTUREFORMATPLUGIN_SAVEPICTURE )
 {
-  QPictureFormatPlugin * obj = (QPictureFormatPlugin *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPictureFormatPlugin * obj = (QPictureFormatPlugin *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(3) && ISCHAR(1) && ISCHAR(2) && ISQPICTURE(3) )
+    if( ISNUMPAR(3) && HB_ISCHAR(1) && HB_ISCHAR(2) && ISQPICTURE(3) )
     {
 #endif
-      RBOOL( obj->savePicture ( PQSTRING(1), PQSTRING(2), *PQPICTURE(3) ) );
+      RBOOL( obj->savePicture( PQSTRING(1), PQSTRING(2), *PQPICTURE(3) ) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -114,19 +118,19 @@ HB_FUNC_STATIC( QPICTUREFORMATPLUGIN_SAVEPICTURE )
 }
 
 /*
-virtual bool installIOHandler(const QString &format) = 0
+virtual bool installIOHandler( const QString & format ) = 0
 */
 HB_FUNC_STATIC( QPICTUREFORMATPLUGIN_INSTALLIOHANDLER )
 {
-  QPictureFormatPlugin * obj = (QPictureFormatPlugin *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPictureFormatPlugin * obj = (QPictureFormatPlugin *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISCHAR(1) )
+    if( ISNUMPAR(1) && HB_ISCHAR(1) )
     {
 #endif
-      RBOOL( obj->installIOHandler ( PQSTRING(1) ) );
+      RBOOL( obj->installIOHandler( PQSTRING(1) ) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else

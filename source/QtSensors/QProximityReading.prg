@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -25,7 +25,7 @@ CLASS QProximityReading INHERIT QSensorReading
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QProximityReading
+PROCEDURE destroyObject() CLASS QProximityReading
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -44,6 +44,8 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #if (QT_VERSION >= QT_VERSION_CHECK(5,1,0))
@@ -54,10 +56,12 @@ RETURN
 HB_FUNC_STATIC( QPROXIMITYREADING_DELETE )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,1,0))
-  QProximityReading * obj = (QProximityReading *) _qt5xhb_itemGetPtrStackSelfItem();
+  QProximityReading * obj = (QProximityReading *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -76,7 +80,7 @@ bool close() const
 HB_FUNC_STATIC( QPROXIMITYREADING_CLOSE )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,1,0))
-  QProximityReading * obj = (QProximityReading *) _qt5xhb_itemGetPtrStackSelfItem();
+  QProximityReading * obj = (QProximityReading *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -84,7 +88,7 @@ HB_FUNC_STATIC( QPROXIMITYREADING_CLOSE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->close () );
+      RBOOL( obj->close() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -97,20 +101,20 @@ HB_FUNC_STATIC( QPROXIMITYREADING_CLOSE )
 }
 
 /*
-void setClose(bool close)
+void setClose( bool close )
 */
 HB_FUNC_STATIC( QPROXIMITYREADING_SETCLOSE )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,1,0))
-  QProximityReading * obj = (QProximityReading *) _qt5xhb_itemGetPtrStackSelfItem();
+  QProximityReading * obj = (QProximityReading *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISLOG(1) )
+    if( ISNUMPAR(1) && HB_ISLOG(1) )
     {
 #endif
-      obj->setClose ( PBOOL(1) );
+      obj->setClose( PBOOL(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else

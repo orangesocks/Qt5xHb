@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -24,7 +24,7 @@ CLASS QDragEnterEvent INHERIT QDragMoveEvent
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QDragEnterEvent
+PROCEDURE destroyObject() CLASS QDragEnterEvent
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -47,14 +47,14 @@ RETURN
 #endif
 
 /*
-QDragEnterEvent ( const QPoint & point, Qt::DropActions actions, const QMimeData * data, Qt::MouseButtons buttons, Qt::KeyboardModifiers modifiers )
+QDragEnterEvent( const QPoint & point, Qt::DropActions actions, const QMimeData * data, Qt::MouseButtons buttons, Qt::KeyboardModifiers modifiers )
 */
 HB_FUNC_STATIC( QDRAGENTEREVENT_NEW )
 {
-  if( ISNUMPAR(5) && ISQPOINT(1) && ISNUM(2) && ISQMIMEDATA(3) && ISNUM(4) && ISNUM(5) )
+  if( ISNUMPAR(5) && ISQPOINT(1) && HB_ISNUM(2) && ISQMIMEDATA(3) && HB_ISNUM(4) && HB_ISNUM(5) )
   {
-    QDragEnterEvent * o = new QDragEnterEvent ( *PQPOINT(1), (Qt::DropActions) hb_parni(2), PQMIMEDATA(3), (Qt::MouseButtons) hb_parni(4), (Qt::KeyboardModifiers) hb_parni(5) );
-    _qt5xhb_returnNewObject( o, false );
+    QDragEnterEvent * obj = new QDragEnterEvent( *PQPOINT(1), (Qt::DropActions) hb_parni(2), PQMIMEDATA(3), (Qt::MouseButtons) hb_parni(4), (Qt::KeyboardModifiers) hb_parni(5) );
+    Qt5xHb::returnNewObject( obj, false );
   }
   else
   {
@@ -64,7 +64,7 @@ HB_FUNC_STATIC( QDRAGENTEREVENT_NEW )
 
 HB_FUNC_STATIC( QDRAGENTEREVENT_DELETE )
 {
-  QDragEnterEvent * obj = (QDragEnterEvent *) _qt5xhb_itemGetPtrStackSelfItem();
+  QDragEnterEvent * obj = (QDragEnterEvent *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {

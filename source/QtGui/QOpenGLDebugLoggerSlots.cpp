@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -12,30 +12,35 @@
 
 #include "QOpenGLDebugLoggerSlots.h"
 
-QOpenGLDebugLoggerSlots::QOpenGLDebugLoggerSlots(QObject *parent) : QObject(parent)
+QOpenGLDebugLoggerSlots::QOpenGLDebugLoggerSlots( QObject *parent ) : QObject( parent )
 {
 }
 
 QOpenGLDebugLoggerSlots::~QOpenGLDebugLoggerSlots()
 {
 }
+
 void QOpenGLDebugLoggerSlots::messageLogged( const QOpenGLDebugMessage & debugMessage )
 {
   QObject *object = qobject_cast<QObject *>(sender());
-  PHB_ITEM cb = Signals_return_codeblock( object, "messageLogged(QOpenGLDebugMessage)" );
+
+  PHB_ITEM cb = Qt5xHb::Signals_return_codeblock( object, "messageLogged(QOpenGLDebugMessage)" );
+
   if( cb )
   {
-    PHB_ITEM psender = Signals_return_qobject ( (QObject *) object, "QOPENGLDEBUGLOGGER" );
-    PHB_ITEM pdebugMessage = Signals_return_object( (void *) &debugMessage, "QOPENGLDEBUGMESSAGE" );
-    hb_vmEvalBlockV( (PHB_ITEM) cb, 2, psender, pdebugMessage );
+    PHB_ITEM psender = Qt5xHb::Signals_return_qobject( (QObject *) object, "QOPENGLDEBUGLOGGER" );
+    PHB_ITEM pdebugMessage = Qt5xHb::Signals_return_object( (void *) &debugMessage, "QOPENGLDEBUGMESSAGE" );
+
+    hb_vmEvalBlockV( cb, 2, psender, pdebugMessage );
+
     hb_itemRelease( psender );
     hb_itemRelease( pdebugMessage );
   }
 }
 
-void QOpenGLDebugLoggerSlots_connect_signal ( const QString & signal, const QString & slot )
+void QOpenGLDebugLoggerSlots_connect_signal( const QString & signal, const QString & slot )
 {
-  QOpenGLDebugLogger * obj = (QOpenGLDebugLogger *) hb_itemGetPtr( hb_objSendMsg( hb_stackSelfItem(), "POINTER", 0 ) );
+  QOpenGLDebugLogger * obj = (QOpenGLDebugLogger *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -48,7 +53,7 @@ void QOpenGLDebugLoggerSlots_connect_signal ( const QString & signal, const QStr
       s->setParent( QCoreApplication::instance() );
     }
 
-    hb_retl( Signals_connection_disconnection( s, signal, slot ) );
+    hb_retl( Qt5xHb::Signals_connection_disconnection( s, signal, slot ) );
   }
   else
   {

@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -26,7 +26,7 @@ CLASS QDBusConnectionInterface INHERIT QDBusAbstractInterface
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QDBusConnectionInterface
+PROCEDURE destroyObject() CLASS QDBusConnectionInterface
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -43,48 +43,14 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #include <QtDBus/QDBusConnectionInterface>
 #endif
 
-/*
-QDBusConnectionInterface(const QDBusConnection &connection, QObject *parent) [private]
-*/
-
-/*
-QDBusReply<QStringList> registeredServiceNames() const
-*/
-
-/*
-QDBusReply<bool> isServiceRegistered(const QString &serviceName) const
-*/
-
-/*
-QDBusReply<QString> serviceOwner(const QString &name) const
-*/
-
-/*
-QDBusReply<bool> unregisterService(const QString &serviceName)
-*/
-
-/*
-QDBusReply<QDBusConnectionInterface::RegisterServiceReply> registerService(const QString &serviceName,ServiceQueueOptions qoption = DontQueueService,ServiceReplacementOptions roption = DontAllowReplacement)
-*/
-
-/*
-QDBusReply<uint> servicePid(const QString &serviceName) const
-*/
-
-/*
-QDBusReply<uint> serviceUid(const QString &serviceName) const
-*/
-
-/*
-QDBusReply<void> startService(const QString &name)
-*/
-
-void QDBusConnectionInterfaceSlots_connect_signal ( const QString & signal, const QString & slot );
+void QDBusConnectionInterfaceSlots_connect_signal( const QString & signal, const QString & slot );
 
 HB_FUNC_STATIC( QDBUSCONNECTIONINTERFACE_ONSERVICEREGISTERED )
 {

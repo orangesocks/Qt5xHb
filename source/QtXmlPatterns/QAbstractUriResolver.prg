@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -25,7 +25,7 @@ CLASS QAbstractUriResolver INHERIT QObject
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QAbstractUriResolver
+PROCEDURE destroyObject() CLASS QAbstractUriResolver
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -42,6 +42,8 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #include <QtXmlPatterns/QAbstractUriResolver>
@@ -51,10 +53,12 @@ RETURN
 
 HB_FUNC_STATIC( QABSTRACTURIRESOLVER_DELETE )
 {
-  QAbstractUriResolver * obj = (QAbstractUriResolver *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAbstractUriResolver * obj = (QAbstractUriResolver *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -67,11 +71,11 @@ HB_FUNC_STATIC( QABSTRACTURIRESOLVER_DELETE )
 }
 
 /*
-virtual QUrl resolve ( const QUrl & relative, const QUrl & baseURI ) const = 0
+virtual QUrl resolve( const QUrl & relative, const QUrl & baseURI ) const = 0
 */
 HB_FUNC_STATIC( QABSTRACTURIRESOLVER_RESOLVE )
 {
-  QAbstractUriResolver * obj = (QAbstractUriResolver *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAbstractUriResolver * obj = (QAbstractUriResolver *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -79,8 +83,8 @@ HB_FUNC_STATIC( QABSTRACTURIRESOLVER_RESOLVE )
     if( ISNUMPAR(2) && ISQURL(1) && ISQURL(2) )
     {
 #endif
-      QUrl * ptr = new QUrl( obj->resolve ( *PQURL(1), *PQURL(2) ) );
-      _qt5xhb_createReturnClass ( ptr, "QURL", true );
+      QUrl * ptr = new QUrl( obj->resolve( *PQURL(1), *PQURL(2) ) );
+      Qt5xHb::createReturnClass( ptr, "QURL", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else

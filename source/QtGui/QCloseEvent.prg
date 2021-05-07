@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -24,7 +24,7 @@ CLASS QCloseEvent INHERIT QEvent
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QCloseEvent
+PROCEDURE destroyObject() CLASS QCloseEvent
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -47,14 +47,14 @@ RETURN
 #endif
 
 /*
-QCloseEvent ()
+QCloseEvent()
 */
 HB_FUNC_STATIC( QCLOSEEVENT_NEW )
 {
   if( ISNUMPAR(0) )
   {
-    QCloseEvent * o = new QCloseEvent ();
-    _qt5xhb_returnNewObject( o, false );
+    QCloseEvent * obj = new QCloseEvent();
+    Qt5xHb::returnNewObject( obj, false );
   }
   else
   {
@@ -64,7 +64,7 @@ HB_FUNC_STATIC( QCLOSEEVENT_NEW )
 
 HB_FUNC_STATIC( QCLOSEEVENT_DELETE )
 {
-  QCloseEvent * obj = (QCloseEvent *) _qt5xhb_itemGetPtrStackSelfItem();
+  QCloseEvent * obj = (QCloseEvent *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {

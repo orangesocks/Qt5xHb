@@ -2,13 +2,13 @@
 
   Qt5xHb Project - Test Program
 
-  Copyright (C) 2019 Marcos Antonio Gambeta
+  Copyright (C) 2021 Marcos Antonio Gambeta
 
   E-mail:
   marcosgambeta AT outlook DOT com
 
   Website:
-  https://github.com/marcosgambeta/Qt5xHb
+  https://github.com/magsoftinfo/qt5xhb
 
 */
 
@@ -18,7 +18,7 @@
 REQUEST HB_GT_WIN
 #endif
 
-PROCEDURE Main ()
+PROCEDURE Main()
 
    LOCAL oApp
    LOCAL oToolBox
@@ -27,11 +27,11 @@ PROCEDURE Main ()
 
    oToolBox := QToolBox():new()
 
-   oToolBox:addItem(QWidget():new(), QIcon():new("../images/cut.png"), "Item 1")
-   oToolBox:addItem(QWidget():new(), QIcon():new("../images/copy.png"), "Item 2")
-   oToolBox:addItem(QWidget():new(), QIcon():new("../images/paste.png"), "Item 3")
-   
-   oToolBox:onCurrentChanged({|oSender,nItem|qout(nItem)})
+   oToolBox:addItem( QWidget():new(), QIcon():new( "../images/cut.png"), "Item 1" )
+   oToolBox:addItem( QWidget():new(), QIcon():new( "../images/copy.png"), "Item 2" )
+   oToolBox:addItem( QWidget():new(), QIcon():new( "../images/paste.png"), "Item 3" )
+
+   oToolBox:onCurrentChanged( {|oSender,nItem|qout( nItem )} )
 
    oToolBox:show()
 

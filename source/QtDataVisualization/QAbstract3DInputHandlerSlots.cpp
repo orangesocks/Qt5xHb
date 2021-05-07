@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -12,56 +12,71 @@
 
 #include "QAbstract3DInputHandlerSlots.h"
 
-QAbstract3DInputHandlerSlots::QAbstract3DInputHandlerSlots(QObject *parent) : QObject(parent)
+QAbstract3DInputHandlerSlots::QAbstract3DInputHandlerSlots( QObject *parent ) : QObject( parent )
 {
 }
 
 QAbstract3DInputHandlerSlots::~QAbstract3DInputHandlerSlots()
 {
 }
+
 void QAbstract3DInputHandlerSlots::inputViewChanged( QAbstract3DInputHandler::InputView view )
 {
   QObject *object = qobject_cast<QObject *>(sender());
-  PHB_ITEM cb = Signals_return_codeblock( object, "inputViewChanged(QAbstract3DInputHandler::InputView)" );
+
+  PHB_ITEM cb = Qt5xHb::Signals_return_codeblock( object, "inputViewChanged(QAbstract3DInputHandler::InputView)" );
+
   if( cb )
   {
-    PHB_ITEM psender = Signals_return_qobject ( (QObject *) object, "QABSTRACT3DINPUTHANDLER" );
+    PHB_ITEM psender = Qt5xHb::Signals_return_qobject( (QObject *) object, "QABSTRACT3DINPUTHANDLER" );
     PHB_ITEM pview = hb_itemPutNI( NULL, (int) view );
-    hb_vmEvalBlockV( (PHB_ITEM) cb, 2, psender, pview );
+
+    hb_vmEvalBlockV( cb, 2, psender, pview );
+
     hb_itemRelease( psender );
     hb_itemRelease( pview );
   }
 }
+
 void QAbstract3DInputHandlerSlots::positionChanged( const QPoint & position )
 {
   QObject *object = qobject_cast<QObject *>(sender());
-  PHB_ITEM cb = Signals_return_codeblock( object, "positionChanged(QPoint)" );
+
+  PHB_ITEM cb = Qt5xHb::Signals_return_codeblock( object, "positionChanged(QPoint)" );
+
   if( cb )
   {
-    PHB_ITEM psender = Signals_return_qobject ( (QObject *) object, "QABSTRACT3DINPUTHANDLER" );
-    PHB_ITEM pposition = Signals_return_object( (void *) &position, "QPOINT" );
-    hb_vmEvalBlockV( (PHB_ITEM) cb, 2, psender, pposition );
+    PHB_ITEM psender = Qt5xHb::Signals_return_qobject( (QObject *) object, "QABSTRACT3DINPUTHANDLER" );
+    PHB_ITEM pposition = Qt5xHb::Signals_return_object( (void *) &position, "QPOINT" );
+
+    hb_vmEvalBlockV( cb, 2, psender, pposition );
+
     hb_itemRelease( psender );
     hb_itemRelease( pposition );
   }
 }
+
 void QAbstract3DInputHandlerSlots::sceneChanged( Q3DScene * scene )
 {
   QObject *object = qobject_cast<QObject *>(sender());
-  PHB_ITEM cb = Signals_return_codeblock( object, "sceneChanged(Q3DScene*)" );
+
+  PHB_ITEM cb = Qt5xHb::Signals_return_codeblock( object, "sceneChanged(Q3DScene*)" );
+
   if( cb )
   {
-    PHB_ITEM psender = Signals_return_qobject ( (QObject *) object, "QABSTRACT3DINPUTHANDLER" );
-    PHB_ITEM pscene = Signals_return_qobject( (QObject *) scene, "Q3DSCENE" );
-    hb_vmEvalBlockV( (PHB_ITEM) cb, 2, psender, pscene );
+    PHB_ITEM psender = Qt5xHb::Signals_return_qobject( (QObject *) object, "QABSTRACT3DINPUTHANDLER" );
+    PHB_ITEM pscene = Qt5xHb::Signals_return_qobject( (QObject *) scene, "Q3DSCENE" );
+
+    hb_vmEvalBlockV( cb, 2, psender, pscene );
+
     hb_itemRelease( psender );
     hb_itemRelease( pscene );
   }
 }
 
-void QAbstract3DInputHandlerSlots_connect_signal ( const QString & signal, const QString & slot )
+void QAbstract3DInputHandlerSlots_connect_signal( const QString & signal, const QString & slot )
 {
-  QAbstract3DInputHandler * obj = (QAbstract3DInputHandler *) hb_itemGetPtr( hb_objSendMsg( hb_stackSelfItem(), "POINTER", 0 ) );
+  QAbstract3DInputHandler * obj = (QAbstract3DInputHandler *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -74,7 +89,7 @@ void QAbstract3DInputHandlerSlots_connect_signal ( const QString & signal, const
       s->setParent( QCoreApplication::instance() );
     }
 
-    hb_retl( Signals_connection_disconnection( s, signal, slot ) );
+    hb_retl( Qt5xHb::Signals_connection_disconnection( s, signal, slot ) );
   }
   else
   {

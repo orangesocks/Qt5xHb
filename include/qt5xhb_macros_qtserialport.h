@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -13,13 +13,13 @@
 #ifndef QT5XHB_MACROS_QTSERIALPORT_H
 #define QT5XHB_MACROS_QTSERIALPORT_H
 
-#define ISQSERIALPORT(n)                                    _qt5xhb_isObjectDerivedFrom(n,"QSerialPort")
-#define ISQSERIALPORTINFO(n)                                _qt5xhb_isObjectDerivedFrom(n,"QSerialPortInfo")
+#define ISQSERIALPORT( n )                                  Qt5xHb::isObjectDerivedFrom( n, "QSerialPort" )
+#define ISQSERIALPORTINFO( n )                              Qt5xHb::isObjectDerivedFrom( n, "QSerialPortInfo" )
 
-#define PQSERIALPORT(n)                                     (QSerialPort *) _qt5xhb_itemGetPtr(n)
-#define PQSERIALPORTINFO(n)                                 (QSerialPortInfo *) _qt5xhb_itemGetPtr(n)
+#define PQSERIALPORT( n )                                   static_cast< QSerialPort * >( Qt5xHb::itemGetPtr( n ) )
+#define PQSERIALPORTINFO( n )                               static_cast< QSerialPortInfo * >( Qt5xHb::itemGetPtr( n ) )
 
-#define OPQSERIALPORT(n,v)                                  ISNIL(n)? v : (QSerialPort *) _qt5xhb_itemGetPtr(n)
-#define OPQSERIALPORTINFO(n,v)                              ISNIL(n)? v : (QSerialPortInfo *) _qt5xhb_itemGetPtr(n)
+#define OPQSERIALPORT( n, v )                               HB_ISNIL( n ) ? v : static_cast< QSerialPort * >( Qt5xHb::itemGetPtr( n ) )
+#define OPQSERIALPORTINFO( n, v )                           HB_ISNIL( n ) ? v : static_cast< QSerialPortInfo * >( Qt5xHb::itemGetPtr( n ) )
 
 #endif /* QT5XHB_MACROS_QTSERIALPORT_H */

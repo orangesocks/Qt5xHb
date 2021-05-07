@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -34,7 +34,7 @@ CLASS QAnimationDriver INHERIT QObject
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QAnimationDriver
+PROCEDURE destroyObject() CLASS QAnimationDriver
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -51,20 +51,22 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #include <QtCore/QAnimationDriver>
 #endif
 
 /*
-QAnimationDriver(QObject *parent = 0)
+QAnimationDriver( QObject * parent = 0 )
 */
 HB_FUNC_STATIC( QANIMATIONDRIVER_NEW )
 {
-  if( ISBETWEEN(0,1) && (ISQOBJECT(1)||ISNIL(1)) )
+  if( ISBETWEEN(0,1) && (ISQOBJECT(1)||HB_ISNIL(1)) )
   {
-    QAnimationDriver * o = new QAnimationDriver ( OPQOBJECT(1,0) );
-    _qt5xhb_returnNewObject( o, false );
+    QAnimationDriver * obj = new QAnimationDriver( OPQOBJECT(1,0) );
+    Qt5xHb::returnNewObject( obj, false );
   }
   else
   {
@@ -74,10 +76,12 @@ HB_FUNC_STATIC( QANIMATIONDRIVER_NEW )
 
 HB_FUNC_STATIC( QANIMATIONDRIVER_DELETE )
 {
-  QAnimationDriver * obj = (QAnimationDriver *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAnimationDriver * obj = (QAnimationDriver *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -94,7 +98,7 @@ virtual void advance()
 */
 HB_FUNC_STATIC( QANIMATIONDRIVER_ADVANCE )
 {
-  QAnimationDriver * obj = (QAnimationDriver *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAnimationDriver * obj = (QAnimationDriver *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -102,7 +106,7 @@ HB_FUNC_STATIC( QANIMATIONDRIVER_ADVANCE )
     if( ISNUMPAR(0) )
     {
 #endif
-      obj->advance ();
+      obj->advance();
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -120,7 +124,7 @@ void install()
 */
 HB_FUNC_STATIC( QANIMATIONDRIVER_INSTALL )
 {
-  QAnimationDriver * obj = (QAnimationDriver *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAnimationDriver * obj = (QAnimationDriver *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -128,7 +132,7 @@ HB_FUNC_STATIC( QANIMATIONDRIVER_INSTALL )
     if( ISNUMPAR(0) )
     {
 #endif
-      obj->install ();
+      obj->install();
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -146,7 +150,7 @@ void uninstall()
 */
 HB_FUNC_STATIC( QANIMATIONDRIVER_UNINSTALL )
 {
-  QAnimationDriver * obj = (QAnimationDriver *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAnimationDriver * obj = (QAnimationDriver *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -154,7 +158,7 @@ HB_FUNC_STATIC( QANIMATIONDRIVER_UNINSTALL )
     if( ISNUMPAR(0) )
     {
 #endif
-      obj->uninstall ();
+      obj->uninstall();
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -172,7 +176,7 @@ bool isRunning() const
 */
 HB_FUNC_STATIC( QANIMATIONDRIVER_ISRUNNING )
 {
-  QAnimationDriver * obj = (QAnimationDriver *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAnimationDriver * obj = (QAnimationDriver *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -180,7 +184,7 @@ HB_FUNC_STATIC( QANIMATIONDRIVER_ISRUNNING )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->isRunning () );
+      RBOOL( obj->isRunning() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -196,7 +200,7 @@ virtual qint64 elapsed() const
 */
 HB_FUNC_STATIC( QANIMATIONDRIVER_ELAPSED )
 {
-  QAnimationDriver * obj = (QAnimationDriver *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAnimationDriver * obj = (QAnimationDriver *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -204,7 +208,7 @@ HB_FUNC_STATIC( QANIMATIONDRIVER_ELAPSED )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQINT64( obj->elapsed () );
+      RQINT64( obj->elapsed() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -216,19 +220,19 @@ HB_FUNC_STATIC( QANIMATIONDRIVER_ELAPSED )
 }
 
 /*
-void setStartTime(qint64 startTime)
+void setStartTime( qint64 startTime )
 */
 HB_FUNC_STATIC( QANIMATIONDRIVER_SETSTARTTIME )
 {
-  QAnimationDriver * obj = (QAnimationDriver *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAnimationDriver * obj = (QAnimationDriver *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setStartTime ( PQINT64(1) );
+      obj->setStartTime( PQINT64(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -246,7 +250,7 @@ qint64 startTime() const
 */
 HB_FUNC_STATIC( QANIMATIONDRIVER_STARTTIME )
 {
-  QAnimationDriver * obj = (QAnimationDriver *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAnimationDriver * obj = (QAnimationDriver *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -254,7 +258,7 @@ HB_FUNC_STATIC( QANIMATIONDRIVER_STARTTIME )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQINT64( obj->startTime () );
+      RQINT64( obj->startTime() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -265,7 +269,7 @@ HB_FUNC_STATIC( QANIMATIONDRIVER_STARTTIME )
   }
 }
 
-void QAnimationDriverSlots_connect_signal ( const QString & signal, const QString & slot );
+void QAnimationDriverSlots_connect_signal( const QString & signal, const QString & slot );
 
 HB_FUNC_STATIC( QANIMATIONDRIVER_ONSTARTED )
 {

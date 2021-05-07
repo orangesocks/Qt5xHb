@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -24,7 +24,7 @@ CLASS QHBoxLayout INHERIT QBoxLayout
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QHBoxLayout
+PROCEDURE destroyObject() CLASS QHBoxLayout
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -41,31 +41,30 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #include <QtWidgets/QHBoxLayout>
 #endif
 
 /*
-QHBoxLayout ()
+QHBoxLayout()
 */
-void QHBoxLayout_new1 ()
+void QHBoxLayout_new1()
 {
-  QHBoxLayout * o = new QHBoxLayout ();
-  _qt5xhb_returnNewObject( o, false );
+  QHBoxLayout * obj = new QHBoxLayout();
+  Qt5xHb::returnNewObject( obj, false );
 }
 
 /*
-QHBoxLayout ( QWidget * parent )
+QHBoxLayout( QWidget * parent )
 */
-void QHBoxLayout_new2 ()
+void QHBoxLayout_new2()
 {
-  QHBoxLayout * o = new QHBoxLayout ( PQWIDGET(1) );
-  _qt5xhb_returnNewObject( o, false );
+  QHBoxLayout * obj = new QHBoxLayout( PQWIDGET(1) );
+  Qt5xHb::returnNewObject( obj, false );
 }
-
-//[1]QHBoxLayout ()
-//[2]QHBoxLayout ( QWidget * parent )
 
 HB_FUNC_STATIC( QHBOXLAYOUT_NEW )
 {
@@ -85,10 +84,12 @@ HB_FUNC_STATIC( QHBOXLAYOUT_NEW )
 
 HB_FUNC_STATIC( QHBOXLAYOUT_DELETE )
 {
-  QHBoxLayout * obj = (QHBoxLayout *) _qt5xhb_itemGetPtrStackSelfItem();
+  QHBoxLayout * obj = (QHBoxLayout *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();

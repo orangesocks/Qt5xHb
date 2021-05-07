@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -12,43 +12,53 @@
 
 #include "QMenuBarSlots.h"
 
-QMenuBarSlots::QMenuBarSlots(QObject *parent) : QObject(parent)
+QMenuBarSlots::QMenuBarSlots( QObject *parent ) : QObject( parent )
 {
 }
 
 QMenuBarSlots::~QMenuBarSlots()
 {
 }
+
 void QMenuBarSlots::hovered( QAction * action )
 {
   QObject *object = qobject_cast<QObject *>(sender());
-  PHB_ITEM cb = Signals_return_codeblock( object, "hovered(QAction*)" );
+
+  PHB_ITEM cb = Qt5xHb::Signals_return_codeblock( object, "hovered(QAction*)" );
+
   if( cb )
   {
-    PHB_ITEM psender = Signals_return_qobject ( (QObject *) object, "QMENUBAR" );
-    PHB_ITEM paction = Signals_return_qobject( (QObject *) action, "QACTION" );
-    hb_vmEvalBlockV( (PHB_ITEM) cb, 2, psender, paction );
-    hb_itemRelease( psender );
-    hb_itemRelease( paction );
-  }
-}
-void QMenuBarSlots::triggered( QAction * action )
-{
-  QObject *object = qobject_cast<QObject *>(sender());
-  PHB_ITEM cb = Signals_return_codeblock( object, "triggered(QAction*)" );
-  if( cb )
-  {
-    PHB_ITEM psender = Signals_return_qobject ( (QObject *) object, "QMENUBAR" );
-    PHB_ITEM paction = Signals_return_qobject( (QObject *) action, "QACTION" );
-    hb_vmEvalBlockV( (PHB_ITEM) cb, 2, psender, paction );
+    PHB_ITEM psender = Qt5xHb::Signals_return_qobject( (QObject *) object, "QMENUBAR" );
+    PHB_ITEM paction = Qt5xHb::Signals_return_qobject( (QObject *) action, "QACTION" );
+
+    hb_vmEvalBlockV( cb, 2, psender, paction );
+
     hb_itemRelease( psender );
     hb_itemRelease( paction );
   }
 }
 
-void QMenuBarSlots_connect_signal ( const QString & signal, const QString & slot )
+void QMenuBarSlots::triggered( QAction * action )
 {
-  QMenuBar * obj = (QMenuBar *) hb_itemGetPtr( hb_objSendMsg( hb_stackSelfItem(), "POINTER", 0 ) );
+  QObject *object = qobject_cast<QObject *>(sender());
+
+  PHB_ITEM cb = Qt5xHb::Signals_return_codeblock( object, "triggered(QAction*)" );
+
+  if( cb )
+  {
+    PHB_ITEM psender = Qt5xHb::Signals_return_qobject( (QObject *) object, "QMENUBAR" );
+    PHB_ITEM paction = Qt5xHb::Signals_return_qobject( (QObject *) action, "QACTION" );
+
+    hb_vmEvalBlockV( cb, 2, psender, paction );
+
+    hb_itemRelease( psender );
+    hb_itemRelease( paction );
+  }
+}
+
+void QMenuBarSlots_connect_signal( const QString & signal, const QString & slot )
+{
+  QMenuBar * obj = (QMenuBar *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -61,7 +71,7 @@ void QMenuBarSlots_connect_signal ( const QString & signal, const QString & slot
       s->setParent( QCoreApplication::instance() );
     }
 
-    hb_retl( Signals_connection_disconnection( s, signal, slot ) );
+    hb_retl( Qt5xHb::Signals_connection_disconnection( s, signal, slot ) );
   }
   else
   {

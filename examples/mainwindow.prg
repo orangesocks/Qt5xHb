@@ -2,17 +2,13 @@
 
   Qt5xHb Project - Example Program
 
-  Copyright (C) 2019 Marcos Antonio Gambeta
+  Copyright (C) 2021 Marcos Antonio Gambeta
 
   E-mail:
   marcosgambeta AT outlook DOT com
 
   Website:
-  https://github.com/marcosgambeta/Qt5xHb
-
-  Users Groups:
-  https://groups.google.com/forum/?hl=pt-BR#!forum/qtxhb    [ENGLISH]
-  https://groups.google.com/forum/?hl=pt-BR#!forum/qtxhb-br [PORTUGUESE]
+  https://github.com/magsoftinfo/qt5xhb
 
 */
 

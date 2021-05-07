@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -31,7 +31,7 @@ CLASS QPlaceResult INHERIT QPlaceSearchResult
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QPlaceResult
+PROCEDURE destroyObject() CLASS QPlaceResult
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -65,8 +65,8 @@ HB_FUNC_STATIC( QPLACERESULT_NEW )
 #if (QT_VERSION >= QT_VERSION_CHECK(5,4,0))
   if( ISNUMPAR(0) )
   {
-    QPlaceResult * o = new QPlaceResult ();
-    _qt5xhb_returnNewObject( o, true );
+    QPlaceResult * obj = new QPlaceResult();
+    Qt5xHb::returnNewObject( obj, true );
   }
   else
   {
@@ -78,7 +78,7 @@ HB_FUNC_STATIC( QPLACERESULT_NEW )
 HB_FUNC_STATIC( QPLACERESULT_DELETE )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,4,0))
-  QPlaceResult * obj = (QPlaceResult *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPlaceResult * obj = (QPlaceResult *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -100,7 +100,7 @@ qreal distance() const
 HB_FUNC_STATIC( QPLACERESULT_DISTANCE )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,4,0))
-  QPlaceResult * obj = (QPlaceResult *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPlaceResult * obj = (QPlaceResult *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -108,7 +108,7 @@ HB_FUNC_STATIC( QPLACERESULT_DISTANCE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQREAL( obj->distance () );
+      RQREAL( obj->distance() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -121,20 +121,20 @@ HB_FUNC_STATIC( QPLACERESULT_DISTANCE )
 }
 
 /*
-void setDistance(qreal distance)
+void setDistance( qreal distance )
 */
 HB_FUNC_STATIC( QPLACERESULT_SETDISTANCE )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,4,0))
-  QPlaceResult * obj = (QPlaceResult *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPlaceResult * obj = (QPlaceResult *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setDistance ( PQREAL(1) );
+      obj->setDistance( PQREAL(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -154,7 +154,7 @@ QPlace place() const
 HB_FUNC_STATIC( QPLACERESULT_PLACE )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,4,0))
-  QPlaceResult * obj = (QPlaceResult *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPlaceResult * obj = (QPlaceResult *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -162,8 +162,8 @@ HB_FUNC_STATIC( QPLACERESULT_PLACE )
     if( ISNUMPAR(0) )
     {
 #endif
-      QPlace * ptr = new QPlace( obj->place () );
-      _qt5xhb_createReturnClass ( ptr, "QPLACE", true );
+      QPlace * ptr = new QPlace( obj->place() );
+      Qt5xHb::createReturnClass( ptr, "QPLACE", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -176,12 +176,12 @@ HB_FUNC_STATIC( QPLACERESULT_PLACE )
 }
 
 /*
-void setPlace(const QPlace &place)
+void setPlace( const QPlace & place )
 */
 HB_FUNC_STATIC( QPLACERESULT_SETPLACE )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,4,0))
-  QPlaceResult * obj = (QPlaceResult *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPlaceResult * obj = (QPlaceResult *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -189,7 +189,7 @@ HB_FUNC_STATIC( QPLACERESULT_SETPLACE )
     if( ISNUMPAR(1) && ISQPLACE(1) )
     {
 #endif
-      obj->setPlace ( *PQPLACE(1) );
+      obj->setPlace( *PQPLACE(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -209,7 +209,7 @@ bool isSponsored() const
 HB_FUNC_STATIC( QPLACERESULT_ISSPONSORED )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,4,0))
-  QPlaceResult * obj = (QPlaceResult *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPlaceResult * obj = (QPlaceResult *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -217,7 +217,7 @@ HB_FUNC_STATIC( QPLACERESULT_ISSPONSORED )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->isSponsored () );
+      RBOOL( obj->isSponsored() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -230,20 +230,20 @@ HB_FUNC_STATIC( QPLACERESULT_ISSPONSORED )
 }
 
 /*
-void setSponsored(bool sponsored)
+void setSponsored( bool sponsored )
 */
 HB_FUNC_STATIC( QPLACERESULT_SETSPONSORED )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,4,0))
-  QPlaceResult * obj = (QPlaceResult *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPlaceResult * obj = (QPlaceResult *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISLOG(1) )
+    if( ISNUMPAR(1) && HB_ISLOG(1) )
     {
 #endif
-      obj->setSponsored ( PBOOL(1) );
+      obj->setSponsored( PBOOL(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else

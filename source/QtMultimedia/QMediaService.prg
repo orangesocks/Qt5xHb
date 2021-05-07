@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -26,7 +26,7 @@ CLASS QMediaService INHERIT QObject
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QMediaService
+PROCEDURE destroyObject() CLASS QMediaService
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -43,28 +43,24 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #include <QtMultimedia/QMediaService>
 #endif
 
 /*
-QMediaService(QObject* parent) [protected]
-*/
-
-/*
-QMediaService(QMediaServicePrivate &dd, QObject *parent) [protected]
-*/
-
-/*
 ~QMediaService()
 */
 HB_FUNC_STATIC( QMEDIASERVICE_DELETE )
 {
-  QMediaService * obj = (QMediaService *) _qt5xhb_itemGetPtrStackSelfItem();
+  QMediaService * obj = (QMediaService *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -77,11 +73,11 @@ HB_FUNC_STATIC( QMEDIASERVICE_DELETE )
 }
 
 /*
-virtual void releaseControl(QMediaControl * control) = 0
+virtual void releaseControl( QMediaControl * control ) = 0
 */
 HB_FUNC_STATIC( QMEDIASERVICE_RELEASECONTROL )
 {
-  QMediaService * obj = (QMediaService *) _qt5xhb_itemGetPtrStackSelfItem();
+  QMediaService * obj = (QMediaService *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -89,7 +85,7 @@ HB_FUNC_STATIC( QMEDIASERVICE_RELEASECONTROL )
     if( ISNUMPAR(1) && ISQMEDIACONTROL(1) )
     {
 #endif
-      obj->releaseControl ( PQMEDIACONTROL(1) );
+      obj->releaseControl( PQMEDIACONTROL(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -103,20 +99,20 @@ HB_FUNC_STATIC( QMEDIASERVICE_RELEASECONTROL )
 }
 
 /*
-virtual QMediaControl * requestControl(const char * interface) = 0
+virtual QMediaControl * requestControl( const char * interface ) = 0
 */
 HB_FUNC_STATIC( QMEDIASERVICE_REQUESTCONTROL )
 {
-  QMediaService * obj = (QMediaService *) _qt5xhb_itemGetPtrStackSelfItem();
+  QMediaService * obj = (QMediaService *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISCHAR(1) )
+    if( ISNUMPAR(1) && HB_ISCHAR(1) )
     {
 #endif
-      QMediaControl * ptr = obj->requestControl ( PCONSTCHAR(1) );
-      _qt5xhb_createReturnQObjectClass ( ptr, "QMEDIACONTROL" );
+      QMediaControl * ptr = obj->requestControl( PCONSTCHAR(1) );
+      Qt5xHb::createReturnQObjectClass( ptr, "QMEDIACONTROL" );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else

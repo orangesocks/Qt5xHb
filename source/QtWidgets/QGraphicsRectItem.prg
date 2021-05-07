@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -35,7 +35,7 @@ CLASS QGraphicsRectItem INHERIT QAbstractGraphicsShapeItem
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QGraphicsRectItem
+PROCEDURE destroyObject() CLASS QGraphicsRectItem
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -58,47 +58,43 @@ RETURN
 #endif
 
 /*
-QGraphicsRectItem ( QGraphicsItem * parent = 0 )
+QGraphicsRectItem( QGraphicsItem * parent = 0 )
 */
-void QGraphicsRectItem_new1 ()
+void QGraphicsRectItem_new1()
 {
-  QGraphicsRectItem * o = new QGraphicsRectItem ( ISNIL(1)? 0 : (QGraphicsItem *) _qt5xhb_itemGetPtr(1) );
-  _qt5xhb_returnNewObject( o, true );
+  QGraphicsRectItem * obj = new QGraphicsRectItem( HB_ISNIL(1)? 0 : (QGraphicsItem *) Qt5xHb::itemGetPtr(1) );
+  Qt5xHb::returnNewObject( obj, true );
 }
 
 /*
-QGraphicsRectItem ( const QRectF & rect, QGraphicsItem * parent = 0 )
+QGraphicsRectItem( const QRectF & rect, QGraphicsItem * parent = 0 )
 */
-void QGraphicsRectItem_new2 ()
+void QGraphicsRectItem_new2()
 {
-  QGraphicsRectItem * o = new QGraphicsRectItem ( *PQRECTF(1), ISNIL(2)? 0 : (QGraphicsItem *) _qt5xhb_itemGetPtr(2) );
-  _qt5xhb_returnNewObject( o, true );
+  QGraphicsRectItem * obj = new QGraphicsRectItem( *PQRECTF(1), HB_ISNIL(2)? 0 : (QGraphicsItem *) Qt5xHb::itemGetPtr(2) );
+  Qt5xHb::returnNewObject( obj, true );
 }
 
 /*
-QGraphicsRectItem ( qreal x, qreal y, qreal width, qreal height, QGraphicsItem * parent = 0 )
+QGraphicsRectItem( qreal x, qreal y, qreal width, qreal height, QGraphicsItem * parent = 0 )
 */
-void QGraphicsRectItem_new3 ()
+void QGraphicsRectItem_new3()
 {
-  QGraphicsRectItem * o = new QGraphicsRectItem ( PQREAL(1), PQREAL(2), PQREAL(3), PQREAL(4), ISNIL(5)? 0 : (QGraphicsItem *) _qt5xhb_itemGetPtr(5) );
-  _qt5xhb_returnNewObject( o, true );
+  QGraphicsRectItem * obj = new QGraphicsRectItem( PQREAL(1), PQREAL(2), PQREAL(3), PQREAL(4), HB_ISNIL(5)? 0 : (QGraphicsItem *) Qt5xHb::itemGetPtr(5) );
+  Qt5xHb::returnNewObject( obj, true );
 }
-
-//[1]QGraphicsRectItem ( QGraphicsItem * parent = 0 )
-//[2]QGraphicsRectItem ( const QRectF & rect, QGraphicsItem * parent = 0 )
-//[3]QGraphicsRectItem ( qreal x, qreal y, qreal width, qreal height, QGraphicsItem * parent = 0 )
 
 HB_FUNC_STATIC( QGRAPHICSRECTITEM_NEW )
 {
-  if( ISBETWEEN(0,1) && (ISQGRAPHICSITEM(1)||ISNIL(1)) )
+  if( ISBETWEEN(0,1) && (ISQGRAPHICSITEM(1)||HB_ISNIL(1)) )
   {
     QGraphicsRectItem_new1();
   }
-  if( ISBETWEEN(1,2) && ISQRECTF(1) && (ISQGRAPHICSITEM(2)||ISNIL(2)) )
+  if( ISBETWEEN(1,2) && ISQRECTF(1) && (ISQGRAPHICSITEM(2)||HB_ISNIL(2)) )
   {
     QGraphicsRectItem_new2();
   }
-  else if( ISBETWEEN(4,5) && ISNUM(1) && ISNUM(2) && ISNUM(3) && ISNUM(4) && (ISQGRAPHICSITEM(5)||ISNIL(5)) )
+  else if( ISBETWEEN(4,5) && HB_ISNUM(1) && HB_ISNUM(2) && HB_ISNUM(3) && HB_ISNUM(4) && (ISQGRAPHICSITEM(5)||HB_ISNIL(5)) )
   {
     QGraphicsRectItem_new3();
   }
@@ -110,7 +106,7 @@ HB_FUNC_STATIC( QGRAPHICSRECTITEM_NEW )
 
 HB_FUNC_STATIC( QGRAPHICSRECTITEM_DELETE )
 {
-  QGraphicsRectItem * obj = (QGraphicsRectItem *) _qt5xhb_itemGetPtrStackSelfItem();
+  QGraphicsRectItem * obj = (QGraphicsRectItem *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -126,11 +122,11 @@ HB_FUNC_STATIC( QGRAPHICSRECTITEM_DELETE )
 }
 
 /*
-QRectF rect () const
+QRectF rect() const
 */
 HB_FUNC_STATIC( QGRAPHICSRECTITEM_RECT )
 {
-  QGraphicsRectItem * obj = (QGraphicsRectItem *) _qt5xhb_itemGetPtrStackSelfItem();
+  QGraphicsRectItem * obj = (QGraphicsRectItem *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -138,8 +134,8 @@ HB_FUNC_STATIC( QGRAPHICSRECTITEM_RECT )
     if( ISNUMPAR(0) )
     {
 #endif
-      QRectF * ptr = new QRectF( obj->rect () );
-      _qt5xhb_createReturnClass ( ptr, "QRECTF", true );
+      QRectF * ptr = new QRectF( obj->rect() );
+      Qt5xHb::createReturnClass( ptr, "QRECTF", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -151,37 +147,34 @@ HB_FUNC_STATIC( QGRAPHICSRECTITEM_RECT )
 }
 
 /*
-void setRect ( const QRectF & rect )
+void setRect( const QRectF & rect )
 */
-void QGraphicsRectItem_setRect1 ()
+void QGraphicsRectItem_setRect1()
 {
-  QGraphicsRectItem * obj = (QGraphicsRectItem *) _qt5xhb_itemGetPtrStackSelfItem();
+  QGraphicsRectItem * obj = (QGraphicsRectItem *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
-      obj->setRect ( *PQRECTF(1) );
+    obj->setRect( *PQRECTF(1) );
   }
 
   hb_itemReturn( hb_stackSelfItem() );
 }
 
 /*
-void setRect ( qreal x, qreal y, qreal width, qreal height )
+void setRect( qreal x, qreal y, qreal width, qreal height )
 */
-void QGraphicsRectItem_setRect2 ()
+void QGraphicsRectItem_setRect2()
 {
-  QGraphicsRectItem * obj = (QGraphicsRectItem *) _qt5xhb_itemGetPtrStackSelfItem();
+  QGraphicsRectItem * obj = (QGraphicsRectItem *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
-      obj->setRect ( PQREAL(1), PQREAL(2), PQREAL(3), PQREAL(4) );
+    obj->setRect( PQREAL(1), PQREAL(2), PQREAL(3), PQREAL(4) );
   }
 
   hb_itemReturn( hb_stackSelfItem() );
 }
-
-//[1]void setRect ( const QRectF & rect )
-//[2]void setRect ( qreal x, qreal y, qreal width, qreal height )
 
 HB_FUNC_STATIC( QGRAPHICSRECTITEM_SETRECT )
 {
@@ -189,7 +182,7 @@ HB_FUNC_STATIC( QGRAPHICSRECTITEM_SETRECT )
   {
     QGraphicsRectItem_setRect1();
   }
-  else if( ISNUMPAR(4) && ISNUM(1) && ISNUM(2) && ISNUM(3) && ISNUM(4) )
+  else if( ISNUMPAR(4) && HB_ISNUM(1) && HB_ISNUM(2) && HB_ISNUM(3) && HB_ISNUM(4) )
   {
     QGraphicsRectItem_setRect2();
   }
@@ -200,11 +193,11 @@ HB_FUNC_STATIC( QGRAPHICSRECTITEM_SETRECT )
 }
 
 /*
-virtual QRectF boundingRect () const
+virtual QRectF boundingRect() const
 */
 HB_FUNC_STATIC( QGRAPHICSRECTITEM_BOUNDINGRECT )
 {
-  QGraphicsRectItem * obj = (QGraphicsRectItem *) _qt5xhb_itemGetPtrStackSelfItem();
+  QGraphicsRectItem * obj = (QGraphicsRectItem *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -212,8 +205,8 @@ HB_FUNC_STATIC( QGRAPHICSRECTITEM_BOUNDINGRECT )
     if( ISNUMPAR(0) )
     {
 #endif
-      QRectF * ptr = new QRectF( obj->boundingRect () );
-      _qt5xhb_createReturnClass ( ptr, "QRECTF", true );
+      QRectF * ptr = new QRectF( obj->boundingRect() );
+      Qt5xHb::createReturnClass( ptr, "QRECTF", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -225,11 +218,11 @@ HB_FUNC_STATIC( QGRAPHICSRECTITEM_BOUNDINGRECT )
 }
 
 /*
-virtual bool contains ( const QPointF & point ) const
+virtual bool contains( const QPointF & point ) const
 */
 HB_FUNC_STATIC( QGRAPHICSRECTITEM_CONTAINS )
 {
-  QGraphicsRectItem * obj = (QGraphicsRectItem *) _qt5xhb_itemGetPtrStackSelfItem();
+  QGraphicsRectItem * obj = (QGraphicsRectItem *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -237,7 +230,7 @@ HB_FUNC_STATIC( QGRAPHICSRECTITEM_CONTAINS )
     if( ISNUMPAR(1) && ISQPOINTF(1) )
     {
 #endif
-      RBOOL( obj->contains ( *PQPOINTF(1) ) );
+      RBOOL( obj->contains( *PQPOINTF(1) ) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -249,11 +242,11 @@ HB_FUNC_STATIC( QGRAPHICSRECTITEM_CONTAINS )
 }
 
 /*
-virtual bool isObscuredBy ( const QGraphicsItem * item ) const
+virtual bool isObscuredBy( const QGraphicsItem * item ) const
 */
 HB_FUNC_STATIC( QGRAPHICSRECTITEM_ISOBSCUREDBY )
 {
-  QGraphicsRectItem * obj = (QGraphicsRectItem *) _qt5xhb_itemGetPtrStackSelfItem();
+  QGraphicsRectItem * obj = (QGraphicsRectItem *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -261,7 +254,7 @@ HB_FUNC_STATIC( QGRAPHICSRECTITEM_ISOBSCUREDBY )
     if( ISNUMPAR(1) && ISQGRAPHICSITEM(1) )
     {
 #endif
-      RBOOL( obj->isObscuredBy ( PQGRAPHICSITEM(1) ) );
+      RBOOL( obj->isObscuredBy( PQGRAPHICSITEM(1) ) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -273,11 +266,11 @@ HB_FUNC_STATIC( QGRAPHICSRECTITEM_ISOBSCUREDBY )
 }
 
 /*
-virtual QPainterPath opaqueArea () const
+virtual QPainterPath opaqueArea() const
 */
 HB_FUNC_STATIC( QGRAPHICSRECTITEM_OPAQUEAREA )
 {
-  QGraphicsRectItem * obj = (QGraphicsRectItem *) _qt5xhb_itemGetPtrStackSelfItem();
+  QGraphicsRectItem * obj = (QGraphicsRectItem *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -285,8 +278,8 @@ HB_FUNC_STATIC( QGRAPHICSRECTITEM_OPAQUEAREA )
     if( ISNUMPAR(0) )
     {
 #endif
-      QPainterPath * ptr = new QPainterPath( obj->opaqueArea () );
-      _qt5xhb_createReturnClass ( ptr, "QPAINTERPATH", true );
+      QPainterPath * ptr = new QPainterPath( obj->opaqueArea() );
+      Qt5xHb::createReturnClass( ptr, "QPAINTERPATH", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -298,19 +291,19 @@ HB_FUNC_STATIC( QGRAPHICSRECTITEM_OPAQUEAREA )
 }
 
 /*
-virtual void paint ( QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget = 0 )
+virtual void paint( QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget = 0 )
 */
 HB_FUNC_STATIC( QGRAPHICSRECTITEM_PAINT )
 {
-  QGraphicsRectItem * obj = (QGraphicsRectItem *) _qt5xhb_itemGetPtrStackSelfItem();
+  QGraphicsRectItem * obj = (QGraphicsRectItem *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISBETWEEN(2,3) && ISQPAINTER(1) && ISQSTYLEOPTIONGRAPHICSITEM(2) && (ISQWIDGET(3)||ISNIL(3)) )
+    if( ISBETWEEN(2,3) && ISQPAINTER(1) && ISQSTYLEOPTIONGRAPHICSITEM(2) && (ISQWIDGET(3)||HB_ISNIL(3)) )
     {
 #endif
-      obj->paint ( PQPAINTER(1), PQSTYLEOPTIONGRAPHICSITEM(2), OPQWIDGET(3,0) );
+      obj->paint( PQPAINTER(1), PQSTYLEOPTIONGRAPHICSITEM(2), OPQWIDGET(3,0) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -324,11 +317,11 @@ HB_FUNC_STATIC( QGRAPHICSRECTITEM_PAINT )
 }
 
 /*
-virtual QPainterPath shape () const
+virtual QPainterPath shape() const
 */
 HB_FUNC_STATIC( QGRAPHICSRECTITEM_SHAPE )
 {
-  QGraphicsRectItem * obj = (QGraphicsRectItem *) _qt5xhb_itemGetPtrStackSelfItem();
+  QGraphicsRectItem * obj = (QGraphicsRectItem *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -336,8 +329,8 @@ HB_FUNC_STATIC( QGRAPHICSRECTITEM_SHAPE )
     if( ISNUMPAR(0) )
     {
 #endif
-      QPainterPath * ptr = new QPainterPath( obj->shape () );
-      _qt5xhb_createReturnClass ( ptr, "QPAINTERPATH", true );
+      QPainterPath * ptr = new QPainterPath( obj->shape() );
+      Qt5xHb::createReturnClass( ptr, "QPAINTERPATH", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -349,11 +342,11 @@ HB_FUNC_STATIC( QGRAPHICSRECTITEM_SHAPE )
 }
 
 /*
-virtual int type () const
+virtual int type() const
 */
 HB_FUNC_STATIC( QGRAPHICSRECTITEM_TYPE )
 {
-  QGraphicsRectItem * obj = (QGraphicsRectItem *) _qt5xhb_itemGetPtrStackSelfItem();
+  QGraphicsRectItem * obj = (QGraphicsRectItem *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -361,7 +354,7 @@ HB_FUNC_STATIC( QGRAPHICSRECTITEM_TYPE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RINT( obj->type () );
+      RINT( obj->type() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else

@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -24,7 +24,7 @@ CLASS QSGTransformNode INHERIT QSGNode
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QSGTransformNode
+PROCEDURE destroyObject() CLASS QSGTransformNode
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -53,8 +53,8 @@ HB_FUNC_STATIC( QSGTRANSFORMNODE_NEW )
 {
   if( ISNUMPAR(0) )
   {
-    QSGTransformNode * o = new QSGTransformNode ();
-    _qt5xhb_returnNewObject( o, false );
+    QSGTransformNode * obj = new QSGTransformNode();
+    Qt5xHb::returnNewObject( obj, true );
   }
   else
   {
@@ -64,7 +64,7 @@ HB_FUNC_STATIC( QSGTRANSFORMNODE_NEW )
 
 HB_FUNC_STATIC( QSGTRANSFORMNODE_DELETE )
 {
-  QSGTransformNode * obj = (QSGTransformNode *) _qt5xhb_itemGetPtrStackSelfItem();
+  QSGTransformNode * obj = (QSGTransformNode *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {

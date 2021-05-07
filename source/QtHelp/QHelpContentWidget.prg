@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -27,7 +27,7 @@ CLASS QHelpContentWidget INHERIT QTreeView
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QHelpContentWidget
+PROCEDURE destroyObject() CLASS QHelpContentWidget
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -44,6 +44,8 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #include <QtHelp/QHelpContentWidget>
@@ -51,10 +53,12 @@ RETURN
 
 HB_FUNC_STATIC( QHELPCONTENTWIDGET_DELETE )
 {
-  QHelpContentWidget * obj = (QHelpContentWidget *) _qt5xhb_itemGetPtrStackSelfItem();
+  QHelpContentWidget * obj = (QHelpContentWidget *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -67,11 +71,11 @@ HB_FUNC_STATIC( QHELPCONTENTWIDGET_DELETE )
 }
 
 /*
-QModelIndex indexOf ( const QUrl & link )
+QModelIndex indexOf( const QUrl & link )
 */
 HB_FUNC_STATIC( QHELPCONTENTWIDGET_INDEXOF )
 {
-  QHelpContentWidget * obj = (QHelpContentWidget *) _qt5xhb_itemGetPtrStackSelfItem();
+  QHelpContentWidget * obj = (QHelpContentWidget *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -79,8 +83,8 @@ HB_FUNC_STATIC( QHELPCONTENTWIDGET_INDEXOF )
     if( ISNUMPAR(1) && ISQURL(1) )
     {
 #endif
-      QModelIndex * ptr = new QModelIndex( obj->indexOf ( *PQURL(1) ) );
-      _qt5xhb_createReturnClass ( ptr, "QMODELINDEX", true );
+      QModelIndex * ptr = new QModelIndex( obj->indexOf( *PQURL(1) ) );
+      Qt5xHb::createReturnClass( ptr, "QMODELINDEX", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -91,7 +95,7 @@ HB_FUNC_STATIC( QHELPCONTENTWIDGET_INDEXOF )
   }
 }
 
-void QHelpContentWidgetSlots_connect_signal ( const QString & signal, const QString & slot );
+void QHelpContentWidgetSlots_connect_signal( const QString & signal, const QString & slot );
 
 HB_FUNC_STATIC( QHELPCONTENTWIDGET_ONLINKACTIVATED )
 {

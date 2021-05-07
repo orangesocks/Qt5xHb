@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -29,7 +29,7 @@ CLASS QCameraFlashControl INHERIT QMediaControl
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QCameraFlashControl
+PROCEDURE destroyObject() CLASS QCameraFlashControl
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -46,24 +46,24 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #include <QtMultimedia/QCameraFlashControl>
 #endif
 
 /*
-explicit QCameraFlashControl(QObject *parent = Q_NULLPTR) [protected]
-*/
-
-/*
 ~QCameraFlashControl()
 */
 HB_FUNC_STATIC( QCAMERAFLASHCONTROL_DELETE )
 {
-  QCameraFlashControl * obj = (QCameraFlashControl *) _qt5xhb_itemGetPtrStackSelfItem();
+  QCameraFlashControl * obj = (QCameraFlashControl *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -80,7 +80,7 @@ virtual QCameraExposure::FlashModes flashMode() const = 0
 */
 HB_FUNC_STATIC( QCAMERAFLASHCONTROL_FLASHMODE )
 {
-  QCameraFlashControl * obj = (QCameraFlashControl *) _qt5xhb_itemGetPtrStackSelfItem();
+  QCameraFlashControl * obj = (QCameraFlashControl *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -88,7 +88,7 @@ HB_FUNC_STATIC( QCAMERAFLASHCONTROL_FLASHMODE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RENUM( obj->flashMode () );
+      RENUM( obj->flashMode() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -100,19 +100,19 @@ HB_FUNC_STATIC( QCAMERAFLASHCONTROL_FLASHMODE )
 }
 
 /*
-virtual bool isFlashModeSupported(QCameraExposure::FlashModes mode) const = 0
+virtual bool isFlashModeSupported( QCameraExposure::FlashModes mode ) const = 0
 */
 HB_FUNC_STATIC( QCAMERAFLASHCONTROL_ISFLASHMODESUPPORTED )
 {
-  QCameraFlashControl * obj = (QCameraFlashControl *) _qt5xhb_itemGetPtrStackSelfItem();
+  QCameraFlashControl * obj = (QCameraFlashControl *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      RBOOL( obj->isFlashModeSupported ( (QCameraExposure::FlashModes) hb_parni(1) ) );
+      RBOOL( obj->isFlashModeSupported( (QCameraExposure::FlashModes) hb_parni(1) ) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -128,7 +128,7 @@ virtual bool isFlashReady() const = 0
 */
 HB_FUNC_STATIC( QCAMERAFLASHCONTROL_ISFLASHREADY )
 {
-  QCameraFlashControl * obj = (QCameraFlashControl *) _qt5xhb_itemGetPtrStackSelfItem();
+  QCameraFlashControl * obj = (QCameraFlashControl *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -136,7 +136,7 @@ HB_FUNC_STATIC( QCAMERAFLASHCONTROL_ISFLASHREADY )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->isFlashReady () );
+      RBOOL( obj->isFlashReady() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -148,19 +148,19 @@ HB_FUNC_STATIC( QCAMERAFLASHCONTROL_ISFLASHREADY )
 }
 
 /*
-virtual void setFlashMode(QCameraExposure::FlashModes mode) = 0
+virtual void setFlashMode( QCameraExposure::FlashModes mode ) = 0
 */
 HB_FUNC_STATIC( QCAMERAFLASHCONTROL_SETFLASHMODE )
 {
-  QCameraFlashControl * obj = (QCameraFlashControl *) _qt5xhb_itemGetPtrStackSelfItem();
+  QCameraFlashControl * obj = (QCameraFlashControl *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setFlashMode ( (QCameraExposure::FlashModes) hb_parni(1) );
+      obj->setFlashMode( (QCameraExposure::FlashModes) hb_parni(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -173,7 +173,7 @@ HB_FUNC_STATIC( QCAMERAFLASHCONTROL_SETFLASHMODE )
   hb_itemReturn( hb_stackSelfItem() );
 }
 
-void QCameraFlashControlSlots_connect_signal ( const QString & signal, const QString & slot );
+void QCameraFlashControlSlots_connect_signal( const QString & signal, const QString & slot );
 
 HB_FUNC_STATIC( QCAMERAFLASHCONTROL_ONFLASHREADY )
 {

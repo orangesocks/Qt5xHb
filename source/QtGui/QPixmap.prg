@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -72,7 +72,7 @@ CLASS QPixmap INHERIT QPaintDevice
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QPixmap
+PROCEDURE destroyObject() CLASS QPixmap
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -98,57 +98,49 @@ RETURN
 #include <QtCore/QVariant>
 
 /*
-QPixmap ()
+QPixmap()
 */
-void QPixmap_new1 ()
+void QPixmap_new1()
 {
-  QPixmap * o = new QPixmap ();
-  _qt5xhb_returnNewObject( o, true );
+  QPixmap * obj = new QPixmap();
+  Qt5xHb::returnNewObject( obj, true );
 }
 
 /*
-QPixmap ( int width, int height )
+QPixmap( int width, int height )
 */
-void QPixmap_new3 ()
+void QPixmap_new3()
 {
-  QPixmap * o = new QPixmap ( PINT(1), PINT(2) );
-  _qt5xhb_returnNewObject( o, true );
+  QPixmap * obj = new QPixmap( PINT(1), PINT(2) );
+  Qt5xHb::returnNewObject( obj, true );
 }
 
 /*
-QPixmap ( const QSize & size )
+QPixmap( const QSize & size )
 */
-void QPixmap_new4 ()
+void QPixmap_new4()
 {
-  QPixmap * o = new QPixmap ( *PQSIZE(1) );
-  _qt5xhb_returnNewObject( o, true );
+  QPixmap * obj = new QPixmap( *PQSIZE(1) );
+  Qt5xHb::returnNewObject( obj, true );
 }
 
 /*
-QPixmap ( const QString & fileName, const char * format = 0, Qt::ImageConversionFlags flags = Qt::AutoColor )
+QPixmap( const QString & fileName, const char * format = 0, Qt::ImageConversionFlags flags = Qt::AutoColor )
 */
-void QPixmap_new5 ()
+void QPixmap_new5()
 {
-  QPixmap * o = new QPixmap ( PQSTRING(1), OPCONSTCHAR(2,0), ISNIL(3)? (Qt::ImageConversionFlags) Qt::AutoColor : (Qt::ImageConversionFlags) hb_parni(3) );
-  _qt5xhb_returnNewObject( o, true );
+  QPixmap * obj = new QPixmap( PQSTRING(1), OPCONSTCHAR(2,0), HB_ISNIL(3)? (Qt::ImageConversionFlags) Qt::AutoColor : (Qt::ImageConversionFlags) hb_parni(3) );
+  Qt5xHb::returnNewObject( obj, true );
 }
 
 /*
-QPixmap ( const QPixmap & pixmap )
+QPixmap( const QPixmap & pixmap )
 */
-void QPixmap_new7 ()
+void QPixmap_new7()
 {
-  QPixmap * o = new QPixmap ( *PQPIXMAP(1) );
-  _qt5xhb_returnNewObject( o, true );
+  QPixmap * obj = new QPixmap( *PQPIXMAP(1) );
+  Qt5xHb::returnNewObject( obj, true );
 }
-
-//[1]QPixmap()
-//[2]QPixmap(QPlatformPixmap *data) // TODO: implementar(?)
-//[3]QPixmap(int w, int h)
-//[4]QPixmap(const QSize &)
-//[5]QPixmap(const QString& fileName, const char *format = 0, Qt::ImageConversionFlags flags = Qt::AutoColor)
-//[6]QPixmap(const char * const xpm[]) // TODO: implementar(?)
-//[7]QPixmap(const QPixmap &)
 
 HB_FUNC_STATIC( QPIXMAP_NEW )
 {
@@ -156,11 +148,7 @@ HB_FUNC_STATIC( QPIXMAP_NEW )
   {
     QPixmap_new1();
   }
-  //else if( ISNUMPAR(1) && ISQPLATFORMPIXMAP(1) )
-  //{
-  //  QPixmap_new2();
-  //}
-  else if( ISNUMPAR(2) && ISNUM(1) && ISNUM(2) )
+  else if( ISNUMPAR(2) && HB_ISNUM(1) && HB_ISNUM(2) )
   {
     QPixmap_new3();
   }
@@ -168,7 +156,7 @@ HB_FUNC_STATIC( QPIXMAP_NEW )
   {
     QPixmap_new4();
   }
-  else if( ISBETWEEN(1,3) && ISCHAR(1) && ISOPTCHAR(2) && ISOPTNUM(3) )
+  else if( ISBETWEEN(1,3) && HB_ISCHAR(1) && ( HB_ISCHAR(2)||HB_ISNIL(2)) && ( HB_ISNUM(3)||HB_ISNIL(3)) )
   {
     QPixmap_new5();
   }
@@ -184,7 +172,7 @@ HB_FUNC_STATIC( QPIXMAP_NEW )
 
 HB_FUNC_STATIC( QPIXMAP_DELETE )
 {
-  QPixmap * obj = (QPixmap *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPixmap * obj = (QPixmap *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -200,11 +188,11 @@ HB_FUNC_STATIC( QPIXMAP_DELETE )
 }
 
 /*
-void swap(QPixmap &other)
+void swap( QPixmap & other )
 */
 HB_FUNC_STATIC( QPIXMAP_SWAP )
 {
-  QPixmap * obj = (QPixmap *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPixmap * obj = (QPixmap *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -212,7 +200,7 @@ HB_FUNC_STATIC( QPIXMAP_SWAP )
     if( ISNUMPAR(1) && ISQPIXMAP(1) )
     {
 #endif
-      obj->swap ( *PQPIXMAP(1) );
+      obj->swap( *PQPIXMAP(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -230,7 +218,7 @@ bool isNull() const
 */
 HB_FUNC_STATIC( QPIXMAP_ISNULL )
 {
-  QPixmap * obj = (QPixmap *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPixmap * obj = (QPixmap *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -238,7 +226,7 @@ HB_FUNC_STATIC( QPIXMAP_ISNULL )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->isNull () );
+      RBOOL( obj->isNull() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -254,7 +242,7 @@ int devType() const
 */
 HB_FUNC_STATIC( QPIXMAP_DEVTYPE )
 {
-  QPixmap * obj = (QPixmap *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPixmap * obj = (QPixmap *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -262,7 +250,7 @@ HB_FUNC_STATIC( QPIXMAP_DEVTYPE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RINT( obj->devType () );
+      RINT( obj->devType() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -278,7 +266,7 @@ int width() const
 */
 HB_FUNC_STATIC( QPIXMAP_WIDTH )
 {
-  QPixmap * obj = (QPixmap *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPixmap * obj = (QPixmap *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -286,7 +274,7 @@ HB_FUNC_STATIC( QPIXMAP_WIDTH )
     if( ISNUMPAR(0) )
     {
 #endif
-      RINT( obj->width () );
+      RINT( obj->width() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -302,7 +290,7 @@ int height() const
 */
 HB_FUNC_STATIC( QPIXMAP_HEIGHT )
 {
-  QPixmap * obj = (QPixmap *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPixmap * obj = (QPixmap *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -310,7 +298,7 @@ HB_FUNC_STATIC( QPIXMAP_HEIGHT )
     if( ISNUMPAR(0) )
     {
 #endif
-      RINT( obj->height () );
+      RINT( obj->height() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -326,7 +314,7 @@ QSize size() const
 */
 HB_FUNC_STATIC( QPIXMAP_SIZE )
 {
-  QPixmap * obj = (QPixmap *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPixmap * obj = (QPixmap *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -334,8 +322,8 @@ HB_FUNC_STATIC( QPIXMAP_SIZE )
     if( ISNUMPAR(0) )
     {
 #endif
-      QSize * ptr = new QSize( obj->size () );
-      _qt5xhb_createReturnClass ( ptr, "QSIZE", true );
+      QSize * ptr = new QSize( obj->size() );
+      Qt5xHb::createReturnClass( ptr, "QSIZE", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -351,7 +339,7 @@ QRect rect() const
 */
 HB_FUNC_STATIC( QPIXMAP_RECT )
 {
-  QPixmap * obj = (QPixmap *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPixmap * obj = (QPixmap *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -359,8 +347,8 @@ HB_FUNC_STATIC( QPIXMAP_RECT )
     if( ISNUMPAR(0) )
     {
 #endif
-      QRect * ptr = new QRect( obj->rect () );
-      _qt5xhb_createReturnClass ( ptr, "QRECT", true );
+      QRect * ptr = new QRect( obj->rect() );
+      Qt5xHb::createReturnClass( ptr, "QRECT", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -376,7 +364,7 @@ int depth() const
 */
 HB_FUNC_STATIC( QPIXMAP_DEPTH )
 {
-  QPixmap * obj = (QPixmap *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPixmap * obj = (QPixmap *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -384,7 +372,7 @@ HB_FUNC_STATIC( QPIXMAP_DEPTH )
     if( ISNUMPAR(0) )
     {
 #endif
-      RINT( obj->depth () );
+      RINT( obj->depth() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -396,65 +384,61 @@ HB_FUNC_STATIC( QPIXMAP_DEPTH )
 }
 
 /*
-void fill(const QColor &fillColor = Qt::white)
+void fill( const QColor & fillColor = Qt::white )
 */
-void QPixmap_fill1 ()
+void QPixmap_fill1()
 {
-  QPixmap * obj = (QPixmap *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPixmap * obj = (QPixmap *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
-      obj->fill ( ISNIL(1)? Qt::white : *(QColor *) _qt5xhb_itemGetPtr(1) );
+    obj->fill( HB_ISNIL(1)? Qt::white : *(QColor *) Qt5xHb::itemGetPtr(1) );
   }
 
   hb_itemReturn( hb_stackSelfItem() );
 }
 
 /*
-void fill(const QPaintDevice *device, const QPoint &ofs)
+void fill( const QPaintDevice * device, const QPoint & ofs )
 */
-void QPixmap_fill2 ()
+void QPixmap_fill2()
 {
-  QPixmap * obj = (QPixmap *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPixmap * obj = (QPixmap *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
-      obj->fill ( PQPAINTDEVICE(1), *PQPOINT(2) );
+    obj->fill( PQPAINTDEVICE(1), *PQPOINT(2) );
   }
 
   hb_itemReturn( hb_stackSelfItem() );
 }
 
 /*
-void fill(const QPaintDevice *device, int xofs, int yofs)
+void fill( const QPaintDevice * device, int xofs, int yofs )
 */
-void QPixmap_fill3 ()
+void QPixmap_fill3()
 {
-  QPixmap * obj = (QPixmap *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPixmap * obj = (QPixmap *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
-      obj->fill ( PQPAINTDEVICE(1), PINT(2), PINT(3) );
+    obj->fill( PQPAINTDEVICE(1), PINT(2), PINT(3) );
   }
 
   hb_itemReturn( hb_stackSelfItem() );
 }
-
-//[1]void fill(const QColor &fillColor = Qt::white)
-//[2]void fill(const QPaintDevice *device, const QPoint &ofs)
-//[3]void fill(const QPaintDevice *device, int xofs, int yofs)
 
 HB_FUNC_STATIC( QPIXMAP_FILL )
 {
-  if( ISBETWEEN(0,1) && (ISQCOLOR(1)||ISCHAR(1)||ISNIL(1)) )
+  if( ISBETWEEN(0,1) && (ISQCOLOR(1)||HB_ISCHAR(1)||HB_ISNIL(1)) )
   {
     QPixmap_fill1();
   }
-  else if( ISNUMPAR(2) && ISOBJECT(1) && ISQPOINT(2) ) // TODO: implementar ISQPAINTDEVICE
+  else if( ISNUMPAR(2) && HB_ISOBJECT(1) && ISQPOINT(2) )
   {
     QPixmap_fill2();
   }
-  else if( ISNUMPAR(3) && ISOBJECT(1) && ISNUM(2) && ISNUM(3) ) // TODO: implementar ISQPAINTDEVICE
+  else if( ISNUMPAR(3) && HB_ISOBJECT(1) && HB_ISNUM(2) && HB_ISNUM(3) )
   {
     QPixmap_fill3();
   }
@@ -469,7 +453,7 @@ QBitmap mask() const
 */
 HB_FUNC_STATIC( QPIXMAP_MASK )
 {
-  QPixmap * obj = (QPixmap *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPixmap * obj = (QPixmap *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -477,8 +461,8 @@ HB_FUNC_STATIC( QPIXMAP_MASK )
     if( ISNUMPAR(0) )
     {
 #endif
-      QBitmap * ptr = new QBitmap( obj->mask () );
-      _qt5xhb_createReturnClass ( ptr, "QBITMAP", true );
+      QBitmap * ptr = new QBitmap( obj->mask() );
+      Qt5xHb::createReturnClass( ptr, "QBITMAP", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -490,11 +474,11 @@ HB_FUNC_STATIC( QPIXMAP_MASK )
 }
 
 /*
-void setMask(const QBitmap &)
+void setMask( const QBitmap & )
 */
 HB_FUNC_STATIC( QPIXMAP_SETMASK )
 {
-  QPixmap * obj = (QPixmap *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPixmap * obj = (QPixmap *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -502,7 +486,7 @@ HB_FUNC_STATIC( QPIXMAP_SETMASK )
     if( ISNUMPAR(1) && ISQBITMAP(1) )
     {
 #endif
-      obj->setMask ( *PQBITMAP(1) );
+      obj->setMask( *PQBITMAP(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -520,7 +504,7 @@ qreal devicePixelRatio() const
 */
 HB_FUNC_STATIC( QPIXMAP_DEVICEPIXELRATIO )
 {
-  QPixmap * obj = (QPixmap *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPixmap * obj = (QPixmap *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -528,7 +512,7 @@ HB_FUNC_STATIC( QPIXMAP_DEVICEPIXELRATIO )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQREAL( obj->devicePixelRatio () );
+      RQREAL( obj->devicePixelRatio() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -540,19 +524,19 @@ HB_FUNC_STATIC( QPIXMAP_DEVICEPIXELRATIO )
 }
 
 /*
-void setDevicePixelRatio(qreal scaleFactor)
+void setDevicePixelRatio( qreal scaleFactor )
 */
 HB_FUNC_STATIC( QPIXMAP_SETDEVICEPIXELRATIO )
 {
-  QPixmap * obj = (QPixmap *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPixmap * obj = (QPixmap *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setDevicePixelRatio ( PQREAL(1) );
+      obj->setDevicePixelRatio( PQREAL(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -570,7 +554,7 @@ bool hasAlpha() const
 */
 HB_FUNC_STATIC( QPIXMAP_HASALPHA )
 {
-  QPixmap * obj = (QPixmap *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPixmap * obj = (QPixmap *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -578,7 +562,7 @@ HB_FUNC_STATIC( QPIXMAP_HASALPHA )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->hasAlpha () );
+      RBOOL( obj->hasAlpha() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -594,7 +578,7 @@ bool hasAlphaChannel() const
 */
 HB_FUNC_STATIC( QPIXMAP_HASALPHACHANNEL )
 {
-  QPixmap * obj = (QPixmap *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPixmap * obj = (QPixmap *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -602,7 +586,7 @@ HB_FUNC_STATIC( QPIXMAP_HASALPHACHANNEL )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->hasAlphaChannel () );
+      RBOOL( obj->hasAlphaChannel() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -614,20 +598,20 @@ HB_FUNC_STATIC( QPIXMAP_HASALPHACHANNEL )
 }
 
 /*
-QBitmap createHeuristicMask(bool clipTight = true) const
+QBitmap createHeuristicMask( bool clipTight = true ) const
 */
 HB_FUNC_STATIC( QPIXMAP_CREATEHEURISTICMASK )
 {
-  QPixmap * obj = (QPixmap *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPixmap * obj = (QPixmap *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISBETWEEN(0,1) && ISOPTLOG(1) )
+    if( ISBETWEEN(0,1) && (HB_ISLOG(1)||HB_ISNIL(1)) )
     {
 #endif
-      QBitmap * ptr = new QBitmap( obj->createHeuristicMask ( OPBOOL(1,true) ) );
-      _qt5xhb_createReturnClass ( ptr, "QBITMAP", true );
+      QBitmap * ptr = new QBitmap( obj->createHeuristicMask( OPBOOL(1,true) ) );
+      Qt5xHb::createReturnClass( ptr, "QBITMAP", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -639,20 +623,20 @@ HB_FUNC_STATIC( QPIXMAP_CREATEHEURISTICMASK )
 }
 
 /*
-QBitmap createMaskFromColor(const QColor &maskColor, Qt::MaskMode mode = Qt::MaskInColor) const
+QBitmap createMaskFromColor( const QColor & maskColor, Qt::MaskMode mode = Qt::MaskInColor ) const
 */
 HB_FUNC_STATIC( QPIXMAP_CREATEMASKFROMCOLOR )
 {
-  QPixmap * obj = (QPixmap *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPixmap * obj = (QPixmap *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISBETWEEN(1,2) && (ISQCOLOR(1)||ISCHAR(1)) && ISOPTNUM(2) )
+    if( ISBETWEEN(1,2) && (ISQCOLOR(1)||HB_ISCHAR(1)) && (HB_ISNUM(2)||HB_ISNIL(2)) )
     {
 #endif
-      QBitmap * ptr = new QBitmap( obj->createMaskFromColor ( ISOBJECT(1)? *(QColor *) _qt5xhb_itemGetPtr(1) : QColor(hb_parc(1)), ISNIL(2)? (Qt::MaskMode) Qt::MaskInColor : (Qt::MaskMode) hb_parni(2) ) );
-      _qt5xhb_createReturnClass ( ptr, "QBITMAP", true );
+      QBitmap * ptr = new QBitmap( obj->createMaskFromColor( HB_ISOBJECT(1)? *(QColor *) Qt5xHb::itemGetPtr(1) : QColor(hb_parc(1)), HB_ISNIL(2)? (Qt::MaskMode) Qt::MaskInColor : (Qt::MaskMode) hb_parni(2) ) );
+      Qt5xHb::createReturnClass( ptr, "QBITMAP", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -664,43 +648,40 @@ HB_FUNC_STATIC( QPIXMAP_CREATEMASKFROMCOLOR )
 }
 
 /*
-QPixmap scaled(int w, int h, Qt::AspectRatioMode aspectMode = Qt::IgnoreAspectRatio,Qt::TransformationMode mode = Qt::FastTransformation) const
+QPixmap scaled( int w, int h, Qt::AspectRatioMode aspectMode = Qt::IgnoreAspectRatio, Qt::TransformationMode mode = Qt::FastTransformation ) const
 */
-void QPixmap_scaled1 ()
+void QPixmap_scaled1()
 {
-  QPixmap * obj = (QPixmap *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPixmap * obj = (QPixmap *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
-      QPixmap * ptr = new QPixmap( obj->scaled ( PINT(1), PINT(2), ISNIL(3)? (Qt::AspectRatioMode) Qt::IgnoreAspectRatio : (Qt::AspectRatioMode) hb_parni(3), ISNIL(4)? (Qt::TransformationMode) Qt::FastTransformation : (Qt::TransformationMode) hb_parni(4) ) );
-      _qt5xhb_createReturnClass ( ptr, "QPIXMAP", true );
+    QPixmap * ptr = new QPixmap( obj->scaled( PINT(1), PINT(2), HB_ISNIL(3)? (Qt::AspectRatioMode) Qt::IgnoreAspectRatio : (Qt::AspectRatioMode) hb_parni(3), HB_ISNIL(4)? (Qt::TransformationMode) Qt::FastTransformation : (Qt::TransformationMode) hb_parni(4) ) );
+    Qt5xHb::createReturnClass( ptr, "QPIXMAP", true );
   }
 }
 
 /*
-QPixmap scaled(const QSize &s, Qt::AspectRatioMode aspectMode = Qt::IgnoreAspectRatio,Qt::TransformationMode mode = Qt::FastTransformation) const
+QPixmap scaled( const QSize & s, Qt::AspectRatioMode aspectMode = Qt::IgnoreAspectRatio, Qt::TransformationMode mode = Qt::FastTransformation ) const
 */
-void QPixmap_scaled2 ()
+void QPixmap_scaled2()
 {
-  QPixmap * obj = (QPixmap *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPixmap * obj = (QPixmap *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
-      QPixmap * ptr = new QPixmap( obj->scaled ( *PQSIZE(1), ISNIL(2)? (Qt::AspectRatioMode) Qt::IgnoreAspectRatio : (Qt::AspectRatioMode) hb_parni(2), ISNIL(3)? (Qt::TransformationMode) Qt::FastTransformation : (Qt::TransformationMode) hb_parni(3) ) );
-      _qt5xhb_createReturnClass ( ptr, "QPIXMAP", true );
+    QPixmap * ptr = new QPixmap( obj->scaled( *PQSIZE(1), HB_ISNIL(2)? (Qt::AspectRatioMode) Qt::IgnoreAspectRatio : (Qt::AspectRatioMode) hb_parni(2), HB_ISNIL(3)? (Qt::TransformationMode) Qt::FastTransformation : (Qt::TransformationMode) hb_parni(3) ) );
+    Qt5xHb::createReturnClass( ptr, "QPIXMAP", true );
   }
 }
 
-//[1]QPixmap scaled(int w, int h, Qt::AspectRatioMode aspectMode = Qt::IgnoreAspectRatio,Qt::TransformationMode mode = Qt::FastTransformation) const
-//[2]QPixmap scaled(const QSize &s, Qt::AspectRatioMode aspectMode = Qt::IgnoreAspectRatio,Qt::TransformationMode mode = Qt::FastTransformation) const
-
 HB_FUNC_STATIC( QPIXMAP_SCALED )
 {
-  if( ISBETWEEN(2,4) && ISNUM(1) && ISNUM(2) && ISOPTNUM(3) && ISOPTNUM(4) )
+  if( ISBETWEEN(2,4) && HB_ISNUM(1) && HB_ISNUM(2) && ( HB_ISNUM(3)||HB_ISNIL(3)) && ( HB_ISNUM(4)||HB_ISNIL(4)) )
   {
     QPixmap_scaled1();
   }
-  else if( ISBETWEEN(1,3) && ISQSIZE(1) && ISOPTNUM(2) && ISOPTNUM(3) )
+  else if( ISBETWEEN(1,3) && ISQSIZE(1) && ( HB_ISNUM(2)||HB_ISNIL(2)) && ( HB_ISNUM(3)||HB_ISNIL(3)) )
   {
     QPixmap_scaled2();
   }
@@ -711,20 +692,20 @@ HB_FUNC_STATIC( QPIXMAP_SCALED )
 }
 
 /*
-QPixmap scaledToWidth(int w, Qt::TransformationMode mode = Qt::FastTransformation) const
+QPixmap scaledToWidth( int w, Qt::TransformationMode mode = Qt::FastTransformation ) const
 */
 HB_FUNC_STATIC( QPIXMAP_SCALEDTOWIDTH )
 {
-  QPixmap * obj = (QPixmap *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPixmap * obj = (QPixmap *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISBETWEEN(1,2) && ISNUM(1) && ISOPTNUM(2) )
+    if( ISBETWEEN(1,2) && HB_ISNUM(1) && (HB_ISNUM(2)||HB_ISNIL(2)) )
     {
 #endif
-      QPixmap * ptr = new QPixmap( obj->scaledToWidth ( PINT(1), ISNIL(2)? (Qt::TransformationMode) Qt::FastTransformation : (Qt::TransformationMode) hb_parni(2) ) );
-      _qt5xhb_createReturnClass ( ptr, "QPIXMAP", true );
+      QPixmap * ptr = new QPixmap( obj->scaledToWidth( PINT(1), HB_ISNIL(2)? (Qt::TransformationMode) Qt::FastTransformation : (Qt::TransformationMode) hb_parni(2) ) );
+      Qt5xHb::createReturnClass( ptr, "QPIXMAP", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -736,20 +717,20 @@ HB_FUNC_STATIC( QPIXMAP_SCALEDTOWIDTH )
 }
 
 /*
-QPixmap scaledToHeight(int h, Qt::TransformationMode mode = Qt::FastTransformation) const
+QPixmap scaledToHeight( int h, Qt::TransformationMode mode = Qt::FastTransformation ) const
 */
 HB_FUNC_STATIC( QPIXMAP_SCALEDTOHEIGHT )
 {
-  QPixmap * obj = (QPixmap *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPixmap * obj = (QPixmap *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISBETWEEN(1,2) && ISNUM(1) && ISOPTNUM(2) )
+    if( ISBETWEEN(1,2) && HB_ISNUM(1) && (HB_ISNUM(2)||HB_ISNIL(2)) )
     {
 #endif
-      QPixmap * ptr = new QPixmap( obj->scaledToHeight ( PINT(1), ISNIL(2)? (Qt::TransformationMode) Qt::FastTransformation : (Qt::TransformationMode) hb_parni(2) ) );
-      _qt5xhb_createReturnClass ( ptr, "QPIXMAP", true );
+      QPixmap * ptr = new QPixmap( obj->scaledToHeight( PINT(1), HB_ISNIL(2)? (Qt::TransformationMode) Qt::FastTransformation : (Qt::TransformationMode) hb_parni(2) ) );
+      Qt5xHb::createReturnClass( ptr, "QPIXMAP", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -761,43 +742,40 @@ HB_FUNC_STATIC( QPIXMAP_SCALEDTOHEIGHT )
 }
 
 /*
-QPixmap transformed(const QMatrix &, Qt::TransformationMode mode = Qt::FastTransformation) const
+QPixmap transformed( const QMatrix &, Qt::TransformationMode mode = Qt::FastTransformation ) const
 */
-void QPixmap_transformed1 ()
+void QPixmap_transformed1()
 {
-  QPixmap * obj = (QPixmap *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPixmap * obj = (QPixmap *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
-      QPixmap * ptr = new QPixmap( obj->transformed ( *PQMATRIX(1), ISNIL(2)? (Qt::TransformationMode) Qt::FastTransformation : (Qt::TransformationMode) hb_parni(2) ) );
-      _qt5xhb_createReturnClass ( ptr, "QPIXMAP", true );
+    QPixmap * ptr = new QPixmap( obj->transformed( *PQMATRIX(1), HB_ISNIL(2)? (Qt::TransformationMode) Qt::FastTransformation : (Qt::TransformationMode) hb_parni(2) ) );
+    Qt5xHb::createReturnClass( ptr, "QPIXMAP", true );
   }
 }
 
 /*
-QPixmap transformed(const QTransform &, Qt::TransformationMode mode = Qt::FastTransformation) const
+QPixmap transformed( const QTransform &, Qt::TransformationMode mode = Qt::FastTransformation ) const
 */
-void QPixmap_transformed2 ()
+void QPixmap_transformed2()
 {
-  QPixmap * obj = (QPixmap *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPixmap * obj = (QPixmap *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
-      QPixmap * ptr = new QPixmap( obj->transformed ( *PQTRANSFORM(1), ISNIL(2)? (Qt::TransformationMode) Qt::FastTransformation : (Qt::TransformationMode) hb_parni(2) ) );
-      _qt5xhb_createReturnClass ( ptr, "QPIXMAP", true );
+    QPixmap * ptr = new QPixmap( obj->transformed( *PQTRANSFORM(1), HB_ISNIL(2)? (Qt::TransformationMode) Qt::FastTransformation : (Qt::TransformationMode) hb_parni(2) ) );
+    Qt5xHb::createReturnClass( ptr, "QPIXMAP", true );
   }
 }
 
-//[1]QPixmap transformed(const QMatrix &, Qt::TransformationMode mode = Qt::FastTransformation) const
-//[2]QPixmap transformed(const QTransform &, Qt::TransformationMode mode = Qt::FastTransformation) const
-
 HB_FUNC_STATIC( QPIXMAP_TRANSFORMED )
 {
-  if( ISBETWEEN(1,2) && ISQMATRIX(1) && ISOPTNUM(2) )
+  if( ISBETWEEN(1,2) && ISQMATRIX(1) && ( HB_ISNUM(2)||HB_ISNIL(2)) )
   {
     QPixmap_transformed1();
   }
-  else if( ISBETWEEN(1,2) && ISQTRANSFORM(1) && ISOPTNUM(2) )
+  else if( ISBETWEEN(1,2) && ISQTRANSFORM(1) && ( HB_ISNUM(2)||HB_ISNIL(2)) )
   {
     QPixmap_transformed2();
   }
@@ -812,7 +790,7 @@ QImage toImage() const
 */
 HB_FUNC_STATIC( QPIXMAP_TOIMAGE )
 {
-  QPixmap * obj = (QPixmap *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPixmap * obj = (QPixmap *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -820,8 +798,8 @@ HB_FUNC_STATIC( QPIXMAP_TOIMAGE )
     if( ISNUMPAR(0) )
     {
 #endif
-      QImage * ptr = new QImage( obj->toImage () );
-      _qt5xhb_createReturnClass ( ptr, "QIMAGE", true );
+      QImage * ptr = new QImage( obj->toImage() );
+      Qt5xHb::createReturnClass( ptr, "QIMAGE", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -833,19 +811,19 @@ HB_FUNC_STATIC( QPIXMAP_TOIMAGE )
 }
 
 /*
-bool load(const QString& fileName, const char *format = 0, Qt::ImageConversionFlags flags = Qt::AutoColor)
+bool load( const QString & fileName, const char * format = 0, Qt::ImageConversionFlags flags = Qt::AutoColor )
 */
 HB_FUNC_STATIC( QPIXMAP_LOAD )
 {
-  QPixmap * obj = (QPixmap *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPixmap * obj = (QPixmap *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISBETWEEN(1,3) && ISCHAR(1) && ISOPTCHAR(2) && ISOPTNUM(3) )
+    if( ISBETWEEN(1,3) && HB_ISCHAR(1) && (HB_ISCHAR(2)||HB_ISNIL(2)) && (HB_ISNUM(3)||HB_ISNIL(3)) )
     {
 #endif
-      RBOOL( obj->load ( PQSTRING(1), OPCONSTCHAR(2,0), ISNIL(3)? (Qt::ImageConversionFlags) Qt::AutoColor : (Qt::ImageConversionFlags) hb_parni(3) ) );
+      RBOOL( obj->load( PQSTRING(1), OPCONSTCHAR(2,0), HB_ISNIL(3)? (Qt::ImageConversionFlags) Qt::AutoColor : (Qt::ImageConversionFlags) hb_parni(3) ) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -857,41 +835,38 @@ HB_FUNC_STATIC( QPIXMAP_LOAD )
 }
 
 /*
-bool loadFromData(const uchar *buf, uint len, const char* format = 0, Qt::ImageConversionFlags flags = Qt::AutoColor)
+bool loadFromData( const uchar * buf, uint len, const char * format = 0, Qt::ImageConversionFlags flags = Qt::AutoColor )
 */
-void QPixmap_loadFromData1 ()
+void QPixmap_loadFromData1()
 {
-  QPixmap * obj = (QPixmap *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPixmap * obj = (QPixmap *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
-      RBOOL( obj->loadFromData ( PCONSTUCHAR(1), PUINT(2), OPCONSTCHAR(3,0), ISNIL(4)? (Qt::ImageConversionFlags) Qt::AutoColor : (Qt::ImageConversionFlags) hb_parni(4) ) );
+    RBOOL( obj->loadFromData( PCONSTUCHAR(1), PUINT(2), OPCONSTCHAR(3,0), HB_ISNIL(4)? (Qt::ImageConversionFlags) Qt::AutoColor : (Qt::ImageConversionFlags) hb_parni(4) ) );
   }
 }
 
 /*
-bool loadFromData(const QByteArray &data, const char* format = 0, Qt::ImageConversionFlags flags = Qt::AutoColor)
+bool loadFromData( const QByteArray & data, const char * format = 0, Qt::ImageConversionFlags flags = Qt::AutoColor )
 */
-void QPixmap_loadFromData2 ()
+void QPixmap_loadFromData2()
 {
-  QPixmap * obj = (QPixmap *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPixmap * obj = (QPixmap *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
-      RBOOL( obj->loadFromData ( *PQBYTEARRAY(1), OPCONSTCHAR(2,0), ISNIL(3)? (Qt::ImageConversionFlags) Qt::AutoColor : (Qt::ImageConversionFlags) hb_parni(3) ) );
+    RBOOL( obj->loadFromData( *PQBYTEARRAY(1), OPCONSTCHAR(2,0), HB_ISNIL(3)? (Qt::ImageConversionFlags) Qt::AutoColor : (Qt::ImageConversionFlags) hb_parni(3) ) );
   }
 }
 
-//[1]bool loadFromData(const uchar *buf, uint len, const char* format = 0, Qt::ImageConversionFlags flags = Qt::AutoColor)
-//[2]bool loadFromData(const QByteArray &data, const char* format = 0, Qt::ImageConversionFlags flags = Qt::AutoColor)
-
 HB_FUNC_STATIC( QPIXMAP_LOADFROMDATA )
 {
-  if( ISBETWEEN(2,4) && ISCHAR(1) && ISNUM(2) && ISOPTCHAR(3) && ISOPTNUM(4) )
+  if( ISBETWEEN(2,4) && HB_ISCHAR(1) && HB_ISNUM(2) && ( HB_ISCHAR(3)||HB_ISNIL(3)) && ( HB_ISNUM(4)||HB_ISNIL(4)) )
   {
     QPixmap_loadFromData1();
   }
-  else if( ISBETWEEN(2,3) && ISQBYTEARRAY(1) && ISOPTCHAR(2) && ISOPTNUM(3) )
+  else if( ISBETWEEN(2,3) && ISQBYTEARRAY(1) && ( HB_ISCHAR(2)||HB_ISNIL(2)) && ( HB_ISNUM(3)||HB_ISNIL(3)) )
   {
     QPixmap_loadFromData2();
   }
@@ -902,41 +877,38 @@ HB_FUNC_STATIC( QPIXMAP_LOADFROMDATA )
 }
 
 /*
-bool save(const QString& fileName, const char* format = 0, int quality = -1) const
+bool save( const QString & fileName, const char * format = 0, int quality = -1 ) const
 */
-void QPixmap_save1 ()
+void QPixmap_save1()
 {
-  QPixmap * obj = (QPixmap *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPixmap * obj = (QPixmap *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
-      RBOOL( obj->save ( PQSTRING(1), OPCONSTCHAR(2,0), OPINT(3,-1) ) );
+    RBOOL( obj->save( PQSTRING(1), OPCONSTCHAR(2,0), OPINT(3,-1) ) );
   }
 }
 
 /*
-bool save(QIODevice* device, const char* format = 0, int quality = -1) const
+bool save( QIODevice * device, const char * format = 0, int quality = -1 ) const
 */
-void QPixmap_save2 ()
+void QPixmap_save2()
 {
-  QPixmap * obj = (QPixmap *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPixmap * obj = (QPixmap *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
-      RBOOL( obj->save ( PQIODEVICE(1), OPCONSTCHAR(2,0), OPINT(3,-1) ) );
+    RBOOL( obj->save( PQIODEVICE(1), OPCONSTCHAR(2,0), OPINT(3,-1) ) );
   }
 }
 
-//[1]bool save(const QString& fileName, const char* format = 0, int quality = -1) const
-//[2]bool save(QIODevice* device, const char* format = 0, int quality = -1) const
-
 HB_FUNC_STATIC( QPIXMAP_SAVE )
 {
-  if( ISBETWEEN(1,3) && ISCHAR(1) && ISOPTCHAR(2) && ISOPTNUM(3) )
+  if( ISBETWEEN(1,3) && HB_ISCHAR(1) && ( HB_ISCHAR(2)||HB_ISNIL(2)) && ( HB_ISNUM(3)||HB_ISNIL(3)) )
   {
     QPixmap_save1();
   }
-  else if( ISBETWEEN(1,3) && ISQIODEVICE(1) && ISOPTCHAR(2) && ISOPTNUM(3) )
+  else if( ISBETWEEN(1,3) && ISQIODEVICE(1) && ( HB_ISCHAR(2)||HB_ISNIL(2)) && ( HB_ISNUM(3)||HB_ISNIL(3)) )
   {
     QPixmap_save2();
   }
@@ -947,19 +919,19 @@ HB_FUNC_STATIC( QPIXMAP_SAVE )
 }
 
 /*
-bool convertFromImage(const QImage &img, Qt::ImageConversionFlags flags = Qt::AutoColor)
+bool convertFromImage( const QImage & img, Qt::ImageConversionFlags flags = Qt::AutoColor )
 */
 HB_FUNC_STATIC( QPIXMAP_CONVERTFROMIMAGE )
 {
-  QPixmap * obj = (QPixmap *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPixmap * obj = (QPixmap *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISBETWEEN(1,2) && ISQIMAGE(1) && ISOPTNUM(2) )
+    if( ISBETWEEN(1,2) && ISQIMAGE(1) && (HB_ISNUM(2)||HB_ISNIL(2)) )
     {
 #endif
-      RBOOL( obj->convertFromImage ( *PQIMAGE(1), ISNIL(2)? (Qt::ImageConversionFlags) Qt::AutoColor : (Qt::ImageConversionFlags) hb_parni(2) ) );
+      RBOOL( obj->convertFromImage( *PQIMAGE(1), HB_ISNIL(2)? (Qt::ImageConversionFlags) Qt::AutoColor : (Qt::ImageConversionFlags) hb_parni(2) ) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -971,43 +943,40 @@ HB_FUNC_STATIC( QPIXMAP_CONVERTFROMIMAGE )
 }
 
 /*
-QPixmap copy(int x, int y, int width, int height) const
+QPixmap copy( int x, int y, int width, int height ) const
 */
-void QPixmap_copy1 ()
+void QPixmap_copy1()
 {
-  QPixmap * obj = (QPixmap *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPixmap * obj = (QPixmap *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
-      QPixmap * ptr = new QPixmap( obj->copy ( PINT(1), PINT(2), PINT(3), PINT(4) ) );
-      _qt5xhb_createReturnClass ( ptr, "QPIXMAP", true );
+    QPixmap * ptr = new QPixmap( obj->copy( PINT(1), PINT(2), PINT(3), PINT(4) ) );
+    Qt5xHb::createReturnClass( ptr, "QPIXMAP", true );
   }
 }
 
 /*
-QPixmap copy(const QRect &rect = QRect()) const
+QPixmap copy( const QRect & rect = QRect() ) const
 */
-void QPixmap_copy2 ()
+void QPixmap_copy2()
 {
-  QPixmap * obj = (QPixmap *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPixmap * obj = (QPixmap *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
-      QPixmap * ptr = new QPixmap( obj->copy ( ISNIL(1)? QRect() : *(QRect *) _qt5xhb_itemGetPtr(1) ) );
-      _qt5xhb_createReturnClass ( ptr, "QPIXMAP", true );
+    QPixmap * ptr = new QPixmap( obj->copy( HB_ISNIL(1)? QRect() : *(QRect *) Qt5xHb::itemGetPtr(1) ) );
+    Qt5xHb::createReturnClass( ptr, "QPIXMAP", true );
   }
 }
 
-//[1]QPixmap copy(int x, int y, int width, int height) const
-//[2]QPixmap copy(const QRect &rect = QRect()) const
-
 HB_FUNC_STATIC( QPIXMAP_COPY )
 {
-  if( ISNUMPAR(4) && ISNUM(1) && ISNUM(2) && ISNUM(3) && ISNUM(4) )
+  if( ISNUMPAR(4) && HB_ISNUM(1) && HB_ISNUM(2) && HB_ISNUM(3) && HB_ISNUM(4) )
   {
     QPixmap_copy1();
   }
-  else if( ISBETWEEN(0,1) && (ISQRECT(1)||ISNIL(1)) )
+  else if( ISBETWEEN(0,1) && (ISQRECT(1)||HB_ISNIL(1)) )
   {
     QPixmap_copy2();
   }
@@ -1018,45 +987,42 @@ HB_FUNC_STATIC( QPIXMAP_COPY )
 }
 
 /*
-void scroll(int dx, int dy, int x, int y, int width, int height, QRegion *exposed = 0)
+void scroll( int dx, int dy, int x, int y, int width, int height, QRegion * exposed = 0 )
 */
-void QPixmap_scroll1 ()
+void QPixmap_scroll1()
 {
-  QPixmap * obj = (QPixmap *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPixmap * obj = (QPixmap *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
-      obj->scroll ( PINT(1), PINT(2), PINT(3), PINT(4), PINT(5), PINT(6), ISNIL(7)? 0 : (QRegion *) _qt5xhb_itemGetPtr(7) );
+    obj->scroll( PINT(1), PINT(2), PINT(3), PINT(4), PINT(5), PINT(6), HB_ISNIL(7)? 0 : (QRegion *) Qt5xHb::itemGetPtr(7) );
   }
 
   hb_itemReturn( hb_stackSelfItem() );
 }
 
 /*
-void scroll(int dx, int dy, const QRect &rect, QRegion *exposed = 0)
+void scroll( int dx, int dy, const QRect & rect, QRegion * exposed = 0 )
 */
-void QPixmap_scroll2 ()
+void QPixmap_scroll2()
 {
-  QPixmap * obj = (QPixmap *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPixmap * obj = (QPixmap *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
-      obj->scroll ( PINT(1), PINT(2), *PQRECT(3), ISNIL(4)? 0 : (QRegion *) _qt5xhb_itemGetPtr(4) );
+    obj->scroll( PINT(1), PINT(2), *PQRECT(3), HB_ISNIL(4)? 0 : (QRegion *) Qt5xHb::itemGetPtr(4) );
   }
 
   hb_itemReturn( hb_stackSelfItem() );
 }
 
-//[1]void scroll(int dx, int dy, int x, int y, int width, int height, QRegion *exposed = 0)
-//[2]void scroll(int dx, int dy, const QRect &rect, QRegion *exposed = 0)
-
 HB_FUNC_STATIC( QPIXMAP_SCROLL )
 {
-  if( ISBETWEEN(6,7) && ISNUM(1) && ISNUM(2) && ISNUM(3) && ISNUM(4) && ISNUM(5) && ISNUM(6) && (ISQREGION(7)||ISNIL(7)) )
+  if( ISBETWEEN(6,7) && HB_ISNUM(1) && HB_ISNUM(2) && HB_ISNUM(3) && HB_ISNUM(4) && HB_ISNUM(5) && HB_ISNUM(6) && (ISQREGION(7)||HB_ISNIL(7)) )
   {
     QPixmap_scroll1();
   }
-  else if( ISBETWEEN(3,4) && ISNUM(1) && ISNUM(2) && ISQRECT(3) && (ISQREGION(4)||ISNIL(4)) )
+  else if( ISBETWEEN(3,4) && HB_ISNUM(1) && HB_ISNUM(2) && ISQRECT(3) && (ISQREGION(4)||HB_ISNIL(4)) )
   {
     QPixmap_scroll2();
   }
@@ -1071,7 +1037,7 @@ qint64 cacheKey() const
 */
 HB_FUNC_STATIC( QPIXMAP_CACHEKEY )
 {
-  QPixmap * obj = (QPixmap *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPixmap * obj = (QPixmap *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -1079,7 +1045,7 @@ HB_FUNC_STATIC( QPIXMAP_CACHEKEY )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQINT64( obj->cacheKey () );
+      RQINT64( obj->cacheKey() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -1095,7 +1061,7 @@ bool isDetached() const
 */
 HB_FUNC_STATIC( QPIXMAP_ISDETACHED )
 {
-  QPixmap * obj = (QPixmap *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPixmap * obj = (QPixmap *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -1103,7 +1069,7 @@ HB_FUNC_STATIC( QPIXMAP_ISDETACHED )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->isDetached () );
+      RBOOL( obj->isDetached() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -1119,7 +1085,7 @@ void detach()
 */
 HB_FUNC_STATIC( QPIXMAP_DETACH )
 {
-  QPixmap * obj = (QPixmap *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPixmap * obj = (QPixmap *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -1127,7 +1093,7 @@ HB_FUNC_STATIC( QPIXMAP_DETACH )
     if( ISNUMPAR(0) )
     {
 #endif
-      obj->detach ();
+      obj->detach();
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -1145,7 +1111,7 @@ bool isQBitmap() const
 */
 HB_FUNC_STATIC( QPIXMAP_ISQBITMAP )
 {
-  QPixmap * obj = (QPixmap *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPixmap * obj = (QPixmap *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -1153,7 +1119,7 @@ HB_FUNC_STATIC( QPIXMAP_ISQBITMAP )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->isQBitmap () );
+      RBOOL( obj->isQBitmap() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -1165,11 +1131,11 @@ HB_FUNC_STATIC( QPIXMAP_ISQBITMAP )
 }
 
 /*
-QPaintEngine *paintEngine() const
+QPaintEngine * paintEngine() const
 */
 HB_FUNC_STATIC( QPIXMAP_PAINTENGINE )
 {
-  QPixmap * obj = (QPixmap *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPixmap * obj = (QPixmap *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -1177,8 +1143,8 @@ HB_FUNC_STATIC( QPIXMAP_PAINTENGINE )
     if( ISNUMPAR(0) )
     {
 #endif
-      QPaintEngine * ptr = obj->paintEngine ();
-      _qt5xhb_createReturnClass ( ptr, "QPAINTENGINE", false );
+      QPaintEngine * ptr = obj->paintEngine();
+      Qt5xHb::createReturnClass( ptr, "QPAINTENGINE", false );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -1195,10 +1161,10 @@ static int defaultDepth()
 HB_FUNC_STATIC( QPIXMAP_DEFAULTDEPTH )
 {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(0) )
+  if( ISNUMPAR(0) )
   {
 #endif
-      RINT( QPixmap::defaultDepth () );
+    RINT( QPixmap::defaultDepth() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
   }
   else
@@ -1209,16 +1175,16 @@ HB_FUNC_STATIC( QPIXMAP_DEFAULTDEPTH )
 }
 
 /*
-static QPixmap grabWindow(WId, int x=0, int y=0, int w=-1, int h=-1)
+static QPixmap grabWindow( WId, int x = 0, int y = 0, int w = -1, int h = -1 )
 */
 HB_FUNC_STATIC( QPIXMAP_GRABWINDOW )
 {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISBETWEEN(1,5) && ISPOINTER(1) && ISOPTNUM(2) && ISOPTNUM(3) && ISOPTNUM(4) && ISOPTNUM(5) )
+  if( ISBETWEEN(1,5) && HB_ISPOINTER(1) && (HB_ISNUM(2)||HB_ISNIL(2)) && (HB_ISNUM(3)||HB_ISNIL(3)) && (HB_ISNUM(4)||HB_ISNIL(4)) && (HB_ISNUM(5)||HB_ISNIL(5)) )
   {
 #endif
-      QPixmap * ptr = new QPixmap( QPixmap::grabWindow ( (WId) hb_parptr(1), OPINT(2,0), OPINT(3,0), OPINT(4,-1), OPINT(5,-1) ) );
-      _qt5xhb_createReturnClass ( ptr, "QPIXMAP", true );
+    QPixmap * ptr = new QPixmap( QPixmap::grabWindow( (WId) hb_parptr(1), OPINT(2,0), OPINT(3,0), OPINT(4,-1), OPINT(5,-1) ) );
+    Qt5xHb::createReturnClass( ptr, "QPIXMAP", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
   }
   else
@@ -1229,27 +1195,24 @@ HB_FUNC_STATIC( QPIXMAP_GRABWINDOW )
 }
 
 /*
-static QPixmap grabWidget(QObject *widget, const QRect &rect)
+static QPixmap grabWidget( QObject * widget, const QRect & rect )
 */
-void QPixmap_grabWidget1 ()
+void QPixmap_grabWidget1()
 {
 
-      QPixmap * ptr = new QPixmap( QPixmap::grabWidget ( PQOBJECT(1), *PQRECT(2) ) );
-      _qt5xhb_createReturnClass ( ptr, "QPIXMAP", true );
+  QPixmap * ptr = new QPixmap( QPixmap::grabWidget( PQOBJECT(1), *PQRECT(2) ) );
+  Qt5xHb::createReturnClass( ptr, "QPIXMAP", true );
 }
 
 /*
-static QPixmap grabWidget(QObject *widget, int x=0, int y=0, int w=-1, int h=-1)
+static QPixmap grabWidget( QObject * widget, int x = 0, int y = 0, int w = -1, int h = -1 )
 */
-void QPixmap_grabWidget2 ()
+void QPixmap_grabWidget2()
 {
 
-      QPixmap * ptr = new QPixmap( QPixmap::grabWidget ( PQOBJECT(1), OPINT(2,0), OPINT(3,0), OPINT(4,-1), OPINT(5,-1) ) );
-      _qt5xhb_createReturnClass ( ptr, "QPIXMAP", true );
+  QPixmap * ptr = new QPixmap( QPixmap::grabWidget( PQOBJECT(1), OPINT(2,0), OPINT(3,0), OPINT(4,-1), OPINT(5,-1) ) );
+  Qt5xHb::createReturnClass( ptr, "QPIXMAP", true );
 }
-
-//[1]static QPixmap grabWidget(QObject *widget, const QRect &rect)
-//[2]static QPixmap grabWidget(QObject *widget, int x=0, int y=0, int w=-1, int h=-1)
 
 HB_FUNC_STATIC( QPIXMAP_GRABWIDGET )
 {
@@ -1257,7 +1220,7 @@ HB_FUNC_STATIC( QPIXMAP_GRABWIDGET )
   {
     QPixmap_grabWidget1();
   }
-  else if( ISBETWEEN(1,5) && ISQOBJECT(1) && ISOPTNUM(2) && ISOPTNUM(3) && ISOPTNUM(4) && ISOPTNUM(5) )
+  else if( ISBETWEEN(1,5) && ISQOBJECT(1) && ( HB_ISNUM(2)||HB_ISNIL(2)) && ( HB_ISNUM(3)||HB_ISNIL(3)) && ( HB_ISNUM(4)||HB_ISNIL(4)) && ( HB_ISNUM(5)||HB_ISNIL(5)) )
   {
     QPixmap_grabWidget2();
   }
@@ -1268,35 +1231,32 @@ HB_FUNC_STATIC( QPIXMAP_GRABWIDGET )
 }
 
 /*
-static QMatrix trueMatrix(const QMatrix &m, int w, int h)
+static QMatrix trueMatrix( const QMatrix & m, int w, int h )
 */
-void QPixmap_trueMatrix1 ()
+void QPixmap_trueMatrix1()
 {
 
-      QMatrix * ptr = new QMatrix( QPixmap::trueMatrix ( *PQMATRIX(1), PINT(2), PINT(3) ) );
-      _qt5xhb_createReturnClass ( ptr, "QMATRIX", true );
+  QMatrix * ptr = new QMatrix( QPixmap::trueMatrix( *PQMATRIX(1), PINT(2), PINT(3) ) );
+  Qt5xHb::createReturnClass( ptr, "QMATRIX", true );
 }
 
 /*
-static QTransform trueMatrix(const QTransform &m, int w, int h)
+static QTransform trueMatrix( const QTransform & m, int w, int h )
 */
-void QPixmap_trueMatrix2 ()
+void QPixmap_trueMatrix2()
 {
 
-      QTransform * ptr = new QTransform( QPixmap::trueMatrix ( *PQTRANSFORM(1), PINT(2), PINT(3) ) );
-      _qt5xhb_createReturnClass ( ptr, "QTRANSFORM", true );
+  QTransform * ptr = new QTransform( QPixmap::trueMatrix( *PQTRANSFORM(1), PINT(2), PINT(3) ) );
+  Qt5xHb::createReturnClass( ptr, "QTRANSFORM", true );
 }
-
-//[1]static QMatrix trueMatrix(const QMatrix &m, int w, int h)
-//[2]static QTransform trueMatrix(const QTransform &m, int w, int h)
 
 HB_FUNC_STATIC( QPIXMAP_TRUEMATRIX )
 {
-  if( ISNUMPAR(3) && ISQMATRIX(1) && ISNUM(2) && ISNUM(3) )
+  if( ISNUMPAR(3) && ISQMATRIX(1) && HB_ISNUM(2) && HB_ISNUM(3) )
   {
     QPixmap_trueMatrix1();
   }
-  else if( ISNUMPAR(3) && ISQTRANSFORM(1) && ISNUM(2) && ISNUM(3) )
+  else if( ISNUMPAR(3) && ISQTRANSFORM(1) && HB_ISNUM(2) && HB_ISNUM(3) )
   {
     QPixmap_trueMatrix2();
   }
@@ -1307,16 +1267,16 @@ HB_FUNC_STATIC( QPIXMAP_TRUEMATRIX )
 }
 
 /*
-static QPixmap fromImage(const QImage &image, Qt::ImageConversionFlags flags = Qt::AutoColor)
+static QPixmap fromImage( const QImage & image, Qt::ImageConversionFlags flags = Qt::AutoColor )
 */
 HB_FUNC_STATIC( QPIXMAP_FROMIMAGE )
 {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISBETWEEN(1,2) && ISQIMAGE(1) && ISOPTNUM(2) )
+  if( ISBETWEEN(1,2) && ISQIMAGE(1) && (HB_ISNUM(2)||HB_ISNIL(2)) )
   {
 #endif
-      QPixmap * ptr = new QPixmap( QPixmap::fromImage ( *PQIMAGE(1), ISNIL(2)? (Qt::ImageConversionFlags) Qt::AutoColor : (Qt::ImageConversionFlags) hb_parni(2) ) );
-      _qt5xhb_createReturnClass ( ptr, "QPIXMAP", true );
+    QPixmap * ptr = new QPixmap( QPixmap::fromImage( *PQIMAGE(1), HB_ISNIL(2)? (Qt::ImageConversionFlags) Qt::AutoColor : (Qt::ImageConversionFlags) hb_parni(2) ) );
+    Qt5xHb::createReturnClass( ptr, "QPIXMAP", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
   }
   else
@@ -1327,16 +1287,16 @@ HB_FUNC_STATIC( QPIXMAP_FROMIMAGE )
 }
 
 /*
-static QPixmap fromImageReader(QImageReader *imageReader, Qt::ImageConversionFlags flags = Qt::AutoColor)
+static QPixmap fromImageReader( QImageReader * imageReader, Qt::ImageConversionFlags flags = Qt::AutoColor )
 */
 HB_FUNC_STATIC( QPIXMAP_FROMIMAGEREADER )
 {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISBETWEEN(1,2) && ISQIMAGEREADER(1) && ISOPTNUM(2) )
+  if( ISBETWEEN(1,2) && ISQIMAGEREADER(1) && (HB_ISNUM(2)||HB_ISNIL(2)) )
   {
 #endif
-      QPixmap * ptr = new QPixmap( QPixmap::fromImageReader ( PQIMAGEREADER(1), ISNIL(2)? (Qt::ImageConversionFlags) Qt::AutoColor : (Qt::ImageConversionFlags) hb_parni(2) ) );
-      _qt5xhb_createReturnClass ( ptr, "QPIXMAP", true );
+    QPixmap * ptr = new QPixmap( QPixmap::fromImageReader( PQIMAGEREADER(1), HB_ISNIL(2)? (Qt::ImageConversionFlags) Qt::AutoColor : (Qt::ImageConversionFlags) hb_parni(2) ) );
+    Qt5xHb::createReturnClass( ptr, "QPIXMAP", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
   }
   else
@@ -1347,33 +1307,33 @@ HB_FUNC_STATIC( QPIXMAP_FROMIMAGEREADER )
 }
 
 /*
-QVariant toVariant ()
+QVariant toVariant()
 */
-void QPixmap_toVariant1 ()
+void QPixmap_toVariant1()
 {
-  QPixmap * obj = (QPixmap *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPixmap * obj = (QPixmap *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
     QVariant * variant = new QVariant();
     variant->setValue<QPixmap>( *obj );
-    _qt5xhb_createReturnClass ( variant, "QVARIANT", true );
+    Qt5xHb::createReturnClass( variant, "QVARIANT", true );
   }
 }
 
 /*
-static QVariant toVariant ( const QPixmap & )
+static QVariant toVariant( const QPixmap & )
 */
-void QPixmap_toVariant2 ()
+void QPixmap_toVariant2()
 {
   QPixmap * pixmap = (QPixmap *) hb_itemGetPtr( hb_objSendMsg( hb_param( 1, HB_IT_OBJECT ), "POINTER", 0 ) );
   QVariant * variant = new QVariant();
   variant->setValue<QPixmap>( *pixmap );
-  _qt5xhb_createReturnClass ( variant, "QVARIANT", true );
+  Qt5xHb::createReturnClass( variant, "QVARIANT", true );
 }
 
-//[1]QVariant toVariant ()
-//[2]static QVariant toVariant ( const QPixmap & )
+//[1]QVariant toVariant()
+//[2]static QVariant toVariant( const QPixmap & )
 
 HB_FUNC_STATIC( QPIXMAP_TOVARIANT )
 {
@@ -1392,7 +1352,7 @@ HB_FUNC_STATIC( QPIXMAP_TOVARIANT )
 }
 
 /*
-static QPixmap fromVariant ( const QVariant & )
+static QPixmap fromVariant( const QVariant & )
 */
 HB_FUNC_STATIC( QPIXMAP_FROMVARIANT )
 {
@@ -1400,7 +1360,7 @@ HB_FUNC_STATIC( QPIXMAP_FROMVARIANT )
   {
     QVariant * variant = (QVariant *) hb_itemGetPtr( hb_objSendMsg( hb_param( 1, HB_IT_OBJECT ), "POINTER", 0 ) );
     QPixmap * pixmap = new QPixmap( variant->value<QPixmap>() );
-    _qt5xhb_createReturnClass ( pixmap, "QPIXMAP", true );
+    Qt5xHb::createReturnClass( pixmap, "QPIXMAP", true );
   }
   else
   {

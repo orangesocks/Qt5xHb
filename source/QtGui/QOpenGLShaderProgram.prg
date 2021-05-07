@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -44,7 +44,7 @@ CLASS QOpenGLShaderProgram INHERIT QObject
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QOpenGLShaderProgram
+PROCEDURE destroyObject() CLASS QOpenGLShaderProgram
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -61,20 +61,22 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #include <QtGui/QOpenGLShaderProgram>
 #endif
 
 /*
-QOpenGLShaderProgram(QObject *parent = 0)
+QOpenGLShaderProgram( QObject * parent = 0 )
 */
 HB_FUNC_STATIC( QOPENGLSHADERPROGRAM_NEW )
 {
-  if( ISBETWEEN(0,1) && (ISQOBJECT(1)||ISNIL(1)) )
+  if( ISBETWEEN(0,1) && (ISQOBJECT(1)||HB_ISNIL(1)) )
   {
-    QOpenGLShaderProgram * o = new QOpenGLShaderProgram ( OPQOBJECT(1,0) );
-    _qt5xhb_returnNewObject( o, false );
+    QOpenGLShaderProgram * obj = new QOpenGLShaderProgram( OPQOBJECT(1,0) );
+    Qt5xHb::returnNewObject( obj, false );
   }
   else
   {
@@ -84,10 +86,12 @@ HB_FUNC_STATIC( QOPENGLSHADERPROGRAM_NEW )
 
 HB_FUNC_STATIC( QOPENGLSHADERPROGRAM_DELETE )
 {
-  QOpenGLShaderProgram * obj = (QOpenGLShaderProgram *) _qt5xhb_itemGetPtrStackSelfItem();
+  QOpenGLShaderProgram * obj = (QOpenGLShaderProgram *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -100,11 +104,11 @@ HB_FUNC_STATIC( QOPENGLSHADERPROGRAM_DELETE )
 }
 
 /*
-bool addShader(QOpenGLShader *shader)
+bool addShader( QOpenGLShader * shader )
 */
 HB_FUNC_STATIC( QOPENGLSHADERPROGRAM_ADDSHADER )
 {
-  QOpenGLShaderProgram * obj = (QOpenGLShaderProgram *) _qt5xhb_itemGetPtrStackSelfItem();
+  QOpenGLShaderProgram * obj = (QOpenGLShaderProgram *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -112,7 +116,7 @@ HB_FUNC_STATIC( QOPENGLSHADERPROGRAM_ADDSHADER )
     if( ISNUMPAR(1) && ISQOPENGLSHADER(1) )
     {
 #endif
-      RBOOL( obj->addShader ( PQOPENGLSHADER(1) ) );
+      RBOOL( obj->addShader( PQOPENGLSHADER(1) ) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -124,11 +128,11 @@ HB_FUNC_STATIC( QOPENGLSHADERPROGRAM_ADDSHADER )
 }
 
 /*
-void removeShader(QOpenGLShader *shader)
+void removeShader( QOpenGLShader * shader )
 */
 HB_FUNC_STATIC( QOPENGLSHADERPROGRAM_REMOVESHADER )
 {
-  QOpenGLShaderProgram * obj = (QOpenGLShaderProgram *) _qt5xhb_itemGetPtrStackSelfItem();
+  QOpenGLShaderProgram * obj = (QOpenGLShaderProgram *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -136,7 +140,7 @@ HB_FUNC_STATIC( QOPENGLSHADERPROGRAM_REMOVESHADER )
     if( ISNUMPAR(1) && ISQOPENGLSHADER(1) )
     {
 #endif
-      obj->removeShader ( PQOPENGLSHADER(1) );
+      obj->removeShader( PQOPENGLSHADER(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -154,7 +158,7 @@ QList<QOpenGLShader *> shaders() const
 */
 HB_FUNC_STATIC( QOPENGLSHADERPROGRAM_SHADERS )
 {
-  QOpenGLShaderProgram * obj = (QOpenGLShaderProgram *) _qt5xhb_itemGetPtrStackSelfItem();
+  QOpenGLShaderProgram * obj = (QOpenGLShaderProgram *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -162,13 +166,12 @@ HB_FUNC_STATIC( QOPENGLSHADERPROGRAM_SHADERS )
     if( ISNUMPAR(0) )
     {
 #endif
-      QList<QOpenGLShader *> list = obj->shaders ();
+      QList<QOpenGLShader *> list = obj->shaders();
       PHB_DYNS pDynSym = hb_dynsymFindName( "QOPENGLSHADER" );
       PHB_ITEM pArray = hb_itemArrayNew(0);
-      int i;
-      for(i=0;i<list.count();i++)
+      if( pDynSym )
       {
-        if( pDynSym )
+        for( int i = 0; i < list.count(); i++ )
         {
           hb_vmPushDynSym( pDynSym );
           hb_vmPushNil();
@@ -182,10 +185,10 @@ HB_FUNC_STATIC( QOPENGLSHADERPROGRAM_SHADERS )
           hb_arrayAddForward( pArray, pObject );
           hb_itemRelease( pObject );
         }
-        else
-        {
-          hb_errRT_BASE( EG_NOFUNC, 1001, NULL, "QOPENGLSHADER", HB_ERR_ARGS_BASEPARAMS );
-        }
+      }
+      else
+      {
+        hb_errRT_BASE( EG_NOFUNC, 1001, NULL, "QOPENGLSHADER", HB_ERR_ARGS_BASEPARAMS );
       }
       hb_itemReturnRelease(pArray);
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
@@ -199,19 +202,19 @@ HB_FUNC_STATIC( QOPENGLSHADERPROGRAM_SHADERS )
 }
 
 /*
-bool addShaderFromSourceCode(QOpenGLShader::ShaderType type, const char *source)
+bool addShaderFromSourceCode( QOpenGLShader::ShaderType type, const char * source )
 */
 HB_FUNC_STATIC( QOPENGLSHADERPROGRAM_ADDSHADERFROMSOURCECODE1 )
 {
-  QOpenGLShaderProgram * obj = (QOpenGLShaderProgram *) _qt5xhb_itemGetPtrStackSelfItem();
+  QOpenGLShaderProgram * obj = (QOpenGLShaderProgram *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(2) && ISNUM(1) && ISCHAR(2) )
+    if( ISNUMPAR(2) && HB_ISNUM(1) && HB_ISCHAR(2) )
     {
 #endif
-      RBOOL( obj->addShaderFromSourceCode ( (QOpenGLShader::ShaderType) hb_parni(1), PCONSTCHAR(2) ) );
+      RBOOL( obj->addShaderFromSourceCode( (QOpenGLShader::ShaderType) hb_parni(1), PCONSTCHAR(2) ) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -223,19 +226,19 @@ HB_FUNC_STATIC( QOPENGLSHADERPROGRAM_ADDSHADERFROMSOURCECODE1 )
 }
 
 /*
-bool addShaderFromSourceCode(QOpenGLShader::ShaderType type, const QByteArray& source)
+bool addShaderFromSourceCode( QOpenGLShader::ShaderType type, const QByteArray & source )
 */
 HB_FUNC_STATIC( QOPENGLSHADERPROGRAM_ADDSHADERFROMSOURCECODE2 )
 {
-  QOpenGLShaderProgram * obj = (QOpenGLShaderProgram *) _qt5xhb_itemGetPtrStackSelfItem();
+  QOpenGLShaderProgram * obj = (QOpenGLShaderProgram *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(2) && ISNUM(1) && ISQBYTEARRAY(2) )
+    if( ISNUMPAR(2) && HB_ISNUM(1) && ISQBYTEARRAY(2) )
     {
 #endif
-      RBOOL( obj->addShaderFromSourceCode ( (QOpenGLShader::ShaderType) hb_parni(1), *PQBYTEARRAY(2) ) );
+      RBOOL( obj->addShaderFromSourceCode( (QOpenGLShader::ShaderType) hb_parni(1), *PQBYTEARRAY(2) ) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -247,19 +250,19 @@ HB_FUNC_STATIC( QOPENGLSHADERPROGRAM_ADDSHADERFROMSOURCECODE2 )
 }
 
 /*
-bool addShaderFromSourceCode(QOpenGLShader::ShaderType type, const QString& source)
+bool addShaderFromSourceCode( QOpenGLShader::ShaderType type, const QString & source )
 */
 HB_FUNC_STATIC( QOPENGLSHADERPROGRAM_ADDSHADERFROMSOURCECODE3 )
 {
-  QOpenGLShaderProgram * obj = (QOpenGLShaderProgram *) _qt5xhb_itemGetPtrStackSelfItem();
+  QOpenGLShaderProgram * obj = (QOpenGLShaderProgram *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(2) && ISNUM(1) && ISCHAR(2) )
+    if( ISNUMPAR(2) && HB_ISNUM(1) && HB_ISCHAR(2) )
     {
 #endif
-      RBOOL( obj->addShaderFromSourceCode ( (QOpenGLShader::ShaderType) hb_parni(1), PQSTRING(2) ) );
+      RBOOL( obj->addShaderFromSourceCode( (QOpenGLShader::ShaderType) hb_parni(1), PQSTRING(2) ) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -270,29 +273,24 @@ HB_FUNC_STATIC( QOPENGLSHADERPROGRAM_ADDSHADERFROMSOURCECODE3 )
   }
 }
 
-//[1]bool addShaderFromSourceCode(QOpenGLShader::ShaderType type, const char *source)
-//[2]bool addShaderFromSourceCode(QOpenGLShader::ShaderType type, const QByteArray& source)
-//[3]bool addShaderFromSourceCode(QOpenGLShader::ShaderType type, const QString& source)
-
 HB_FUNC_STATIC( QOPENGLSHADERPROGRAM_ADDSHADERFROMSOURCECODE )
 {
-  // TODO: implementar
 }
 
 /*
-bool addShaderFromSourceFile(QOpenGLShader::ShaderType type, const QString& fileName)
+bool addShaderFromSourceFile( QOpenGLShader::ShaderType type, const QString & fileName )
 */
 HB_FUNC_STATIC( QOPENGLSHADERPROGRAM_ADDSHADERFROMSOURCEFILE )
 {
-  QOpenGLShaderProgram * obj = (QOpenGLShaderProgram *) _qt5xhb_itemGetPtrStackSelfItem();
+  QOpenGLShaderProgram * obj = (QOpenGLShaderProgram *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(2) && ISNUM(1) && ISCHAR(2) )
+    if( ISNUMPAR(2) && HB_ISNUM(1) && HB_ISCHAR(2) )
     {
 #endif
-      RBOOL( obj->addShaderFromSourceFile ( (QOpenGLShader::ShaderType) hb_parni(1), PQSTRING(2) ) );
+      RBOOL( obj->addShaderFromSourceFile( (QOpenGLShader::ShaderType) hb_parni(1), PQSTRING(2) ) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -308,7 +306,7 @@ void removeAllShaders()
 */
 HB_FUNC_STATIC( QOPENGLSHADERPROGRAM_REMOVEALLSHADERS )
 {
-  QOpenGLShaderProgram * obj = (QOpenGLShaderProgram *) _qt5xhb_itemGetPtrStackSelfItem();
+  QOpenGLShaderProgram * obj = (QOpenGLShaderProgram *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -316,7 +314,7 @@ HB_FUNC_STATIC( QOPENGLSHADERPROGRAM_REMOVEALLSHADERS )
     if( ISNUMPAR(0) )
     {
 #endif
-      obj->removeAllShaders ();
+      obj->removeAllShaders();
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -334,7 +332,7 @@ virtual bool link()
 */
 HB_FUNC_STATIC( QOPENGLSHADERPROGRAM_LINK )
 {
-  QOpenGLShaderProgram * obj = (QOpenGLShaderProgram *) _qt5xhb_itemGetPtrStackSelfItem();
+  QOpenGLShaderProgram * obj = (QOpenGLShaderProgram *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -342,7 +340,7 @@ HB_FUNC_STATIC( QOPENGLSHADERPROGRAM_LINK )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->link () );
+      RBOOL( obj->link() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -358,7 +356,7 @@ bool isLinked() const
 */
 HB_FUNC_STATIC( QOPENGLSHADERPROGRAM_ISLINKED )
 {
-  QOpenGLShaderProgram * obj = (QOpenGLShaderProgram *) _qt5xhb_itemGetPtrStackSelfItem();
+  QOpenGLShaderProgram * obj = (QOpenGLShaderProgram *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -366,7 +364,7 @@ HB_FUNC_STATIC( QOPENGLSHADERPROGRAM_ISLINKED )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->isLinked () );
+      RBOOL( obj->isLinked() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -382,7 +380,7 @@ QString log() const
 */
 HB_FUNC_STATIC( QOPENGLSHADERPROGRAM_LOG )
 {
-  QOpenGLShaderProgram * obj = (QOpenGLShaderProgram *) _qt5xhb_itemGetPtrStackSelfItem();
+  QOpenGLShaderProgram * obj = (QOpenGLShaderProgram *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -390,7 +388,7 @@ HB_FUNC_STATIC( QOPENGLSHADERPROGRAM_LOG )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRING( obj->log () );
+      RQSTRING( obj->log() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -406,7 +404,7 @@ bool bind()
 */
 HB_FUNC_STATIC( QOPENGLSHADERPROGRAM_BIND )
 {
-  QOpenGLShaderProgram * obj = (QOpenGLShaderProgram *) _qt5xhb_itemGetPtrStackSelfItem();
+  QOpenGLShaderProgram * obj = (QOpenGLShaderProgram *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -414,7 +412,7 @@ HB_FUNC_STATIC( QOPENGLSHADERPROGRAM_BIND )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->bind () );
+      RBOOL( obj->bind() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -430,7 +428,7 @@ void release()
 */
 HB_FUNC_STATIC( QOPENGLSHADERPROGRAM_RELEASE )
 {
-  QOpenGLShaderProgram * obj = (QOpenGLShaderProgram *) _qt5xhb_itemGetPtrStackSelfItem();
+  QOpenGLShaderProgram * obj = (QOpenGLShaderProgram *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -438,7 +436,7 @@ HB_FUNC_STATIC( QOPENGLSHADERPROGRAM_RELEASE )
     if( ISNUMPAR(0) )
     {
 #endif
-      obj->release ();
+      obj->release();
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -456,7 +454,7 @@ GLuint programId() const
 */
 HB_FUNC_STATIC( QOPENGLSHADERPROGRAM_PROGRAMID )
 {
-  QOpenGLShaderProgram * obj = (QOpenGLShaderProgram *) _qt5xhb_itemGetPtrStackSelfItem();
+  QOpenGLShaderProgram * obj = (QOpenGLShaderProgram *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -464,7 +462,7 @@ HB_FUNC_STATIC( QOPENGLSHADERPROGRAM_PROGRAMID )
     if( ISNUMPAR(0) )
     {
 #endif
-      RGLUINT( obj->programId () );
+      RGLUINT( obj->programId() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -480,7 +478,7 @@ int maxGeometryOutputVertices() const
 */
 HB_FUNC_STATIC( QOPENGLSHADERPROGRAM_MAXGEOMETRYOUTPUTVERTICES )
 {
-  QOpenGLShaderProgram * obj = (QOpenGLShaderProgram *) _qt5xhb_itemGetPtrStackSelfItem();
+  QOpenGLShaderProgram * obj = (QOpenGLShaderProgram *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -488,7 +486,7 @@ HB_FUNC_STATIC( QOPENGLSHADERPROGRAM_MAXGEOMETRYOUTPUTVERTICES )
     if( ISNUMPAR(0) )
     {
 #endif
-      RINT( obj->maxGeometryOutputVertices () );
+      RINT( obj->maxGeometryOutputVertices() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -500,19 +498,19 @@ HB_FUNC_STATIC( QOPENGLSHADERPROGRAM_MAXGEOMETRYOUTPUTVERTICES )
 }
 
 /*
-void setPatchVertexCount(int count)
+void setPatchVertexCount( int count )
 */
 HB_FUNC_STATIC( QOPENGLSHADERPROGRAM_SETPATCHVERTEXCOUNT )
 {
-  QOpenGLShaderProgram * obj = (QOpenGLShaderProgram *) _qt5xhb_itemGetPtrStackSelfItem();
+  QOpenGLShaderProgram * obj = (QOpenGLShaderProgram *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setPatchVertexCount ( PINT(1) );
+      obj->setPatchVertexCount( PINT(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -530,7 +528,7 @@ int patchVertexCount() const
 */
 HB_FUNC_STATIC( QOPENGLSHADERPROGRAM_PATCHVERTEXCOUNT )
 {
-  QOpenGLShaderProgram * obj = (QOpenGLShaderProgram *) _qt5xhb_itemGetPtrStackSelfItem();
+  QOpenGLShaderProgram * obj = (QOpenGLShaderProgram *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -538,7 +536,7 @@ HB_FUNC_STATIC( QOPENGLSHADERPROGRAM_PATCHVERTEXCOUNT )
     if( ISNUMPAR(0) )
     {
 #endif
-      RINT( obj->patchVertexCount () );
+      RINT( obj->patchVertexCount() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -550,15 +548,15 @@ HB_FUNC_STATIC( QOPENGLSHADERPROGRAM_PATCHVERTEXCOUNT )
 }
 
 /*
-static bool hasOpenGLShaderPrograms(QOpenGLContext *context = 0)
+static bool hasOpenGLShaderPrograms( QOpenGLContext * context = 0 )
 */
 HB_FUNC_STATIC( QOPENGLSHADERPROGRAM_HASOPENGLSHADERPROGRAMS )
 {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISBETWEEN(0,1) && (ISQOPENGLCONTEXT(1)||ISNIL(1)) )
+  if( ISBETWEEN(0,1) && (ISQOPENGLCONTEXT(1)||HB_ISNIL(1)) )
   {
 #endif
-      RBOOL( QOpenGLShaderProgram::hasOpenGLShaderPrograms ( OPQOPENGLCONTEXT(1,0) ) );
+    RBOOL( QOpenGLShaderProgram::hasOpenGLShaderPrograms( OPQOPENGLCONTEXT(1,0) ) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
   }
   else

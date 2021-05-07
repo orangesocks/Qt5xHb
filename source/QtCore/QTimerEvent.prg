@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -25,7 +25,7 @@ CLASS QTimerEvent INHERIT QEvent
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QTimerEvent
+PROCEDURE destroyObject() CLASS QTimerEvent
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -48,14 +48,14 @@ RETURN
 #endif
 
 /*
-QTimerEvent(int timerId)
+QTimerEvent( int timerId )
 */
 HB_FUNC_STATIC( QTIMEREVENT_NEW )
 {
-  if( ISNUMPAR(1) && ISNUM(1) )
+  if( ISNUMPAR(1) && HB_ISNUM(1) )
   {
-    QTimerEvent * o = new QTimerEvent ( PINT(1) );
-    _qt5xhb_returnNewObject( o, false );
+    QTimerEvent * obj = new QTimerEvent( PINT(1) );
+    Qt5xHb::returnNewObject( obj, false );
   }
   else
   {
@@ -65,7 +65,7 @@ HB_FUNC_STATIC( QTIMEREVENT_NEW )
 
 HB_FUNC_STATIC( QTIMEREVENT_DELETE )
 {
-  QTimerEvent * obj = (QTimerEvent *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTimerEvent * obj = (QTimerEvent *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -85,7 +85,7 @@ int timerId() const
 */
 HB_FUNC_STATIC( QTIMEREVENT_TIMERID )
 {
-  QTimerEvent * obj = (QTimerEvent *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTimerEvent * obj = (QTimerEvent *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -93,7 +93,7 @@ HB_FUNC_STATIC( QTIMEREVENT_TIMERID )
     if( ISNUMPAR(0) )
     {
 #endif
-      RINT( obj->timerId () );
+      RINT( obj->timerId() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else

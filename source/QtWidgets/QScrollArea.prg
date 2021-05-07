@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -37,7 +37,7 @@ CLASS QScrollArea INHERIT QAbstractScrollArea
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QScrollArea
+PROCEDURE destroyObject() CLASS QScrollArea
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -54,20 +54,22 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #include <QtWidgets/QScrollArea>
 #endif
 
 /*
-QScrollArea ( QWidget * parent = 0 )
+QScrollArea( QWidget * parent = 0 )
 */
 HB_FUNC_STATIC( QSCROLLAREA_NEW )
 {
-  if( ISBETWEEN(0,1) && (ISQWIDGET(1)||ISNIL(1)) )
+  if( ISBETWEEN(0,1) && (ISQWIDGET(1)||HB_ISNIL(1)) )
   {
-    QScrollArea * o = new QScrollArea ( OPQWIDGET(1,0) );
-    _qt5xhb_returnNewObject( o, false );
+    QScrollArea * obj = new QScrollArea( OPQWIDGET(1,0) );
+    Qt5xHb::returnNewObject( obj, false );
   }
   else
   {
@@ -77,10 +79,12 @@ HB_FUNC_STATIC( QSCROLLAREA_NEW )
 
 HB_FUNC_STATIC( QSCROLLAREA_DELETE )
 {
-  QScrollArea * obj = (QScrollArea *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScrollArea * obj = (QScrollArea *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -93,11 +97,11 @@ HB_FUNC_STATIC( QSCROLLAREA_DELETE )
 }
 
 /*
-Qt::Alignment alignment () const
+Qt::Alignment alignment() const
 */
 HB_FUNC_STATIC( QSCROLLAREA_ALIGNMENT )
 {
-  QScrollArea * obj = (QScrollArea *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScrollArea * obj = (QScrollArea *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -105,7 +109,7 @@ HB_FUNC_STATIC( QSCROLLAREA_ALIGNMENT )
     if( ISNUMPAR(0) )
     {
 #endif
-      RENUM( obj->alignment () );
+      RENUM( obj->alignment() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -117,19 +121,19 @@ HB_FUNC_STATIC( QSCROLLAREA_ALIGNMENT )
 }
 
 /*
-void ensureVisible ( int x, int y, int xmargin = 50, int ymargin = 50 )
+void ensureVisible( int x, int y, int xmargin = 50, int ymargin = 50 )
 */
 HB_FUNC_STATIC( QSCROLLAREA_ENSUREVISIBLE )
 {
-  QScrollArea * obj = (QScrollArea *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScrollArea * obj = (QScrollArea *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISBETWEEN(2,4) && ISNUM(1) && ISNUM(2) && ISOPTNUM(3) && ISOPTNUM(4) )
+    if( ISBETWEEN(2,4) && HB_ISNUM(1) && HB_ISNUM(2) && (HB_ISNUM(3)||HB_ISNIL(3)) && (HB_ISNUM(4)||HB_ISNIL(4)) )
     {
 #endif
-      obj->ensureVisible ( PINT(1), PINT(2), OPINT(3,50), OPINT(4,50) );
+      obj->ensureVisible( PINT(1), PINT(2), OPINT(3,50), OPINT(4,50) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -143,19 +147,19 @@ HB_FUNC_STATIC( QSCROLLAREA_ENSUREVISIBLE )
 }
 
 /*
-void ensureWidgetVisible ( QWidget * childWidget, int xmargin = 50, int ymargin = 50 )
+void ensureWidgetVisible( QWidget * childWidget, int xmargin = 50, int ymargin = 50 )
 */
 HB_FUNC_STATIC( QSCROLLAREA_ENSUREWIDGETVISIBLE )
 {
-  QScrollArea * obj = (QScrollArea *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScrollArea * obj = (QScrollArea *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISBETWEEN(1,3) && ISQWIDGET(1) && ISOPTNUM(2) && ISOPTNUM(3) )
+    if( ISBETWEEN(1,3) && ISQWIDGET(1) && (HB_ISNUM(2)||HB_ISNIL(2)) && (HB_ISNUM(3)||HB_ISNIL(3)) )
     {
 #endif
-      obj->ensureWidgetVisible ( PQWIDGET(1), OPINT(2,50), OPINT(3,50) );
+      obj->ensureWidgetVisible( PQWIDGET(1), OPINT(2,50), OPINT(3,50) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -169,19 +173,19 @@ HB_FUNC_STATIC( QSCROLLAREA_ENSUREWIDGETVISIBLE )
 }
 
 /*
-void setAlignment ( Qt::Alignment )
+void setAlignment( Qt::Alignment )
 */
 HB_FUNC_STATIC( QSCROLLAREA_SETALIGNMENT )
 {
-  QScrollArea * obj = (QScrollArea *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScrollArea * obj = (QScrollArea *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setAlignment ( (Qt::Alignment) hb_parni(1) );
+      obj->setAlignment( (Qt::Alignment) hb_parni(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -195,11 +199,11 @@ HB_FUNC_STATIC( QSCROLLAREA_SETALIGNMENT )
 }
 
 /*
-void setWidget ( QWidget * widget )
+void setWidget( QWidget * widget )
 */
 HB_FUNC_STATIC( QSCROLLAREA_SETWIDGET )
 {
-  QScrollArea * obj = (QScrollArea *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScrollArea * obj = (QScrollArea *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -207,7 +211,7 @@ HB_FUNC_STATIC( QSCROLLAREA_SETWIDGET )
     if( ISNUMPAR(1) && ISQWIDGET(1) )
     {
 #endif
-      obj->setWidget ( PQWIDGET(1) );
+      obj->setWidget( PQWIDGET(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -221,19 +225,19 @@ HB_FUNC_STATIC( QSCROLLAREA_SETWIDGET )
 }
 
 /*
-void setWidgetResizable ( bool resizable )
+void setWidgetResizable( bool resizable )
 */
 HB_FUNC_STATIC( QSCROLLAREA_SETWIDGETRESIZABLE )
 {
-  QScrollArea * obj = (QScrollArea *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScrollArea * obj = (QScrollArea *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISLOG(1) )
+    if( ISNUMPAR(1) && HB_ISLOG(1) )
     {
 #endif
-      obj->setWidgetResizable ( PBOOL(1) );
+      obj->setWidgetResizable( PBOOL(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -247,11 +251,11 @@ HB_FUNC_STATIC( QSCROLLAREA_SETWIDGETRESIZABLE )
 }
 
 /*
-QWidget * takeWidget ()
+QWidget * takeWidget()
 */
 HB_FUNC_STATIC( QSCROLLAREA_TAKEWIDGET )
 {
-  QScrollArea * obj = (QScrollArea *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScrollArea * obj = (QScrollArea *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -259,8 +263,8 @@ HB_FUNC_STATIC( QSCROLLAREA_TAKEWIDGET )
     if( ISNUMPAR(0) )
     {
 #endif
-      QWidget * ptr = obj->takeWidget ();
-      _qt5xhb_createReturnQWidgetClass ( ptr, "QWIDGET" );
+      QWidget * ptr = obj->takeWidget();
+      Qt5xHb::createReturnQWidgetClass( ptr, "QWIDGET" );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -272,11 +276,11 @@ HB_FUNC_STATIC( QSCROLLAREA_TAKEWIDGET )
 }
 
 /*
-QWidget * widget () const
+QWidget * widget() const
 */
 HB_FUNC_STATIC( QSCROLLAREA_WIDGET )
 {
-  QScrollArea * obj = (QScrollArea *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScrollArea * obj = (QScrollArea *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -284,8 +288,8 @@ HB_FUNC_STATIC( QSCROLLAREA_WIDGET )
     if( ISNUMPAR(0) )
     {
 #endif
-      QWidget * ptr = obj->widget ();
-      _qt5xhb_createReturnQWidgetClass ( ptr, "QWIDGET" );
+      QWidget * ptr = obj->widget();
+      Qt5xHb::createReturnQWidgetClass( ptr, "QWIDGET" );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -297,11 +301,11 @@ HB_FUNC_STATIC( QSCROLLAREA_WIDGET )
 }
 
 /*
-bool widgetResizable () const
+bool widgetResizable() const
 */
 HB_FUNC_STATIC( QSCROLLAREA_WIDGETRESIZABLE )
 {
-  QScrollArea * obj = (QScrollArea *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScrollArea * obj = (QScrollArea *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -309,7 +313,7 @@ HB_FUNC_STATIC( QSCROLLAREA_WIDGETRESIZABLE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->widgetResizable () );
+      RBOOL( obj->widgetResizable() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -321,19 +325,19 @@ HB_FUNC_STATIC( QSCROLLAREA_WIDGETRESIZABLE )
 }
 
 /*
-virtual bool focusNextPrevChild ( bool next )
+virtual bool focusNextPrevChild( bool next )
 */
 HB_FUNC_STATIC( QSCROLLAREA_FOCUSNEXTPREVCHILD )
 {
-  QScrollArea * obj = (QScrollArea *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScrollArea * obj = (QScrollArea *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISLOG(1) )
+    if( ISNUMPAR(1) && HB_ISLOG(1) )
     {
 #endif
-      RBOOL( obj->focusNextPrevChild ( PBOOL(1) ) );
+      RBOOL( obj->focusNextPrevChild( PBOOL(1) ) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -345,11 +349,11 @@ HB_FUNC_STATIC( QSCROLLAREA_FOCUSNEXTPREVCHILD )
 }
 
 /*
-virtual QSize sizeHint () const
+virtual QSize sizeHint() const
 */
 HB_FUNC_STATIC( QSCROLLAREA_SIZEHINT )
 {
-  QScrollArea * obj = (QScrollArea *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScrollArea * obj = (QScrollArea *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -357,8 +361,8 @@ HB_FUNC_STATIC( QSCROLLAREA_SIZEHINT )
     if( ISNUMPAR(0) )
     {
 #endif
-      QSize * ptr = new QSize( obj->sizeHint () );
-      _qt5xhb_createReturnClass ( ptr, "QSIZE", true );
+      QSize * ptr = new QSize( obj->sizeHint() );
+      Qt5xHb::createReturnClass( ptr, "QSIZE", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else

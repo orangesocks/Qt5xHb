@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -25,7 +25,7 @@ CLASS QWhatsThisClickedEvent INHERIT QEvent
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QWhatsThisClickedEvent
+PROCEDURE destroyObject() CLASS QWhatsThisClickedEvent
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -48,14 +48,14 @@ RETURN
 #endif
 
 /*
-QWhatsThisClickedEvent(const QString &href)
+QWhatsThisClickedEvent( const QString & href )
 */
 HB_FUNC_STATIC( QWHATSTHISCLICKEDEVENT_NEW )
 {
-  if( ISNUMPAR(1) && ISCHAR(1) )
+  if( ISNUMPAR(1) && HB_ISCHAR(1) )
   {
-    QWhatsThisClickedEvent * o = new QWhatsThisClickedEvent ( PQSTRING(1) );
-    _qt5xhb_returnNewObject( o, false );
+    QWhatsThisClickedEvent * obj = new QWhatsThisClickedEvent( PQSTRING(1) );
+    Qt5xHb::returnNewObject( obj, false );
   }
   else
   {
@@ -65,7 +65,7 @@ HB_FUNC_STATIC( QWHATSTHISCLICKEDEVENT_NEW )
 
 HB_FUNC_STATIC( QWHATSTHISCLICKEDEVENT_DELETE )
 {
-  QWhatsThisClickedEvent * obj = (QWhatsThisClickedEvent *) _qt5xhb_itemGetPtrStackSelfItem();
+  QWhatsThisClickedEvent * obj = (QWhatsThisClickedEvent *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -85,7 +85,7 @@ QString href() const
 */
 HB_FUNC_STATIC( QWHATSTHISCLICKEDEVENT_HREF )
 {
-  QWhatsThisClickedEvent * obj = (QWhatsThisClickedEvent *) _qt5xhb_itemGetPtrStackSelfItem();
+  QWhatsThisClickedEvent * obj = (QWhatsThisClickedEvent *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -93,7 +93,7 @@ HB_FUNC_STATIC( QWHATSTHISCLICKEDEVENT_HREF )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRING( obj->href () );
+      RQSTRING( obj->href() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else

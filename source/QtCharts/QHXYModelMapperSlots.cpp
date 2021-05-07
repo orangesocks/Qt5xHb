@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -12,96 +12,126 @@
 
 #include "QHXYModelMapperSlots.h"
 
-QHXYModelMapperSlots::QHXYModelMapperSlots(QObject *parent) : QObject(parent)
+QHXYModelMapperSlots::QHXYModelMapperSlots( QObject *parent ) : QObject( parent )
 {
 }
 
 QHXYModelMapperSlots::~QHXYModelMapperSlots()
 {
 }
+
 #if (QT_VERSION >= QT_VERSION_CHECK(5,7,0))
 void QHXYModelMapperSlots::columnCountChanged()
 {
   QObject *object = qobject_cast<QObject *>(sender());
-  PHB_ITEM cb = Signals_return_codeblock( object, "columnCountChanged()" );
+
+  PHB_ITEM cb = Qt5xHb::Signals_return_codeblock( object, "columnCountChanged()" );
+
   if( cb )
   {
-    PHB_ITEM psender = Signals_return_qobject ( (QObject *) object, "QHXYMODELMAPPER" );
-    hb_vmEvalBlockV( (PHB_ITEM) cb, 1, psender );
-    hb_itemRelease( psender );
-  }
-}
-#endif
-#if (QT_VERSION >= QT_VERSION_CHECK(5,7,0))
-void QHXYModelMapperSlots::firstColumnChanged()
-{
-  QObject *object = qobject_cast<QObject *>(sender());
-  PHB_ITEM cb = Signals_return_codeblock( object, "firstColumnChanged()" );
-  if( cb )
-  {
-    PHB_ITEM psender = Signals_return_qobject ( (QObject *) object, "QHXYMODELMAPPER" );
-    hb_vmEvalBlockV( (PHB_ITEM) cb, 1, psender );
-    hb_itemRelease( psender );
-  }
-}
-#endif
-#if (QT_VERSION >= QT_VERSION_CHECK(5,7,0))
-void QHXYModelMapperSlots::modelReplaced()
-{
-  QObject *object = qobject_cast<QObject *>(sender());
-  PHB_ITEM cb = Signals_return_codeblock( object, "modelReplaced()" );
-  if( cb )
-  {
-    PHB_ITEM psender = Signals_return_qobject ( (QObject *) object, "QHXYMODELMAPPER" );
-    hb_vmEvalBlockV( (PHB_ITEM) cb, 1, psender );
-    hb_itemRelease( psender );
-  }
-}
-#endif
-#if (QT_VERSION >= QT_VERSION_CHECK(5,7,0))
-void QHXYModelMapperSlots::seriesReplaced()
-{
-  QObject *object = qobject_cast<QObject *>(sender());
-  PHB_ITEM cb = Signals_return_codeblock( object, "seriesReplaced()" );
-  if( cb )
-  {
-    PHB_ITEM psender = Signals_return_qobject ( (QObject *) object, "QHXYMODELMAPPER" );
-    hb_vmEvalBlockV( (PHB_ITEM) cb, 1, psender );
-    hb_itemRelease( psender );
-  }
-}
-#endif
-#if (QT_VERSION >= QT_VERSION_CHECK(5,7,0))
-void QHXYModelMapperSlots::xRowChanged()
-{
-  QObject *object = qobject_cast<QObject *>(sender());
-  PHB_ITEM cb = Signals_return_codeblock( object, "xRowChanged()" );
-  if( cb )
-  {
-    PHB_ITEM psender = Signals_return_qobject ( (QObject *) object, "QHXYMODELMAPPER" );
-    hb_vmEvalBlockV( (PHB_ITEM) cb, 1, psender );
-    hb_itemRelease( psender );
-  }
-}
-#endif
-#if (QT_VERSION >= QT_VERSION_CHECK(5,7,0))
-void QHXYModelMapperSlots::yRowChanged()
-{
-  QObject *object = qobject_cast<QObject *>(sender());
-  PHB_ITEM cb = Signals_return_codeblock( object, "yRowChanged()" );
-  if( cb )
-  {
-    PHB_ITEM psender = Signals_return_qobject ( (QObject *) object, "QHXYMODELMAPPER" );
-    hb_vmEvalBlockV( (PHB_ITEM) cb, 1, psender );
+    PHB_ITEM psender = Qt5xHb::Signals_return_qobject( (QObject *) object, "QHXYMODELMAPPER" );
+
+    hb_vmEvalBlockV( cb, 1, psender );
+
     hb_itemRelease( psender );
   }
 }
 #endif
 
-void QHXYModelMapperSlots_connect_signal ( const QString & signal, const QString & slot )
+#if (QT_VERSION >= QT_VERSION_CHECK(5,7,0))
+void QHXYModelMapperSlots::firstColumnChanged()
+{
+  QObject *object = qobject_cast<QObject *>(sender());
+
+  PHB_ITEM cb = Qt5xHb::Signals_return_codeblock( object, "firstColumnChanged()" );
+
+  if( cb )
+  {
+    PHB_ITEM psender = Qt5xHb::Signals_return_qobject( (QObject *) object, "QHXYMODELMAPPER" );
+
+    hb_vmEvalBlockV( cb, 1, psender );
+
+    hb_itemRelease( psender );
+  }
+}
+#endif
+
+#if (QT_VERSION >= QT_VERSION_CHECK(5,7,0))
+void QHXYModelMapperSlots::modelReplaced()
+{
+  QObject *object = qobject_cast<QObject *>(sender());
+
+  PHB_ITEM cb = Qt5xHb::Signals_return_codeblock( object, "modelReplaced()" );
+
+  if( cb )
+  {
+    PHB_ITEM psender = Qt5xHb::Signals_return_qobject( (QObject *) object, "QHXYMODELMAPPER" );
+
+    hb_vmEvalBlockV( cb, 1, psender );
+
+    hb_itemRelease( psender );
+  }
+}
+#endif
+
+#if (QT_VERSION >= QT_VERSION_CHECK(5,7,0))
+void QHXYModelMapperSlots::seriesReplaced()
+{
+  QObject *object = qobject_cast<QObject *>(sender());
+
+  PHB_ITEM cb = Qt5xHb::Signals_return_codeblock( object, "seriesReplaced()" );
+
+  if( cb )
+  {
+    PHB_ITEM psender = Qt5xHb::Signals_return_qobject( (QObject *) object, "QHXYMODELMAPPER" );
+
+    hb_vmEvalBlockV( cb, 1, psender );
+
+    hb_itemRelease( psender );
+  }
+}
+#endif
+
+#if (QT_VERSION >= QT_VERSION_CHECK(5,7,0))
+void QHXYModelMapperSlots::xRowChanged()
+{
+  QObject *object = qobject_cast<QObject *>(sender());
+
+  PHB_ITEM cb = Qt5xHb::Signals_return_codeblock( object, "xRowChanged()" );
+
+  if( cb )
+  {
+    PHB_ITEM psender = Qt5xHb::Signals_return_qobject( (QObject *) object, "QHXYMODELMAPPER" );
+
+    hb_vmEvalBlockV( cb, 1, psender );
+
+    hb_itemRelease( psender );
+  }
+}
+#endif
+
+#if (QT_VERSION >= QT_VERSION_CHECK(5,7,0))
+void QHXYModelMapperSlots::yRowChanged()
+{
+  QObject *object = qobject_cast<QObject *>(sender());
+
+  PHB_ITEM cb = Qt5xHb::Signals_return_codeblock( object, "yRowChanged()" );
+
+  if( cb )
+  {
+    PHB_ITEM psender = Qt5xHb::Signals_return_qobject( (QObject *) object, "QHXYMODELMAPPER" );
+
+    hb_vmEvalBlockV( cb, 1, psender );
+
+    hb_itemRelease( psender );
+  }
+}
+#endif
+
+void QHXYModelMapperSlots_connect_signal( const QString & signal, const QString & slot )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,7,0))
-  QHXYModelMapper * obj = (QHXYModelMapper *) hb_itemGetPtr( hb_objSendMsg( hb_stackSelfItem(), "POINTER", 0 ) );
+  QHXYModelMapper * obj = (QHXYModelMapper *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -114,7 +144,7 @@ void QHXYModelMapperSlots_connect_signal ( const QString & signal, const QString
       s->setParent( QCoreApplication::instance() );
     }
 
-    hb_retl( Signals_connection_disconnection( s, signal, slot ) );
+    hb_retl( Qt5xHb::Signals_connection_disconnection( s, signal, slot ) );
   }
   else
   {

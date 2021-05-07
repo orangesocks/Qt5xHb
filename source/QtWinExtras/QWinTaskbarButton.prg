@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -36,7 +36,7 @@ CLASS QWinTaskbarButton INHERIT QObject
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QWinTaskbarButton
+PROCEDURE destroyObject() CLASS QWinTaskbarButton
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -55,6 +55,8 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #if (QT_VERSION >= QT_VERSION_CHECK(5,2,0))
@@ -66,15 +68,15 @@ RETURN
 #include <QtWinExtras/QWinTaskbarProgress>
 
 /*
-explicit QWinTaskbarButton(QObject *parent = 0)
+QWinTaskbarButton( QObject * parent = 0 )
 */
 HB_FUNC_STATIC( QWINTASKBARBUTTON_NEW )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,2,0))
-  if( ISBETWEEN(0,1) && (ISQOBJECT(1)||ISNIL(1)) )
+  if( ISBETWEEN(0,1) && (ISQOBJECT(1)||HB_ISNIL(1)) )
   {
-    QWinTaskbarButton * o = new QWinTaskbarButton ( OPQOBJECT(1,0) );
-    _qt5xhb_returnNewObject( o, false );
+    QWinTaskbarButton * obj = new QWinTaskbarButton( OPQOBJECT(1,0) );
+    Qt5xHb::returnNewObject( obj, false );
   }
   else
   {
@@ -86,10 +88,12 @@ HB_FUNC_STATIC( QWINTASKBARBUTTON_NEW )
 HB_FUNC_STATIC( QWINTASKBARBUTTON_DELETE )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,2,0))
-  QWinTaskbarButton * obj = (QWinTaskbarButton *) _qt5xhb_itemGetPtrStackSelfItem();
+  QWinTaskbarButton * obj = (QWinTaskbarButton *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -103,12 +107,12 @@ HB_FUNC_STATIC( QWINTASKBARBUTTON_DELETE )
 }
 
 /*
-QWindow *window() const
+QWindow * window() const
 */
 HB_FUNC_STATIC( QWINTASKBARBUTTON_WINDOW )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,2,0))
-  QWinTaskbarButton * obj = (QWinTaskbarButton *) _qt5xhb_itemGetPtrStackSelfItem();
+  QWinTaskbarButton * obj = (QWinTaskbarButton *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -116,8 +120,8 @@ HB_FUNC_STATIC( QWINTASKBARBUTTON_WINDOW )
     if( ISNUMPAR(0) )
     {
 #endif
-      QWindow * ptr = obj->window ();
-      _qt5xhb_createReturnQObjectClass ( ptr, "QWINDOW" );
+      QWindow * ptr = obj->window();
+      Qt5xHb::createReturnQObjectClass( ptr, "QWINDOW" );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -130,12 +134,12 @@ HB_FUNC_STATIC( QWINTASKBARBUTTON_WINDOW )
 }
 
 /*
-void setWindow(QWindow *window)
+void setWindow( QWindow * window )
 */
 HB_FUNC_STATIC( QWINTASKBARBUTTON_SETWINDOW )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,2,0))
-  QWinTaskbarButton * obj = (QWinTaskbarButton *) _qt5xhb_itemGetPtrStackSelfItem();
+  QWinTaskbarButton * obj = (QWinTaskbarButton *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -143,7 +147,7 @@ HB_FUNC_STATIC( QWINTASKBARBUTTON_SETWINDOW )
     if( ISNUMPAR(1) && ISQWINDOW(1) )
     {
 #endif
-      obj->setWindow ( PQWINDOW(1) );
+      obj->setWindow( PQWINDOW(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -163,7 +167,7 @@ QIcon overlayIcon() const
 HB_FUNC_STATIC( QWINTASKBARBUTTON_OVERLAYICON )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,2,0))
-  QWinTaskbarButton * obj = (QWinTaskbarButton *) _qt5xhb_itemGetPtrStackSelfItem();
+  QWinTaskbarButton * obj = (QWinTaskbarButton *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -171,8 +175,8 @@ HB_FUNC_STATIC( QWINTASKBARBUTTON_OVERLAYICON )
     if( ISNUMPAR(0) )
     {
 #endif
-      QIcon * ptr = new QIcon( obj->overlayIcon () );
-      _qt5xhb_createReturnClass ( ptr, "QICON", true );
+      QIcon * ptr = new QIcon( obj->overlayIcon() );
+      Qt5xHb::createReturnClass( ptr, "QICON", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -185,20 +189,20 @@ HB_FUNC_STATIC( QWINTASKBARBUTTON_OVERLAYICON )
 }
 
 /*
-void setOverlayIcon(const QIcon &icon)
+void setOverlayIcon( const QIcon & icon )
 */
 HB_FUNC_STATIC( QWINTASKBARBUTTON_SETOVERLAYICON )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,2,0))
-  QWinTaskbarButton * obj = (QWinTaskbarButton *) _qt5xhb_itemGetPtrStackSelfItem();
+  QWinTaskbarButton * obj = (QWinTaskbarButton *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && (ISQICON(1)||ISCHAR(1)) )
+    if( ISNUMPAR(1) && (ISQICON(1)||HB_ISCHAR(1)) )
     {
 #endif
-      obj->setOverlayIcon ( ISOBJECT(1)? *(QIcon *) _qt5xhb_itemGetPtr(1) : QIcon(hb_parc(1)) );
+      obj->setOverlayIcon( HB_ISOBJECT(1)? *(QIcon *) Qt5xHb::itemGetPtr(1) : QIcon(hb_parc(1)) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -218,7 +222,7 @@ void clearOverlayIcon()
 HB_FUNC_STATIC( QWINTASKBARBUTTON_CLEAROVERLAYICON )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,2,0))
-  QWinTaskbarButton * obj = (QWinTaskbarButton *) _qt5xhb_itemGetPtrStackSelfItem();
+  QWinTaskbarButton * obj = (QWinTaskbarButton *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -226,7 +230,7 @@ HB_FUNC_STATIC( QWINTASKBARBUTTON_CLEAROVERLAYICON )
     if( ISNUMPAR(0) )
     {
 #endif
-      obj->clearOverlayIcon ();
+      obj->clearOverlayIcon();
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -246,7 +250,7 @@ QString overlayAccessibleDescription() const
 HB_FUNC_STATIC( QWINTASKBARBUTTON_OVERLAYACCESSIBLEDESCRIPTION )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,2,0))
-  QWinTaskbarButton * obj = (QWinTaskbarButton *) _qt5xhb_itemGetPtrStackSelfItem();
+  QWinTaskbarButton * obj = (QWinTaskbarButton *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -254,7 +258,7 @@ HB_FUNC_STATIC( QWINTASKBARBUTTON_OVERLAYACCESSIBLEDESCRIPTION )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRING( obj->overlayAccessibleDescription () );
+      RQSTRING( obj->overlayAccessibleDescription() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -267,20 +271,20 @@ HB_FUNC_STATIC( QWINTASKBARBUTTON_OVERLAYACCESSIBLEDESCRIPTION )
 }
 
 /*
-void setOverlayAccessibleDescription(const QString &description)
+void setOverlayAccessibleDescription( const QString & description )
 */
 HB_FUNC_STATIC( QWINTASKBARBUTTON_SETOVERLAYACCESSIBLEDESCRIPTION )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,2,0))
-  QWinTaskbarButton * obj = (QWinTaskbarButton *) _qt5xhb_itemGetPtrStackSelfItem();
+  QWinTaskbarButton * obj = (QWinTaskbarButton *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISCHAR(1) )
+    if( ISNUMPAR(1) && HB_ISCHAR(1) )
     {
 #endif
-      obj->setOverlayAccessibleDescription ( PQSTRING(1) );
+      obj->setOverlayAccessibleDescription( PQSTRING(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -295,12 +299,12 @@ HB_FUNC_STATIC( QWINTASKBARBUTTON_SETOVERLAYACCESSIBLEDESCRIPTION )
 }
 
 /*
-QWinTaskbarProgress *progress() const
+QWinTaskbarProgress * progress() const
 */
 HB_FUNC_STATIC( QWINTASKBARBUTTON_PROGRESS )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,2,0))
-  QWinTaskbarButton * obj = (QWinTaskbarButton *) _qt5xhb_itemGetPtrStackSelfItem();
+  QWinTaskbarButton * obj = (QWinTaskbarButton *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -308,8 +312,8 @@ HB_FUNC_STATIC( QWINTASKBARBUTTON_PROGRESS )
     if( ISNUMPAR(0) )
     {
 #endif
-      QWinTaskbarProgress * ptr = obj->progress ();
-      _qt5xhb_createReturnQObjectClass ( ptr, "QWINTASKBARPROGRESS" );
+      QWinTaskbarProgress * ptr = obj->progress();
+      Qt5xHb::createReturnQObjectClass( ptr, "QWINTASKBARPROGRESS" );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -322,12 +326,12 @@ HB_FUNC_STATIC( QWINTASKBARBUTTON_PROGRESS )
 }
 
 /*
-bool eventFilter(QObject *, QEvent *)
+bool eventFilter( QObject *, QEvent * )
 */
 HB_FUNC_STATIC( QWINTASKBARBUTTON_EVENTFILTER )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,2,0))
-  QWinTaskbarButton * obj = (QWinTaskbarButton *) _qt5xhb_itemGetPtrStackSelfItem();
+  QWinTaskbarButton * obj = (QWinTaskbarButton *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -335,7 +339,7 @@ HB_FUNC_STATIC( QWINTASKBARBUTTON_EVENTFILTER )
     if( ISNUMPAR(2) && ISQOBJECT(1) && ISQEVENT(2) )
     {
 #endif
-      RBOOL( obj->eventFilter ( PQOBJECT(1), PQEVENT(2) ) );
+      RBOOL( obj->eventFilter( PQOBJECT(1), PQEVENT(2) ) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else

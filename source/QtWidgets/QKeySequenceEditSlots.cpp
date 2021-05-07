@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -12,46 +12,56 @@
 
 #include "QKeySequenceEditSlots.h"
 
-QKeySequenceEditSlots::QKeySequenceEditSlots(QObject *parent) : QObject(parent)
+QKeySequenceEditSlots::QKeySequenceEditSlots( QObject *parent ) : QObject( parent )
 {
 }
 
 QKeySequenceEditSlots::~QKeySequenceEditSlots()
 {
 }
+
 #if (QT_VERSION >= QT_VERSION_CHECK(5,2,0))
 void QKeySequenceEditSlots::editingFinished()
 {
   QObject *object = qobject_cast<QObject *>(sender());
-  PHB_ITEM cb = Signals_return_codeblock( object, "editingFinished()" );
+
+  PHB_ITEM cb = Qt5xHb::Signals_return_codeblock( object, "editingFinished()" );
+
   if( cb )
   {
-    PHB_ITEM psender = Signals_return_qobject ( (QObject *) object, "QKEYSEQUENCEEDIT" );
-    hb_vmEvalBlockV( (PHB_ITEM) cb, 1, psender );
+    PHB_ITEM psender = Qt5xHb::Signals_return_qobject( (QObject *) object, "QKEYSEQUENCEEDIT" );
+
+    hb_vmEvalBlockV( cb, 1, psender );
+
     hb_itemRelease( psender );
   }
 }
 #endif
+
 #if (QT_VERSION >= QT_VERSION_CHECK(5,2,0))
 void QKeySequenceEditSlots::keySequenceChanged( const QKeySequence & keySequence )
 {
   QObject *object = qobject_cast<QObject *>(sender());
-  PHB_ITEM cb = Signals_return_codeblock( object, "keySequenceChanged(QKeySequence)" );
+
+  PHB_ITEM cb = Qt5xHb::Signals_return_codeblock( object, "keySequenceChanged(QKeySequence)" );
+
   if( cb )
   {
-    PHB_ITEM psender = Signals_return_qobject ( (QObject *) object, "QKEYSEQUENCEEDIT" );
-    PHB_ITEM pkeySequence = Signals_return_object( (void *) &keySequence, "QKEYSEQUENCE" );
-    hb_vmEvalBlockV( (PHB_ITEM) cb, 2, psender, pkeySequence );
+    PHB_ITEM psender = Qt5xHb::Signals_return_qobject( (QObject *) object, "QKEYSEQUENCEEDIT" );
+    PHB_ITEM pkeySequence = Qt5xHb::Signals_return_object( (void *) &keySequence, "QKEYSEQUENCE" );
+
+    hb_vmEvalBlockV( cb, 2, psender, pkeySequence );
+
     hb_itemRelease( psender );
     hb_itemRelease( pkeySequence );
   }
 }
 #endif
 
-void QKeySequenceEditSlots_connect_signal ( const QString & signal, const QString & slot )
+void QKeySequenceEditSlots_connect_signal( const QString & signal, const QString & slot )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,2,0))
-  QKeySequenceEdit * obj = (QKeySequenceEdit *) hb_itemGetPtr( hb_objSendMsg( hb_stackSelfItem(), "POINTER", 0 ) );
+  QKeySequenceEdit * obj = (QKeySequenceEdit *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -64,7 +74,7 @@ void QKeySequenceEditSlots_connect_signal ( const QString & signal, const QStrin
       s->setParent( QCoreApplication::instance() );
     }
 
-    hb_retl( Signals_connection_disconnection( s, signal, slot ) );
+    hb_retl( Qt5xHb::Signals_connection_disconnection( s, signal, slot ) );
   }
   else
   {

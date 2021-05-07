@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -41,7 +41,7 @@ CLASS QDomImplementation
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QDomImplementation
+PROCEDURE destroyObject() CLASS QDomImplementation
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -64,25 +64,22 @@ RETURN
 #endif
 
 /*
-QDomImplementation ()
+QDomImplementation()
 */
-void QDomImplementation_new1 ()
+void QDomImplementation_new1()
 {
-  QDomImplementation * o = new QDomImplementation ();
-  _qt5xhb_returnNewObject( o, true );
+  QDomImplementation * obj = new QDomImplementation();
+  Qt5xHb::returnNewObject( obj, true );
 }
 
 /*
-QDomImplementation ( const QDomImplementation & x )
+QDomImplementation( const QDomImplementation & x )
 */
-void QDomImplementation_new2 ()
+void QDomImplementation_new2()
 {
-  QDomImplementation * o = new QDomImplementation ( *PQDOMIMPLEMENTATION(1) );
-  _qt5xhb_returnNewObject( o, true );
+  QDomImplementation * obj = new QDomImplementation( *PQDOMIMPLEMENTATION(1) );
+  Qt5xHb::returnNewObject( obj, true );
 }
-
-//[1]QDomImplementation ()
-//[2]QDomImplementation ( const QDomImplementation & x )
 
 HB_FUNC_STATIC( QDOMIMPLEMENTATION_NEW )
 {
@@ -102,7 +99,7 @@ HB_FUNC_STATIC( QDOMIMPLEMENTATION_NEW )
 
 HB_FUNC_STATIC( QDOMIMPLEMENTATION_DELETE )
 {
-  QDomImplementation * obj = (QDomImplementation *) _qt5xhb_itemGetPtrStackSelfItem();
+  QDomImplementation * obj = (QDomImplementation *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -118,20 +115,20 @@ HB_FUNC_STATIC( QDOMIMPLEMENTATION_DELETE )
 }
 
 /*
-QDomDocument createDocument ( const QString & nsURI, const QString & qName, const QDomDocumentType & doctype )
+QDomDocument createDocument( const QString & nsURI, const QString & qName, const QDomDocumentType & doctype )
 */
 HB_FUNC_STATIC( QDOMIMPLEMENTATION_CREATEDOCUMENT )
 {
-  QDomImplementation * obj = (QDomImplementation *) _qt5xhb_itemGetPtrStackSelfItem();
+  QDomImplementation * obj = (QDomImplementation *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(3) && ISCHAR(1) && ISCHAR(2) && ISQDOMDOCUMENTTYPE(3) )
+    if( ISNUMPAR(3) && HB_ISCHAR(1) && HB_ISCHAR(2) && ISQDOMDOCUMENTTYPE(3) )
     {
 #endif
-      QDomDocument * ptr = new QDomDocument( obj->createDocument ( PQSTRING(1), PQSTRING(2), *PQDOMDOCUMENTTYPE(3) ) );
-      _qt5xhb_createReturnClass ( ptr, "QDOMDOCUMENT", true );
+      QDomDocument * ptr = new QDomDocument( obj->createDocument( PQSTRING(1), PQSTRING(2), *PQDOMDOCUMENTTYPE(3) ) );
+      Qt5xHb::createReturnClass( ptr, "QDOMDOCUMENT", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -143,20 +140,20 @@ HB_FUNC_STATIC( QDOMIMPLEMENTATION_CREATEDOCUMENT )
 }
 
 /*
-QDomDocumentType createDocumentType ( const QString & qName, const QString & publicId, const QString & systemId )
+QDomDocumentType createDocumentType( const QString & qName, const QString & publicId, const QString & systemId )
 */
 HB_FUNC_STATIC( QDOMIMPLEMENTATION_CREATEDOCUMENTTYPE )
 {
-  QDomImplementation * obj = (QDomImplementation *) _qt5xhb_itemGetPtrStackSelfItem();
+  QDomImplementation * obj = (QDomImplementation *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(3) && ISCHAR(1) && ISCHAR(2) && ISCHAR(3) )
+    if( ISNUMPAR(3) && HB_ISCHAR(1) && HB_ISCHAR(2) && HB_ISCHAR(3) )
     {
 #endif
-      QDomDocumentType * ptr = new QDomDocumentType( obj->createDocumentType ( PQSTRING(1), PQSTRING(2), PQSTRING(3) ) );
-      _qt5xhb_createReturnClass ( ptr, "QDOMDOCUMENTTYPE", true );
+      QDomDocumentType * ptr = new QDomDocumentType( obj->createDocumentType( PQSTRING(1), PQSTRING(2), PQSTRING(3) ) );
+      Qt5xHb::createReturnClass( ptr, "QDOMDOCUMENTTYPE", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -168,19 +165,19 @@ HB_FUNC_STATIC( QDOMIMPLEMENTATION_CREATEDOCUMENTTYPE )
 }
 
 /*
-bool hasFeature ( const QString & feature, const QString & version ) const
+bool hasFeature( const QString & feature, const QString & version ) const
 */
 HB_FUNC_STATIC( QDOMIMPLEMENTATION_HASFEATURE )
 {
-  QDomImplementation * obj = (QDomImplementation *) _qt5xhb_itemGetPtrStackSelfItem();
+  QDomImplementation * obj = (QDomImplementation *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(2) && ISCHAR(1) && ISCHAR(2) )
+    if( ISNUMPAR(2) && HB_ISCHAR(1) && HB_ISCHAR(2) )
     {
 #endif
-      RBOOL( obj->hasFeature ( PQSTRING(1), PQSTRING(2) ) );
+      RBOOL( obj->hasFeature( PQSTRING(1), PQSTRING(2) ) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -192,11 +189,11 @@ HB_FUNC_STATIC( QDOMIMPLEMENTATION_HASFEATURE )
 }
 
 /*
-bool isNull ()
+bool isNull()
 */
 HB_FUNC_STATIC( QDOMIMPLEMENTATION_ISNULL )
 {
-  QDomImplementation * obj = (QDomImplementation *) _qt5xhb_itemGetPtrStackSelfItem();
+  QDomImplementation * obj = (QDomImplementation *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -204,7 +201,7 @@ HB_FUNC_STATIC( QDOMIMPLEMENTATION_ISNULL )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->isNull () );
+      RBOOL( obj->isNull() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -216,15 +213,15 @@ HB_FUNC_STATIC( QDOMIMPLEMENTATION_ISNULL )
 }
 
 /*
-static InvalidDataPolicy invalidDataPolicy ()
+static QDomImplementation::InvalidDataPolicy invalidDataPolicy()
 */
 HB_FUNC_STATIC( QDOMIMPLEMENTATION_INVALIDDATAPOLICY )
 {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(0) )
+  if( ISNUMPAR(0) )
   {
 #endif
-      RENUM( QDomImplementation::invalidDataPolicy () );
+    RENUM( QDomImplementation::invalidDataPolicy() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
   }
   else
@@ -235,15 +232,15 @@ HB_FUNC_STATIC( QDOMIMPLEMENTATION_INVALIDDATAPOLICY )
 }
 
 /*
-static void setInvalidDataPolicy ( InvalidDataPolicy policy )
+static void setInvalidDataPolicy( QDomImplementation::InvalidDataPolicy policy )
 */
 HB_FUNC_STATIC( QDOMIMPLEMENTATION_SETINVALIDDATAPOLICY )
 {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+  if( ISNUMPAR(1) && HB_ISNUM(1) )
   {
 #endif
-      QDomImplementation::setInvalidDataPolicy ( (QDomImplementation::InvalidDataPolicy) hb_parni(1) );
+    QDomImplementation::setInvalidDataPolicy( (QDomImplementation::InvalidDataPolicy) hb_parni(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
   }
   else
@@ -259,7 +256,7 @@ HB_FUNC_STATIC( QDOMIMPLEMENTATION_NEWFROM )
 {
   PHB_ITEM self = hb_stackSelfItem();
 
-  if( hb_pcount() == 1 && ISOBJECT(1) )
+  if( hb_pcount() == 1 && HB_ISOBJECT(1) )
   {
     PHB_ITEM ptr = hb_itemPutPtr( NULL, (void *) hb_itemGetPtr( hb_objSendMsg( hb_param(1, HB_IT_OBJECT ), "POINTER", 0 ) ) );
     hb_objSendMsg( self, "_pointer", 1, ptr );
@@ -268,7 +265,7 @@ HB_FUNC_STATIC( QDOMIMPLEMENTATION_NEWFROM )
     hb_objSendMsg( self, "_self_destruction", 1, des );
     hb_itemRelease( des );
   }
-  else if( hb_pcount() == 1 && ISPOINTER(1) )
+  else if( hb_pcount() == 1 && HB_ISPOINTER(1) )
   {
     PHB_ITEM ptr = hb_itemPutPtr( NULL, (void *) hb_itemGetPtr( hb_param(1, HB_IT_POINTER ) ) );
     hb_objSendMsg( self, "_pointer", 1, ptr );
@@ -304,7 +301,7 @@ HB_FUNC_STATIC( QDOMIMPLEMENTATION_SETSELFDESTRUCTION )
 {
   PHB_ITEM self = hb_stackSelfItem();
 
-  if( hb_pcount() == 1 && ISLOG(1) )
+  if( hb_pcount() == 1 && HB_ISLOG(1) )
   {
     PHB_ITEM des = hb_itemPutL( NULL, hb_parl(1) );
     hb_objSendMsg( self, "_self_destruction", 1, des );

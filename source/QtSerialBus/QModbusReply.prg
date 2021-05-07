@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -17,6 +17,15 @@
 
 CLASS QModbusReply INHERIT QObject
 
+   METHOD new
+   METHOD type
+   METHOD serverAddress
+   METHOD isFinished
+   METHOD errorString
+   METHOD error
+   METHOD setFinished
+   METHOD setError
+
    METHOD onFinished
    METHOD onErrorOccurred
 
@@ -24,7 +33,7 @@ CLASS QModbusReply INHERIT QObject
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QModbusReply
+PROCEDURE destroyObject() CLASS QModbusReply
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -43,6 +52,8 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #if (QT_VERSION >= QT_VERSION_CHECK(5,8,0))
@@ -51,54 +62,210 @@ RETURN
 #endif
 
 /*
-QModbusReply(ReplyType type, int serverAddress, QObject *parent = nullptr)
+QModbusReply( QModbusReply::ReplyType type, int serverAddress, QObject * parent = nullptr )
 */
+HB_FUNC_STATIC( QMODBUSREPLY_NEW )
+{
+#if (QT_VERSION >= QT_VERSION_CHECK(5,8,0))
+  if( ISBETWEEN(2,3) && HB_ISNUM(1) && HB_ISNUM(2) && (ISQOBJECT(3)||HB_ISNIL(3)) )
+  {
+    QModbusReply * obj = new QModbusReply( (QModbusReply::ReplyType) hb_parni(1), PINT(2), OPQOBJECT(3,nullptr) );
+    Qt5xHb::returnNewObject( obj, false );
+  }
+  else
+  {
+    hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
+  }
+#endif
+}
 
 /*
-ReplyType type() const
+QModbusReply::ReplyType type() const
 */
+HB_FUNC_STATIC( QMODBUSREPLY_TYPE )
+{
+#if (QT_VERSION >= QT_VERSION_CHECK(5,8,0))
+  QModbusReply * obj = (QModbusReply *) Qt5xHb::itemGetPtrStackSelfItem();
+
+  if( obj )
+  {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
+    if( ISNUMPAR(0) )
+    {
+#endif
+      RENUM( obj->type() );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
+    }
+    else
+    {
+      hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
+    }
+#endif
+  }
+#endif
+}
 
 /*
 int serverAddress() const
 */
+HB_FUNC_STATIC( QMODBUSREPLY_SERVERADDRESS )
+{
+#if (QT_VERSION >= QT_VERSION_CHECK(5,8,0))
+  QModbusReply * obj = (QModbusReply *) Qt5xHb::itemGetPtrStackSelfItem();
+
+  if( obj )
+  {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
+    if( ISNUMPAR(0) )
+    {
+#endif
+      RINT( obj->serverAddress() );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
+    }
+    else
+    {
+      hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
+    }
+#endif
+  }
+#endif
+}
 
 /*
 bool isFinished() const
 */
+HB_FUNC_STATIC( QMODBUSREPLY_ISFINISHED )
+{
+#if (QT_VERSION >= QT_VERSION_CHECK(5,8,0))
+  QModbusReply * obj = (QModbusReply *) Qt5xHb::itemGetPtrStackSelfItem();
 
-/*
-QModbusDataUnit result() const
-*/
-
-/*
-QModbusResponse rawResult() const
-*/
+  if( obj )
+  {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
+    if( ISNUMPAR(0) )
+    {
+#endif
+      RBOOL( obj->isFinished() );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
+    }
+    else
+    {
+      hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
+    }
+#endif
+  }
+#endif
+}
 
 /*
 QString errorString() const
 */
+HB_FUNC_STATIC( QMODBUSREPLY_ERRORSTRING )
+{
+#if (QT_VERSION >= QT_VERSION_CHECK(5,8,0))
+  QModbusReply * obj = (QModbusReply *) Qt5xHb::itemGetPtrStackSelfItem();
+
+  if( obj )
+  {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
+    if( ISNUMPAR(0) )
+    {
+#endif
+      RQSTRING( obj->errorString() );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
+    }
+    else
+    {
+      hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
+    }
+#endif
+  }
+#endif
+}
 
 /*
 QModbusDevice::Error error() const
 */
+HB_FUNC_STATIC( QMODBUSREPLY_ERROR )
+{
+#if (QT_VERSION >= QT_VERSION_CHECK(5,8,0))
+  QModbusReply * obj = (QModbusReply *) Qt5xHb::itemGetPtrStackSelfItem();
+
+  if( obj )
+  {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
+    if( ISNUMPAR(0) )
+    {
+#endif
+      RENUM( obj->error() );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
+    }
+    else
+    {
+      hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
+    }
+#endif
+  }
+#endif
+}
 
 /*
-void setResult(const QModbusDataUnit &unit)
+void setFinished( bool isFinished )
 */
+HB_FUNC_STATIC( QMODBUSREPLY_SETFINISHED )
+{
+#if (QT_VERSION >= QT_VERSION_CHECK(5,8,0))
+  QModbusReply * obj = (QModbusReply *) Qt5xHb::itemGetPtrStackSelfItem();
+
+  if( obj )
+  {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
+    if( ISNUMPAR(1) && HB_ISLOG(1) )
+    {
+#endif
+      obj->setFinished( PBOOL(1) );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
+    }
+    else
+    {
+      hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
+    }
+#endif
+  }
+
+  hb_itemReturn( hb_stackSelfItem() );
+#endif
+}
 
 /*
-void setRawResult(const QModbusResponse &unit)
+void setError( QModbusDevice::Error error, const QString & errorText )
 */
+HB_FUNC_STATIC( QMODBUSREPLY_SETERROR )
+{
+#if (QT_VERSION >= QT_VERSION_CHECK(5,8,0))
+  QModbusReply * obj = (QModbusReply *) Qt5xHb::itemGetPtrStackSelfItem();
 
-/*
-void setFinished(bool isFinished)
-*/
+  if( obj )
+  {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
+    if( ISNUMPAR(2) && HB_ISNUM(1) && HB_ISCHAR(2) )
+    {
+#endif
+      obj->setError( (QModbusDevice::Error) hb_parni(1), PQSTRING(2) );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
+    }
+    else
+    {
+      hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
+    }
+#endif
+  }
 
-/*
-void setError(QModbusDevice::Error error, const QString &errorText)
-*/
+  hb_itemReturn( hb_stackSelfItem() );
+#endif
+}
 
-void QModbusReplySlots_connect_signal ( const QString & signal, const QString & slot );
+void QModbusReplySlots_connect_signal( const QString & signal, const QString & slot );
 
 HB_FUNC_STATIC( QMODBUSREPLY_ONFINISHED )
 {

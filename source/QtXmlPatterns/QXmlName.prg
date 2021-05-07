@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -40,7 +40,7 @@ CLASS QXmlName
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QXmlName
+PROCEDURE destroyObject() CLASS QXmlName
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -63,25 +63,22 @@ RETURN
 #endif
 
 /*
-QXmlName ()
+QXmlName()
 */
-void QXmlName_new1 ()
+void QXmlName_new1()
 {
-  QXmlName * o = new QXmlName ();
-  _qt5xhb_returnNewObject( o, true );
+  QXmlName * obj = new QXmlName();
+  Qt5xHb::returnNewObject( obj, true );
 }
 
 /*
-QXmlName ( QXmlNamePool & namePool, const QString & localName, const QString & namespaceURI = QString(), const QString & prefix = QString() )
+QXmlName( QXmlNamePool & namePool, const QString & localName, const QString & namespaceURI = QString(), const QString & prefix = QString() )
 */
-void QXmlName_new2 ()
+void QXmlName_new2()
 {
-  QXmlName * o = new QXmlName ( *PQXMLNAMEPOOL(1), PQSTRING(2), OPQSTRING(3,QString()), OPQSTRING(4,QString()) );
-  _qt5xhb_returnNewObject( o, true );
+  QXmlName * obj = new QXmlName( *PQXMLNAMEPOOL(1), PQSTRING(2), OPQSTRING(3,QString()), OPQSTRING(4,QString()) );
+  Qt5xHb::returnNewObject( obj, true );
 }
-
-//[1]QXmlName ()
-//[2]QXmlName ( QXmlNamePool & namePool, const QString & localName, const QString & namespaceURI = QString(), const QString & prefix = QString() )
 
 HB_FUNC_STATIC( QXMLNAME_NEW )
 {
@@ -89,7 +86,7 @@ HB_FUNC_STATIC( QXMLNAME_NEW )
   {
     QXmlName_new1();
   }
-  else if( ISBETWEEN(2,4) && ISQXMLNAMEPOOL(1) && ISCHAR(2) && ISOPTCHAR(3) && ISOPTCHAR(4) )
+  else if( ISBETWEEN(2,4) && ISQXMLNAMEPOOL(1) && HB_ISCHAR(2) && ( HB_ISCHAR(3)||HB_ISNIL(3)) && ( HB_ISCHAR(4)||HB_ISNIL(4)) )
   {
     QXmlName_new2();
   }
@@ -101,7 +98,7 @@ HB_FUNC_STATIC( QXMLNAME_NEW )
 
 HB_FUNC_STATIC( QXMLNAME_DELETE )
 {
-  QXmlName * obj = (QXmlName *) _qt5xhb_itemGetPtrStackSelfItem();
+  QXmlName * obj = (QXmlName *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -117,11 +114,11 @@ HB_FUNC_STATIC( QXMLNAME_DELETE )
 }
 
 /*
-bool isNull () const
+bool isNull() const
 */
 HB_FUNC_STATIC( QXMLNAME_ISNULL )
 {
-  QXmlName * obj = (QXmlName *) _qt5xhb_itemGetPtrStackSelfItem();
+  QXmlName * obj = (QXmlName *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -129,7 +126,7 @@ HB_FUNC_STATIC( QXMLNAME_ISNULL )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->isNull () );
+      RBOOL( obj->isNull() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -141,11 +138,11 @@ HB_FUNC_STATIC( QXMLNAME_ISNULL )
 }
 
 /*
-QString localName ( const QXmlNamePool & namePool ) const
+QString localName( const QXmlNamePool & namePool ) const
 */
 HB_FUNC_STATIC( QXMLNAME_LOCALNAME )
 {
-  QXmlName * obj = (QXmlName *) _qt5xhb_itemGetPtrStackSelfItem();
+  QXmlName * obj = (QXmlName *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -153,7 +150,7 @@ HB_FUNC_STATIC( QXMLNAME_LOCALNAME )
     if( ISNUMPAR(1) && ISQXMLNAMEPOOL(1) )
     {
 #endif
-      RQSTRING( obj->localName ( *PQXMLNAMEPOOL(1) ) );
+      RQSTRING( obj->localName( *PQXMLNAMEPOOL(1) ) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -165,11 +162,11 @@ HB_FUNC_STATIC( QXMLNAME_LOCALNAME )
 }
 
 /*
-QString namespaceUri ( const QXmlNamePool & namePool ) const
+QString namespaceUri( const QXmlNamePool & namePool ) const
 */
 HB_FUNC_STATIC( QXMLNAME_NAMESPACEURI )
 {
-  QXmlName * obj = (QXmlName *) _qt5xhb_itemGetPtrStackSelfItem();
+  QXmlName * obj = (QXmlName *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -177,7 +174,7 @@ HB_FUNC_STATIC( QXMLNAME_NAMESPACEURI )
     if( ISNUMPAR(1) && ISQXMLNAMEPOOL(1) )
     {
 #endif
-      RQSTRING( obj->namespaceUri ( *PQXMLNAMEPOOL(1) ) );
+      RQSTRING( obj->namespaceUri( *PQXMLNAMEPOOL(1) ) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -189,11 +186,11 @@ HB_FUNC_STATIC( QXMLNAME_NAMESPACEURI )
 }
 
 /*
-QString prefix ( const QXmlNamePool & namePool ) const
+QString prefix( const QXmlNamePool & namePool ) const
 */
 HB_FUNC_STATIC( QXMLNAME_PREFIX )
 {
-  QXmlName * obj = (QXmlName *) _qt5xhb_itemGetPtrStackSelfItem();
+  QXmlName * obj = (QXmlName *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -201,7 +198,7 @@ HB_FUNC_STATIC( QXMLNAME_PREFIX )
     if( ISNUMPAR(1) && ISQXMLNAMEPOOL(1) )
     {
 #endif
-      RQSTRING( obj->prefix ( *PQXMLNAMEPOOL(1) ) );
+      RQSTRING( obj->prefix( *PQXMLNAMEPOOL(1) ) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -213,11 +210,11 @@ HB_FUNC_STATIC( QXMLNAME_PREFIX )
 }
 
 /*
-QString toClarkName ( const QXmlNamePool & namePool ) const
+QString toClarkName( const QXmlNamePool & namePool ) const
 */
 HB_FUNC_STATIC( QXMLNAME_TOCLARKNAME )
 {
-  QXmlName * obj = (QXmlName *) _qt5xhb_itemGetPtrStackSelfItem();
+  QXmlName * obj = (QXmlName *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -225,7 +222,7 @@ HB_FUNC_STATIC( QXMLNAME_TOCLARKNAME )
     if( ISNUMPAR(1) && ISQXMLNAMEPOOL(1) )
     {
 #endif
-      RQSTRING( obj->toClarkName ( *PQXMLNAMEPOOL(1) ) );
+      RQSTRING( obj->toClarkName( *PQXMLNAMEPOOL(1) ) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -237,16 +234,16 @@ HB_FUNC_STATIC( QXMLNAME_TOCLARKNAME )
 }
 
 /*
-static QXmlName fromClarkName ( const QString & clarkName, const QXmlNamePool & namePool )
+static QXmlName fromClarkName( const QString & clarkName, const QXmlNamePool & namePool )
 */
 HB_FUNC_STATIC( QXMLNAME_FROMCLARKNAME )
 {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(2) && ISCHAR(1) && ISQXMLNAMEPOOL(2) )
+  if( ISNUMPAR(2) && HB_ISCHAR(1) && ISQXMLNAMEPOOL(2) )
   {
 #endif
-      QXmlName * ptr = new QXmlName( QXmlName::fromClarkName ( PQSTRING(1), *PQXMLNAMEPOOL(2) ) );
-      _qt5xhb_createReturnClass ( ptr, "QXMLNAME", true );
+    QXmlName * ptr = new QXmlName( QXmlName::fromClarkName( PQSTRING(1), *PQXMLNAMEPOOL(2) ) );
+    Qt5xHb::createReturnClass( ptr, "QXMLNAME", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
   }
   else
@@ -257,15 +254,15 @@ HB_FUNC_STATIC( QXMLNAME_FROMCLARKNAME )
 }
 
 /*
-static bool isNCName ( const QString & candidate )
+static bool isNCName( const QString & candidate )
 */
 HB_FUNC_STATIC( QXMLNAME_ISNCNAME )
 {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISCHAR(1) )
+  if( ISNUMPAR(1) && HB_ISCHAR(1) )
   {
 #endif
-      RBOOL( QXmlName::isNCName ( PQSTRING(1) ) );
+    RBOOL( QXmlName::isNCName( PQSTRING(1) ) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
   }
   else
@@ -279,7 +276,7 @@ HB_FUNC_STATIC( QXMLNAME_NEWFROM )
 {
   PHB_ITEM self = hb_stackSelfItem();
 
-  if( hb_pcount() == 1 && ISOBJECT(1) )
+  if( hb_pcount() == 1 && HB_ISOBJECT(1) )
   {
     PHB_ITEM ptr = hb_itemPutPtr( NULL, (void *) hb_itemGetPtr( hb_objSendMsg( hb_param(1, HB_IT_OBJECT ), "POINTER", 0 ) ) );
     hb_objSendMsg( self, "_pointer", 1, ptr );
@@ -288,7 +285,7 @@ HB_FUNC_STATIC( QXMLNAME_NEWFROM )
     hb_objSendMsg( self, "_self_destruction", 1, des );
     hb_itemRelease( des );
   }
-  else if( hb_pcount() == 1 && ISPOINTER(1) )
+  else if( hb_pcount() == 1 && HB_ISPOINTER(1) )
   {
     PHB_ITEM ptr = hb_itemPutPtr( NULL, (void *) hb_itemGetPtr( hb_param(1, HB_IT_POINTER ) ) );
     hb_objSendMsg( self, "_pointer", 1, ptr );
@@ -324,7 +321,7 @@ HB_FUNC_STATIC( QXMLNAME_SETSELFDESTRUCTION )
 {
   PHB_ITEM self = hb_stackSelfItem();
 
-  if( hb_pcount() == 1 && ISLOG(1) )
+  if( hb_pcount() == 1 && HB_ISLOG(1) )
   {
     PHB_ITEM des = hb_itemPutL( NULL, hb_parl(1) );
     hb_objSendMsg( self, "_self_destruction", 1, des );

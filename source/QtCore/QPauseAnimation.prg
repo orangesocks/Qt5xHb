@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -26,7 +26,7 @@ CLASS QPauseAnimation INHERIT QAbstractAnimation
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QPauseAnimation
+PROCEDURE destroyObject() CLASS QPauseAnimation
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -43,39 +43,38 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #include <QtCore/QPauseAnimation>
 #endif
 
 /*
-QPauseAnimation ( QObject * parent = 0 )
+QPauseAnimation( QObject * parent = 0 )
 */
-void QPauseAnimation_new1 ()
+void QPauseAnimation_new1()
 {
-  QPauseAnimation * o = new QPauseAnimation ( OPQOBJECT(1,0) );
-  _qt5xhb_returnNewObject( o, false );
+  QPauseAnimation * obj = new QPauseAnimation( OPQOBJECT(1,0) );
+  Qt5xHb::returnNewObject( obj, false );
 }
 
 /*
-QPauseAnimation ( int msecs, QObject * parent = 0 )
+QPauseAnimation( int msecs, QObject * parent = 0 )
 */
-void QPauseAnimation_new2 ()
+void QPauseAnimation_new2()
 {
-  QPauseAnimation * o = new QPauseAnimation ( PINT(1), OPQOBJECT(2,0) );
-  _qt5xhb_returnNewObject( o, false );
+  QPauseAnimation * obj = new QPauseAnimation( PINT(1), OPQOBJECT(2,0) );
+  Qt5xHb::returnNewObject( obj, false );
 }
-
-//[1]QPauseAnimation ( QObject * parent = 0 )
-//[2]QPauseAnimation ( int msecs, QObject * parent = 0 )
 
 HB_FUNC_STATIC( QPAUSEANIMATION_NEW )
 {
-  if( ISBETWEEN(0,1) && ISOPTQOBJECT(1) )
+  if( ISBETWEEN(0,1) && (ISQOBJECT(1)||HB_ISNIL(1)) )
   {
     QPauseAnimation_new1();
   }
-  else if( ISBETWEEN(1,2) && ISNUM(1) && ISOPTQOBJECT(2) )
+  else if( ISBETWEEN(1,2) && HB_ISNUM(1) && (ISQOBJECT(2)||HB_ISNIL(2)) )
   {
     QPauseAnimation_new2();
   }
@@ -87,10 +86,12 @@ HB_FUNC_STATIC( QPAUSEANIMATION_NEW )
 
 HB_FUNC_STATIC( QPAUSEANIMATION_DELETE )
 {
-  QPauseAnimation * obj = (QPauseAnimation *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPauseAnimation * obj = (QPauseAnimation *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -103,19 +104,19 @@ HB_FUNC_STATIC( QPAUSEANIMATION_DELETE )
 }
 
 /*
-void setDuration ( int msecs )
+void setDuration( int msecs )
 */
 HB_FUNC_STATIC( QPAUSEANIMATION_SETDURATION )
 {
-  QPauseAnimation * obj = (QPauseAnimation *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPauseAnimation * obj = (QPauseAnimation *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setDuration ( PINT(1) );
+      obj->setDuration( PINT(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -129,11 +130,11 @@ HB_FUNC_STATIC( QPAUSEANIMATION_SETDURATION )
 }
 
 /*
-virtual int duration () const
+virtual int duration() const
 */
 HB_FUNC_STATIC( QPAUSEANIMATION_DURATION )
 {
-  QPauseAnimation * obj = (QPauseAnimation *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPauseAnimation * obj = (QPauseAnimation *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -141,7 +142,7 @@ HB_FUNC_STATIC( QPAUSEANIMATION_DURATION )
     if( ISNUMPAR(0) )
     {
 #endif
-      RINT( obj->duration () );
+      RINT( obj->duration() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else

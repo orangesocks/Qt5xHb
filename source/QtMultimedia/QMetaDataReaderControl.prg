@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -31,7 +31,7 @@ CLASS QMetaDataReaderControl INHERIT QMediaControl
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QMetaDataReaderControl
+PROCEDURE destroyObject() CLASS QMetaDataReaderControl
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -48,24 +48,24 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #include <QtMultimedia/QMetaDataReaderControl>
 #endif
 
 /*
-explicit QMetaDataReaderControl(QObject *parent = Q_NULLPTR) [protected]
-*/
-
-/*
 ~QMetaDataReaderControl()
 */
 HB_FUNC_STATIC( QMETADATAREADERCONTROL_DELETE )
 {
-  QMetaDataReaderControl * obj = (QMetaDataReaderControl *) _qt5xhb_itemGetPtrStackSelfItem();
+  QMetaDataReaderControl * obj = (QMetaDataReaderControl *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -82,7 +82,7 @@ virtual bool isMetaDataAvailable() const = 0
 */
 HB_FUNC_STATIC( QMETADATAREADERCONTROL_ISMETADATAAVAILABLE )
 {
-  QMetaDataReaderControl * obj = (QMetaDataReaderControl *) _qt5xhb_itemGetPtrStackSelfItem();
+  QMetaDataReaderControl * obj = (QMetaDataReaderControl *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -90,7 +90,7 @@ HB_FUNC_STATIC( QMETADATAREADERCONTROL_ISMETADATAAVAILABLE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->isMetaDataAvailable () );
+      RBOOL( obj->isMetaDataAvailable() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -102,20 +102,20 @@ HB_FUNC_STATIC( QMETADATAREADERCONTROL_ISMETADATAAVAILABLE )
 }
 
 /*
-virtual QVariant metaData(const QString &key) const = 0
+virtual QVariant metaData( const QString & key ) const = 0
 */
 HB_FUNC_STATIC( QMETADATAREADERCONTROL_METADATA )
 {
-  QMetaDataReaderControl * obj = (QMetaDataReaderControl *) _qt5xhb_itemGetPtrStackSelfItem();
+  QMetaDataReaderControl * obj = (QMetaDataReaderControl *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISCHAR(1) )
+    if( ISNUMPAR(1) && HB_ISCHAR(1) )
     {
 #endif
-      QVariant * ptr = new QVariant( obj->metaData ( PQSTRING(1) ) );
-      _qt5xhb_createReturnClass ( ptr, "QVARIANT", true );
+      QVariant * ptr = new QVariant( obj->metaData( PQSTRING(1) ) );
+      Qt5xHb::createReturnClass( ptr, "QVARIANT", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -131,7 +131,7 @@ virtual QStringList availableMetaData() const = 0
 */
 HB_FUNC_STATIC( QMETADATAREADERCONTROL_AVAILABLEMETADATA )
 {
-  QMetaDataReaderControl * obj = (QMetaDataReaderControl *) _qt5xhb_itemGetPtrStackSelfItem();
+  QMetaDataReaderControl * obj = (QMetaDataReaderControl *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -139,7 +139,7 @@ HB_FUNC_STATIC( QMETADATAREADERCONTROL_AVAILABLEMETADATA )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRINGLIST( obj->availableMetaData () );
+      RQSTRINGLIST( obj->availableMetaData() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -150,7 +150,7 @@ HB_FUNC_STATIC( QMETADATAREADERCONTROL_AVAILABLEMETADATA )
   }
 }
 
-void QMetaDataReaderControlSlots_connect_signal ( const QString & signal, const QString & slot );
+void QMetaDataReaderControlSlots_connect_signal( const QString & signal, const QString & slot );
 
 HB_FUNC_STATIC( QMETADATAREADERCONTROL_ONMETADATACHANGED1 )
 {

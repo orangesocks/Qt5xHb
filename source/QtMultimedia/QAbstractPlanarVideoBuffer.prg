@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -23,7 +23,7 @@ CLASS QAbstractPlanarVideoBuffer INHERIT QAbstractVideoBuffer
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QAbstractPlanarVideoBuffer
+PROCEDURE destroyObject() CLASS QAbstractPlanarVideoBuffer
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -50,16 +50,12 @@ RETURN
 #endif
 
 /*
-QAbstractPlanarVideoBuffer(HandleType type) (abstract)
-*/
-
-/*
 virtual ~QAbstractPlanarVideoBuffer()
 */
 HB_FUNC_STATIC( QABSTRACTPLANARVIDEOBUFFER_DELETE )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,4,0))
-  QAbstractPlanarVideoBuffer * obj = (QAbstractPlanarVideoBuffer *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAbstractPlanarVideoBuffer * obj = (QAbstractPlanarVideoBuffer *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -74,13 +70,5 @@ HB_FUNC_STATIC( QABSTRACTPLANARVIDEOBUFFER_DELETE )
   hb_itemReturn( hb_stackSelfItem() );
 #endif
 }
-
-/*
-uchar *map(MapMode mode, int *numBytes, int *bytesPerLine) override;
-*/
-
-/*
-virtual int map(MapMode mode, int *numBytes, int bytesPerLine[4], uchar *data[4]) = 0;
-*/
 
 #pragma ENDDUMP

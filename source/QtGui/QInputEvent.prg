@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -24,7 +24,7 @@ CLASS QInputEvent INHERIT QEvent
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QInputEvent
+PROCEDURE destroyObject() CLASS QInputEvent
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -48,7 +48,7 @@ RETURN
 
 HB_FUNC_STATIC( QINPUTEVENT_DELETE )
 {
-  QInputEvent * obj = (QInputEvent *) _qt5xhb_itemGetPtrStackSelfItem();
+  QInputEvent * obj = (QInputEvent *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -64,11 +64,11 @@ HB_FUNC_STATIC( QINPUTEVENT_DELETE )
 }
 
 /*
-Qt::KeyboardModifiers modifiers () const
+Qt::KeyboardModifiers modifiers() const
 */
 HB_FUNC_STATIC( QINPUTEVENT_MODIFIERS )
 {
-  QInputEvent * obj = (QInputEvent *) _qt5xhb_itemGetPtrStackSelfItem();
+  QInputEvent * obj = (QInputEvent *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -76,7 +76,7 @@ HB_FUNC_STATIC( QINPUTEVENT_MODIFIERS )
     if( ISNUMPAR(0) )
     {
 #endif
-      RENUM( obj->modifiers () );
+      RENUM( obj->modifiers() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else

@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -24,7 +24,7 @@ CLASS QHideEvent INHERIT QEvent
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QHideEvent
+PROCEDURE destroyObject() CLASS QHideEvent
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -47,14 +47,14 @@ RETURN
 #endif
 
 /*
-QHideEvent ()
+QHideEvent()
 */
 HB_FUNC_STATIC( QHIDEEVENT_NEW )
 {
   if( ISNUMPAR(0) )
   {
-    QHideEvent * o = new QHideEvent ();
-    _qt5xhb_returnNewObject( o, false );
+    QHideEvent * obj = new QHideEvent();
+    Qt5xHb::returnNewObject( obj, false );
   }
   else
   {
@@ -64,7 +64,7 @@ HB_FUNC_STATIC( QHIDEEVENT_NEW )
 
 HB_FUNC_STATIC( QHIDEEVENT_DELETE )
 {
-  QHideEvent * obj = (QHideEvent *) _qt5xhb_itemGetPtrStackSelfItem();
+  QHideEvent * obj = (QHideEvent *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {

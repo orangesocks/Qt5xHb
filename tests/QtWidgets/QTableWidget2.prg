@@ -2,19 +2,19 @@
 
   Qt5xHb Project - Test Program
 
-  Copyright (C) 2019 Marcos Antonio Gambeta
+  Copyright (C) 2021 Marcos Antonio Gambeta
 
   E-mail:
   marcosgambeta AT outlook DOT com
 
   Website:
-  https://github.com/marcosgambeta/Qt5xHb
+  https://github.com/magsoftinfo/qt5xhb
 
 */
 
 #include "qt5xhb.ch"
 
-PROCEDURE Main ()
+PROCEDURE Main()
 
    LOCAL oApp
    LOCAL oWindow
@@ -27,18 +27,16 @@ PROCEDURE Main ()
    oApp := QApplication():new()
 
    oWindow := QWidget():new()
-   oWindow:setWindowTitle("Qt5xHb - teste")
-   oWindow:resize(800,600)
+   oWindow:setWindowTitle( "Qt5xHb - teste" )
+   oWindow:resize( 800, 600 )
 
-   oTable := QTableWidget():new(nRows,nCols,oWindow)
-
-   oTable:move(10,10)
-
-   oTable:resize(800-20,600-20)
+   oTable := QTableWidget():new( nRows, nCols, oWindow )
+   oTable:move( 10, 10 )
+   oTable:resize( 800 - 20, 600 - 20 )
 
    FOR r := 1 TO nRows
       FOR c := 1 TO nCols
-         oTable:setItem( r-1, c-1, QTableWidgetItem():new(alltrim(str(r))+","+alltrim(str(c))) )
+         oTable:setItem( r - 1, c - 1, QTableWidgetItem():new( alltrim( str( r ) ) + "," + alltrim( str( c ) ) ) )
       NEXT c
    NEXT r
 

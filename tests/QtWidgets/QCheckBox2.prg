@@ -2,13 +2,13 @@
 
   Qt5xHb Project - Test Program
 
-  Copyright (C) 2019 Marcos Antonio Gambeta
+  Copyright (C) 2021 Marcos Antonio Gambeta
 
   E-mail:
   marcosgambeta AT outlook DOT com
 
   Website:
-  https://github.com/marcosgambeta/Qt5xHb
+  https://github.com/magsoftinfo/qt5xhb
 
 */
 
@@ -18,7 +18,7 @@
 REQUEST HB_GT_WIN
 #endif
 
-PROCEDURE Main ()
+PROCEDURE Main()
 
    LOCAL oApp
    LOCAL oWindow
@@ -29,19 +29,19 @@ PROCEDURE Main ()
 
    oWindow := QWidget():new()
 
-   oCheckBox1 := QCheckBox():new("CheckBox1",oWindow)
-   oCheckBox1:move(20,20)
-   ? oCheckBox1:onClicked({||qout("1-clicked")})
-   ? oCheckBox1:onPressed({||qout("1-pressed")})
-   ? oCheckBox1:onReleased({||qout("1-released")})
-   ? oCheckBox1:onStateChanged({||qout("1-stateChanged="+alltrim(str(oCheckBox1:checkState())))})
+   oCheckBox1 := QCheckBox():new( "CheckBox1", oWindow )
+   oCheckBox1:move( 20, 20 )
+   ? oCheckBox1:onClicked( {||qout( "1-clicked" )} )
+   ? oCheckBox1:onPressed( {||qout( "1-pressed" )} )
+   ? oCheckBox1:onReleased( {||qout( "1-released" )} )
+   ? oCheckBox1:onStateChanged( {||qout( "1-stateChanged=" + alltrim( str( oCheckBox1:checkState() ) ) )} )
 
-   oCheckBox2 := QCheckBox():new("CheckBox2",oWindow)
-   oCheckBox2:move(20,70)
-   ? oCheckBox2:onClicked({||qout("2-clicked")})
-   ? oCheckBox2:onPressed({||qout("2-pressed")})
-   ? oCheckBox2:onReleased({||qout("2-released")})
-   ? oCheckBox2:onStateChanged({||qout("2-stateChanged="+alltrim(str(oCheckBox2:checkState())))})
+   oCheckBox2 := QCheckBox():new( "CheckBox2", oWindow )
+   oCheckBox2:move( 20, 70 )
+   ? oCheckBox2:onClicked( {||qout( "2-clicked" )} )
+   ? oCheckBox2:onPressed( {||qout( "2-pressed" )} )
+   ? oCheckBox2:onReleased( {||qout( "2-released" )} )
+   ? oCheckBox2:onStateChanged( {||qout( "2-stateChanged=" + alltrim( str( oCheckBox2:checkState() ) ) )} )
 
    oWindow:show()
 

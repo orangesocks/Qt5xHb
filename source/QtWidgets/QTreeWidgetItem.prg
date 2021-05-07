@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -100,7 +100,7 @@ CLASS QTreeWidgetItem
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QTreeWidgetItem
+PROCEDURE destroyObject() CLASS QTreeWidgetItem
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -123,127 +123,117 @@ RETURN
 #endif
 
 /*
-explicit QTreeWidgetItem(int type = Type)
+QTreeWidgetItem( int type = QTreeWidgetItem::Type )
 */
-void QTreeWidgetItem_new1 ()
+void QTreeWidgetItem_new1()
 {
-  QTreeWidgetItem * o = new QTreeWidgetItem ( OPINT(1,QTreeWidgetItem::Type) );
-  _qt5xhb_returnNewObject( o, false );
+  QTreeWidgetItem * obj = new QTreeWidgetItem( OPINT(1,QTreeWidgetItem::Type) );
+  Qt5xHb::returnNewObject( obj, false );
 }
 
 /*
-explicit QTreeWidgetItem(const QStringList & strings, int type = Type)
+QTreeWidgetItem( const QStringList & strings, int type = QTreeWidgetItem::Type )
 */
-void QTreeWidgetItem_new2 ()
+void QTreeWidgetItem_new2()
 {
-  QTreeWidgetItem * o = new QTreeWidgetItem ( PQSTRINGLIST(1), OPINT(2,QTreeWidgetItem::Type) );
-  _qt5xhb_returnNewObject( o, false );
+  QTreeWidgetItem * obj = new QTreeWidgetItem( PQSTRINGLIST(1), OPINT(2,QTreeWidgetItem::Type) );
+  Qt5xHb::returnNewObject( obj, false );
 }
 
 /*
-explicit QTreeWidgetItem(QTreeWidget * view, int type = Type)
+QTreeWidgetItem( QTreeWidget * view, int type = QTreeWidgetItem::Type )
 */
-void QTreeWidgetItem_new3 ()
+void QTreeWidgetItem_new3()
 {
-  QTreeWidgetItem * o = new QTreeWidgetItem ( PQTREEWIDGET(1), OPINT(2,QTreeWidgetItem::Type) );
-  _qt5xhb_returnNewObject( o, false );
+  QTreeWidgetItem * obj = new QTreeWidgetItem( PQTREEWIDGET(1), OPINT(2,QTreeWidgetItem::Type) );
+  Qt5xHb::returnNewObject( obj, false );
 }
 
 /*
-QTreeWidgetItem(QTreeWidget * view, const QStringList & strings, int type = Type)
+QTreeWidgetItem( QTreeWidget * view, const QStringList & strings, int type = QTreeWidgetItem::Type )
 */
-void QTreeWidgetItem_new4 ()
+void QTreeWidgetItem_new4()
 {
-  QTreeWidgetItem * o = new QTreeWidgetItem ( PQTREEWIDGET(1), PQSTRINGLIST(2), OPINT(3,QTreeWidgetItem::Type) );
-  _qt5xhb_returnNewObject( o, false );
+  QTreeWidgetItem * obj = new QTreeWidgetItem( PQTREEWIDGET(1), PQSTRINGLIST(2), OPINT(3,QTreeWidgetItem::Type) );
+  Qt5xHb::returnNewObject( obj, false );
 }
 
 /*
-QTreeWidgetItem(QTreeWidget * view, QTreeWidgetItem * after, int type = Type)
+QTreeWidgetItem( QTreeWidget * view, QTreeWidgetItem * after, int type = QTreeWidgetItem::Type )
 */
-void QTreeWidgetItem_new5 ()
+void QTreeWidgetItem_new5()
 {
-  QTreeWidgetItem * o = new QTreeWidgetItem ( PQTREEWIDGET(1), PQTREEWIDGETITEM(2), OPINT(3,QTreeWidgetItem::Type) );
-  _qt5xhb_returnNewObject( o, false );
+  QTreeWidgetItem * obj = new QTreeWidgetItem( PQTREEWIDGET(1), PQTREEWIDGETITEM(2), OPINT(3,QTreeWidgetItem::Type) );
+  Qt5xHb::returnNewObject( obj, false );
 }
 
 /*
-explicit QTreeWidgetItem(QTreeWidgetItem * parent, int type = Type)
+QTreeWidgetItem( QTreeWidgetItem * parent, int type = QTreeWidgetItem::Type )
 */
-void QTreeWidgetItem_new6 ()
+void QTreeWidgetItem_new6()
 {
-  QTreeWidgetItem * o = new QTreeWidgetItem ( PQTREEWIDGETITEM(1), OPINT(2,QTreeWidgetItem::Type) );
-  _qt5xhb_returnNewObject( o, false );
+  QTreeWidgetItem * obj = new QTreeWidgetItem( PQTREEWIDGETITEM(1), OPINT(2,QTreeWidgetItem::Type) );
+  Qt5xHb::returnNewObject( obj, false );
 }
 
 /*
-QTreeWidgetItem(QTreeWidgetItem * parent, const QStringList & strings, int type = Type)
+QTreeWidgetItem( QTreeWidgetItem * parent, const QStringList & strings, int type = QTreeWidgetItem::Type )
 */
-void QTreeWidgetItem_new7 ()
+void QTreeWidgetItem_new7()
 {
-  QTreeWidgetItem * o = new QTreeWidgetItem ( PQTREEWIDGETITEM(1), PQSTRINGLIST(2), OPINT(3,QTreeWidgetItem::Type) );
-  _qt5xhb_returnNewObject( o, false );
+  QTreeWidgetItem * obj = new QTreeWidgetItem( PQTREEWIDGETITEM(1), PQSTRINGLIST(2), OPINT(3,QTreeWidgetItem::Type) );
+  Qt5xHb::returnNewObject( obj, false );
 }
 
 /*
-QTreeWidgetItem(QTreeWidgetItem * parent, QTreeWidgetItem * after, int type = Type)
+QTreeWidgetItem( QTreeWidgetItem * parent, QTreeWidgetItem * after, int type = QTreeWidgetItem::Type )
 */
-void QTreeWidgetItem_new8 ()
+void QTreeWidgetItem_new8()
 {
-  QTreeWidgetItem * o = new QTreeWidgetItem ( PQTREEWIDGETITEM(1), PQTREEWIDGETITEM(2), OPINT(3,QTreeWidgetItem::Type) );
-  _qt5xhb_returnNewObject( o, false );
+  QTreeWidgetItem * obj = new QTreeWidgetItem( PQTREEWIDGETITEM(1), PQTREEWIDGETITEM(2), OPINT(3,QTreeWidgetItem::Type) );
+  Qt5xHb::returnNewObject( obj, false );
 }
 
 /*
-QTreeWidgetItem(const QTreeWidgetItem & other)
+QTreeWidgetItem( const QTreeWidgetItem & other )
 */
-void QTreeWidgetItem_new9 ()
+void QTreeWidgetItem_new9()
 {
-  QTreeWidgetItem * o = new QTreeWidgetItem ( *PQTREEWIDGETITEM(1) );
-  _qt5xhb_returnNewObject( o, false );
+  QTreeWidgetItem * obj = new QTreeWidgetItem( *PQTREEWIDGETITEM(1) );
+  Qt5xHb::returnNewObject( obj, false );
 }
-
-//[1]explicit QTreeWidgetItem(int type = Type)
-//[2]explicit QTreeWidgetItem(const QStringList &strings, int type = Type)
-//[3]explicit QTreeWidgetItem(QTreeWidget *view, int type = Type)
-//[4]QTreeWidgetItem(QTreeWidget *view, const QStringList &strings, int type = Type)
-//[5]QTreeWidgetItem(QTreeWidget *view, QTreeWidgetItem *after, int type = Type)
-//[6]explicit QTreeWidgetItem(QTreeWidgetItem *parent, int type = Type)
-//[7]QTreeWidgetItem(QTreeWidgetItem *parent, const QStringList &strings, int type = Type)
-//[8]QTreeWidgetItem(QTreeWidgetItem *parent, QTreeWidgetItem *after, int type = Type)
-//[9]QTreeWidgetItem(const QTreeWidgetItem &other)
 
 HB_FUNC_STATIC( QTREEWIDGETITEM_NEW )
 {
-  if( ISBETWEEN(0,1) && ISOPTNUM(1) )
+  if( ISBETWEEN(0,1) && ( HB_ISNUM(1)||HB_ISNIL(1)) )
   {
     QTreeWidgetItem_new1();
   }
-  else if( ISBETWEEN(1,2) && ISARRAY(1) && ISOPTNUM(2) )
+  else if( ISBETWEEN(1,2) && HB_ISARRAY(1) && ( HB_ISNUM(2)||HB_ISNIL(2)) )
   {
     QTreeWidgetItem_new2();
   }
-  else if( ISBETWEEN(1,2) && ISQTREEWIDGET(1) && ISOPTNUM(2) )
+  else if( ISBETWEEN(1,2) && ISQTREEWIDGET(1) && ( HB_ISNUM(2)||HB_ISNIL(2)) )
   {
     QTreeWidgetItem_new3();
   }
-  else if( ISBETWEEN(2,3) && ISQTREEWIDGET(1) && ISARRAY(2) && ISOPTNUM(3) )
+  else if( ISBETWEEN(2,3) && ISQTREEWIDGET(1) && HB_ISARRAY(2) && ( HB_ISNUM(3)||HB_ISNIL(3)) )
   {
     QTreeWidgetItem_new4();
   }
-  else if( ISBETWEEN(2,3) && ISQTREEWIDGET(1) && ISQTREEWIDGETITEM(2) && ISOPTNUM(3) )
+  else if( ISBETWEEN(2,3) && ISQTREEWIDGET(1) && ISQTREEWIDGETITEM(2) && ( HB_ISNUM(3)||HB_ISNIL(3)) )
   {
     QTreeWidgetItem_new5();
   }
-  else if( ISBETWEEN(1,2) && ISQTREEWIDGETITEM(1) && ISOPTNUM(2) )
+  else if( ISBETWEEN(1,2) && ISQTREEWIDGETITEM(1) && ( HB_ISNUM(2)||HB_ISNIL(2)) )
   {
     QTreeWidgetItem_new6();
   }
-  else if( ISBETWEEN(2,3) && ISQTREEWIDGETITEM(1) && ISARRAY(2) && ISOPTNUM(3) )
+  else if( ISBETWEEN(2,3) && ISQTREEWIDGETITEM(1) && HB_ISARRAY(2) && ( HB_ISNUM(3)||HB_ISNIL(3)) )
   {
     QTreeWidgetItem_new7();
   }
-  else if( ISBETWEEN(2,3) && ISQTREEWIDGETITEM(1) && ISQTREEWIDGETITEM(2) && ISOPTNUM(3) )
+  else if( ISBETWEEN(2,3) && ISQTREEWIDGETITEM(1) && ISQTREEWIDGETITEM(2) && ( HB_ISNUM(3)||HB_ISNIL(3)) )
   {
     QTreeWidgetItem_new8();
   }
@@ -259,7 +249,7 @@ HB_FUNC_STATIC( QTREEWIDGETITEM_NEW )
 
 HB_FUNC_STATIC( QTREEWIDGETITEM_DELETE )
 {
-  QTreeWidgetItem * obj = (QTreeWidgetItem *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTreeWidgetItem * obj = (QTreeWidgetItem *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -275,11 +265,11 @@ HB_FUNC_STATIC( QTREEWIDGETITEM_DELETE )
 }
 
 /*
-void addChild(QTreeWidgetItem * child)
+void addChild( QTreeWidgetItem * child )
 */
 HB_FUNC_STATIC( QTREEWIDGETITEM_ADDCHILD )
 {
-  QTreeWidgetItem * obj = (QTreeWidgetItem *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTreeWidgetItem * obj = (QTreeWidgetItem *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -287,7 +277,7 @@ HB_FUNC_STATIC( QTREEWIDGETITEM_ADDCHILD )
     if( ISNUMPAR(1) && ISQTREEWIDGETITEM(1) )
     {
 #endif
-      obj->addChild ( PQTREEWIDGETITEM(1) );
+      obj->addChild( PQTREEWIDGETITEM(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -301,27 +291,27 @@ HB_FUNC_STATIC( QTREEWIDGETITEM_ADDCHILD )
 }
 
 /*
-void addChildren(const QList<QTreeWidgetItem *> & children)
+void addChildren( const QList<QTreeWidgetItem *> & children )
 */
 HB_FUNC_STATIC( QTREEWIDGETITEM_ADDCHILDREN )
 {
-  QTreeWidgetItem * obj = (QTreeWidgetItem *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTreeWidgetItem * obj = (QTreeWidgetItem *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISARRAY(1) )
+    if( ISNUMPAR(1) && HB_ISARRAY(1) )
     {
 #endif
       QList<QTreeWidgetItem *> par1;
-PHB_ITEM aList1 = hb_param(1, HB_IT_ARRAY);
-int i1;
-int nLen1 = hb_arrayLen(aList1);
-for (i1=0;i1<nLen1;i1++)
-{
-  par1 << (QTreeWidgetItem *) hb_itemGetPtr( hb_objSendMsg( hb_arrayGetItemPtr( aList1, i1+1 ), "POINTER", 0 ) );
-}
-      obj->addChildren ( par1 );
+      PHB_ITEM aList1 = hb_param(1, HB_IT_ARRAY);
+      int i1;
+      int nLen1 = hb_arrayLen(aList1);
+      for (i1=0;i1<nLen1;i1++)
+      {
+        par1 << (QTreeWidgetItem *) hb_itemGetPtr( hb_objSendMsg( hb_arrayGetItemPtr( aList1, i1+1 ), "POINTER", 0 ) );
+      }
+      obj->addChildren( par1 );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -335,20 +325,20 @@ for (i1=0;i1<nLen1;i1++)
 }
 
 /*
-QBrush background(int column) const
+QBrush background( int column ) const
 */
 HB_FUNC_STATIC( QTREEWIDGETITEM_BACKGROUND )
 {
-  QTreeWidgetItem * obj = (QTreeWidgetItem *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTreeWidgetItem * obj = (QTreeWidgetItem *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      QBrush * ptr = new QBrush( obj->background ( PINT(1) ) );
-      _qt5xhb_createReturnClass ( ptr, "QBRUSH", true );
+      QBrush * ptr = new QBrush( obj->background( PINT(1) ) );
+      Qt5xHb::createReturnClass( ptr, "QBRUSH", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -360,19 +350,19 @@ HB_FUNC_STATIC( QTREEWIDGETITEM_BACKGROUND )
 }
 
 /*
-Qt::CheckState checkState(int column) const
+Qt::CheckState checkState( int column ) const
 */
 HB_FUNC_STATIC( QTREEWIDGETITEM_CHECKSTATE )
 {
-  QTreeWidgetItem * obj = (QTreeWidgetItem *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTreeWidgetItem * obj = (QTreeWidgetItem *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      RENUM( obj->checkState ( PINT(1) ) );
+      RENUM( obj->checkState( PINT(1) ) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -384,20 +374,20 @@ HB_FUNC_STATIC( QTREEWIDGETITEM_CHECKSTATE )
 }
 
 /*
-QTreeWidgetItem * child(int index) const
+QTreeWidgetItem * child( int index ) const
 */
 HB_FUNC_STATIC( QTREEWIDGETITEM_CHILD )
 {
-  QTreeWidgetItem * obj = (QTreeWidgetItem *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTreeWidgetItem * obj = (QTreeWidgetItem *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      QTreeWidgetItem * ptr = obj->child ( PINT(1) );
-      _qt5xhb_createReturnClass ( ptr, "QTREEWIDGETITEM", false );
+      QTreeWidgetItem * ptr = obj->child( PINT(1) );
+      Qt5xHb::createReturnClass( ptr, "QTREEWIDGETITEM", false );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -413,7 +403,7 @@ int childCount() const
 */
 HB_FUNC_STATIC( QTREEWIDGETITEM_CHILDCOUNT )
 {
-  QTreeWidgetItem * obj = (QTreeWidgetItem *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTreeWidgetItem * obj = (QTreeWidgetItem *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -421,7 +411,7 @@ HB_FUNC_STATIC( QTREEWIDGETITEM_CHILDCOUNT )
     if( ISNUMPAR(0) )
     {
 #endif
-      RINT( obj->childCount () );
+      RINT( obj->childCount() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -437,7 +427,7 @@ QTreeWidgetItem::ChildIndicatorPolicy childIndicatorPolicy() const
 */
 HB_FUNC_STATIC( QTREEWIDGETITEM_CHILDINDICATORPOLICY )
 {
-  QTreeWidgetItem * obj = (QTreeWidgetItem *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTreeWidgetItem * obj = (QTreeWidgetItem *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -445,7 +435,7 @@ HB_FUNC_STATIC( QTREEWIDGETITEM_CHILDINDICATORPOLICY )
     if( ISNUMPAR(0) )
     {
 #endif
-      RENUM( obj->childIndicatorPolicy () );
+      RENUM( obj->childIndicatorPolicy() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -461,7 +451,7 @@ virtual QTreeWidgetItem * clone() const
 */
 HB_FUNC_STATIC( QTREEWIDGETITEM_CLONE )
 {
-  QTreeWidgetItem * obj = (QTreeWidgetItem *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTreeWidgetItem * obj = (QTreeWidgetItem *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -469,8 +459,8 @@ HB_FUNC_STATIC( QTREEWIDGETITEM_CLONE )
     if( ISNUMPAR(0) )
     {
 #endif
-      QTreeWidgetItem * ptr = obj->clone ();
-      _qt5xhb_createReturnClass ( ptr, "QTREEWIDGETITEM", false );
+      QTreeWidgetItem * ptr = obj->clone();
+      Qt5xHb::createReturnClass( ptr, "QTREEWIDGETITEM", false );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -486,7 +476,7 @@ int columnCount() const
 */
 HB_FUNC_STATIC( QTREEWIDGETITEM_COLUMNCOUNT )
 {
-  QTreeWidgetItem * obj = (QTreeWidgetItem *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTreeWidgetItem * obj = (QTreeWidgetItem *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -494,7 +484,7 @@ HB_FUNC_STATIC( QTREEWIDGETITEM_COLUMNCOUNT )
     if( ISNUMPAR(0) )
     {
 #endif
-      RINT( obj->columnCount () );
+      RINT( obj->columnCount() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -506,20 +496,20 @@ HB_FUNC_STATIC( QTREEWIDGETITEM_COLUMNCOUNT )
 }
 
 /*
-virtual QVariant data(int column, int role) const
+virtual QVariant data( int column, int role ) const
 */
 HB_FUNC_STATIC( QTREEWIDGETITEM_DATA )
 {
-  QTreeWidgetItem * obj = (QTreeWidgetItem *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTreeWidgetItem * obj = (QTreeWidgetItem *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(2) && ISNUM(1) && ISNUM(2) )
+    if( ISNUMPAR(2) && HB_ISNUM(1) && HB_ISNUM(2) )
     {
 #endif
-      QVariant * ptr = new QVariant( obj->data ( PINT(1), PINT(2) ) );
-      _qt5xhb_createReturnClass ( ptr, "QVARIANT", true );
+      QVariant * ptr = new QVariant( obj->data( PINT(1), PINT(2) ) );
+      Qt5xHb::createReturnClass( ptr, "QVARIANT", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -535,7 +525,7 @@ Qt::ItemFlags flags() const
 */
 HB_FUNC_STATIC( QTREEWIDGETITEM_FLAGS )
 {
-  QTreeWidgetItem * obj = (QTreeWidgetItem *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTreeWidgetItem * obj = (QTreeWidgetItem *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -543,7 +533,7 @@ HB_FUNC_STATIC( QTREEWIDGETITEM_FLAGS )
     if( ISNUMPAR(0) )
     {
 #endif
-      RENUM( obj->flags () );
+      RENUM( obj->flags() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -555,20 +545,20 @@ HB_FUNC_STATIC( QTREEWIDGETITEM_FLAGS )
 }
 
 /*
-QFont font(int column) const
+QFont font( int column ) const
 */
 HB_FUNC_STATIC( QTREEWIDGETITEM_FONT )
 {
-  QTreeWidgetItem * obj = (QTreeWidgetItem *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTreeWidgetItem * obj = (QTreeWidgetItem *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      QFont * ptr = new QFont( obj->font ( PINT(1) ) );
-      _qt5xhb_createReturnClass ( ptr, "QFONT", true );
+      QFont * ptr = new QFont( obj->font( PINT(1) ) );
+      Qt5xHb::createReturnClass( ptr, "QFONT", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -580,20 +570,20 @@ HB_FUNC_STATIC( QTREEWIDGETITEM_FONT )
 }
 
 /*
-QBrush foreground(int column) const
+QBrush foreground( int column ) const
 */
 HB_FUNC_STATIC( QTREEWIDGETITEM_FOREGROUND )
 {
-  QTreeWidgetItem * obj = (QTreeWidgetItem *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTreeWidgetItem * obj = (QTreeWidgetItem *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      QBrush * ptr = new QBrush( obj->foreground ( PINT(1) ) );
-      _qt5xhb_createReturnClass ( ptr, "QBRUSH", true );
+      QBrush * ptr = new QBrush( obj->foreground( PINT(1) ) );
+      Qt5xHb::createReturnClass( ptr, "QBRUSH", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -605,20 +595,20 @@ HB_FUNC_STATIC( QTREEWIDGETITEM_FOREGROUND )
 }
 
 /*
-QIcon icon(int column) const
+QIcon icon( int column ) const
 */
 HB_FUNC_STATIC( QTREEWIDGETITEM_ICON )
 {
-  QTreeWidgetItem * obj = (QTreeWidgetItem *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTreeWidgetItem * obj = (QTreeWidgetItem *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      QIcon * ptr = new QIcon( obj->icon ( PINT(1) ) );
-      _qt5xhb_createReturnClass ( ptr, "QICON", true );
+      QIcon * ptr = new QIcon( obj->icon( PINT(1) ) );
+      Qt5xHb::createReturnClass( ptr, "QICON", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -630,11 +620,11 @@ HB_FUNC_STATIC( QTREEWIDGETITEM_ICON )
 }
 
 /*
-int indexOfChild(QTreeWidgetItem * child) const
+int indexOfChild( QTreeWidgetItem * child ) const
 */
 HB_FUNC_STATIC( QTREEWIDGETITEM_INDEXOFCHILD )
 {
-  QTreeWidgetItem * obj = (QTreeWidgetItem *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTreeWidgetItem * obj = (QTreeWidgetItem *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -642,7 +632,7 @@ HB_FUNC_STATIC( QTREEWIDGETITEM_INDEXOFCHILD )
     if( ISNUMPAR(1) && ISQTREEWIDGETITEM(1) )
     {
 #endif
-      RINT( obj->indexOfChild ( PQTREEWIDGETITEM(1) ) );
+      RINT( obj->indexOfChild( PQTREEWIDGETITEM(1) ) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -654,19 +644,19 @@ HB_FUNC_STATIC( QTREEWIDGETITEM_INDEXOFCHILD )
 }
 
 /*
-void insertChild(int index, QTreeWidgetItem * child)
+void insertChild( int index, QTreeWidgetItem * child )
 */
 HB_FUNC_STATIC( QTREEWIDGETITEM_INSERTCHILD )
 {
-  QTreeWidgetItem * obj = (QTreeWidgetItem *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTreeWidgetItem * obj = (QTreeWidgetItem *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(2) && ISNUM(1) && ISQTREEWIDGETITEM(2) )
+    if( ISNUMPAR(2) && HB_ISNUM(1) && ISQTREEWIDGETITEM(2) )
     {
 #endif
-      obj->insertChild ( PINT(1), PQTREEWIDGETITEM(2) );
+      obj->insertChild( PINT(1), PQTREEWIDGETITEM(2) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -680,27 +670,27 @@ HB_FUNC_STATIC( QTREEWIDGETITEM_INSERTCHILD )
 }
 
 /*
-void insertChildren(int index, const QList<QTreeWidgetItem *> & children)
+void insertChildren( int index, const QList<QTreeWidgetItem *> & children )
 */
 HB_FUNC_STATIC( QTREEWIDGETITEM_INSERTCHILDREN )
 {
-  QTreeWidgetItem * obj = (QTreeWidgetItem *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTreeWidgetItem * obj = (QTreeWidgetItem *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(2) && ISNUM(1) && ISARRAY(2) )
+    if( ISNUMPAR(2) && HB_ISNUM(1) && HB_ISARRAY(2) )
     {
 #endif
       QList<QTreeWidgetItem *> par2;
-PHB_ITEM aList2 = hb_param(2, HB_IT_ARRAY);
-int i2;
-int nLen2 = hb_arrayLen(aList2);
-for (i2=0;i2<nLen2;i2++)
-{
-  par2 << (QTreeWidgetItem *) hb_itemGetPtr( hb_objSendMsg( hb_arrayGetItemPtr( aList2, i2+1 ), "POINTER", 0 ) );
-}
-      obj->insertChildren ( PINT(1), par2 );
+      PHB_ITEM aList2 = hb_param(2, HB_IT_ARRAY);
+      int i2;
+      int nLen2 = hb_arrayLen(aList2);
+      for (i2=0;i2<nLen2;i2++)
+      {
+        par2 << (QTreeWidgetItem *) hb_itemGetPtr( hb_objSendMsg( hb_arrayGetItemPtr( aList2, i2+1 ), "POINTER", 0 ) );
+      }
+      obj->insertChildren( PINT(1), par2 );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -718,7 +708,7 @@ bool isDisabled() const
 */
 HB_FUNC_STATIC( QTREEWIDGETITEM_ISDISABLED )
 {
-  QTreeWidgetItem * obj = (QTreeWidgetItem *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTreeWidgetItem * obj = (QTreeWidgetItem *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -726,7 +716,7 @@ HB_FUNC_STATIC( QTREEWIDGETITEM_ISDISABLED )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->isDisabled () );
+      RBOOL( obj->isDisabled() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -742,7 +732,7 @@ bool isExpanded() const
 */
 HB_FUNC_STATIC( QTREEWIDGETITEM_ISEXPANDED )
 {
-  QTreeWidgetItem * obj = (QTreeWidgetItem *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTreeWidgetItem * obj = (QTreeWidgetItem *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -750,7 +740,7 @@ HB_FUNC_STATIC( QTREEWIDGETITEM_ISEXPANDED )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->isExpanded () );
+      RBOOL( obj->isExpanded() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -766,7 +756,7 @@ bool isFirstColumnSpanned() const
 */
 HB_FUNC_STATIC( QTREEWIDGETITEM_ISFIRSTCOLUMNSPANNED )
 {
-  QTreeWidgetItem * obj = (QTreeWidgetItem *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTreeWidgetItem * obj = (QTreeWidgetItem *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -774,7 +764,7 @@ HB_FUNC_STATIC( QTREEWIDGETITEM_ISFIRSTCOLUMNSPANNED )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->isFirstColumnSpanned () );
+      RBOOL( obj->isFirstColumnSpanned() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -790,7 +780,7 @@ bool isHidden() const
 */
 HB_FUNC_STATIC( QTREEWIDGETITEM_ISHIDDEN )
 {
-  QTreeWidgetItem * obj = (QTreeWidgetItem *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTreeWidgetItem * obj = (QTreeWidgetItem *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -798,7 +788,7 @@ HB_FUNC_STATIC( QTREEWIDGETITEM_ISHIDDEN )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->isHidden () );
+      RBOOL( obj->isHidden() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -814,7 +804,7 @@ bool isSelected() const
 */
 HB_FUNC_STATIC( QTREEWIDGETITEM_ISSELECTED )
 {
-  QTreeWidgetItem * obj = (QTreeWidgetItem *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTreeWidgetItem * obj = (QTreeWidgetItem *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -822,7 +812,7 @@ HB_FUNC_STATIC( QTREEWIDGETITEM_ISSELECTED )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->isSelected () );
+      RBOOL( obj->isSelected() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -838,7 +828,7 @@ QTreeWidgetItem * parent() const
 */
 HB_FUNC_STATIC( QTREEWIDGETITEM_PARENT )
 {
-  QTreeWidgetItem * obj = (QTreeWidgetItem *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTreeWidgetItem * obj = (QTreeWidgetItem *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -846,8 +836,8 @@ HB_FUNC_STATIC( QTREEWIDGETITEM_PARENT )
     if( ISNUMPAR(0) )
     {
 #endif
-      QTreeWidgetItem * ptr = obj->parent ();
-      _qt5xhb_createReturnClass ( ptr, "QTREEWIDGETITEM", false );
+      QTreeWidgetItem * ptr = obj->parent();
+      Qt5xHb::createReturnClass( ptr, "QTREEWIDGETITEM", false );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -859,11 +849,11 @@ HB_FUNC_STATIC( QTREEWIDGETITEM_PARENT )
 }
 
 /*
-virtual void read(QDataStream & in)
+virtual void read( QDataStream & in )
 */
 HB_FUNC_STATIC( QTREEWIDGETITEM_READ )
 {
-  QTreeWidgetItem * obj = (QTreeWidgetItem *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTreeWidgetItem * obj = (QTreeWidgetItem *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -871,7 +861,7 @@ HB_FUNC_STATIC( QTREEWIDGETITEM_READ )
     if( ISNUMPAR(1) && ISQDATASTREAM(1) )
     {
 #endif
-      obj->read ( *PQDATASTREAM(1) );
+      obj->read( *PQDATASTREAM(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -885,11 +875,11 @@ HB_FUNC_STATIC( QTREEWIDGETITEM_READ )
 }
 
 /*
-void removeChild(QTreeWidgetItem * child)
+void removeChild( QTreeWidgetItem * child )
 */
 HB_FUNC_STATIC( QTREEWIDGETITEM_REMOVECHILD )
 {
-  QTreeWidgetItem * obj = (QTreeWidgetItem *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTreeWidgetItem * obj = (QTreeWidgetItem *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -897,7 +887,7 @@ HB_FUNC_STATIC( QTREEWIDGETITEM_REMOVECHILD )
     if( ISNUMPAR(1) && ISQTREEWIDGETITEM(1) )
     {
 #endif
-      obj->removeChild ( PQTREEWIDGETITEM(1) );
+      obj->removeChild( PQTREEWIDGETITEM(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -911,19 +901,19 @@ HB_FUNC_STATIC( QTREEWIDGETITEM_REMOVECHILD )
 }
 
 /*
-void setBackground(int column, const QBrush & brush)
+void setBackground( int column, const QBrush & brush )
 */
 HB_FUNC_STATIC( QTREEWIDGETITEM_SETBACKGROUND )
 {
-  QTreeWidgetItem * obj = (QTreeWidgetItem *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTreeWidgetItem * obj = (QTreeWidgetItem *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(2) && ISNUM(1) && ISQBRUSH(2) )
+    if( ISNUMPAR(2) && HB_ISNUM(1) && ISQBRUSH(2) )
     {
 #endif
-      obj->setBackground ( PINT(1), *PQBRUSH(2) );
+      obj->setBackground( PINT(1), *PQBRUSH(2) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -937,19 +927,19 @@ HB_FUNC_STATIC( QTREEWIDGETITEM_SETBACKGROUND )
 }
 
 /*
-void setCheckState(int column, Qt::CheckState state)
+void setCheckState( int column, Qt::CheckState state )
 */
 HB_FUNC_STATIC( QTREEWIDGETITEM_SETCHECKSTATE )
 {
-  QTreeWidgetItem * obj = (QTreeWidgetItem *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTreeWidgetItem * obj = (QTreeWidgetItem *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(2) && ISNUM(1) && ISNUM(2) )
+    if( ISNUMPAR(2) && HB_ISNUM(1) && HB_ISNUM(2) )
     {
 #endif
-      obj->setCheckState ( PINT(1), (Qt::CheckState) hb_parni(2) );
+      obj->setCheckState( PINT(1), (Qt::CheckState) hb_parni(2) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -963,19 +953,19 @@ HB_FUNC_STATIC( QTREEWIDGETITEM_SETCHECKSTATE )
 }
 
 /*
-void setChildIndicatorPolicy(QTreeWidgetItem::ChildIndicatorPolicy policy)
+void setChildIndicatorPolicy( QTreeWidgetItem::ChildIndicatorPolicy policy )
 */
 HB_FUNC_STATIC( QTREEWIDGETITEM_SETCHILDINDICATORPOLICY )
 {
-  QTreeWidgetItem * obj = (QTreeWidgetItem *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTreeWidgetItem * obj = (QTreeWidgetItem *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setChildIndicatorPolicy ( (QTreeWidgetItem::ChildIndicatorPolicy) hb_parni(1) );
+      obj->setChildIndicatorPolicy( (QTreeWidgetItem::ChildIndicatorPolicy) hb_parni(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -989,19 +979,19 @@ HB_FUNC_STATIC( QTREEWIDGETITEM_SETCHILDINDICATORPOLICY )
 }
 
 /*
-virtual void setData(int column, int role, const QVariant & value)
+virtual void setData( int column, int role, const QVariant & value )
 */
 HB_FUNC_STATIC( QTREEWIDGETITEM_SETDATA )
 {
-  QTreeWidgetItem * obj = (QTreeWidgetItem *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTreeWidgetItem * obj = (QTreeWidgetItem *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(3) && ISNUM(1) && ISNUM(2) && ISQVARIANT(3) )
+    if( ISNUMPAR(3) && HB_ISNUM(1) && HB_ISNUM(2) && ISQVARIANT(3) )
     {
 #endif
-      obj->setData ( PINT(1), PINT(2), *PQVARIANT(3) );
+      obj->setData( PINT(1), PINT(2), *PQVARIANT(3) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -1015,19 +1005,19 @@ HB_FUNC_STATIC( QTREEWIDGETITEM_SETDATA )
 }
 
 /*
-void setDisabled(bool disabled)
+void setDisabled( bool disabled )
 */
 HB_FUNC_STATIC( QTREEWIDGETITEM_SETDISABLED )
 {
-  QTreeWidgetItem * obj = (QTreeWidgetItem *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTreeWidgetItem * obj = (QTreeWidgetItem *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISLOG(1) )
+    if( ISNUMPAR(1) && HB_ISLOG(1) )
     {
 #endif
-      obj->setDisabled ( PBOOL(1) );
+      obj->setDisabled( PBOOL(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -1041,19 +1031,19 @@ HB_FUNC_STATIC( QTREEWIDGETITEM_SETDISABLED )
 }
 
 /*
-void setExpanded(bool expand)
+void setExpanded( bool expand )
 */
 HB_FUNC_STATIC( QTREEWIDGETITEM_SETEXPANDED )
 {
-  QTreeWidgetItem * obj = (QTreeWidgetItem *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTreeWidgetItem * obj = (QTreeWidgetItem *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISLOG(1) )
+    if( ISNUMPAR(1) && HB_ISLOG(1) )
     {
 #endif
-      obj->setExpanded ( PBOOL(1) );
+      obj->setExpanded( PBOOL(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -1067,19 +1057,19 @@ HB_FUNC_STATIC( QTREEWIDGETITEM_SETEXPANDED )
 }
 
 /*
-void setFirstColumnSpanned(bool span)
+void setFirstColumnSpanned( bool span )
 */
 HB_FUNC_STATIC( QTREEWIDGETITEM_SETFIRSTCOLUMNSPANNED )
 {
-  QTreeWidgetItem * obj = (QTreeWidgetItem *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTreeWidgetItem * obj = (QTreeWidgetItem *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISLOG(1) )
+    if( ISNUMPAR(1) && HB_ISLOG(1) )
     {
 #endif
-      obj->setFirstColumnSpanned ( PBOOL(1) );
+      obj->setFirstColumnSpanned( PBOOL(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -1093,19 +1083,19 @@ HB_FUNC_STATIC( QTREEWIDGETITEM_SETFIRSTCOLUMNSPANNED )
 }
 
 /*
-void setFlags(Qt::ItemFlags flags)
+void setFlags( Qt::ItemFlags flags )
 */
 HB_FUNC_STATIC( QTREEWIDGETITEM_SETFLAGS )
 {
-  QTreeWidgetItem * obj = (QTreeWidgetItem *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTreeWidgetItem * obj = (QTreeWidgetItem *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setFlags ( (Qt::ItemFlags) hb_parni(1) );
+      obj->setFlags( (Qt::ItemFlags) hb_parni(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -1119,19 +1109,19 @@ HB_FUNC_STATIC( QTREEWIDGETITEM_SETFLAGS )
 }
 
 /*
-void setFont(int column, const QFont & font)
+void setFont( int column, const QFont & font )
 */
 HB_FUNC_STATIC( QTREEWIDGETITEM_SETFONT )
 {
-  QTreeWidgetItem * obj = (QTreeWidgetItem *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTreeWidgetItem * obj = (QTreeWidgetItem *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(2) && ISNUM(1) && ISQFONT(2) )
+    if( ISNUMPAR(2) && HB_ISNUM(1) && ISQFONT(2) )
     {
 #endif
-      obj->setFont ( PINT(1), *PQFONT(2) );
+      obj->setFont( PINT(1), *PQFONT(2) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -1145,19 +1135,19 @@ HB_FUNC_STATIC( QTREEWIDGETITEM_SETFONT )
 }
 
 /*
-void setForeground(int column, const QBrush & brush)
+void setForeground( int column, const QBrush & brush )
 */
 HB_FUNC_STATIC( QTREEWIDGETITEM_SETFOREGROUND )
 {
-  QTreeWidgetItem * obj = (QTreeWidgetItem *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTreeWidgetItem * obj = (QTreeWidgetItem *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(2) && ISNUM(1) && ISQBRUSH(2) )
+    if( ISNUMPAR(2) && HB_ISNUM(1) && ISQBRUSH(2) )
     {
 #endif
-      obj->setForeground ( PINT(1), *PQBRUSH(2) );
+      obj->setForeground( PINT(1), *PQBRUSH(2) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -1171,19 +1161,19 @@ HB_FUNC_STATIC( QTREEWIDGETITEM_SETFOREGROUND )
 }
 
 /*
-void setHidden(bool hide)
+void setHidden( bool hide )
 */
 HB_FUNC_STATIC( QTREEWIDGETITEM_SETHIDDEN )
 {
-  QTreeWidgetItem * obj = (QTreeWidgetItem *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTreeWidgetItem * obj = (QTreeWidgetItem *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISLOG(1) )
+    if( ISNUMPAR(1) && HB_ISLOG(1) )
     {
 #endif
-      obj->setHidden ( PBOOL(1) );
+      obj->setHidden( PBOOL(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -1197,19 +1187,19 @@ HB_FUNC_STATIC( QTREEWIDGETITEM_SETHIDDEN )
 }
 
 /*
-void setIcon(int column, const QIcon & icon)
+void setIcon( int column, const QIcon & icon )
 */
 HB_FUNC_STATIC( QTREEWIDGETITEM_SETICON )
 {
-  QTreeWidgetItem * obj = (QTreeWidgetItem *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTreeWidgetItem * obj = (QTreeWidgetItem *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(2) && ISNUM(1) && (ISQICON(2)||ISCHAR(2)) )
+    if( ISNUMPAR(2) && HB_ISNUM(1) && (ISQICON(2)||HB_ISCHAR(2)) )
     {
 #endif
-      obj->setIcon ( PINT(1), ISOBJECT(2)? *(QIcon *) _qt5xhb_itemGetPtr(2) : QIcon(hb_parc(2)) );
+      obj->setIcon( PINT(1), HB_ISOBJECT(2)? *(QIcon *) Qt5xHb::itemGetPtr(2) : QIcon(hb_parc(2)) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -1223,19 +1213,19 @@ HB_FUNC_STATIC( QTREEWIDGETITEM_SETICON )
 }
 
 /*
-void setSelected(bool select)
+void setSelected( bool select )
 */
 HB_FUNC_STATIC( QTREEWIDGETITEM_SETSELECTED )
 {
-  QTreeWidgetItem * obj = (QTreeWidgetItem *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTreeWidgetItem * obj = (QTreeWidgetItem *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISLOG(1) )
+    if( ISNUMPAR(1) && HB_ISLOG(1) )
     {
 #endif
-      obj->setSelected ( PBOOL(1) );
+      obj->setSelected( PBOOL(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -1249,19 +1239,19 @@ HB_FUNC_STATIC( QTREEWIDGETITEM_SETSELECTED )
 }
 
 /*
-void setSizeHint(int column, const QSize & size)
+void setSizeHint( int column, const QSize & size )
 */
 HB_FUNC_STATIC( QTREEWIDGETITEM_SETSIZEHINT )
 {
-  QTreeWidgetItem * obj = (QTreeWidgetItem *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTreeWidgetItem * obj = (QTreeWidgetItem *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(2) && ISNUM(1) && ISQSIZE(2) )
+    if( ISNUMPAR(2) && HB_ISNUM(1) && ISQSIZE(2) )
     {
 #endif
-      obj->setSizeHint ( PINT(1), *PQSIZE(2) );
+      obj->setSizeHint( PINT(1), *PQSIZE(2) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -1275,19 +1265,19 @@ HB_FUNC_STATIC( QTREEWIDGETITEM_SETSIZEHINT )
 }
 
 /*
-void setStatusTip(int column, const QString & statusTip)
+void setStatusTip( int column, const QString & statusTip )
 */
 HB_FUNC_STATIC( QTREEWIDGETITEM_SETSTATUSTIP )
 {
-  QTreeWidgetItem * obj = (QTreeWidgetItem *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTreeWidgetItem * obj = (QTreeWidgetItem *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(2) && ISNUM(1) && ISCHAR(2) )
+    if( ISNUMPAR(2) && HB_ISNUM(1) && HB_ISCHAR(2) )
     {
 #endif
-      obj->setStatusTip ( PINT(1), PQSTRING(2) );
+      obj->setStatusTip( PINT(1), PQSTRING(2) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -1301,19 +1291,19 @@ HB_FUNC_STATIC( QTREEWIDGETITEM_SETSTATUSTIP )
 }
 
 /*
-void setText(int column, const QString & text)
+void setText( int column, const QString & text )
 */
 HB_FUNC_STATIC( QTREEWIDGETITEM_SETTEXT )
 {
-  QTreeWidgetItem * obj = (QTreeWidgetItem *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTreeWidgetItem * obj = (QTreeWidgetItem *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(2) && ISNUM(1) && ISCHAR(2) )
+    if( ISNUMPAR(2) && HB_ISNUM(1) && HB_ISCHAR(2) )
     {
 #endif
-      obj->setText ( PINT(1), PQSTRING(2) );
+      obj->setText( PINT(1), PQSTRING(2) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -1327,19 +1317,19 @@ HB_FUNC_STATIC( QTREEWIDGETITEM_SETTEXT )
 }
 
 /*
-void setTextAlignment(int column, int alignment)
+void setTextAlignment( int column, int alignment )
 */
 HB_FUNC_STATIC( QTREEWIDGETITEM_SETTEXTALIGNMENT )
 {
-  QTreeWidgetItem * obj = (QTreeWidgetItem *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTreeWidgetItem * obj = (QTreeWidgetItem *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(2) && ISNUM(1) && ISNUM(2) )
+    if( ISNUMPAR(2) && HB_ISNUM(1) && HB_ISNUM(2) )
     {
 #endif
-      obj->setTextAlignment ( PINT(1), PINT(2) );
+      obj->setTextAlignment( PINT(1), PINT(2) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -1353,19 +1343,19 @@ HB_FUNC_STATIC( QTREEWIDGETITEM_SETTEXTALIGNMENT )
 }
 
 /*
-void setToolTip(int column, const QString & toolTip)
+void setToolTip( int column, const QString & toolTip )
 */
 HB_FUNC_STATIC( QTREEWIDGETITEM_SETTOOLTIP )
 {
-  QTreeWidgetItem * obj = (QTreeWidgetItem *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTreeWidgetItem * obj = (QTreeWidgetItem *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(2) && ISNUM(1) && ISCHAR(2) )
+    if( ISNUMPAR(2) && HB_ISNUM(1) && HB_ISCHAR(2) )
     {
 #endif
-      obj->setToolTip ( PINT(1), PQSTRING(2) );
+      obj->setToolTip( PINT(1), PQSTRING(2) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -1379,19 +1369,19 @@ HB_FUNC_STATIC( QTREEWIDGETITEM_SETTOOLTIP )
 }
 
 /*
-void setWhatsThis(int column, const QString & whatsThis)
+void setWhatsThis( int column, const QString & whatsThis )
 */
 HB_FUNC_STATIC( QTREEWIDGETITEM_SETWHATSTHIS )
 {
-  QTreeWidgetItem * obj = (QTreeWidgetItem *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTreeWidgetItem * obj = (QTreeWidgetItem *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(2) && ISNUM(1) && ISCHAR(2) )
+    if( ISNUMPAR(2) && HB_ISNUM(1) && HB_ISCHAR(2) )
     {
 #endif
-      obj->setWhatsThis ( PINT(1), PQSTRING(2) );
+      obj->setWhatsThis( PINT(1), PQSTRING(2) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -1405,20 +1395,20 @@ HB_FUNC_STATIC( QTREEWIDGETITEM_SETWHATSTHIS )
 }
 
 /*
-QSize sizeHint(int column) const
+QSize sizeHint( int column ) const
 */
 HB_FUNC_STATIC( QTREEWIDGETITEM_SIZEHINT )
 {
-  QTreeWidgetItem * obj = (QTreeWidgetItem *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTreeWidgetItem * obj = (QTreeWidgetItem *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      QSize * ptr = new QSize( obj->sizeHint ( PINT(1) ) );
-      _qt5xhb_createReturnClass ( ptr, "QSIZE", true );
+      QSize * ptr = new QSize( obj->sizeHint( PINT(1) ) );
+      Qt5xHb::createReturnClass( ptr, "QSIZE", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -1430,19 +1420,19 @@ HB_FUNC_STATIC( QTREEWIDGETITEM_SIZEHINT )
 }
 
 /*
-void sortChildren(int column, Qt::SortOrder order)
+void sortChildren( int column, Qt::SortOrder order )
 */
 HB_FUNC_STATIC( QTREEWIDGETITEM_SORTCHILDREN )
 {
-  QTreeWidgetItem * obj = (QTreeWidgetItem *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTreeWidgetItem * obj = (QTreeWidgetItem *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(2) && ISNUM(1) && ISNUM(2) )
+    if( ISNUMPAR(2) && HB_ISNUM(1) && HB_ISNUM(2) )
     {
 #endif
-      obj->sortChildren ( PINT(1), (Qt::SortOrder) hb_parni(2) );
+      obj->sortChildren( PINT(1), (Qt::SortOrder) hb_parni(2) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -1456,19 +1446,19 @@ HB_FUNC_STATIC( QTREEWIDGETITEM_SORTCHILDREN )
 }
 
 /*
-QString statusTip(int column) const
+QString statusTip( int column ) const
 */
 HB_FUNC_STATIC( QTREEWIDGETITEM_STATUSTIP )
 {
-  QTreeWidgetItem * obj = (QTreeWidgetItem *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTreeWidgetItem * obj = (QTreeWidgetItem *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      RQSTRING( obj->statusTip ( PINT(1) ) );
+      RQSTRING( obj->statusTip( PINT(1) ) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -1480,20 +1470,20 @@ HB_FUNC_STATIC( QTREEWIDGETITEM_STATUSTIP )
 }
 
 /*
-QTreeWidgetItem * takeChild(int index)
+QTreeWidgetItem * takeChild( int index )
 */
 HB_FUNC_STATIC( QTREEWIDGETITEM_TAKECHILD )
 {
-  QTreeWidgetItem * obj = (QTreeWidgetItem *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTreeWidgetItem * obj = (QTreeWidgetItem *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      QTreeWidgetItem * ptr = obj->takeChild ( PINT(1) );
-      _qt5xhb_createReturnClass ( ptr, "QTREEWIDGETITEM", false );
+      QTreeWidgetItem * ptr = obj->takeChild( PINT(1) );
+      Qt5xHb::createReturnClass( ptr, "QTREEWIDGETITEM", false );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -1509,7 +1499,7 @@ QList<QTreeWidgetItem *> takeChildren()
 */
 HB_FUNC_STATIC( QTREEWIDGETITEM_TAKECHILDREN )
 {
-  QTreeWidgetItem * obj = (QTreeWidgetItem *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTreeWidgetItem * obj = (QTreeWidgetItem *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -1517,13 +1507,12 @@ HB_FUNC_STATIC( QTREEWIDGETITEM_TAKECHILDREN )
     if( ISNUMPAR(0) )
     {
 #endif
-      QList<QTreeWidgetItem *> list = obj->takeChildren ();
+      QList<QTreeWidgetItem *> list = obj->takeChildren();
       PHB_DYNS pDynSym = hb_dynsymFindName( "QTREEWIDGETITEM" );
       PHB_ITEM pArray = hb_itemArrayNew(0);
-      int i;
-      for(i=0;i<list.count();i++)
+      if( pDynSym )
       {
-        if( pDynSym )
+        for( int i = 0; i < list.count(); i++ )
         {
           hb_vmPushDynSym( pDynSym );
           hb_vmPushNil();
@@ -1537,10 +1526,10 @@ HB_FUNC_STATIC( QTREEWIDGETITEM_TAKECHILDREN )
           hb_arrayAddForward( pArray, pObject );
           hb_itemRelease( pObject );
         }
-        else
-        {
-          hb_errRT_BASE( EG_NOFUNC, 1001, NULL, "QTREEWIDGETITEM", HB_ERR_ARGS_BASEPARAMS );
-        }
+      }
+      else
+      {
+        hb_errRT_BASE( EG_NOFUNC, 1001, NULL, "QTREEWIDGETITEM", HB_ERR_ARGS_BASEPARAMS );
       }
       hb_itemReturnRelease(pArray);
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
@@ -1554,19 +1543,19 @@ HB_FUNC_STATIC( QTREEWIDGETITEM_TAKECHILDREN )
 }
 
 /*
-QString text(int column) const
+QString text( int column ) const
 */
 HB_FUNC_STATIC( QTREEWIDGETITEM_TEXT )
 {
-  QTreeWidgetItem * obj = (QTreeWidgetItem *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTreeWidgetItem * obj = (QTreeWidgetItem *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      RQSTRING( obj->text ( PINT(1) ) );
+      RQSTRING( obj->text( PINT(1) ) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -1578,19 +1567,19 @@ HB_FUNC_STATIC( QTREEWIDGETITEM_TEXT )
 }
 
 /*
-int textAlignment(int column) const
+int textAlignment( int column ) const
 */
 HB_FUNC_STATIC( QTREEWIDGETITEM_TEXTALIGNMENT )
 {
-  QTreeWidgetItem * obj = (QTreeWidgetItem *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTreeWidgetItem * obj = (QTreeWidgetItem *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      RINT( obj->textAlignment ( PINT(1) ) );
+      RINT( obj->textAlignment( PINT(1) ) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -1602,19 +1591,19 @@ HB_FUNC_STATIC( QTREEWIDGETITEM_TEXTALIGNMENT )
 }
 
 /*
-QString toolTip(int column) const
+QString toolTip( int column ) const
 */
 HB_FUNC_STATIC( QTREEWIDGETITEM_TOOLTIP )
 {
-  QTreeWidgetItem * obj = (QTreeWidgetItem *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTreeWidgetItem * obj = (QTreeWidgetItem *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      RQSTRING( obj->toolTip ( PINT(1) ) );
+      RQSTRING( obj->toolTip( PINT(1) ) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -1630,7 +1619,7 @@ QTreeWidget * treeWidget() const
 */
 HB_FUNC_STATIC( QTREEWIDGETITEM_TREEWIDGET )
 {
-  QTreeWidgetItem * obj = (QTreeWidgetItem *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTreeWidgetItem * obj = (QTreeWidgetItem *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -1638,8 +1627,8 @@ HB_FUNC_STATIC( QTREEWIDGETITEM_TREEWIDGET )
     if( ISNUMPAR(0) )
     {
 #endif
-      QTreeWidget * ptr = obj->treeWidget ();
-      _qt5xhb_createReturnQWidgetClass ( ptr, "QTREEWIDGET" );
+      QTreeWidget * ptr = obj->treeWidget();
+      Qt5xHb::createReturnQWidgetClass( ptr, "QTREEWIDGET" );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -1655,7 +1644,7 @@ int type() const
 */
 HB_FUNC_STATIC( QTREEWIDGETITEM_TYPE )
 {
-  QTreeWidgetItem * obj = (QTreeWidgetItem *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTreeWidgetItem * obj = (QTreeWidgetItem *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -1663,7 +1652,7 @@ HB_FUNC_STATIC( QTREEWIDGETITEM_TYPE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RINT( obj->type () );
+      RINT( obj->type() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -1675,19 +1664,19 @@ HB_FUNC_STATIC( QTREEWIDGETITEM_TYPE )
 }
 
 /*
-QString whatsThis(int column) const
+QString whatsThis( int column ) const
 */
 HB_FUNC_STATIC( QTREEWIDGETITEM_WHATSTHIS )
 {
-  QTreeWidgetItem * obj = (QTreeWidgetItem *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTreeWidgetItem * obj = (QTreeWidgetItem *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      RQSTRING( obj->whatsThis ( PINT(1) ) );
+      RQSTRING( obj->whatsThis( PINT(1) ) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -1699,11 +1688,11 @@ HB_FUNC_STATIC( QTREEWIDGETITEM_WHATSTHIS )
 }
 
 /*
-virtual void write(QDataStream & out) const
+virtual void write( QDataStream & out ) const
 */
 HB_FUNC_STATIC( QTREEWIDGETITEM_WRITE )
 {
-  QTreeWidgetItem * obj = (QTreeWidgetItem *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTreeWidgetItem * obj = (QTreeWidgetItem *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -1711,7 +1700,7 @@ HB_FUNC_STATIC( QTREEWIDGETITEM_WRITE )
     if( ISNUMPAR(1) && ISQDATASTREAM(1) )
     {
 #endif
-      obj->write ( *PQDATASTREAM(1) );
+      obj->write( *PQDATASTREAM(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -1725,20 +1714,20 @@ HB_FUNC_STATIC( QTREEWIDGETITEM_WRITE )
 }
 
 /*
-QColor backgroundColor(int column) const
+QColor backgroundColor( int column ) const
 */
 HB_FUNC_STATIC( QTREEWIDGETITEM_BACKGROUNDCOLOR )
 {
-  QTreeWidgetItem * obj = (QTreeWidgetItem *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTreeWidgetItem * obj = (QTreeWidgetItem *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      QColor * ptr = new QColor( obj->backgroundColor ( PINT(1) ) );
-      _qt5xhb_createReturnClass ( ptr, "QCOLOR", true );
+      QColor * ptr = new QColor( obj->backgroundColor( PINT(1) ) );
+      Qt5xHb::createReturnClass( ptr, "QCOLOR", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -1750,19 +1739,19 @@ HB_FUNC_STATIC( QTREEWIDGETITEM_BACKGROUNDCOLOR )
 }
 
 /*
-void setBackgroundColor(int column, const QColor &color)
+void setBackgroundColor( int column, const QColor & color )
 */
 HB_FUNC_STATIC( QTREEWIDGETITEM_SETBACKGROUNDCOLOR )
 {
-  QTreeWidgetItem * obj = (QTreeWidgetItem *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTreeWidgetItem * obj = (QTreeWidgetItem *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(2) && ISNUM(1) && (ISQCOLOR(2)||ISCHAR(2)) )
+    if( ISNUMPAR(2) && HB_ISNUM(1) && (ISQCOLOR(2)||HB_ISCHAR(2)) )
     {
 #endif
-      obj->setBackgroundColor ( PINT(1), ISOBJECT(2)? *(QColor *) _qt5xhb_itemGetPtr(2) : QColor(hb_parc(2)) );
+      obj->setBackgroundColor( PINT(1), HB_ISOBJECT(2)? *(QColor *) Qt5xHb::itemGetPtr(2) : QColor(hb_parc(2)) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -1776,20 +1765,20 @@ HB_FUNC_STATIC( QTREEWIDGETITEM_SETBACKGROUNDCOLOR )
 }
 
 /*
-QColor textColor(int column) const
+QColor textColor( int column ) const
 */
 HB_FUNC_STATIC( QTREEWIDGETITEM_TEXTCOLOR )
 {
-  QTreeWidgetItem * obj = (QTreeWidgetItem *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTreeWidgetItem * obj = (QTreeWidgetItem *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      QColor * ptr = new QColor( obj->textColor ( PINT(1) ) );
-      _qt5xhb_createReturnClass ( ptr, "QCOLOR", true );
+      QColor * ptr = new QColor( obj->textColor( PINT(1) ) );
+      Qt5xHb::createReturnClass( ptr, "QCOLOR", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -1801,19 +1790,19 @@ HB_FUNC_STATIC( QTREEWIDGETITEM_TEXTCOLOR )
 }
 
 /*
-void setTextColor(int column, const QColor &color)
+void setTextColor( int column, const QColor & color )
 */
 HB_FUNC_STATIC( QTREEWIDGETITEM_SETTEXTCOLOR )
 {
-  QTreeWidgetItem * obj = (QTreeWidgetItem *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTreeWidgetItem * obj = (QTreeWidgetItem *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(2) && ISNUM(1) && (ISQCOLOR(2)||ISCHAR(2)) )
+    if( ISNUMPAR(2) && HB_ISNUM(1) && (ISQCOLOR(2)||HB_ISCHAR(2)) )
     {
 #endif
-      obj->setTextColor ( PINT(1), ISOBJECT(2)? *(QColor *) _qt5xhb_itemGetPtr(2) : QColor(hb_parc(2)) );
+      obj->setTextColor( PINT(1), HB_ISOBJECT(2)? *(QColor *) Qt5xHb::itemGetPtr(2) : QColor(hb_parc(2)) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -1830,7 +1819,7 @@ HB_FUNC_STATIC( QTREEWIDGETITEM_NEWFROM )
 {
   PHB_ITEM self = hb_stackSelfItem();
 
-  if( hb_pcount() == 1 && ISOBJECT(1) )
+  if( hb_pcount() == 1 && HB_ISOBJECT(1) )
   {
     PHB_ITEM ptr = hb_itemPutPtr( NULL, (void *) hb_itemGetPtr( hb_objSendMsg( hb_param(1, HB_IT_OBJECT ), "POINTER", 0 ) ) );
     hb_objSendMsg( self, "_pointer", 1, ptr );
@@ -1839,7 +1828,7 @@ HB_FUNC_STATIC( QTREEWIDGETITEM_NEWFROM )
     hb_objSendMsg( self, "_self_destruction", 1, des );
     hb_itemRelease( des );
   }
-  else if( hb_pcount() == 1 && ISPOINTER(1) )
+  else if( hb_pcount() == 1 && HB_ISPOINTER(1) )
   {
     PHB_ITEM ptr = hb_itemPutPtr( NULL, (void *) hb_itemGetPtr( hb_param(1, HB_IT_POINTER ) ) );
     hb_objSendMsg( self, "_pointer", 1, ptr );
@@ -1875,7 +1864,7 @@ HB_FUNC_STATIC( QTREEWIDGETITEM_SETSELFDESTRUCTION )
 {
   PHB_ITEM self = hb_stackSelfItem();
 
-  if( hb_pcount() == 1 && ISLOG(1) )
+  if( hb_pcount() == 1 && HB_ISLOG(1) )
   {
     PHB_ITEM des = hb_itemPutL( NULL, hb_parl(1) );
     hb_objSendMsg( self, "_self_destruction", 1, des );

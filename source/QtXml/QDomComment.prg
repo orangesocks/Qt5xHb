@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -25,7 +25,7 @@ CLASS QDomComment INHERIT QDomCharacterData
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QDomComment
+PROCEDURE destroyObject() CLASS QDomComment
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -48,25 +48,22 @@ RETURN
 #endif
 
 /*
-QDomComment ()
+QDomComment()
 */
-void QDomComment_new1 ()
+void QDomComment_new1()
 {
-  QDomComment * o = new QDomComment ();
-  _qt5xhb_returnNewObject( o, true );
+  QDomComment * obj = new QDomComment();
+  Qt5xHb::returnNewObject( obj, true );
 }
 
 /*
-QDomComment ( const QDomComment & x )
+QDomComment( const QDomComment & x )
 */
-void QDomComment_new2 ()
+void QDomComment_new2()
 {
-  QDomComment * o = new QDomComment ( *PQDOMCOMMENT(1) );
-  _qt5xhb_returnNewObject( o, true );
+  QDomComment * obj = new QDomComment( *PQDOMCOMMENT(1) );
+  Qt5xHb::returnNewObject( obj, true );
 }
-
-//[1]QDomComment ()
-//[2]QDomComment ( const QDomComment & x )
 
 HB_FUNC_STATIC( QDOMCOMMENT_NEW )
 {
@@ -86,7 +83,7 @@ HB_FUNC_STATIC( QDOMCOMMENT_NEW )
 
 HB_FUNC_STATIC( QDOMCOMMENT_DELETE )
 {
-  QDomComment * obj = (QDomComment *) _qt5xhb_itemGetPtrStackSelfItem();
+  QDomComment * obj = (QDomComment *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -102,11 +99,11 @@ HB_FUNC_STATIC( QDOMCOMMENT_DELETE )
 }
 
 /*
-QDomNode::NodeType nodeType () cons
+QDomNode::NodeType nodeType() cons
 */
 HB_FUNC_STATIC( QDOMCOMMENT_NODETYPE )
 {
-  QDomComment * obj = (QDomComment *) _qt5xhb_itemGetPtrStackSelfItem();
+  QDomComment * obj = (QDomComment *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -114,7 +111,7 @@ HB_FUNC_STATIC( QDOMCOMMENT_NODETYPE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RENUM( obj->nodeType () );
+      RENUM( obj->nodeType() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else

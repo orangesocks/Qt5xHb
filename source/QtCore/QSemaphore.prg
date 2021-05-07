@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -37,7 +37,7 @@ CLASS QSemaphore
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QSemaphore
+PROCEDURE destroyObject() CLASS QSemaphore
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -60,14 +60,14 @@ RETURN
 #endif
 
 /*
-QSemaphore(int n = 0)
+QSemaphore( int n = 0 )
 */
 HB_FUNC_STATIC( QSEMAPHORE_NEW )
 {
-  if( ISBETWEEN(0,1) && ISOPTNUM(1) )
+  if( ISBETWEEN(0,1) && (HB_ISNUM(1)||HB_ISNIL(1)) )
   {
-    QSemaphore * o = new QSemaphore ( OPINT(1,0) );
-    _qt5xhb_returnNewObject( o, true );
+    QSemaphore * obj = new QSemaphore( OPINT(1,0) );
+    Qt5xHb::returnNewObject( obj, true );
   }
   else
   {
@@ -77,7 +77,7 @@ HB_FUNC_STATIC( QSEMAPHORE_NEW )
 
 HB_FUNC_STATIC( QSEMAPHORE_DELETE )
 {
-  QSemaphore * obj = (QSemaphore *) _qt5xhb_itemGetPtrStackSelfItem();
+  QSemaphore * obj = (QSemaphore *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -93,19 +93,19 @@ HB_FUNC_STATIC( QSEMAPHORE_DELETE )
 }
 
 /*
-void acquire(int n = 1)
+void acquire( int n = 1 )
 */
 HB_FUNC_STATIC( QSEMAPHORE_ACQUIRE )
 {
-  QSemaphore * obj = (QSemaphore *) _qt5xhb_itemGetPtrStackSelfItem();
+  QSemaphore * obj = (QSemaphore *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISBETWEEN(0,1) && ISOPTNUM(1) )
+    if( ISBETWEEN(0,1) && (HB_ISNUM(1)||HB_ISNIL(1)) )
     {
 #endif
-      obj->acquire ( OPINT(1,1) );
+      obj->acquire( OPINT(1,1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -119,41 +119,38 @@ HB_FUNC_STATIC( QSEMAPHORE_ACQUIRE )
 }
 
 /*
-bool tryAcquire(int n = 1)
+bool tryAcquire( int n = 1 )
 */
-void QSemaphore_tryAcquire1 ()
+void QSemaphore_tryAcquire1()
 {
-  QSemaphore * obj = (QSemaphore *) _qt5xhb_itemGetPtrStackSelfItem();
+  QSemaphore * obj = (QSemaphore *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
-      RBOOL( obj->tryAcquire ( OPINT(1,1) ) );
+    RBOOL( obj->tryAcquire( OPINT(1,1) ) );
   }
 }
 
 /*
-bool tryAcquire(int n, int timeout)
+bool tryAcquire( int n, int timeout )
 */
-void QSemaphore_tryAcquire2 ()
+void QSemaphore_tryAcquire2()
 {
-  QSemaphore * obj = (QSemaphore *) _qt5xhb_itemGetPtrStackSelfItem();
+  QSemaphore * obj = (QSemaphore *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
-      RBOOL( obj->tryAcquire ( PINT(1), PINT(2) ) );
+    RBOOL( obj->tryAcquire( PINT(1), PINT(2) ) );
   }
 }
 
-//[1]bool tryAcquire(int n = 1)
-//[2]bool tryAcquire(int n, int timeout)
-
 HB_FUNC_STATIC( QSEMAPHORE_TRYACQUIRE )
 {
-  if( ISBETWEEN(0,1) && ISOPTNUM(1) )
+  if( ISBETWEEN(0,1) && ( HB_ISNUM(1)||HB_ISNIL(1)) )
   {
     QSemaphore_tryAcquire1();
   }
-  else if( ISNUMPAR(2) && ISNUM(1) && ISNUM(2) )
+  else if( ISNUMPAR(2) && HB_ISNUM(1) && HB_ISNUM(2) )
   {
     QSemaphore_tryAcquire2();
   }
@@ -164,19 +161,19 @@ HB_FUNC_STATIC( QSEMAPHORE_TRYACQUIRE )
 }
 
 /*
-void release(int n = 1)
+void release( int n = 1 )
 */
 HB_FUNC_STATIC( QSEMAPHORE_RELEASE )
 {
-  QSemaphore * obj = (QSemaphore *) _qt5xhb_itemGetPtrStackSelfItem();
+  QSemaphore * obj = (QSemaphore *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISBETWEEN(0,1) && ISOPTNUM(1) )
+    if( ISBETWEEN(0,1) && (HB_ISNUM(1)||HB_ISNIL(1)) )
     {
 #endif
-      obj->release ( OPINT(1,1) );
+      obj->release( OPINT(1,1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -194,7 +191,7 @@ int available() const
 */
 HB_FUNC_STATIC( QSEMAPHORE_AVAILABLE )
 {
-  QSemaphore * obj = (QSemaphore *) _qt5xhb_itemGetPtrStackSelfItem();
+  QSemaphore * obj = (QSemaphore *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -202,7 +199,7 @@ HB_FUNC_STATIC( QSEMAPHORE_AVAILABLE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RINT( obj->available () );
+      RINT( obj->available() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -217,7 +214,7 @@ HB_FUNC_STATIC( QSEMAPHORE_NEWFROM )
 {
   PHB_ITEM self = hb_stackSelfItem();
 
-  if( hb_pcount() == 1 && ISOBJECT(1) )
+  if( hb_pcount() == 1 && HB_ISOBJECT(1) )
   {
     PHB_ITEM ptr = hb_itemPutPtr( NULL, (void *) hb_itemGetPtr( hb_objSendMsg( hb_param(1, HB_IT_OBJECT ), "POINTER", 0 ) ) );
     hb_objSendMsg( self, "_pointer", 1, ptr );
@@ -226,7 +223,7 @@ HB_FUNC_STATIC( QSEMAPHORE_NEWFROM )
     hb_objSendMsg( self, "_self_destruction", 1, des );
     hb_itemRelease( des );
   }
-  else if( hb_pcount() == 1 && ISPOINTER(1) )
+  else if( hb_pcount() == 1 && HB_ISPOINTER(1) )
   {
     PHB_ITEM ptr = hb_itemPutPtr( NULL, (void *) hb_itemGetPtr( hb_param(1, HB_IT_POINTER ) ) );
     hb_objSendMsg( self, "_pointer", 1, ptr );
@@ -262,7 +259,7 @@ HB_FUNC_STATIC( QSEMAPHORE_SETSELFDESTRUCTION )
 {
   PHB_ITEM self = hb_stackSelfItem();
 
-  if( hb_pcount() == 1 && ISLOG(1) )
+  if( hb_pcount() == 1 && HB_ISLOG(1) )
   {
     PHB_ITEM des = hb_itemPutL( NULL, hb_parl(1) );
     hb_objSendMsg( self, "_self_destruction", 1, des );

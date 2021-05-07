@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -28,7 +28,7 @@ CLASS QScrollEvent INHERIT QEvent
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QScrollEvent
+PROCEDURE destroyObject() CLASS QScrollEvent
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -51,14 +51,14 @@ RETURN
 #endif
 
 /*
-QScrollEvent(const QPointF &contentPos, const QPointF &overshoot, ScrollState scrollState)
+QScrollEvent( const QPointF & contentPos, const QPointF & overshoot, QScrollEvent::ScrollState scrollState )
 */
 HB_FUNC_STATIC( QSCROLLEVENT_NEW )
 {
-  if( ISNUMPAR(3) && ISQPOINTF(1) && ISQPOINTF(2) && ISNUM(3) )
+  if( ISNUMPAR(3) && ISQPOINTF(1) && ISQPOINTF(2) && HB_ISNUM(3) )
   {
-    QScrollEvent * o = new QScrollEvent ( *PQPOINTF(1), *PQPOINTF(2), (QScrollEvent::ScrollState) hb_parni(3) );
-    _qt5xhb_returnNewObject( o, false );
+    QScrollEvent * obj = new QScrollEvent( *PQPOINTF(1), *PQPOINTF(2), (QScrollEvent::ScrollState) hb_parni(3) );
+    Qt5xHb::returnNewObject( obj, false );
   }
   else
   {
@@ -68,7 +68,7 @@ HB_FUNC_STATIC( QSCROLLEVENT_NEW )
 
 HB_FUNC_STATIC( QSCROLLEVENT_DELETE )
 {
-  QScrollEvent * obj = (QScrollEvent *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScrollEvent * obj = (QScrollEvent *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -88,7 +88,7 @@ QPointF contentPos() const
 */
 HB_FUNC_STATIC( QSCROLLEVENT_CONTENTPOS )
 {
-  QScrollEvent * obj = (QScrollEvent *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScrollEvent * obj = (QScrollEvent *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -96,8 +96,8 @@ HB_FUNC_STATIC( QSCROLLEVENT_CONTENTPOS )
     if( ISNUMPAR(0) )
     {
 #endif
-      QPointF * ptr = new QPointF( obj->contentPos () );
-      _qt5xhb_createReturnClass ( ptr, "QPOINTF", true );
+      QPointF * ptr = new QPointF( obj->contentPos() );
+      Qt5xHb::createReturnClass( ptr, "QPOINTF", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -113,7 +113,7 @@ QPointF overshootDistance() const
 */
 HB_FUNC_STATIC( QSCROLLEVENT_OVERSHOOTDISTANCE )
 {
-  QScrollEvent * obj = (QScrollEvent *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScrollEvent * obj = (QScrollEvent *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -121,8 +121,8 @@ HB_FUNC_STATIC( QSCROLLEVENT_OVERSHOOTDISTANCE )
     if( ISNUMPAR(0) )
     {
 #endif
-      QPointF * ptr = new QPointF( obj->overshootDistance () );
-      _qt5xhb_createReturnClass ( ptr, "QPOINTF", true );
+      QPointF * ptr = new QPointF( obj->overshootDistance() );
+      Qt5xHb::createReturnClass( ptr, "QPOINTF", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -134,11 +134,11 @@ HB_FUNC_STATIC( QSCROLLEVENT_OVERSHOOTDISTANCE )
 }
 
 /*
-ScrollState scrollState() const
+QScrollEvent::ScrollState scrollState() const
 */
 HB_FUNC_STATIC( QSCROLLEVENT_SCROLLSTATE )
 {
-  QScrollEvent * obj = (QScrollEvent *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScrollEvent * obj = (QScrollEvent *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -146,7 +146,7 @@ HB_FUNC_STATIC( QSCROLLEVENT_SCROLLSTATE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RENUM( obj->scrollState () );
+      RENUM( obj->scrollState() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else

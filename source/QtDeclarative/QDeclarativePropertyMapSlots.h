@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -21,13 +21,14 @@
 
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
+#include "qt5xhb_utils.h"
 #include "qt5xhb_signals.h"
 
 class QDeclarativePropertyMapSlots: public QObject
 {
   Q_OBJECT
   public:
-  QDeclarativePropertyMapSlots(QObject *parent = 0);
+  QDeclarativePropertyMapSlots( QObject *parent = 0 );
   ~QDeclarativePropertyMapSlots();
   public slots:
   void valueChanged( const QString & key, const QVariant & value );

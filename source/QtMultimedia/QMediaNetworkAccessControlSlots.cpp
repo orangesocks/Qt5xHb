@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -12,30 +12,35 @@
 
 #include "QMediaNetworkAccessControlSlots.h"
 
-QMediaNetworkAccessControlSlots::QMediaNetworkAccessControlSlots(QObject *parent) : QObject(parent)
+QMediaNetworkAccessControlSlots::QMediaNetworkAccessControlSlots( QObject *parent ) : QObject( parent )
 {
 }
 
 QMediaNetworkAccessControlSlots::~QMediaNetworkAccessControlSlots()
 {
 }
+
 void QMediaNetworkAccessControlSlots::configurationChanged( const QNetworkConfiguration & configuration )
 {
   QObject *object = qobject_cast<QObject *>(sender());
-  PHB_ITEM cb = Signals_return_codeblock( object, "configurationChanged(QNetworkConfiguration)" );
+
+  PHB_ITEM cb = Qt5xHb::Signals_return_codeblock( object, "configurationChanged(QNetworkConfiguration)" );
+
   if( cb )
   {
-    PHB_ITEM psender = Signals_return_qobject ( (QObject *) object, "QMEDIANETWORKACCESSCONTROL" );
-    PHB_ITEM pconfiguration = Signals_return_object( (void *) &configuration, "QNETWORKCONFIGURATION" );
-    hb_vmEvalBlockV( (PHB_ITEM) cb, 2, psender, pconfiguration );
+    PHB_ITEM psender = Qt5xHb::Signals_return_qobject( (QObject *) object, "QMEDIANETWORKACCESSCONTROL" );
+    PHB_ITEM pconfiguration = Qt5xHb::Signals_return_object( (void *) &configuration, "QNETWORKCONFIGURATION" );
+
+    hb_vmEvalBlockV( cb, 2, psender, pconfiguration );
+
     hb_itemRelease( psender );
     hb_itemRelease( pconfiguration );
   }
 }
 
-void QMediaNetworkAccessControlSlots_connect_signal ( const QString & signal, const QString & slot )
+void QMediaNetworkAccessControlSlots_connect_signal( const QString & signal, const QString & slot )
 {
-  QMediaNetworkAccessControl * obj = (QMediaNetworkAccessControl *) hb_itemGetPtr( hb_objSendMsg( hb_stackSelfItem(), "POINTER", 0 ) );
+  QMediaNetworkAccessControl * obj = (QMediaNetworkAccessControl *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -48,7 +53,7 @@ void QMediaNetworkAccessControlSlots_connect_signal ( const QString & signal, co
       s->setParent( QCoreApplication::instance() );
     }
 
-    hb_retl( Signals_connection_disconnection( s, signal, slot ) );
+    hb_retl( Qt5xHb::Signals_connection_disconnection( s, signal, slot ) );
   }
   else
   {

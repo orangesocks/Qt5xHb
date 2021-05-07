@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -34,7 +34,7 @@ CLASS QDial INHERIT QAbstractSlider
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QDial
+PROCEDURE destroyObject() CLASS QDial
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -51,20 +51,22 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #include <QtWidgets/QDial>
 #endif
 
 /*
-QDial ( QWidget * parent = 0 )
+QDial( QWidget * parent = 0 )
 */
 HB_FUNC_STATIC( QDIAL_NEW )
 {
-  if( ISBETWEEN(0,1) && (ISQWIDGET(1)||ISNIL(1)) )
+  if( ISBETWEEN(0,1) && (ISQWIDGET(1)||HB_ISNIL(1)) )
   {
-    QDial * o = new QDial ( OPQWIDGET(1,0) );
-    _qt5xhb_returnNewObject( o, false );
+    QDial * obj = new QDial( OPQWIDGET(1,0) );
+    Qt5xHb::returnNewObject( obj, false );
   }
   else
   {
@@ -74,10 +76,12 @@ HB_FUNC_STATIC( QDIAL_NEW )
 
 HB_FUNC_STATIC( QDIAL_DELETE )
 {
-  QDial * obj = (QDial *) _qt5xhb_itemGetPtrStackSelfItem();
+  QDial * obj = (QDial *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -90,11 +94,11 @@ HB_FUNC_STATIC( QDIAL_DELETE )
 }
 
 /*
-int notchSize () const
+int notchSize() const
 */
 HB_FUNC_STATIC( QDIAL_NOTCHSIZE )
 {
-  QDial * obj = (QDial *) _qt5xhb_itemGetPtrStackSelfItem();
+  QDial * obj = (QDial *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -102,7 +106,7 @@ HB_FUNC_STATIC( QDIAL_NOTCHSIZE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RINT( obj->notchSize () );
+      RINT( obj->notchSize() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -114,11 +118,11 @@ HB_FUNC_STATIC( QDIAL_NOTCHSIZE )
 }
 
 /*
-qreal notchTarget () const
+qreal notchTarget() const
 */
 HB_FUNC_STATIC( QDIAL_NOTCHTARGET )
 {
-  QDial * obj = (QDial *) _qt5xhb_itemGetPtrStackSelfItem();
+  QDial * obj = (QDial *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -126,7 +130,7 @@ HB_FUNC_STATIC( QDIAL_NOTCHTARGET )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQREAL( obj->notchTarget () );
+      RQREAL( obj->notchTarget() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -138,11 +142,11 @@ HB_FUNC_STATIC( QDIAL_NOTCHTARGET )
 }
 
 /*
-bool notchesVisible () const
+bool notchesVisible() const
 */
 HB_FUNC_STATIC( QDIAL_NOTCHESVISIBLE )
 {
-  QDial * obj = (QDial *) _qt5xhb_itemGetPtrStackSelfItem();
+  QDial * obj = (QDial *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -150,7 +154,7 @@ HB_FUNC_STATIC( QDIAL_NOTCHESVISIBLE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->notchesVisible () );
+      RBOOL( obj->notchesVisible() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -162,19 +166,19 @@ HB_FUNC_STATIC( QDIAL_NOTCHESVISIBLE )
 }
 
 /*
-void setNotchTarget ( double target )
+void setNotchTarget( double target )
 */
 HB_FUNC_STATIC( QDIAL_SETNOTCHTARGET )
 {
-  QDial * obj = (QDial *) _qt5xhb_itemGetPtrStackSelfItem();
+  QDial * obj = (QDial *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setNotchTarget ( PDOUBLE(1) );
+      obj->setNotchTarget( PDOUBLE(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -188,11 +192,11 @@ HB_FUNC_STATIC( QDIAL_SETNOTCHTARGET )
 }
 
 /*
-bool wrapping () const
+bool wrapping() const
 */
 HB_FUNC_STATIC( QDIAL_WRAPPING )
 {
-  QDial * obj = (QDial *) _qt5xhb_itemGetPtrStackSelfItem();
+  QDial * obj = (QDial *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -200,7 +204,7 @@ HB_FUNC_STATIC( QDIAL_WRAPPING )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->wrapping () );
+      RBOOL( obj->wrapping() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -212,11 +216,11 @@ HB_FUNC_STATIC( QDIAL_WRAPPING )
 }
 
 /*
-virtual QSize minimumSizeHint () const
+virtual QSize minimumSizeHint() const
 */
 HB_FUNC_STATIC( QDIAL_MINIMUMSIZEHINT )
 {
-  QDial * obj = (QDial *) _qt5xhb_itemGetPtrStackSelfItem();
+  QDial * obj = (QDial *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -224,8 +228,8 @@ HB_FUNC_STATIC( QDIAL_MINIMUMSIZEHINT )
     if( ISNUMPAR(0) )
     {
 #endif
-      QSize * ptr = new QSize( obj->minimumSizeHint () );
-      _qt5xhb_createReturnClass ( ptr, "QSIZE", true );
+      QSize * ptr = new QSize( obj->minimumSizeHint() );
+      Qt5xHb::createReturnClass( ptr, "QSIZE", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -237,11 +241,11 @@ HB_FUNC_STATIC( QDIAL_MINIMUMSIZEHINT )
 }
 
 /*
-virtual QSize sizeHint () const
+virtual QSize sizeHint() const
 */
 HB_FUNC_STATIC( QDIAL_SIZEHINT )
 {
-  QDial * obj = (QDial *) _qt5xhb_itemGetPtrStackSelfItem();
+  QDial * obj = (QDial *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -249,8 +253,8 @@ HB_FUNC_STATIC( QDIAL_SIZEHINT )
     if( ISNUMPAR(0) )
     {
 #endif
-      QSize * ptr = new QSize( obj->sizeHint () );
-      _qt5xhb_createReturnClass ( ptr, "QSIZE", true );
+      QSize * ptr = new QSize( obj->sizeHint() );
+      Qt5xHb::createReturnClass( ptr, "QSIZE", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -262,19 +266,19 @@ HB_FUNC_STATIC( QDIAL_SIZEHINT )
 }
 
 /*
-void setNotchesVisible ( bool visible )
+void setNotchesVisible( bool visible )
 */
 HB_FUNC_STATIC( QDIAL_SETNOTCHESVISIBLE )
 {
-  QDial * obj = (QDial *) _qt5xhb_itemGetPtrStackSelfItem();
+  QDial * obj = (QDial *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISLOG(1) )
+    if( ISNUMPAR(1) && HB_ISLOG(1) )
     {
 #endif
-      obj->setNotchesVisible ( PBOOL(1) );
+      obj->setNotchesVisible( PBOOL(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -288,19 +292,19 @@ HB_FUNC_STATIC( QDIAL_SETNOTCHESVISIBLE )
 }
 
 /*
-void setWrapping ( bool on )
+void setWrapping( bool on )
 */
 HB_FUNC_STATIC( QDIAL_SETWRAPPING )
 {
-  QDial * obj = (QDial *) _qt5xhb_itemGetPtrStackSelfItem();
+  QDial * obj = (QDial *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISLOG(1) )
+    if( ISNUMPAR(1) && HB_ISLOG(1) )
     {
 #endif
-      obj->setWrapping ( PBOOL(1) );
+      obj->setWrapping( PBOOL(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else

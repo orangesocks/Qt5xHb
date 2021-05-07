@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -24,7 +24,7 @@ CLASS QTcpSocket INHERIT QAbstractSocket
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QTcpSocket
+PROCEDURE destroyObject() CLASS QTcpSocket
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -41,20 +41,22 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #include <QtNetwork/QTcpSocket>
 #endif
 
 /*
-explicit QTcpSocket(QObject *parent = Q_NULLPTR)
+QTcpSocket( QObject * parent = nullptr )
 */
 HB_FUNC_STATIC( QTCPSOCKET_NEW )
 {
-  if( ISBETWEEN(0,1) && (ISQOBJECT(1)||ISNIL(1)) )
+  if( ISBETWEEN(0,1) && (ISQOBJECT(1)||HB_ISNIL(1)) )
   {
-    QTcpSocket * o = new QTcpSocket ( OPQOBJECT(1,0) );
-    _qt5xhb_returnNewObject( o, false );
+    QTcpSocket * obj = new QTcpSocket( OPQOBJECT(1,nullptr) );
+    Qt5xHb::returnNewObject( obj, false );
   }
   else
   {
@@ -63,22 +65,16 @@ HB_FUNC_STATIC( QTCPSOCKET_NEW )
 }
 
 /*
-QTcpSocket(QTcpSocketPrivate &dd, QObject *parent = Q_NULLPTR) [protected]
-*/
-
-/*
-QTcpSocket(QAbstractSocket::SocketType socketType, QTcpSocketPrivate &dd, QObject *parent = Q_NULLPTR) [protected]
-*/
-
-/*
 virtual ~QTcpSocket()
 */
 HB_FUNC_STATIC( QTCPSOCKET_DELETE )
 {
-  QTcpSocket * obj = (QTcpSocket *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTcpSocket * obj = (QTcpSocket *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();

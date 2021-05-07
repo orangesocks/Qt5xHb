@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -29,7 +29,7 @@ CLASS QInAppProduct INHERIT QObject
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QInAppProduct
+PROCEDURE destroyObject() CLASS QInAppProduct
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -46,24 +46,24 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #include <QtPurchasing/QInAppProduct>
 #endif
 
 /*
-explicit QInAppProduct(const QString &price, const QString &title, const QString &description, ProductType productType, const QString &identifier, QObject *parent = Q_NULLPTR) [protected]
-*/
-
-/*
 ~QInAppProduct()
 */
 HB_FUNC_STATIC( QINAPPPRODUCT_DELETE )
 {
-  QInAppProduct * obj = (QInAppProduct *) _qt5xhb_itemGetPtrStackSelfItem();
+  QInAppProduct * obj = (QInAppProduct *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -80,7 +80,7 @@ QString identifier() const
 */
 HB_FUNC_STATIC( QINAPPPRODUCT_IDENTIFIER )
 {
-  QInAppProduct * obj = (QInAppProduct *) _qt5xhb_itemGetPtrStackSelfItem();
+  QInAppProduct * obj = (QInAppProduct *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -88,7 +88,7 @@ HB_FUNC_STATIC( QINAPPPRODUCT_IDENTIFIER )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRING( obj->identifier () );
+      RQSTRING( obj->identifier() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -100,11 +100,11 @@ HB_FUNC_STATIC( QINAPPPRODUCT_IDENTIFIER )
 }
 
 /*
-ProductType productType() const
+QInAppProduct::ProductType productType() const
 */
 HB_FUNC_STATIC( QINAPPPRODUCT_PRODUCTTYPE )
 {
-  QInAppProduct * obj = (QInAppProduct *) _qt5xhb_itemGetPtrStackSelfItem();
+  QInAppProduct * obj = (QInAppProduct *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -112,7 +112,7 @@ HB_FUNC_STATIC( QINAPPPRODUCT_PRODUCTTYPE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RENUM( obj->productType () );
+      RENUM( obj->productType() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -128,7 +128,7 @@ QString price() const
 */
 HB_FUNC_STATIC( QINAPPPRODUCT_PRICE )
 {
-  QInAppProduct * obj = (QInAppProduct *) _qt5xhb_itemGetPtrStackSelfItem();
+  QInAppProduct * obj = (QInAppProduct *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -136,7 +136,7 @@ HB_FUNC_STATIC( QINAPPPRODUCT_PRICE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRING( obj->price () );
+      RQSTRING( obj->price() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -152,7 +152,7 @@ QString title() const
 */
 HB_FUNC_STATIC( QINAPPPRODUCT_TITLE )
 {
-  QInAppProduct * obj = (QInAppProduct *) _qt5xhb_itemGetPtrStackSelfItem();
+  QInAppProduct * obj = (QInAppProduct *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -160,7 +160,7 @@ HB_FUNC_STATIC( QINAPPPRODUCT_TITLE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRING( obj->title () );
+      RQSTRING( obj->title() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -176,7 +176,7 @@ QString description() const
 */
 HB_FUNC_STATIC( QINAPPPRODUCT_DESCRIPTION )
 {
-  QInAppProduct * obj = (QInAppProduct *) _qt5xhb_itemGetPtrStackSelfItem();
+  QInAppProduct * obj = (QInAppProduct *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -184,7 +184,7 @@ HB_FUNC_STATIC( QINAPPPRODUCT_DESCRIPTION )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRING( obj->description () );
+      RQSTRING( obj->description() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -200,7 +200,7 @@ Q_INVOKABLE virtual void purchase() = 0
 */
 HB_FUNC_STATIC( QINAPPPRODUCT_PURCHASE )
 {
-  QInAppProduct * obj = (QInAppProduct *) _qt5xhb_itemGetPtrStackSelfItem();
+  QInAppProduct * obj = (QInAppProduct *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -208,7 +208,7 @@ HB_FUNC_STATIC( QINAPPPRODUCT_PURCHASE )
     if( ISNUMPAR(0) )
     {
 #endif
-      obj->purchase ();
+      obj->purchase();
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else

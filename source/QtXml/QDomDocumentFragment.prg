@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -25,7 +25,7 @@ CLASS QDomDocumentFragment INHERIT QDomNode
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QDomDocumentFragment
+PROCEDURE destroyObject() CLASS QDomDocumentFragment
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -48,25 +48,22 @@ RETURN
 #endif
 
 /*
-QDomDocumentFragment ()
+QDomDocumentFragment()
 */
-void QDomDocumentFragment_new1 ()
+void QDomDocumentFragment_new1()
 {
-  QDomDocumentFragment * o = new QDomDocumentFragment ();
-  _qt5xhb_returnNewObject( o, true );
+  QDomDocumentFragment * obj = new QDomDocumentFragment();
+  Qt5xHb::returnNewObject( obj, true );
 }
 
 /*
-QDomDocumentFragment ( const QDomDocumentFragment & x )
+QDomDocumentFragment( const QDomDocumentFragment & x )
 */
-void QDomDocumentFragment_new2 ()
+void QDomDocumentFragment_new2()
 {
-  QDomDocumentFragment * o = new QDomDocumentFragment ( *PQDOMDOCUMENTFRAGMENT(1) );
-  _qt5xhb_returnNewObject( o, true );
+  QDomDocumentFragment * obj = new QDomDocumentFragment( *PQDOMDOCUMENTFRAGMENT(1) );
+  Qt5xHb::returnNewObject( obj, true );
 }
-
-//[1]QDomDocumentFragment ()
-//[2]QDomDocumentFragment ( const QDomDocumentFragment & x )
 
 HB_FUNC_STATIC( QDOMDOCUMENTFRAGMENT_NEW )
 {
@@ -86,7 +83,7 @@ HB_FUNC_STATIC( QDOMDOCUMENTFRAGMENT_NEW )
 
 HB_FUNC_STATIC( QDOMDOCUMENTFRAGMENT_DELETE )
 {
-  QDomDocumentFragment * obj = (QDomDocumentFragment *) _qt5xhb_itemGetPtrStackSelfItem();
+  QDomDocumentFragment * obj = (QDomDocumentFragment *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -102,11 +99,11 @@ HB_FUNC_STATIC( QDOMDOCUMENTFRAGMENT_DELETE )
 }
 
 /*
-QDomNode::NodeType nodeType () const
+QDomNode::NodeType nodeType() const
 */
 HB_FUNC_STATIC( QDOMDOCUMENTFRAGMENT_NODETYPE )
 {
-  QDomDocumentFragment * obj = (QDomDocumentFragment *) _qt5xhb_itemGetPtrStackSelfItem();
+  QDomDocumentFragment * obj = (QDomDocumentFragment *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -114,7 +111,7 @@ HB_FUNC_STATIC( QDOMDOCUMENTFRAGMENT_NODETYPE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RENUM( obj->nodeType () );
+      RENUM( obj->nodeType() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else

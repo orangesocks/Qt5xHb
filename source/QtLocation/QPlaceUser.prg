@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -37,7 +37,7 @@ CLASS QPlaceUser
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QPlaceUser
+PROCEDURE destroyObject() CLASS QPlaceUser
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -66,27 +66,24 @@ RETURN
 /*
 QPlaceUser()
 */
-void QPlaceUser_new1 ()
+void QPlaceUser_new1()
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,4,0))
-  QPlaceUser * o = new QPlaceUser ();
-  _qt5xhb_returnNewObject( o, true );
+  QPlaceUser * obj = new QPlaceUser();
+  Qt5xHb::returnNewObject( obj, true );
 #endif
 }
 
 /*
-QPlaceUser(const QPlaceUser &other)
+QPlaceUser( const QPlaceUser & other )
 */
-void QPlaceUser_new2 ()
+void QPlaceUser_new2()
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,4,0))
-  QPlaceUser * o = new QPlaceUser ( *PQPLACEUSER(1) );
-  _qt5xhb_returnNewObject( o, true );
+  QPlaceUser * obj = new QPlaceUser( *PQPLACEUSER(1) );
+  Qt5xHb::returnNewObject( obj, true );
 #endif
 }
-
-//[1]QPlaceUser()
-//[2]QPlaceUser(const QPlaceUser &other)
 
 HB_FUNC_STATIC( QPLACEUSER_NEW )
 {
@@ -107,7 +104,7 @@ HB_FUNC_STATIC( QPLACEUSER_NEW )
 HB_FUNC_STATIC( QPLACEUSER_DELETE )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,4,0))
-  QPlaceUser * obj = (QPlaceUser *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPlaceUser * obj = (QPlaceUser *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -129,7 +126,7 @@ QString userId() const
 HB_FUNC_STATIC( QPLACEUSER_USERID )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,4,0))
-  QPlaceUser * obj = (QPlaceUser *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPlaceUser * obj = (QPlaceUser *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -137,7 +134,7 @@ HB_FUNC_STATIC( QPLACEUSER_USERID )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRING( obj->userId () );
+      RQSTRING( obj->userId() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -150,20 +147,20 @@ HB_FUNC_STATIC( QPLACEUSER_USERID )
 }
 
 /*
-void setUserId(const QString &identifier)
+void setUserId( const QString & identifier )
 */
 HB_FUNC_STATIC( QPLACEUSER_SETUSERID )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,4,0))
-  QPlaceUser * obj = (QPlaceUser *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPlaceUser * obj = (QPlaceUser *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISCHAR(1) )
+    if( ISNUMPAR(1) && HB_ISCHAR(1) )
     {
 #endif
-      obj->setUserId ( PQSTRING(1) );
+      obj->setUserId( PQSTRING(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -183,7 +180,7 @@ QString name() const
 HB_FUNC_STATIC( QPLACEUSER_NAME )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,4,0))
-  QPlaceUser * obj = (QPlaceUser *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPlaceUser * obj = (QPlaceUser *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -191,7 +188,7 @@ HB_FUNC_STATIC( QPLACEUSER_NAME )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRING( obj->name () );
+      RQSTRING( obj->name() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -204,20 +201,20 @@ HB_FUNC_STATIC( QPLACEUSER_NAME )
 }
 
 /*
-void setName(const QString &name)
+void setName( const QString & name )
 */
 HB_FUNC_STATIC( QPLACEUSER_SETNAME )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,4,0))
-  QPlaceUser * obj = (QPlaceUser *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPlaceUser * obj = (QPlaceUser *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISCHAR(1) )
+    if( ISNUMPAR(1) && HB_ISCHAR(1) )
     {
 #endif
-      obj->setName ( PQSTRING(1) );
+      obj->setName( PQSTRING(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -235,7 +232,7 @@ HB_FUNC_STATIC( QPLACEUSER_NEWFROM )
 {
   PHB_ITEM self = hb_stackSelfItem();
 
-  if( hb_pcount() == 1 && ISOBJECT(1) )
+  if( hb_pcount() == 1 && HB_ISOBJECT(1) )
   {
     PHB_ITEM ptr = hb_itemPutPtr( NULL, (void *) hb_itemGetPtr( hb_objSendMsg( hb_param(1, HB_IT_OBJECT ), "POINTER", 0 ) ) );
     hb_objSendMsg( self, "_pointer", 1, ptr );
@@ -244,7 +241,7 @@ HB_FUNC_STATIC( QPLACEUSER_NEWFROM )
     hb_objSendMsg( self, "_self_destruction", 1, des );
     hb_itemRelease( des );
   }
-  else if( hb_pcount() == 1 && ISPOINTER(1) )
+  else if( hb_pcount() == 1 && HB_ISPOINTER(1) )
   {
     PHB_ITEM ptr = hb_itemPutPtr( NULL, (void *) hb_itemGetPtr( hb_param(1, HB_IT_POINTER ) ) );
     hb_objSendMsg( self, "_pointer", 1, ptr );
@@ -280,7 +277,7 @@ HB_FUNC_STATIC( QPLACEUSER_SETSELFDESTRUCTION )
 {
   PHB_ITEM self = hb_stackSelfItem();
 
-  if( hb_pcount() == 1 && ISLOG(1) )
+  if( hb_pcount() == 1 && HB_ISLOG(1) )
   {
     PHB_ITEM des = hb_itemPutL( NULL, hb_parl(1) );
     hb_objSendMsg( self, "_self_destruction", 1, des );

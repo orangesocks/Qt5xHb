@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -30,7 +30,7 @@ CLASS QLightSensor INHERIT QSensor
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QLightSensor
+PROCEDURE destroyObject() CLASS QLightSensor
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -49,6 +49,8 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #if (QT_VERSION >= QT_VERSION_CHECK(5,1,0))
@@ -57,15 +59,15 @@ RETURN
 #endif
 
 /*
-QLightSensor(QObject *parent = 0)
+QLightSensor( QObject * parent = 0 )
 */
 HB_FUNC_STATIC( QLIGHTSENSOR_NEW )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,1,0))
-  if( ISBETWEEN(0,1) && (ISQOBJECT(1)||ISNIL(1)) )
+  if( ISBETWEEN(0,1) && (ISQOBJECT(1)||HB_ISNIL(1)) )
   {
-    QLightSensor * o = new QLightSensor ( OPQOBJECT(1,0) );
-    _qt5xhb_returnNewObject( o, false );
+    QLightSensor * obj = new QLightSensor( OPQOBJECT(1,0) );
+    Qt5xHb::returnNewObject( obj, false );
   }
   else
   {
@@ -77,10 +79,12 @@ HB_FUNC_STATIC( QLIGHTSENSOR_NEW )
 HB_FUNC_STATIC( QLIGHTSENSOR_DELETE )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,1,0))
-  QLightSensor * obj = (QLightSensor *) _qt5xhb_itemGetPtrStackSelfItem();
+  QLightSensor * obj = (QLightSensor *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -94,12 +98,12 @@ HB_FUNC_STATIC( QLIGHTSENSOR_DELETE )
 }
 
 /*
-QLightReading *reading() const
+QLightReading * reading() const
 */
 HB_FUNC_STATIC( QLIGHTSENSOR_READING )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,1,0))
-  QLightSensor * obj = (QLightSensor *) _qt5xhb_itemGetPtrStackSelfItem();
+  QLightSensor * obj = (QLightSensor *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -107,8 +111,8 @@ HB_FUNC_STATIC( QLIGHTSENSOR_READING )
     if( ISNUMPAR(0) )
     {
 #endif
-      QLightReading * ptr = obj->reading ();
-      _qt5xhb_createReturnQObjectClass ( ptr, "QLIGHTREADING" );
+      QLightReading * ptr = obj->reading();
+      Qt5xHb::createReturnQObjectClass( ptr, "QLIGHTREADING" );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -126,7 +130,7 @@ qreal fieldOfView() const
 HB_FUNC_STATIC( QLIGHTSENSOR_FIELDOFVIEW )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,1,0))
-  QLightSensor * obj = (QLightSensor *) _qt5xhb_itemGetPtrStackSelfItem();
+  QLightSensor * obj = (QLightSensor *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -134,7 +138,7 @@ HB_FUNC_STATIC( QLIGHTSENSOR_FIELDOFVIEW )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQREAL( obj->fieldOfView () );
+      RQREAL( obj->fieldOfView() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -147,20 +151,20 @@ HB_FUNC_STATIC( QLIGHTSENSOR_FIELDOFVIEW )
 }
 
 /*
-void setFieldOfView(qreal fieldOfView)
+void setFieldOfView( qreal fieldOfView )
 */
 HB_FUNC_STATIC( QLIGHTSENSOR_SETFIELDOFVIEW )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,1,0))
-  QLightSensor * obj = (QLightSensor *) _qt5xhb_itemGetPtrStackSelfItem();
+  QLightSensor * obj = (QLightSensor *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setFieldOfView ( PQREAL(1) );
+      obj->setFieldOfView( PQREAL(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -174,7 +178,7 @@ HB_FUNC_STATIC( QLIGHTSENSOR_SETFIELDOFVIEW )
 #endif
 }
 
-void QLightSensorSlots_connect_signal ( const QString & signal, const QString & slot );
+void QLightSensorSlots_connect_signal( const QString & signal, const QString & slot );
 
 HB_FUNC_STATIC( QLIGHTSENSOR_ONFIELDOFVIEWCHANGED )
 {

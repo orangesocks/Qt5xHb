@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -12,115 +12,150 @@
 
 #include "QTableWidgetSlots.h"
 
-QTableWidgetSlots::QTableWidgetSlots(QObject *parent) : QObject(parent)
+QTableWidgetSlots::QTableWidgetSlots( QObject *parent ) : QObject( parent )
 {
 }
 
 QTableWidgetSlots::~QTableWidgetSlots()
 {
 }
+
 void QTableWidgetSlots::cellActivated( int row, int column )
 {
   QObject *object = qobject_cast<QObject *>(sender());
-  PHB_ITEM cb = Signals_return_codeblock( object, "cellActivated(int,int)" );
+
+  PHB_ITEM cb = Qt5xHb::Signals_return_codeblock( object, "cellActivated(int,int)" );
+
   if( cb )
   {
-    PHB_ITEM psender = Signals_return_qobject ( (QObject *) object, "QTABLEWIDGET" );
+    PHB_ITEM psender = Qt5xHb::Signals_return_qobject( (QObject *) object, "QTABLEWIDGET" );
     PHB_ITEM prow = hb_itemPutNI( NULL, row );
     PHB_ITEM pcolumn = hb_itemPutNI( NULL, column );
-    hb_vmEvalBlockV( (PHB_ITEM) cb, 3, psender, prow, pcolumn );
+
+    hb_vmEvalBlockV( cb, 3, psender, prow, pcolumn );
+
     hb_itemRelease( psender );
     hb_itemRelease( prow );
     hb_itemRelease( pcolumn );
   }
 }
+
 void QTableWidgetSlots::cellChanged( int row, int column )
 {
   QObject *object = qobject_cast<QObject *>(sender());
-  PHB_ITEM cb = Signals_return_codeblock( object, "cellChanged(int,int)" );
+
+  PHB_ITEM cb = Qt5xHb::Signals_return_codeblock( object, "cellChanged(int,int)" );
+
   if( cb )
   {
-    PHB_ITEM psender = Signals_return_qobject ( (QObject *) object, "QTABLEWIDGET" );
+    PHB_ITEM psender = Qt5xHb::Signals_return_qobject( (QObject *) object, "QTABLEWIDGET" );
     PHB_ITEM prow = hb_itemPutNI( NULL, row );
     PHB_ITEM pcolumn = hb_itemPutNI( NULL, column );
-    hb_vmEvalBlockV( (PHB_ITEM) cb, 3, psender, prow, pcolumn );
+
+    hb_vmEvalBlockV( cb, 3, psender, prow, pcolumn );
+
     hb_itemRelease( psender );
     hb_itemRelease( prow );
     hb_itemRelease( pcolumn );
   }
 }
+
 void QTableWidgetSlots::cellClicked( int row, int column )
 {
   QObject *object = qobject_cast<QObject *>(sender());
-  PHB_ITEM cb = Signals_return_codeblock( object, "cellClicked(int,int)" );
+
+  PHB_ITEM cb = Qt5xHb::Signals_return_codeblock( object, "cellClicked(int,int)" );
+
   if( cb )
   {
-    PHB_ITEM psender = Signals_return_qobject ( (QObject *) object, "QTABLEWIDGET" );
+    PHB_ITEM psender = Qt5xHb::Signals_return_qobject( (QObject *) object, "QTABLEWIDGET" );
     PHB_ITEM prow = hb_itemPutNI( NULL, row );
     PHB_ITEM pcolumn = hb_itemPutNI( NULL, column );
-    hb_vmEvalBlockV( (PHB_ITEM) cb, 3, psender, prow, pcolumn );
+
+    hb_vmEvalBlockV( cb, 3, psender, prow, pcolumn );
+
     hb_itemRelease( psender );
     hb_itemRelease( prow );
     hb_itemRelease( pcolumn );
   }
 }
+
 void QTableWidgetSlots::cellDoubleClicked( int row, int column )
 {
   QObject *object = qobject_cast<QObject *>(sender());
-  PHB_ITEM cb = Signals_return_codeblock( object, "cellDoubleClicked(int,int)" );
+
+  PHB_ITEM cb = Qt5xHb::Signals_return_codeblock( object, "cellDoubleClicked(int,int)" );
+
   if( cb )
   {
-    PHB_ITEM psender = Signals_return_qobject ( (QObject *) object, "QTABLEWIDGET" );
+    PHB_ITEM psender = Qt5xHb::Signals_return_qobject( (QObject *) object, "QTABLEWIDGET" );
     PHB_ITEM prow = hb_itemPutNI( NULL, row );
     PHB_ITEM pcolumn = hb_itemPutNI( NULL, column );
-    hb_vmEvalBlockV( (PHB_ITEM) cb, 3, psender, prow, pcolumn );
+
+    hb_vmEvalBlockV( cb, 3, psender, prow, pcolumn );
+
     hb_itemRelease( psender );
     hb_itemRelease( prow );
     hb_itemRelease( pcolumn );
   }
 }
+
 void QTableWidgetSlots::cellEntered( int row, int column )
 {
   QObject *object = qobject_cast<QObject *>(sender());
-  PHB_ITEM cb = Signals_return_codeblock( object, "cellEntered(int,int)" );
+
+  PHB_ITEM cb = Qt5xHb::Signals_return_codeblock( object, "cellEntered(int,int)" );
+
   if( cb )
   {
-    PHB_ITEM psender = Signals_return_qobject ( (QObject *) object, "QTABLEWIDGET" );
+    PHB_ITEM psender = Qt5xHb::Signals_return_qobject( (QObject *) object, "QTABLEWIDGET" );
     PHB_ITEM prow = hb_itemPutNI( NULL, row );
     PHB_ITEM pcolumn = hb_itemPutNI( NULL, column );
-    hb_vmEvalBlockV( (PHB_ITEM) cb, 3, psender, prow, pcolumn );
+
+    hb_vmEvalBlockV( cb, 3, psender, prow, pcolumn );
+
     hb_itemRelease( psender );
     hb_itemRelease( prow );
     hb_itemRelease( pcolumn );
   }
 }
+
 void QTableWidgetSlots::cellPressed( int row, int column )
 {
   QObject *object = qobject_cast<QObject *>(sender());
-  PHB_ITEM cb = Signals_return_codeblock( object, "cellPressed(int,int)" );
+
+  PHB_ITEM cb = Qt5xHb::Signals_return_codeblock( object, "cellPressed(int,int)" );
+
   if( cb )
   {
-    PHB_ITEM psender = Signals_return_qobject ( (QObject *) object, "QTABLEWIDGET" );
+    PHB_ITEM psender = Qt5xHb::Signals_return_qobject( (QObject *) object, "QTABLEWIDGET" );
     PHB_ITEM prow = hb_itemPutNI( NULL, row );
     PHB_ITEM pcolumn = hb_itemPutNI( NULL, column );
-    hb_vmEvalBlockV( (PHB_ITEM) cb, 3, psender, prow, pcolumn );
+
+    hb_vmEvalBlockV( cb, 3, psender, prow, pcolumn );
+
     hb_itemRelease( psender );
     hb_itemRelease( prow );
     hb_itemRelease( pcolumn );
   }
 }
+
 void QTableWidgetSlots::currentCellChanged( int currentRow, int currentColumn, int previousRow, int previousColumn )
 {
   QObject *object = qobject_cast<QObject *>(sender());
-  PHB_ITEM cb = Signals_return_codeblock( object, "currentCellChanged(int,int,int,int)" );
+
+  PHB_ITEM cb = Qt5xHb::Signals_return_codeblock( object, "currentCellChanged(int,int,int,int)" );
+
   if( cb )
   {
-    PHB_ITEM psender = Signals_return_qobject ( (QObject *) object, "QTABLEWIDGET" );
+    PHB_ITEM psender = Qt5xHb::Signals_return_qobject( (QObject *) object, "QTABLEWIDGET" );
     PHB_ITEM pcurrentRow = hb_itemPutNI( NULL, currentRow );
     PHB_ITEM pcurrentColumn = hb_itemPutNI( NULL, currentColumn );
     PHB_ITEM ppreviousRow = hb_itemPutNI( NULL, previousRow );
     PHB_ITEM ppreviousColumn = hb_itemPutNI( NULL, previousColumn );
-    hb_vmEvalBlockV( (PHB_ITEM) cb, 5, psender, pcurrentRow, pcurrentColumn, ppreviousRow, ppreviousColumn );
+
+    hb_vmEvalBlockV( cb, 5, psender, pcurrentRow, pcurrentColumn, ppreviousRow, ppreviousColumn );
+
     hb_itemRelease( psender );
     hb_itemRelease( pcurrentRow );
     hb_itemRelease( pcurrentColumn );
@@ -128,114 +163,154 @@ void QTableWidgetSlots::currentCellChanged( int currentRow, int currentColumn, i
     hb_itemRelease( ppreviousColumn );
   }
 }
+
 void QTableWidgetSlots::currentItemChanged( QTableWidgetItem * current, QTableWidgetItem * previous )
 {
   QObject *object = qobject_cast<QObject *>(sender());
-  PHB_ITEM cb = Signals_return_codeblock( object, "currentItemChanged(QTableWidgetItem*,QTableWidgetItem*)" );
+
+  PHB_ITEM cb = Qt5xHb::Signals_return_codeblock( object, "currentItemChanged(QTableWidgetItem*,QTableWidgetItem*)" );
+
   if( cb )
   {
-    PHB_ITEM psender = Signals_return_qobject ( (QObject *) object, "QTABLEWIDGET" );
-    PHB_ITEM pcurrent = Signals_return_object( (void *) current, "QTABLEWIDGETITEM" );
-    PHB_ITEM pprevious = Signals_return_object( (void *) previous, "QTABLEWIDGETITEM" );
-    hb_vmEvalBlockV( (PHB_ITEM) cb, 3, psender, pcurrent, pprevious );
+    PHB_ITEM psender = Qt5xHb::Signals_return_qobject( (QObject *) object, "QTABLEWIDGET" );
+    PHB_ITEM pcurrent = Qt5xHb::Signals_return_object( (void *) current, "QTABLEWIDGETITEM" );
+    PHB_ITEM pprevious = Qt5xHb::Signals_return_object( (void *) previous, "QTABLEWIDGETITEM" );
+
+    hb_vmEvalBlockV( cb, 3, psender, pcurrent, pprevious );
+
     hb_itemRelease( psender );
     hb_itemRelease( pcurrent );
     hb_itemRelease( pprevious );
   }
 }
+
 void QTableWidgetSlots::itemActivated( QTableWidgetItem * item )
 {
   QObject *object = qobject_cast<QObject *>(sender());
-  PHB_ITEM cb = Signals_return_codeblock( object, "itemActivated(QTableWidgetItem*)" );
+
+  PHB_ITEM cb = Qt5xHb::Signals_return_codeblock( object, "itemActivated(QTableWidgetItem*)" );
+
   if( cb )
   {
-    PHB_ITEM psender = Signals_return_qobject ( (QObject *) object, "QTABLEWIDGET" );
-    PHB_ITEM pitem = Signals_return_object( (void *) item, "QTABLEWIDGETITEM" );
-    hb_vmEvalBlockV( (PHB_ITEM) cb, 2, psender, pitem );
+    PHB_ITEM psender = Qt5xHb::Signals_return_qobject( (QObject *) object, "QTABLEWIDGET" );
+    PHB_ITEM pitem = Qt5xHb::Signals_return_object( (void *) item, "QTABLEWIDGETITEM" );
+
+    hb_vmEvalBlockV( cb, 2, psender, pitem );
+
     hb_itemRelease( psender );
     hb_itemRelease( pitem );
   }
 }
+
 void QTableWidgetSlots::itemChanged( QTableWidgetItem * item )
 {
   QObject *object = qobject_cast<QObject *>(sender());
-  PHB_ITEM cb = Signals_return_codeblock( object, "itemChanged(QTableWidgetItem*)" );
+
+  PHB_ITEM cb = Qt5xHb::Signals_return_codeblock( object, "itemChanged(QTableWidgetItem*)" );
+
   if( cb )
   {
-    PHB_ITEM psender = Signals_return_qobject ( (QObject *) object, "QTABLEWIDGET" );
-    PHB_ITEM pitem = Signals_return_object( (void *) item, "QTABLEWIDGETITEM" );
-    hb_vmEvalBlockV( (PHB_ITEM) cb, 2, psender, pitem );
+    PHB_ITEM psender = Qt5xHb::Signals_return_qobject( (QObject *) object, "QTABLEWIDGET" );
+    PHB_ITEM pitem = Qt5xHb::Signals_return_object( (void *) item, "QTABLEWIDGETITEM" );
+
+    hb_vmEvalBlockV( cb, 2, psender, pitem );
+
     hb_itemRelease( psender );
     hb_itemRelease( pitem );
   }
 }
+
 void QTableWidgetSlots::itemClicked( QTableWidgetItem * item )
 {
   QObject *object = qobject_cast<QObject *>(sender());
-  PHB_ITEM cb = Signals_return_codeblock( object, "itemClicked(QTableWidgetItem*)" );
+
+  PHB_ITEM cb = Qt5xHb::Signals_return_codeblock( object, "itemClicked(QTableWidgetItem*)" );
+
   if( cb )
   {
-    PHB_ITEM psender = Signals_return_qobject ( (QObject *) object, "QTABLEWIDGET" );
-    PHB_ITEM pitem = Signals_return_object( (void *) item, "QTABLEWIDGETITEM" );
-    hb_vmEvalBlockV( (PHB_ITEM) cb, 2, psender, pitem );
+    PHB_ITEM psender = Qt5xHb::Signals_return_qobject( (QObject *) object, "QTABLEWIDGET" );
+    PHB_ITEM pitem = Qt5xHb::Signals_return_object( (void *) item, "QTABLEWIDGETITEM" );
+
+    hb_vmEvalBlockV( cb, 2, psender, pitem );
+
     hb_itemRelease( psender );
     hb_itemRelease( pitem );
   }
 }
+
 void QTableWidgetSlots::itemDoubleClicked( QTableWidgetItem * item )
 {
   QObject *object = qobject_cast<QObject *>(sender());
-  PHB_ITEM cb = Signals_return_codeblock( object, "itemDoubleClicked(QTableWidgetItem*)" );
+
+  PHB_ITEM cb = Qt5xHb::Signals_return_codeblock( object, "itemDoubleClicked(QTableWidgetItem*)" );
+
   if( cb )
   {
-    PHB_ITEM psender = Signals_return_qobject ( (QObject *) object, "QTABLEWIDGET" );
-    PHB_ITEM pitem = Signals_return_object( (void *) item, "QTABLEWIDGETITEM" );
-    hb_vmEvalBlockV( (PHB_ITEM) cb, 2, psender, pitem );
+    PHB_ITEM psender = Qt5xHb::Signals_return_qobject( (QObject *) object, "QTABLEWIDGET" );
+    PHB_ITEM pitem = Qt5xHb::Signals_return_object( (void *) item, "QTABLEWIDGETITEM" );
+
+    hb_vmEvalBlockV( cb, 2, psender, pitem );
+
     hb_itemRelease( psender );
     hb_itemRelease( pitem );
   }
 }
+
 void QTableWidgetSlots::itemEntered( QTableWidgetItem * item )
 {
   QObject *object = qobject_cast<QObject *>(sender());
-  PHB_ITEM cb = Signals_return_codeblock( object, "itemEntered(QTableWidgetItem*)" );
+
+  PHB_ITEM cb = Qt5xHb::Signals_return_codeblock( object, "itemEntered(QTableWidgetItem*)" );
+
   if( cb )
   {
-    PHB_ITEM psender = Signals_return_qobject ( (QObject *) object, "QTABLEWIDGET" );
-    PHB_ITEM pitem = Signals_return_object( (void *) item, "QTABLEWIDGETITEM" );
-    hb_vmEvalBlockV( (PHB_ITEM) cb, 2, psender, pitem );
+    PHB_ITEM psender = Qt5xHb::Signals_return_qobject( (QObject *) object, "QTABLEWIDGET" );
+    PHB_ITEM pitem = Qt5xHb::Signals_return_object( (void *) item, "QTABLEWIDGETITEM" );
+
+    hb_vmEvalBlockV( cb, 2, psender, pitem );
+
     hb_itemRelease( psender );
     hb_itemRelease( pitem );
   }
 }
+
 void QTableWidgetSlots::itemPressed( QTableWidgetItem * item )
 {
   QObject *object = qobject_cast<QObject *>(sender());
-  PHB_ITEM cb = Signals_return_codeblock( object, "itemPressed(QTableWidgetItem*)" );
+
+  PHB_ITEM cb = Qt5xHb::Signals_return_codeblock( object, "itemPressed(QTableWidgetItem*)" );
+
   if( cb )
   {
-    PHB_ITEM psender = Signals_return_qobject ( (QObject *) object, "QTABLEWIDGET" );
-    PHB_ITEM pitem = Signals_return_object( (void *) item, "QTABLEWIDGETITEM" );
-    hb_vmEvalBlockV( (PHB_ITEM) cb, 2, psender, pitem );
+    PHB_ITEM psender = Qt5xHb::Signals_return_qobject( (QObject *) object, "QTABLEWIDGET" );
+    PHB_ITEM pitem = Qt5xHb::Signals_return_object( (void *) item, "QTABLEWIDGETITEM" );
+
+    hb_vmEvalBlockV( cb, 2, psender, pitem );
+
     hb_itemRelease( psender );
     hb_itemRelease( pitem );
   }
 }
+
 void QTableWidgetSlots::itemSelectionChanged()
 {
   QObject *object = qobject_cast<QObject *>(sender());
-  PHB_ITEM cb = Signals_return_codeblock( object, "itemSelectionChanged()" );
+
+  PHB_ITEM cb = Qt5xHb::Signals_return_codeblock( object, "itemSelectionChanged()" );
+
   if( cb )
   {
-    PHB_ITEM psender = Signals_return_qobject ( (QObject *) object, "QTABLEWIDGET" );
-    hb_vmEvalBlockV( (PHB_ITEM) cb, 1, psender );
+    PHB_ITEM psender = Qt5xHb::Signals_return_qobject( (QObject *) object, "QTABLEWIDGET" );
+
+    hb_vmEvalBlockV( cb, 1, psender );
+
     hb_itemRelease( psender );
   }
 }
 
-void QTableWidgetSlots_connect_signal ( const QString & signal, const QString & slot )
+void QTableWidgetSlots_connect_signal( const QString & signal, const QString & slot )
 {
-  QTableWidget * obj = (QTableWidget *) hb_itemGetPtr( hb_objSendMsg( hb_stackSelfItem(), "POINTER", 0 ) );
+  QTableWidget * obj = (QTableWidget *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -248,7 +323,7 @@ void QTableWidgetSlots_connect_signal ( const QString & signal, const QString & 
       s->setParent( QCoreApplication::instance() );
     }
 
-    hb_retl( Signals_connection_disconnection( s, signal, slot ) );
+    hb_retl( Qt5xHb::Signals_connection_disconnection( s, signal, slot ) );
   }
   else
   {

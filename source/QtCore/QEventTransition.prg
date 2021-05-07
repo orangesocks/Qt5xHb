@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -29,7 +29,7 @@ CLASS QEventTransition INHERIT QAbstractTransition
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QEventTransition
+PROCEDURE destroyObject() CLASS QEventTransition
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -46,39 +46,38 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #include <QtCore/QEventTransition>
 #endif
 
 /*
-QEventTransition(QState * sourceState = 0)
+QEventTransition( QState * sourceState = 0 )
 */
-void QEventTransition_new1 ()
+void QEventTransition_new1()
 {
-  QEventTransition * o = new QEventTransition ( OPQSTATE(1,0) );
-  _qt5xhb_returnNewObject( o, false );
+  QEventTransition * obj = new QEventTransition( OPQSTATE(1,0) );
+  Qt5xHb::returnNewObject( obj, false );
 }
 
 /*
-QEventTransition(QObject * object, QEvent::Type type, QState * sourceState = 0)
+QEventTransition( QObject * object, QEvent::Type type, QState * sourceState = 0 )
 */
-void QEventTransition_new2 ()
+void QEventTransition_new2()
 {
-  QEventTransition * o = new QEventTransition ( PQOBJECT(1), (QEvent::Type) hb_parni(2), OPQSTATE(3,0) );
-  _qt5xhb_returnNewObject( o, false );
+  QEventTransition * obj = new QEventTransition( PQOBJECT(1), (QEvent::Type) hb_parni(2), OPQSTATE(3,0) );
+  Qt5xHb::returnNewObject( obj, false );
 }
-
-//[1]QEventTransition(QState * sourceState = 0)
-//[2]QEventTransition(QObject * object, QEvent::Type type, QState * sourceState = 0)
 
 HB_FUNC_STATIC( QEVENTTRANSITION_NEW )
 {
-  if( ISBETWEEN(0,1) && (ISQSTATE(1)||ISNIL(1)) )
+  if( ISBETWEEN(0,1) && (ISQSTATE(1)||HB_ISNIL(1)) )
   {
     QEventTransition_new1();
   }
-  else if( ISBETWEEN(2,3) && ISQOBJECT(1) && ISNUM(2) && (ISQSTATE(3)||ISNIL(3)) )
+  else if( ISBETWEEN(2,3) && ISQOBJECT(1) && HB_ISNUM(2) && (ISQSTATE(3)||HB_ISNIL(3)) )
   {
     QEventTransition_new2();
   }
@@ -90,10 +89,12 @@ HB_FUNC_STATIC( QEVENTTRANSITION_NEW )
 
 HB_FUNC_STATIC( QEVENTTRANSITION_DELETE )
 {
-  QEventTransition * obj = (QEventTransition *) _qt5xhb_itemGetPtrStackSelfItem();
+  QEventTransition * obj = (QEventTransition *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -110,7 +111,7 @@ QObject * eventSource() const
 */
 HB_FUNC_STATIC( QEVENTTRANSITION_EVENTSOURCE )
 {
-  QEventTransition * obj = (QEventTransition *) _qt5xhb_itemGetPtrStackSelfItem();
+  QEventTransition * obj = (QEventTransition *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -118,8 +119,8 @@ HB_FUNC_STATIC( QEVENTTRANSITION_EVENTSOURCE )
     if( ISNUMPAR(0) )
     {
 #endif
-      QObject * ptr = obj->eventSource ();
-      _qt5xhb_createReturnQObjectClass ( ptr, "QOBJECT" );
+      QObject * ptr = obj->eventSource();
+      Qt5xHb::createReturnQObjectClass( ptr, "QOBJECT" );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -135,7 +136,7 @@ QEvent::Type eventType() const
 */
 HB_FUNC_STATIC( QEVENTTRANSITION_EVENTTYPE )
 {
-  QEventTransition * obj = (QEventTransition *) _qt5xhb_itemGetPtrStackSelfItem();
+  QEventTransition * obj = (QEventTransition *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -143,7 +144,7 @@ HB_FUNC_STATIC( QEVENTTRANSITION_EVENTTYPE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RENUM( obj->eventType () );
+      RENUM( obj->eventType() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -155,11 +156,11 @@ HB_FUNC_STATIC( QEVENTTRANSITION_EVENTTYPE )
 }
 
 /*
-void setEventSource(QObject * object)
+void setEventSource( QObject * object )
 */
 HB_FUNC_STATIC( QEVENTTRANSITION_SETEVENTSOURCE )
 {
-  QEventTransition * obj = (QEventTransition *) _qt5xhb_itemGetPtrStackSelfItem();
+  QEventTransition * obj = (QEventTransition *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -167,7 +168,7 @@ HB_FUNC_STATIC( QEVENTTRANSITION_SETEVENTSOURCE )
     if( ISNUMPAR(1) && ISQOBJECT(1) )
     {
 #endif
-      obj->setEventSource ( PQOBJECT(1) );
+      obj->setEventSource( PQOBJECT(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -181,19 +182,19 @@ HB_FUNC_STATIC( QEVENTTRANSITION_SETEVENTSOURCE )
 }
 
 /*
-void setEventType(QEvent::Type type)
+void setEventType( QEvent::Type type )
 */
 HB_FUNC_STATIC( QEVENTTRANSITION_SETEVENTTYPE )
 {
-  QEventTransition * obj = (QEventTransition *) _qt5xhb_itemGetPtrStackSelfItem();
+  QEventTransition * obj = (QEventTransition *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setEventType ( (QEvent::Type) hb_parni(1) );
+      obj->setEventType( (QEvent::Type) hb_parni(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else

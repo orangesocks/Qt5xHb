@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -43,7 +43,7 @@ CLASS QGeoLocation
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QGeoLocation
+PROCEDURE destroyObject() CLASS QGeoLocation
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -76,27 +76,24 @@ RETURN
 /*
 QGeoLocation()
 */
-void QGeoLocation_new1 ()
+void QGeoLocation_new1()
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,2,0))
-  QGeoLocation * o = new QGeoLocation ();
-  _qt5xhb_returnNewObject( o, true );
+  QGeoLocation * obj = new QGeoLocation();
+  Qt5xHb::returnNewObject( obj, true );
 #endif
 }
 
 /*
-QGeoLocation(const QGeoLocation &other)
+QGeoLocation( const QGeoLocation & other )
 */
-void QGeoLocation_new2 ()
+void QGeoLocation_new2()
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,2,0))
-  QGeoLocation * o = new QGeoLocation ( *PQGEOLOCATION(1) );
-  _qt5xhb_returnNewObject( o, true );
+  QGeoLocation * obj = new QGeoLocation( *PQGEOLOCATION(1) );
+  Qt5xHb::returnNewObject( obj, true );
 #endif
 }
-
-//[1]QGeoLocation()
-//[2]QGeoLocation(const QGeoLocation &other)
 
 HB_FUNC_STATIC( QGEOLOCATION_NEW )
 {
@@ -117,7 +114,7 @@ HB_FUNC_STATIC( QGEOLOCATION_NEW )
 HB_FUNC_STATIC( QGEOLOCATION_DELETE )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,2,0))
-  QGeoLocation * obj = (QGeoLocation *) _qt5xhb_itemGetPtrStackSelfItem();
+  QGeoLocation * obj = (QGeoLocation *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -139,7 +136,7 @@ QGeoAddress address() const
 HB_FUNC_STATIC( QGEOLOCATION_ADDRESS )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,2,0))
-  QGeoLocation * obj = (QGeoLocation *) _qt5xhb_itemGetPtrStackSelfItem();
+  QGeoLocation * obj = (QGeoLocation *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -147,8 +144,8 @@ HB_FUNC_STATIC( QGEOLOCATION_ADDRESS )
     if( ISNUMPAR(0) )
     {
 #endif
-      QGeoAddress * ptr = new QGeoAddress( obj->address () );
-      _qt5xhb_createReturnClass ( ptr, "QGEOADDRESS", true );
+      QGeoAddress * ptr = new QGeoAddress( obj->address() );
+      Qt5xHb::createReturnClass( ptr, "QGEOADDRESS", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -161,12 +158,12 @@ HB_FUNC_STATIC( QGEOLOCATION_ADDRESS )
 }
 
 /*
-void setAddress(const QGeoAddress &address)
+void setAddress( const QGeoAddress & address )
 */
 HB_FUNC_STATIC( QGEOLOCATION_SETADDRESS )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,2,0))
-  QGeoLocation * obj = (QGeoLocation *) _qt5xhb_itemGetPtrStackSelfItem();
+  QGeoLocation * obj = (QGeoLocation *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -174,7 +171,7 @@ HB_FUNC_STATIC( QGEOLOCATION_SETADDRESS )
     if( ISNUMPAR(1) && ISQGEOADDRESS(1) )
     {
 #endif
-      obj->setAddress ( *PQGEOADDRESS(1) );
+      obj->setAddress( *PQGEOADDRESS(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -194,7 +191,7 @@ QGeoCoordinate coordinate() const
 HB_FUNC_STATIC( QGEOLOCATION_COORDINATE )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,2,0))
-  QGeoLocation * obj = (QGeoLocation *) _qt5xhb_itemGetPtrStackSelfItem();
+  QGeoLocation * obj = (QGeoLocation *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -202,8 +199,8 @@ HB_FUNC_STATIC( QGEOLOCATION_COORDINATE )
     if( ISNUMPAR(0) )
     {
 #endif
-      QGeoCoordinate * ptr = new QGeoCoordinate( obj->coordinate () );
-      _qt5xhb_createReturnClass ( ptr, "QGEOCOORDINATE", true );
+      QGeoCoordinate * ptr = new QGeoCoordinate( obj->coordinate() );
+      Qt5xHb::createReturnClass( ptr, "QGEOCOORDINATE", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -216,12 +213,12 @@ HB_FUNC_STATIC( QGEOLOCATION_COORDINATE )
 }
 
 /*
-void setCoordinate(const QGeoCoordinate &position)
+void setCoordinate( const QGeoCoordinate & position )
 */
 HB_FUNC_STATIC( QGEOLOCATION_SETCOORDINATE )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,2,0))
-  QGeoLocation * obj = (QGeoLocation *) _qt5xhb_itemGetPtrStackSelfItem();
+  QGeoLocation * obj = (QGeoLocation *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -229,7 +226,7 @@ HB_FUNC_STATIC( QGEOLOCATION_SETCOORDINATE )
     if( ISNUMPAR(1) && ISQGEOCOORDINATE(1) )
     {
 #endif
-      obj->setCoordinate ( *PQGEOCOORDINATE(1) );
+      obj->setCoordinate( *PQGEOCOORDINATE(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -249,7 +246,7 @@ QGeoRectangle boundingBox() const
 HB_FUNC_STATIC( QGEOLOCATION_BOUNDINGBOX )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,2,0))
-  QGeoLocation * obj = (QGeoLocation *) _qt5xhb_itemGetPtrStackSelfItem();
+  QGeoLocation * obj = (QGeoLocation *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -257,8 +254,8 @@ HB_FUNC_STATIC( QGEOLOCATION_BOUNDINGBOX )
     if( ISNUMPAR(0) )
     {
 #endif
-      QGeoRectangle * ptr = new QGeoRectangle( obj->boundingBox () );
-      _qt5xhb_createReturnClass ( ptr, "QGEORECTANGLE", true );
+      QGeoRectangle * ptr = new QGeoRectangle( obj->boundingBox() );
+      Qt5xHb::createReturnClass( ptr, "QGEORECTANGLE", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -271,12 +268,12 @@ HB_FUNC_STATIC( QGEOLOCATION_BOUNDINGBOX )
 }
 
 /*
-void setBoundingBox(const QGeoRectangle &box)
+void setBoundingBox( const QGeoRectangle & box )
 */
 HB_FUNC_STATIC( QGEOLOCATION_SETBOUNDINGBOX )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,2,0))
-  QGeoLocation * obj = (QGeoLocation *) _qt5xhb_itemGetPtrStackSelfItem();
+  QGeoLocation * obj = (QGeoLocation *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -284,7 +281,7 @@ HB_FUNC_STATIC( QGEOLOCATION_SETBOUNDINGBOX )
     if( ISNUMPAR(1) && ISQGEORECTANGLE(1) )
     {
 #endif
-      obj->setBoundingBox ( *PQGEORECTANGLE(1) );
+      obj->setBoundingBox( *PQGEORECTANGLE(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -304,7 +301,7 @@ bool isEmpty() const
 HB_FUNC_STATIC( QGEOLOCATION_ISEMPTY )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,2,0))
-  QGeoLocation * obj = (QGeoLocation *) _qt5xhb_itemGetPtrStackSelfItem();
+  QGeoLocation * obj = (QGeoLocation *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -312,7 +309,7 @@ HB_FUNC_STATIC( QGEOLOCATION_ISEMPTY )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->isEmpty () );
+      RBOOL( obj->isEmpty() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -328,7 +325,7 @@ HB_FUNC_STATIC( QGEOLOCATION_NEWFROM )
 {
   PHB_ITEM self = hb_stackSelfItem();
 
-  if( hb_pcount() == 1 && ISOBJECT(1) )
+  if( hb_pcount() == 1 && HB_ISOBJECT(1) )
   {
     PHB_ITEM ptr = hb_itemPutPtr( NULL, (void *) hb_itemGetPtr( hb_objSendMsg( hb_param(1, HB_IT_OBJECT ), "POINTER", 0 ) ) );
     hb_objSendMsg( self, "_pointer", 1, ptr );
@@ -337,7 +334,7 @@ HB_FUNC_STATIC( QGEOLOCATION_NEWFROM )
     hb_objSendMsg( self, "_self_destruction", 1, des );
     hb_itemRelease( des );
   }
-  else if( hb_pcount() == 1 && ISPOINTER(1) )
+  else if( hb_pcount() == 1 && HB_ISPOINTER(1) )
   {
     PHB_ITEM ptr = hb_itemPutPtr( NULL, (void *) hb_itemGetPtr( hb_param(1, HB_IT_POINTER ) ) );
     hb_objSendMsg( self, "_pointer", 1, ptr );
@@ -373,7 +370,7 @@ HB_FUNC_STATIC( QGEOLOCATION_SETSELFDESTRUCTION )
 {
   PHB_ITEM self = hb_stackSelfItem();
 
-  if( hb_pcount() == 1 && ISLOG(1) )
+  if( hb_pcount() == 1 && HB_ISLOG(1) )
   {
     PHB_ITEM des = hb_itemPutL( NULL, hb_parl(1) );
     hb_objSendMsg( self, "_self_destruction", 1, des );

@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -40,7 +40,7 @@ CLASS QFrame INHERIT QWidget
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QFrame
+PROCEDURE destroyObject() CLASS QFrame
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -57,20 +57,22 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #include <QtWidgets/QFrame>
 #endif
 
 /*
-QFrame ( QWidget * parent = 0, Qt::WindowFlags f = 0 )
+QFrame( QWidget * parent = 0, Qt::WindowFlags f = 0 )
 */
 HB_FUNC_STATIC( QFRAME_NEW )
 {
-  if( ISBETWEEN(0,2) && (ISQWIDGET(1)||ISNIL(1)) && ISOPTNUM(2) )
+  if( ISBETWEEN(0,2) && (ISQWIDGET(1)||HB_ISNIL(1)) && (HB_ISNUM(2)||HB_ISNIL(2)) )
   {
-    QFrame * o = new QFrame ( OPQWIDGET(1,0), ISNIL(2)? (Qt::WindowFlags) 0 : (Qt::WindowFlags) hb_parni(2) );
-    _qt5xhb_returnNewObject( o, false );
+    QFrame * obj = new QFrame( OPQWIDGET(1,0), HB_ISNIL(2)? (Qt::WindowFlags) 0 : (Qt::WindowFlags) hb_parni(2) );
+    Qt5xHb::returnNewObject( obj, false );
   }
   else
   {
@@ -80,10 +82,12 @@ HB_FUNC_STATIC( QFRAME_NEW )
 
 HB_FUNC_STATIC( QFRAME_DELETE )
 {
-  QFrame * obj = (QFrame *) _qt5xhb_itemGetPtrStackSelfItem();
+  QFrame * obj = (QFrame *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -96,11 +100,11 @@ HB_FUNC_STATIC( QFRAME_DELETE )
 }
 
 /*
-QRect frameRect () const
+QRect frameRect() const
 */
 HB_FUNC_STATIC( QFRAME_FRAMERECT )
 {
-  QFrame * obj = (QFrame *) _qt5xhb_itemGetPtrStackSelfItem();
+  QFrame * obj = (QFrame *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -108,8 +112,8 @@ HB_FUNC_STATIC( QFRAME_FRAMERECT )
     if( ISNUMPAR(0) )
     {
 #endif
-      QRect * ptr = new QRect( obj->frameRect () );
-      _qt5xhb_createReturnClass ( ptr, "QRECT", true );
+      QRect * ptr = new QRect( obj->frameRect() );
+      Qt5xHb::createReturnClass( ptr, "QRECT", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -121,11 +125,11 @@ HB_FUNC_STATIC( QFRAME_FRAMERECT )
 }
 
 /*
-Shadow frameShadow () const
+QFrame::Shadow frameShadow() const
 */
 HB_FUNC_STATIC( QFRAME_FRAMESHADOW )
 {
-  QFrame * obj = (QFrame *) _qt5xhb_itemGetPtrStackSelfItem();
+  QFrame * obj = (QFrame *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -133,7 +137,7 @@ HB_FUNC_STATIC( QFRAME_FRAMESHADOW )
     if( ISNUMPAR(0) )
     {
 #endif
-      RENUM( obj->frameShadow () );
+      RENUM( obj->frameShadow() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -145,11 +149,11 @@ HB_FUNC_STATIC( QFRAME_FRAMESHADOW )
 }
 
 /*
-Shape frameShape () const
+QFrame::Shape frameShape() const
 */
 HB_FUNC_STATIC( QFRAME_FRAMESHAPE )
 {
-  QFrame * obj = (QFrame *) _qt5xhb_itemGetPtrStackSelfItem();
+  QFrame * obj = (QFrame *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -157,7 +161,7 @@ HB_FUNC_STATIC( QFRAME_FRAMESHAPE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RENUM( obj->frameShape () );
+      RENUM( obj->frameShape() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -169,11 +173,11 @@ HB_FUNC_STATIC( QFRAME_FRAMESHAPE )
 }
 
 /*
-int frameStyle () const
+int frameStyle() const
 */
 HB_FUNC_STATIC( QFRAME_FRAMESTYLE )
 {
-  QFrame * obj = (QFrame *) _qt5xhb_itemGetPtrStackSelfItem();
+  QFrame * obj = (QFrame *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -181,7 +185,7 @@ HB_FUNC_STATIC( QFRAME_FRAMESTYLE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RINT( obj->frameStyle () );
+      RINT( obj->frameStyle() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -193,11 +197,11 @@ HB_FUNC_STATIC( QFRAME_FRAMESTYLE )
 }
 
 /*
-int frameWidth () const
+int frameWidth() const
 */
 HB_FUNC_STATIC( QFRAME_FRAMEWIDTH )
 {
-  QFrame * obj = (QFrame *) _qt5xhb_itemGetPtrStackSelfItem();
+  QFrame * obj = (QFrame *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -205,7 +209,7 @@ HB_FUNC_STATIC( QFRAME_FRAMEWIDTH )
     if( ISNUMPAR(0) )
     {
 #endif
-      RINT( obj->frameWidth () );
+      RINT( obj->frameWidth() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -217,11 +221,11 @@ HB_FUNC_STATIC( QFRAME_FRAMEWIDTH )
 }
 
 /*
-int lineWidth () const
+int lineWidth() const
 */
 HB_FUNC_STATIC( QFRAME_LINEWIDTH )
 {
-  QFrame * obj = (QFrame *) _qt5xhb_itemGetPtrStackSelfItem();
+  QFrame * obj = (QFrame *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -229,7 +233,7 @@ HB_FUNC_STATIC( QFRAME_LINEWIDTH )
     if( ISNUMPAR(0) )
     {
 #endif
-      RINT( obj->lineWidth () );
+      RINT( obj->lineWidth() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -241,11 +245,11 @@ HB_FUNC_STATIC( QFRAME_LINEWIDTH )
 }
 
 /*
-int midLineWidth () const
+int midLineWidth() const
 */
 HB_FUNC_STATIC( QFRAME_MIDLINEWIDTH )
 {
-  QFrame * obj = (QFrame *) _qt5xhb_itemGetPtrStackSelfItem();
+  QFrame * obj = (QFrame *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -253,7 +257,7 @@ HB_FUNC_STATIC( QFRAME_MIDLINEWIDTH )
     if( ISNUMPAR(0) )
     {
 #endif
-      RINT( obj->midLineWidth () );
+      RINT( obj->midLineWidth() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -265,11 +269,11 @@ HB_FUNC_STATIC( QFRAME_MIDLINEWIDTH )
 }
 
 /*
-void setFrameRect ( const QRect & )
+void setFrameRect( const QRect & )
 */
 HB_FUNC_STATIC( QFRAME_SETFRAMERECT )
 {
-  QFrame * obj = (QFrame *) _qt5xhb_itemGetPtrStackSelfItem();
+  QFrame * obj = (QFrame *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -277,7 +281,7 @@ HB_FUNC_STATIC( QFRAME_SETFRAMERECT )
     if( ISNUMPAR(1) && ISQRECT(1) )
     {
 #endif
-      obj->setFrameRect ( *PQRECT(1) );
+      obj->setFrameRect( *PQRECT(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -291,19 +295,19 @@ HB_FUNC_STATIC( QFRAME_SETFRAMERECT )
 }
 
 /*
-void setFrameShadow ( Shadow )
+void setFrameShadow( QFrame::Shadow )
 */
 HB_FUNC_STATIC( QFRAME_SETFRAMESHADOW )
 {
-  QFrame * obj = (QFrame *) _qt5xhb_itemGetPtrStackSelfItem();
+  QFrame * obj = (QFrame *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setFrameShadow ( (QFrame::Shadow) hb_parni(1) );
+      obj->setFrameShadow( (QFrame::Shadow) hb_parni(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -317,19 +321,19 @@ HB_FUNC_STATIC( QFRAME_SETFRAMESHADOW )
 }
 
 /*
-void setFrameShape ( Shape )
+void setFrameShape( QFrame::Shape )
 */
 HB_FUNC_STATIC( QFRAME_SETFRAMESHAPE )
 {
-  QFrame * obj = (QFrame *) _qt5xhb_itemGetPtrStackSelfItem();
+  QFrame * obj = (QFrame *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setFrameShape ( (QFrame::Shape) hb_parni(1) );
+      obj->setFrameShape( (QFrame::Shape) hb_parni(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -343,19 +347,19 @@ HB_FUNC_STATIC( QFRAME_SETFRAMESHAPE )
 }
 
 /*
-void setFrameStyle ( int style )
+void setFrameStyle( int style )
 */
 HB_FUNC_STATIC( QFRAME_SETFRAMESTYLE )
 {
-  QFrame * obj = (QFrame *) _qt5xhb_itemGetPtrStackSelfItem();
+  QFrame * obj = (QFrame *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setFrameStyle ( PINT(1) );
+      obj->setFrameStyle( PINT(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -369,19 +373,19 @@ HB_FUNC_STATIC( QFRAME_SETFRAMESTYLE )
 }
 
 /*
-void setLineWidth ( int )
+void setLineWidth( int )
 */
 HB_FUNC_STATIC( QFRAME_SETLINEWIDTH )
 {
-  QFrame * obj = (QFrame *) _qt5xhb_itemGetPtrStackSelfItem();
+  QFrame * obj = (QFrame *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setLineWidth ( PINT(1) );
+      obj->setLineWidth( PINT(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -395,19 +399,19 @@ HB_FUNC_STATIC( QFRAME_SETLINEWIDTH )
 }
 
 /*
-void setMidLineWidth ( int )
+void setMidLineWidth( int )
 */
 HB_FUNC_STATIC( QFRAME_SETMIDLINEWIDTH )
 {
-  QFrame * obj = (QFrame *) _qt5xhb_itemGetPtrStackSelfItem();
+  QFrame * obj = (QFrame *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setMidLineWidth ( PINT(1) );
+      obj->setMidLineWidth( PINT(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -421,11 +425,11 @@ HB_FUNC_STATIC( QFRAME_SETMIDLINEWIDTH )
 }
 
 /*
-virtual QSize sizeHint () const
+virtual QSize sizeHint() const
 */
 HB_FUNC_STATIC( QFRAME_SIZEHINT )
 {
-  QFrame * obj = (QFrame *) _qt5xhb_itemGetPtrStackSelfItem();
+  QFrame * obj = (QFrame *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -433,8 +437,8 @@ HB_FUNC_STATIC( QFRAME_SIZEHINT )
     if( ISNUMPAR(0) )
     {
 #endif
-      QSize * ptr = new QSize( obj->sizeHint () );
-      _qt5xhb_createReturnClass ( ptr, "QSIZE", true );
+      QSize * ptr = new QSize( obj->sizeHint() );
+      Qt5xHb::createReturnClass( ptr, "QSIZE", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else

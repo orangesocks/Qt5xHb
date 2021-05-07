@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -35,7 +35,7 @@ CLASS QTextDecoder
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QTextDecoder
+PROCEDURE destroyObject() CLASS QTextDecoder
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -58,25 +58,22 @@ RETURN
 #endif
 
 /*
-QTextDecoder(const QTextCodec * codec)
+QTextDecoder( const QTextCodec * codec )
 */
-void QTextDecoder_new1 ()
+void QTextDecoder_new1()
 {
-  QTextDecoder * o = new QTextDecoder ( PQTEXTCODEC(1) );
-  _qt5xhb_returnNewObject( o, true );
+  QTextDecoder * obj = new QTextDecoder( PQTEXTCODEC(1) );
+  Qt5xHb::returnNewObject( obj, true );
 }
 
 /*
-QTextDecoder(const QTextCodec * codec, QTextCodec::ConversionFlags flags)
+QTextDecoder( const QTextCodec * codec, QTextCodec::ConversionFlags flags )
 */
-void QTextDecoder_new2 ()
+void QTextDecoder_new2()
 {
-  QTextDecoder * o = new QTextDecoder ( PQTEXTCODEC(1), (QTextCodec::ConversionFlags) hb_parni(2) );
-  _qt5xhb_returnNewObject( o, true );
+  QTextDecoder * obj = new QTextDecoder( PQTEXTCODEC(1), (QTextCodec::ConversionFlags) hb_parni(2) );
+  Qt5xHb::returnNewObject( obj, true );
 }
-
-//[1]QTextDecoder(const QTextCodec * codec)
-//[2]QTextDecoder(const QTextCodec * codec, QTextCodec::ConversionFlags flags)
 
 HB_FUNC_STATIC( QTEXTDECODER_NEW )
 {
@@ -84,7 +81,7 @@ HB_FUNC_STATIC( QTEXTDECODER_NEW )
   {
     QTextDecoder_new1();
   }
-  else if( ISNUMPAR(2) && ISQTEXTCODEC(1) && ISNUM(2) )
+  else if( ISNUMPAR(2) && ISQTEXTCODEC(1) && HB_ISNUM(2) )
   {
     QTextDecoder_new2();
   }
@@ -96,7 +93,7 @@ HB_FUNC_STATIC( QTEXTDECODER_NEW )
 
 HB_FUNC_STATIC( QTEXTDECODER_DELETE )
 {
-  QTextDecoder * obj = (QTextDecoder *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTextDecoder * obj = (QTextDecoder *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -112,42 +109,34 @@ HB_FUNC_STATIC( QTEXTDECODER_DELETE )
 }
 
 /*
-QString toUnicode(const char * chars, int len)
+QString toUnicode( const char * chars, int len )
 */
-void QTextDecoder_toUnicode1 ()
+void QTextDecoder_toUnicode1()
 {
-  QTextDecoder * obj = (QTextDecoder *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTextDecoder * obj = (QTextDecoder *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
-      RQSTRING( obj->toUnicode ( PCONSTCHAR(1), PINT(2) ) );
+    RQSTRING( obj->toUnicode( PCONSTCHAR(1), PINT(2) ) );
   }
 }
 
 /*
-void toUnicode(QString * target, const char * chars, int len)
+QString toUnicode( const QByteArray & ba )
 */
-
-/*
-QString toUnicode(const QByteArray & ba)
-*/
-void QTextDecoder_toUnicode3 ()
+void QTextDecoder_toUnicode3()
 {
-  QTextDecoder * obj = (QTextDecoder *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTextDecoder * obj = (QTextDecoder *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
-      RQSTRING( obj->toUnicode ( *PQBYTEARRAY(1) ) );
+    RQSTRING( obj->toUnicode( *PQBYTEARRAY(1) ) );
   }
 }
-
-//[1]QString toUnicode(const char * chars, int len)
-//[2]void toUnicode(QString * target, const char * chars, int len) // TODO: implementar(?)
-//[3]QString toUnicode(const QByteArray & ba)
 
 HB_FUNC_STATIC( QTEXTDECODER_TOUNICODE )
 {
-  if( ISNUMPAR(2) && ISCHAR(1) && ISNUM(2) )
+  if( ISNUMPAR(2) && HB_ISCHAR(1) && HB_ISNUM(2) )
   {
     QTextDecoder_toUnicode1();
   }
@@ -166,7 +155,7 @@ bool hasFailure() const
 */
 HB_FUNC_STATIC( QTEXTDECODER_HASFAILURE )
 {
-  QTextDecoder * obj = (QTextDecoder *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTextDecoder * obj = (QTextDecoder *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -174,7 +163,7 @@ HB_FUNC_STATIC( QTEXTDECODER_HASFAILURE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->hasFailure () );
+      RBOOL( obj->hasFailure() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -189,7 +178,7 @@ HB_FUNC_STATIC( QTEXTDECODER_NEWFROM )
 {
   PHB_ITEM self = hb_stackSelfItem();
 
-  if( hb_pcount() == 1 && ISOBJECT(1) )
+  if( hb_pcount() == 1 && HB_ISOBJECT(1) )
   {
     PHB_ITEM ptr = hb_itemPutPtr( NULL, (void *) hb_itemGetPtr( hb_objSendMsg( hb_param(1, HB_IT_OBJECT ), "POINTER", 0 ) ) );
     hb_objSendMsg( self, "_pointer", 1, ptr );
@@ -198,7 +187,7 @@ HB_FUNC_STATIC( QTEXTDECODER_NEWFROM )
     hb_objSendMsg( self, "_self_destruction", 1, des );
     hb_itemRelease( des );
   }
-  else if( hb_pcount() == 1 && ISPOINTER(1) )
+  else if( hb_pcount() == 1 && HB_ISPOINTER(1) )
   {
     PHB_ITEM ptr = hb_itemPutPtr( NULL, (void *) hb_itemGetPtr( hb_param(1, HB_IT_POINTER ) ) );
     hb_objSendMsg( self, "_pointer", 1, ptr );
@@ -234,7 +223,7 @@ HB_FUNC_STATIC( QTEXTDECODER_SETSELFDESTRUCTION )
 {
   PHB_ITEM self = hb_stackSelfItem();
 
-  if( hb_pcount() == 1 && ISLOG(1) )
+  if( hb_pcount() == 1 && HB_ISLOG(1) )
   {
     PHB_ITEM des = hb_itemPutL( NULL, hb_parl(1) );
     hb_objSendMsg( self, "_self_destruction", 1, des );

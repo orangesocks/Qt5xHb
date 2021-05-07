@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -29,7 +29,7 @@ CLASS QRegularExpressionValidator INHERIT QValidator
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QRegularExpressionValidator
+PROCEDURE destroyObject() CLASS QRegularExpressionValidator
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -46,39 +46,38 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #include <QtGui/QRegularExpressionValidator>
 #endif
 
 /*
-QRegularExpressionValidator(QObject *parent = 0)
+QRegularExpressionValidator( QObject * parent = 0 )
 */
-void QRegularExpressionValidator_new1 ()
+void QRegularExpressionValidator_new1()
 {
-  QRegularExpressionValidator * o = new QRegularExpressionValidator ( OPQOBJECT(1,0) );
-  _qt5xhb_returnNewObject( o, false );
+  QRegularExpressionValidator * obj = new QRegularExpressionValidator( OPQOBJECT(1,0) );
+  Qt5xHb::returnNewObject( obj, false );
 }
 
 /*
-QRegularExpressionValidator(const QRegularExpression &re, QObject *parent = 0)
+QRegularExpressionValidator( const QRegularExpression & re, QObject * parent = 0 )
 */
-void QRegularExpressionValidator_new2 ()
+void QRegularExpressionValidator_new2()
 {
-  QRegularExpressionValidator * o = new QRegularExpressionValidator ( *PQREGULAREXPRESSION(1), OPQOBJECT(2,0) );
-  _qt5xhb_returnNewObject( o, false );
+  QRegularExpressionValidator * obj = new QRegularExpressionValidator( *PQREGULAREXPRESSION(1), OPQOBJECT(2,0) );
+  Qt5xHb::returnNewObject( obj, false );
 }
-
-//[1]QRegularExpressionValidator(QObject *parent = 0)
-//[2]QRegularExpressionValidator(const QRegularExpression &re, QObject *parent = 0)
 
 HB_FUNC_STATIC( QREGULAREXPRESSIONVALIDATOR_NEW )
 {
-  if( ISBETWEEN(0,1) && ISOPTQOBJECT(1) )
+  if( ISBETWEEN(0,1) && (ISQOBJECT(1)||HB_ISNIL(1)) )
   {
     QRegularExpressionValidator_new1();
   }
-  else if( ISBETWEEN(1,2) && ISQREGULAREXPRESSION(1) && ISOPTQOBJECT(2) )
+  else if( ISBETWEEN(1,2) && ISQREGULAREXPRESSION(1) && (ISQOBJECT(2)||HB_ISNIL(2)) )
   {
     QRegularExpressionValidator_new2();
   }
@@ -90,10 +89,12 @@ HB_FUNC_STATIC( QREGULAREXPRESSIONVALIDATOR_NEW )
 
 HB_FUNC_STATIC( QREGULAREXPRESSIONVALIDATOR_DELETE )
 {
-  QRegularExpressionValidator * obj = (QRegularExpressionValidator *) _qt5xhb_itemGetPtrStackSelfItem();
+  QRegularExpressionValidator * obj = (QRegularExpressionValidator *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -110,7 +111,7 @@ QRegularExpression regularExpression() const
 */
 HB_FUNC_STATIC( QREGULAREXPRESSIONVALIDATOR_REGULAREXPRESSION )
 {
-  QRegularExpressionValidator * obj = (QRegularExpressionValidator *) _qt5xhb_itemGetPtrStackSelfItem();
+  QRegularExpressionValidator * obj = (QRegularExpressionValidator *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -118,8 +119,8 @@ HB_FUNC_STATIC( QREGULAREXPRESSIONVALIDATOR_REGULAREXPRESSION )
     if( ISNUMPAR(0) )
     {
 #endif
-      QRegularExpression * ptr = new QRegularExpression( obj->regularExpression () );
-      _qt5xhb_createReturnClass ( ptr, "QREGULAREXPRESSION", true );
+      QRegularExpression * ptr = new QRegularExpression( obj->regularExpression() );
+      Qt5xHb::createReturnClass( ptr, "QREGULAREXPRESSION", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -131,11 +132,11 @@ HB_FUNC_STATIC( QREGULAREXPRESSIONVALIDATOR_REGULAREXPRESSION )
 }
 
 /*
-void setRegularExpression(const QRegularExpression &re)
+void setRegularExpression( const QRegularExpression & re )
 */
 HB_FUNC_STATIC( QREGULAREXPRESSIONVALIDATOR_SETREGULAREXPRESSION )
 {
-  QRegularExpressionValidator * obj = (QRegularExpressionValidator *) _qt5xhb_itemGetPtrStackSelfItem();
+  QRegularExpressionValidator * obj = (QRegularExpressionValidator *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -143,7 +144,7 @@ HB_FUNC_STATIC( QREGULAREXPRESSIONVALIDATOR_SETREGULAREXPRESSION )
     if( ISNUMPAR(1) && ISQREGULAREXPRESSION(1) )
     {
 #endif
-      obj->setRegularExpression ( *PQREGULAREXPRESSION(1) );
+      obj->setRegularExpression( *PQREGULAREXPRESSION(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -156,7 +157,7 @@ HB_FUNC_STATIC( QREGULAREXPRESSIONVALIDATOR_SETREGULAREXPRESSION )
   hb_itemReturn( hb_stackSelfItem() );
 }
 
-void QRegularExpressionValidatorSlots_connect_signal ( const QString & signal, const QString & slot );
+void QRegularExpressionValidatorSlots_connect_signal( const QString & signal, const QString & slot );
 
 HB_FUNC_STATIC( QREGULAREXPRESSIONVALIDATOR_ONREGULAREXPRESSIONCHANGED )
 {

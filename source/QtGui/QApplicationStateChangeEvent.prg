@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -24,7 +24,7 @@ CLASS QApplicationStateChangeEvent INHERIT QEvent
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QApplicationStateChangeEvent
+PROCEDURE destroyObject() CLASS QApplicationStateChangeEvent
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -47,14 +47,14 @@ RETURN
 #endif
 
 /*
-QApplicationStateChangeEvent(Qt::ApplicationState state)
+QApplicationStateChangeEvent( Qt::ApplicationState state )
 */
 HB_FUNC_STATIC( QAPPLICATIONSTATECHANGEEVENT_NEW )
 {
-  if( ISNUMPAR(1) && ISNUM(1) )
+  if( ISNUMPAR(1) && HB_ISNUM(1) )
   {
-    QApplicationStateChangeEvent * o = new QApplicationStateChangeEvent ( (Qt::ApplicationState) hb_parni(1) );
-    _qt5xhb_returnNewObject( o, false );
+    QApplicationStateChangeEvent * obj = new QApplicationStateChangeEvent( (Qt::ApplicationState) hb_parni(1) );
+    Qt5xHb::returnNewObject( obj, false );
   }
   else
   {
@@ -67,7 +67,7 @@ Qt::ApplicationState applicationState() const
 */
 HB_FUNC_STATIC( QAPPLICATIONSTATECHANGEEVENT_APPLICATIONSTATE )
 {
-  QApplicationStateChangeEvent * obj = (QApplicationStateChangeEvent *) _qt5xhb_itemGetPtrStackSelfItem();
+  QApplicationStateChangeEvent * obj = (QApplicationStateChangeEvent *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -75,7 +75,7 @@ HB_FUNC_STATIC( QAPPLICATIONSTATECHANGEEVENT_APPLICATIONSTATE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RENUM( obj->applicationState () );
+      RENUM( obj->applicationState() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else

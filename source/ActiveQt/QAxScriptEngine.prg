@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -30,7 +30,7 @@ CLASS QAxScriptEngine INHERIT QAxObject
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QAxScriptEngine
+PROCEDURE destroyObject() CLASS QAxScriptEngine
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -47,20 +47,22 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #include <ActiveQt/QAxScriptEngine>
 #endif
 
 /*
-QAxScriptEngine ( const QString & language, QAxScript * script )
+QAxScriptEngine( const QString & language, QAxScript * script )
 */
 HB_FUNC_STATIC( QAXSCRIPTENGINE_NEW )
 {
-  if( ISNUMPAR(2) && ISCHAR(1) && ISQAXSCRIPT(2) )
+  if( ISNUMPAR(2) && HB_ISCHAR(1) && ISQAXSCRIPT(2) )
   {
-    QAxScriptEngine * o = new QAxScriptEngine ( PQSTRING(1), PQAXSCRIPT(2) );
-    _qt5xhb_returnNewObject( o, false );
+    QAxScriptEngine * obj = new QAxScriptEngine( PQSTRING(1), PQAXSCRIPT(2) );
+    Qt5xHb::returnNewObject( obj, false );
   }
   else
   {
@@ -70,10 +72,12 @@ HB_FUNC_STATIC( QAXSCRIPTENGINE_NEW )
 
 HB_FUNC_STATIC( QAXSCRIPTENGINE_DELETE )
 {
-  QAxScriptEngine * obj = (QAxScriptEngine *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAxScriptEngine * obj = (QAxScriptEngine *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -86,19 +90,19 @@ HB_FUNC_STATIC( QAXSCRIPTENGINE_DELETE )
 }
 
 /*
-void addItem ( const QString & name )
+void addItem( const QString & name )
 */
 HB_FUNC_STATIC( QAXSCRIPTENGINE_ADDITEM )
 {
-  QAxScriptEngine * obj = (QAxScriptEngine *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAxScriptEngine * obj = (QAxScriptEngine *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISCHAR(1) )
+    if( ISNUMPAR(1) && HB_ISCHAR(1) )
     {
 #endif
-      obj->addItem ( PQSTRING(1) );
+      obj->addItem( PQSTRING(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -112,11 +116,11 @@ HB_FUNC_STATIC( QAXSCRIPTENGINE_ADDITEM )
 }
 
 /*
-bool hasIntrospection () const
+bool hasIntrospection() const
 */
 HB_FUNC_STATIC( QAXSCRIPTENGINE_HASINTROSPECTION )
 {
-  QAxScriptEngine * obj = (QAxScriptEngine *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAxScriptEngine * obj = (QAxScriptEngine *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -124,7 +128,7 @@ HB_FUNC_STATIC( QAXSCRIPTENGINE_HASINTROSPECTION )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->hasIntrospection () );
+      RBOOL( obj->hasIntrospection() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -136,11 +140,11 @@ HB_FUNC_STATIC( QAXSCRIPTENGINE_HASINTROSPECTION )
 }
 
 /*
-bool isValid () const
+bool isValid() const
 */
 HB_FUNC_STATIC( QAXSCRIPTENGINE_ISVALID )
 {
-  QAxScriptEngine * obj = (QAxScriptEngine *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAxScriptEngine * obj = (QAxScriptEngine *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -148,7 +152,7 @@ HB_FUNC_STATIC( QAXSCRIPTENGINE_ISVALID )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->isValid () );
+      RBOOL( obj->isValid() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -160,11 +164,11 @@ HB_FUNC_STATIC( QAXSCRIPTENGINE_ISVALID )
 }
 
 /*
-QString scriptLanguage () const
+QString scriptLanguage() const
 */
 HB_FUNC_STATIC( QAXSCRIPTENGINE_SCRIPTLANGUAGE )
 {
-  QAxScriptEngine * obj = (QAxScriptEngine *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAxScriptEngine * obj = (QAxScriptEngine *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -172,7 +176,7 @@ HB_FUNC_STATIC( QAXSCRIPTENGINE_SCRIPTLANGUAGE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRING( obj->scriptLanguage () );
+      RQSTRING( obj->scriptLanguage() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -184,19 +188,19 @@ HB_FUNC_STATIC( QAXSCRIPTENGINE_SCRIPTLANGUAGE )
 }
 
 /*
-void setState ( State st )
+void setState( QAxScriptEngine::State st )
 */
 HB_FUNC_STATIC( QAXSCRIPTENGINE_SETSTATE )
 {
-  QAxScriptEngine * obj = (QAxScriptEngine *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAxScriptEngine * obj = (QAxScriptEngine *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setState ( (QAxScriptEngine::State) hb_parni(1) );
+      obj->setState( (QAxScriptEngine::State) hb_parni(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -210,11 +214,11 @@ HB_FUNC_STATIC( QAXSCRIPTENGINE_SETSTATE )
 }
 
 /*
-State state () const
+QAxScriptEngine::State state() const
 */
 HB_FUNC_STATIC( QAXSCRIPTENGINE_STATE )
 {
-  QAxScriptEngine * obj = (QAxScriptEngine *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAxScriptEngine * obj = (QAxScriptEngine *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -222,7 +226,7 @@ HB_FUNC_STATIC( QAXSCRIPTENGINE_STATE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RENUM( obj->state () );
+      RENUM( obj->state() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else

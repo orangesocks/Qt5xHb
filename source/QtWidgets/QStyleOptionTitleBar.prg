@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -32,7 +32,7 @@ CLASS QStyleOptionTitleBar INHERIT QStyleOptionComplex
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QStyleOptionTitleBar
+PROCEDURE destroyObject() CLASS QStyleOptionTitleBar
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -57,28 +57,20 @@ RETURN
 /*
 QStyleOptionTitleBar()
 */
-void QStyleOptionTitleBar_new1 ()
+void QStyleOptionTitleBar_new1()
 {
-  QStyleOptionTitleBar * o = new QStyleOptionTitleBar ();
-  _qt5xhb_returnNewObject( o, true );
+  QStyleOptionTitleBar * obj = new QStyleOptionTitleBar();
+  Qt5xHb::returnNewObject( obj, true );
 }
 
 /*
-QStyleOptionTitleBar(const QStyleOptionTitleBar &other)
+QStyleOptionTitleBar( const QStyleOptionTitleBar & other )
 */
-void QStyleOptionTitleBar_new2 ()
+void QStyleOptionTitleBar_new2()
 {
-  QStyleOptionTitleBar * o = new QStyleOptionTitleBar ( *PQSTYLEOPTIONTITLEBAR(1) );
-  _qt5xhb_returnNewObject( o, true );
+  QStyleOptionTitleBar * obj = new QStyleOptionTitleBar( *PQSTYLEOPTIONTITLEBAR(1) );
+  Qt5xHb::returnNewObject( obj, true );
 }
-
-/*
-QStyleOptionTitleBar(int version) [protected]
-*/
-
-//[1]QStyleOptionTitleBar()
-//[2]QStyleOptionTitleBar(const QStyleOptionTitleBar &other)
-//[3]QStyleOptionTitleBar(int version) [protected]
 
 HB_FUNC_STATIC( QSTYLEOPTIONTITLEBAR_NEW )
 {
@@ -101,13 +93,13 @@ QString text
 */
 HB_FUNC_STATIC( QSTYLEOPTIONTITLEBAR_TEXT )
 {
-  QStyleOptionTitleBar * obj = (QStyleOptionTitleBar *) _qt5xhb_itemGetPtrStackSelfItem();
+  QStyleOptionTitleBar * obj = (QStyleOptionTitleBar *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
     if( ISNUMPAR(0) )
     {
-      RQSTRING( obj->text  );
+      RQSTRING( obj->text );
     }
     else
     {
@@ -117,13 +109,13 @@ HB_FUNC_STATIC( QSTYLEOPTIONTITLEBAR_TEXT )
 }
 HB_FUNC_STATIC( QSTYLEOPTIONTITLEBAR_SETTEXT )
 {
-  QStyleOptionTitleBar * obj = (QStyleOptionTitleBar *) _qt5xhb_itemGetPtrStackSelfItem();
+  QStyleOptionTitleBar * obj = (QStyleOptionTitleBar *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
-    if( ISNUMPAR(1) && ISCHAR(1) )
+    if( ISNUMPAR(1) && HB_ISCHAR(1) )
     {
-      obj->text = PQSTRING(1);
+      obj->text= PQSTRING(1);
     }
     else
     {
@@ -139,14 +131,14 @@ QIcon icon
 */
 HB_FUNC_STATIC( QSTYLEOPTIONTITLEBAR_ICON )
 {
-  QStyleOptionTitleBar * obj = (QStyleOptionTitleBar *) _qt5xhb_itemGetPtrStackSelfItem();
+  QStyleOptionTitleBar * obj = (QStyleOptionTitleBar *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
     if( ISNUMPAR(0) )
     {
-      QIcon * ptr = new QIcon( obj->icon  );
-      _qt5xhb_createReturnClass ( ptr, "QICON", true );
+      QIcon * ptr = new QIcon( obj->icon );
+      Qt5xHb::createReturnClass( ptr, "QICON", true );
     }
     else
     {
@@ -156,13 +148,13 @@ HB_FUNC_STATIC( QSTYLEOPTIONTITLEBAR_ICON )
 }
 HB_FUNC_STATIC( QSTYLEOPTIONTITLEBAR_SETICON )
 {
-  QStyleOptionTitleBar * obj = (QStyleOptionTitleBar *) _qt5xhb_itemGetPtrStackSelfItem();
+  QStyleOptionTitleBar * obj = (QStyleOptionTitleBar *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
     if( ISNUMPAR(1) && ISQICON(1) )
     {
-      obj->icon = *PQICON(1);
+      obj->icon= *PQICON(1);
     }
     else
     {
@@ -178,13 +170,13 @@ int titleBarState
 */
 HB_FUNC_STATIC( QSTYLEOPTIONTITLEBAR_TITLEBARSTATE )
 {
-  QStyleOptionTitleBar * obj = (QStyleOptionTitleBar *) _qt5xhb_itemGetPtrStackSelfItem();
+  QStyleOptionTitleBar * obj = (QStyleOptionTitleBar *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
     if( ISNUMPAR(0) )
     {
-      RINT( obj->titleBarState  );
+      RINT( obj->titleBarState );
     }
     else
     {
@@ -194,13 +186,13 @@ HB_FUNC_STATIC( QSTYLEOPTIONTITLEBAR_TITLEBARSTATE )
 }
 HB_FUNC_STATIC( QSTYLEOPTIONTITLEBAR_SETTITLEBARSTATE )
 {
-  QStyleOptionTitleBar * obj = (QStyleOptionTitleBar *) _qt5xhb_itemGetPtrStackSelfItem();
+  QStyleOptionTitleBar * obj = (QStyleOptionTitleBar *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
-      obj->titleBarState = PINT(1);
+      obj->titleBarState= PINT(1);
     }
     else
     {
@@ -216,13 +208,13 @@ Qt::WindowFlags titleBarFlags
 */
 HB_FUNC_STATIC( QSTYLEOPTIONTITLEBAR_TITLEBARFLAGS )
 {
-  QStyleOptionTitleBar * obj = (QStyleOptionTitleBar *) _qt5xhb_itemGetPtrStackSelfItem();
+  QStyleOptionTitleBar * obj = (QStyleOptionTitleBar *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
     if( ISNUMPAR(0) )
     {
-      RENUM( obj->titleBarFlags  );
+      RENUM( obj->titleBarFlags );
     }
     else
     {
@@ -232,13 +224,13 @@ HB_FUNC_STATIC( QSTYLEOPTIONTITLEBAR_TITLEBARFLAGS )
 }
 HB_FUNC_STATIC( QSTYLEOPTIONTITLEBAR_SETTITLEBARFLAGS )
 {
-  QStyleOptionTitleBar * obj = (QStyleOptionTitleBar *) _qt5xhb_itemGetPtrStackSelfItem();
+  QStyleOptionTitleBar * obj = (QStyleOptionTitleBar *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
-      obj->titleBarFlags = (Qt::WindowFlags) hb_parni(1);
+      obj->titleBarFlags= (Qt::WindowFlags) hb_parni(1);
     }
     else
     {

@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -24,7 +24,7 @@ CLASS QDragLeaveEvent INHERIT QEvent
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QDragLeaveEvent
+PROCEDURE destroyObject() CLASS QDragLeaveEvent
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -47,14 +47,14 @@ RETURN
 #endif
 
 /*
-QDragLeaveEvent ()
+QDragLeaveEvent()
 */
 HB_FUNC_STATIC( QDRAGLEAVEEVENT_NEW )
 {
   if( ISNUMPAR(0) )
   {
-    QDragLeaveEvent * o = new QDragLeaveEvent ();
-    _qt5xhb_returnNewObject( o, false );
+    QDragLeaveEvent * obj = new QDragLeaveEvent();
+    Qt5xHb::returnNewObject( obj, false );
   }
   else
   {
@@ -64,7 +64,7 @@ HB_FUNC_STATIC( QDRAGLEAVEEVENT_NEW )
 
 HB_FUNC_STATIC( QDRAGLEAVEEVENT_DELETE )
 {
-  QDragLeaveEvent * obj = (QDragLeaveEvent *) _qt5xhb_itemGetPtrStackSelfItem();
+  QDragLeaveEvent * obj = (QDragLeaveEvent *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {

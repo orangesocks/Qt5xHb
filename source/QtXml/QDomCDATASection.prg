@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -25,7 +25,7 @@ CLASS QDomCDATASection INHERIT QDomText
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QDomCDATASection
+PROCEDURE destroyObject() CLASS QDomCDATASection
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -48,25 +48,22 @@ RETURN
 #endif
 
 /*
-QDomCDATASection ()
+QDomCDATASection()
 */
-void QDomCDATASection_new1 ()
+void QDomCDATASection_new1()
 {
-  QDomCDATASection * o = new QDomCDATASection ();
-  _qt5xhb_returnNewObject( o, true );
+  QDomCDATASection * obj = new QDomCDATASection();
+  Qt5xHb::returnNewObject( obj, true );
 }
 
 /*
-QDomCDATASection ( const QDomCDATASection & x )
+QDomCDATASection( const QDomCDATASection & x )
 */
-void QDomCDATASection_new2 ()
+void QDomCDATASection_new2()
 {
-  QDomCDATASection * o = new QDomCDATASection ( *PQDOMCDATASECTION(1) );
-  _qt5xhb_returnNewObject( o, true );
+  QDomCDATASection * obj = new QDomCDATASection( *PQDOMCDATASECTION(1) );
+  Qt5xHb::returnNewObject( obj, true );
 }
-
-//[1]QDomCDATASection ()
-//[2]QDomCDATASection ( const QDomCDATASection & x )
 
 HB_FUNC_STATIC( QDOMCDATASECTION_NEW )
 {
@@ -86,7 +83,7 @@ HB_FUNC_STATIC( QDOMCDATASECTION_NEW )
 
 HB_FUNC_STATIC( QDOMCDATASECTION_DELETE )
 {
-  QDomCDATASection * obj = (QDomCDATASection *) _qt5xhb_itemGetPtrStackSelfItem();
+  QDomCDATASection * obj = (QDomCDATASection *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -102,11 +99,11 @@ HB_FUNC_STATIC( QDOMCDATASECTION_DELETE )
 }
 
 /*
-QDomNode::NodeType nodeType () const
+QDomNode::NodeType nodeType() const
 */
 HB_FUNC_STATIC( QDOMCDATASECTION_NODETYPE )
 {
-  QDomCDATASection * obj = (QDomCDATASection *) _qt5xhb_itemGetPtrStackSelfItem();
+  QDomCDATASection * obj = (QDomCDATASection *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -114,7 +111,7 @@ HB_FUNC_STATIC( QDOMCDATASECTION_NODETYPE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RENUM( obj->nodeType () );
+      RENUM( obj->nodeType() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else

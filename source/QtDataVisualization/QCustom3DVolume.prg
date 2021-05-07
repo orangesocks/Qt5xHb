@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -82,7 +82,7 @@ CLASS QCustom3DVolume INHERIT QCustom3DItem
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QCustom3DVolume
+PROCEDURE destroyObject() CLASS QCustom3DVolume
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -99,6 +99,8 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #include <QtDataVisualization/QCustom3DVolume>
@@ -107,27 +109,20 @@ RETURN
 using namespace QtDataVisualization;
 
 /*
-explicit QCustom3DVolume(QObject *parent = Q_NULLPTR)
+QCustom3DVolume( QObject * parent = nullptr )
 */
-void QCustom3DVolume_new1 ()
+void QCustom3DVolume_new1()
 {
-  QCustom3DVolume * o = new QCustom3DVolume ( OPQOBJECT(1,Q_NULLPTR) );
-  _qt5xhb_returnNewObject( o, false );
+  QCustom3DVolume * obj = new QCustom3DVolume( OPQOBJECT(1,nullptr) );
+  Qt5xHb::returnNewObject( obj, false );
 }
-
-/*
-explicit QCustom3DVolume(const QVector3D &position, const QVector3D &scaling, const QQuaternion &rotation, int textureWidth, int textureHeight, int textureDepth, QVector<uchar> *textureData, QImage::Format textureFormat, const QVector<QRgb> &colorTable, QObject *parent = Q_NULLPTR)
-*/
-
-//[1]explicit QCustom3DVolume(QObject *parent = Q_NULLPTR)
-//[2]explicit QCustom3DVolume(const QVector3D &position, const QVector3D &scaling, const QQuaternion &rotation, int textureWidth, int textureHeight, int textureDepth, QVector<uchar> *textureData, QImage::Format textureFormat, const QVector<QRgb> &colorTable, QObject *parent = Q_NULLPTR)
 
 HB_FUNC_STATIC( QCUSTOM3DVOLUME_NEW )
 {
-  if( ISBETWEEN(0,1) && (ISQOBJECT(1)||ISNIL(1)) )
+  if( ISBETWEEN(0,1) && (ISQOBJECT(1)||HB_ISNIL(1)) )
   {
     QCustom3DVolume_new1();
-  }  
+  }
   else
   {
     hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
@@ -139,10 +134,12 @@ virtual ~QCustom3DVolume()
 */
 HB_FUNC_STATIC( QCUSTOM3DVOLUME_DELETE )
 {
-  QCustom3DVolume * obj = (QCustom3DVolume *) _qt5xhb_itemGetPtrStackSelfItem();
+  QCustom3DVolume * obj = (QCustom3DVolume *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -159,7 +156,7 @@ int textureWidth() const
 */
 HB_FUNC_STATIC( QCUSTOM3DVOLUME_TEXTUREWIDTH )
 {
-  QCustom3DVolume * obj = (QCustom3DVolume *) _qt5xhb_itemGetPtrStackSelfItem();
+  QCustom3DVolume * obj = (QCustom3DVolume *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -167,7 +164,7 @@ HB_FUNC_STATIC( QCUSTOM3DVOLUME_TEXTUREWIDTH )
     if( ISNUMPAR(0) )
     {
 #endif
-      RINT( obj->textureWidth () );
+      RINT( obj->textureWidth() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -179,19 +176,19 @@ HB_FUNC_STATIC( QCUSTOM3DVOLUME_TEXTUREWIDTH )
 }
 
 /*
-void setTextureWidth(int value)
+void setTextureWidth( int value )
 */
 HB_FUNC_STATIC( QCUSTOM3DVOLUME_SETTEXTUREWIDTH )
 {
-  QCustom3DVolume * obj = (QCustom3DVolume *) _qt5xhb_itemGetPtrStackSelfItem();
+  QCustom3DVolume * obj = (QCustom3DVolume *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setTextureWidth ( PINT(1) );
+      obj->setTextureWidth( PINT(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -209,7 +206,7 @@ int textureHeight() const
 */
 HB_FUNC_STATIC( QCUSTOM3DVOLUME_TEXTUREHEIGHT )
 {
-  QCustom3DVolume * obj = (QCustom3DVolume *) _qt5xhb_itemGetPtrStackSelfItem();
+  QCustom3DVolume * obj = (QCustom3DVolume *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -217,7 +214,7 @@ HB_FUNC_STATIC( QCUSTOM3DVOLUME_TEXTUREHEIGHT )
     if( ISNUMPAR(0) )
     {
 #endif
-      RINT( obj->textureHeight () );
+      RINT( obj->textureHeight() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -229,19 +226,19 @@ HB_FUNC_STATIC( QCUSTOM3DVOLUME_TEXTUREHEIGHT )
 }
 
 /*
-void setTextureHeight(int value)
+void setTextureHeight( int value )
 */
 HB_FUNC_STATIC( QCUSTOM3DVOLUME_SETTEXTUREHEIGHT )
 {
-  QCustom3DVolume * obj = (QCustom3DVolume *) _qt5xhb_itemGetPtrStackSelfItem();
+  QCustom3DVolume * obj = (QCustom3DVolume *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setTextureHeight ( PINT(1) );
+      obj->setTextureHeight( PINT(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -259,7 +256,7 @@ int textureDepth() const
 */
 HB_FUNC_STATIC( QCUSTOM3DVOLUME_TEXTUREDEPTH )
 {
-  QCustom3DVolume * obj = (QCustom3DVolume *) _qt5xhb_itemGetPtrStackSelfItem();
+  QCustom3DVolume * obj = (QCustom3DVolume *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -267,7 +264,7 @@ HB_FUNC_STATIC( QCUSTOM3DVOLUME_TEXTUREDEPTH )
     if( ISNUMPAR(0) )
     {
 #endif
-      RINT( obj->textureDepth () );
+      RINT( obj->textureDepth() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -279,19 +276,19 @@ HB_FUNC_STATIC( QCUSTOM3DVOLUME_TEXTUREDEPTH )
 }
 
 /*
-void setTextureDepth(int value)
+void setTextureDepth( int value )
 */
 HB_FUNC_STATIC( QCUSTOM3DVOLUME_SETTEXTUREDEPTH )
 {
-  QCustom3DVolume * obj = (QCustom3DVolume *) _qt5xhb_itemGetPtrStackSelfItem();
+  QCustom3DVolume * obj = (QCustom3DVolume *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setTextureDepth ( PINT(1) );
+      obj->setTextureDepth( PINT(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -309,7 +306,7 @@ int sliceIndexX() const
 */
 HB_FUNC_STATIC( QCUSTOM3DVOLUME_SLICEINDEXX )
 {
-  QCustom3DVolume * obj = (QCustom3DVolume *) _qt5xhb_itemGetPtrStackSelfItem();
+  QCustom3DVolume * obj = (QCustom3DVolume *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -317,7 +314,7 @@ HB_FUNC_STATIC( QCUSTOM3DVOLUME_SLICEINDEXX )
     if( ISNUMPAR(0) )
     {
 #endif
-      RINT( obj->sliceIndexX () );
+      RINT( obj->sliceIndexX() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -329,19 +326,19 @@ HB_FUNC_STATIC( QCUSTOM3DVOLUME_SLICEINDEXX )
 }
 
 /*
-void setSliceIndexX(int value)
+void setSliceIndexX( int value )
 */
 HB_FUNC_STATIC( QCUSTOM3DVOLUME_SETSLICEINDEXX )
 {
-  QCustom3DVolume * obj = (QCustom3DVolume *) _qt5xhb_itemGetPtrStackSelfItem();
+  QCustom3DVolume * obj = (QCustom3DVolume *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setSliceIndexX ( PINT(1) );
+      obj->setSliceIndexX( PINT(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -359,7 +356,7 @@ int sliceIndexY() const
 */
 HB_FUNC_STATIC( QCUSTOM3DVOLUME_SLICEINDEXY )
 {
-  QCustom3DVolume * obj = (QCustom3DVolume *) _qt5xhb_itemGetPtrStackSelfItem();
+  QCustom3DVolume * obj = (QCustom3DVolume *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -367,7 +364,7 @@ HB_FUNC_STATIC( QCUSTOM3DVOLUME_SLICEINDEXY )
     if( ISNUMPAR(0) )
     {
 #endif
-      RINT( obj->sliceIndexY () );
+      RINT( obj->sliceIndexY() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -379,19 +376,19 @@ HB_FUNC_STATIC( QCUSTOM3DVOLUME_SLICEINDEXY )
 }
 
 /*
-void setSliceIndexY(int value)
+void setSliceIndexY( int value )
 */
 HB_FUNC_STATIC( QCUSTOM3DVOLUME_SETSLICEINDEXY )
 {
-  QCustom3DVolume * obj = (QCustom3DVolume *) _qt5xhb_itemGetPtrStackSelfItem();
+  QCustom3DVolume * obj = (QCustom3DVolume *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setSliceIndexY ( PINT(1) );
+      obj->setSliceIndexY( PINT(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -409,7 +406,7 @@ int sliceIndexZ() const
 */
 HB_FUNC_STATIC( QCUSTOM3DVOLUME_SLICEINDEXZ )
 {
-  QCustom3DVolume * obj = (QCustom3DVolume *) _qt5xhb_itemGetPtrStackSelfItem();
+  QCustom3DVolume * obj = (QCustom3DVolume *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -417,7 +414,7 @@ HB_FUNC_STATIC( QCUSTOM3DVOLUME_SLICEINDEXZ )
     if( ISNUMPAR(0) )
     {
 #endif
-      RINT( obj->sliceIndexZ () );
+      RINT( obj->sliceIndexZ() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -429,19 +426,19 @@ HB_FUNC_STATIC( QCUSTOM3DVOLUME_SLICEINDEXZ )
 }
 
 /*
-void setSliceIndexZ(int value)
+void setSliceIndexZ( int value )
 */
 HB_FUNC_STATIC( QCUSTOM3DVOLUME_SETSLICEINDEXZ )
 {
-  QCustom3DVolume * obj = (QCustom3DVolume *) _qt5xhb_itemGetPtrStackSelfItem();
+  QCustom3DVolume * obj = (QCustom3DVolume *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setSliceIndexZ ( PINT(1) );
+      obj->setSliceIndexZ( PINT(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -455,27 +452,11 @@ HB_FUNC_STATIC( QCUSTOM3DVOLUME_SETSLICEINDEXZ )
 }
 
 /*
-QVector<QRgb> colorTable() const
-*/
-
-/*
-void setColorTable(const QVector<QRgb> &colors)
-*/
-
-/*
-QVector<uchar> *textureData() const
-*/
-
-/*
-void setTextureData(QVector<uchar> *data)
-*/
-
-/*
 float alphaMultiplier() const
 */
 HB_FUNC_STATIC( QCUSTOM3DVOLUME_ALPHAMULTIPLIER )
 {
-  QCustom3DVolume * obj = (QCustom3DVolume *) _qt5xhb_itemGetPtrStackSelfItem();
+  QCustom3DVolume * obj = (QCustom3DVolume *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -483,7 +464,7 @@ HB_FUNC_STATIC( QCUSTOM3DVOLUME_ALPHAMULTIPLIER )
     if( ISNUMPAR(0) )
     {
 #endif
-      RFLOAT( obj->alphaMultiplier () );
+      RFLOAT( obj->alphaMultiplier() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -495,19 +476,19 @@ HB_FUNC_STATIC( QCUSTOM3DVOLUME_ALPHAMULTIPLIER )
 }
 
 /*
-void setAlphaMultiplier(float mult)
+void setAlphaMultiplier( float mult )
 */
 HB_FUNC_STATIC( QCUSTOM3DVOLUME_SETALPHAMULTIPLIER )
 {
-  QCustom3DVolume * obj = (QCustom3DVolume *) _qt5xhb_itemGetPtrStackSelfItem();
+  QCustom3DVolume * obj = (QCustom3DVolume *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setAlphaMultiplier ( PFLOAT(1) );
+      obj->setAlphaMultiplier( PFLOAT(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -525,7 +506,7 @@ bool preserveOpacity() const
 */
 HB_FUNC_STATIC( QCUSTOM3DVOLUME_PRESERVEOPACITY )
 {
-  QCustom3DVolume * obj = (QCustom3DVolume *) _qt5xhb_itemGetPtrStackSelfItem();
+  QCustom3DVolume * obj = (QCustom3DVolume *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -533,7 +514,7 @@ HB_FUNC_STATIC( QCUSTOM3DVOLUME_PRESERVEOPACITY )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->preserveOpacity () );
+      RBOOL( obj->preserveOpacity() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -545,19 +526,19 @@ HB_FUNC_STATIC( QCUSTOM3DVOLUME_PRESERVEOPACITY )
 }
 
 /*
-void setPreserveOpacity(bool enable)
+void setPreserveOpacity( bool enable )
 */
 HB_FUNC_STATIC( QCUSTOM3DVOLUME_SETPRESERVEOPACITY )
 {
-  QCustom3DVolume * obj = (QCustom3DVolume *) _qt5xhb_itemGetPtrStackSelfItem();
+  QCustom3DVolume * obj = (QCustom3DVolume *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISLOG(1) )
+    if( ISNUMPAR(1) && HB_ISLOG(1) )
     {
 #endif
-      obj->setPreserveOpacity ( PBOOL(1) );
+      obj->setPreserveOpacity( PBOOL(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -575,7 +556,7 @@ bool useHighDefShader() const
 */
 HB_FUNC_STATIC( QCUSTOM3DVOLUME_USEHIGHDEFSHADER )
 {
-  QCustom3DVolume * obj = (QCustom3DVolume *) _qt5xhb_itemGetPtrStackSelfItem();
+  QCustom3DVolume * obj = (QCustom3DVolume *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -583,7 +564,7 @@ HB_FUNC_STATIC( QCUSTOM3DVOLUME_USEHIGHDEFSHADER )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->useHighDefShader () );
+      RBOOL( obj->useHighDefShader() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -595,19 +576,19 @@ HB_FUNC_STATIC( QCUSTOM3DVOLUME_USEHIGHDEFSHADER )
 }
 
 /*
-void setUseHighDefShader(bool enable)
+void setUseHighDefShader( bool enable )
 */
 HB_FUNC_STATIC( QCUSTOM3DVOLUME_SETUSEHIGHDEFSHADER )
 {
-  QCustom3DVolume * obj = (QCustom3DVolume *) _qt5xhb_itemGetPtrStackSelfItem();
+  QCustom3DVolume * obj = (QCustom3DVolume *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISLOG(1) )
+    if( ISNUMPAR(1) && HB_ISLOG(1) )
     {
 #endif
-      obj->setUseHighDefShader ( PBOOL(1) );
+      obj->setUseHighDefShader( PBOOL(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -625,7 +606,7 @@ bool drawSlices() const
 */
 HB_FUNC_STATIC( QCUSTOM3DVOLUME_DRAWSLICES )
 {
-  QCustom3DVolume * obj = (QCustom3DVolume *) _qt5xhb_itemGetPtrStackSelfItem();
+  QCustom3DVolume * obj = (QCustom3DVolume *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -633,7 +614,7 @@ HB_FUNC_STATIC( QCUSTOM3DVOLUME_DRAWSLICES )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->drawSlices () );
+      RBOOL( obj->drawSlices() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -645,19 +626,19 @@ HB_FUNC_STATIC( QCUSTOM3DVOLUME_DRAWSLICES )
 }
 
 /*
-void setDrawSlices(bool enable)
+void setDrawSlices( bool enable )
 */
 HB_FUNC_STATIC( QCUSTOM3DVOLUME_SETDRAWSLICES )
 {
-  QCustom3DVolume * obj = (QCustom3DVolume *) _qt5xhb_itemGetPtrStackSelfItem();
+  QCustom3DVolume * obj = (QCustom3DVolume *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISLOG(1) )
+    if( ISNUMPAR(1) && HB_ISLOG(1) )
     {
 #endif
-      obj->setDrawSlices ( PBOOL(1) );
+      obj->setDrawSlices( PBOOL(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -675,7 +656,7 @@ bool drawSliceFrames() const
 */
 HB_FUNC_STATIC( QCUSTOM3DVOLUME_DRAWSLICEFRAMES )
 {
-  QCustom3DVolume * obj = (QCustom3DVolume *) _qt5xhb_itemGetPtrStackSelfItem();
+  QCustom3DVolume * obj = (QCustom3DVolume *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -683,7 +664,7 @@ HB_FUNC_STATIC( QCUSTOM3DVOLUME_DRAWSLICEFRAMES )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->drawSliceFrames () );
+      RBOOL( obj->drawSliceFrames() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -695,19 +676,19 @@ HB_FUNC_STATIC( QCUSTOM3DVOLUME_DRAWSLICEFRAMES )
 }
 
 /*
-void setDrawSliceFrames(bool enable)
+void setDrawSliceFrames( bool enable )
 */
 HB_FUNC_STATIC( QCUSTOM3DVOLUME_SETDRAWSLICEFRAMES )
 {
-  QCustom3DVolume * obj = (QCustom3DVolume *) _qt5xhb_itemGetPtrStackSelfItem();
+  QCustom3DVolume * obj = (QCustom3DVolume *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISLOG(1) )
+    if( ISNUMPAR(1) && HB_ISLOG(1) )
     {
 #endif
-      obj->setDrawSliceFrames ( PBOOL(1) );
+      obj->setDrawSliceFrames( PBOOL(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -725,7 +706,7 @@ QColor sliceFrameColor() const
 */
 HB_FUNC_STATIC( QCUSTOM3DVOLUME_SLICEFRAMECOLOR )
 {
-  QCustom3DVolume * obj = (QCustom3DVolume *) _qt5xhb_itemGetPtrStackSelfItem();
+  QCustom3DVolume * obj = (QCustom3DVolume *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -733,8 +714,8 @@ HB_FUNC_STATIC( QCUSTOM3DVOLUME_SLICEFRAMECOLOR )
     if( ISNUMPAR(0) )
     {
 #endif
-      QColor * ptr = new QColor( obj->sliceFrameColor () );
-      _qt5xhb_createReturnClass ( ptr, "QCOLOR", true );
+      QColor * ptr = new QColor( obj->sliceFrameColor() );
+      Qt5xHb::createReturnClass( ptr, "QCOLOR", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -746,19 +727,19 @@ HB_FUNC_STATIC( QCUSTOM3DVOLUME_SLICEFRAMECOLOR )
 }
 
 /*
-void setSliceFrameColor(const QColor &color)
+void setSliceFrameColor( const QColor & color )
 */
 HB_FUNC_STATIC( QCUSTOM3DVOLUME_SETSLICEFRAMECOLOR )
 {
-  QCustom3DVolume * obj = (QCustom3DVolume *) _qt5xhb_itemGetPtrStackSelfItem();
+  QCustom3DVolume * obj = (QCustom3DVolume *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && (ISQCOLOR(1)||ISCHAR(1)) )
+    if( ISNUMPAR(1) && (ISQCOLOR(1)||HB_ISCHAR(1)) )
     {
 #endif
-      obj->setSliceFrameColor ( ISOBJECT(1)? *(QColor *) _qt5xhb_itemGetPtr(1) : QColor(hb_parc(1)) );
+      obj->setSliceFrameColor( HB_ISOBJECT(1)? *(QColor *) Qt5xHb::itemGetPtr(1) : QColor(hb_parc(1)) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -776,7 +757,7 @@ QVector3D sliceFrameWidths() const
 */
 HB_FUNC_STATIC( QCUSTOM3DVOLUME_SLICEFRAMEWIDTHS )
 {
-  QCustom3DVolume * obj = (QCustom3DVolume *) _qt5xhb_itemGetPtrStackSelfItem();
+  QCustom3DVolume * obj = (QCustom3DVolume *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -784,8 +765,8 @@ HB_FUNC_STATIC( QCUSTOM3DVOLUME_SLICEFRAMEWIDTHS )
     if( ISNUMPAR(0) )
     {
 #endif
-      QVector3D * ptr = new QVector3D( obj->sliceFrameWidths () );
-      _qt5xhb_createReturnClass ( ptr, "QVECTOR3D", true );
+      QVector3D * ptr = new QVector3D( obj->sliceFrameWidths() );
+      Qt5xHb::createReturnClass( ptr, "QVECTOR3D", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -797,11 +778,11 @@ HB_FUNC_STATIC( QCUSTOM3DVOLUME_SLICEFRAMEWIDTHS )
 }
 
 /*
-void setSliceFrameWidths(const QVector3D &values)
+void setSliceFrameWidths( const QVector3D & values )
 */
 HB_FUNC_STATIC( QCUSTOM3DVOLUME_SETSLICEFRAMEWIDTHS )
 {
-  QCustom3DVolume * obj = (QCustom3DVolume *) _qt5xhb_itemGetPtrStackSelfItem();
+  QCustom3DVolume * obj = (QCustom3DVolume *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -809,7 +790,7 @@ HB_FUNC_STATIC( QCUSTOM3DVOLUME_SETSLICEFRAMEWIDTHS )
     if( ISNUMPAR(1) && ISQVECTOR3D(1) )
     {
 #endif
-      obj->setSliceFrameWidths ( *PQVECTOR3D(1) );
+      obj->setSliceFrameWidths( *PQVECTOR3D(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -827,7 +808,7 @@ QVector3D sliceFrameGaps() const
 */
 HB_FUNC_STATIC( QCUSTOM3DVOLUME_SLICEFRAMEGAPS )
 {
-  QCustom3DVolume * obj = (QCustom3DVolume *) _qt5xhb_itemGetPtrStackSelfItem();
+  QCustom3DVolume * obj = (QCustom3DVolume *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -835,8 +816,8 @@ HB_FUNC_STATIC( QCUSTOM3DVOLUME_SLICEFRAMEGAPS )
     if( ISNUMPAR(0) )
     {
 #endif
-      QVector3D * ptr = new QVector3D( obj->sliceFrameGaps () );
-      _qt5xhb_createReturnClass ( ptr, "QVECTOR3D", true );
+      QVector3D * ptr = new QVector3D( obj->sliceFrameGaps() );
+      Qt5xHb::createReturnClass( ptr, "QVECTOR3D", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -848,11 +829,11 @@ HB_FUNC_STATIC( QCUSTOM3DVOLUME_SLICEFRAMEGAPS )
 }
 
 /*
-void setSliceFrameGaps(const QVector3D &values)
+void setSliceFrameGaps( const QVector3D & values )
 */
 HB_FUNC_STATIC( QCUSTOM3DVOLUME_SETSLICEFRAMEGAPS )
 {
-  QCustom3DVolume * obj = (QCustom3DVolume *) _qt5xhb_itemGetPtrStackSelfItem();
+  QCustom3DVolume * obj = (QCustom3DVolume *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -860,7 +841,7 @@ HB_FUNC_STATIC( QCUSTOM3DVOLUME_SETSLICEFRAMEGAPS )
     if( ISNUMPAR(1) && ISQVECTOR3D(1) )
     {
 #endif
-      obj->setSliceFrameGaps ( *PQVECTOR3D(1) );
+      obj->setSliceFrameGaps( *PQVECTOR3D(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -878,7 +859,7 @@ QVector3D sliceFrameThicknesses() const
 */
 HB_FUNC_STATIC( QCUSTOM3DVOLUME_SLICEFRAMETHICKNESSES )
 {
-  QCustom3DVolume * obj = (QCustom3DVolume *) _qt5xhb_itemGetPtrStackSelfItem();
+  QCustom3DVolume * obj = (QCustom3DVolume *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -886,8 +867,8 @@ HB_FUNC_STATIC( QCUSTOM3DVOLUME_SLICEFRAMETHICKNESSES )
     if( ISNUMPAR(0) )
     {
 #endif
-      QVector3D * ptr = new QVector3D( obj->sliceFrameThicknesses () );
-      _qt5xhb_createReturnClass ( ptr, "QVECTOR3D", true );
+      QVector3D * ptr = new QVector3D( obj->sliceFrameThicknesses() );
+      Qt5xHb::createReturnClass( ptr, "QVECTOR3D", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -899,11 +880,11 @@ HB_FUNC_STATIC( QCUSTOM3DVOLUME_SLICEFRAMETHICKNESSES )
 }
 
 /*
-void setSliceFrameThicknesses(const QVector3D &values)
+void setSliceFrameThicknesses( const QVector3D & values )
 */
 HB_FUNC_STATIC( QCUSTOM3DVOLUME_SETSLICEFRAMETHICKNESSES )
 {
-  QCustom3DVolume * obj = (QCustom3DVolume *) _qt5xhb_itemGetPtrStackSelfItem();
+  QCustom3DVolume * obj = (QCustom3DVolume *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -911,7 +892,7 @@ HB_FUNC_STATIC( QCUSTOM3DVOLUME_SETSLICEFRAMETHICKNESSES )
     if( ISNUMPAR(1) && ISQVECTOR3D(1) )
     {
 #endif
-      obj->setSliceFrameThicknesses ( *PQVECTOR3D(1) );
+      obj->setSliceFrameThicknesses( *PQVECTOR3D(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -925,19 +906,19 @@ HB_FUNC_STATIC( QCUSTOM3DVOLUME_SETSLICEFRAMETHICKNESSES )
 }
 
 /*
-void setTextureDimensions(int width, int height, int depth)
+void setTextureDimensions( int width, int height, int depth )
 */
 HB_FUNC_STATIC( QCUSTOM3DVOLUME_SETTEXTUREDIMENSIONS )
 {
-  QCustom3DVolume * obj = (QCustom3DVolume *) _qt5xhb_itemGetPtrStackSelfItem();
+  QCustom3DVolume * obj = (QCustom3DVolume *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(3) && ISNUM(1) && ISNUM(2) && ISNUM(3) )
+    if( ISNUMPAR(3) && HB_ISNUM(1) && HB_ISNUM(2) && HB_ISNUM(3) )
     {
 #endif
-      obj->setTextureDimensions ( PINT(1), PINT(2), PINT(3) );
+      obj->setTextureDimensions( PINT(1), PINT(2), PINT(3) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -955,7 +936,7 @@ int textureDataWidth() const
 */
 HB_FUNC_STATIC( QCUSTOM3DVOLUME_TEXTUREDATAWIDTH )
 {
-  QCustom3DVolume * obj = (QCustom3DVolume *) _qt5xhb_itemGetPtrStackSelfItem();
+  QCustom3DVolume * obj = (QCustom3DVolume *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -963,7 +944,7 @@ HB_FUNC_STATIC( QCUSTOM3DVOLUME_TEXTUREDATAWIDTH )
     if( ISNUMPAR(0) )
     {
 #endif
-      RINT( obj->textureDataWidth () );
+      RINT( obj->textureDataWidth() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -975,19 +956,19 @@ HB_FUNC_STATIC( QCUSTOM3DVOLUME_TEXTUREDATAWIDTH )
 }
 
 /*
-void setSliceIndices(int x, int y, int z)
+void setSliceIndices( int x, int y, int z )
 */
 HB_FUNC_STATIC( QCUSTOM3DVOLUME_SETSLICEINDICES )
 {
-  QCustom3DVolume * obj = (QCustom3DVolume *) _qt5xhb_itemGetPtrStackSelfItem();
+  QCustom3DVolume * obj = (QCustom3DVolume *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(3) && ISNUM(1) && ISNUM(2) && ISNUM(3) )
+    if( ISNUMPAR(3) && HB_ISNUM(1) && HB_ISNUM(2) && HB_ISNUM(3) )
     {
 #endif
-      obj->setSliceIndices ( PINT(1), PINT(2), PINT(3) );
+      obj->setSliceIndices( PINT(1), PINT(2), PINT(3) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -1001,49 +982,42 @@ HB_FUNC_STATIC( QCUSTOM3DVOLUME_SETSLICEINDICES )
 }
 
 /*
-QVector<uchar> *createTextureData(const QVector<QImage *> &images)
+void setSubTextureData( Qt::Axis axis, int index, const uchar * data )
 */
-
-/*
-void setSubTextureData(Qt::Axis axis, int index, const uchar *data)
-*/
-void QCustom3DVolume_setSubTextureData1 ()
+void QCustom3DVolume_setSubTextureData1()
 {
-  QCustom3DVolume * obj = (QCustom3DVolume *) _qt5xhb_itemGetPtrStackSelfItem();
+  QCustom3DVolume * obj = (QCustom3DVolume *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
-      obj->setSubTextureData ( (Qt::Axis) hb_parni(1), PINT(2), PCONSTUCHAR(3) );
+    obj->setSubTextureData( (Qt::Axis) hb_parni(1), PINT(2), PCONSTUCHAR(3) );
   }
 
   hb_itemReturn( hb_stackSelfItem() );
 }
 
 /*
-void setSubTextureData(Qt::Axis axis, int index, const QImage &image)
+void setSubTextureData( Qt::Axis axis, int index, const QImage & image )
 */
-void QCustom3DVolume_setSubTextureData2 ()
+void QCustom3DVolume_setSubTextureData2()
 {
-  QCustom3DVolume * obj = (QCustom3DVolume *) _qt5xhb_itemGetPtrStackSelfItem();
+  QCustom3DVolume * obj = (QCustom3DVolume *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
-      obj->setSubTextureData ( (Qt::Axis) hb_parni(1), PINT(2), *PQIMAGE(3) );
+    obj->setSubTextureData( (Qt::Axis) hb_parni(1), PINT(2), *PQIMAGE(3) );
   }
 
   hb_itemReturn( hb_stackSelfItem() );
 }
-
-//[1]void setSubTextureData(Qt::Axis axis, int index, const uchar *data)
-//[2]void setSubTextureData(Qt::Axis axis, int index, const QImage &image)
 
 HB_FUNC_STATIC( QCUSTOM3DVOLUME_SETSUBTEXTUREDATA )
 {
-  if( ISNUMPAR(3) && ISNUM(1) && ISNUM(2) && ISCHAR(3) )
+  if( ISNUMPAR(3) && HB_ISNUM(1) && HB_ISNUM(2) && HB_ISCHAR(3) )
   {
     QCustom3DVolume_setSubTextureData1();
   }
-  else if( ISNUMPAR(3) && ISNUM(1) && ISNUM(2) && ISQIMAGE(3) )
+  else if( ISNUMPAR(3) && HB_ISNUM(1) && HB_ISNUM(2) && ISQIMAGE(3) )
   {
     QCustom3DVolume_setSubTextureData2();
   }
@@ -1054,19 +1028,19 @@ HB_FUNC_STATIC( QCUSTOM3DVOLUME_SETSUBTEXTUREDATA )
 }
 
 /*
-void setTextureFormat(QImage::Format format)
+void setTextureFormat( QImage::Format format )
 */
 HB_FUNC_STATIC( QCUSTOM3DVOLUME_SETTEXTUREFORMAT )
 {
-  QCustom3DVolume * obj = (QCustom3DVolume *) _qt5xhb_itemGetPtrStackSelfItem();
+  QCustom3DVolume * obj = (QCustom3DVolume *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setTextureFormat ( (QImage::Format) hb_parni(1) );
+      obj->setTextureFormat( (QImage::Format) hb_parni(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -1084,7 +1058,7 @@ QImage::Format textureFormat() const
 */
 HB_FUNC_STATIC( QCUSTOM3DVOLUME_TEXTUREFORMAT )
 {
-  QCustom3DVolume * obj = (QCustom3DVolume *) _qt5xhb_itemGetPtrStackSelfItem();
+  QCustom3DVolume * obj = (QCustom3DVolume *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -1092,7 +1066,7 @@ HB_FUNC_STATIC( QCUSTOM3DVOLUME_TEXTUREFORMAT )
     if( ISNUMPAR(0) )
     {
 #endif
-      RENUM( obj->textureFormat () );
+      RENUM( obj->textureFormat() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -1104,20 +1078,20 @@ HB_FUNC_STATIC( QCUSTOM3DVOLUME_TEXTUREFORMAT )
 }
 
 /*
-QImage renderSlice(Qt::Axis axis, int index)
+QImage renderSlice( Qt::Axis axis, int index )
 */
 HB_FUNC_STATIC( QCUSTOM3DVOLUME_RENDERSLICE )
 {
-  QCustom3DVolume * obj = (QCustom3DVolume *) _qt5xhb_itemGetPtrStackSelfItem();
+  QCustom3DVolume * obj = (QCustom3DVolume *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(2) && ISNUM(1) && ISNUM(2) )
+    if( ISNUMPAR(2) && HB_ISNUM(1) && HB_ISNUM(2) )
     {
 #endif
-      QImage * ptr = new QImage( obj->renderSlice ( (Qt::Axis) hb_parni(1), PINT(2) ) );
-      _qt5xhb_createReturnClass ( ptr, "QIMAGE", true );
+      QImage * ptr = new QImage( obj->renderSlice( (Qt::Axis) hb_parni(1), PINT(2) ) );
+      Qt5xHb::createReturnClass( ptr, "QIMAGE", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -1128,7 +1102,7 @@ HB_FUNC_STATIC( QCUSTOM3DVOLUME_RENDERSLICE )
   }
 }
 
-void QCustom3DVolumeSlots_connect_signal ( const QString & signal, const QString & slot );
+void QCustom3DVolumeSlots_connect_signal( const QString & signal, const QString & slot );
 
 HB_FUNC_STATIC( QCUSTOM3DVOLUME_ONALPHAMULTIPLIERCHANGED )
 {

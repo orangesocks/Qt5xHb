@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -30,7 +30,7 @@ CLASS QPageSetupDialog INHERIT QDialog
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QPageSetupDialog
+PROCEDURE destroyObject() CLASS QPageSetupDialog
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -47,39 +47,38 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #include <QtPrintSupport/QPageSetupDialog>
 #endif
 
 /*
-QPageSetupDialog ( QPrinter * printer, QWidget * parent = 0 )
+QPageSetupDialog( QPrinter * printer, QWidget * parent = 0 )
 */
-void QPageSetupDialog_new1 ()
+void QPageSetupDialog_new1()
 {
-  QPageSetupDialog * o = new QPageSetupDialog ( PQPRINTER(1), OPQWIDGET(2,0) );
-  _qt5xhb_returnNewObject( o, false );
+  QPageSetupDialog * obj = new QPageSetupDialog( PQPRINTER(1), OPQWIDGET(2,0) );
+  Qt5xHb::returnNewObject( obj, false );
 }
 
 /*
-QPageSetupDialog ( QWidget * parent = 0 )
+QPageSetupDialog( QWidget * parent = 0 )
 */
-void QPageSetupDialog_new2 ()
+void QPageSetupDialog_new2()
 {
-  QPageSetupDialog * o = new QPageSetupDialog ( OPQWIDGET(1,0) );
-  _qt5xhb_returnNewObject( o, false );
+  QPageSetupDialog * obj = new QPageSetupDialog( OPQWIDGET(1,0) );
+  Qt5xHb::returnNewObject( obj, false );
 }
-
-//[1]QPageSetupDialog(QPrinter *printer, QWidget *parent = 0)
-//[2]QPageSetupDialog(QWidget *parent = 0)
 
 HB_FUNC_STATIC( QPAGESETUPDIALOG_NEW )
 {
-  if( ISBETWEEN(1,2) && ISQPRINTER(1) && ISOPTQWIDGET(2) )
+  if( ISBETWEEN(1,2) && ISQPRINTER(1) && (ISQWIDGET(2)||HB_ISNIL(2)) )
   {
     QPageSetupDialog_new1();
   }
-  else if( ISBETWEEN(0,1) && ISOPTQWIDGET(1) )
+  else if( ISBETWEEN(0,1) && (ISQWIDGET(1)||HB_ISNIL(1)) )
   {
     QPageSetupDialog_new2();
   }
@@ -91,10 +90,12 @@ HB_FUNC_STATIC( QPAGESETUPDIALOG_NEW )
 
 HB_FUNC_STATIC( QPAGESETUPDIALOG_DELETE )
 {
-  QPageSetupDialog * obj = (QPageSetupDialog *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPageSetupDialog * obj = (QPageSetupDialog *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -107,19 +108,19 @@ HB_FUNC_STATIC( QPAGESETUPDIALOG_DELETE )
 }
 
 /*
-void open ( QObject * receiver, const char * member )
+void open( QObject * receiver, const char * member )
 */
 HB_FUNC_STATIC( QPAGESETUPDIALOG_OPEN )
 {
-  QPageSetupDialog * obj = (QPageSetupDialog *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPageSetupDialog * obj = (QPageSetupDialog *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(2) && ISQOBJECT(1) && ISCHAR(2) )
+    if( ISNUMPAR(2) && ISQOBJECT(1) && HB_ISCHAR(2) )
     {
 #endif
-      obj->open ( PQOBJECT(1), PCONSTCHAR(2) );
+      obj->open( PQOBJECT(1), PCONSTCHAR(2) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -133,11 +134,11 @@ HB_FUNC_STATIC( QPAGESETUPDIALOG_OPEN )
 }
 
 /*
-QPrinter * printer ()
+QPrinter * printer()
 */
 HB_FUNC_STATIC( QPAGESETUPDIALOG_PRINTER )
 {
-  QPageSetupDialog * obj = (QPageSetupDialog *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPageSetupDialog * obj = (QPageSetupDialog *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -145,8 +146,8 @@ HB_FUNC_STATIC( QPAGESETUPDIALOG_PRINTER )
     if( ISNUMPAR(0) )
     {
 #endif
-      QPrinter * ptr = obj->printer ();
-      _qt5xhb_createReturnClass ( ptr, "QPRINTER", false );
+      QPrinter * ptr = obj->printer();
+      Qt5xHb::createReturnClass( ptr, "QPRINTER", false );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -158,19 +159,19 @@ HB_FUNC_STATIC( QPAGESETUPDIALOG_PRINTER )
 }
 
 /*
-virtual void setVisible ( bool visible )
+virtual void setVisible( bool visible )
 */
 HB_FUNC_STATIC( QPAGESETUPDIALOG_SETVISIBLE )
 {
-  QPageSetupDialog * obj = (QPageSetupDialog *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPageSetupDialog * obj = (QPageSetupDialog *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISLOG(1) )
+    if( ISNUMPAR(1) && HB_ISLOG(1) )
     {
 #endif
-      obj->setVisible ( PBOOL(1) );
+      obj->setVisible( PBOOL(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -188,7 +189,7 @@ virtual int exec()
 */
 HB_FUNC_STATIC( QPAGESETUPDIALOG_EXEC )
 {
-  QPageSetupDialog * obj = (QPageSetupDialog *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPageSetupDialog * obj = (QPageSetupDialog *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -196,7 +197,7 @@ HB_FUNC_STATIC( QPAGESETUPDIALOG_EXEC )
     if( ISNUMPAR(0) )
     {
 #endif
-      RINT( obj->exec () );
+      RINT( obj->exec() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -208,19 +209,19 @@ HB_FUNC_STATIC( QPAGESETUPDIALOG_EXEC )
 }
 
 /*
-void done(int result)
+void done( int result )
 */
 HB_FUNC_STATIC( QPAGESETUPDIALOG_DONE )
 {
-  QPageSetupDialog * obj = (QPageSetupDialog *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPageSetupDialog * obj = (QPageSetupDialog *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->done ( PINT(1) );
+      obj->done( PINT(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else

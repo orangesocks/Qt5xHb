@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -12,43 +12,53 @@
 
 #include "QGraphicsOpacityEffectSlots.h"
 
-QGraphicsOpacityEffectSlots::QGraphicsOpacityEffectSlots(QObject *parent) : QObject(parent)
+QGraphicsOpacityEffectSlots::QGraphicsOpacityEffectSlots( QObject *parent ) : QObject( parent )
 {
 }
 
 QGraphicsOpacityEffectSlots::~QGraphicsOpacityEffectSlots()
 {
 }
+
 void QGraphicsOpacityEffectSlots::opacityChanged( qreal opacity )
 {
   QObject *object = qobject_cast<QObject *>(sender());
-  PHB_ITEM cb = Signals_return_codeblock( object, "opacityChanged(qreal)" );
+
+  PHB_ITEM cb = Qt5xHb::Signals_return_codeblock( object, "opacityChanged(qreal)" );
+
   if( cb )
   {
-    PHB_ITEM psender = Signals_return_qobject ( (QObject *) object, "QGRAPHICSOPACITYEFFECT" );
+    PHB_ITEM psender = Qt5xHb::Signals_return_qobject( (QObject *) object, "QGRAPHICSOPACITYEFFECT" );
     PHB_ITEM popacity = hb_itemPutND( NULL, opacity );
-    hb_vmEvalBlockV( (PHB_ITEM) cb, 2, psender, popacity );
+
+    hb_vmEvalBlockV( cb, 2, psender, popacity );
+
     hb_itemRelease( psender );
     hb_itemRelease( popacity );
   }
 }
+
 void QGraphicsOpacityEffectSlots::opacityMaskChanged( const QBrush & mask )
 {
   QObject *object = qobject_cast<QObject *>(sender());
-  PHB_ITEM cb = Signals_return_codeblock( object, "opacityMaskChanged(QBrush)" );
+
+  PHB_ITEM cb = Qt5xHb::Signals_return_codeblock( object, "opacityMaskChanged(QBrush)" );
+
   if( cb )
   {
-    PHB_ITEM psender = Signals_return_qobject ( (QObject *) object, "QGRAPHICSOPACITYEFFECT" );
-    PHB_ITEM pmask = Signals_return_object( (void *) &mask, "QBRUSH" );
-    hb_vmEvalBlockV( (PHB_ITEM) cb, 2, psender, pmask );
+    PHB_ITEM psender = Qt5xHb::Signals_return_qobject( (QObject *) object, "QGRAPHICSOPACITYEFFECT" );
+    PHB_ITEM pmask = Qt5xHb::Signals_return_object( (void *) &mask, "QBRUSH" );
+
+    hb_vmEvalBlockV( cb, 2, psender, pmask );
+
     hb_itemRelease( psender );
     hb_itemRelease( pmask );
   }
 }
 
-void QGraphicsOpacityEffectSlots_connect_signal ( const QString & signal, const QString & slot )
+void QGraphicsOpacityEffectSlots_connect_signal( const QString & signal, const QString & slot )
 {
-  QGraphicsOpacityEffect * obj = (QGraphicsOpacityEffect *) hb_itemGetPtr( hb_objSendMsg( hb_stackSelfItem(), "POINTER", 0 ) );
+  QGraphicsOpacityEffect * obj = (QGraphicsOpacityEffect *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -61,7 +71,7 @@ void QGraphicsOpacityEffectSlots_connect_signal ( const QString & signal, const 
       s->setParent( QCoreApplication::instance() );
     }
 
-    hb_retl( Signals_connection_disconnection( s, signal, slot ) );
+    hb_retl( Qt5xHb::Signals_connection_disconnection( s, signal, slot ) );
   }
   else
   {

@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -30,7 +30,7 @@ CLASS QFormBuilder INHERIT QAbstractFormBuilder
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QFormBuilder
+PROCEDURE destroyObject() CLASS QFormBuilder
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -53,14 +53,14 @@ RETURN
 #endif
 
 /*
-QFormBuilder ()
+QFormBuilder()
 */
 HB_FUNC_STATIC( QFORMBUILDER_NEW )
 {
   if( ISNUMPAR(0) )
   {
-    QFormBuilder * o = new QFormBuilder ();
-    _qt5xhb_returnNewObject( o, true );
+    QFormBuilder * obj = new QFormBuilder();
+    Qt5xHb::returnNewObject( obj, true );
   }
   else
   {
@@ -70,7 +70,7 @@ HB_FUNC_STATIC( QFORMBUILDER_NEW )
 
 HB_FUNC_STATIC( QFORMBUILDER_DELETE )
 {
-  QFormBuilder * obj = (QFormBuilder *) _qt5xhb_itemGetPtrStackSelfItem();
+  QFormBuilder * obj = (QFormBuilder *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -86,19 +86,19 @@ HB_FUNC_STATIC( QFORMBUILDER_DELETE )
 }
 
 /*
-void addPluginPath ( const QString & pluginPath )
+void addPluginPath( const QString & pluginPath )
 */
 HB_FUNC_STATIC( QFORMBUILDER_ADDPLUGINPATH )
 {
-  QFormBuilder * obj = (QFormBuilder *) _qt5xhb_itemGetPtrStackSelfItem();
+  QFormBuilder * obj = (QFormBuilder *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISCHAR(1) )
+    if( ISNUMPAR(1) && HB_ISCHAR(1) )
     {
 #endif
-      obj->addPluginPath ( PQSTRING(1) );
+      obj->addPluginPath( PQSTRING(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -112,11 +112,11 @@ HB_FUNC_STATIC( QFORMBUILDER_ADDPLUGINPATH )
 }
 
 /*
-void clearPluginPaths ()
+void clearPluginPaths()
 */
 HB_FUNC_STATIC( QFORMBUILDER_CLEARPLUGINPATHS )
 {
-  QFormBuilder * obj = (QFormBuilder *) _qt5xhb_itemGetPtrStackSelfItem();
+  QFormBuilder * obj = (QFormBuilder *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -124,7 +124,7 @@ HB_FUNC_STATIC( QFORMBUILDER_CLEARPLUGINPATHS )
     if( ISNUMPAR(0) )
     {
 #endif
-      obj->clearPluginPaths ();
+      obj->clearPluginPaths();
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -138,11 +138,11 @@ HB_FUNC_STATIC( QFORMBUILDER_CLEARPLUGINPATHS )
 }
 
 /*
-QList<QDesignerCustomWidgetInterface *> customWidgets () const
+QList<QDesignerCustomWidgetInterface *> customWidgets() const
 */
 HB_FUNC_STATIC( QFORMBUILDER_CUSTOMWIDGETS )
 {
-  QFormBuilder * obj = (QFormBuilder *) _qt5xhb_itemGetPtrStackSelfItem();
+  QFormBuilder * obj = (QFormBuilder *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -150,13 +150,12 @@ HB_FUNC_STATIC( QFORMBUILDER_CUSTOMWIDGETS )
     if( ISNUMPAR(0) )
     {
 #endif
-      QList<QDesignerCustomWidgetInterface *> list = obj->customWidgets ();
+      QList<QDesignerCustomWidgetInterface *> list = obj->customWidgets();
       PHB_DYNS pDynSym = hb_dynsymFindName( "QDESIGNERCUSTOMWIDGETINTERFACE" );
       PHB_ITEM pArray = hb_itemArrayNew(0);
-      int i;
-      for(i=0;i<list.count();i++)
+      if( pDynSym )
       {
-        if( pDynSym )
+        for( int i = 0; i < list.count(); i++ )
         {
           hb_vmPushDynSym( pDynSym );
           hb_vmPushNil();
@@ -170,10 +169,10 @@ HB_FUNC_STATIC( QFORMBUILDER_CUSTOMWIDGETS )
           hb_arrayAddForward( pArray, pObject );
           hb_itemRelease( pObject );
         }
-        else
-        {
-          hb_errRT_BASE( EG_NOFUNC, 1001, NULL, "QDESIGNERCUSTOMWIDGETINTERFACE", HB_ERR_ARGS_BASEPARAMS );
-        }
+      }
+      else
+      {
+        hb_errRT_BASE( EG_NOFUNC, 1001, NULL, "QDESIGNERCUSTOMWIDGETINTERFACE", HB_ERR_ARGS_BASEPARAMS );
       }
       hb_itemReturnRelease(pArray);
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
@@ -187,11 +186,11 @@ HB_FUNC_STATIC( QFORMBUILDER_CUSTOMWIDGETS )
 }
 
 /*
-QStringList pluginPaths () const
+QStringList pluginPaths() const
 */
 HB_FUNC_STATIC( QFORMBUILDER_PLUGINPATHS )
 {
-  QFormBuilder * obj = (QFormBuilder *) _qt5xhb_itemGetPtrStackSelfItem();
+  QFormBuilder * obj = (QFormBuilder *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -199,7 +198,7 @@ HB_FUNC_STATIC( QFORMBUILDER_PLUGINPATHS )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRINGLIST( obj->pluginPaths () );
+      RQSTRINGLIST( obj->pluginPaths() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -211,19 +210,19 @@ HB_FUNC_STATIC( QFORMBUILDER_PLUGINPATHS )
 }
 
 /*
-void setPluginPath ( const QStringList & pluginPaths )
+void setPluginPath( const QStringList & pluginPaths )
 */
 HB_FUNC_STATIC( QFORMBUILDER_SETPLUGINPATH )
 {
-  QFormBuilder * obj = (QFormBuilder *) _qt5xhb_itemGetPtrStackSelfItem();
+  QFormBuilder * obj = (QFormBuilder *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISARRAY(1) )
+    if( ISNUMPAR(1) && HB_ISARRAY(1) )
     {
 #endif
-      obj->setPluginPath ( PQSTRINGLIST(1) );
+      obj->setPluginPath( PQSTRINGLIST(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else

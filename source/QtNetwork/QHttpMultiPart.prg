@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -29,7 +29,7 @@ CLASS QHttpMultiPart INHERIT QObject
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QHttpMultiPart
+PROCEDURE destroyObject() CLASS QHttpMultiPart
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -46,39 +46,38 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #include <QtNetwork/QHttpMultiPart>
 #endif
 
 /*
-explicit QHttpMultiPart(QObject *parent = Q_NULLPTR)
+QHttpMultiPart( QObject * parent = nullptr )
 */
-void QHttpMultiPart_new1 ()
+void QHttpMultiPart_new1()
 {
-  QHttpMultiPart * o = new QHttpMultiPart ( OPQOBJECT(1,0) );
-  _qt5xhb_returnNewObject( o, false );
+  QHttpMultiPart * obj = new QHttpMultiPart( OPQOBJECT(1,nullptr) );
+  Qt5xHb::returnNewObject( obj, false );
 }
 
 /*
-explicit QHttpMultiPart(ContentType contentType, QObject *parent = Q_NULLPTR)
+QHttpMultiPart( QHttpMultiPart::ContentType contentType, QObject * parent = nullptr )
 */
-void QHttpMultiPart_new2 ()
+void QHttpMultiPart_new2()
 {
-  QHttpMultiPart * o = new QHttpMultiPart ( (QHttpMultiPart::ContentType) hb_parni(1), OPQOBJECT(2,0) );
-  _qt5xhb_returnNewObject( o, false );
+  QHttpMultiPart * obj = new QHttpMultiPart( (QHttpMultiPart::ContentType) hb_parni(1), OPQOBJECT(2,nullptr) );
+  Qt5xHb::returnNewObject( obj, false );
 }
-
-//[1]explicit QHttpMultiPart(QObject *parent = Q_NULLPTR)
-//[2]explicit QHttpMultiPart(ContentType contentType, QObject *parent = Q_NULLPTR)
 
 HB_FUNC_STATIC( QHTTPMULTIPART_NEW )
 {
-  if( ISBETWEEN(0,1) && ISOPTQOBJECT(1) )
+  if( ISBETWEEN(0,1) && (ISQOBJECT(1)||HB_ISNIL(1)) )
   {
     QHttpMultiPart_new1();
   }
-  else if( ISBETWEEN(1,2) && ISNUM(1) && ISOPTQOBJECT(2) )
+  else if( ISBETWEEN(1,2) && HB_ISNUM(1) && (ISQOBJECT(2)||HB_ISNIL(2)) )
   {
     QHttpMultiPart_new2();
   }
@@ -93,10 +92,12 @@ HB_FUNC_STATIC( QHTTPMULTIPART_NEW )
 */
 HB_FUNC_STATIC( QHTTPMULTIPART_DELETE )
 {
-  QHttpMultiPart * obj = (QHttpMultiPart *) _qt5xhb_itemGetPtrStackSelfItem();
+  QHttpMultiPart * obj = (QHttpMultiPart *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -109,11 +110,11 @@ HB_FUNC_STATIC( QHTTPMULTIPART_DELETE )
 }
 
 /*
-void append ( const QHttpPart & httpPart )
+void append( const QHttpPart & httpPart )
 */
 HB_FUNC_STATIC( QHTTPMULTIPART_APPEND )
 {
-  QHttpMultiPart * obj = (QHttpMultiPart *) _qt5xhb_itemGetPtrStackSelfItem();
+  QHttpMultiPart * obj = (QHttpMultiPart *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -121,7 +122,7 @@ HB_FUNC_STATIC( QHTTPMULTIPART_APPEND )
     if( ISNUMPAR(1) && ISQHTTPPART(1) )
     {
 #endif
-      obj->append ( *PQHTTPPART(1) );
+      obj->append( *PQHTTPPART(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -135,11 +136,11 @@ HB_FUNC_STATIC( QHTTPMULTIPART_APPEND )
 }
 
 /*
-QByteArray boundary () const
+QByteArray boundary() const
 */
 HB_FUNC_STATIC( QHTTPMULTIPART_BOUNDARY )
 {
-  QHttpMultiPart * obj = (QHttpMultiPart *) _qt5xhb_itemGetPtrStackSelfItem();
+  QHttpMultiPart * obj = (QHttpMultiPart *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -147,8 +148,8 @@ HB_FUNC_STATIC( QHTTPMULTIPART_BOUNDARY )
     if( ISNUMPAR(0) )
     {
 #endif
-      QByteArray * ptr = new QByteArray( obj->boundary () );
-      _qt5xhb_createReturnClass ( ptr, "QBYTEARRAY", true );
+      QByteArray * ptr = new QByteArray( obj->boundary() );
+      Qt5xHb::createReturnClass( ptr, "QBYTEARRAY", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -160,11 +161,11 @@ HB_FUNC_STATIC( QHTTPMULTIPART_BOUNDARY )
 }
 
 /*
-void setBoundary ( const QByteArray & boundary )
+void setBoundary( const QByteArray & boundary )
 */
 HB_FUNC_STATIC( QHTTPMULTIPART_SETBOUNDARY )
 {
-  QHttpMultiPart * obj = (QHttpMultiPart *) _qt5xhb_itemGetPtrStackSelfItem();
+  QHttpMultiPart * obj = (QHttpMultiPart *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -172,7 +173,7 @@ HB_FUNC_STATIC( QHTTPMULTIPART_SETBOUNDARY )
     if( ISNUMPAR(1) && ISQBYTEARRAY(1) )
     {
 #endif
-      obj->setBoundary ( *PQBYTEARRAY(1) );
+      obj->setBoundary( *PQBYTEARRAY(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -186,19 +187,19 @@ HB_FUNC_STATIC( QHTTPMULTIPART_SETBOUNDARY )
 }
 
 /*
-void setContentType ( ContentType contentType )
+void setContentType( QHttpMultiPart::ContentType contentType )
 */
 HB_FUNC_STATIC( QHTTPMULTIPART_SETCONTENTTYPE )
 {
-  QHttpMultiPart * obj = (QHttpMultiPart *) _qt5xhb_itemGetPtrStackSelfItem();
+  QHttpMultiPart * obj = (QHttpMultiPart *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setContentType ( (QHttpMultiPart::ContentType) hb_parni(1) );
+      obj->setContentType( (QHttpMultiPart::ContentType) hb_parni(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else

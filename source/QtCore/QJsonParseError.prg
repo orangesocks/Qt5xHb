@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -33,7 +33,7 @@ CLASS QJsonParseError
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QJsonParseError
+PROCEDURE destroyObject() CLASS QJsonParseError
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -57,7 +57,7 @@ RETURN
 
 HB_FUNC_STATIC( QJSONPARSEERROR_DELETE )
 {
-  QJsonParseError * obj = (QJsonParseError *) _qt5xhb_itemGetPtrStackSelfItem();
+  QJsonParseError * obj = (QJsonParseError *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -77,7 +77,7 @@ QString errorString() const
 */
 HB_FUNC_STATIC( QJSONPARSEERROR_ERRORSTRING )
 {
-  QJsonParseError * obj = (QJsonParseError *) _qt5xhb_itemGetPtrStackSelfItem();
+  QJsonParseError * obj = (QJsonParseError *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -85,7 +85,7 @@ HB_FUNC_STATIC( QJSONPARSEERROR_ERRORSTRING )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRING( obj->errorString () );
+      RQSTRING( obj->errorString() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -100,7 +100,7 @@ HB_FUNC_STATIC( QJSONPARSEERROR_NEWFROM )
 {
   PHB_ITEM self = hb_stackSelfItem();
 
-  if( hb_pcount() == 1 && ISOBJECT(1) )
+  if( hb_pcount() == 1 && HB_ISOBJECT(1) )
   {
     PHB_ITEM ptr = hb_itemPutPtr( NULL, (void *) hb_itemGetPtr( hb_objSendMsg( hb_param(1, HB_IT_OBJECT ), "POINTER", 0 ) ) );
     hb_objSendMsg( self, "_pointer", 1, ptr );
@@ -109,7 +109,7 @@ HB_FUNC_STATIC( QJSONPARSEERROR_NEWFROM )
     hb_objSendMsg( self, "_self_destruction", 1, des );
     hb_itemRelease( des );
   }
-  else if( hb_pcount() == 1 && ISPOINTER(1) )
+  else if( hb_pcount() == 1 && HB_ISPOINTER(1) )
   {
     PHB_ITEM ptr = hb_itemPutPtr( NULL, (void *) hb_itemGetPtr( hb_param(1, HB_IT_POINTER ) ) );
     hb_objSendMsg( self, "_pointer", 1, ptr );
@@ -145,7 +145,7 @@ HB_FUNC_STATIC( QJSONPARSEERROR_SETSELFDESTRUCTION )
 {
   PHB_ITEM self = hb_stackSelfItem();
 
-  if( hb_pcount() == 1 && ISLOG(1) )
+  if( hb_pcount() == 1 && HB_ISLOG(1) )
   {
     PHB_ITEM des = hb_itemPutL( NULL, hb_parl(1) );
     hb_objSendMsg( self, "_self_destruction", 1, des );

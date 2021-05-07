@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -24,7 +24,7 @@ CLASS QHolsterFilter INHERIT QSensorFilter
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QHolsterFilter
+PROCEDURE destroyObject() CLASS QHolsterFilter
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -53,7 +53,7 @@ RETURN
 HB_FUNC_STATIC( QHOLSTERFILTER_DELETE )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,1,0))
-  QHolsterFilter * obj = (QHolsterFilter *) _qt5xhb_itemGetPtrStackSelfItem();
+  QHolsterFilter * obj = (QHolsterFilter *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -70,12 +70,12 @@ HB_FUNC_STATIC( QHOLSTERFILTER_DELETE )
 }
 
 /*
-virtual bool filter(QHolsterReading *reading) = 0
+virtual bool filter( QHolsterReading * reading ) = 0
 */
 HB_FUNC_STATIC( QHOLSTERFILTER_FILTER )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,1,0))
-  QHolsterFilter * obj = (QHolsterFilter *) _qt5xhb_itemGetPtrStackSelfItem();
+  QHolsterFilter * obj = (QHolsterFilter *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -83,7 +83,7 @@ HB_FUNC_STATIC( QHOLSTERFILTER_FILTER )
     if( ISNUMPAR(1) && ISQHOLSTERREADING(1) )
     {
 #endif
-      RBOOL( obj->filter ( PQHOLSTERREADING(1) ) );
+      RBOOL( obj->filter( PQHOLSTERREADING(1) ) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else

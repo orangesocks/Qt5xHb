@@ -2,19 +2,19 @@
 
   Qt5xHb Project - Test Program
 
-  Copyright (C) 2019 Marcos Antonio Gambeta
+  Copyright (C) 2021 Marcos Antonio Gambeta
 
   E-mail:
   marcosgambeta AT outlook DOT com
 
   Website:
-  https://github.com/marcosgambeta/Qt5xHb
+  https://github.com/magsoftinfo/qt5xhb
 
 */
 
 #include "qt5xhb.ch"
 
-PROCEDURE Main ()
+PROCEDURE Main()
 
    LOCAL oApp
    LOCAL oWindow
@@ -26,28 +26,29 @@ PROCEDURE Main ()
 
    // cria uma janela
    oWindow := QWidget():new()
-   oWindow:setWindowTitle("Teste")
-   oWindow:resize(640,480)
-   oWindow:show()
+   oWindow:setWindowTitle( "Teste" )
+   oWindow:resize( 640, 480 )
 
    // cria um label
-   oLabel := QLabel():new(oWindow)
-   oLabel:move(20,20)
-   oLabel:resize(120,90)
-   oLabel:show()
+   oLabel := QLabel():new( oWindow )
+   oLabel:move( 20, 20 )
+   oLabel:resize( 120, 90 )
 
    // cria um objeto da classe QMovie,
    // usando o arquivo impressora.gif
    // (GIF animado)
-   oMovie := QMovie():new("..\images\impressora.gif")
+   oMovie := QMovie():new( "..\images\impressora.gif" )
 
    ? oMovie:isValid()
 
    // liga o objeto QLabel ao objeto QMovie
-   oLabel:setMovie(oMovie)
+   oLabel:setMovie( oMovie )
 
    // inicia a animação
    oMovie:start()
+
+   // mostra a janela
+   oWindow:show()
 
    // inicia o loop de eventos
    oApp:exec()

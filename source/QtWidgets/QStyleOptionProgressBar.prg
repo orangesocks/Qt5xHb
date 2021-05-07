@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -41,7 +41,7 @@ CLASS QStyleOptionProgressBar INHERIT QStyleOption
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QStyleOptionProgressBar
+PROCEDURE destroyObject() CLASS QStyleOptionProgressBar
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -66,28 +66,20 @@ RETURN
 /*
 QStyleOptionProgressBar()
 */
-void QStyleOptionProgressBar_new1 ()
+void QStyleOptionProgressBar_new1()
 {
-  QStyleOptionProgressBar * o = new QStyleOptionProgressBar ();
-  _qt5xhb_returnNewObject( o, true );
+  QStyleOptionProgressBar * obj = new QStyleOptionProgressBar();
+  Qt5xHb::returnNewObject( obj, true );
 }
 
 /*
-QStyleOptionProgressBar(const QStyleOptionProgressBar &other)
+QStyleOptionProgressBar( const QStyleOptionProgressBar & other )
 */
-void QStyleOptionProgressBar_new2 ()
+void QStyleOptionProgressBar_new2()
 {
-  QStyleOptionProgressBar * o = new QStyleOptionProgressBar ( *PQSTYLEOPTIONPROGRESSBAR(1) );
-  _qt5xhb_returnNewObject( o, true );
+  QStyleOptionProgressBar * obj = new QStyleOptionProgressBar( *PQSTYLEOPTIONPROGRESSBAR(1) );
+  Qt5xHb::returnNewObject( obj, true );
 }
-
-/*
-QStyleOptionProgressBar(int version) [protected]
-*/
-
-//[1]QStyleOptionProgressBar()
-//[2]QStyleOptionProgressBar(const QStyleOptionProgressBar &other)
-//[3]QStyleOptionProgressBar(int version) [protected]
 
 HB_FUNC_STATIC( QSTYLEOPTIONPROGRESSBAR_NEW )
 {
@@ -110,13 +102,13 @@ int minimum
 */
 HB_FUNC_STATIC( QSTYLEOPTIONPROGRESSBAR_MINIMUM )
 {
-  QStyleOptionProgressBar * obj = (QStyleOptionProgressBar *) _qt5xhb_itemGetPtrStackSelfItem();
+  QStyleOptionProgressBar * obj = (QStyleOptionProgressBar *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
     if( ISNUMPAR(0) )
     {
-      RINT( obj->minimum  );
+      RINT( obj->minimum );
     }
     else
     {
@@ -126,13 +118,13 @@ HB_FUNC_STATIC( QSTYLEOPTIONPROGRESSBAR_MINIMUM )
 }
 HB_FUNC_STATIC( QSTYLEOPTIONPROGRESSBAR_SETMINIMUM )
 {
-  QStyleOptionProgressBar * obj = (QStyleOptionProgressBar *) _qt5xhb_itemGetPtrStackSelfItem();
+  QStyleOptionProgressBar * obj = (QStyleOptionProgressBar *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
-      obj->minimum = PINT(1);
+      obj->minimum= PINT(1);
     }
     else
     {
@@ -148,13 +140,13 @@ int maximum
 */
 HB_FUNC_STATIC( QSTYLEOPTIONPROGRESSBAR_MAXIMUM )
 {
-  QStyleOptionProgressBar * obj = (QStyleOptionProgressBar *) _qt5xhb_itemGetPtrStackSelfItem();
+  QStyleOptionProgressBar * obj = (QStyleOptionProgressBar *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
     if( ISNUMPAR(0) )
     {
-      RINT( obj->maximum  );
+      RINT( obj->maximum );
     }
     else
     {
@@ -164,13 +156,13 @@ HB_FUNC_STATIC( QSTYLEOPTIONPROGRESSBAR_MAXIMUM )
 }
 HB_FUNC_STATIC( QSTYLEOPTIONPROGRESSBAR_SETMAXIMUM )
 {
-  QStyleOptionProgressBar * obj = (QStyleOptionProgressBar *) _qt5xhb_itemGetPtrStackSelfItem();
+  QStyleOptionProgressBar * obj = (QStyleOptionProgressBar *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
-      obj->maximum = PINT(1);
+      obj->maximum= PINT(1);
     }
     else
     {
@@ -186,13 +178,13 @@ int progress
 */
 HB_FUNC_STATIC( QSTYLEOPTIONPROGRESSBAR_PROGRESS )
 {
-  QStyleOptionProgressBar * obj = (QStyleOptionProgressBar *) _qt5xhb_itemGetPtrStackSelfItem();
+  QStyleOptionProgressBar * obj = (QStyleOptionProgressBar *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
     if( ISNUMPAR(0) )
     {
-      RINT( obj->progress  );
+      RINT( obj->progress );
     }
     else
     {
@@ -202,13 +194,13 @@ HB_FUNC_STATIC( QSTYLEOPTIONPROGRESSBAR_PROGRESS )
 }
 HB_FUNC_STATIC( QSTYLEOPTIONPROGRESSBAR_SETPROGRESS )
 {
-  QStyleOptionProgressBar * obj = (QStyleOptionProgressBar *) _qt5xhb_itemGetPtrStackSelfItem();
+  QStyleOptionProgressBar * obj = (QStyleOptionProgressBar *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
-      obj->progress = PINT(1);
+      obj->progress= PINT(1);
     }
     else
     {
@@ -224,13 +216,13 @@ QString text
 */
 HB_FUNC_STATIC( QSTYLEOPTIONPROGRESSBAR_TEXT )
 {
-  QStyleOptionProgressBar * obj = (QStyleOptionProgressBar *) _qt5xhb_itemGetPtrStackSelfItem();
+  QStyleOptionProgressBar * obj = (QStyleOptionProgressBar *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
     if( ISNUMPAR(0) )
     {
-      RQSTRING( obj->text  );
+      RQSTRING( obj->text );
     }
     else
     {
@@ -240,13 +232,13 @@ HB_FUNC_STATIC( QSTYLEOPTIONPROGRESSBAR_TEXT )
 }
 HB_FUNC_STATIC( QSTYLEOPTIONPROGRESSBAR_SETTEXT )
 {
-  QStyleOptionProgressBar * obj = (QStyleOptionProgressBar *) _qt5xhb_itemGetPtrStackSelfItem();
+  QStyleOptionProgressBar * obj = (QStyleOptionProgressBar *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
-    if( ISNUMPAR(1) && ISCHAR(1) )
+    if( ISNUMPAR(1) && HB_ISCHAR(1) )
     {
-      obj->text = PQSTRING(1);
+      obj->text= PQSTRING(1);
     }
     else
     {
@@ -262,13 +254,13 @@ Qt::Alignment textAlignment
 */
 HB_FUNC_STATIC( QSTYLEOPTIONPROGRESSBAR_TEXTALIGNMENT )
 {
-  QStyleOptionProgressBar * obj = (QStyleOptionProgressBar *) _qt5xhb_itemGetPtrStackSelfItem();
+  QStyleOptionProgressBar * obj = (QStyleOptionProgressBar *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
     if( ISNUMPAR(0) )
     {
-      RENUM( obj->textAlignment  );
+      RENUM( obj->textAlignment );
     }
     else
     {
@@ -278,13 +270,13 @@ HB_FUNC_STATIC( QSTYLEOPTIONPROGRESSBAR_TEXTALIGNMENT )
 }
 HB_FUNC_STATIC( QSTYLEOPTIONPROGRESSBAR_SETTEXTALIGNMENT )
 {
-  QStyleOptionProgressBar * obj = (QStyleOptionProgressBar *) _qt5xhb_itemGetPtrStackSelfItem();
+  QStyleOptionProgressBar * obj = (QStyleOptionProgressBar *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
-      obj->textAlignment = (Qt::Alignment) hb_parni(1);
+      obj->textAlignment= (Qt::Alignment) hb_parni(1);
     }
     else
     {
@@ -300,13 +292,13 @@ bool textVisible
 */
 HB_FUNC_STATIC( QSTYLEOPTIONPROGRESSBAR_TEXTVISIBLE )
 {
-  QStyleOptionProgressBar * obj = (QStyleOptionProgressBar *) _qt5xhb_itemGetPtrStackSelfItem();
+  QStyleOptionProgressBar * obj = (QStyleOptionProgressBar *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
     if( ISNUMPAR(0) )
     {
-      RBOOL( obj->textVisible  );
+      RBOOL( obj->textVisible );
     }
     else
     {
@@ -316,13 +308,13 @@ HB_FUNC_STATIC( QSTYLEOPTIONPROGRESSBAR_TEXTVISIBLE )
 }
 HB_FUNC_STATIC( QSTYLEOPTIONPROGRESSBAR_SETTEXTVISIBLE )
 {
-  QStyleOptionProgressBar * obj = (QStyleOptionProgressBar *) _qt5xhb_itemGetPtrStackSelfItem();
+  QStyleOptionProgressBar * obj = (QStyleOptionProgressBar *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
-    if( ISNUMPAR(1) && ISLOG(1) )
+    if( ISNUMPAR(1) && HB_ISLOG(1) )
     {
-      obj->textVisible = PBOOL(1);
+      obj->textVisible= PBOOL(1);
     }
     else
     {
@@ -338,13 +330,13 @@ Qt::Orientation orientation
 */
 HB_FUNC_STATIC( QSTYLEOPTIONPROGRESSBAR_ORIENTATION )
 {
-  QStyleOptionProgressBar * obj = (QStyleOptionProgressBar *) _qt5xhb_itemGetPtrStackSelfItem();
+  QStyleOptionProgressBar * obj = (QStyleOptionProgressBar *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
     if( ISNUMPAR(0) )
     {
-      RENUM( obj->orientation  );
+      RENUM( obj->orientation );
     }
     else
     {
@@ -354,13 +346,13 @@ HB_FUNC_STATIC( QSTYLEOPTIONPROGRESSBAR_ORIENTATION )
 }
 HB_FUNC_STATIC( QSTYLEOPTIONPROGRESSBAR_SETORIENTATION )
 {
-  QStyleOptionProgressBar * obj = (QStyleOptionProgressBar *) _qt5xhb_itemGetPtrStackSelfItem();
+  QStyleOptionProgressBar * obj = (QStyleOptionProgressBar *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
-      obj->orientation = (Qt::Orientation) hb_parni(1);
+      obj->orientation= (Qt::Orientation) hb_parni(1);
     }
     else
     {
@@ -376,13 +368,13 @@ bool invertedAppearance
 */
 HB_FUNC_STATIC( QSTYLEOPTIONPROGRESSBAR_INVERTEDAPPEARANCE )
 {
-  QStyleOptionProgressBar * obj = (QStyleOptionProgressBar *) _qt5xhb_itemGetPtrStackSelfItem();
+  QStyleOptionProgressBar * obj = (QStyleOptionProgressBar *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
     if( ISNUMPAR(0) )
     {
-      RBOOL( obj->invertedAppearance  );
+      RBOOL( obj->invertedAppearance );
     }
     else
     {
@@ -392,13 +384,13 @@ HB_FUNC_STATIC( QSTYLEOPTIONPROGRESSBAR_INVERTEDAPPEARANCE )
 }
 HB_FUNC_STATIC( QSTYLEOPTIONPROGRESSBAR_SETINVERTEDAPPEARANCE )
 {
-  QStyleOptionProgressBar * obj = (QStyleOptionProgressBar *) _qt5xhb_itemGetPtrStackSelfItem();
+  QStyleOptionProgressBar * obj = (QStyleOptionProgressBar *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
-    if( ISNUMPAR(1) && ISLOG(1) )
+    if( ISNUMPAR(1) && HB_ISLOG(1) )
     {
-      obj->invertedAppearance = PBOOL(1);
+      obj->invertedAppearance= PBOOL(1);
     }
     else
     {
@@ -414,13 +406,13 @@ bool bottomToTop
 */
 HB_FUNC_STATIC( QSTYLEOPTIONPROGRESSBAR_BOTTOMTOTOP )
 {
-  QStyleOptionProgressBar * obj = (QStyleOptionProgressBar *) _qt5xhb_itemGetPtrStackSelfItem();
+  QStyleOptionProgressBar * obj = (QStyleOptionProgressBar *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
     if( ISNUMPAR(0) )
     {
-      RBOOL( obj->bottomToTop  );
+      RBOOL( obj->bottomToTop );
     }
     else
     {
@@ -430,13 +422,13 @@ HB_FUNC_STATIC( QSTYLEOPTIONPROGRESSBAR_BOTTOMTOTOP )
 }
 HB_FUNC_STATIC( QSTYLEOPTIONPROGRESSBAR_SETBOTTOMTOTOP )
 {
-  QStyleOptionProgressBar * obj = (QStyleOptionProgressBar *) _qt5xhb_itemGetPtrStackSelfItem();
+  QStyleOptionProgressBar * obj = (QStyleOptionProgressBar *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
-    if( ISNUMPAR(1) && ISLOG(1) )
+    if( ISNUMPAR(1) && HB_ISLOG(1) )
     {
-      obj->bottomToTop = PBOOL(1);
+      obj->bottomToTop= PBOOL(1);
     }
     else
     {

@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -13,16 +13,16 @@
 #ifndef QT5XHB_MACROS_QTWEBENGINE_H
 #define QT5XHB_MACROS_QTWEBENGINE_H
 
-#define ISQQUICKWEBENGINEPROFILE(n)                         _qt5xhb_isObjectDerivedFrom(n,"QQuickWebEngineProfile")
-#define ISQQUICKWEBENGINESCRIPT(n)                          _qt5xhb_isObjectDerivedFrom(n,"QQuickWebEngineScript")
-#define ISQTWEBENGINE(n)                                    _qt5xhb_isObjectDerivedFrom(n,"QtWebEngine")
+#define ISQQUICKWEBENGINEPROFILE( n )                       Qt5xHb::isObjectDerivedFrom( n, "QQuickWebEngineProfile" )
+#define ISQQUICKWEBENGINESCRIPT( n )                        Qt5xHb::isObjectDerivedFrom( n, "QQuickWebEngineScript" )
+#define ISQTWEBENGINE( n )                                  Qt5xHb::isObjectDerivedFrom( n, "QtWebEngine" )
 
-#define PQQUICKWEBENGINEPROFILE(n)                          (QQuickWebEngineProfile *) _qt5xhb_itemGetPtr(n)
-#define PQQUICKWEBENGINESCRIPT(n)                           (QQuickWebEngineScript *) _qt5xhb_itemGetPtr(n)
-#define PQTWEBENGINE(n)                                     (QtWebEngine *) _qt5xhb_itemGetPtr(n)
+#define PQQUICKWEBENGINEPROFILE( n )                        static_cast< QQuickWebEngineProfile * >( Qt5xHb::itemGetPtr( n ) )
+#define PQQUICKWEBENGINESCRIPT( n )                         static_cast< QQuickWebEngineScript * >( Qt5xHb::itemGetPtr( n ) )
+#define PQTWEBENGINE( n )                                   static_cast< QtWebEngine * >( Qt5xHb::itemGetPtr( n ) )
 
-#define OPQQUICKWEBENGINEPROFILE(n,v)                       ISNIL(n)? v : (QQuickWebEngineProfile *) _qt5xhb_itemGetPtr(n)
-#define OPQQUICKWEBENGINESCRIPT(n,v)                        ISNIL(n)? v : (QQuickWebEngineScript *) _qt5xhb_itemGetPtr(n)
-#define OPQTWEBENGINE(n,v)                                  ISNIL(n)? v : (QtWebEngine *) _qt5xhb_itemGetPtr(n)
+#define OPQQUICKWEBENGINEPROFILE( n, v )                    HB_ISNIL( n ) ? v : static_cast< QQuickWebEngineProfile * >( Qt5xHb::itemGetPtr( n ) )
+#define OPQQUICKWEBENGINESCRIPT( n, v )                     HB_ISNIL( n ) ? v : static_cast< QQuickWebEngineScript * >( Qt5xHb::itemGetPtr( n ) )
+#define OPQTWEBENGINE( n, v )                               HB_ISNIL( n ) ? v : static_cast< QtWebEngine * >( Qt5xHb::itemGetPtr( n ) )
 
 #endif /* QT5XHB_MACROS_QTWEBENGINE_H */

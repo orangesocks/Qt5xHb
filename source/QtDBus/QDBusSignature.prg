@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -39,7 +39,7 @@ CLASS QDBusSignature
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QDBusSignature
+PROCEDURE destroyObject() CLASS QDBusSignature
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -66,41 +66,36 @@ QDBusSignature()
 */
 HB_FUNC_STATIC( QDBUSSIGNATURE_NEW1 )
 {
-  QDBusSignature * o = new QDBusSignature ();
-  _qt5xhb_returnNewObject( o, false );
+  QDBusSignature * obj = new QDBusSignature();
+  Qt5xHb::returnNewObject( obj, true );
 }
 
 /*
-explicit QDBusSignature(const char *signature)
+QDBusSignature( const char * signature )
 */
 HB_FUNC_STATIC( QDBUSSIGNATURE_NEW2 )
 {
-  QDBusSignature * o = new QDBusSignature ( PCONSTCHAR(1) );
-  _qt5xhb_returnNewObject( o, false );
+  QDBusSignature * obj = new QDBusSignature( PCONSTCHAR(1) );
+  Qt5xHb::returnNewObject( obj, true );
 }
 
 /*
-explicit QDBusSignature(QLatin1String signature)
+QDBusSignature( QLatin1String signature )
 */
 HB_FUNC_STATIC( QDBUSSIGNATURE_NEW3 )
 {
-  QDBusSignature * o = new QDBusSignature ( *PQLATIN1STRING(1) );
-  _qt5xhb_returnNewObject( o, false );
+  QDBusSignature * obj = new QDBusSignature( *PQLATIN1STRING(1) );
+  Qt5xHb::returnNewObject( obj, true );
 }
 
 /*
-explicit QDBusSignature(const QString &signature)
+QDBusSignature( const QString & signature )
 */
 HB_FUNC_STATIC( QDBUSSIGNATURE_NEW4 )
 {
-  QDBusSignature * o = new QDBusSignature ( PQSTRING(1) );
-  _qt5xhb_returnNewObject( o, false );
+  QDBusSignature * obj = new QDBusSignature( PQSTRING(1) );
+  Qt5xHb::returnNewObject( obj, true );
 }
-
-//[1]QDBusSignature()
-//[2]explicit QDBusSignature(const char *signature)
-//[3]explicit QDBusSignature(QLatin1String signature)
-//[4]explicit QDBusSignature(const QString &signature)
 
 HB_FUNC( QDBUSSIGNATURE_NEW )
 {
@@ -108,15 +103,15 @@ HB_FUNC( QDBUSSIGNATURE_NEW )
   {
     HB_FUNC_EXEC( QDBUSSIGNATURE_NEW1 );
   }
-  else if( ISNUMPAR(1) && ISCHAR(1) )
+  else if( ISNUMPAR(1) && HB_ISCHAR(1) )
   {
     HB_FUNC_EXEC( QDBUSSIGNATURE_NEW2 );
   }
-  else if( ISNUMPAR(1) && ISCHAR(1) )
+  else if( ISNUMPAR(1) && HB_ISCHAR(1) )
   {
     HB_FUNC_EXEC( QDBUSSIGNATURE_NEW3 );
   }
-  else if( ISNUMPAR(1) && ISCHAR(1) )
+  else if( ISNUMPAR(1) && HB_ISCHAR(1) )
   {
     HB_FUNC_EXEC( QDBUSSIGNATURE_NEW4 );
   }
@@ -128,7 +123,7 @@ HB_FUNC( QDBUSSIGNATURE_NEW )
 
 HB_FUNC_STATIC( QDBUSSIGNATURE_DELETE )
 {
-  QDBusSignature * obj = (QDBusSignature *) _qt5xhb_itemGetPtrStackSelfItem();
+  QDBusSignature * obj = (QDBusSignature *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -148,7 +143,7 @@ QString signature() const
 */
 HB_FUNC_STATIC( QDBUSSIGNATURE_SIGNATURE )
 {
-  QDBusSignature * obj = (QDBusSignature *) _qt5xhb_itemGetPtrStackSelfItem();
+  QDBusSignature * obj = (QDBusSignature *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -156,7 +151,7 @@ HB_FUNC_STATIC( QDBUSSIGNATURE_SIGNATURE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRING( obj->signature () );
+      RQSTRING( obj->signature() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -168,19 +163,19 @@ HB_FUNC_STATIC( QDBUSSIGNATURE_SIGNATURE )
 }
 
 /*
-void setSignature(const QString &signature)
+void setSignature( const QString & signature )
 */
 HB_FUNC_STATIC( QDBUSSIGNATURE_SETSIGNATURE )
 {
-  QDBusSignature * obj = (QDBusSignature *) _qt5xhb_itemGetPtrStackSelfItem();
+  QDBusSignature * obj = (QDBusSignature *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISCHAR(1) )
+    if( ISNUMPAR(1) && HB_ISCHAR(1) )
     {
 #endif
-      obj->setSignature ( PQSTRING(1) );
+      obj->setSignature( PQSTRING(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -197,7 +192,7 @@ HB_FUNC_STATIC( QDBUSSIGNATURE_NEWFROM )
 {
   PHB_ITEM self = hb_stackSelfItem();
 
-  if( hb_pcount() == 1 && ISOBJECT(1) )
+  if( hb_pcount() == 1 && HB_ISOBJECT(1) )
   {
     PHB_ITEM ptr = hb_itemPutPtr( NULL, (void *) hb_itemGetPtr( hb_objSendMsg( hb_param(1, HB_IT_OBJECT ), "POINTER", 0 ) ) );
     hb_objSendMsg( self, "_pointer", 1, ptr );
@@ -206,7 +201,7 @@ HB_FUNC_STATIC( QDBUSSIGNATURE_NEWFROM )
     hb_objSendMsg( self, "_self_destruction", 1, des );
     hb_itemRelease( des );
   }
-  else if( hb_pcount() == 1 && ISPOINTER(1) )
+  else if( hb_pcount() == 1 && HB_ISPOINTER(1) )
   {
     PHB_ITEM ptr = hb_itemPutPtr( NULL, (void *) hb_itemGetPtr( hb_param(1, HB_IT_POINTER ) ) );
     hb_objSendMsg( self, "_pointer", 1, ptr );
@@ -242,7 +237,7 @@ HB_FUNC_STATIC( QDBUSSIGNATURE_SETSELFDESTRUCTION )
 {
   PHB_ITEM self = hb_stackSelfItem();
 
-  if( hb_pcount() == 1 && ISLOG(1) )
+  if( hb_pcount() == 1 && HB_ISLOG(1) )
   {
     PHB_ITEM des = hb_itemPutL( NULL, hb_parl(1) );
     hb_objSendMsg( self, "_self_destruction", 1, des );

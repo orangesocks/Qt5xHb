@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -26,7 +26,7 @@ CLASS QAltimeter INHERIT QSensor
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QAltimeter
+PROCEDURE destroyObject() CLASS QAltimeter
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -45,6 +45,8 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #if (QT_VERSION >= QT_VERSION_CHECK(5,1,0))
@@ -53,15 +55,15 @@ RETURN
 #endif
 
 /*
-QAltimeter(QObject *parent = 0)
+QAltimeter( QObject * parent = 0 )
 */
 HB_FUNC_STATIC( QALTIMETER_NEW )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,1,0))
-  if( ISBETWEEN(0,1) && (ISQOBJECT(1)||ISNIL(1)) )
+  if( ISBETWEEN(0,1) && (ISQOBJECT(1)||HB_ISNIL(1)) )
   {
-    QAltimeter * o = new QAltimeter ( OPQOBJECT(1,0) );
-    _qt5xhb_returnNewObject( o, false );
+    QAltimeter * obj = new QAltimeter( OPQOBJECT(1,0) );
+    Qt5xHb::returnNewObject( obj, false );
   }
   else
   {
@@ -73,10 +75,12 @@ HB_FUNC_STATIC( QALTIMETER_NEW )
 HB_FUNC_STATIC( QALTIMETER_DELETE )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,1,0))
-  QAltimeter * obj = (QAltimeter *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAltimeter * obj = (QAltimeter *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -90,12 +94,12 @@ HB_FUNC_STATIC( QALTIMETER_DELETE )
 }
 
 /*
-QAltimeterReading *reading() const
+QAltimeterReading * reading() const
 */
 HB_FUNC_STATIC( QALTIMETER_READING )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,1,0))
-  QAltimeter * obj = (QAltimeter *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAltimeter * obj = (QAltimeter *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -103,8 +107,8 @@ HB_FUNC_STATIC( QALTIMETER_READING )
     if( ISNUMPAR(0) )
     {
 #endif
-      QAltimeterReading * ptr = obj->reading ();
-      _qt5xhb_createReturnQObjectClass ( ptr, "QALTIMETERREADING" );
+      QAltimeterReading * ptr = obj->reading();
+      Qt5xHb::createReturnQObjectClass( ptr, "QALTIMETERREADING" );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else

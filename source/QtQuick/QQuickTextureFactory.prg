@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -30,7 +30,7 @@ CLASS QQuickTextureFactory INHERIT QObject
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QQuickTextureFactory
+PROCEDURE destroyObject() CLASS QQuickTextureFactory
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -47,6 +47,8 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #include <QtQuick/QQuickTextureFactory>
@@ -56,10 +58,12 @@ RETURN
 
 HB_FUNC_STATIC( QQUICKTEXTUREFACTORY_DELETE )
 {
-  QQuickTextureFactory * obj = (QQuickTextureFactory *) _qt5xhb_itemGetPtrStackSelfItem();
+  QQuickTextureFactory * obj = (QQuickTextureFactory *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -72,11 +76,11 @@ HB_FUNC_STATIC( QQUICKTEXTUREFACTORY_DELETE )
 }
 
 /*
-virtual QSGTexture * createTexture(QQuickWindow * window) const = 0
+virtual QSGTexture * createTexture( QQuickWindow * window ) const = 0
 */
 HB_FUNC_STATIC( QQUICKTEXTUREFACTORY_CREATETEXTURE )
 {
-  QQuickTextureFactory * obj = (QQuickTextureFactory *) _qt5xhb_itemGetPtrStackSelfItem();
+  QQuickTextureFactory * obj = (QQuickTextureFactory *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -84,8 +88,8 @@ HB_FUNC_STATIC( QQUICKTEXTUREFACTORY_CREATETEXTURE )
     if( ISNUMPAR(1) && ISQQUICKWINDOW(1) )
     {
 #endif
-      QSGTexture * ptr = obj->createTexture ( PQQUICKWINDOW(1) );
-      _qt5xhb_createReturnQObjectClass ( ptr, "QSGTEXTURE" );
+      QSGTexture * ptr = obj->createTexture( PQQUICKWINDOW(1) );
+      Qt5xHb::createReturnQObjectClass( ptr, "QSGTEXTURE" );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -101,7 +105,7 @@ virtual QImage image() const
 */
 HB_FUNC_STATIC( QQUICKTEXTUREFACTORY_IMAGE )
 {
-  QQuickTextureFactory * obj = (QQuickTextureFactory *) _qt5xhb_itemGetPtrStackSelfItem();
+  QQuickTextureFactory * obj = (QQuickTextureFactory *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -109,8 +113,8 @@ HB_FUNC_STATIC( QQUICKTEXTUREFACTORY_IMAGE )
     if( ISNUMPAR(0) )
     {
 #endif
-      QImage * ptr = new QImage( obj->image () );
-      _qt5xhb_createReturnClass ( ptr, "QIMAGE", true );
+      QImage * ptr = new QImage( obj->image() );
+      Qt5xHb::createReturnClass( ptr, "QIMAGE", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -126,7 +130,7 @@ virtual int textureByteCount() const = 0
 */
 HB_FUNC_STATIC( QQUICKTEXTUREFACTORY_TEXTUREBYTECOUNT )
 {
-  QQuickTextureFactory * obj = (QQuickTextureFactory *) _qt5xhb_itemGetPtrStackSelfItem();
+  QQuickTextureFactory * obj = (QQuickTextureFactory *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -134,7 +138,7 @@ HB_FUNC_STATIC( QQUICKTEXTUREFACTORY_TEXTUREBYTECOUNT )
     if( ISNUMPAR(0) )
     {
 #endif
-      RINT( obj->textureByteCount () );
+      RINT( obj->textureByteCount() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -150,7 +154,7 @@ virtual QSize textureSize() const = 0
 */
 HB_FUNC_STATIC( QQUICKTEXTUREFACTORY_TEXTURESIZE )
 {
-  QQuickTextureFactory * obj = (QQuickTextureFactory *) _qt5xhb_itemGetPtrStackSelfItem();
+  QQuickTextureFactory * obj = (QQuickTextureFactory *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -158,8 +162,8 @@ HB_FUNC_STATIC( QQUICKTEXTUREFACTORY_TEXTURESIZE )
     if( ISNUMPAR(0) )
     {
 #endif
-      QSize * ptr = new QSize( obj->textureSize () );
-      _qt5xhb_createReturnClass ( ptr, "QSIZE", true );
+      QSize * ptr = new QSize( obj->textureSize() );
+      Qt5xHb::createReturnClass( ptr, "QSIZE", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else

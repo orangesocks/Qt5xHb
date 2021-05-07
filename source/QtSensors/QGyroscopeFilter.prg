@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -24,7 +24,7 @@ CLASS QGyroscopeFilter INHERIT QSensorFilter
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QGyroscopeFilter
+PROCEDURE destroyObject() CLASS QGyroscopeFilter
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -53,7 +53,7 @@ RETURN
 HB_FUNC_STATIC( QGYROSCOPEFILTER_DELETE )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,1,0))
-  QGyroscopeFilter * obj = (QGyroscopeFilter *) _qt5xhb_itemGetPtrStackSelfItem();
+  QGyroscopeFilter * obj = (QGyroscopeFilter *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -70,12 +70,12 @@ HB_FUNC_STATIC( QGYROSCOPEFILTER_DELETE )
 }
 
 /*
-virtual bool filter(QGyroscopeReading *reading) = 0
+virtual bool filter( QGyroscopeReading * reading ) = 0
 */
 HB_FUNC_STATIC( QGYROSCOPEFILTER_FILTER )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,1,0))
-  QGyroscopeFilter * obj = (QGyroscopeFilter *) _qt5xhb_itemGetPtrStackSelfItem();
+  QGyroscopeFilter * obj = (QGyroscopeFilter *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -83,7 +83,7 @@ HB_FUNC_STATIC( QGYROSCOPEFILTER_FILTER )
     if( ISNUMPAR(1) && ISQGYROSCOPEREADING(1) )
     {
 #endif
-      RBOOL( obj->filter ( PQGYROSCOPEREADING(1) ) );
+      RBOOL( obj->filter( PQGYROSCOPEREADING(1) ) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else

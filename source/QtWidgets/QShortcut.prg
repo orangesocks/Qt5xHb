@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -41,7 +41,7 @@ CLASS QShortcut INHERIT QObject
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QShortcut
+PROCEDURE destroyObject() CLASS QShortcut
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -58,31 +58,30 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #include <QtWidgets/QShortcut>
 #endif
 
 /*
-QShortcut(QWidget * parent)
+QShortcut( QWidget * parent )
 */
-void QShortcut_new1 ()
+void QShortcut_new1()
 {
-  QShortcut * o = new QShortcut ( PQWIDGET(1) );
-  _qt5xhb_returnNewObject( o, false );
+  QShortcut * obj = new QShortcut( PQWIDGET(1) );
+  Qt5xHb::returnNewObject( obj, false );
 }
 
 /*
-QShortcut(const QKeySequence & key, QWidget * parent, const char * member = 0, const char * ambiguousMember = 0, Qt::ShortcutContext context = Qt::WindowShortcut)
+QShortcut( const QKeySequence & key, QWidget * parent, const char * member = 0, const char * ambiguousMember = 0, Qt::ShortcutContext context = Qt::WindowShortcut )
 */
-void QShortcut_new2 ()
+void QShortcut_new2()
 {
-  QShortcut * o = new QShortcut ( *PQKEYSEQUENCE(1), PQWIDGET(2), OPCONSTCHAR(3,0), OPCONSTCHAR(4,0), ISNIL(5)? (Qt::ShortcutContext) Qt::WindowShortcut : (Qt::ShortcutContext) hb_parni(5) );
-  _qt5xhb_returnNewObject( o, false );
+  QShortcut * obj = new QShortcut( *PQKEYSEQUENCE(1), PQWIDGET(2), OPCONSTCHAR(3,0), OPCONSTCHAR(4,0), HB_ISNIL(5)? (Qt::ShortcutContext) Qt::WindowShortcut : (Qt::ShortcutContext) hb_parni(5) );
+  Qt5xHb::returnNewObject( obj, false );
 }
-
-//[1]QShortcut(QWidget * parent)
-//[2]QShortcut(const QKeySequence & key, QWidget * parent, const char * member = 0, const char * ambiguousMember = 0, Qt::ShortcutContext context = Qt::WindowShortcut)
 
 HB_FUNC_STATIC( QSHORTCUT_NEW )
 {
@@ -90,7 +89,7 @@ HB_FUNC_STATIC( QSHORTCUT_NEW )
   {
     QShortcut_new1();
   }
-  else if( ISBETWEEN(2,5) && ISQKEYSEQUENCE(1) && ISQWIDGET(2) && ISOPTCHAR(3) && ISOPTCHAR(4) && ISOPTNUM(5) )
+  else if( ISBETWEEN(2,5) && ISQKEYSEQUENCE(1) && ISQWIDGET(2) && ( HB_ISCHAR(3)||HB_ISNIL(3)) && ( HB_ISCHAR(4)||HB_ISNIL(4)) && ( HB_ISNUM(5)||HB_ISNIL(5)) )
   {
     QShortcut_new2();
   }
@@ -102,10 +101,12 @@ HB_FUNC_STATIC( QSHORTCUT_NEW )
 
 HB_FUNC_STATIC( QSHORTCUT_DELETE )
 {
-  QShortcut * obj = (QShortcut *) _qt5xhb_itemGetPtrStackSelfItem();
+  QShortcut * obj = (QShortcut *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -122,7 +123,7 @@ bool autoRepeat() const
 */
 HB_FUNC_STATIC( QSHORTCUT_AUTOREPEAT )
 {
-  QShortcut * obj = (QShortcut *) _qt5xhb_itemGetPtrStackSelfItem();
+  QShortcut * obj = (QShortcut *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -130,7 +131,7 @@ HB_FUNC_STATIC( QSHORTCUT_AUTOREPEAT )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->autoRepeat () );
+      RBOOL( obj->autoRepeat() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -146,7 +147,7 @@ Qt::ShortcutContext context() const
 */
 HB_FUNC_STATIC( QSHORTCUT_CONTEXT )
 {
-  QShortcut * obj = (QShortcut *) _qt5xhb_itemGetPtrStackSelfItem();
+  QShortcut * obj = (QShortcut *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -154,7 +155,7 @@ HB_FUNC_STATIC( QSHORTCUT_CONTEXT )
     if( ISNUMPAR(0) )
     {
 #endif
-      RENUM( obj->context () );
+      RENUM( obj->context() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -170,7 +171,7 @@ int id() const
 */
 HB_FUNC_STATIC( QSHORTCUT_ID )
 {
-  QShortcut * obj = (QShortcut *) _qt5xhb_itemGetPtrStackSelfItem();
+  QShortcut * obj = (QShortcut *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -178,7 +179,7 @@ HB_FUNC_STATIC( QSHORTCUT_ID )
     if( ISNUMPAR(0) )
     {
 #endif
-      RINT( obj->id () );
+      RINT( obj->id() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -194,7 +195,7 @@ bool isEnabled() const
 */
 HB_FUNC_STATIC( QSHORTCUT_ISENABLED )
 {
-  QShortcut * obj = (QShortcut *) _qt5xhb_itemGetPtrStackSelfItem();
+  QShortcut * obj = (QShortcut *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -202,7 +203,7 @@ HB_FUNC_STATIC( QSHORTCUT_ISENABLED )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->isEnabled () );
+      RBOOL( obj->isEnabled() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -218,7 +219,7 @@ QKeySequence key() const
 */
 HB_FUNC_STATIC( QSHORTCUT_KEY )
 {
-  QShortcut * obj = (QShortcut *) _qt5xhb_itemGetPtrStackSelfItem();
+  QShortcut * obj = (QShortcut *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -226,8 +227,8 @@ HB_FUNC_STATIC( QSHORTCUT_KEY )
     if( ISNUMPAR(0) )
     {
 #endif
-      QKeySequence * ptr = new QKeySequence( obj->key () );
-      _qt5xhb_createReturnClass ( ptr, "QKEYSEQUENCE", true );
+      QKeySequence * ptr = new QKeySequence( obj->key() );
+      Qt5xHb::createReturnClass( ptr, "QKEYSEQUENCE", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -243,7 +244,7 @@ QWidget * parentWidget() const
 */
 HB_FUNC_STATIC( QSHORTCUT_PARENTWIDGET )
 {
-  QShortcut * obj = (QShortcut *) _qt5xhb_itemGetPtrStackSelfItem();
+  QShortcut * obj = (QShortcut *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -251,8 +252,8 @@ HB_FUNC_STATIC( QSHORTCUT_PARENTWIDGET )
     if( ISNUMPAR(0) )
     {
 #endif
-      QWidget * ptr = obj->parentWidget ();
-      _qt5xhb_createReturnQWidgetClass ( ptr, "QWIDGET" );
+      QWidget * ptr = obj->parentWidget();
+      Qt5xHb::createReturnQWidgetClass( ptr, "QWIDGET" );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -264,19 +265,19 @@ HB_FUNC_STATIC( QSHORTCUT_PARENTWIDGET )
 }
 
 /*
-void setAutoRepeat(bool on)
+void setAutoRepeat( bool on )
 */
 HB_FUNC_STATIC( QSHORTCUT_SETAUTOREPEAT )
 {
-  QShortcut * obj = (QShortcut *) _qt5xhb_itemGetPtrStackSelfItem();
+  QShortcut * obj = (QShortcut *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISLOG(1) )
+    if( ISNUMPAR(1) && HB_ISLOG(1) )
     {
 #endif
-      obj->setAutoRepeat ( PBOOL(1) );
+      obj->setAutoRepeat( PBOOL(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -290,19 +291,19 @@ HB_FUNC_STATIC( QSHORTCUT_SETAUTOREPEAT )
 }
 
 /*
-void setContext(Qt::ShortcutContext context)
+void setContext( Qt::ShortcutContext context )
 */
 HB_FUNC_STATIC( QSHORTCUT_SETCONTEXT )
 {
-  QShortcut * obj = (QShortcut *) _qt5xhb_itemGetPtrStackSelfItem();
+  QShortcut * obj = (QShortcut *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setContext ( (Qt::ShortcutContext) hb_parni(1) );
+      obj->setContext( (Qt::ShortcutContext) hb_parni(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -316,19 +317,19 @@ HB_FUNC_STATIC( QSHORTCUT_SETCONTEXT )
 }
 
 /*
-void setEnabled(bool enable)
+void setEnabled( bool enable )
 */
 HB_FUNC_STATIC( QSHORTCUT_SETENABLED )
 {
-  QShortcut * obj = (QShortcut *) _qt5xhb_itemGetPtrStackSelfItem();
+  QShortcut * obj = (QShortcut *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISLOG(1) )
+    if( ISNUMPAR(1) && HB_ISLOG(1) )
     {
 #endif
-      obj->setEnabled ( PBOOL(1) );
+      obj->setEnabled( PBOOL(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -342,11 +343,11 @@ HB_FUNC_STATIC( QSHORTCUT_SETENABLED )
 }
 
 /*
-void setKey(const QKeySequence & key)
+void setKey( const QKeySequence & key )
 */
 HB_FUNC_STATIC( QSHORTCUT_SETKEY )
 {
-  QShortcut * obj = (QShortcut *) _qt5xhb_itemGetPtrStackSelfItem();
+  QShortcut * obj = (QShortcut *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -354,7 +355,7 @@ HB_FUNC_STATIC( QSHORTCUT_SETKEY )
     if( ISNUMPAR(1) && ISQKEYSEQUENCE(1) )
     {
 #endif
-      obj->setKey ( *PQKEYSEQUENCE(1) );
+      obj->setKey( *PQKEYSEQUENCE(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -368,19 +369,19 @@ HB_FUNC_STATIC( QSHORTCUT_SETKEY )
 }
 
 /*
-void setWhatsThis(const QString & text)
+void setWhatsThis( const QString & text )
 */
 HB_FUNC_STATIC( QSHORTCUT_SETWHATSTHIS )
 {
-  QShortcut * obj = (QShortcut *) _qt5xhb_itemGetPtrStackSelfItem();
+  QShortcut * obj = (QShortcut *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISCHAR(1) )
+    if( ISNUMPAR(1) && HB_ISCHAR(1) )
     {
 #endif
-      obj->setWhatsThis ( PQSTRING(1) );
+      obj->setWhatsThis( PQSTRING(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -398,7 +399,7 @@ QString whatsThis() const
 */
 HB_FUNC_STATIC( QSHORTCUT_WHATSTHIS )
 {
-  QShortcut * obj = (QShortcut *) _qt5xhb_itemGetPtrStackSelfItem();
+  QShortcut * obj = (QShortcut *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -406,7 +407,7 @@ HB_FUNC_STATIC( QSHORTCUT_WHATSTHIS )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRING( obj->whatsThis () );
+      RQSTRING( obj->whatsThis() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -417,7 +418,7 @@ HB_FUNC_STATIC( QSHORTCUT_WHATSTHIS )
   }
 }
 
-void QShortcutSlots_connect_signal ( const QString & signal, const QString & slot );
+void QShortcutSlots_connect_signal( const QString & signal, const QString & slot );
 
 HB_FUNC_STATIC( QSHORTCUT_ONACTIVATED )
 {

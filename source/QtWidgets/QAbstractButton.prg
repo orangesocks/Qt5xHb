@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -58,7 +58,7 @@ CLASS QAbstractButton INHERIT QWidget
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QAbstractButton
+PROCEDURE destroyObject() CLASS QAbstractButton
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -75,6 +75,8 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #include <QtWidgets/QAbstractButton>
@@ -83,22 +85,16 @@ RETURN
 #include <QtWidgets/QButtonGroup>
 
 /*
-explicit QAbstractButton(QWidget *parent = Q_NULLPTR) (abstract)
-*/
-
-/*
-QAbstractButton(QAbstractButtonPrivate &dd, QWidget* parent = Q_NULLPTR) [protected]
-*/
-
-/*
 ~QAbstractButton()
 */
 HB_FUNC_STATIC( QABSTRACTBUTTON_DELETE )
 {
-  QAbstractButton * obj = (QAbstractButton *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAbstractButton * obj = (QAbstractButton *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -111,11 +107,11 @@ HB_FUNC_STATIC( QABSTRACTBUTTON_DELETE )
 }
 
 /*
-QString text () const
+QString text() const
 */
 HB_FUNC_STATIC( QABSTRACTBUTTON_TEXT )
 {
-  QAbstractButton * obj = (QAbstractButton *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAbstractButton * obj = (QAbstractButton *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -123,7 +119,7 @@ HB_FUNC_STATIC( QABSTRACTBUTTON_TEXT )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRING( obj->text () );
+      RQSTRING( obj->text() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -135,19 +131,19 @@ HB_FUNC_STATIC( QABSTRACTBUTTON_TEXT )
 }
 
 /*
-void setText ( const QString & text )
+void setText( const QString & text )
 */
 HB_FUNC_STATIC( QABSTRACTBUTTON_SETTEXT )
 {
-  QAbstractButton * obj = (QAbstractButton *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAbstractButton * obj = (QAbstractButton *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISCHAR(1) )
+    if( ISNUMPAR(1) && HB_ISCHAR(1) )
     {
 #endif
-      obj->setText ( PQSTRING(1) );
+      obj->setText( PQSTRING(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -161,11 +157,11 @@ HB_FUNC_STATIC( QABSTRACTBUTTON_SETTEXT )
 }
 
 /*
-QIcon icon () const
+QIcon icon() const
 */
 HB_FUNC_STATIC( QABSTRACTBUTTON_ICON )
 {
-  QAbstractButton * obj = (QAbstractButton *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAbstractButton * obj = (QAbstractButton *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -173,8 +169,8 @@ HB_FUNC_STATIC( QABSTRACTBUTTON_ICON )
     if( ISNUMPAR(0) )
     {
 #endif
-      QIcon * ptr = new QIcon( obj->icon () );
-      _qt5xhb_createReturnClass ( ptr, "QICON", true );
+      QIcon * ptr = new QIcon( obj->icon() );
+      Qt5xHb::createReturnClass( ptr, "QICON", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -186,19 +182,19 @@ HB_FUNC_STATIC( QABSTRACTBUTTON_ICON )
 }
 
 /*
-void setIcon ( const QIcon & icon )
+void setIcon( const QIcon & icon )
 */
 HB_FUNC_STATIC( QABSTRACTBUTTON_SETICON )
 {
-  QAbstractButton * obj = (QAbstractButton *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAbstractButton * obj = (QAbstractButton *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && (ISQICON(1)||ISCHAR(1)) )
+    if( ISNUMPAR(1) && (ISQICON(1)||HB_ISCHAR(1)) )
     {
 #endif
-      obj->setIcon ( ISOBJECT(1)? *(QIcon *) _qt5xhb_itemGetPtr(1) : QIcon(hb_parc(1)) );
+      obj->setIcon( HB_ISOBJECT(1)? *(QIcon *) Qt5xHb::itemGetPtr(1) : QIcon(hb_parc(1)) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -212,11 +208,11 @@ HB_FUNC_STATIC( QABSTRACTBUTTON_SETICON )
 }
 
 /*
-QSize iconSize () const
+QSize iconSize() const
 */
 HB_FUNC_STATIC( QABSTRACTBUTTON_ICONSIZE )
 {
-  QAbstractButton * obj = (QAbstractButton *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAbstractButton * obj = (QAbstractButton *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -224,8 +220,8 @@ HB_FUNC_STATIC( QABSTRACTBUTTON_ICONSIZE )
     if( ISNUMPAR(0) )
     {
 #endif
-      QSize * ptr = new QSize( obj->iconSize () );
-      _qt5xhb_createReturnClass ( ptr, "QSIZE", true );
+      QSize * ptr = new QSize( obj->iconSize() );
+      Qt5xHb::createReturnClass( ptr, "QSIZE", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -237,11 +233,11 @@ HB_FUNC_STATIC( QABSTRACTBUTTON_ICONSIZE )
 }
 
 /*
-void setIconSize ( const QSize & size ) (slot)
+void setIconSize( const QSize & size )
 */
 HB_FUNC_STATIC( QABSTRACTBUTTON_SETICONSIZE )
 {
-  QAbstractButton * obj = (QAbstractButton *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAbstractButton * obj = (QAbstractButton *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -249,7 +245,7 @@ HB_FUNC_STATIC( QABSTRACTBUTTON_SETICONSIZE )
     if( ISNUMPAR(1) && ISQSIZE(1) )
     {
 #endif
-      obj->setIconSize ( *PQSIZE(1) );
+      obj->setIconSize( *PQSIZE(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -268,7 +264,7 @@ QKeySequence shortcut () const
 HB_FUNC_STATIC( QABSTRACTBUTTON_SHORTCUT )
 {
 #ifndef QT_NO_SHORTCUT
-  QAbstractButton * obj = (QAbstractButton *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAbstractButton * obj = (QAbstractButton *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -276,8 +272,8 @@ HB_FUNC_STATIC( QABSTRACTBUTTON_SHORTCUT )
     if( ISNUMPAR(0) )
     {
 #endif
-      QKeySequence * ptr = new QKeySequence( obj->shortcut () );
-      _qt5xhb_createReturnClass ( ptr, "QKEYSEQUENCE", true );
+      QKeySequence * ptr = new QKeySequence( obj->shortcut() );
+      Qt5xHb::createReturnClass( ptr, "QKEYSEQUENCE", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -295,7 +291,7 @@ void setShortcut ( const QKeySequence & key )
 HB_FUNC_STATIC( QABSTRACTBUTTON_SETSHORTCUT )
 {
 #ifndef QT_NO_SHORTCUT
-  QAbstractButton * obj = (QAbstractButton *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAbstractButton * obj = (QAbstractButton *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -303,7 +299,7 @@ HB_FUNC_STATIC( QABSTRACTBUTTON_SETSHORTCUT )
     if( ISNUMPAR(1) && ISQKEYSEQUENCE(1) )
     {
 #endif
-      obj->setShortcut ( *PQKEYSEQUENCE(1) );
+      obj->setShortcut( *PQKEYSEQUENCE(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -318,11 +314,11 @@ HB_FUNC_STATIC( QABSTRACTBUTTON_SETSHORTCUT )
 }
 
 /*
-bool isCheckable () const
+bool isCheckable() const
 */
 HB_FUNC_STATIC( QABSTRACTBUTTON_ISCHECKABLE )
 {
-  QAbstractButton * obj = (QAbstractButton *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAbstractButton * obj = (QAbstractButton *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -330,7 +326,7 @@ HB_FUNC_STATIC( QABSTRACTBUTTON_ISCHECKABLE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->isCheckable () );
+      RBOOL( obj->isCheckable() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -342,19 +338,19 @@ HB_FUNC_STATIC( QABSTRACTBUTTON_ISCHECKABLE )
 }
 
 /*
-void setCheckable ( bool )
+void setCheckable( bool )
 */
 HB_FUNC_STATIC( QABSTRACTBUTTON_SETCHECKABLE )
 {
-  QAbstractButton * obj = (QAbstractButton *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAbstractButton * obj = (QAbstractButton *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISLOG(1) )
+    if( ISNUMPAR(1) && HB_ISLOG(1) )
     {
 #endif
-      obj->setCheckable ( PBOOL(1) );
+      obj->setCheckable( PBOOL(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -368,11 +364,11 @@ HB_FUNC_STATIC( QABSTRACTBUTTON_SETCHECKABLE )
 }
 
 /*
-bool isChecked () const
+bool isChecked() const
 */
 HB_FUNC_STATIC( QABSTRACTBUTTON_ISCHECKED )
 {
-  QAbstractButton * obj = (QAbstractButton *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAbstractButton * obj = (QAbstractButton *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -380,7 +376,7 @@ HB_FUNC_STATIC( QABSTRACTBUTTON_ISCHECKED )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->isChecked () );
+      RBOOL( obj->isChecked() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -392,19 +388,19 @@ HB_FUNC_STATIC( QABSTRACTBUTTON_ISCHECKED )
 }
 
 /*
-void setChecked ( bool ) (slot)
+void setChecked( bool )
 */
 HB_FUNC_STATIC( QABSTRACTBUTTON_SETCHECKED )
 {
-  QAbstractButton * obj = (QAbstractButton *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAbstractButton * obj = (QAbstractButton *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISLOG(1) )
+    if( ISNUMPAR(1) && HB_ISLOG(1) )
     {
 #endif
-      obj->setChecked ( PBOOL(1) );
+      obj->setChecked( PBOOL(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -418,11 +414,11 @@ HB_FUNC_STATIC( QABSTRACTBUTTON_SETCHECKED )
 }
 
 /*
-bool autoRepeat () const
+bool autoRepeat() const
 */
 HB_FUNC_STATIC( QABSTRACTBUTTON_AUTOREPEAT )
 {
-  QAbstractButton * obj = (QAbstractButton *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAbstractButton * obj = (QAbstractButton *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -430,7 +426,7 @@ HB_FUNC_STATIC( QABSTRACTBUTTON_AUTOREPEAT )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->autoRepeat () );
+      RBOOL( obj->autoRepeat() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -442,19 +438,19 @@ HB_FUNC_STATIC( QABSTRACTBUTTON_AUTOREPEAT )
 }
 
 /*
-void setAutoRepeat ( bool )
+void setAutoRepeat( bool )
 */
 HB_FUNC_STATIC( QABSTRACTBUTTON_SETAUTOREPEAT )
 {
-  QAbstractButton * obj = (QAbstractButton *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAbstractButton * obj = (QAbstractButton *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISLOG(1) )
+    if( ISNUMPAR(1) && HB_ISLOG(1) )
     {
 #endif
-      obj->setAutoRepeat ( PBOOL(1) );
+      obj->setAutoRepeat( PBOOL(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -468,11 +464,11 @@ HB_FUNC_STATIC( QABSTRACTBUTTON_SETAUTOREPEAT )
 }
 
 /*
-bool autoExclusive () const
+bool autoExclusive() const
 */
 HB_FUNC_STATIC( QABSTRACTBUTTON_AUTOEXCLUSIVE )
 {
-  QAbstractButton * obj = (QAbstractButton *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAbstractButton * obj = (QAbstractButton *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -480,7 +476,7 @@ HB_FUNC_STATIC( QABSTRACTBUTTON_AUTOEXCLUSIVE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->autoExclusive () );
+      RBOOL( obj->autoExclusive() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -492,19 +488,19 @@ HB_FUNC_STATIC( QABSTRACTBUTTON_AUTOEXCLUSIVE )
 }
 
 /*
-void setAutoExclusive ( bool )
+void setAutoExclusive( bool )
 */
 HB_FUNC_STATIC( QABSTRACTBUTTON_SETAUTOEXCLUSIVE )
 {
-  QAbstractButton * obj = (QAbstractButton *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAbstractButton * obj = (QAbstractButton *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISLOG(1) )
+    if( ISNUMPAR(1) && HB_ISLOG(1) )
     {
 #endif
-      obj->setAutoExclusive ( PBOOL(1) );
+      obj->setAutoExclusive( PBOOL(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -518,11 +514,11 @@ HB_FUNC_STATIC( QABSTRACTBUTTON_SETAUTOEXCLUSIVE )
 }
 
 /*
-int autoRepeatDelay () const
+int autoRepeatDelay() const
 */
 HB_FUNC_STATIC( QABSTRACTBUTTON_AUTOREPEATDELAY )
 {
-  QAbstractButton * obj = (QAbstractButton *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAbstractButton * obj = (QAbstractButton *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -530,7 +526,7 @@ HB_FUNC_STATIC( QABSTRACTBUTTON_AUTOREPEATDELAY )
     if( ISNUMPAR(0) )
     {
 #endif
-      RINT( obj->autoRepeatDelay () );
+      RINT( obj->autoRepeatDelay() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -542,19 +538,19 @@ HB_FUNC_STATIC( QABSTRACTBUTTON_AUTOREPEATDELAY )
 }
 
 /*
-void setAutoRepeatDelay ( int )
+void setAutoRepeatDelay( int )
 */
 HB_FUNC_STATIC( QABSTRACTBUTTON_SETAUTOREPEATDELAY )
 {
-  QAbstractButton * obj = (QAbstractButton *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAbstractButton * obj = (QAbstractButton *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setAutoRepeatDelay ( PINT(1) );
+      obj->setAutoRepeatDelay( PINT(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -568,11 +564,11 @@ HB_FUNC_STATIC( QABSTRACTBUTTON_SETAUTOREPEATDELAY )
 }
 
 /*
-int autoRepeatInterval () const
+int autoRepeatInterval() const
 */
 HB_FUNC_STATIC( QABSTRACTBUTTON_AUTOREPEATINTERVAL )
 {
-  QAbstractButton * obj = (QAbstractButton *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAbstractButton * obj = (QAbstractButton *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -580,7 +576,7 @@ HB_FUNC_STATIC( QABSTRACTBUTTON_AUTOREPEATINTERVAL )
     if( ISNUMPAR(0) )
     {
 #endif
-      RINT( obj->autoRepeatInterval () );
+      RINT( obj->autoRepeatInterval() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -592,19 +588,19 @@ HB_FUNC_STATIC( QABSTRACTBUTTON_AUTOREPEATINTERVAL )
 }
 
 /*
-void setAutoRepeatInterval ( int )
+void setAutoRepeatInterval( int )
 */
 HB_FUNC_STATIC( QABSTRACTBUTTON_SETAUTOREPEATINTERVAL )
 {
-  QAbstractButton * obj = (QAbstractButton *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAbstractButton * obj = (QAbstractButton *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setAutoRepeatInterval ( PINT(1) );
+      obj->setAutoRepeatInterval( PINT(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -618,11 +614,11 @@ HB_FUNC_STATIC( QABSTRACTBUTTON_SETAUTOREPEATINTERVAL )
 }
 
 /*
-bool isDown () const
+bool isDown() const
 */
 HB_FUNC_STATIC( QABSTRACTBUTTON_ISDOWN )
 {
-  QAbstractButton * obj = (QAbstractButton *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAbstractButton * obj = (QAbstractButton *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -630,7 +626,7 @@ HB_FUNC_STATIC( QABSTRACTBUTTON_ISDOWN )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->isDown () );
+      RBOOL( obj->isDown() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -642,19 +638,19 @@ HB_FUNC_STATIC( QABSTRACTBUTTON_ISDOWN )
 }
 
 /*
-void setDown ( bool )
+void setDown( bool )
 */
 HB_FUNC_STATIC( QABSTRACTBUTTON_SETDOWN )
 {
-  QAbstractButton * obj = (QAbstractButton *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAbstractButton * obj = (QAbstractButton *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISLOG(1) )
+    if( ISNUMPAR(1) && HB_ISLOG(1) )
     {
 #endif
-      obj->setDown ( PBOOL(1) );
+      obj->setDown( PBOOL(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -673,7 +669,7 @@ QButtonGroup * group () const
 HB_FUNC_STATIC( QABSTRACTBUTTON_GROUP )
 {
 #ifndef QT_NO_BUTTONGROUP
-  QAbstractButton * obj = (QAbstractButton *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAbstractButton * obj = (QAbstractButton *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -681,8 +677,8 @@ HB_FUNC_STATIC( QABSTRACTBUTTON_GROUP )
     if( ISNUMPAR(0) )
     {
 #endif
-      QButtonGroup * ptr = obj->group ();
-      _qt5xhb_createReturnQObjectClass ( ptr, "QBUTTONGROUP" );
+      QButtonGroup * ptr = obj->group();
+      Qt5xHb::createReturnQObjectClass( ptr, "QBUTTONGROUP" );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -695,19 +691,19 @@ HB_FUNC_STATIC( QABSTRACTBUTTON_GROUP )
 }
 
 /*
-void animateClick ( int msec = 100 ) (slot)
+void animateClick( int msec = 100 )
 */
 HB_FUNC_STATIC( QABSTRACTBUTTON_ANIMATECLICK )
 {
-  QAbstractButton * obj = (QAbstractButton *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAbstractButton * obj = (QAbstractButton *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISBETWEEN(0,1) && ISOPTNUM(1) )
+    if( ISBETWEEN(0,1) && (HB_ISNUM(1)||HB_ISNIL(1)) )
     {
 #endif
-      obj->animateClick ( OPINT(1,100) );
+      obj->animateClick( OPINT(1,100) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -721,11 +717,11 @@ HB_FUNC_STATIC( QABSTRACTBUTTON_ANIMATECLICK )
 }
 
 /*
-void click () (slot)
+void click()
 */
 HB_FUNC_STATIC( QABSTRACTBUTTON_CLICK )
 {
-  QAbstractButton * obj = (QAbstractButton *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAbstractButton * obj = (QAbstractButton *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -733,7 +729,7 @@ HB_FUNC_STATIC( QABSTRACTBUTTON_CLICK )
     if( ISNUMPAR(0) )
     {
 #endif
-      obj->click ();
+      obj->click();
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -747,11 +743,11 @@ HB_FUNC_STATIC( QABSTRACTBUTTON_CLICK )
 }
 
 /*
-void toggle () (slot)
+void toggle()
 */
 HB_FUNC_STATIC( QABSTRACTBUTTON_TOGGLE )
 {
-  QAbstractButton * obj = (QAbstractButton *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAbstractButton * obj = (QAbstractButton *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -759,7 +755,7 @@ HB_FUNC_STATIC( QABSTRACTBUTTON_TOGGLE )
     if( ISNUMPAR(0) )
     {
 #endif
-      obj->toggle ();
+      obj->toggle();
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -772,63 +768,7 @@ HB_FUNC_STATIC( QABSTRACTBUTTON_TOGGLE )
   hb_itemReturn( hb_stackSelfItem() );
 }
 
-/*
-void paintEvent(QPaintEvent *e) Q_DECL_OVERRIDE = 0 [protected]
-*/
-
-/*
-virtual bool hitButton(const QPoint &pos) const [protected]
-*/
-
-/*
-virtual void checkStateSet() [protected]
-*/
-
-/*
-virtual void nextCheckState() [protected]
-*/
-
-/*
-bool event(QEvent *e) Q_DECL_OVERRIDE [protected]
-*/
-
-/*
-void keyPressEvent(QKeyEvent *e) Q_DECL_OVERRIDE [protected]
-*/
-
-/*
-void keyReleaseEvent(QKeyEvent *e) Q_DECL_OVERRIDE [protected]
-*/
-
-/*
-void mousePressEvent(QMouseEvent *e) Q_DECL_OVERRIDE [protected]
-*/
-
-/*
-void mouseReleaseEvent(QMouseEvent *e) Q_DECL_OVERRIDE [protected]
-*/
-
-/*
-void mouseMoveEvent(QMouseEvent *e) Q_DECL_OVERRIDE [protected]
-*/
-
-/*
-void focusInEvent(QFocusEvent *e) Q_DECL_OVERRIDE [protected]
-*/
-
-/*
-void focusOutEvent(QFocusEvent *e) Q_DECL_OVERRIDE [protected]
-*/
-
-/*
-void changeEvent(QEvent *e) Q_DECL_OVERRIDE [protected]
-*/
-
-/*
-void timerEvent(QTimerEvent *e) Q_DECL_OVERRIDE [protected]
-*/
-
-void QAbstractButtonSlots_connect_signal ( const QString & signal, const QString & slot );
+void QAbstractButtonSlots_connect_signal( const QString & signal, const QString & slot );
 
 HB_FUNC_STATIC( QABSTRACTBUTTON_ONCLICKED )
 {

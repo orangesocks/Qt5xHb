@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -75,7 +75,7 @@ CLASS QWebView INHERIT QWidget
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QWebView
+PROCEDURE destroyObject() CLASS QWebView
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -92,6 +92,8 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #include <QtWebKitWidgets/QWebView>
@@ -102,14 +104,14 @@ RETURN
 #include <QtWidgets/QWidget>
 
 /*
-explicit QWebView ( QWidget * parent = 0 )
+QWebView( QWidget * parent = 0 )
 */
 HB_FUNC_STATIC( QWEBVIEW_NEW )
 {
-  if( ISBETWEEN(0,1) && (ISQWIDGET(1)||ISNIL(1)) )
+  if( ISBETWEEN(0,1) && (ISQWIDGET(1)||HB_ISNIL(1)) )
   {
-    QWebView * o = new QWebView ( OPQWIDGET(1,0) );
-    _qt5xhb_returnNewObject( o, false );
+    QWebView * obj = new QWebView( OPQWIDGET(1,0) );
+    Qt5xHb::returnNewObject( obj, false );
   }
   else
   {
@@ -122,10 +124,12 @@ virtual ~QWebView()
 */
 HB_FUNC_STATIC( QWEBVIEW_DELETE )
 {
-  QWebView * obj = (QWebView *) _qt5xhb_itemGetPtrStackSelfItem();
+  QWebView * obj = (QWebView *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -138,11 +142,11 @@ HB_FUNC_STATIC( QWEBVIEW_DELETE )
 }
 
 /*
-QString title () const
+QString title() const
 */
 HB_FUNC_STATIC( QWEBVIEW_TITLE )
 {
-  QWebView * obj = (QWebView *) _qt5xhb_itemGetPtrStackSelfItem();
+  QWebView * obj = (QWebView *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -150,7 +154,7 @@ HB_FUNC_STATIC( QWEBVIEW_TITLE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRING( obj->title () );
+      RQSTRING( obj->title() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -162,11 +166,11 @@ HB_FUNC_STATIC( QWEBVIEW_TITLE )
 }
 
 /*
-QUrl url () const
+QUrl url() const
 */
 HB_FUNC_STATIC( QWEBVIEW_URL )
 {
-  QWebView * obj = (QWebView *) _qt5xhb_itemGetPtrStackSelfItem();
+  QWebView * obj = (QWebView *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -174,8 +178,8 @@ HB_FUNC_STATIC( QWEBVIEW_URL )
     if( ISNUMPAR(0) )
     {
 #endif
-      QUrl * ptr = new QUrl( obj->url () );
-      _qt5xhb_createReturnClass ( ptr, "QURL", true );
+      QUrl * ptr = new QUrl( obj->url() );
+      Qt5xHb::createReturnClass( ptr, "QURL", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -187,11 +191,11 @@ HB_FUNC_STATIC( QWEBVIEW_URL )
 }
 
 /*
-void setUrl ( const QUrl & url )
+void setUrl( const QUrl & url )
 */
 HB_FUNC_STATIC( QWEBVIEW_SETURL )
 {
-  QWebView * obj = (QWebView *) _qt5xhb_itemGetPtrStackSelfItem();
+  QWebView * obj = (QWebView *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -199,7 +203,7 @@ HB_FUNC_STATIC( QWEBVIEW_SETURL )
     if( ISNUMPAR(1) && ISQURL(1) )
     {
 #endif
-      obj->setUrl ( *PQURL(1) );
+      obj->setUrl( *PQURL(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -213,11 +217,11 @@ HB_FUNC_STATIC( QWEBVIEW_SETURL )
 }
 
 /*
-QIcon icon () const
+QIcon icon() const
 */
 HB_FUNC_STATIC( QWEBVIEW_ICON )
 {
-  QWebView * obj = (QWebView *) _qt5xhb_itemGetPtrStackSelfItem();
+  QWebView * obj = (QWebView *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -225,8 +229,8 @@ HB_FUNC_STATIC( QWEBVIEW_ICON )
     if( ISNUMPAR(0) )
     {
 #endif
-      QIcon * ptr = new QIcon( obj->icon () );
-      _qt5xhb_createReturnClass ( ptr, "QICON", true );
+      QIcon * ptr = new QIcon( obj->icon() );
+      Qt5xHb::createReturnClass( ptr, "QICON", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -238,11 +242,11 @@ HB_FUNC_STATIC( QWEBVIEW_ICON )
 }
 
 /*
-QString selectedText () const
+QString selectedText() const
 */
 HB_FUNC_STATIC( QWEBVIEW_SELECTEDTEXT )
 {
-  QWebView * obj = (QWebView *) _qt5xhb_itemGetPtrStackSelfItem();
+  QWebView * obj = (QWebView *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -250,7 +254,7 @@ HB_FUNC_STATIC( QWEBVIEW_SELECTEDTEXT )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRING( obj->selectedText () );
+      RQSTRING( obj->selectedText() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -266,7 +270,7 @@ QString selectedHtml() const
 */
 HB_FUNC_STATIC( QWEBVIEW_SELECTEDHTML )
 {
-  QWebView * obj = (QWebView *) _qt5xhb_itemGetPtrStackSelfItem();
+  QWebView * obj = (QWebView *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -274,7 +278,7 @@ HB_FUNC_STATIC( QWEBVIEW_SELECTEDHTML )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRING( obj->selectedHtml () );
+      RQSTRING( obj->selectedHtml() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -290,7 +294,7 @@ bool hasSelection() const
 */
 HB_FUNC_STATIC( QWEBVIEW_HASSELECTION )
 {
-  QWebView * obj = (QWebView *) _qt5xhb_itemGetPtrStackSelfItem();
+  QWebView * obj = (QWebView *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -298,7 +302,7 @@ HB_FUNC_STATIC( QWEBVIEW_HASSELECTION )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->hasSelection () );
+      RBOOL( obj->hasSelection() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -310,11 +314,11 @@ HB_FUNC_STATIC( QWEBVIEW_HASSELECTION )
 }
 
 /*
-bool isModified () const
+bool isModified() const
 */
 HB_FUNC_STATIC( QWEBVIEW_ISMODIFIED )
 {
-  QWebView * obj = (QWebView *) _qt5xhb_itemGetPtrStackSelfItem();
+  QWebView * obj = (QWebView *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -322,7 +326,7 @@ HB_FUNC_STATIC( QWEBVIEW_ISMODIFIED )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->isModified () );
+      RBOOL( obj->isModified() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -334,11 +338,11 @@ HB_FUNC_STATIC( QWEBVIEW_ISMODIFIED )
 }
 
 /*
-qreal textSizeMultiplier () const
+qreal textSizeMultiplier() const
 */
 HB_FUNC_STATIC( QWEBVIEW_TEXTSIZEMULTIPLIER )
 {
-  QWebView * obj = (QWebView *) _qt5xhb_itemGetPtrStackSelfItem();
+  QWebView * obj = (QWebView *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -346,7 +350,7 @@ HB_FUNC_STATIC( QWEBVIEW_TEXTSIZEMULTIPLIER )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQREAL( obj->textSizeMultiplier () );
+      RQREAL( obj->textSizeMultiplier() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -358,19 +362,19 @@ HB_FUNC_STATIC( QWEBVIEW_TEXTSIZEMULTIPLIER )
 }
 
 /*
-void setTextSizeMultiplier ( qreal factor )
+void setTextSizeMultiplier( qreal factor )
 */
 HB_FUNC_STATIC( QWEBVIEW_SETTEXTSIZEMULTIPLIER )
 {
-  QWebView * obj = (QWebView *) _qt5xhb_itemGetPtrStackSelfItem();
+  QWebView * obj = (QWebView *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setTextSizeMultiplier ( PQREAL(1) );
+      obj->setTextSizeMultiplier( PQREAL(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -384,11 +388,11 @@ HB_FUNC_STATIC( QWEBVIEW_SETTEXTSIZEMULTIPLIER )
 }
 
 /*
-qreal zoomFactor () const
+qreal zoomFactor() const
 */
 HB_FUNC_STATIC( QWEBVIEW_ZOOMFACTOR )
 {
-  QWebView * obj = (QWebView *) _qt5xhb_itemGetPtrStackSelfItem();
+  QWebView * obj = (QWebView *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -396,7 +400,7 @@ HB_FUNC_STATIC( QWEBVIEW_ZOOMFACTOR )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQREAL( obj->zoomFactor () );
+      RQREAL( obj->zoomFactor() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -408,19 +412,19 @@ HB_FUNC_STATIC( QWEBVIEW_ZOOMFACTOR )
 }
 
 /*
-void setZoomFactor ( qreal factor )
+void setZoomFactor( qreal factor )
 */
 HB_FUNC_STATIC( QWEBVIEW_SETZOOMFACTOR )
 {
-  QWebView * obj = (QWebView *) _qt5xhb_itemGetPtrStackSelfItem();
+  QWebView * obj = (QWebView *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setZoomFactor ( PQREAL(1) );
+      obj->setZoomFactor( PQREAL(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -434,11 +438,11 @@ HB_FUNC_STATIC( QWEBVIEW_SETZOOMFACTOR )
 }
 
 /*
-QPainter::RenderHints renderHints () const
+QPainter::RenderHints renderHints() const
 */
 HB_FUNC_STATIC( QWEBVIEW_RENDERHINTS )
 {
-  QWebView * obj = (QWebView *) _qt5xhb_itemGetPtrStackSelfItem();
+  QWebView * obj = (QWebView *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -446,7 +450,7 @@ HB_FUNC_STATIC( QWEBVIEW_RENDERHINTS )
     if( ISNUMPAR(0) )
     {
 #endif
-      RENUM( obj->renderHints () );
+      RENUM( obj->renderHints() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -458,19 +462,19 @@ HB_FUNC_STATIC( QWEBVIEW_RENDERHINTS )
 }
 
 /*
-void setRenderHints ( QPainter::RenderHints hints )
+void setRenderHints( QPainter::RenderHints hints )
 */
 HB_FUNC_STATIC( QWEBVIEW_SETRENDERHINTS )
 {
-  QWebView * obj = (QWebView *) _qt5xhb_itemGetPtrStackSelfItem();
+  QWebView * obj = (QWebView *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setRenderHints ( (QPainter::RenderHints) hb_parni(1) );
+      obj->setRenderHints( (QPainter::RenderHints) hb_parni(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -484,19 +488,19 @@ HB_FUNC_STATIC( QWEBVIEW_SETRENDERHINTS )
 }
 
 /*
-bool findText ( const QString & subString, QWebPage::FindFlags options = 0 )
+bool findText( const QString & subString, QWebPage::FindFlags options = 0 )
 */
 HB_FUNC_STATIC( QWEBVIEW_FINDTEXT )
 {
-  QWebView * obj = (QWebView *) _qt5xhb_itemGetPtrStackSelfItem();
+  QWebView * obj = (QWebView *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISBETWEEN(1,2) && ISCHAR(1) && ISOPTNUM(2) )
+    if( ISBETWEEN(1,2) && HB_ISCHAR(1) && (HB_ISNUM(2)||HB_ISNIL(2)) )
     {
 #endif
-      RBOOL( obj->findText ( PQSTRING(1), ISNIL(2)? (QWebPage::FindFlags) 0 : (QWebPage::FindFlags) hb_parni(2) ) );
+      RBOOL( obj->findText( PQSTRING(1), HB_ISNIL(2)? (QWebPage::FindFlags) 0 : (QWebPage::FindFlags) hb_parni(2) ) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -508,11 +512,11 @@ HB_FUNC_STATIC( QWEBVIEW_FINDTEXT )
 }
 
 /*
-QWebHistory * history () const
+QWebHistory * history() const
 */
 HB_FUNC_STATIC( QWEBVIEW_HISTORY )
 {
-  QWebView * obj = (QWebView *) _qt5xhb_itemGetPtrStackSelfItem();
+  QWebView * obj = (QWebView *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -520,8 +524,8 @@ HB_FUNC_STATIC( QWEBVIEW_HISTORY )
     if( ISNUMPAR(0) )
     {
 #endif
-      QWebHistory * ptr = obj->history ();
-      _qt5xhb_createReturnClass ( ptr, "QWEBHISTORY", false );
+      QWebHistory * ptr = obj->history();
+      Qt5xHb::createReturnClass( ptr, "QWEBHISTORY", false );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -533,37 +537,34 @@ HB_FUNC_STATIC( QWEBVIEW_HISTORY )
 }
 
 /*
-void load ( const QUrl & url )
+void load( const QUrl & url )
 */
-void QWebView_load1 ()
+void QWebView_load1()
 {
-  QWebView * obj = (QWebView *) _qt5xhb_itemGetPtrStackSelfItem();
+  QWebView * obj = (QWebView *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
-      obj->load ( *PQURL(1) );
+    obj->load( *PQURL(1) );
   }
 
   hb_itemReturn( hb_stackSelfItem() );
 }
 
 /*
-void load ( const QNetworkRequest & request, QNetworkAccessManager::Operation operation = QNetworkAccessManager::GetOperation, const QByteArray & body = QByteArray() )
+void load( const QNetworkRequest & request, QNetworkAccessManager::Operation operation = QNetworkAccessManager::GetOperation, const QByteArray & body = QByteArray() )
 */
-void QWebView_load2 ()
+void QWebView_load2()
 {
-  QWebView * obj = (QWebView *) _qt5xhb_itemGetPtrStackSelfItem();
+  QWebView * obj = (QWebView *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
-      obj->load ( *PQNETWORKREQUEST(1), ISNIL(2)? (QNetworkAccessManager::Operation) QNetworkAccessManager::GetOperation : (QNetworkAccessManager::Operation) hb_parni(2), ISNIL(3)? QByteArray() : *(QByteArray *) _qt5xhb_itemGetPtr(3) );
+    obj->load( *PQNETWORKREQUEST(1), HB_ISNIL(2)? (QNetworkAccessManager::Operation) QNetworkAccessManager::GetOperation : (QNetworkAccessManager::Operation) hb_parni(2), HB_ISNIL(3)? QByteArray() : *(QByteArray *) Qt5xHb::itemGetPtr(3) );
   }
 
   hb_itemReturn( hb_stackSelfItem() );
 }
-
-//[1]void load ( const QUrl & url )
-//[2]void load ( const QNetworkRequest & request, QNetworkAccessManager::Operation operation = QNetworkAccessManager::GetOperation, const QByteArray & body = QByteArray() )
 
 HB_FUNC_STATIC( QWEBVIEW_LOAD )
 {
@@ -571,7 +572,7 @@ HB_FUNC_STATIC( QWEBVIEW_LOAD )
   {
     QWebView_load1();
   }
-  else if( ISBETWEEN(1,3) && ISQNETWORKREQUEST(1) && ISOPTNUM(2) && ISOPTQBYTEARRAY(3) )
+  else if( ISBETWEEN(1,3) && ISQNETWORKREQUEST(1) && ( HB_ISNUM(2)||HB_ISNIL(2)) && (ISQBYTEARRAY(3)||HB_ISNIL(3)) )
   {
     QWebView_load2();
   }
@@ -582,11 +583,11 @@ HB_FUNC_STATIC( QWEBVIEW_LOAD )
 }
 
 /*
-QWebPage * page () const
+QWebPage * page() const
 */
 HB_FUNC_STATIC( QWEBVIEW_PAGE )
 {
-  QWebView * obj = (QWebView *) _qt5xhb_itemGetPtrStackSelfItem();
+  QWebView * obj = (QWebView *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -594,8 +595,8 @@ HB_FUNC_STATIC( QWEBVIEW_PAGE )
     if( ISNUMPAR(0) )
     {
 #endif
-      QWebPage * ptr = obj->page ();
-      _qt5xhb_createReturnQObjectClass ( ptr, "QWEBPAGE" );
+      QWebPage * ptr = obj->page();
+      Qt5xHb::createReturnQObjectClass( ptr, "QWEBPAGE" );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -607,21 +608,21 @@ HB_FUNC_STATIC( QWEBVIEW_PAGE )
 }
 
 /*
-QAction * pageAction ( QWebPage::WebAction action ) const
+QAction * pageAction( QWebPage::WebAction action ) const
 */
 HB_FUNC_STATIC( QWEBVIEW_PAGEACTION )
 {
 #ifndef QT_NO_ACTION
-  QWebView * obj = (QWebView *) _qt5xhb_itemGetPtrStackSelfItem();
+  QWebView * obj = (QWebView *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      QAction * ptr = obj->pageAction ( (QWebPage::WebAction) hb_parni(1) );
-      _qt5xhb_createReturnQObjectClass ( ptr, "QACTION" );
+      QAction * ptr = obj->pageAction( (QWebPage::WebAction) hb_parni(1) );
+      Qt5xHb::createReturnQObjectClass( ptr, "QACTION" );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -634,19 +635,19 @@ HB_FUNC_STATIC( QWEBVIEW_PAGEACTION )
 }
 
 /*
-void setContent ( const QByteArray & data, const QString & mimeType = QString(), const QUrl & baseUrl = QUrl() )
+void setContent( const QByteArray & data, const QString & mimeType = QString(), const QUrl & baseUrl = QUrl() )
 */
 HB_FUNC_STATIC( QWEBVIEW_SETCONTENT )
 {
-  QWebView * obj = (QWebView *) _qt5xhb_itemGetPtrStackSelfItem();
+  QWebView * obj = (QWebView *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISBETWEEN(1,3) && ISQBYTEARRAY(1) && ISOPTCHAR(2) && (ISQURL(3)||ISNIL(3)) )
+    if( ISBETWEEN(1,3) && ISQBYTEARRAY(1) && (HB_ISCHAR(2)||HB_ISNIL(2)) && (ISQURL(3)||HB_ISNIL(3)) )
     {
 #endif
-      obj->setContent ( *PQBYTEARRAY(1), OPQSTRING(2,QString()), ISNIL(3)? QUrl() : *(QUrl *) _qt5xhb_itemGetPtr(3) );
+      obj->setContent( *PQBYTEARRAY(1), OPQSTRING(2,QString()), HB_ISNIL(3)? QUrl() : *(QUrl *) Qt5xHb::itemGetPtr(3) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -660,19 +661,19 @@ HB_FUNC_STATIC( QWEBVIEW_SETCONTENT )
 }
 
 /*
-void setHtml ( const QString & html, const QUrl & baseUrl = QUrl() )
+void setHtml( const QString & html, const QUrl & baseUrl = QUrl() )
 */
 HB_FUNC_STATIC( QWEBVIEW_SETHTML )
 {
-  QWebView * obj = (QWebView *) _qt5xhb_itemGetPtrStackSelfItem();
+  QWebView * obj = (QWebView *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISBETWEEN(1,2) && ISCHAR(1) && (ISQURL(2)||ISNIL(2)) )
+    if( ISBETWEEN(1,2) && HB_ISCHAR(1) && (ISQURL(2)||HB_ISNIL(2)) )
     {
 #endif
-      obj->setHtml ( PQSTRING(1), ISNIL(2)? QUrl() : *(QUrl *) _qt5xhb_itemGetPtr(2) );
+      obj->setHtml( PQSTRING(1), HB_ISNIL(2)? QUrl() : *(QUrl *) Qt5xHb::itemGetPtr(2) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -686,11 +687,11 @@ HB_FUNC_STATIC( QWEBVIEW_SETHTML )
 }
 
 /*
-void setPage ( QWebPage * page )
+void setPage( QWebPage * page )
 */
 HB_FUNC_STATIC( QWEBVIEW_SETPAGE )
 {
-  QWebView * obj = (QWebView *) _qt5xhb_itemGetPtrStackSelfItem();
+  QWebView * obj = (QWebView *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -698,7 +699,7 @@ HB_FUNC_STATIC( QWEBVIEW_SETPAGE )
     if( ISNUMPAR(1) && ISQWEBPAGE(1) )
     {
 #endif
-      obj->setPage ( PQWEBPAGE(1) );
+      obj->setPage( PQWEBPAGE(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -712,19 +713,19 @@ HB_FUNC_STATIC( QWEBVIEW_SETPAGE )
 }
 
 /*
-void setRenderHint ( QPainter::RenderHint hint, bool enabled = true )
+void setRenderHint( QPainter::RenderHint hint, bool enabled = true )
 */
 HB_FUNC_STATIC( QWEBVIEW_SETRENDERHINT )
 {
-  QWebView * obj = (QWebView *) _qt5xhb_itemGetPtrStackSelfItem();
+  QWebView * obj = (QWebView *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISBETWEEN(1,2) && ISNUM(1) && ISOPTLOG(2) )
+    if( ISBETWEEN(1,2) && HB_ISNUM(1) && (HB_ISLOG(2)||HB_ISNIL(2)) )
     {
 #endif
-      obj->setRenderHint ( (QPainter::RenderHint) hb_parni(1), OPBOOL(2,true) );
+      obj->setRenderHint( (QPainter::RenderHint) hb_parni(1), OPBOOL(2,true) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -738,11 +739,11 @@ HB_FUNC_STATIC( QWEBVIEW_SETRENDERHINT )
 }
 
 /*
-QWebSettings * settings () const
+QWebSettings * settings() const
 */
 HB_FUNC_STATIC( QWEBVIEW_SETTINGS )
 {
-  QWebView * obj = (QWebView *) _qt5xhb_itemGetPtrStackSelfItem();
+  QWebView * obj = (QWebView *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -750,8 +751,8 @@ HB_FUNC_STATIC( QWEBVIEW_SETTINGS )
     if( ISNUMPAR(0) )
     {
 #endif
-      QWebSettings * ptr = obj->settings ();
-      _qt5xhb_createReturnClass ( ptr, "QWEBSETTINGS", false );
+      QWebSettings * ptr = obj->settings();
+      Qt5xHb::createReturnClass( ptr, "QWEBSETTINGS", false );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -763,19 +764,19 @@ HB_FUNC_STATIC( QWEBVIEW_SETTINGS )
 }
 
 /*
-void triggerPageAction ( QWebPage::WebAction action, bool checked = false )
+void triggerPageAction( QWebPage::WebAction action, bool checked = false )
 */
 HB_FUNC_STATIC( QWEBVIEW_TRIGGERPAGEACTION )
 {
-  QWebView * obj = (QWebView *) _qt5xhb_itemGetPtrStackSelfItem();
+  QWebView * obj = (QWebView *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISBETWEEN(1,2) && ISNUM(1) && ISOPTLOG(2) )
+    if( ISBETWEEN(1,2) && HB_ISNUM(1) && (HB_ISLOG(2)||HB_ISNIL(2)) )
     {
 #endif
-      obj->triggerPageAction ( (QWebPage::WebAction) hb_parni(1), OPBOOL(2,false) );
+      obj->triggerPageAction( (QWebPage::WebAction) hb_parni(1), OPBOOL(2,false) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -789,11 +790,11 @@ HB_FUNC_STATIC( QWEBVIEW_TRIGGERPAGEACTION )
 }
 
 /*
-void back ()
+void back()
 */
 HB_FUNC_STATIC( QWEBVIEW_BACK )
 {
-  QWebView * obj = (QWebView *) _qt5xhb_itemGetPtrStackSelfItem();
+  QWebView * obj = (QWebView *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -801,7 +802,7 @@ HB_FUNC_STATIC( QWEBVIEW_BACK )
     if( ISNUMPAR(0) )
     {
 #endif
-      obj->back ();
+      obj->back();
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -815,11 +816,11 @@ HB_FUNC_STATIC( QWEBVIEW_BACK )
 }
 
 /*
-void forward ()
+void forward()
 */
 HB_FUNC_STATIC( QWEBVIEW_FORWARD )
 {
-  QWebView * obj = (QWebView *) _qt5xhb_itemGetPtrStackSelfItem();
+  QWebView * obj = (QWebView *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -827,7 +828,7 @@ HB_FUNC_STATIC( QWEBVIEW_FORWARD )
     if( ISNUMPAR(0) )
     {
 #endif
-      obj->forward ();
+      obj->forward();
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -841,11 +842,11 @@ HB_FUNC_STATIC( QWEBVIEW_FORWARD )
 }
 
 /*
-void print ( QPrinter * printer ) const
+void print( QPrinter * printer ) const
 */
 HB_FUNC_STATIC( QWEBVIEW_PRINT )
 {
-  QWebView * obj = (QWebView *) _qt5xhb_itemGetPtrStackSelfItem();
+  QWebView * obj = (QWebView *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -853,7 +854,7 @@ HB_FUNC_STATIC( QWEBVIEW_PRINT )
     if( ISNUMPAR(1) && ISQPRINTER(1) )
     {
 #endif
-      obj->print ( PQPRINTER(1) );
+      obj->print( PQPRINTER(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -867,11 +868,11 @@ HB_FUNC_STATIC( QWEBVIEW_PRINT )
 }
 
 /*
-void reload ()
+void reload()
 */
 HB_FUNC_STATIC( QWEBVIEW_RELOAD )
 {
-  QWebView * obj = (QWebView *) _qt5xhb_itemGetPtrStackSelfItem();
+  QWebView * obj = (QWebView *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -879,7 +880,7 @@ HB_FUNC_STATIC( QWEBVIEW_RELOAD )
     if( ISNUMPAR(0) )
     {
 #endif
-      obj->reload ();
+      obj->reload();
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -893,11 +894,11 @@ HB_FUNC_STATIC( QWEBVIEW_RELOAD )
 }
 
 /*
-void stop ()
+void stop()
 */
 HB_FUNC_STATIC( QWEBVIEW_STOP )
 {
-  QWebView * obj = (QWebView *) _qt5xhb_itemGetPtrStackSelfItem();
+  QWebView * obj = (QWebView *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -905,7 +906,7 @@ HB_FUNC_STATIC( QWEBVIEW_STOP )
     if( ISNUMPAR(0) )
     {
 #endif
-      obj->stop ();
+      obj->stop();
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -919,20 +920,20 @@ HB_FUNC_STATIC( QWEBVIEW_STOP )
 }
 
 /*
-QVariant inputMethodQuery(Qt::InputMethodQuery property) const
+QVariant inputMethodQuery( Qt::InputMethodQuery property ) const
 */
 HB_FUNC_STATIC( QWEBVIEW_INPUTMETHODQUERY )
 {
-  QWebView * obj = (QWebView *) _qt5xhb_itemGetPtrStackSelfItem();
+  QWebView * obj = (QWebView *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      QVariant * ptr = new QVariant( obj->inputMethodQuery ( (Qt::InputMethodQuery) hb_parni(1) ) );
-      _qt5xhb_createReturnClass ( ptr, "QVARIANT", true );
+      QVariant * ptr = new QVariant( obj->inputMethodQuery( (Qt::InputMethodQuery) hb_parni(1) ) );
+      Qt5xHb::createReturnClass( ptr, "QVARIANT", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -948,7 +949,7 @@ QSize sizeHint() const
 */
 HB_FUNC_STATIC( QWEBVIEW_SIZEHINT )
 {
-  QWebView * obj = (QWebView *) _qt5xhb_itemGetPtrStackSelfItem();
+  QWebView * obj = (QWebView *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -956,8 +957,8 @@ HB_FUNC_STATIC( QWEBVIEW_SIZEHINT )
     if( ISNUMPAR(0) )
     {
 #endif
-      QSize * ptr = new QSize( obj->sizeHint () );
-      _qt5xhb_createReturnClass ( ptr, "QSIZE", true );
+      QSize * ptr = new QSize( obj->sizeHint() );
+      Qt5xHb::createReturnClass( ptr, "QSIZE", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -969,11 +970,11 @@ HB_FUNC_STATIC( QWEBVIEW_SIZEHINT )
 }
 
 /*
-virtual bool event(QEvent*)
+virtual bool event( QEvent * )
 */
 HB_FUNC_STATIC( QWEBVIEW_EVENT )
 {
-  QWebView * obj = (QWebView *) _qt5xhb_itemGetPtrStackSelfItem();
+  QWebView * obj = (QWebView *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -981,7 +982,7 @@ HB_FUNC_STATIC( QWEBVIEW_EVENT )
     if( ISNUMPAR(1) && ISQEVENT(1) )
     {
 #endif
-      RBOOL( obj->event ( PQEVENT(1) ) );
+      RBOOL( obj->event( PQEVENT(1) ) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -992,7 +993,7 @@ HB_FUNC_STATIC( QWEBVIEW_EVENT )
   }
 }
 
-void QWebViewSlots_connect_signal ( const QString & signal, const QString & slot );
+void QWebViewSlots_connect_signal( const QString & signal, const QString & slot );
 
 HB_FUNC_STATIC( QWEBVIEW_ONICONCHANGED )
 {

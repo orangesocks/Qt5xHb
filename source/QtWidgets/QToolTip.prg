@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -42,7 +42,7 @@ CLASS QToolTip
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QToolTip
+PROCEDURE destroyObject() CLASS QToolTip
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -66,7 +66,7 @@ RETURN
 
 HB_FUNC_STATIC( QTOOLTIP_DELETE )
 {
-  QToolTip * obj = (QToolTip *) _qt5xhb_itemGetPtrStackSelfItem();
+  QToolTip * obj = (QToolTip *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -86,7 +86,7 @@ QFont font()
 */
 HB_FUNC_STATIC( QTOOLTIP_FONT )
 {
-  QToolTip * obj = (QToolTip *) _qt5xhb_itemGetPtrStackSelfItem();
+  QToolTip * obj = (QToolTip *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -94,8 +94,8 @@ HB_FUNC_STATIC( QTOOLTIP_FONT )
     if( ISNUMPAR(0) )
     {
 #endif
-      QFont * ptr = new QFont( obj->font () );
-      _qt5xhb_createReturnClass ( ptr, "QFONT", true );
+      QFont * ptr = new QFont( obj->font() );
+      Qt5xHb::createReturnClass( ptr, "QFONT", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -111,7 +111,7 @@ void hideText()
 */
 HB_FUNC_STATIC( QTOOLTIP_HIDETEXT )
 {
-  QToolTip * obj = (QToolTip *) _qt5xhb_itemGetPtrStackSelfItem();
+  QToolTip * obj = (QToolTip *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -119,7 +119,7 @@ HB_FUNC_STATIC( QTOOLTIP_HIDETEXT )
     if( ISNUMPAR(0) )
     {
 #endif
-      obj->hideText ();
+      obj->hideText();
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -137,7 +137,7 @@ bool isVisible()
 */
 HB_FUNC_STATIC( QTOOLTIP_ISVISIBLE )
 {
-  QToolTip * obj = (QToolTip *) _qt5xhb_itemGetPtrStackSelfItem();
+  QToolTip * obj = (QToolTip *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -145,7 +145,7 @@ HB_FUNC_STATIC( QTOOLTIP_ISVISIBLE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->isVisible () );
+      RBOOL( obj->isVisible() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -161,7 +161,7 @@ QPalette palette()
 */
 HB_FUNC_STATIC( QTOOLTIP_PALETTE )
 {
-  QToolTip * obj = (QToolTip *) _qt5xhb_itemGetPtrStackSelfItem();
+  QToolTip * obj = (QToolTip *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -169,8 +169,8 @@ HB_FUNC_STATIC( QTOOLTIP_PALETTE )
     if( ISNUMPAR(0) )
     {
 #endif
-      QPalette * ptr = new QPalette( obj->palette () );
-      _qt5xhb_createReturnClass ( ptr, "QPALETTE", true );
+      QPalette * ptr = new QPalette( obj->palette() );
+      Qt5xHb::createReturnClass( ptr, "QPALETTE", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -182,11 +182,11 @@ HB_FUNC_STATIC( QTOOLTIP_PALETTE )
 }
 
 /*
-void setFont(const QFont & font)
+void setFont( const QFont & font )
 */
 HB_FUNC_STATIC( QTOOLTIP_SETFONT )
 {
-  QToolTip * obj = (QToolTip *) _qt5xhb_itemGetPtrStackSelfItem();
+  QToolTip * obj = (QToolTip *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -194,7 +194,7 @@ HB_FUNC_STATIC( QTOOLTIP_SETFONT )
     if( ISNUMPAR(1) && ISQFONT(1) )
     {
 #endif
-      obj->setFont ( *PQFONT(1) );
+      obj->setFont( *PQFONT(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -208,11 +208,11 @@ HB_FUNC_STATIC( QTOOLTIP_SETFONT )
 }
 
 /*
-void setPalette(const QPalette & palette)
+void setPalette( const QPalette & palette )
 */
 HB_FUNC_STATIC( QTOOLTIP_SETPALETTE )
 {
-  QToolTip * obj = (QToolTip *) _qt5xhb_itemGetPtrStackSelfItem();
+  QToolTip * obj = (QToolTip *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -220,7 +220,7 @@ HB_FUNC_STATIC( QTOOLTIP_SETPALETTE )
     if( ISNUMPAR(1) && ISQPALETTE(1) )
     {
 #endif
-      obj->setPalette ( *PQPALETTE(1) );
+      obj->setPalette( *PQPALETTE(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -234,45 +234,42 @@ HB_FUNC_STATIC( QTOOLTIP_SETPALETTE )
 }
 
 /*
-void showText(const QPoint & pos, const QString & text, QWidget * w, const QRect & rect)
+void showText( const QPoint & pos, const QString & text, QWidget * w, const QRect & rect )
 */
-void QToolTip_showText1 ()
+void QToolTip_showText1()
 {
-  QToolTip * obj = (QToolTip *) _qt5xhb_itemGetPtrStackSelfItem();
+  QToolTip * obj = (QToolTip *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
-      obj->showText ( *PQPOINT(1), PQSTRING(2), PQWIDGET(3), *PQRECT(4) );
+    obj->showText( *PQPOINT(1), PQSTRING(2), PQWIDGET(3), *PQRECT(4) );
   }
 
   hb_itemReturn( hb_stackSelfItem() );
 }
 
 /*
-void showText(const QPoint & pos, const QString & text, QWidget * w = 0)
+void showText( const QPoint & pos, const QString & text, QWidget * w = 0 )
 */
-void QToolTip_showText2 ()
+void QToolTip_showText2()
 {
-  QToolTip * obj = (QToolTip *) _qt5xhb_itemGetPtrStackSelfItem();
+  QToolTip * obj = (QToolTip *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
-      obj->showText ( *PQPOINT(1), PQSTRING(2), OPQWIDGET(3,0) );
+    obj->showText( *PQPOINT(1), PQSTRING(2), OPQWIDGET(3,0) );
   }
 
   hb_itemReturn( hb_stackSelfItem() );
 }
 
-//[1]void showText(const QPoint & pos, const QString & text, QWidget * w, const QRect & rect)
-//[2]void showText(const QPoint & pos, const QString & text, QWidget * w = 0)
-
 HB_FUNC_STATIC( QTOOLTIP_SHOWTEXT )
 {
-  if( ISNUMPAR(4) && ISQPOINT(1) && ISCHAR(2) && ISQWIDGET(3) && ISQRECT(4) )
+  if( ISNUMPAR(4) && ISQPOINT(1) && HB_ISCHAR(2) && ISQWIDGET(3) && ISQRECT(4) )
   {
     QToolTip_showText1();
   }
-  else if( ISBETWEEN(2,3) && ISQPOINT(1) && ISCHAR(2) && ISOPTQWIDGET(3) )
+  else if( ISBETWEEN(2,3) && ISQPOINT(1) && HB_ISCHAR(2) && (ISQWIDGET(3)||HB_ISNIL(3)) )
   {
     QToolTip_showText2();
   }
@@ -287,7 +284,7 @@ QString text()
 */
 HB_FUNC_STATIC( QTOOLTIP_TEXT )
 {
-  QToolTip * obj = (QToolTip *) _qt5xhb_itemGetPtrStackSelfItem();
+  QToolTip * obj = (QToolTip *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -295,7 +292,7 @@ HB_FUNC_STATIC( QTOOLTIP_TEXT )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRING( obj->text () );
+      RQSTRING( obj->text() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -310,7 +307,7 @@ HB_FUNC_STATIC( QTOOLTIP_NEWFROM )
 {
   PHB_ITEM self = hb_stackSelfItem();
 
-  if( hb_pcount() == 1 && ISOBJECT(1) )
+  if( hb_pcount() == 1 && HB_ISOBJECT(1) )
   {
     PHB_ITEM ptr = hb_itemPutPtr( NULL, (void *) hb_itemGetPtr( hb_objSendMsg( hb_param(1, HB_IT_OBJECT ), "POINTER", 0 ) ) );
     hb_objSendMsg( self, "_pointer", 1, ptr );
@@ -319,7 +316,7 @@ HB_FUNC_STATIC( QTOOLTIP_NEWFROM )
     hb_objSendMsg( self, "_self_destruction", 1, des );
     hb_itemRelease( des );
   }
-  else if( hb_pcount() == 1 && ISPOINTER(1) )
+  else if( hb_pcount() == 1 && HB_ISPOINTER(1) )
   {
     PHB_ITEM ptr = hb_itemPutPtr( NULL, (void *) hb_itemGetPtr( hb_param(1, HB_IT_POINTER ) ) );
     hb_objSendMsg( self, "_pointer", 1, ptr );
@@ -355,7 +352,7 @@ HB_FUNC_STATIC( QTOOLTIP_SETSELFDESTRUCTION )
 {
   PHB_ITEM self = hb_stackSelfItem();
 
-  if( hb_pcount() == 1 && ISLOG(1) )
+  if( hb_pcount() == 1 && HB_ISLOG(1) )
   {
     PHB_ITEM des = hb_itemPutL( NULL, hb_parl(1) );
     hb_objSendMsg( self, "_self_destruction", 1, des );

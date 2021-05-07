@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -40,7 +40,7 @@ CLASS QXmlLexicalHandler
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QXmlLexicalHandler
+PROCEDURE destroyObject() CLASS QXmlLexicalHandler
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -64,7 +64,7 @@ RETURN
 
 HB_FUNC_STATIC( QXMLLEXICALHANDLER_DELETE )
 {
-  QXmlLexicalHandler * obj = (QXmlLexicalHandler *) _qt5xhb_itemGetPtrStackSelfItem();
+  QXmlLexicalHandler * obj = (QXmlLexicalHandler *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -80,19 +80,19 @@ HB_FUNC_STATIC( QXMLLEXICALHANDLER_DELETE )
 }
 
 /*
-virtual bool comment ( const QString & ch ) = 0
+virtual bool comment( const QString & ch ) = 0
 */
 HB_FUNC_STATIC( QXMLLEXICALHANDLER_COMMENT )
 {
-  QXmlLexicalHandler * obj = (QXmlLexicalHandler *) _qt5xhb_itemGetPtrStackSelfItem();
+  QXmlLexicalHandler * obj = (QXmlLexicalHandler *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISCHAR(1) )
+    if( ISNUMPAR(1) && HB_ISCHAR(1) )
     {
 #endif
-      RBOOL( obj->comment ( PQSTRING(1) ) );
+      RBOOL( obj->comment( PQSTRING(1) ) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -104,11 +104,11 @@ HB_FUNC_STATIC( QXMLLEXICALHANDLER_COMMENT )
 }
 
 /*
-virtual bool endCDATA () = 0
+virtual bool endCDATA() = 0
 */
 HB_FUNC_STATIC( QXMLLEXICALHANDLER_ENDCDATA )
 {
-  QXmlLexicalHandler * obj = (QXmlLexicalHandler *) _qt5xhb_itemGetPtrStackSelfItem();
+  QXmlLexicalHandler * obj = (QXmlLexicalHandler *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -116,7 +116,7 @@ HB_FUNC_STATIC( QXMLLEXICALHANDLER_ENDCDATA )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->endCDATA () );
+      RBOOL( obj->endCDATA() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -128,11 +128,11 @@ HB_FUNC_STATIC( QXMLLEXICALHANDLER_ENDCDATA )
 }
 
 /*
-virtual bool endDTD () = 0
+virtual bool endDTD() = 0
 */
 HB_FUNC_STATIC( QXMLLEXICALHANDLER_ENDDTD )
 {
-  QXmlLexicalHandler * obj = (QXmlLexicalHandler *) _qt5xhb_itemGetPtrStackSelfItem();
+  QXmlLexicalHandler * obj = (QXmlLexicalHandler *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -140,7 +140,7 @@ HB_FUNC_STATIC( QXMLLEXICALHANDLER_ENDDTD )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->endDTD () );
+      RBOOL( obj->endDTD() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -152,19 +152,19 @@ HB_FUNC_STATIC( QXMLLEXICALHANDLER_ENDDTD )
 }
 
 /*
-virtual bool endEntity ( const QString & name ) = 0
+virtual bool endEntity( const QString & name ) = 0
 */
 HB_FUNC_STATIC( QXMLLEXICALHANDLER_ENDENTITY )
 {
-  QXmlLexicalHandler * obj = (QXmlLexicalHandler *) _qt5xhb_itemGetPtrStackSelfItem();
+  QXmlLexicalHandler * obj = (QXmlLexicalHandler *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISCHAR(1) )
+    if( ISNUMPAR(1) && HB_ISCHAR(1) )
     {
 #endif
-      RBOOL( obj->endEntity ( PQSTRING(1) ) );
+      RBOOL( obj->endEntity( PQSTRING(1) ) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -176,11 +176,11 @@ HB_FUNC_STATIC( QXMLLEXICALHANDLER_ENDENTITY )
 }
 
 /*
-virtual QString errorString () const = 0
+virtual QString errorString() const = 0
 */
 HB_FUNC_STATIC( QXMLLEXICALHANDLER_ERRORSTRING )
 {
-  QXmlLexicalHandler * obj = (QXmlLexicalHandler *) _qt5xhb_itemGetPtrStackSelfItem();
+  QXmlLexicalHandler * obj = (QXmlLexicalHandler *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -188,7 +188,7 @@ HB_FUNC_STATIC( QXMLLEXICALHANDLER_ERRORSTRING )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRING( obj->errorString () );
+      RQSTRING( obj->errorString() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -200,11 +200,11 @@ HB_FUNC_STATIC( QXMLLEXICALHANDLER_ERRORSTRING )
 }
 
 /*
-virtual bool startCDATA () = 0
+virtual bool startCDATA() = 0
 */
 HB_FUNC_STATIC( QXMLLEXICALHANDLER_STARTCDATA )
 {
-  QXmlLexicalHandler * obj = (QXmlLexicalHandler *) _qt5xhb_itemGetPtrStackSelfItem();
+  QXmlLexicalHandler * obj = (QXmlLexicalHandler *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -212,7 +212,7 @@ HB_FUNC_STATIC( QXMLLEXICALHANDLER_STARTCDATA )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->startCDATA () );
+      RBOOL( obj->startCDATA() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -224,19 +224,19 @@ HB_FUNC_STATIC( QXMLLEXICALHANDLER_STARTCDATA )
 }
 
 /*
-virtual bool startDTD ( const QString & name, const QString & publicId, const QString & systemId ) = 0
+virtual bool startDTD( const QString & name, const QString & publicId, const QString & systemId ) = 0
 */
 HB_FUNC_STATIC( QXMLLEXICALHANDLER_STARTDTD )
 {
-  QXmlLexicalHandler * obj = (QXmlLexicalHandler *) _qt5xhb_itemGetPtrStackSelfItem();
+  QXmlLexicalHandler * obj = (QXmlLexicalHandler *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(3) && ISCHAR(1) && ISCHAR(2) && ISCHAR(3) )
+    if( ISNUMPAR(3) && HB_ISCHAR(1) && HB_ISCHAR(2) && HB_ISCHAR(3) )
     {
 #endif
-      RBOOL( obj->startDTD ( PQSTRING(1), PQSTRING(2), PQSTRING(3) ) );
+      RBOOL( obj->startDTD( PQSTRING(1), PQSTRING(2), PQSTRING(3) ) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -248,19 +248,19 @@ HB_FUNC_STATIC( QXMLLEXICALHANDLER_STARTDTD )
 }
 
 /*
-virtual bool startEntity ( const QString & name ) = 0
+virtual bool startEntity( const QString & name ) = 0
 */
 HB_FUNC_STATIC( QXMLLEXICALHANDLER_STARTENTITY )
 {
-  QXmlLexicalHandler * obj = (QXmlLexicalHandler *) _qt5xhb_itemGetPtrStackSelfItem();
+  QXmlLexicalHandler * obj = (QXmlLexicalHandler *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISCHAR(1) )
+    if( ISNUMPAR(1) && HB_ISCHAR(1) )
     {
 #endif
-      RBOOL( obj->startEntity ( PQSTRING(1) ) );
+      RBOOL( obj->startEntity( PQSTRING(1) ) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -275,7 +275,7 @@ HB_FUNC_STATIC( QXMLLEXICALHANDLER_NEWFROM )
 {
   PHB_ITEM self = hb_stackSelfItem();
 
-  if( hb_pcount() == 1 && ISOBJECT(1) )
+  if( hb_pcount() == 1 && HB_ISOBJECT(1) )
   {
     PHB_ITEM ptr = hb_itemPutPtr( NULL, (void *) hb_itemGetPtr( hb_objSendMsg( hb_param(1, HB_IT_OBJECT ), "POINTER", 0 ) ) );
     hb_objSendMsg( self, "_pointer", 1, ptr );
@@ -284,7 +284,7 @@ HB_FUNC_STATIC( QXMLLEXICALHANDLER_NEWFROM )
     hb_objSendMsg( self, "_self_destruction", 1, des );
     hb_itemRelease( des );
   }
-  else if( hb_pcount() == 1 && ISPOINTER(1) )
+  else if( hb_pcount() == 1 && HB_ISPOINTER(1) )
   {
     PHB_ITEM ptr = hb_itemPutPtr( NULL, (void *) hb_itemGetPtr( hb_param(1, HB_IT_POINTER ) ) );
     hb_objSendMsg( self, "_pointer", 1, ptr );
@@ -320,7 +320,7 @@ HB_FUNC_STATIC( QXMLLEXICALHANDLER_SETSELFDESTRUCTION )
 {
   PHB_ITEM self = hb_stackSelfItem();
 
-  if( hb_pcount() == 1 && ISLOG(1) )
+  if( hb_pcount() == 1 && HB_ISLOG(1) )
   {
     PHB_ITEM des = hb_itemPutL( NULL, hb_parl(1) );
     hb_objSendMsg( self, "_self_destruction", 1, des );

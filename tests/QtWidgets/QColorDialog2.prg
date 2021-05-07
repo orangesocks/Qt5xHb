@@ -2,13 +2,13 @@
 
   Qt5xHb Project - Test Program
 
-  Copyright (C) 2019 Marcos Antonio Gambeta
+  Copyright (C) 2021 Marcos Antonio Gambeta
 
   E-mail:
   marcosgambeta AT outlook DOT com
 
   Website:
-  https://github.com/marcosgambeta/Qt5xHb
+  https://github.com/magsoftinfo/qt5xhb
 
 */
 
@@ -18,7 +18,7 @@
 REQUEST HB_GT_WIN
 #endif
 
-PROCEDURE Main ()
+PROCEDURE Main()
 
    LOCAL oApp
    LOCAL oWindow
@@ -27,13 +27,13 @@ PROCEDURE Main ()
    oApp := QApplication():new()
 
    oWindow := QWidget():new()
-   oWindow:resize(640,480)
-   oWindow:show()
+   oWindow:resize( 640, 480 )
 
-   oButton := QPushButton():new("Mostrar janela de diálogo",oWindow)
-   oButton:move(20,20)
-   oButton:show()
-   ? oButton:onClicked({||ShowColorDialog(oWindow)})
+   oButton := QPushButton():new( "Mostrar janela de diálogo", oWindow )
+   oButton:move( 20, 20 )
+   ? oButton:onClicked( {||ShowColorDialog( oWindow )} )
+
+   oWindow:show()
 
    oApp:exec()
 
@@ -43,13 +43,13 @@ PROCEDURE Main ()
 
 RETURN
 
-STATIC FUNCTION ShowColorDialog (oWindow)
+STATIC FUNCTION ShowColorDialog( oWindow )
 
    LOCAL oColorDialog
 
-   oColorDialog := QColorDialog():new(oWindow)
+   oColorDialog := QColorDialog():new( oWindow )
 
-   ? oColorDialog:onColorSelected({|oSender,oColor|ShowColorSelected(oColor)})
+   ? oColorDialog:onColorSelected( {|oSender,oColor|ShowColorSelected( oColor )} )
 
    oColorDialog:exec()
 
@@ -59,13 +59,13 @@ STATIC FUNCTION ShowColorDialog (oWindow)
 
 RETURN NIL
 
-STATIC FUNCTION ShowColorSelected (oColor)
+STATIC FUNCTION ShowColorSelected( oColor )
 
-   ? "name=",oColor:name()
-   ? "red=",oColor:red()
-   ? "green=",oColor:green()
-   ? "blue=",oColor:blue()
-   ? "rgb=",oColor:rgb()
+   ? "name=", oColor:name()
+   ? "red=", oColor:red()
+   ? "green=", oColor:green()
+   ? "blue=", oColor:blue()
+   ? "rgb=", oColor:rgb()
    ?
 
 RETURN NIL

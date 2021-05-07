@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -45,7 +45,7 @@ CLASS QQuickWebEngineScript INHERIT QObject
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QQuickWebEngineScript
+PROCEDURE destroyObject() CLASS QQuickWebEngineScript
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -64,6 +64,8 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #if (QT_VERSION >= QT_VERSION_CHECK(5,9,0))
@@ -72,15 +74,15 @@ RETURN
 #endif
 
 /*
-explicit QQuickWebEngineScript(QObject *parent = Q_NULLPTR)
+QQuickWebEngineScript( QObject * parent = nullptr )
 */
 HB_FUNC_STATIC( QQUICKWEBENGINESCRIPT_NEW )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,9,0))
-  if( ISBETWEEN(0,1) && (ISQOBJECT(1)||ISNIL(1)) )
+  if( ISBETWEEN(0,1) && (ISQOBJECT(1)||HB_ISNIL(1)) )
   {
-    QQuickWebEngineScript * o = new QQuickWebEngineScript ( OPQOBJECT(1,Q_NULLPTR) );
-    _qt5xhb_returnNewObject( o, false );
+    QQuickWebEngineScript * obj = new QQuickWebEngineScript( OPQOBJECT(1,nullptr) );
+    Qt5xHb::returnNewObject( obj, false );
   }
   else
   {
@@ -95,10 +97,12 @@ HB_FUNC_STATIC( QQUICKWEBENGINESCRIPT_NEW )
 HB_FUNC_STATIC( QQUICKWEBENGINESCRIPT_DELETE )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,9,0))
-  QQuickWebEngineScript * obj = (QQuickWebEngineScript *) _qt5xhb_itemGetPtrStackSelfItem();
+  QQuickWebEngineScript * obj = (QQuickWebEngineScript *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -117,7 +121,7 @@ QString name() const
 HB_FUNC_STATIC( QQUICKWEBENGINESCRIPT_NAME )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,9,0))
-  QQuickWebEngineScript * obj = (QQuickWebEngineScript *) _qt5xhb_itemGetPtrStackSelfItem();
+  QQuickWebEngineScript * obj = (QQuickWebEngineScript *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -125,7 +129,7 @@ HB_FUNC_STATIC( QQUICKWEBENGINESCRIPT_NAME )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRING( obj->name () );
+      RQSTRING( obj->name() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -138,20 +142,20 @@ HB_FUNC_STATIC( QQUICKWEBENGINESCRIPT_NAME )
 }
 
 /*
-Q_INVOKABLE void setName(const QString &name)
+Q_INVOKABLE void setName( const QString & name )
 */
 HB_FUNC_STATIC( QQUICKWEBENGINESCRIPT_SETNAME )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,9,0))
-  QQuickWebEngineScript * obj = (QQuickWebEngineScript *) _qt5xhb_itemGetPtrStackSelfItem();
+  QQuickWebEngineScript * obj = (QQuickWebEngineScript *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISCHAR(1) )
+    if( ISNUMPAR(1) && HB_ISCHAR(1) )
     {
 #endif
-      obj->setName ( PQSTRING(1) );
+      obj->setName( PQSTRING(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -171,7 +175,7 @@ QUrl sourceUrl() const
 HB_FUNC_STATIC( QQUICKWEBENGINESCRIPT_SOURCEURL )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,9,0))
-  QQuickWebEngineScript * obj = (QQuickWebEngineScript *) _qt5xhb_itemGetPtrStackSelfItem();
+  QQuickWebEngineScript * obj = (QQuickWebEngineScript *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -179,8 +183,8 @@ HB_FUNC_STATIC( QQUICKWEBENGINESCRIPT_SOURCEURL )
     if( ISNUMPAR(0) )
     {
 #endif
-      QUrl * ptr = new QUrl( obj->sourceUrl () );
-      _qt5xhb_createReturnClass ( ptr, "QURL", true );
+      QUrl * ptr = new QUrl( obj->sourceUrl() );
+      Qt5xHb::createReturnClass( ptr, "QURL", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -193,12 +197,12 @@ HB_FUNC_STATIC( QQUICKWEBENGINESCRIPT_SOURCEURL )
 }
 
 /*
-Q_INVOKABLE void setSourceUrl(const QUrl &url)
+Q_INVOKABLE void setSourceUrl( const QUrl & url )
 */
 HB_FUNC_STATIC( QQUICKWEBENGINESCRIPT_SETSOURCEURL )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,9,0))
-  QQuickWebEngineScript * obj = (QQuickWebEngineScript *) _qt5xhb_itemGetPtrStackSelfItem();
+  QQuickWebEngineScript * obj = (QQuickWebEngineScript *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -206,7 +210,7 @@ HB_FUNC_STATIC( QQUICKWEBENGINESCRIPT_SETSOURCEURL )
     if( ISNUMPAR(1) && ISQURL(1) )
     {
 #endif
-      obj->setSourceUrl ( *PQURL(1) );
+      obj->setSourceUrl( *PQURL(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -226,7 +230,7 @@ QString sourceCode() const
 HB_FUNC_STATIC( QQUICKWEBENGINESCRIPT_SOURCECODE )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,9,0))
-  QQuickWebEngineScript * obj = (QQuickWebEngineScript *) _qt5xhb_itemGetPtrStackSelfItem();
+  QQuickWebEngineScript * obj = (QQuickWebEngineScript *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -234,7 +238,7 @@ HB_FUNC_STATIC( QQUICKWEBENGINESCRIPT_SOURCECODE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRING( obj->sourceCode () );
+      RQSTRING( obj->sourceCode() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -247,20 +251,20 @@ HB_FUNC_STATIC( QQUICKWEBENGINESCRIPT_SOURCECODE )
 }
 
 /*
-Q_INVOKABLE void setSourceCode(const QString &code)
+Q_INVOKABLE void setSourceCode( const QString & code )
 */
 HB_FUNC_STATIC( QQUICKWEBENGINESCRIPT_SETSOURCECODE )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,9,0))
-  QQuickWebEngineScript * obj = (QQuickWebEngineScript *) _qt5xhb_itemGetPtrStackSelfItem();
+  QQuickWebEngineScript * obj = (QQuickWebEngineScript *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISCHAR(1) )
+    if( ISNUMPAR(1) && HB_ISCHAR(1) )
     {
 #endif
-      obj->setSourceCode ( PQSTRING(1) );
+      obj->setSourceCode( PQSTRING(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -275,12 +279,12 @@ HB_FUNC_STATIC( QQUICKWEBENGINESCRIPT_SETSOURCECODE )
 }
 
 /*
-InjectionPoint injectionPoint() const
+QQuickWebEngineScript::InjectionPoint injectionPoint() const
 */
 HB_FUNC_STATIC( QQUICKWEBENGINESCRIPT_INJECTIONPOINT )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,9,0))
-  QQuickWebEngineScript * obj = (QQuickWebEngineScript *) _qt5xhb_itemGetPtrStackSelfItem();
+  QQuickWebEngineScript * obj = (QQuickWebEngineScript *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -288,7 +292,7 @@ HB_FUNC_STATIC( QQUICKWEBENGINESCRIPT_INJECTIONPOINT )
     if( ISNUMPAR(0) )
     {
 #endif
-      RENUM( obj->injectionPoint () );
+      RENUM( obj->injectionPoint() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -301,20 +305,20 @@ HB_FUNC_STATIC( QQUICKWEBENGINESCRIPT_INJECTIONPOINT )
 }
 
 /*
-Q_INVOKABLE void setInjectionPoint(InjectionPoint injectionPoint)
+Q_INVOKABLE void setInjectionPoint( QQuickWebEngineScript::InjectionPoint injectionPoint )
 */
 HB_FUNC_STATIC( QQUICKWEBENGINESCRIPT_SETINJECTIONPOINT )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,9,0))
-  QQuickWebEngineScript * obj = (QQuickWebEngineScript *) _qt5xhb_itemGetPtrStackSelfItem();
+  QQuickWebEngineScript * obj = (QQuickWebEngineScript *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setInjectionPoint ( (QQuickWebEngineScript::InjectionPoint) hb_parni(1) );
+      obj->setInjectionPoint( (QQuickWebEngineScript::InjectionPoint) hb_parni(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -329,12 +333,12 @@ HB_FUNC_STATIC( QQUICKWEBENGINESCRIPT_SETINJECTIONPOINT )
 }
 
 /*
-ScriptWorldId worldId() const
+QQuickWebEngineScript::ScriptWorldId worldId() const
 */
 HB_FUNC_STATIC( QQUICKWEBENGINESCRIPT_WORLDID )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,9,0))
-  QQuickWebEngineScript * obj = (QQuickWebEngineScript *) _qt5xhb_itemGetPtrStackSelfItem();
+  QQuickWebEngineScript * obj = (QQuickWebEngineScript *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -342,7 +346,7 @@ HB_FUNC_STATIC( QQUICKWEBENGINESCRIPT_WORLDID )
     if( ISNUMPAR(0) )
     {
 #endif
-      RENUM( obj->worldId () );
+      RENUM( obj->worldId() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -355,20 +359,20 @@ HB_FUNC_STATIC( QQUICKWEBENGINESCRIPT_WORLDID )
 }
 
 /*
-Q_INVOKABLE void setWorldId(ScriptWorldId scriptWorldId)
+Q_INVOKABLE void setWorldId( QQuickWebEngineScript::ScriptWorldId scriptWorldId )
 */
 HB_FUNC_STATIC( QQUICKWEBENGINESCRIPT_SETWORLDID )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,9,0))
-  QQuickWebEngineScript * obj = (QQuickWebEngineScript *) _qt5xhb_itemGetPtrStackSelfItem();
+  QQuickWebEngineScript * obj = (QQuickWebEngineScript *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setWorldId ( (QQuickWebEngineScript::ScriptWorldId) hb_parni(1) );
+      obj->setWorldId( (QQuickWebEngineScript::ScriptWorldId) hb_parni(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -388,7 +392,7 @@ bool runOnSubframes() const
 HB_FUNC_STATIC( QQUICKWEBENGINESCRIPT_RUNONSUBFRAMES )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,9,0))
-  QQuickWebEngineScript * obj = (QQuickWebEngineScript *) _qt5xhb_itemGetPtrStackSelfItem();
+  QQuickWebEngineScript * obj = (QQuickWebEngineScript *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -396,7 +400,7 @@ HB_FUNC_STATIC( QQUICKWEBENGINESCRIPT_RUNONSUBFRAMES )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->runOnSubframes () );
+      RBOOL( obj->runOnSubframes() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -409,20 +413,20 @@ HB_FUNC_STATIC( QQUICKWEBENGINESCRIPT_RUNONSUBFRAMES )
 }
 
 /*
-Q_INVOKABLE void setRunOnSubframes(bool on)
+Q_INVOKABLE void setRunOnSubframes( bool on )
 */
 HB_FUNC_STATIC( QQUICKWEBENGINESCRIPT_SETRUNONSUBFRAMES )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,9,0))
-  QQuickWebEngineScript * obj = (QQuickWebEngineScript *) _qt5xhb_itemGetPtrStackSelfItem();
+  QQuickWebEngineScript * obj = (QQuickWebEngineScript *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISLOG(1) )
+    if( ISNUMPAR(1) && HB_ISLOG(1) )
     {
 #endif
-      obj->setRunOnSubframes ( PBOOL(1) );
+      obj->setRunOnSubframes( PBOOL(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -442,7 +446,7 @@ Q_INVOKABLE QString toString() const
 HB_FUNC_STATIC( QQUICKWEBENGINESCRIPT_TOSTRING )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,9,0))
-  QQuickWebEngineScript * obj = (QQuickWebEngineScript *) _qt5xhb_itemGetPtrStackSelfItem();
+  QQuickWebEngineScript * obj = (QQuickWebEngineScript *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -450,7 +454,7 @@ HB_FUNC_STATIC( QQUICKWEBENGINESCRIPT_TOSTRING )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRING( obj->toString () );
+      RQSTRING( obj->toString() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -462,7 +466,7 @@ HB_FUNC_STATIC( QQUICKWEBENGINESCRIPT_TOSTRING )
 #endif
 }
 
-void QQuickWebEngineScriptSlots_connect_signal ( const QString & signal, const QString & slot );
+void QQuickWebEngineScriptSlots_connect_signal( const QString & signal, const QString & slot );
 
 HB_FUNC_STATIC( QQUICKWEBENGINESCRIPT_ONINJECTIONPOINTCHANGED )
 {

@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -43,7 +43,7 @@ CLASS QUiLoader INHERIT QObject
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QUiLoader
+PROCEDURE destroyObject() CLASS QUiLoader
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -60,6 +60,8 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #include <QtUiTools/QUiLoader>
@@ -72,14 +74,14 @@ RETURN
 #include <QtWidgets/QLayout>
 
 /*
-QUiLoader ( QObject * parent = 0 )
+QUiLoader( QObject * parent = 0 )
 */
 HB_FUNC_STATIC( QUILOADER_NEW )
 {
-  if( ISBETWEEN(0,1) && (ISQOBJECT(1)||ISNIL(1)) )
+  if( ISBETWEEN(0,1) && (ISQOBJECT(1)||HB_ISNIL(1)) )
   {
-    QUiLoader * o = new QUiLoader ( OPQOBJECT(1,0) );
-    _qt5xhb_returnNewObject( o, false );
+    QUiLoader * obj = new QUiLoader( OPQOBJECT(1,0) );
+    Qt5xHb::returnNewObject( obj, false );
   }
   else
   {
@@ -89,10 +91,12 @@ HB_FUNC_STATIC( QUILOADER_NEW )
 
 HB_FUNC_STATIC( QUILOADER_DELETE )
 {
-  QUiLoader * obj = (QUiLoader *) _qt5xhb_itemGetPtrStackSelfItem();
+  QUiLoader * obj = (QUiLoader *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -105,19 +109,19 @@ HB_FUNC_STATIC( QUILOADER_DELETE )
 }
 
 /*
-void addPluginPath ( const QString & path )
+void addPluginPath( const QString & path )
 */
 HB_FUNC_STATIC( QUILOADER_ADDPLUGINPATH )
 {
-  QUiLoader * obj = (QUiLoader *) _qt5xhb_itemGetPtrStackSelfItem();
+  QUiLoader * obj = (QUiLoader *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISCHAR(1) )
+    if( ISNUMPAR(1) && HB_ISCHAR(1) )
     {
 #endif
-      obj->addPluginPath ( PQSTRING(1) );
+      obj->addPluginPath( PQSTRING(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -131,11 +135,11 @@ HB_FUNC_STATIC( QUILOADER_ADDPLUGINPATH )
 }
 
 /*
-QStringList availableLayouts () const
+QStringList availableLayouts() const
 */
 HB_FUNC_STATIC( QUILOADER_AVAILABLELAYOUTS )
 {
-  QUiLoader * obj = (QUiLoader *) _qt5xhb_itemGetPtrStackSelfItem();
+  QUiLoader * obj = (QUiLoader *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -143,7 +147,7 @@ HB_FUNC_STATIC( QUILOADER_AVAILABLELAYOUTS )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRINGLIST( obj->availableLayouts () );
+      RQSTRINGLIST( obj->availableLayouts() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -155,11 +159,11 @@ HB_FUNC_STATIC( QUILOADER_AVAILABLELAYOUTS )
 }
 
 /*
-QStringList availableWidgets () const
+QStringList availableWidgets() const
 */
 HB_FUNC_STATIC( QUILOADER_AVAILABLEWIDGETS )
 {
-  QUiLoader * obj = (QUiLoader *) _qt5xhb_itemGetPtrStackSelfItem();
+  QUiLoader * obj = (QUiLoader *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -167,7 +171,7 @@ HB_FUNC_STATIC( QUILOADER_AVAILABLEWIDGETS )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRINGLIST( obj->availableWidgets () );
+      RQSTRINGLIST( obj->availableWidgets() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -179,11 +183,11 @@ HB_FUNC_STATIC( QUILOADER_AVAILABLEWIDGETS )
 }
 
 /*
-void clearPluginPaths ()
+void clearPluginPaths()
 */
 HB_FUNC_STATIC( QUILOADER_CLEARPLUGINPATHS )
 {
-  QUiLoader * obj = (QUiLoader *) _qt5xhb_itemGetPtrStackSelfItem();
+  QUiLoader * obj = (QUiLoader *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -191,7 +195,7 @@ HB_FUNC_STATIC( QUILOADER_CLEARPLUGINPATHS )
     if( ISNUMPAR(0) )
     {
 #endif
-      obj->clearPluginPaths ();
+      obj->clearPluginPaths();
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -205,20 +209,20 @@ HB_FUNC_STATIC( QUILOADER_CLEARPLUGINPATHS )
 }
 
 /*
-virtual QAction * createAction ( QObject * parent = 0, const QString & name = QString() )
+virtual QAction * createAction( QObject * parent = 0, const QString & name = QString() )
 */
 HB_FUNC_STATIC( QUILOADER_CREATEACTION )
 {
-  QUiLoader * obj = (QUiLoader *) _qt5xhb_itemGetPtrStackSelfItem();
+  QUiLoader * obj = (QUiLoader *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISBETWEEN(0,2) && (ISQOBJECT(1)||ISNIL(1)) && ISOPTCHAR(2) )
+    if( ISBETWEEN(0,2) && (ISQOBJECT(1)||HB_ISNIL(1)) && (HB_ISCHAR(2)||HB_ISNIL(2)) )
     {
 #endif
-      QAction * ptr = obj->createAction ( OPQOBJECT(1,0), OPQSTRING(2,QString()) );
-      _qt5xhb_createReturnQObjectClass ( ptr, "QACTION" );
+      QAction * ptr = obj->createAction( OPQOBJECT(1,0), OPQSTRING(2,QString()) );
+      Qt5xHb::createReturnQObjectClass( ptr, "QACTION" );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -230,20 +234,20 @@ HB_FUNC_STATIC( QUILOADER_CREATEACTION )
 }
 
 /*
-virtual QActionGroup * createActionGroup ( QObject * parent = 0, const QString & name = QString() )
+virtual QActionGroup * createActionGroup( QObject * parent = 0, const QString & name = QString() )
 */
 HB_FUNC_STATIC( QUILOADER_CREATEACTIONGROUP )
 {
-  QUiLoader * obj = (QUiLoader *) _qt5xhb_itemGetPtrStackSelfItem();
+  QUiLoader * obj = (QUiLoader *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISBETWEEN(0,2) && (ISQOBJECT(1)||ISNIL(1)) && ISOPTCHAR(2) )
+    if( ISBETWEEN(0,2) && (ISQOBJECT(1)||HB_ISNIL(1)) && (HB_ISCHAR(2)||HB_ISNIL(2)) )
     {
 #endif
-      QActionGroup * ptr = obj->createActionGroup ( OPQOBJECT(1,0), OPQSTRING(2,QString()) );
-      _qt5xhb_createReturnQObjectClass ( ptr, "QACTIONGROUP" );
+      QActionGroup * ptr = obj->createActionGroup( OPQOBJECT(1,0), OPQSTRING(2,QString()) );
+      Qt5xHb::createReturnQObjectClass( ptr, "QACTIONGROUP" );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -255,20 +259,20 @@ HB_FUNC_STATIC( QUILOADER_CREATEACTIONGROUP )
 }
 
 /*
-virtual QLayout * createLayout ( const QString & className, QObject * parent = 0, const QString & name = QString() )
+virtual QLayout * createLayout( const QString & className, QObject * parent = 0, const QString & name = QString() )
 */
 HB_FUNC_STATIC( QUILOADER_CREATELAYOUT )
 {
-  QUiLoader * obj = (QUiLoader *) _qt5xhb_itemGetPtrStackSelfItem();
+  QUiLoader * obj = (QUiLoader *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISBETWEEN(1,3) && ISCHAR(1) && (ISQOBJECT(2)||ISNIL(2)) && ISOPTCHAR(3) )
+    if( ISBETWEEN(1,3) && HB_ISCHAR(1) && (ISQOBJECT(2)||HB_ISNIL(2)) && (HB_ISCHAR(3)||HB_ISNIL(3)) )
     {
 #endif
-      QLayout * ptr = obj->createLayout ( PQSTRING(1), OPQOBJECT(2,0), OPQSTRING(3,QString()) );
-      _qt5xhb_createReturnQObjectClass ( ptr, "QLAYOUT" );
+      QLayout * ptr = obj->createLayout( PQSTRING(1), OPQOBJECT(2,0), OPQSTRING(3,QString()) );
+      Qt5xHb::createReturnQObjectClass( ptr, "QLAYOUT" );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -280,20 +284,20 @@ HB_FUNC_STATIC( QUILOADER_CREATELAYOUT )
 }
 
 /*
-virtual QWidget * createWidget ( const QString & className, QWidget * parent = 0, const QString & name = QString() )
+virtual QWidget * createWidget( const QString & className, QWidget * parent = 0, const QString & name = QString() )
 */
 HB_FUNC_STATIC( QUILOADER_CREATEWIDGET )
 {
-  QUiLoader * obj = (QUiLoader *) _qt5xhb_itemGetPtrStackSelfItem();
+  QUiLoader * obj = (QUiLoader *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISBETWEEN(1,3) && ISCHAR(1) && (ISQWIDGET(2)||ISNIL(2)) && ISOPTCHAR(3) )
+    if( ISBETWEEN(1,3) && HB_ISCHAR(1) && (ISQWIDGET(2)||HB_ISNIL(2)) && (HB_ISCHAR(3)||HB_ISNIL(3)) )
     {
 #endif
-      QWidget * ptr = obj->createWidget ( PQSTRING(1), OPQWIDGET(2,0), OPQSTRING(3,QString()) );
-      _qt5xhb_createReturnQWidgetClass ( ptr, "QWIDGET" );
+      QWidget * ptr = obj->createWidget( PQSTRING(1), OPQWIDGET(2,0), OPQSTRING(3,QString()) );
+      Qt5xHb::createReturnQWidgetClass( ptr, "QWIDGET" );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -305,11 +309,11 @@ HB_FUNC_STATIC( QUILOADER_CREATEWIDGET )
 }
 
 /*
-bool isLanguageChangeEnabled () const
+bool isLanguageChangeEnabled() const
 */
 HB_FUNC_STATIC( QUILOADER_ISLANGUAGECHANGEENABLED )
 {
-  QUiLoader * obj = (QUiLoader *) _qt5xhb_itemGetPtrStackSelfItem();
+  QUiLoader * obj = (QUiLoader *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -317,7 +321,7 @@ HB_FUNC_STATIC( QUILOADER_ISLANGUAGECHANGEENABLED )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->isLanguageChangeEnabled () );
+      RBOOL( obj->isLanguageChangeEnabled() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -329,20 +333,20 @@ HB_FUNC_STATIC( QUILOADER_ISLANGUAGECHANGEENABLED )
 }
 
 /*
-QWidget * load ( QIODevice * device, QWidget * parentWidget = 0 )
+QWidget * load( QIODevice * device, QWidget * parentWidget = 0 )
 */
 HB_FUNC_STATIC( QUILOADER_LOAD )
 {
-  QUiLoader * obj = (QUiLoader *) _qt5xhb_itemGetPtrStackSelfItem();
+  QUiLoader * obj = (QUiLoader *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISBETWEEN(1,2) && ISQIODEVICE(1) && (ISQWIDGET(2)||ISNIL(2)) )
+    if( ISBETWEEN(1,2) && ISQIODEVICE(1) && (ISQWIDGET(2)||HB_ISNIL(2)) )
     {
 #endif
-      QWidget * ptr = obj->load ( PQIODEVICE(1), OPQWIDGET(2,0) );
-      _qt5xhb_createReturnQWidgetClass ( ptr, "QWIDGET" );
+      QWidget * ptr = obj->load( PQIODEVICE(1), OPQWIDGET(2,0) );
+      Qt5xHb::createReturnQWidgetClass( ptr, "QWIDGET" );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -354,11 +358,11 @@ HB_FUNC_STATIC( QUILOADER_LOAD )
 }
 
 /*
-QStringList pluginPaths () const
+QStringList pluginPaths() const
 */
 HB_FUNC_STATIC( QUILOADER_PLUGINPATHS )
 {
-  QUiLoader * obj = (QUiLoader *) _qt5xhb_itemGetPtrStackSelfItem();
+  QUiLoader * obj = (QUiLoader *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -366,7 +370,7 @@ HB_FUNC_STATIC( QUILOADER_PLUGINPATHS )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRINGLIST( obj->pluginPaths () );
+      RQSTRINGLIST( obj->pluginPaths() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -378,19 +382,19 @@ HB_FUNC_STATIC( QUILOADER_PLUGINPATHS )
 }
 
 /*
-void setLanguageChangeEnabled ( bool enabled )
+void setLanguageChangeEnabled( bool enabled )
 */
 HB_FUNC_STATIC( QUILOADER_SETLANGUAGECHANGEENABLED )
 {
-  QUiLoader * obj = (QUiLoader *) _qt5xhb_itemGetPtrStackSelfItem();
+  QUiLoader * obj = (QUiLoader *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISLOG(1) )
+    if( ISNUMPAR(1) && HB_ISLOG(1) )
     {
 #endif
-      obj->setLanguageChangeEnabled ( PBOOL(1) );
+      obj->setLanguageChangeEnabled( PBOOL(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -404,11 +408,11 @@ HB_FUNC_STATIC( QUILOADER_SETLANGUAGECHANGEENABLED )
 }
 
 /*
-void setWorkingDirectory ( const QDir & dir )
+void setWorkingDirectory( const QDir & dir )
 */
 HB_FUNC_STATIC( QUILOADER_SETWORKINGDIRECTORY )
 {
-  QUiLoader * obj = (QUiLoader *) _qt5xhb_itemGetPtrStackSelfItem();
+  QUiLoader * obj = (QUiLoader *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -416,7 +420,7 @@ HB_FUNC_STATIC( QUILOADER_SETWORKINGDIRECTORY )
     if( ISNUMPAR(1) && ISQDIR(1) )
     {
 #endif
-      obj->setWorkingDirectory ( *PQDIR(1) );
+      obj->setWorkingDirectory( *PQDIR(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -430,11 +434,11 @@ HB_FUNC_STATIC( QUILOADER_SETWORKINGDIRECTORY )
 }
 
 /*
-QDir workingDirectory () const
+QDir workingDirectory() const
 */
 HB_FUNC_STATIC( QUILOADER_WORKINGDIRECTORY )
 {
-  QUiLoader * obj = (QUiLoader *) _qt5xhb_itemGetPtrStackSelfItem();
+  QUiLoader * obj = (QUiLoader *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -442,8 +446,8 @@ HB_FUNC_STATIC( QUILOADER_WORKINGDIRECTORY )
     if( ISNUMPAR(0) )
     {
 #endif
-      QDir * ptr = new QDir( obj->workingDirectory () );
-      _qt5xhb_createReturnClass ( ptr, "QDIR", true );
+      QDir * ptr = new QDir( obj->workingDirectory() );
+      Qt5xHb::createReturnClass( ptr, "QDIR", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else

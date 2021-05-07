@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -33,7 +33,7 @@ CLASS QStyleHints INHERIT QObject
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QStyleHints
+PROCEDURE destroyObject() CLASS QStyleHints
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -50,6 +50,8 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #include <QtGui/QStyleHints>
@@ -60,7 +62,7 @@ int mouseDoubleClickInterval() const
 */
 HB_FUNC_STATIC( QSTYLEHINTS_MOUSEDOUBLECLICKINTERVAL )
 {
-  QStyleHints * obj = (QStyleHints *) _qt5xhb_itemGetPtrStackSelfItem();
+  QStyleHints * obj = (QStyleHints *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -68,7 +70,7 @@ HB_FUNC_STATIC( QSTYLEHINTS_MOUSEDOUBLECLICKINTERVAL )
     if( ISNUMPAR(0) )
     {
 #endif
-      RINT( obj->mouseDoubleClickInterval () );
+      RINT( obj->mouseDoubleClickInterval() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -84,7 +86,7 @@ int startDragDistance() const
 */
 HB_FUNC_STATIC( QSTYLEHINTS_STARTDRAGDISTANCE )
 {
-  QStyleHints * obj = (QStyleHints *) _qt5xhb_itemGetPtrStackSelfItem();
+  QStyleHints * obj = (QStyleHints *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -92,7 +94,7 @@ HB_FUNC_STATIC( QSTYLEHINTS_STARTDRAGDISTANCE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RINT( obj->startDragDistance () );
+      RINT( obj->startDragDistance() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -108,7 +110,7 @@ int startDragTime() const
 */
 HB_FUNC_STATIC( QSTYLEHINTS_STARTDRAGTIME )
 {
-  QStyleHints * obj = (QStyleHints *) _qt5xhb_itemGetPtrStackSelfItem();
+  QStyleHints * obj = (QStyleHints *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -116,7 +118,7 @@ HB_FUNC_STATIC( QSTYLEHINTS_STARTDRAGTIME )
     if( ISNUMPAR(0) )
     {
 #endif
-      RINT( obj->startDragTime () );
+      RINT( obj->startDragTime() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -132,7 +134,7 @@ int startDragVelocity() const
 */
 HB_FUNC_STATIC( QSTYLEHINTS_STARTDRAGVELOCITY )
 {
-  QStyleHints * obj = (QStyleHints *) _qt5xhb_itemGetPtrStackSelfItem();
+  QStyleHints * obj = (QStyleHints *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -140,7 +142,7 @@ HB_FUNC_STATIC( QSTYLEHINTS_STARTDRAGVELOCITY )
     if( ISNUMPAR(0) )
     {
 #endif
-      RINT( obj->startDragVelocity () );
+      RINT( obj->startDragVelocity() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -156,7 +158,7 @@ int keyboardInputInterval() const
 */
 HB_FUNC_STATIC( QSTYLEHINTS_KEYBOARDINPUTINTERVAL )
 {
-  QStyleHints * obj = (QStyleHints *) _qt5xhb_itemGetPtrStackSelfItem();
+  QStyleHints * obj = (QStyleHints *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -164,7 +166,7 @@ HB_FUNC_STATIC( QSTYLEHINTS_KEYBOARDINPUTINTERVAL )
     if( ISNUMPAR(0) )
     {
 #endif
-      RINT( obj->keyboardInputInterval () );
+      RINT( obj->keyboardInputInterval() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -180,7 +182,7 @@ int keyboardAutoRepeatRate() const
 */
 HB_FUNC_STATIC( QSTYLEHINTS_KEYBOARDAUTOREPEATRATE )
 {
-  QStyleHints * obj = (QStyleHints *) _qt5xhb_itemGetPtrStackSelfItem();
+  QStyleHints * obj = (QStyleHints *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -188,7 +190,7 @@ HB_FUNC_STATIC( QSTYLEHINTS_KEYBOARDAUTOREPEATRATE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RINT( obj->keyboardAutoRepeatRate () );
+      RINT( obj->keyboardAutoRepeatRate() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -204,7 +206,7 @@ int cursorFlashTime() const
 */
 HB_FUNC_STATIC( QSTYLEHINTS_CURSORFLASHTIME )
 {
-  QStyleHints * obj = (QStyleHints *) _qt5xhb_itemGetPtrStackSelfItem();
+  QStyleHints * obj = (QStyleHints *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -212,7 +214,7 @@ HB_FUNC_STATIC( QSTYLEHINTS_CURSORFLASHTIME )
     if( ISNUMPAR(0) )
     {
 #endif
-      RINT( obj->cursorFlashTime () );
+      RINT( obj->cursorFlashTime() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -228,7 +230,7 @@ bool showIsFullScreen() const
 */
 HB_FUNC_STATIC( QSTYLEHINTS_SHOWISFULLSCREEN )
 {
-  QStyleHints * obj = (QStyleHints *) _qt5xhb_itemGetPtrStackSelfItem();
+  QStyleHints * obj = (QStyleHints *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -236,7 +238,7 @@ HB_FUNC_STATIC( QSTYLEHINTS_SHOWISFULLSCREEN )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->showIsFullScreen () );
+      RBOOL( obj->showIsFullScreen() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -252,7 +254,7 @@ int passwordMaskDelay() const
 */
 HB_FUNC_STATIC( QSTYLEHINTS_PASSWORDMASKDELAY )
 {
-  QStyleHints * obj = (QStyleHints *) _qt5xhb_itemGetPtrStackSelfItem();
+  QStyleHints * obj = (QStyleHints *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -260,7 +262,7 @@ HB_FUNC_STATIC( QSTYLEHINTS_PASSWORDMASKDELAY )
     if( ISNUMPAR(0) )
     {
 #endif
-      RINT( obj->passwordMaskDelay () );
+      RINT( obj->passwordMaskDelay() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -276,7 +278,7 @@ qreal fontSmoothingGamma() const
 */
 HB_FUNC_STATIC( QSTYLEHINTS_FONTSMOOTHINGGAMMA )
 {
-  QStyleHints * obj = (QStyleHints *) _qt5xhb_itemGetPtrStackSelfItem();
+  QStyleHints * obj = (QStyleHints *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -284,7 +286,7 @@ HB_FUNC_STATIC( QSTYLEHINTS_FONTSMOOTHINGGAMMA )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQREAL( obj->fontSmoothingGamma () );
+      RQREAL( obj->fontSmoothingGamma() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -300,7 +302,7 @@ bool useRtlExtensions() const
 */
 HB_FUNC_STATIC( QSTYLEHINTS_USERTLEXTENSIONS )
 {
-  QStyleHints * obj = (QStyleHints *) _qt5xhb_itemGetPtrStackSelfItem();
+  QStyleHints * obj = (QStyleHints *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -308,7 +310,7 @@ HB_FUNC_STATIC( QSTYLEHINTS_USERTLEXTENSIONS )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->useRtlExtensions () );
+      RBOOL( obj->useRtlExtensions() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else

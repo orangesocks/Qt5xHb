@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -30,7 +30,7 @@ CLASS QAbstractState INHERIT QObject
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QAbstractState
+PROCEDURE destroyObject() CLASS QAbstractState
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -47,6 +47,8 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #include <QtCore/QAbstractState>
@@ -57,10 +59,12 @@ RETURN
 
 HB_FUNC_STATIC( QABSTRACTSTATE_DELETE )
 {
-  QAbstractState * obj = (QAbstractState *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAbstractState * obj = (QAbstractState *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -73,11 +77,11 @@ HB_FUNC_STATIC( QABSTRACTSTATE_DELETE )
 }
 
 /*
-QStateMachine * machine () const
+QStateMachine * machine() const
 */
 HB_FUNC_STATIC( QABSTRACTSTATE_MACHINE )
 {
-  QAbstractState * obj = (QAbstractState *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAbstractState * obj = (QAbstractState *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -85,8 +89,8 @@ HB_FUNC_STATIC( QABSTRACTSTATE_MACHINE )
     if( ISNUMPAR(0) )
     {
 #endif
-      QStateMachine * ptr = obj->machine ();
-      _qt5xhb_createReturnQObjectClass ( ptr, "QSTATEMACHINE" );
+      QStateMachine * ptr = obj->machine();
+      Qt5xHb::createReturnQObjectClass( ptr, "QSTATEMACHINE" );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -98,11 +102,11 @@ HB_FUNC_STATIC( QABSTRACTSTATE_MACHINE )
 }
 
 /*
-QState * parentState () const
+QState * parentState() const
 */
 HB_FUNC_STATIC( QABSTRACTSTATE_PARENTSTATE )
 {
-  QAbstractState * obj = (QAbstractState *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAbstractState * obj = (QAbstractState *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -110,8 +114,8 @@ HB_FUNC_STATIC( QABSTRACTSTATE_PARENTSTATE )
     if( ISNUMPAR(0) )
     {
 #endif
-      QState * ptr = obj->parentState ();
-      _qt5xhb_createReturnQObjectClass ( ptr, "QSTATE" );
+      QState * ptr = obj->parentState();
+      Qt5xHb::createReturnQObjectClass( ptr, "QSTATE" );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -122,7 +126,7 @@ HB_FUNC_STATIC( QABSTRACTSTATE_PARENTSTATE )
   }
 }
 
-void QAbstractStateSlots_connect_signal ( const QString & signal, const QString & slot );
+void QAbstractStateSlots_connect_signal( const QString & signal, const QString & slot );
 
 HB_FUNC_STATIC( QABSTRACTSTATE_ONENTERED )
 {

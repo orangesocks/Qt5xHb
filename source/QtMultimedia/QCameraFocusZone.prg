@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -37,7 +37,7 @@ CLASS QCameraFocusZone
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QCameraFocusZone
+PROCEDURE destroyObject() CLASS QCameraFocusZone
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -60,22 +60,14 @@ RETURN
 #endif
 
 /*
-QCameraFocusZone()
-*/
-
-/*
-QCameraFocusZone(const QRectF &area, FocusZoneStatus status = Selected)
-*/
-
-/*
-QCameraFocusZone(const QCameraFocusZone &other)
+QCameraFocusZone( const QCameraFocusZone & other )
 */
 HB_FUNC_STATIC( QCAMERAFOCUSZONE_NEW )
 {
   if( ISNUMPAR(1) && ISQCAMERAFOCUSZONE(1) )
   {
-    QCameraFocusZone * o = new QCameraFocusZone ( *PQCAMERAFOCUSZONE(1) );
-    _qt5xhb_returnNewObject( o, true );
+    QCameraFocusZone * obj = new QCameraFocusZone( *PQCAMERAFOCUSZONE(1) );
+    Qt5xHb::returnNewObject( obj, true );
   }
   else
   {
@@ -83,16 +75,12 @@ HB_FUNC_STATIC( QCAMERAFOCUSZONE_NEW )
   }
 }
 
-//[1]QCameraFocusZone()
-//[2]QCameraFocusZone(const QRectF &area, FocusZoneStatus status = Selected)
-//[3]QCameraFocusZone(const QCameraFocusZone &other)
-
 /*
 ~QCameraFocusZone()
 */
 HB_FUNC_STATIC( QCAMERAFOCUSZONE_DELETE )
 {
-  QCameraFocusZone * obj = (QCameraFocusZone *) _qt5xhb_itemGetPtrStackSelfItem();
+  QCameraFocusZone * obj = (QCameraFocusZone *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -112,7 +100,7 @@ bool isValid() const
 */
 HB_FUNC_STATIC( QCAMERAFOCUSZONE_ISVALID )
 {
-  QCameraFocusZone * obj = (QCameraFocusZone *) _qt5xhb_itemGetPtrStackSelfItem();
+  QCameraFocusZone * obj = (QCameraFocusZone *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -120,7 +108,7 @@ HB_FUNC_STATIC( QCAMERAFOCUSZONE_ISVALID )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->isValid () );
+      RBOOL( obj->isValid() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -136,7 +124,7 @@ QRectF area() const
 */
 HB_FUNC_STATIC( QCAMERAFOCUSZONE_AREA )
 {
-  QCameraFocusZone * obj = (QCameraFocusZone *) _qt5xhb_itemGetPtrStackSelfItem();
+  QCameraFocusZone * obj = (QCameraFocusZone *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -144,8 +132,8 @@ HB_FUNC_STATIC( QCAMERAFOCUSZONE_AREA )
     if( ISNUMPAR(0) )
     {
 #endif
-      QRectF * ptr = new QRectF( obj->area () );
-      _qt5xhb_createReturnClass ( ptr, "QRECTF", true );
+      QRectF * ptr = new QRectF( obj->area() );
+      Qt5xHb::createReturnClass( ptr, "QRECTF", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -157,11 +145,11 @@ HB_FUNC_STATIC( QCAMERAFOCUSZONE_AREA )
 }
 
 /*
-FocusZoneStatus status() const
+QCameraFocusZone::FocusZoneStatus status() const
 */
 HB_FUNC_STATIC( QCAMERAFOCUSZONE_STATUS )
 {
-  QCameraFocusZone * obj = (QCameraFocusZone *) _qt5xhb_itemGetPtrStackSelfItem();
+  QCameraFocusZone * obj = (QCameraFocusZone *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -169,7 +157,7 @@ HB_FUNC_STATIC( QCAMERAFOCUSZONE_STATUS )
     if( ISNUMPAR(0) )
     {
 #endif
-      RENUM( obj->status () );
+      RENUM( obj->status() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -179,16 +167,12 @@ HB_FUNC_STATIC( QCAMERAFOCUSZONE_STATUS )
 #endif
   }
 }
-
-/*
-void setStatus(FocusZoneStatus status)
-*/
 
 HB_FUNC_STATIC( QCAMERAFOCUSZONE_NEWFROM )
 {
   PHB_ITEM self = hb_stackSelfItem();
 
-  if( hb_pcount() == 1 && ISOBJECT(1) )
+  if( hb_pcount() == 1 && HB_ISOBJECT(1) )
   {
     PHB_ITEM ptr = hb_itemPutPtr( NULL, (void *) hb_itemGetPtr( hb_objSendMsg( hb_param(1, HB_IT_OBJECT ), "POINTER", 0 ) ) );
     hb_objSendMsg( self, "_pointer", 1, ptr );
@@ -197,7 +181,7 @@ HB_FUNC_STATIC( QCAMERAFOCUSZONE_NEWFROM )
     hb_objSendMsg( self, "_self_destruction", 1, des );
     hb_itemRelease( des );
   }
-  else if( hb_pcount() == 1 && ISPOINTER(1) )
+  else if( hb_pcount() == 1 && HB_ISPOINTER(1) )
   {
     PHB_ITEM ptr = hb_itemPutPtr( NULL, (void *) hb_itemGetPtr( hb_param(1, HB_IT_POINTER ) ) );
     hb_objSendMsg( self, "_pointer", 1, ptr );
@@ -233,7 +217,7 @@ HB_FUNC_STATIC( QCAMERAFOCUSZONE_SETSELFDESTRUCTION )
 {
   PHB_ITEM self = hb_stackSelfItem();
 
-  if( hb_pcount() == 1 && ISLOG(1) )
+  if( hb_pcount() == 1 && HB_ISLOG(1) )
   {
     PHB_ITEM des = hb_itemPutL( NULL, hb_parl(1) );
     hb_objSendMsg( self, "_self_destruction", 1, des );

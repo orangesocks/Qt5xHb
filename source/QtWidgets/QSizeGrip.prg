@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -27,7 +27,7 @@ CLASS QSizeGrip INHERIT QWidget
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QSizeGrip
+PROCEDURE destroyObject() CLASS QSizeGrip
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -44,20 +44,22 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #include <QtWidgets/QSizeGrip>
 #endif
 
 /*
-QSizeGrip ( QWidget * parent )
+QSizeGrip( QWidget * parent )
 */
 HB_FUNC_STATIC( QSIZEGRIP_NEW )
 {
   if( ISNUMPAR(1) && ISQWIDGET(1) )
   {
-    QSizeGrip * o = new QSizeGrip ( PQWIDGET(1) );
-    _qt5xhb_returnNewObject( o, false );
+    QSizeGrip * obj = new QSizeGrip( PQWIDGET(1) );
+    Qt5xHb::returnNewObject( obj, false );
   }
   else
   {
@@ -67,10 +69,12 @@ HB_FUNC_STATIC( QSIZEGRIP_NEW )
 
 HB_FUNC_STATIC( QSIZEGRIP_DELETE )
 {
-  QSizeGrip * obj = (QSizeGrip *) _qt5xhb_itemGetPtrStackSelfItem();
+  QSizeGrip * obj = (QSizeGrip *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -83,19 +87,19 @@ HB_FUNC_STATIC( QSIZEGRIP_DELETE )
 }
 
 /*
-virtual void setVisible ( bool visible )
+virtual void setVisible( bool visible )
 */
 HB_FUNC_STATIC( QSIZEGRIP_SETVISIBLE )
 {
-  QSizeGrip * obj = (QSizeGrip *) _qt5xhb_itemGetPtrStackSelfItem();
+  QSizeGrip * obj = (QSizeGrip *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISLOG(1) )
+    if( ISNUMPAR(1) && HB_ISLOG(1) )
     {
 #endif
-      obj->setVisible ( PBOOL(1) );
+      obj->setVisible( PBOOL(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -109,11 +113,11 @@ HB_FUNC_STATIC( QSIZEGRIP_SETVISIBLE )
 }
 
 /*
-virtual QSize sizeHint () const
+virtual QSize sizeHint() const
 */
 HB_FUNC_STATIC( QSIZEGRIP_SIZEHINT )
 {
-  QSizeGrip * obj = (QSizeGrip *) _qt5xhb_itemGetPtrStackSelfItem();
+  QSizeGrip * obj = (QSizeGrip *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -121,8 +125,8 @@ HB_FUNC_STATIC( QSIZEGRIP_SIZEHINT )
     if( ISNUMPAR(0) )
     {
 #endif
-      QSize * ptr = new QSize( obj->sizeHint () );
-      _qt5xhb_createReturnClass ( ptr, "QSIZE", true );
+      QSize * ptr = new QSize( obj->sizeHint() );
+      Qt5xHb::createReturnClass( ptr, "QSIZE", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else

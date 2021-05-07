@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -29,7 +29,7 @@ CLASS QSGGeometryNode INHERIT QSGBasicGeometryNode
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QSGGeometryNode
+PROCEDURE destroyObject() CLASS QSGGeometryNode
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -58,8 +58,8 @@ HB_FUNC_STATIC( QSGGEOMETRYNODE_NEW )
 {
   if( ISNUMPAR(0) )
   {
-    QSGGeometryNode * o = new QSGGeometryNode ();
-    _qt5xhb_returnNewObject( o, false );
+    QSGGeometryNode * obj = new QSGGeometryNode();
+    Qt5xHb::returnNewObject( obj, true );
   }
   else
   {
@@ -69,7 +69,7 @@ HB_FUNC_STATIC( QSGGEOMETRYNODE_NEW )
 
 HB_FUNC_STATIC( QSGGEOMETRYNODE_DELETE )
 {
-  QSGGeometryNode * obj = (QSGGeometryNode *) _qt5xhb_itemGetPtrStackSelfItem();
+  QSGGeometryNode * obj = (QSGGeometryNode *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -89,7 +89,7 @@ QSGMaterial * material() const
 */
 HB_FUNC_STATIC( QSGGEOMETRYNODE_MATERIAL )
 {
-  QSGGeometryNode * obj = (QSGGeometryNode *) _qt5xhb_itemGetPtrStackSelfItem();
+  QSGGeometryNode * obj = (QSGGeometryNode *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -97,8 +97,8 @@ HB_FUNC_STATIC( QSGGEOMETRYNODE_MATERIAL )
     if( ISNUMPAR(0) )
     {
 #endif
-      QSGMaterial * ptr = obj->material ();
-      _qt5xhb_createReturnClass ( ptr, "QSGMATERIAL", false );
+      QSGMaterial * ptr = obj->material();
+      Qt5xHb::createReturnClass( ptr, "QSGMATERIAL", false );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -114,7 +114,7 @@ QSGMaterial * opaqueMaterial() const
 */
 HB_FUNC_STATIC( QSGGEOMETRYNODE_OPAQUEMATERIAL )
 {
-  QSGGeometryNode * obj = (QSGGeometryNode *) _qt5xhb_itemGetPtrStackSelfItem();
+  QSGGeometryNode * obj = (QSGGeometryNode *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -122,8 +122,8 @@ HB_FUNC_STATIC( QSGGEOMETRYNODE_OPAQUEMATERIAL )
     if( ISNUMPAR(0) )
     {
 #endif
-      QSGMaterial * ptr = obj->opaqueMaterial ();
-      _qt5xhb_createReturnClass ( ptr, "QSGMATERIAL", false );
+      QSGMaterial * ptr = obj->opaqueMaterial();
+      Qt5xHb::createReturnClass( ptr, "QSGMATERIAL", false );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -135,11 +135,11 @@ HB_FUNC_STATIC( QSGGEOMETRYNODE_OPAQUEMATERIAL )
 }
 
 /*
-void setMaterial(QSGMaterial * material)
+void setMaterial( QSGMaterial * material )
 */
 HB_FUNC_STATIC( QSGGEOMETRYNODE_SETMATERIAL )
 {
-  QSGGeometryNode * obj = (QSGGeometryNode *) _qt5xhb_itemGetPtrStackSelfItem();
+  QSGGeometryNode * obj = (QSGGeometryNode *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -147,7 +147,7 @@ HB_FUNC_STATIC( QSGGEOMETRYNODE_SETMATERIAL )
     if( ISNUMPAR(1) && ISQSGMATERIAL(1) )
     {
 #endif
-      obj->setMaterial ( PQSGMATERIAL(1) );
+      obj->setMaterial( PQSGMATERIAL(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -161,11 +161,11 @@ HB_FUNC_STATIC( QSGGEOMETRYNODE_SETMATERIAL )
 }
 
 /*
-void setOpaqueMaterial(QSGMaterial * material)
+void setOpaqueMaterial( QSGMaterial * material )
 */
 HB_FUNC_STATIC( QSGGEOMETRYNODE_SETOPAQUEMATERIAL )
 {
-  QSGGeometryNode * obj = (QSGGeometryNode *) _qt5xhb_itemGetPtrStackSelfItem();
+  QSGGeometryNode * obj = (QSGGeometryNode *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -173,7 +173,7 @@ HB_FUNC_STATIC( QSGGEOMETRYNODE_SETOPAQUEMATERIAL )
     if( ISNUMPAR(1) && ISQSGMATERIAL(1) )
     {
 #endif
-      obj->setOpaqueMaterial ( PQSGMATERIAL(1) );
+      obj->setOpaqueMaterial( PQSGMATERIAL(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else

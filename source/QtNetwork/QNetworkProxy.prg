@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -58,7 +58,7 @@ CLASS QNetworkProxy
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QNetworkProxy
+PROCEDURE destroyObject() CLASS QNetworkProxy
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -81,35 +81,31 @@ RETURN
 #endif
 
 /*
-QNetworkProxy ()
+QNetworkProxy()
 */
-void QNetworkProxy_new1 ()
+void QNetworkProxy_new1()
 {
-  QNetworkProxy * o = new QNetworkProxy ();
-  _qt5xhb_returnNewObject( o, true );
+  QNetworkProxy * obj = new QNetworkProxy();
+  Qt5xHb::returnNewObject( obj, true );
 }
 
 /*
-QNetworkProxy ( ProxyType type, const QString & hostName = QString(), quint16 port = 0, const QString & user = QString(), const QString & password = QString() )
+QNetworkProxy( QNetworkProxy::ProxyType type, const QString & hostName = QString(), quint16 port = 0, const QString & user = QString(), const QString & password = QString() )
 */
-void QNetworkProxy_new2 ()
+void QNetworkProxy_new2()
 {
-  QNetworkProxy * o = new QNetworkProxy ( (QNetworkProxy::ProxyType) hb_parni(1), OPQSTRING(2,QString()), OPQUINT16(3,0), OPQSTRING(4,QString()), OPQSTRING(5,QString()) );
-  _qt5xhb_returnNewObject( o, true );
+  QNetworkProxy * obj = new QNetworkProxy( (QNetworkProxy::ProxyType) hb_parni(1), OPQSTRING(2,QString()), OPQUINT16(3,0), OPQSTRING(4,QString()), OPQSTRING(5,QString()) );
+  Qt5xHb::returnNewObject( obj, true );
 }
 
 /*
-QNetworkProxy ( const QNetworkProxy & other )
+QNetworkProxy( const QNetworkProxy & other )
 */
-void QNetworkProxy_new3 ()
+void QNetworkProxy_new3()
 {
-  QNetworkProxy * o = new QNetworkProxy ( *PQNETWORKPROXY(1) );
-  _qt5xhb_returnNewObject( o, true );
+  QNetworkProxy * obj = new QNetworkProxy( *PQNETWORKPROXY(1) );
+  Qt5xHb::returnNewObject( obj, true );
 }
-
-//[1]QNetworkProxy ()
-//[2]QNetworkProxy ( ProxyType type, const QString & hostName = QString(), quint16 port = 0, const QString & user = QString(), const QString & password = QString() )
-//[3]QNetworkProxy ( const QNetworkProxy & other )
 
 HB_FUNC_STATIC( QNETWORKPROXY_NEW )
 {
@@ -117,7 +113,7 @@ HB_FUNC_STATIC( QNETWORKPROXY_NEW )
   {
     QNetworkProxy_new1();
   }
-  else if( ISBETWEEN(1,5) && ISNUM(1) && ISOPTCHAR(2) && ISOPTNUM(3) && ISOPTCHAR(4) && ISOPTCHAR(5) )
+  else if( ISBETWEEN(1,5) && HB_ISNUM(1) && ( HB_ISCHAR(2)||HB_ISNIL(2)) && ( HB_ISNUM(3)||HB_ISNIL(3)) && ( HB_ISCHAR(4)||HB_ISNIL(4)) && ( HB_ISCHAR(5)||HB_ISNIL(5)) )
   {
     QNetworkProxy_new2();
   }
@@ -136,7 +132,7 @@ HB_FUNC_STATIC( QNETWORKPROXY_NEW )
 */
 HB_FUNC_STATIC( QNETWORKPROXY_DELETE )
 {
-  QNetworkProxy * obj = (QNetworkProxy *) _qt5xhb_itemGetPtrStackSelfItem();
+  QNetworkProxy * obj = (QNetworkProxy *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -152,19 +148,19 @@ HB_FUNC_STATIC( QNETWORKPROXY_DELETE )
 }
 
 /*
-void setType ( QNetworkProxy::ProxyType type )
+void setType( QNetworkProxy::ProxyType type )
 */
 HB_FUNC_STATIC( QNETWORKPROXY_SETTYPE )
 {
-  QNetworkProxy * obj = (QNetworkProxy *) _qt5xhb_itemGetPtrStackSelfItem();
+  QNetworkProxy * obj = (QNetworkProxy *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setType ( (QNetworkProxy::ProxyType) hb_parni(1) );
+      obj->setType( (QNetworkProxy::ProxyType) hb_parni(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -178,11 +174,11 @@ HB_FUNC_STATIC( QNETWORKPROXY_SETTYPE )
 }
 
 /*
-QNetworkProxy::ProxyType type () const
+QNetworkProxy::ProxyType type() const
 */
 HB_FUNC_STATIC( QNETWORKPROXY_TYPE )
 {
-  QNetworkProxy * obj = (QNetworkProxy *) _qt5xhb_itemGetPtrStackSelfItem();
+  QNetworkProxy * obj = (QNetworkProxy *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -190,7 +186,7 @@ HB_FUNC_STATIC( QNETWORKPROXY_TYPE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RENUM( obj->type () );
+      RENUM( obj->type() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -202,19 +198,19 @@ HB_FUNC_STATIC( QNETWORKPROXY_TYPE )
 }
 
 /*
-void setCapabilities ( Capabilities capabilities )
+void setCapabilities( QNetworkProxy::Capabilities capabilities )
 */
 HB_FUNC_STATIC( QNETWORKPROXY_SETCAPABILITIES )
 {
-  QNetworkProxy * obj = (QNetworkProxy *) _qt5xhb_itemGetPtrStackSelfItem();
+  QNetworkProxy * obj = (QNetworkProxy *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setCapabilities ( (QNetworkProxy::Capabilities) hb_parni(1) );
+      obj->setCapabilities( (QNetworkProxy::Capabilities) hb_parni(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -228,11 +224,11 @@ HB_FUNC_STATIC( QNETWORKPROXY_SETCAPABILITIES )
 }
 
 /*
-Capabilities capabilities () const
+QNetworkProxy::Capabilities capabilities() const
 */
 HB_FUNC_STATIC( QNETWORKPROXY_CAPABILITIES )
 {
-  QNetworkProxy * obj = (QNetworkProxy *) _qt5xhb_itemGetPtrStackSelfItem();
+  QNetworkProxy * obj = (QNetworkProxy *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -240,7 +236,7 @@ HB_FUNC_STATIC( QNETWORKPROXY_CAPABILITIES )
     if( ISNUMPAR(0) )
     {
 #endif
-      RENUM( obj->capabilities () );
+      RENUM( obj->capabilities() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -252,11 +248,11 @@ HB_FUNC_STATIC( QNETWORKPROXY_CAPABILITIES )
 }
 
 /*
-bool isCachingProxy () const
+bool isCachingProxy() const
 */
 HB_FUNC_STATIC( QNETWORKPROXY_ISCACHINGPROXY )
 {
-  QNetworkProxy * obj = (QNetworkProxy *) _qt5xhb_itemGetPtrStackSelfItem();
+  QNetworkProxy * obj = (QNetworkProxy *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -264,7 +260,7 @@ HB_FUNC_STATIC( QNETWORKPROXY_ISCACHINGPROXY )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->isCachingProxy () );
+      RBOOL( obj->isCachingProxy() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -276,11 +272,11 @@ HB_FUNC_STATIC( QNETWORKPROXY_ISCACHINGPROXY )
 }
 
 /*
-bool isTransparentProxy () const
+bool isTransparentProxy() const
 */
 HB_FUNC_STATIC( QNETWORKPROXY_ISTRANSPARENTPROXY )
 {
-  QNetworkProxy * obj = (QNetworkProxy *) _qt5xhb_itemGetPtrStackSelfItem();
+  QNetworkProxy * obj = (QNetworkProxy *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -288,7 +284,7 @@ HB_FUNC_STATIC( QNETWORKPROXY_ISTRANSPARENTPROXY )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->isTransparentProxy () );
+      RBOOL( obj->isTransparentProxy() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -300,19 +296,19 @@ HB_FUNC_STATIC( QNETWORKPROXY_ISTRANSPARENTPROXY )
 }
 
 /*
-void setUser ( const QString & userName )
+void setUser( const QString & userName )
 */
 HB_FUNC_STATIC( QNETWORKPROXY_SETUSER )
 {
-  QNetworkProxy * obj = (QNetworkProxy *) _qt5xhb_itemGetPtrStackSelfItem();
+  QNetworkProxy * obj = (QNetworkProxy *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISCHAR(1) )
+    if( ISNUMPAR(1) && HB_ISCHAR(1) )
     {
 #endif
-      obj->setUser ( PQSTRING(1) );
+      obj->setUser( PQSTRING(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -326,11 +322,11 @@ HB_FUNC_STATIC( QNETWORKPROXY_SETUSER )
 }
 
 /*
-QString user () const
+QString user() const
 */
 HB_FUNC_STATIC( QNETWORKPROXY_USER )
 {
-  QNetworkProxy * obj = (QNetworkProxy *) _qt5xhb_itemGetPtrStackSelfItem();
+  QNetworkProxy * obj = (QNetworkProxy *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -338,7 +334,7 @@ HB_FUNC_STATIC( QNETWORKPROXY_USER )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRING( obj->user () );
+      RQSTRING( obj->user() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -350,19 +346,19 @@ HB_FUNC_STATIC( QNETWORKPROXY_USER )
 }
 
 /*
-void setPassword ( const QString & password )
+void setPassword( const QString & password )
 */
 HB_FUNC_STATIC( QNETWORKPROXY_SETPASSWORD )
 {
-  QNetworkProxy * obj = (QNetworkProxy *) _qt5xhb_itemGetPtrStackSelfItem();
+  QNetworkProxy * obj = (QNetworkProxy *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISCHAR(1) )
+    if( ISNUMPAR(1) && HB_ISCHAR(1) )
     {
 #endif
-      obj->setPassword ( PQSTRING(1) );
+      obj->setPassword( PQSTRING(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -376,11 +372,11 @@ HB_FUNC_STATIC( QNETWORKPROXY_SETPASSWORD )
 }
 
 /*
-QString password () const
+QString password() const
 */
 HB_FUNC_STATIC( QNETWORKPROXY_PASSWORD )
 {
-  QNetworkProxy * obj = (QNetworkProxy *) _qt5xhb_itemGetPtrStackSelfItem();
+  QNetworkProxy * obj = (QNetworkProxy *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -388,7 +384,7 @@ HB_FUNC_STATIC( QNETWORKPROXY_PASSWORD )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRING( obj->password () );
+      RQSTRING( obj->password() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -400,19 +396,19 @@ HB_FUNC_STATIC( QNETWORKPROXY_PASSWORD )
 }
 
 /*
-void setHostName ( const QString & hostName )
+void setHostName( const QString & hostName )
 */
 HB_FUNC_STATIC( QNETWORKPROXY_SETHOSTNAME )
 {
-  QNetworkProxy * obj = (QNetworkProxy *) _qt5xhb_itemGetPtrStackSelfItem();
+  QNetworkProxy * obj = (QNetworkProxy *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISCHAR(1) )
+    if( ISNUMPAR(1) && HB_ISCHAR(1) )
     {
 #endif
-      obj->setHostName ( PQSTRING(1) );
+      obj->setHostName( PQSTRING(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -426,11 +422,11 @@ HB_FUNC_STATIC( QNETWORKPROXY_SETHOSTNAME )
 }
 
 /*
-QString hostName () const
+QString hostName() const
 */
 HB_FUNC_STATIC( QNETWORKPROXY_HOSTNAME )
 {
-  QNetworkProxy * obj = (QNetworkProxy *) _qt5xhb_itemGetPtrStackSelfItem();
+  QNetworkProxy * obj = (QNetworkProxy *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -438,7 +434,7 @@ HB_FUNC_STATIC( QNETWORKPROXY_HOSTNAME )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRING( obj->hostName () );
+      RQSTRING( obj->hostName() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -450,19 +446,19 @@ HB_FUNC_STATIC( QNETWORKPROXY_HOSTNAME )
 }
 
 /*
-void setPort ( quint16 port )
+void setPort( quint16 port )
 */
 HB_FUNC_STATIC( QNETWORKPROXY_SETPORT )
 {
-  QNetworkProxy * obj = (QNetworkProxy *) _qt5xhb_itemGetPtrStackSelfItem();
+  QNetworkProxy * obj = (QNetworkProxy *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setPort ( PQUINT16(1) );
+      obj->setPort( PQUINT16(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -476,11 +472,11 @@ HB_FUNC_STATIC( QNETWORKPROXY_SETPORT )
 }
 
 /*
-quint16 port () const
+quint16 port() const
 */
 HB_FUNC_STATIC( QNETWORKPROXY_PORT )
 {
-  QNetworkProxy * obj = (QNetworkProxy *) _qt5xhb_itemGetPtrStackSelfItem();
+  QNetworkProxy * obj = (QNetworkProxy *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -488,7 +484,7 @@ HB_FUNC_STATIC( QNETWORKPROXY_PORT )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQUINT16( obj->port () );
+      RQUINT16( obj->port() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -500,15 +496,15 @@ HB_FUNC_STATIC( QNETWORKPROXY_PORT )
 }
 
 /*
-static void setApplicationProxy ( const QNetworkProxy & proxy )
+static void setApplicationProxy( const QNetworkProxy & proxy )
 */
 HB_FUNC_STATIC( QNETWORKPROXY_SETAPPLICATIONPROXY )
 {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISQNETWORKPROXY(1) )
+  if( ISNUMPAR(1) && ISQNETWORKPROXY(1) )
   {
 #endif
-      QNetworkProxy::setApplicationProxy ( *PQNETWORKPROXY(1) );
+    QNetworkProxy::setApplicationProxy( *PQNETWORKPROXY(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
   }
   else
@@ -521,16 +517,16 @@ HB_FUNC_STATIC( QNETWORKPROXY_SETAPPLICATIONPROXY )
 }
 
 /*
-static QNetworkProxy applicationProxy ()
+static QNetworkProxy applicationProxy()
 */
 HB_FUNC_STATIC( QNETWORKPROXY_APPLICATIONPROXY )
 {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(0) )
+  if( ISNUMPAR(0) )
   {
 #endif
-      QNetworkProxy * ptr = new QNetworkProxy( QNetworkProxy::applicationProxy () );
-      _qt5xhb_createReturnClass ( ptr, "QNETWORKPROXY", true );
+    QNetworkProxy * ptr = new QNetworkProxy( QNetworkProxy::applicationProxy() );
+    Qt5xHb::createReturnClass( ptr, "QNETWORKPROXY", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
   }
   else
@@ -541,20 +537,20 @@ HB_FUNC_STATIC( QNETWORKPROXY_APPLICATIONPROXY )
 }
 
 /*
-QVariant header(QNetworkRequest::KnownHeaders header) const
+QVariant header( QNetworkRequest::KnownHeaders header ) const
 */
 HB_FUNC_STATIC( QNETWORKPROXY_HEADER )
 {
-  QNetworkProxy * obj = (QNetworkProxy *) _qt5xhb_itemGetPtrStackSelfItem();
+  QNetworkProxy * obj = (QNetworkProxy *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      QVariant * ptr = new QVariant( obj->header ( (QNetworkRequest::KnownHeaders) hb_parni(1) ) );
-      _qt5xhb_createReturnClass ( ptr, "QVARIANT", true );
+      QVariant * ptr = new QVariant( obj->header( (QNetworkRequest::KnownHeaders) hb_parni(1) ) );
+      Qt5xHb::createReturnClass( ptr, "QVARIANT", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -566,19 +562,19 @@ HB_FUNC_STATIC( QNETWORKPROXY_HEADER )
 }
 
 /*
-void setHeader(QNetworkRequest::KnownHeaders header, const QVariant &value)
+void setHeader( QNetworkRequest::KnownHeaders header, const QVariant & value )
 */
 HB_FUNC_STATIC( QNETWORKPROXY_SETHEADER )
 {
-  QNetworkProxy * obj = (QNetworkProxy *) _qt5xhb_itemGetPtrStackSelfItem();
+  QNetworkProxy * obj = (QNetworkProxy *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(2) && ISNUM(1) && ISQVARIANT(2) )
+    if( ISNUMPAR(2) && HB_ISNUM(1) && ISQVARIANT(2) )
     {
 #endif
-      obj->setHeader ( (QNetworkRequest::KnownHeaders) hb_parni(1), *PQVARIANT(2) );
+      obj->setHeader( (QNetworkRequest::KnownHeaders) hb_parni(1), *PQVARIANT(2) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -592,11 +588,11 @@ HB_FUNC_STATIC( QNETWORKPROXY_SETHEADER )
 }
 
 /*
-bool hasRawHeader(const QByteArray &headerName) const
+bool hasRawHeader( const QByteArray & headerName ) const
 */
 HB_FUNC_STATIC( QNETWORKPROXY_HASRAWHEADER )
 {
-  QNetworkProxy * obj = (QNetworkProxy *) _qt5xhb_itemGetPtrStackSelfItem();
+  QNetworkProxy * obj = (QNetworkProxy *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -604,7 +600,7 @@ HB_FUNC_STATIC( QNETWORKPROXY_HASRAWHEADER )
     if( ISNUMPAR(1) && ISQBYTEARRAY(1) )
     {
 #endif
-      RBOOL( obj->hasRawHeader ( *PQBYTEARRAY(1) ) );
+      RBOOL( obj->hasRawHeader( *PQBYTEARRAY(1) ) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -620,7 +616,7 @@ QList<QByteArray> rawHeaderList() const
 */
 HB_FUNC_STATIC( QNETWORKPROXY_RAWHEADERLIST )
 {
-  QNetworkProxy * obj = (QNetworkProxy *) _qt5xhb_itemGetPtrStackSelfItem();
+  QNetworkProxy * obj = (QNetworkProxy *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -628,13 +624,12 @@ HB_FUNC_STATIC( QNETWORKPROXY_RAWHEADERLIST )
     if( ISNUMPAR(0) )
     {
 #endif
-      QList<QByteArray> list = obj->rawHeaderList ();
+      QList<QByteArray> list = obj->rawHeaderList();
       PHB_DYNS pDynSym = hb_dynsymFindName( "QBYTEARRAY" );
       PHB_ITEM pArray = hb_itemArrayNew(0);
-      int i;
-      for(i=0;i<list.count();i++)
+      if( pDynSym )
       {
-        if( pDynSym )
+        for( int i = 0; i < list.count(); i++ )
         {
           hb_vmPushDynSym( pDynSym );
           hb_vmPushNil();
@@ -642,7 +637,7 @@ HB_FUNC_STATIC( QNETWORKPROXY_RAWHEADERLIST )
           PHB_ITEM pObject = hb_itemNew( NULL );
           hb_itemCopy( pObject, hb_stackReturnItem() );
           PHB_ITEM pItem = hb_itemNew( NULL );
-          hb_itemPutPtr( pItem, (QByteArray *) new QByteArray ( list[i] ) );
+          hb_itemPutPtr( pItem, (QByteArray *) new QByteArray( list[i] ) );
           hb_objSendMsg( pObject, "_POINTER", 1, pItem );
           hb_itemRelease( pItem );
           PHB_ITEM pDestroy = hb_itemNew( NULL );
@@ -652,10 +647,10 @@ HB_FUNC_STATIC( QNETWORKPROXY_RAWHEADERLIST )
           hb_arrayAddForward( pArray, pObject );
           hb_itemRelease( pObject );
         }
-        else
-        {
-          hb_errRT_BASE( EG_NOFUNC, 1001, NULL, "QBYTEARRAY", HB_ERR_ARGS_BASEPARAMS );
-        }
+      }
+      else
+      {
+        hb_errRT_BASE( EG_NOFUNC, 1001, NULL, "QBYTEARRAY", HB_ERR_ARGS_BASEPARAMS );
       }
       hb_itemReturnRelease(pArray);
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
@@ -669,11 +664,11 @@ HB_FUNC_STATIC( QNETWORKPROXY_RAWHEADERLIST )
 }
 
 /*
-QByteArray rawHeader(const QByteArray &headerName) const
+QByteArray rawHeader( const QByteArray & headerName ) const
 */
 HB_FUNC_STATIC( QNETWORKPROXY_RAWHEADER )
 {
-  QNetworkProxy * obj = (QNetworkProxy *) _qt5xhb_itemGetPtrStackSelfItem();
+  QNetworkProxy * obj = (QNetworkProxy *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -681,8 +676,8 @@ HB_FUNC_STATIC( QNETWORKPROXY_RAWHEADER )
     if( ISNUMPAR(1) && ISQBYTEARRAY(1) )
     {
 #endif
-      QByteArray * ptr = new QByteArray( obj->rawHeader ( *PQBYTEARRAY(1) ) );
-      _qt5xhb_createReturnClass ( ptr, "QBYTEARRAY", true );
+      QByteArray * ptr = new QByteArray( obj->rawHeader( *PQBYTEARRAY(1) ) );
+      Qt5xHb::createReturnClass( ptr, "QBYTEARRAY", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -694,11 +689,11 @@ HB_FUNC_STATIC( QNETWORKPROXY_RAWHEADER )
 }
 
 /*
-void setRawHeader(const QByteArray &headerName, const QByteArray &value)
+void setRawHeader( const QByteArray & headerName, const QByteArray & value )
 */
 HB_FUNC_STATIC( QNETWORKPROXY_SETRAWHEADER )
 {
-  QNetworkProxy * obj = (QNetworkProxy *) _qt5xhb_itemGetPtrStackSelfItem();
+  QNetworkProxy * obj = (QNetworkProxy *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -706,7 +701,7 @@ HB_FUNC_STATIC( QNETWORKPROXY_SETRAWHEADER )
     if( ISNUMPAR(2) && ISQBYTEARRAY(1) && ISQBYTEARRAY(2) )
     {
 #endif
-      obj->setRawHeader ( *PQBYTEARRAY(1), *PQBYTEARRAY(2) );
+      obj->setRawHeader( *PQBYTEARRAY(1), *PQBYTEARRAY(2) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -720,11 +715,11 @@ HB_FUNC_STATIC( QNETWORKPROXY_SETRAWHEADER )
 }
 
 /*
-void swap(QNetworkProxy &other) Q_DECL_NOTHROW
+void swap( QNetworkProxy & other ) Q_DECL_NOTHROW
 */
 HB_FUNC_STATIC( QNETWORKPROXY_SWAP )
 {
-  QNetworkProxy * obj = (QNetworkProxy *) _qt5xhb_itemGetPtrStackSelfItem();
+  QNetworkProxy * obj = (QNetworkProxy *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -732,7 +727,7 @@ HB_FUNC_STATIC( QNETWORKPROXY_SWAP )
     if( ISNUMPAR(1) && ISQNETWORKPROXY(1) )
     {
 #endif
-      obj->swap ( *PQNETWORKPROXY(1) );
+      obj->swap( *PQNETWORKPROXY(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -749,7 +744,7 @@ HB_FUNC_STATIC( QNETWORKPROXY_NEWFROM )
 {
   PHB_ITEM self = hb_stackSelfItem();
 
-  if( hb_pcount() == 1 && ISOBJECT(1) )
+  if( hb_pcount() == 1 && HB_ISOBJECT(1) )
   {
     PHB_ITEM ptr = hb_itemPutPtr( NULL, (void *) hb_itemGetPtr( hb_objSendMsg( hb_param(1, HB_IT_OBJECT ), "POINTER", 0 ) ) );
     hb_objSendMsg( self, "_pointer", 1, ptr );
@@ -758,7 +753,7 @@ HB_FUNC_STATIC( QNETWORKPROXY_NEWFROM )
     hb_objSendMsg( self, "_self_destruction", 1, des );
     hb_itemRelease( des );
   }
-  else if( hb_pcount() == 1 && ISPOINTER(1) )
+  else if( hb_pcount() == 1 && HB_ISPOINTER(1) )
   {
     PHB_ITEM ptr = hb_itemPutPtr( NULL, (void *) hb_itemGetPtr( hb_param(1, HB_IT_POINTER ) ) );
     hb_objSendMsg( self, "_pointer", 1, ptr );
@@ -794,7 +789,7 @@ HB_FUNC_STATIC( QNETWORKPROXY_SETSELFDESTRUCTION )
 {
   PHB_ITEM self = hb_stackSelfItem();
 
-  if( hb_pcount() == 1 && ISLOG(1) )
+  if( hb_pcount() == 1 && HB_ISLOG(1) )
   {
     PHB_ITEM des = hb_itemPutL( NULL, hb_parl(1) );
     hb_objSendMsg( self, "_self_destruction", 1, des );

@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -47,7 +47,7 @@ CLASS QThread INHERIT QObject
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QThread
+PROCEDURE destroyObject() CLASS QThread
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -64,6 +64,8 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #include <QtCore/QThread>
@@ -72,14 +74,14 @@ RETURN
 #include <QtCore/QAbstractEventDispatcher>
 
 /*
-QThread(QObject * parent = 0)
+QThread( QObject * parent = 0 )
 */
 HB_FUNC_STATIC( QTHREAD_NEW )
 {
-  if( ISBETWEEN(0,1) && (ISQOBJECT(1)||ISNIL(1)) )
+  if( ISBETWEEN(0,1) && (ISQOBJECT(1)||HB_ISNIL(1)) )
   {
-    QThread * o = new QThread ( OPQOBJECT(1,0) );
-    _qt5xhb_returnNewObject( o, false );
+    QThread * obj = new QThread( OPQOBJECT(1,0) );
+    Qt5xHb::returnNewObject( obj, false );
   }
   else
   {
@@ -89,10 +91,12 @@ HB_FUNC_STATIC( QTHREAD_NEW )
 
 HB_FUNC_STATIC( QTHREAD_DELETE )
 {
-  QThread * obj = (QThread *) _qt5xhb_itemGetPtrStackSelfItem();
+  QThread * obj = (QThread *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -109,7 +113,7 @@ QAbstractEventDispatcher * eventDispatcher() const
 */
 HB_FUNC_STATIC( QTHREAD_EVENTDISPATCHER )
 {
-  QThread * obj = (QThread *) _qt5xhb_itemGetPtrStackSelfItem();
+  QThread * obj = (QThread *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -117,8 +121,8 @@ HB_FUNC_STATIC( QTHREAD_EVENTDISPATCHER )
     if( ISNUMPAR(0) )
     {
 #endif
-      QAbstractEventDispatcher * ptr = obj->eventDispatcher ();
-      _qt5xhb_createReturnQObjectClass ( ptr, "QABSTRACTEVENTDISPATCHER" );
+      QAbstractEventDispatcher * ptr = obj->eventDispatcher();
+      Qt5xHb::createReturnQObjectClass( ptr, "QABSTRACTEVENTDISPATCHER" );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -130,19 +134,19 @@ HB_FUNC_STATIC( QTHREAD_EVENTDISPATCHER )
 }
 
 /*
-void exit(int returnCode = 0)
+void exit( int returnCode = 0 )
 */
 HB_FUNC_STATIC( QTHREAD_EXIT )
 {
-  QThread * obj = (QThread *) _qt5xhb_itemGetPtrStackSelfItem();
+  QThread * obj = (QThread *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISBETWEEN(0,1) && ISOPTNUM(1) )
+    if( ISBETWEEN(0,1) && (HB_ISNUM(1)||HB_ISNIL(1)) )
     {
 #endif
-      obj->exit ( OPINT(1,0) );
+      obj->exit( OPINT(1,0) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -160,7 +164,7 @@ bool isFinished() const
 */
 HB_FUNC_STATIC( QTHREAD_ISFINISHED )
 {
-  QThread * obj = (QThread *) _qt5xhb_itemGetPtrStackSelfItem();
+  QThread * obj = (QThread *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -168,7 +172,7 @@ HB_FUNC_STATIC( QTHREAD_ISFINISHED )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->isFinished () );
+      RBOOL( obj->isFinished() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -184,7 +188,7 @@ bool isRunning() const
 */
 HB_FUNC_STATIC( QTHREAD_ISRUNNING )
 {
-  QThread * obj = (QThread *) _qt5xhb_itemGetPtrStackSelfItem();
+  QThread * obj = (QThread *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -192,7 +196,7 @@ HB_FUNC_STATIC( QTHREAD_ISRUNNING )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->isRunning () );
+      RBOOL( obj->isRunning() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -204,11 +208,11 @@ HB_FUNC_STATIC( QTHREAD_ISRUNNING )
 }
 
 /*
-Priority priority() const
+QThread::Priority priority() const
 */
 HB_FUNC_STATIC( QTHREAD_PRIORITY )
 {
-  QThread * obj = (QThread *) _qt5xhb_itemGetPtrStackSelfItem();
+  QThread * obj = (QThread *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -216,7 +220,7 @@ HB_FUNC_STATIC( QTHREAD_PRIORITY )
     if( ISNUMPAR(0) )
     {
 #endif
-      RENUM( obj->priority () );
+      RENUM( obj->priority() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -228,11 +232,11 @@ HB_FUNC_STATIC( QTHREAD_PRIORITY )
 }
 
 /*
-void setEventDispatcher(QAbstractEventDispatcher * eventDispatcher)
+void setEventDispatcher( QAbstractEventDispatcher * eventDispatcher )
 */
 HB_FUNC_STATIC( QTHREAD_SETEVENTDISPATCHER )
 {
-  QThread * obj = (QThread *) _qt5xhb_itemGetPtrStackSelfItem();
+  QThread * obj = (QThread *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -240,7 +244,7 @@ HB_FUNC_STATIC( QTHREAD_SETEVENTDISPATCHER )
     if( ISNUMPAR(1) && ISQABSTRACTEVENTDISPATCHER(1) )
     {
 #endif
-      obj->setEventDispatcher ( PQABSTRACTEVENTDISPATCHER(1) );
+      obj->setEventDispatcher( PQABSTRACTEVENTDISPATCHER(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -254,19 +258,19 @@ HB_FUNC_STATIC( QTHREAD_SETEVENTDISPATCHER )
 }
 
 /*
-void setPriority(Priority priority)
+void setPriority( QThread::Priority priority )
 */
 HB_FUNC_STATIC( QTHREAD_SETPRIORITY )
 {
-  QThread * obj = (QThread *) _qt5xhb_itemGetPtrStackSelfItem();
+  QThread * obj = (QThread *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setPriority ( (QThread::Priority) hb_parni(1) );
+      obj->setPriority( (QThread::Priority) hb_parni(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -280,19 +284,19 @@ HB_FUNC_STATIC( QTHREAD_SETPRIORITY )
 }
 
 /*
-void setStackSize(uint stackSize)
+void setStackSize( uint stackSize )
 */
 HB_FUNC_STATIC( QTHREAD_SETSTACKSIZE )
 {
-  QThread * obj = (QThread *) _qt5xhb_itemGetPtrStackSelfItem();
+  QThread * obj = (QThread *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setStackSize ( PUINT(1) );
+      obj->setStackSize( PUINT(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -310,7 +314,7 @@ uint stackSize() const
 */
 HB_FUNC_STATIC( QTHREAD_STACKSIZE )
 {
-  QThread * obj = (QThread *) _qt5xhb_itemGetPtrStackSelfItem();
+  QThread * obj = (QThread *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -318,7 +322,7 @@ HB_FUNC_STATIC( QTHREAD_STACKSIZE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RUINT( obj->stackSize () );
+      RUINT( obj->stackSize() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -330,11 +334,11 @@ HB_FUNC_STATIC( QTHREAD_STACKSIZE )
 }
 
 /*
-virtual bool event(QEvent * event)
+virtual bool event( QEvent * event )
 */
 HB_FUNC_STATIC( QTHREAD_EVENT )
 {
-  QThread * obj = (QThread *) _qt5xhb_itemGetPtrStackSelfItem();
+  QThread * obj = (QThread *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -342,7 +346,7 @@ HB_FUNC_STATIC( QTHREAD_EVENT )
     if( ISNUMPAR(1) && ISQEVENT(1) )
     {
 #endif
-      RBOOL( obj->event ( PQEVENT(1) ) );
+      RBOOL( obj->event( PQEVENT(1) ) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -358,7 +362,7 @@ void quit()
 */
 HB_FUNC_STATIC( QTHREAD_QUIT )
 {
-  QThread * obj = (QThread *) _qt5xhb_itemGetPtrStackSelfItem();
+  QThread * obj = (QThread *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -366,7 +370,7 @@ HB_FUNC_STATIC( QTHREAD_QUIT )
     if( ISNUMPAR(0) )
     {
 #endif
-      obj->quit ();
+      obj->quit();
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -380,19 +384,19 @@ HB_FUNC_STATIC( QTHREAD_QUIT )
 }
 
 /*
-void start(Priority priority = InheritPriority)
+void start( QThread::Priority priority = QThread::InheritPriority )
 */
 HB_FUNC_STATIC( QTHREAD_START )
 {
-  QThread * obj = (QThread *) _qt5xhb_itemGetPtrStackSelfItem();
+  QThread * obj = (QThread *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISBETWEEN(0,1) && ISOPTNUM(1) )
+    if( ISBETWEEN(0,1) && (HB_ISNUM(1)||HB_ISNIL(1)) )
     {
 #endif
-      obj->start ( ISNIL(1)? (QThread::Priority) QThread::InheritPriority : (QThread::Priority) hb_parni(1) );
+      obj->start( HB_ISNIL(1)? (QThread::Priority) QThread::InheritPriority : (QThread::Priority) hb_parni(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -410,7 +414,7 @@ void terminate()
 */
 HB_FUNC_STATIC( QTHREAD_TERMINATE )
 {
-  QThread * obj = (QThread *) _qt5xhb_itemGetPtrStackSelfItem();
+  QThread * obj = (QThread *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -418,7 +422,7 @@ HB_FUNC_STATIC( QTHREAD_TERMINATE )
     if( ISNUMPAR(0) )
     {
 #endif
-      obj->terminate ();
+      obj->terminate();
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -437,11 +441,11 @@ static QThread * currentThread()
 HB_FUNC_STATIC( QTHREAD_CURRENTTHREAD )
 {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(0) )
+  if( ISNUMPAR(0) )
   {
 #endif
-      QThread * ptr = QThread::currentThread ();
-      _qt5xhb_createReturnQObjectClass ( ptr, "QTHREAD" );
+    QThread * ptr = QThread::currentThread();
+    Qt5xHb::createReturnQObjectClass( ptr, "QTHREAD" );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
   }
   else
@@ -457,10 +461,10 @@ static int idealThreadCount()
 HB_FUNC_STATIC( QTHREAD_IDEALTHREADCOUNT )
 {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(0) )
+  if( ISNUMPAR(0) )
   {
 #endif
-      RINT( QThread::idealThreadCount () );
+    RINT( QThread::idealThreadCount() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
   }
   else
@@ -471,15 +475,15 @@ HB_FUNC_STATIC( QTHREAD_IDEALTHREADCOUNT )
 }
 
 /*
-static void msleep(unsigned long msecs)
+static void msleep( unsigned long msecs )
 */
 HB_FUNC_STATIC( QTHREAD_MSLEEP )
 {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+  if( ISNUMPAR(1) && HB_ISNUM(1) )
   {
 #endif
-      QThread::msleep ( PUNSIGNEDLONG(1) );
+    QThread::msleep( PUNSIGNEDLONG(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
   }
   else
@@ -492,15 +496,15 @@ HB_FUNC_STATIC( QTHREAD_MSLEEP )
 }
 
 /*
-static void sleep(unsigned long secs)
+static void sleep( unsigned long secs )
 */
 HB_FUNC_STATIC( QTHREAD_SLEEP )
 {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+  if( ISNUMPAR(1) && HB_ISNUM(1) )
   {
 #endif
-      QThread::sleep ( PUNSIGNEDLONG(1) );
+    QThread::sleep( PUNSIGNEDLONG(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
   }
   else
@@ -513,15 +517,15 @@ HB_FUNC_STATIC( QTHREAD_SLEEP )
 }
 
 /*
-static void usleep(unsigned long usecs)
+static void usleep( unsigned long usecs )
 */
 HB_FUNC_STATIC( QTHREAD_USLEEP )
 {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+  if( ISNUMPAR(1) && HB_ISNUM(1) )
   {
 #endif
-      QThread::usleep ( PUNSIGNEDLONG(1) );
+    QThread::usleep( PUNSIGNEDLONG(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
   }
   else
@@ -539,10 +543,10 @@ static void yieldCurrentThread()
 HB_FUNC_STATIC( QTHREAD_YIELDCURRENTTHREAD )
 {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(0) )
+  if( ISNUMPAR(0) )
   {
 #endif
-      QThread::yieldCurrentThread ();
+    QThread::yieldCurrentThread();
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
   }
   else
@@ -554,7 +558,7 @@ HB_FUNC_STATIC( QTHREAD_YIELDCURRENTTHREAD )
   hb_itemReturn( hb_stackSelfItem() );
 }
 
-void QThreadSlots_connect_signal ( const QString & signal, const QString & slot );
+void QThreadSlots_connect_signal( const QString & signal, const QString & slot );
 
 HB_FUNC_STATIC( QTHREAD_ONFINISHED )
 {

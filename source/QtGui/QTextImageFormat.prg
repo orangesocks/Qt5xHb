@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -33,7 +33,7 @@ CLASS QTextImageFormat INHERIT QTextCharFormat
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QTextImageFormat
+PROCEDURE destroyObject() CLASS QTextImageFormat
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -62,8 +62,8 @@ HB_FUNC_STATIC( QTEXTIMAGEFORMAT_NEW )
 {
   if( ISNUMPAR(0) )
   {
-    QTextImageFormat * o = new QTextImageFormat ();
-    _qt5xhb_returnNewObject( o, true );
+    QTextImageFormat * obj = new QTextImageFormat();
+    Qt5xHb::returnNewObject( obj, true );
   }
   else
   {
@@ -73,7 +73,7 @@ HB_FUNC_STATIC( QTEXTIMAGEFORMAT_NEW )
 
 HB_FUNC_STATIC( QTEXTIMAGEFORMAT_DELETE )
 {
-  QTextImageFormat * obj = (QTextImageFormat *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTextImageFormat * obj = (QTextImageFormat *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -93,7 +93,7 @@ bool isValid() const
 */
 HB_FUNC_STATIC( QTEXTIMAGEFORMAT_ISVALID )
 {
-  QTextImageFormat * obj = (QTextImageFormat *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTextImageFormat * obj = (QTextImageFormat *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -101,7 +101,7 @@ HB_FUNC_STATIC( QTEXTIMAGEFORMAT_ISVALID )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->isValid () );
+      RBOOL( obj->isValid() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -113,19 +113,19 @@ HB_FUNC_STATIC( QTEXTIMAGEFORMAT_ISVALID )
 }
 
 /*
-void setName(const QString &name)
+void setName( const QString & name )
 */
 HB_FUNC_STATIC( QTEXTIMAGEFORMAT_SETNAME )
 {
-  QTextImageFormat * obj = (QTextImageFormat *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTextImageFormat * obj = (QTextImageFormat *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISCHAR(1) )
+    if( ISNUMPAR(1) && HB_ISCHAR(1) )
     {
 #endif
-      obj->setName ( PQSTRING(1) );
+      obj->setName( PQSTRING(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -143,7 +143,7 @@ QString name() const
 */
 HB_FUNC_STATIC( QTEXTIMAGEFORMAT_NAME )
 {
-  QTextImageFormat * obj = (QTextImageFormat *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTextImageFormat * obj = (QTextImageFormat *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -151,7 +151,7 @@ HB_FUNC_STATIC( QTEXTIMAGEFORMAT_NAME )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRING( obj->name () );
+      RQSTRING( obj->name() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -163,19 +163,19 @@ HB_FUNC_STATIC( QTEXTIMAGEFORMAT_NAME )
 }
 
 /*
-void setWidth(qreal width)
+void setWidth( qreal width )
 */
 HB_FUNC_STATIC( QTEXTIMAGEFORMAT_SETWIDTH )
 {
-  QTextImageFormat * obj = (QTextImageFormat *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTextImageFormat * obj = (QTextImageFormat *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setWidth ( PQREAL(1) );
+      obj->setWidth( PQREAL(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -193,7 +193,7 @@ qreal width() const
 */
 HB_FUNC_STATIC( QTEXTIMAGEFORMAT_WIDTH )
 {
-  QTextImageFormat * obj = (QTextImageFormat *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTextImageFormat * obj = (QTextImageFormat *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -201,7 +201,7 @@ HB_FUNC_STATIC( QTEXTIMAGEFORMAT_WIDTH )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQREAL( obj->width () );
+      RQREAL( obj->width() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -213,19 +213,19 @@ HB_FUNC_STATIC( QTEXTIMAGEFORMAT_WIDTH )
 }
 
 /*
-void setHeight(qreal height)
+void setHeight( qreal height )
 */
 HB_FUNC_STATIC( QTEXTIMAGEFORMAT_SETHEIGHT )
 {
-  QTextImageFormat * obj = (QTextImageFormat *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTextImageFormat * obj = (QTextImageFormat *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setHeight ( PQREAL(1) );
+      obj->setHeight( PQREAL(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -243,7 +243,7 @@ qreal height() const
 */
 HB_FUNC_STATIC( QTEXTIMAGEFORMAT_HEIGHT )
 {
-  QTextImageFormat * obj = (QTextImageFormat *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTextImageFormat * obj = (QTextImageFormat *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -251,7 +251,7 @@ HB_FUNC_STATIC( QTEXTIMAGEFORMAT_HEIGHT )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQREAL( obj->height () );
+      RQREAL( obj->height() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -263,12 +263,12 @@ HB_FUNC_STATIC( QTEXTIMAGEFORMAT_HEIGHT )
 }
 
 /*
-int QTextImageFormat::quality() const
+int quality() const
 */
 HB_FUNC_STATIC( QTEXTIMAGEFORMAT_QUALITY )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,12,0))
-  QTextImageFormat * obj = (QTextImageFormat *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTextImageFormat * obj = (QTextImageFormat *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -276,7 +276,7 @@ HB_FUNC_STATIC( QTEXTIMAGEFORMAT_QUALITY )
     if( ISNUMPAR(0) )
     {
 #endif
-      RINT( obj->quality () );
+      RINT( obj->quality() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -289,20 +289,20 @@ HB_FUNC_STATIC( QTEXTIMAGEFORMAT_QUALITY )
 }
 
 /*
-void QTextImageFormat::setQuality(int quality = ...)
+void setQuality( int quality = 100 )
 */
 HB_FUNC_STATIC( QTEXTIMAGEFORMAT_SETQUALITY )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,12,0))
-  QTextImageFormat * obj = (QTextImageFormat *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTextImageFormat * obj = (QTextImageFormat *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISBETWEEN(0,1) && ISOPTNUM(1) )
+    if( ISBETWEEN(0,1) && (HB_ISNUM(1)||HB_ISNIL(1)) )
     {
 #endif
-      obj->setQuality ( OPINT(1,100) );
+      obj->setQuality( OPINT(1,100) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else

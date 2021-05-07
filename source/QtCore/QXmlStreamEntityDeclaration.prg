@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -39,7 +39,7 @@ CLASS QXmlStreamEntityDeclaration
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QXmlStreamEntityDeclaration
+PROCEDURE destroyObject() CLASS QXmlStreamEntityDeclaration
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -64,23 +64,20 @@ RETURN
 /*
 QXmlStreamEntityDeclaration()
 */
-void QXmlStreamEntityDeclaration_new1 ()
+void QXmlStreamEntityDeclaration_new1()
 {
-  QXmlStreamEntityDeclaration * o = new QXmlStreamEntityDeclaration ();
-  _qt5xhb_returnNewObject( o, true );
+  QXmlStreamEntityDeclaration * obj = new QXmlStreamEntityDeclaration();
+  Qt5xHb::returnNewObject( obj, true );
 }
 
 /*
-QXmlStreamEntityDeclaration(const QXmlStreamEntityDeclaration & other)
+QXmlStreamEntityDeclaration( const QXmlStreamEntityDeclaration & other )
 */
-void QXmlStreamEntityDeclaration_new2 ()
+void QXmlStreamEntityDeclaration_new2()
 {
-  QXmlStreamEntityDeclaration * o = new QXmlStreamEntityDeclaration ( *PQXMLSTREAMENTITYDECLARATION(1) );
-  _qt5xhb_returnNewObject( o, true );
+  QXmlStreamEntityDeclaration * obj = new QXmlStreamEntityDeclaration( *PQXMLSTREAMENTITYDECLARATION(1) );
+  Qt5xHb::returnNewObject( obj, true );
 }
-
-//[1]QXmlStreamEntityDeclaration()
-//[2]QXmlStreamEntityDeclaration(const QXmlStreamEntityDeclaration & other)
 
 HB_FUNC_STATIC( QXMLSTREAMENTITYDECLARATION_NEW )
 {
@@ -100,7 +97,7 @@ HB_FUNC_STATIC( QXMLSTREAMENTITYDECLARATION_NEW )
 
 HB_FUNC_STATIC( QXMLSTREAMENTITYDECLARATION_DELETE )
 {
-  QXmlStreamEntityDeclaration * obj = (QXmlStreamEntityDeclaration *) _qt5xhb_itemGetPtrStackSelfItem();
+  QXmlStreamEntityDeclaration * obj = (QXmlStreamEntityDeclaration *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -120,7 +117,7 @@ QStringRef name() const
 */
 HB_FUNC_STATIC( QXMLSTREAMENTITYDECLARATION_NAME )
 {
-  QXmlStreamEntityDeclaration * obj = (QXmlStreamEntityDeclaration *) _qt5xhb_itemGetPtrStackSelfItem();
+  QXmlStreamEntityDeclaration * obj = (QXmlStreamEntityDeclaration *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -128,8 +125,8 @@ HB_FUNC_STATIC( QXMLSTREAMENTITYDECLARATION_NAME )
     if( ISNUMPAR(0) )
     {
 #endif
-      QStringRef * ptr = new QStringRef( obj->name () );
-      _qt5xhb_createReturnClass ( ptr, "QSTRINGREF", true );
+      QStringRef * ptr = new QStringRef( obj->name() );
+      Qt5xHb::createReturnClass( ptr, "QSTRINGREF", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -145,7 +142,7 @@ QStringRef notationName() const
 */
 HB_FUNC_STATIC( QXMLSTREAMENTITYDECLARATION_NOTATIONNAME )
 {
-  QXmlStreamEntityDeclaration * obj = (QXmlStreamEntityDeclaration *) _qt5xhb_itemGetPtrStackSelfItem();
+  QXmlStreamEntityDeclaration * obj = (QXmlStreamEntityDeclaration *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -153,8 +150,8 @@ HB_FUNC_STATIC( QXMLSTREAMENTITYDECLARATION_NOTATIONNAME )
     if( ISNUMPAR(0) )
     {
 #endif
-      QStringRef * ptr = new QStringRef( obj->notationName () );
-      _qt5xhb_createReturnClass ( ptr, "QSTRINGREF", true );
+      QStringRef * ptr = new QStringRef( obj->notationName() );
+      Qt5xHb::createReturnClass( ptr, "QSTRINGREF", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -170,7 +167,7 @@ QStringRef publicId() const
 */
 HB_FUNC_STATIC( QXMLSTREAMENTITYDECLARATION_PUBLICID )
 {
-  QXmlStreamEntityDeclaration * obj = (QXmlStreamEntityDeclaration *) _qt5xhb_itemGetPtrStackSelfItem();
+  QXmlStreamEntityDeclaration * obj = (QXmlStreamEntityDeclaration *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -178,8 +175,8 @@ HB_FUNC_STATIC( QXMLSTREAMENTITYDECLARATION_PUBLICID )
     if( ISNUMPAR(0) )
     {
 #endif
-      QStringRef * ptr = new QStringRef( obj->publicId () );
-      _qt5xhb_createReturnClass ( ptr, "QSTRINGREF", true );
+      QStringRef * ptr = new QStringRef( obj->publicId() );
+      Qt5xHb::createReturnClass( ptr, "QSTRINGREF", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -195,7 +192,7 @@ QStringRef systemId() const
 */
 HB_FUNC_STATIC( QXMLSTREAMENTITYDECLARATION_SYSTEMID )
 {
-  QXmlStreamEntityDeclaration * obj = (QXmlStreamEntityDeclaration *) _qt5xhb_itemGetPtrStackSelfItem();
+  QXmlStreamEntityDeclaration * obj = (QXmlStreamEntityDeclaration *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -203,8 +200,8 @@ HB_FUNC_STATIC( QXMLSTREAMENTITYDECLARATION_SYSTEMID )
     if( ISNUMPAR(0) )
     {
 #endif
-      QStringRef * ptr = new QStringRef( obj->systemId () );
-      _qt5xhb_createReturnClass ( ptr, "QSTRINGREF", true );
+      QStringRef * ptr = new QStringRef( obj->systemId() );
+      Qt5xHb::createReturnClass( ptr, "QSTRINGREF", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -220,7 +217,7 @@ QStringRef value() const
 */
 HB_FUNC_STATIC( QXMLSTREAMENTITYDECLARATION_VALUE )
 {
-  QXmlStreamEntityDeclaration * obj = (QXmlStreamEntityDeclaration *) _qt5xhb_itemGetPtrStackSelfItem();
+  QXmlStreamEntityDeclaration * obj = (QXmlStreamEntityDeclaration *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -228,8 +225,8 @@ HB_FUNC_STATIC( QXMLSTREAMENTITYDECLARATION_VALUE )
     if( ISNUMPAR(0) )
     {
 #endif
-      QStringRef * ptr = new QStringRef( obj->value () );
-      _qt5xhb_createReturnClass ( ptr, "QSTRINGREF", true );
+      QStringRef * ptr = new QStringRef( obj->value() );
+      Qt5xHb::createReturnClass( ptr, "QSTRINGREF", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -244,7 +241,7 @@ HB_FUNC_STATIC( QXMLSTREAMENTITYDECLARATION_NEWFROM )
 {
   PHB_ITEM self = hb_stackSelfItem();
 
-  if( hb_pcount() == 1 && ISOBJECT(1) )
+  if( hb_pcount() == 1 && HB_ISOBJECT(1) )
   {
     PHB_ITEM ptr = hb_itemPutPtr( NULL, (void *) hb_itemGetPtr( hb_objSendMsg( hb_param(1, HB_IT_OBJECT ), "POINTER", 0 ) ) );
     hb_objSendMsg( self, "_pointer", 1, ptr );
@@ -253,7 +250,7 @@ HB_FUNC_STATIC( QXMLSTREAMENTITYDECLARATION_NEWFROM )
     hb_objSendMsg( self, "_self_destruction", 1, des );
     hb_itemRelease( des );
   }
-  else if( hb_pcount() == 1 && ISPOINTER(1) )
+  else if( hb_pcount() == 1 && HB_ISPOINTER(1) )
   {
     PHB_ITEM ptr = hb_itemPutPtr( NULL, (void *) hb_itemGetPtr( hb_param(1, HB_IT_POINTER ) ) );
     hb_objSendMsg( self, "_pointer", 1, ptr );
@@ -289,7 +286,7 @@ HB_FUNC_STATIC( QXMLSTREAMENTITYDECLARATION_SETSELFDESTRUCTION )
 {
   PHB_ITEM self = hb_stackSelfItem();
 
-  if( hb_pcount() == 1 && ISLOG(1) )
+  if( hb_pcount() == 1 && HB_ISLOG(1) )
   {
     PHB_ITEM des = hb_itemPutL( NULL, hb_parl(1) );
     hb_objSendMsg( self, "_self_destruction", 1, des );

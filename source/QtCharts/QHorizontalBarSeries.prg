@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -25,7 +25,7 @@ CLASS QHorizontalBarSeries INHERIT QAbstractBarSeries
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QHorizontalBarSeries
+PROCEDURE destroyObject() CLASS QHorizontalBarSeries
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -42,6 +42,8 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #include <QtCharts/QHorizontalBarSeries>
@@ -50,15 +52,15 @@ RETURN
 using namespace QtCharts;
 
 /*
-explicit QHorizontalBarSeries(QObject *parent = Q_NULLPTR)
+QHorizontalBarSeries( QObject * parent = nullptr )
 */
 HB_FUNC_STATIC( QHORIZONTALBARSERIES_NEW )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,7,0))
-  if( ISBETWEEN(0,1) && (ISQOBJECT(1)||ISNIL(1)) )
+  if( ISBETWEEN(0,1) && (ISQOBJECT(1)||HB_ISNIL(1)) )
   {
-    QHorizontalBarSeries * o = new QHorizontalBarSeries ( OPQOBJECT(1,Q_NULLPTR) );
-    _qt5xhb_returnNewObject( o, false );
+    QHorizontalBarSeries * obj = new QHorizontalBarSeries( OPQOBJECT(1,nullptr) );
+    Qt5xHb::returnNewObject( obj, false );
   }
   else
   {
@@ -73,10 +75,12 @@ HB_FUNC_STATIC( QHORIZONTALBARSERIES_NEW )
 HB_FUNC_STATIC( QHORIZONTALBARSERIES_DELETE )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,7,0))
-  QHorizontalBarSeries * obj = (QHorizontalBarSeries *) _qt5xhb_itemGetPtrStackSelfItem();
+  QHorizontalBarSeries * obj = (QHorizontalBarSeries *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -95,7 +99,7 @@ QAbstractSeries::SeriesType type() const
 HB_FUNC_STATIC( QHORIZONTALBARSERIES_TYPE )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,7,0))
-  QHorizontalBarSeries * obj = (QHorizontalBarSeries *) _qt5xhb_itemGetPtrStackSelfItem();
+  QHorizontalBarSeries * obj = (QHorizontalBarSeries *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -103,7 +107,7 @@ HB_FUNC_STATIC( QHORIZONTALBARSERIES_TYPE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RENUM( obj->type () );
+      RENUM( obj->type() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else

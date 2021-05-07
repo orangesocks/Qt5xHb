@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -26,7 +26,7 @@ CLASS QAccessibleTextRemoveEvent INHERIT QAccessibleTextCursorEvent
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QAccessibleTextRemoveEvent
+PROCEDURE destroyObject() CLASS QAccessibleTextRemoveEvent
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -49,14 +49,14 @@ RETURN
 #endif
 
 /*
-QAccessibleTextRemoveEvent(QObject *obj, int position, const QString &text)
+QAccessibleTextRemoveEvent( QObject * obj, int position, const QString & text )
 */
 HB_FUNC_STATIC( QACCESSIBLETEXTREMOVEEVENT_NEW )
 {
-  if( ISNUMPAR(3) && ISQOBJECT(1) && ISNUM(2) && ISCHAR(3) )
+  if( ISNUMPAR(3) && ISQOBJECT(1) && HB_ISNUM(2) && HB_ISCHAR(3) )
   {
-    QAccessibleTextRemoveEvent * o = new QAccessibleTextRemoveEvent ( PQOBJECT(1), PINT(2), PQSTRING(3) );
-    _qt5xhb_returnNewObject( o, false );
+    QAccessibleTextRemoveEvent * obj = new QAccessibleTextRemoveEvent( PQOBJECT(1), PINT(2), PQSTRING(3) );
+    Qt5xHb::returnNewObject( obj, true );
   }
   else
   {
@@ -66,7 +66,7 @@ HB_FUNC_STATIC( QACCESSIBLETEXTREMOVEEVENT_NEW )
 
 HB_FUNC_STATIC( QACCESSIBLETEXTREMOVEEVENT_DELETE )
 {
-  QAccessibleTextRemoveEvent * obj = (QAccessibleTextRemoveEvent *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAccessibleTextRemoveEvent * obj = (QAccessibleTextRemoveEvent *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -86,7 +86,7 @@ QString textRemoved() const
 */
 HB_FUNC_STATIC( QACCESSIBLETEXTREMOVEEVENT_TEXTREMOVED )
 {
-  QAccessibleTextRemoveEvent * obj = (QAccessibleTextRemoveEvent *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAccessibleTextRemoveEvent * obj = (QAccessibleTextRemoveEvent *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -94,7 +94,7 @@ HB_FUNC_STATIC( QACCESSIBLETEXTREMOVEEVENT_TEXTREMOVED )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRING( obj->textRemoved () );
+      RQSTRING( obj->textRemoved() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -110,7 +110,7 @@ int changePosition() const
 */
 HB_FUNC_STATIC( QACCESSIBLETEXTREMOVEEVENT_CHANGEPOSITION )
 {
-  QAccessibleTextRemoveEvent * obj = (QAccessibleTextRemoveEvent *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAccessibleTextRemoveEvent * obj = (QAccessibleTextRemoveEvent *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -118,7 +118,7 @@ HB_FUNC_STATIC( QACCESSIBLETEXTREMOVEEVENT_CHANGEPOSITION )
     if( ISNUMPAR(0) )
     {
 #endif
-      RINT( obj->changePosition () );
+      RINT( obj->changePosition() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else

@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -92,7 +92,7 @@ CLASS QFont
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QFont
+PROCEDURE destroyObject() CLASS QFont
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -118,45 +118,40 @@ RETURN
 #include <QtCore/QVariant>
 
 /*
-QFont ()
+QFont()
 */
-void QFont_new1 ()
+void QFont_new1()
 {
-  QFont * o = new QFont ();
-  _qt5xhb_returnNewObject( o, true );
+  QFont * obj = new QFont();
+  Qt5xHb::returnNewObject( obj, true );
 }
 
 /*
-QFont ( const QString & family, int pointSize = -1, int weight = -1, bool italic = false )
+QFont( const QString & family, int pointSize = -1, int weight = -1, bool italic = false )
 */
-void QFont_new2 ()
+void QFont_new2()
 {
-  QFont * o = new QFont ( PQSTRING(1), OPINT(2,-1), OPINT(3,-1), OPBOOL(4,false) );
-  _qt5xhb_returnNewObject( o, true );
+  QFont * obj = new QFont( PQSTRING(1), OPINT(2,-1), OPINT(3,-1), OPBOOL(4,false) );
+  Qt5xHb::returnNewObject( obj, true );
 }
 
 /*
-QFont ( const QFont & font, QPaintDevice * pd )
+QFont( const QFont & font, QPaintDevice * pd )
 */
-void QFont_new3 ()
+void QFont_new3()
 {
-  QFont * o = new QFont ( *PQFONT(1), PQPAINTDEVICE(2) );
-  _qt5xhb_returnNewObject( o, true );
+  QFont * obj = new QFont( *PQFONT(1), PQPAINTDEVICE(2) );
+  Qt5xHb::returnNewObject( obj, true );
 }
 
 /*
-QFont ( const QFont & font )
+QFont( const QFont & font )
 */
-void QFont_new4 ()
+void QFont_new4()
 {
-  QFont * o = new QFont ( *PQFONT(1) );
-  _qt5xhb_returnNewObject( o, true );
+  QFont * obj = new QFont( *PQFONT(1) );
+  Qt5xHb::returnNewObject( obj, true );
 }
-
-//[1]QFont ()
-//[2]QFont ( const QString & family, int pointSize = -1, int weight = -1, bool italic = false )
-//[3]QFont ( const QFont & font, QPaintDevice * pd )
-//[4]QFont ( const QFont & font )
 
 HB_FUNC_STATIC( QFONT_NEW )
 {
@@ -164,11 +159,11 @@ HB_FUNC_STATIC( QFONT_NEW )
   {
     QFont_new1();
   }
-  else if( ISBETWEEN(1,4) && ISCHAR(1) && ISOPTNUM(2) && ISOPTNUM(3) && ISOPTLOG(4) )
+  else if( ISBETWEEN(1,4) && HB_ISCHAR(1) && ( HB_ISNUM(2)||HB_ISNIL(2)) && ( HB_ISNUM(3)||HB_ISNIL(3)) && ( HB_ISLOG(4)||HB_ISNIL(4)) )
   {
     QFont_new2();
   }
-  else if( ISNUMPAR(2) && ISQFONT(1) && ISOBJECT(2) ) // TODO: implementar ISQPAINTDEVICE
+  else if( ISNUMPAR(2) && ISQFONT(1) && HB_ISOBJECT(2) )
   {
     QFont_new3();
   }
@@ -184,7 +179,7 @@ HB_FUNC_STATIC( QFONT_NEW )
 
 HB_FUNC_STATIC( QFONT_DELETE )
 {
-  QFont * obj = (QFont *) _qt5xhb_itemGetPtrStackSelfItem();
+  QFont * obj = (QFont *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -200,11 +195,11 @@ HB_FUNC_STATIC( QFONT_DELETE )
 }
 
 /*
-bool bold () const
+bool bold() const
 */
 HB_FUNC_STATIC( QFONT_BOLD )
 {
-  QFont * obj = (QFont *) _qt5xhb_itemGetPtrStackSelfItem();
+  QFont * obj = (QFont *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -212,7 +207,7 @@ HB_FUNC_STATIC( QFONT_BOLD )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->bold () );
+      RBOOL( obj->bold() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -224,11 +219,11 @@ HB_FUNC_STATIC( QFONT_BOLD )
 }
 
 /*
-Capitalization capitalization () const
+QFont::Capitalization capitalization() const
 */
 HB_FUNC_STATIC( QFONT_CAPITALIZATION )
 {
-  QFont * obj = (QFont *) _qt5xhb_itemGetPtrStackSelfItem();
+  QFont * obj = (QFont *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -236,7 +231,7 @@ HB_FUNC_STATIC( QFONT_CAPITALIZATION )
     if( ISNUMPAR(0) )
     {
 #endif
-      RENUM( obj->capitalization () );
+      RENUM( obj->capitalization() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -248,11 +243,11 @@ HB_FUNC_STATIC( QFONT_CAPITALIZATION )
 }
 
 /*
-QString defaultFamily () const
+QString defaultFamily() const
 */
 HB_FUNC_STATIC( QFONT_DEFAULTFAMILY )
 {
-  QFont * obj = (QFont *) _qt5xhb_itemGetPtrStackSelfItem();
+  QFont * obj = (QFont *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -260,7 +255,7 @@ HB_FUNC_STATIC( QFONT_DEFAULTFAMILY )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRING( obj->defaultFamily () );
+      RQSTRING( obj->defaultFamily() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -272,11 +267,11 @@ HB_FUNC_STATIC( QFONT_DEFAULTFAMILY )
 }
 
 /*
-bool exactMatch () const
+bool exactMatch() const
 */
 HB_FUNC_STATIC( QFONT_EXACTMATCH )
 {
-  QFont * obj = (QFont *) _qt5xhb_itemGetPtrStackSelfItem();
+  QFont * obj = (QFont *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -284,7 +279,7 @@ HB_FUNC_STATIC( QFONT_EXACTMATCH )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->exactMatch () );
+      RBOOL( obj->exactMatch() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -296,11 +291,11 @@ HB_FUNC_STATIC( QFONT_EXACTMATCH )
 }
 
 /*
-QString family () const
+QString family() const
 */
 HB_FUNC_STATIC( QFONT_FAMILY )
 {
-  QFont * obj = (QFont *) _qt5xhb_itemGetPtrStackSelfItem();
+  QFont * obj = (QFont *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -308,7 +303,7 @@ HB_FUNC_STATIC( QFONT_FAMILY )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRING( obj->family () );
+      RQSTRING( obj->family() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -320,11 +315,11 @@ HB_FUNC_STATIC( QFONT_FAMILY )
 }
 
 /*
-bool fixedPitch () const
+bool fixedPitch() const
 */
 HB_FUNC_STATIC( QFONT_FIXEDPITCH )
 {
-  QFont * obj = (QFont *) _qt5xhb_itemGetPtrStackSelfItem();
+  QFont * obj = (QFont *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -332,7 +327,7 @@ HB_FUNC_STATIC( QFONT_FIXEDPITCH )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->fixedPitch () );
+      RBOOL( obj->fixedPitch() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -344,19 +339,19 @@ HB_FUNC_STATIC( QFONT_FIXEDPITCH )
 }
 
 /*
-bool fromString ( const QString & descrip )
+bool fromString( const QString & descrip )
 */
 HB_FUNC_STATIC( QFONT_FROMSTRING )
 {
-  QFont * obj = (QFont *) _qt5xhb_itemGetPtrStackSelfItem();
+  QFont * obj = (QFont *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISCHAR(1) )
+    if( ISNUMPAR(1) && HB_ISCHAR(1) )
     {
 #endif
-      RBOOL( obj->fromString ( PQSTRING(1) ) );
+      RBOOL( obj->fromString( PQSTRING(1) ) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -368,11 +363,11 @@ HB_FUNC_STATIC( QFONT_FROMSTRING )
 }
 
 /*
-bool isCopyOf ( const QFont & f ) const
+bool isCopyOf( const QFont & f ) const
 */
 HB_FUNC_STATIC( QFONT_ISCOPYOF )
 {
-  QFont * obj = (QFont *) _qt5xhb_itemGetPtrStackSelfItem();
+  QFont * obj = (QFont *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -380,7 +375,7 @@ HB_FUNC_STATIC( QFONT_ISCOPYOF )
     if( ISNUMPAR(1) && ISQFONT(1) )
     {
 #endif
-      RBOOL( obj->isCopyOf ( *PQFONT(1) ) );
+      RBOOL( obj->isCopyOf( *PQFONT(1) ) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -392,11 +387,11 @@ HB_FUNC_STATIC( QFONT_ISCOPYOF )
 }
 
 /*
-bool italic () const
+bool italic() const
 */
 HB_FUNC_STATIC( QFONT_ITALIC )
 {
-  QFont * obj = (QFont *) _qt5xhb_itemGetPtrStackSelfItem();
+  QFont * obj = (QFont *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -404,7 +399,7 @@ HB_FUNC_STATIC( QFONT_ITALIC )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->italic () );
+      RBOOL( obj->italic() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -416,11 +411,11 @@ HB_FUNC_STATIC( QFONT_ITALIC )
 }
 
 /*
-bool kerning () const
+bool kerning() const
 */
 HB_FUNC_STATIC( QFONT_KERNING )
 {
-  QFont * obj = (QFont *) _qt5xhb_itemGetPtrStackSelfItem();
+  QFont * obj = (QFont *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -428,7 +423,7 @@ HB_FUNC_STATIC( QFONT_KERNING )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->kerning () );
+      RBOOL( obj->kerning() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -440,11 +435,11 @@ HB_FUNC_STATIC( QFONT_KERNING )
 }
 
 /*
-QString key () const
+QString key() const
 */
 HB_FUNC_STATIC( QFONT_KEY )
 {
-  QFont * obj = (QFont *) _qt5xhb_itemGetPtrStackSelfItem();
+  QFont * obj = (QFont *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -452,7 +447,7 @@ HB_FUNC_STATIC( QFONT_KEY )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRING( obj->key () );
+      RQSTRING( obj->key() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -464,11 +459,11 @@ HB_FUNC_STATIC( QFONT_KEY )
 }
 
 /*
-QString lastResortFamily () const
+QString lastResortFamily() const
 */
 HB_FUNC_STATIC( QFONT_LASTRESORTFAMILY )
 {
-  QFont * obj = (QFont *) _qt5xhb_itemGetPtrStackSelfItem();
+  QFont * obj = (QFont *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -476,7 +471,7 @@ HB_FUNC_STATIC( QFONT_LASTRESORTFAMILY )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRING( obj->lastResortFamily () );
+      RQSTRING( obj->lastResortFamily() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -488,11 +483,11 @@ HB_FUNC_STATIC( QFONT_LASTRESORTFAMILY )
 }
 
 /*
-QString lastResortFont () const
+QString lastResortFont() const
 */
 HB_FUNC_STATIC( QFONT_LASTRESORTFONT )
 {
-  QFont * obj = (QFont *) _qt5xhb_itemGetPtrStackSelfItem();
+  QFont * obj = (QFont *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -500,7 +495,7 @@ HB_FUNC_STATIC( QFONT_LASTRESORTFONT )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRING( obj->lastResortFont () );
+      RQSTRING( obj->lastResortFont() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -512,11 +507,11 @@ HB_FUNC_STATIC( QFONT_LASTRESORTFONT )
 }
 
 /*
-qreal letterSpacing () const
+qreal letterSpacing() const
 */
 HB_FUNC_STATIC( QFONT_LETTERSPACING )
 {
-  QFont * obj = (QFont *) _qt5xhb_itemGetPtrStackSelfItem();
+  QFont * obj = (QFont *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -524,7 +519,7 @@ HB_FUNC_STATIC( QFONT_LETTERSPACING )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQREAL( obj->letterSpacing () );
+      RQREAL( obj->letterSpacing() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -536,11 +531,11 @@ HB_FUNC_STATIC( QFONT_LETTERSPACING )
 }
 
 /*
-SpacingType letterSpacingType () const
+QFont::SpacingType letterSpacingType() const
 */
 HB_FUNC_STATIC( QFONT_LETTERSPACINGTYPE )
 {
-  QFont * obj = (QFont *) _qt5xhb_itemGetPtrStackSelfItem();
+  QFont * obj = (QFont *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -548,7 +543,7 @@ HB_FUNC_STATIC( QFONT_LETTERSPACINGTYPE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RENUM( obj->letterSpacingType () );
+      RENUM( obj->letterSpacingType() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -560,11 +555,11 @@ HB_FUNC_STATIC( QFONT_LETTERSPACINGTYPE )
 }
 
 /*
-bool overline () const
+bool overline() const
 */
 HB_FUNC_STATIC( QFONT_OVERLINE )
 {
-  QFont * obj = (QFont *) _qt5xhb_itemGetPtrStackSelfItem();
+  QFont * obj = (QFont *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -572,7 +567,7 @@ HB_FUNC_STATIC( QFONT_OVERLINE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->overline () );
+      RBOOL( obj->overline() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -584,11 +579,11 @@ HB_FUNC_STATIC( QFONT_OVERLINE )
 }
 
 /*
-int pixelSize () const
+int pixelSize() const
 */
 HB_FUNC_STATIC( QFONT_PIXELSIZE )
 {
-  QFont * obj = (QFont *) _qt5xhb_itemGetPtrStackSelfItem();
+  QFont * obj = (QFont *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -596,7 +591,7 @@ HB_FUNC_STATIC( QFONT_PIXELSIZE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RINT( obj->pixelSize () );
+      RINT( obj->pixelSize() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -608,11 +603,11 @@ HB_FUNC_STATIC( QFONT_PIXELSIZE )
 }
 
 /*
-int pointSize () const
+int pointSize() const
 */
 HB_FUNC_STATIC( QFONT_POINTSIZE )
 {
-  QFont * obj = (QFont *) _qt5xhb_itemGetPtrStackSelfItem();
+  QFont * obj = (QFont *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -620,7 +615,7 @@ HB_FUNC_STATIC( QFONT_POINTSIZE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RINT( obj->pointSize () );
+      RINT( obj->pointSize() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -632,11 +627,11 @@ HB_FUNC_STATIC( QFONT_POINTSIZE )
 }
 
 /*
-qreal pointSizeF () const
+qreal pointSizeF() const
 */
 HB_FUNC_STATIC( QFONT_POINTSIZEF )
 {
-  QFont * obj = (QFont *) _qt5xhb_itemGetPtrStackSelfItem();
+  QFont * obj = (QFont *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -644,7 +639,7 @@ HB_FUNC_STATIC( QFONT_POINTSIZEF )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQREAL( obj->pointSizeF () );
+      RQREAL( obj->pointSizeF() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -656,11 +651,11 @@ HB_FUNC_STATIC( QFONT_POINTSIZEF )
 }
 
 /*
-bool rawMode () const
+bool rawMode() const
 */
 HB_FUNC_STATIC( QFONT_RAWMODE )
 {
-  QFont * obj = (QFont *) _qt5xhb_itemGetPtrStackSelfItem();
+  QFont * obj = (QFont *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -668,7 +663,7 @@ HB_FUNC_STATIC( QFONT_RAWMODE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->rawMode () );
+      RBOOL( obj->rawMode() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -680,11 +675,11 @@ HB_FUNC_STATIC( QFONT_RAWMODE )
 }
 
 /*
-QString rawName () const
+QString rawName() const
 */
 HB_FUNC_STATIC( QFONT_RAWNAME )
 {
-  QFont * obj = (QFont *) _qt5xhb_itemGetPtrStackSelfItem();
+  QFont * obj = (QFont *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -692,7 +687,7 @@ HB_FUNC_STATIC( QFONT_RAWNAME )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRING( obj->rawName () );
+      RQSTRING( obj->rawName() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -704,11 +699,11 @@ HB_FUNC_STATIC( QFONT_RAWNAME )
 }
 
 /*
-QFont resolve ( const QFont & other ) const
+QFont resolve( const QFont & other ) const
 */
 HB_FUNC_STATIC( QFONT_RESOLVE )
 {
-  QFont * obj = (QFont *) _qt5xhb_itemGetPtrStackSelfItem();
+  QFont * obj = (QFont *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -716,8 +711,8 @@ HB_FUNC_STATIC( QFONT_RESOLVE )
     if( ISNUMPAR(1) && ISQFONT(1) )
     {
 #endif
-      QFont * ptr = new QFont( obj->resolve ( *PQFONT(1) ) );
-      _qt5xhb_createReturnClass ( ptr, "QFONT", true );
+      QFont * ptr = new QFont( obj->resolve( *PQFONT(1) ) );
+      Qt5xHb::createReturnClass( ptr, "QFONT", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -729,19 +724,19 @@ HB_FUNC_STATIC( QFONT_RESOLVE )
 }
 
 /*
-void setBold ( bool enable )
+void setBold( bool enable )
 */
 HB_FUNC_STATIC( QFONT_SETBOLD )
 {
-  QFont * obj = (QFont *) _qt5xhb_itemGetPtrStackSelfItem();
+  QFont * obj = (QFont *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISLOG(1) )
+    if( ISNUMPAR(1) && HB_ISLOG(1) )
     {
 #endif
-      obj->setBold ( PBOOL(1) );
+      obj->setBold( PBOOL(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -755,19 +750,19 @@ HB_FUNC_STATIC( QFONT_SETBOLD )
 }
 
 /*
-void setCapitalization ( Capitalization caps )
+void setCapitalization( QFont::Capitalization caps )
 */
 HB_FUNC_STATIC( QFONT_SETCAPITALIZATION )
 {
-  QFont * obj = (QFont *) _qt5xhb_itemGetPtrStackSelfItem();
+  QFont * obj = (QFont *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setCapitalization ( (QFont::Capitalization) hb_parni(1) );
+      obj->setCapitalization( (QFont::Capitalization) hb_parni(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -781,19 +776,19 @@ HB_FUNC_STATIC( QFONT_SETCAPITALIZATION )
 }
 
 /*
-void setFamily ( const QString & family )
+void setFamily( const QString & family )
 */
 HB_FUNC_STATIC( QFONT_SETFAMILY )
 {
-  QFont * obj = (QFont *) _qt5xhb_itemGetPtrStackSelfItem();
+  QFont * obj = (QFont *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISCHAR(1) )
+    if( ISNUMPAR(1) && HB_ISCHAR(1) )
     {
 #endif
-      obj->setFamily ( PQSTRING(1) );
+      obj->setFamily( PQSTRING(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -807,19 +802,19 @@ HB_FUNC_STATIC( QFONT_SETFAMILY )
 }
 
 /*
-void setFixedPitch ( bool enable )
+void setFixedPitch( bool enable )
 */
 HB_FUNC_STATIC( QFONT_SETFIXEDPITCH )
 {
-  QFont * obj = (QFont *) _qt5xhb_itemGetPtrStackSelfItem();
+  QFont * obj = (QFont *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISLOG(1) )
+    if( ISNUMPAR(1) && HB_ISLOG(1) )
     {
 #endif
-      obj->setFixedPitch ( PBOOL(1) );
+      obj->setFixedPitch( PBOOL(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -833,19 +828,19 @@ HB_FUNC_STATIC( QFONT_SETFIXEDPITCH )
 }
 
 /*
-void setItalic ( bool enable )
+void setItalic( bool enable )
 */
 HB_FUNC_STATIC( QFONT_SETITALIC )
 {
-  QFont * obj = (QFont *) _qt5xhb_itemGetPtrStackSelfItem();
+  QFont * obj = (QFont *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISLOG(1) )
+    if( ISNUMPAR(1) && HB_ISLOG(1) )
     {
 #endif
-      obj->setItalic ( PBOOL(1) );
+      obj->setItalic( PBOOL(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -859,19 +854,19 @@ HB_FUNC_STATIC( QFONT_SETITALIC )
 }
 
 /*
-void setKerning ( bool enable )
+void setKerning( bool enable )
 */
 HB_FUNC_STATIC( QFONT_SETKERNING )
 {
-  QFont * obj = (QFont *) _qt5xhb_itemGetPtrStackSelfItem();
+  QFont * obj = (QFont *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISLOG(1) )
+    if( ISNUMPAR(1) && HB_ISLOG(1) )
     {
 #endif
-      obj->setKerning ( PBOOL(1) );
+      obj->setKerning( PBOOL(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -885,19 +880,19 @@ HB_FUNC_STATIC( QFONT_SETKERNING )
 }
 
 /*
-void setLetterSpacing ( SpacingType type, qreal spacing )
+void setLetterSpacing( QFont::SpacingType type, qreal spacing )
 */
 HB_FUNC_STATIC( QFONT_SETLETTERSPACING )
 {
-  QFont * obj = (QFont *) _qt5xhb_itemGetPtrStackSelfItem();
+  QFont * obj = (QFont *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(2) && ISNUM(1) && ISNUM(2) )
+    if( ISNUMPAR(2) && HB_ISNUM(1) && HB_ISNUM(2) )
     {
 #endif
-      obj->setLetterSpacing ( (QFont::SpacingType) hb_parni(1), PQREAL(2) );
+      obj->setLetterSpacing( (QFont::SpacingType) hb_parni(1), PQREAL(2) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -911,19 +906,19 @@ HB_FUNC_STATIC( QFONT_SETLETTERSPACING )
 }
 
 /*
-void setOverline ( bool enable )
+void setOverline( bool enable )
 */
 HB_FUNC_STATIC( QFONT_SETOVERLINE )
 {
-  QFont * obj = (QFont *) _qt5xhb_itemGetPtrStackSelfItem();
+  QFont * obj = (QFont *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISLOG(1) )
+    if( ISNUMPAR(1) && HB_ISLOG(1) )
     {
 #endif
-      obj->setOverline ( PBOOL(1) );
+      obj->setOverline( PBOOL(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -937,19 +932,19 @@ HB_FUNC_STATIC( QFONT_SETOVERLINE )
 }
 
 /*
-void setPixelSize ( int pixelSize )
+void setPixelSize( int pixelSize )
 */
 HB_FUNC_STATIC( QFONT_SETPIXELSIZE )
 {
-  QFont * obj = (QFont *) _qt5xhb_itemGetPtrStackSelfItem();
+  QFont * obj = (QFont *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setPixelSize ( PINT(1) );
+      obj->setPixelSize( PINT(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -963,19 +958,19 @@ HB_FUNC_STATIC( QFONT_SETPIXELSIZE )
 }
 
 /*
-void setPointSize ( int pointSize )
+void setPointSize( int pointSize )
 */
 HB_FUNC_STATIC( QFONT_SETPOINTSIZE )
 {
-  QFont * obj = (QFont *) _qt5xhb_itemGetPtrStackSelfItem();
+  QFont * obj = (QFont *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setPointSize ( PINT(1) );
+      obj->setPointSize( PINT(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -989,19 +984,19 @@ HB_FUNC_STATIC( QFONT_SETPOINTSIZE )
 }
 
 /*
-void setPointSizeF ( qreal pointSize )
+void setPointSizeF( qreal pointSize )
 */
 HB_FUNC_STATIC( QFONT_SETPOINTSIZEF )
 {
-  QFont * obj = (QFont *) _qt5xhb_itemGetPtrStackSelfItem();
+  QFont * obj = (QFont *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setPointSizeF ( PQREAL(1) );
+      obj->setPointSizeF( PQREAL(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -1015,19 +1010,19 @@ HB_FUNC_STATIC( QFONT_SETPOINTSIZEF )
 }
 
 /*
-void setRawMode ( bool enable )
+void setRawMode( bool enable )
 */
 HB_FUNC_STATIC( QFONT_SETRAWMODE )
 {
-  QFont * obj = (QFont *) _qt5xhb_itemGetPtrStackSelfItem();
+  QFont * obj = (QFont *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISLOG(1) )
+    if( ISNUMPAR(1) && HB_ISLOG(1) )
     {
 #endif
-      obj->setRawMode ( PBOOL(1) );
+      obj->setRawMode( PBOOL(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -1041,19 +1036,19 @@ HB_FUNC_STATIC( QFONT_SETRAWMODE )
 }
 
 /*
-void setRawName ( const QString & name )
+void setRawName( const QString & name )
 */
 HB_FUNC_STATIC( QFONT_SETRAWNAME )
 {
-  QFont * obj = (QFont *) _qt5xhb_itemGetPtrStackSelfItem();
+  QFont * obj = (QFont *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISCHAR(1) )
+    if( ISNUMPAR(1) && HB_ISCHAR(1) )
     {
 #endif
-      obj->setRawName ( PQSTRING(1) );
+      obj->setRawName( PQSTRING(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -1067,19 +1062,19 @@ HB_FUNC_STATIC( QFONT_SETRAWNAME )
 }
 
 /*
-void setStretch ( int factor )
+void setStretch( int factor )
 */
 HB_FUNC_STATIC( QFONT_SETSTRETCH )
 {
-  QFont * obj = (QFont *) _qt5xhb_itemGetPtrStackSelfItem();
+  QFont * obj = (QFont *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setStretch ( PINT(1) );
+      obj->setStretch( PINT(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -1093,19 +1088,19 @@ HB_FUNC_STATIC( QFONT_SETSTRETCH )
 }
 
 /*
-void setStrikeOut ( bool enable )
+void setStrikeOut( bool enable )
 */
 HB_FUNC_STATIC( QFONT_SETSTRIKEOUT )
 {
-  QFont * obj = (QFont *) _qt5xhb_itemGetPtrStackSelfItem();
+  QFont * obj = (QFont *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISLOG(1) )
+    if( ISNUMPAR(1) && HB_ISLOG(1) )
     {
 #endif
-      obj->setStrikeOut ( PBOOL(1) );
+      obj->setStrikeOut( PBOOL(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -1119,19 +1114,19 @@ HB_FUNC_STATIC( QFONT_SETSTRIKEOUT )
 }
 
 /*
-void setStyle ( Style style )
+void setStyle( QFont::Style style )
 */
 HB_FUNC_STATIC( QFONT_SETSTYLE )
 {
-  QFont * obj = (QFont *) _qt5xhb_itemGetPtrStackSelfItem();
+  QFont * obj = (QFont *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setStyle ( (QFont::Style) hb_parni(1) );
+      obj->setStyle( (QFont::Style) hb_parni(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -1145,19 +1140,19 @@ HB_FUNC_STATIC( QFONT_SETSTYLE )
 }
 
 /*
-void setStyleHint ( StyleHint hint, StyleStrategy strategy = PreferDefault )
+void setStyleHint( QFont::StyleHint hint, QFont::StyleStrategy strategy = QFont::PreferDefault )
 */
 HB_FUNC_STATIC( QFONT_SETSTYLEHINT )
 {
-  QFont * obj = (QFont *) _qt5xhb_itemGetPtrStackSelfItem();
+  QFont * obj = (QFont *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISBETWEEN(1,2) && ISNUM(1) && ISOPTNUM(2) )
+    if( ISBETWEEN(1,2) && HB_ISNUM(1) && (HB_ISNUM(2)||HB_ISNIL(2)) )
     {
 #endif
-      obj->setStyleHint ( (QFont::StyleHint) hb_parni(1), ISNIL(2)? (QFont::StyleStrategy) QFont::PreferDefault : (QFont::StyleStrategy) hb_parni(2) );
+      obj->setStyleHint( (QFont::StyleHint) hb_parni(1), HB_ISNIL(2)? (QFont::StyleStrategy) QFont::PreferDefault : (QFont::StyleStrategy) hb_parni(2) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -1171,19 +1166,19 @@ HB_FUNC_STATIC( QFONT_SETSTYLEHINT )
 }
 
 /*
-void setStyleStrategy ( StyleStrategy s )
+void setStyleStrategy( QFont::StyleStrategy s )
 */
 HB_FUNC_STATIC( QFONT_SETSTYLESTRATEGY )
 {
-  QFont * obj = (QFont *) _qt5xhb_itemGetPtrStackSelfItem();
+  QFont * obj = (QFont *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setStyleStrategy ( (QFont::StyleStrategy) hb_parni(1) );
+      obj->setStyleStrategy( (QFont::StyleStrategy) hb_parni(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -1197,19 +1192,19 @@ HB_FUNC_STATIC( QFONT_SETSTYLESTRATEGY )
 }
 
 /*
-void setUnderline ( bool enable )
+void setUnderline( bool enable )
 */
 HB_FUNC_STATIC( QFONT_SETUNDERLINE )
 {
-  QFont * obj = (QFont *) _qt5xhb_itemGetPtrStackSelfItem();
+  QFont * obj = (QFont *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISLOG(1) )
+    if( ISNUMPAR(1) && HB_ISLOG(1) )
     {
 #endif
-      obj->setUnderline ( PBOOL(1) );
+      obj->setUnderline( PBOOL(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -1223,19 +1218,19 @@ HB_FUNC_STATIC( QFONT_SETUNDERLINE )
 }
 
 /*
-void setWeight ( int weight )
+void setWeight( int weight )
 */
 HB_FUNC_STATIC( QFONT_SETWEIGHT )
 {
-  QFont * obj = (QFont *) _qt5xhb_itemGetPtrStackSelfItem();
+  QFont * obj = (QFont *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setWeight ( PINT(1) );
+      obj->setWeight( PINT(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -1249,19 +1244,19 @@ HB_FUNC_STATIC( QFONT_SETWEIGHT )
 }
 
 /*
-void setWordSpacing ( qreal spacing )
+void setWordSpacing( qreal spacing )
 */
 HB_FUNC_STATIC( QFONT_SETWORDSPACING )
 {
-  QFont * obj = (QFont *) _qt5xhb_itemGetPtrStackSelfItem();
+  QFont * obj = (QFont *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setWordSpacing ( PQREAL(1) );
+      obj->setWordSpacing( PQREAL(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -1275,11 +1270,11 @@ HB_FUNC_STATIC( QFONT_SETWORDSPACING )
 }
 
 /*
-int stretch () const
+int stretch() const
 */
 HB_FUNC_STATIC( QFONT_STRETCH )
 {
-  QFont * obj = (QFont *) _qt5xhb_itemGetPtrStackSelfItem();
+  QFont * obj = (QFont *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -1287,7 +1282,7 @@ HB_FUNC_STATIC( QFONT_STRETCH )
     if( ISNUMPAR(0) )
     {
 #endif
-      RINT( obj->stretch () );
+      RINT( obj->stretch() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -1299,11 +1294,11 @@ HB_FUNC_STATIC( QFONT_STRETCH )
 }
 
 /*
-bool strikeOut () const
+bool strikeOut() const
 */
 HB_FUNC_STATIC( QFONT_STRIKEOUT )
 {
-  QFont * obj = (QFont *) _qt5xhb_itemGetPtrStackSelfItem();
+  QFont * obj = (QFont *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -1311,7 +1306,7 @@ HB_FUNC_STATIC( QFONT_STRIKEOUT )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->strikeOut () );
+      RBOOL( obj->strikeOut() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -1323,11 +1318,11 @@ HB_FUNC_STATIC( QFONT_STRIKEOUT )
 }
 
 /*
-Style style () const
+QFont::Style style() const
 */
 HB_FUNC_STATIC( QFONT_STYLE )
 {
-  QFont * obj = (QFont *) _qt5xhb_itemGetPtrStackSelfItem();
+  QFont * obj = (QFont *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -1335,7 +1330,7 @@ HB_FUNC_STATIC( QFONT_STYLE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RENUM( obj->style () );
+      RENUM( obj->style() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -1347,11 +1342,11 @@ HB_FUNC_STATIC( QFONT_STYLE )
 }
 
 /*
-StyleHint styleHint () const
+QFont::StyleHint styleHint() const
 */
 HB_FUNC_STATIC( QFONT_STYLEHINT )
 {
-  QFont * obj = (QFont *) _qt5xhb_itemGetPtrStackSelfItem();
+  QFont * obj = (QFont *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -1359,7 +1354,7 @@ HB_FUNC_STATIC( QFONT_STYLEHINT )
     if( ISNUMPAR(0) )
     {
 #endif
-      RENUM( obj->styleHint () );
+      RENUM( obj->styleHint() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -1371,11 +1366,11 @@ HB_FUNC_STATIC( QFONT_STYLEHINT )
 }
 
 /*
-StyleStrategy styleStrategy () const
+QFont::StyleStrategy styleStrategy() const
 */
 HB_FUNC_STATIC( QFONT_STYLESTRATEGY )
 {
-  QFont * obj = (QFont *) _qt5xhb_itemGetPtrStackSelfItem();
+  QFont * obj = (QFont *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -1383,7 +1378,7 @@ HB_FUNC_STATIC( QFONT_STYLESTRATEGY )
     if( ISNUMPAR(0) )
     {
 #endif
-      RENUM( obj->styleStrategy () );
+      RENUM( obj->styleStrategy() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -1395,11 +1390,11 @@ HB_FUNC_STATIC( QFONT_STYLESTRATEGY )
 }
 
 /*
-QString toString () const
+QString toString() const
 */
 HB_FUNC_STATIC( QFONT_TOSTRING )
 {
-  QFont * obj = (QFont *) _qt5xhb_itemGetPtrStackSelfItem();
+  QFont * obj = (QFont *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -1407,7 +1402,7 @@ HB_FUNC_STATIC( QFONT_TOSTRING )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRING( obj->toString () );
+      RQSTRING( obj->toString() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -1419,11 +1414,11 @@ HB_FUNC_STATIC( QFONT_TOSTRING )
 }
 
 /*
-bool underline () const
+bool underline() const
 */
 HB_FUNC_STATIC( QFONT_UNDERLINE )
 {
-  QFont * obj = (QFont *) _qt5xhb_itemGetPtrStackSelfItem();
+  QFont * obj = (QFont *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -1431,7 +1426,7 @@ HB_FUNC_STATIC( QFONT_UNDERLINE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->underline () );
+      RBOOL( obj->underline() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -1443,11 +1438,11 @@ HB_FUNC_STATIC( QFONT_UNDERLINE )
 }
 
 /*
-int weight () const
+int weight() const
 */
 HB_FUNC_STATIC( QFONT_WEIGHT )
 {
-  QFont * obj = (QFont *) _qt5xhb_itemGetPtrStackSelfItem();
+  QFont * obj = (QFont *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -1455,7 +1450,7 @@ HB_FUNC_STATIC( QFONT_WEIGHT )
     if( ISNUMPAR(0) )
     {
 #endif
-      RINT( obj->weight () );
+      RINT( obj->weight() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -1467,11 +1462,11 @@ HB_FUNC_STATIC( QFONT_WEIGHT )
 }
 
 /*
-qreal wordSpacing () const
+qreal wordSpacing() const
 */
 HB_FUNC_STATIC( QFONT_WORDSPACING )
 {
-  QFont * obj = (QFont *) _qt5xhb_itemGetPtrStackSelfItem();
+  QFont * obj = (QFont *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -1479,7 +1474,7 @@ HB_FUNC_STATIC( QFONT_WORDSPACING )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQREAL( obj->wordSpacing () );
+      RQREAL( obj->wordSpacing() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -1491,15 +1486,15 @@ HB_FUNC_STATIC( QFONT_WORDSPACING )
 }
 
 /*
-static void insertSubstitution ( const QString & familyName, const QString & substituteName )
+static void insertSubstitution( const QString & familyName, const QString & substituteName )
 */
 HB_FUNC_STATIC( QFONT_INSERTSUBSTITUTION )
 {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(2) && ISCHAR(1) && ISCHAR(2) )
+  if( ISNUMPAR(2) && HB_ISCHAR(1) && HB_ISCHAR(2) )
   {
 #endif
-      QFont::insertSubstitution ( PQSTRING(1), PQSTRING(2) );
+    QFont::insertSubstitution( PQSTRING(1), PQSTRING(2) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
   }
   else
@@ -1512,15 +1507,15 @@ HB_FUNC_STATIC( QFONT_INSERTSUBSTITUTION )
 }
 
 /*
-static void insertSubstitutions ( const QString & familyName, const QStringList & substituteNames )
+static void insertSubstitutions( const QString & familyName, const QStringList & substituteNames )
 */
 HB_FUNC_STATIC( QFONT_INSERTSUBSTITUTIONS )
 {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(2) && ISCHAR(1) && ISARRAY(2) )
+  if( ISNUMPAR(2) && HB_ISCHAR(1) && HB_ISARRAY(2) )
   {
 #endif
-      QFont::insertSubstitutions ( PQSTRING(1), PQSTRINGLIST(2) );
+    QFont::insertSubstitutions( PQSTRING(1), PQSTRINGLIST(2) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
   }
   else
@@ -1533,15 +1528,15 @@ HB_FUNC_STATIC( QFONT_INSERTSUBSTITUTIONS )
 }
 
 /*
-static QString substitute ( const QString & familyName )
+static QString substitute( const QString & familyName )
 */
 HB_FUNC_STATIC( QFONT_SUBSTITUTE )
 {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISCHAR(1) )
+  if( ISNUMPAR(1) && HB_ISCHAR(1) )
   {
 #endif
-      RQSTRING( QFont::substitute ( PQSTRING(1) ) );
+    RQSTRING( QFont::substitute( PQSTRING(1) ) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
   }
   else
@@ -1552,15 +1547,15 @@ HB_FUNC_STATIC( QFONT_SUBSTITUTE )
 }
 
 /*
-static QStringList substitutes ( const QString & familyName )
+static QStringList substitutes( const QString & familyName )
 */
 HB_FUNC_STATIC( QFONT_SUBSTITUTES )
 {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISCHAR(1) )
+  if( ISNUMPAR(1) && HB_ISCHAR(1) )
   {
 #endif
-      RQSTRINGLIST( QFont::substitutes ( PQSTRING(1) ) );
+    RQSTRINGLIST( QFont::substitutes( PQSTRING(1) ) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
   }
   else
@@ -1571,15 +1566,15 @@ HB_FUNC_STATIC( QFONT_SUBSTITUTES )
 }
 
 /*
-static QStringList substitutions ()
+static QStringList substitutions()
 */
 HB_FUNC_STATIC( QFONT_SUBSTITUTIONS )
 {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(0) )
+  if( ISNUMPAR(0) )
   {
 #endif
-      RQSTRINGLIST( QFont::substitutions () );
+    RQSTRINGLIST( QFont::substitutions() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
   }
   else
@@ -1590,33 +1585,33 @@ HB_FUNC_STATIC( QFONT_SUBSTITUTIONS )
 }
 
 /*
-QVariant toVariant ()
+QVariant toVariant()
 */
-void QFont_toVariant1 ()
+void QFont_toVariant1()
 {
-  QFont * obj = (QFont *) _qt5xhb_itemGetPtrStackSelfItem();
+  QFont * obj = (QFont *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
     QVariant * variant = new QVariant();
     variant->setValue<QFont>( *obj );
-    _qt5xhb_createReturnClass ( variant, "QVARIANT", true );
+    Qt5xHb::createReturnClass( variant, "QVARIANT", true );
   }
 }
 
 /*
-static QVariant toVariant ( const QFont & )
+static QVariant toVariant( const QFont & )
 */
-void QFont_toVariant2 ()
+void QFont_toVariant2()
 {
   QFont * font = (QFont *) hb_itemGetPtr( hb_objSendMsg( hb_param( 1, HB_IT_OBJECT ), "POINTER", 0 ) );
   QVariant * variant = new QVariant();
   variant->setValue<QFont>( *font );
-  _qt5xhb_createReturnClass ( variant, "QVARIANT", true );
+  Qt5xHb::createReturnClass( variant, "QVARIANT", true );
 }
 
-//[1]QVariant toVariant ()
-//[2]static QVariant toVariant ( const QFont & )
+//[1]QVariant toVariant()
+//[2]static QVariant toVariant( const QFont & )
 
 HB_FUNC_STATIC( QFONT_TOVARIANT )
 {
@@ -1635,7 +1630,7 @@ HB_FUNC_STATIC( QFONT_TOVARIANT )
 }
 
 /*
-static QFont fromVariant ( const QVariant & )
+static QFont fromVariant( const QVariant & )
 */
 HB_FUNC_STATIC( QFONT_FROMVARIANT )
 {
@@ -1643,7 +1638,7 @@ HB_FUNC_STATIC( QFONT_FROMVARIANT )
   {
     QVariant * variant = (QVariant *) hb_itemGetPtr( hb_objSendMsg( hb_param( 1, HB_IT_OBJECT ), "POINTER", 0 ) );
     QFont * font = new QFont( variant->value<QFont>() );
-    _qt5xhb_createReturnClass ( font, "QFONT", true );
+    Qt5xHb::createReturnClass( font, "QFONT", true );
   }
   else
   {
@@ -1655,7 +1650,7 @@ HB_FUNC_STATIC( QFONT_NEWFROM )
 {
   PHB_ITEM self = hb_stackSelfItem();
 
-  if( hb_pcount() == 1 && ISOBJECT(1) )
+  if( hb_pcount() == 1 && HB_ISOBJECT(1) )
   {
     PHB_ITEM ptr = hb_itemPutPtr( NULL, (void *) hb_itemGetPtr( hb_objSendMsg( hb_param(1, HB_IT_OBJECT ), "POINTER", 0 ) ) );
     hb_objSendMsg( self, "_pointer", 1, ptr );
@@ -1664,7 +1659,7 @@ HB_FUNC_STATIC( QFONT_NEWFROM )
     hb_objSendMsg( self, "_self_destruction", 1, des );
     hb_itemRelease( des );
   }
-  else if( hb_pcount() == 1 && ISPOINTER(1) )
+  else if( hb_pcount() == 1 && HB_ISPOINTER(1) )
   {
     PHB_ITEM ptr = hb_itemPutPtr( NULL, (void *) hb_itemGetPtr( hb_param(1, HB_IT_POINTER ) ) );
     hb_objSendMsg( self, "_pointer", 1, ptr );
@@ -1700,7 +1695,7 @@ HB_FUNC_STATIC( QFONT_SETSELFDESTRUCTION )
 {
   PHB_ITEM self = hb_stackSelfItem();
 
-  if( hb_pcount() == 1 && ISLOG(1) )
+  if( hb_pcount() == 1 && HB_ISLOG(1) )
   {
     PHB_ITEM des = hb_itemPutL( NULL, hb_parl(1) );
     hb_objSendMsg( self, "_self_destruction", 1, des );

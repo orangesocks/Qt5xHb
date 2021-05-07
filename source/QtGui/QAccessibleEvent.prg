@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -40,7 +40,7 @@ CLASS QAccessibleEvent
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QAccessibleEvent
+PROCEDURE destroyObject() CLASS QAccessibleEvent
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -63,14 +63,14 @@ RETURN
 #endif
 
 /*
-QAccessibleEvent(QObject *obj, QAccessible::Event typ)
+QAccessibleEvent( QObject * obj, QAccessible::Event typ )
 */
 HB_FUNC_STATIC( QACCESSIBLEEVENT_NEW )
 {
-  if( ISNUMPAR(2) && ISQOBJECT(1) && ISNUM(2) )
+  if( ISNUMPAR(2) && ISQOBJECT(1) && HB_ISNUM(2) )
   {
-    QAccessibleEvent * o = new QAccessibleEvent ( PQOBJECT(1), (QAccessible::Event) hb_parni(2) );
-    _qt5xhb_returnNewObject( o, true );
+    QAccessibleEvent * obj = new QAccessibleEvent( PQOBJECT(1), (QAccessible::Event) hb_parni(2) );
+    Qt5xHb::returnNewObject( obj, true );
   }
   else
   {
@@ -80,7 +80,7 @@ HB_FUNC_STATIC( QACCESSIBLEEVENT_NEW )
 
 HB_FUNC_STATIC( QACCESSIBLEEVENT_DELETE )
 {
-  QAccessibleEvent * obj = (QAccessibleEvent *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAccessibleEvent * obj = (QAccessibleEvent *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -100,7 +100,7 @@ QAccessible::Event type() const
 */
 HB_FUNC_STATIC( QACCESSIBLEEVENT_TYPE )
 {
-  QAccessibleEvent * obj = (QAccessibleEvent *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAccessibleEvent * obj = (QAccessibleEvent *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -108,7 +108,7 @@ HB_FUNC_STATIC( QACCESSIBLEEVENT_TYPE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RENUM( obj->type () );
+      RENUM( obj->type() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -120,11 +120,11 @@ HB_FUNC_STATIC( QACCESSIBLEEVENT_TYPE )
 }
 
 /*
-QObject *object() const
+QObject * object() const
 */
 HB_FUNC_STATIC( QACCESSIBLEEVENT_OBJECT )
 {
-  QAccessibleEvent * obj = (QAccessibleEvent *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAccessibleEvent * obj = (QAccessibleEvent *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -132,8 +132,8 @@ HB_FUNC_STATIC( QACCESSIBLEEVENT_OBJECT )
     if( ISNUMPAR(0) )
     {
 #endif
-      QObject * ptr = obj->object ();
-      _qt5xhb_createReturnQObjectClass ( ptr, "QOBJECT" );
+      QObject * ptr = obj->object();
+      Qt5xHb::createReturnQObjectClass( ptr, "QOBJECT" );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -145,19 +145,19 @@ HB_FUNC_STATIC( QACCESSIBLEEVENT_OBJECT )
 }
 
 /*
-void setChild(int chld)
+void setChild( int chld )
 */
 HB_FUNC_STATIC( QACCESSIBLEEVENT_SETCHILD )
 {
-  QAccessibleEvent * obj = (QAccessibleEvent *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAccessibleEvent * obj = (QAccessibleEvent *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setChild ( PINT(1) );
+      obj->setChild( PINT(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -175,7 +175,7 @@ int child() const
 */
 HB_FUNC_STATIC( QACCESSIBLEEVENT_CHILD )
 {
-  QAccessibleEvent * obj = (QAccessibleEvent *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAccessibleEvent * obj = (QAccessibleEvent *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -183,7 +183,7 @@ HB_FUNC_STATIC( QACCESSIBLEEVENT_CHILD )
     if( ISNUMPAR(0) )
     {
 #endif
-      RINT( obj->child () );
+      RINT( obj->child() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -195,11 +195,11 @@ HB_FUNC_STATIC( QACCESSIBLEEVENT_CHILD )
 }
 
 /*
-virtual QAccessibleInterface *accessibleInterface() const
+virtual QAccessibleInterface * accessibleInterface() const
 */
 HB_FUNC_STATIC( QACCESSIBLEEVENT_ACCESSIBLEINTERFACE )
 {
-  QAccessibleEvent * obj = (QAccessibleEvent *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAccessibleEvent * obj = (QAccessibleEvent *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -207,8 +207,8 @@ HB_FUNC_STATIC( QACCESSIBLEEVENT_ACCESSIBLEINTERFACE )
     if( ISNUMPAR(0) )
     {
 #endif
-      QAccessibleInterface * ptr = obj->accessibleInterface ();
-      _qt5xhb_createReturnClass ( ptr, "QACCESSIBLEINTERFACE", false );
+      QAccessibleInterface * ptr = obj->accessibleInterface();
+      Qt5xHb::createReturnClass( ptr, "QACCESSIBLEINTERFACE", false );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -223,7 +223,7 @@ HB_FUNC_STATIC( QACCESSIBLEEVENT_NEWFROM )
 {
   PHB_ITEM self = hb_stackSelfItem();
 
-  if( hb_pcount() == 1 && ISOBJECT(1) )
+  if( hb_pcount() == 1 && HB_ISOBJECT(1) )
   {
     PHB_ITEM ptr = hb_itemPutPtr( NULL, (void *) hb_itemGetPtr( hb_objSendMsg( hb_param(1, HB_IT_OBJECT ), "POINTER", 0 ) ) );
     hb_objSendMsg( self, "_pointer", 1, ptr );
@@ -232,7 +232,7 @@ HB_FUNC_STATIC( QACCESSIBLEEVENT_NEWFROM )
     hb_objSendMsg( self, "_self_destruction", 1, des );
     hb_itemRelease( des );
   }
-  else if( hb_pcount() == 1 && ISPOINTER(1) )
+  else if( hb_pcount() == 1 && HB_ISPOINTER(1) )
   {
     PHB_ITEM ptr = hb_itemPutPtr( NULL, (void *) hb_itemGetPtr( hb_param(1, HB_IT_POINTER ) ) );
     hb_objSendMsg( self, "_pointer", 1, ptr );
@@ -268,7 +268,7 @@ HB_FUNC_STATIC( QACCESSIBLEEVENT_SETSELFDESTRUCTION )
 {
   PHB_ITEM self = hb_stackSelfItem();
 
-  if( hb_pcount() == 1 && ISLOG(1) )
+  if( hb_pcount() == 1 && HB_ISLOG(1) )
   {
     PHB_ITEM des = hb_itemPutL( NULL, hb_parl(1) );
     hb_objSendMsg( self, "_self_destruction", 1, des );

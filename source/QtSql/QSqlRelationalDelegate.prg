@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -27,7 +27,7 @@ CLASS QSqlRelationalDelegate INHERIT QItemDelegate
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QSqlRelationalDelegate
+PROCEDURE destroyObject() CLASS QSqlRelationalDelegate
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -44,20 +44,22 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #include <QtSql/QSqlRelationalDelegate>
 #endif
 
 /*
-explicit QSqlRelationalDelegate(QObject *aParent = 0)
+QSqlRelationalDelegate( QObject * aParent = 0 )
 */
 HB_FUNC_STATIC( QSQLRELATIONALDELEGATE_NEW )
 {
-  if( ISBETWEEN(0,1) && (ISQOBJECT(1)||ISNIL(1)) )
+  if( ISBETWEEN(0,1) && (ISQOBJECT(1)||HB_ISNIL(1)) )
   {
-    QSqlRelationalDelegate * o = new QSqlRelationalDelegate ( OPQOBJECT(1,0) );
-    _qt5xhb_returnNewObject( o, false );
+    QSqlRelationalDelegate * obj = new QSqlRelationalDelegate( OPQOBJECT(1,0) );
+    Qt5xHb::returnNewObject( obj, false );
   }
   else
   {
@@ -67,10 +69,12 @@ HB_FUNC_STATIC( QSQLRELATIONALDELEGATE_NEW )
 
 HB_FUNC_STATIC( QSQLRELATIONALDELEGATE_DELETE )
 {
-  QSqlRelationalDelegate * obj = (QSqlRelationalDelegate *) _qt5xhb_itemGetPtrStackSelfItem();
+  QSqlRelationalDelegate * obj = (QSqlRelationalDelegate *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -83,11 +87,11 @@ HB_FUNC_STATIC( QSQLRELATIONALDELEGATE_DELETE )
 }
 
 /*
-QWidget *createEditor(QWidget *aParent, const QStyleOptionViewItem &option, const QModelIndex &index) const
+QWidget * createEditor( QWidget * aParent, const QStyleOptionViewItem & option, const QModelIndex & index ) const
 */
 HB_FUNC_STATIC( QSQLRELATIONALDELEGATE_CREATEEDITOR )
 {
-  QSqlRelationalDelegate * obj = (QSqlRelationalDelegate *) _qt5xhb_itemGetPtrStackSelfItem();
+  QSqlRelationalDelegate * obj = (QSqlRelationalDelegate *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -95,8 +99,8 @@ HB_FUNC_STATIC( QSQLRELATIONALDELEGATE_CREATEEDITOR )
     if( ISNUMPAR(3) && ISQWIDGET(1) && ISQSTYLEOPTIONVIEWITEM(2) && ISQMODELINDEX(3) )
     {
 #endif
-      QWidget * ptr = obj->createEditor ( PQWIDGET(1), *PQSTYLEOPTIONVIEWITEM(2), *PQMODELINDEX(3) );
-      _qt5xhb_createReturnQWidgetClass ( ptr, "QWIDGET" );
+      QWidget * ptr = obj->createEditor( PQWIDGET(1), *PQSTYLEOPTIONVIEWITEM(2), *PQMODELINDEX(3) );
+      Qt5xHb::createReturnQWidgetClass( ptr, "QWIDGET" );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -108,11 +112,11 @@ HB_FUNC_STATIC( QSQLRELATIONALDELEGATE_CREATEEDITOR )
 }
 
 /*
-void setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) const
+void setModelData( QWidget * editor, QAbstractItemModel * model, const QModelIndex & index ) const
 */
 HB_FUNC_STATIC( QSQLRELATIONALDELEGATE_SETMODELDATA )
 {
-  QSqlRelationalDelegate * obj = (QSqlRelationalDelegate *) _qt5xhb_itemGetPtrStackSelfItem();
+  QSqlRelationalDelegate * obj = (QSqlRelationalDelegate *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -120,7 +124,7 @@ HB_FUNC_STATIC( QSQLRELATIONALDELEGATE_SETMODELDATA )
     if( ISNUMPAR(3) && ISQWIDGET(1) && ISQABSTRACTITEMMODEL(2) && ISQMODELINDEX(3) )
     {
 #endif
-      obj->setModelData ( PQWIDGET(1), PQABSTRACTITEMMODEL(2), *PQMODELINDEX(3) );
+      obj->setModelData( PQWIDGET(1), PQABSTRACTITEMMODEL(2), *PQMODELINDEX(3) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else

@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -25,7 +25,7 @@ CLASS QTouch3DInputHandler INHERIT Q3DInputHandler
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QTouch3DInputHandler
+PROCEDURE destroyObject() CLASS QTouch3DInputHandler
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -42,6 +42,8 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #include <QtDataVisualization/QTouch3DInputHandler>
@@ -50,14 +52,14 @@ RETURN
 using namespace QtDataVisualization;
 
 /*
-explicit QTouch3DInputHandler(QObject *parent = Q_NULLPTR)
+QTouch3DInputHandler( QObject * parent = nullptr )
 */
 HB_FUNC_STATIC( QTOUCH3DINPUTHANDLER_NEW )
 {
-  if( ISBETWEEN(0,1) && (ISQOBJECT(1)||ISNIL(1)) )
+  if( ISBETWEEN(0,1) && (ISQOBJECT(1)||HB_ISNIL(1)) )
   {
-    QTouch3DInputHandler * o = new QTouch3DInputHandler ( OPQOBJECT(1,Q_NULLPTR) );
-    _qt5xhb_returnNewObject( o, false );
+    QTouch3DInputHandler * obj = new QTouch3DInputHandler( OPQOBJECT(1,nullptr) );
+    Qt5xHb::returnNewObject( obj, false );
   }
   else
   {
@@ -70,10 +72,12 @@ virtual ~QTouch3DInputHandler()
 */
 HB_FUNC_STATIC( QTOUCH3DINPUTHANDLER_DELETE )
 {
-  QTouch3DInputHandler * obj = (QTouch3DInputHandler *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTouch3DInputHandler * obj = (QTouch3DInputHandler *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -86,11 +90,11 @@ HB_FUNC_STATIC( QTOUCH3DINPUTHANDLER_DELETE )
 }
 
 /*
-virtual void touchEvent(QTouchEvent *event)
+virtual void touchEvent( QTouchEvent * event )
 */
 HB_FUNC_STATIC( QTOUCH3DINPUTHANDLER_TOUCHEVENT )
 {
-  QTouch3DInputHandler * obj = (QTouch3DInputHandler *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTouch3DInputHandler * obj = (QTouch3DInputHandler *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -98,7 +102,7 @@ HB_FUNC_STATIC( QTOUCH3DINPUTHANDLER_TOUCHEVENT )
     if( ISNUMPAR(1) && ISQTOUCHEVENT(1) )
     {
 #endif
-      obj->touchEvent ( PQTOUCHEVENT(1) );
+      obj->touchEvent( PQTOUCHEVENT(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else

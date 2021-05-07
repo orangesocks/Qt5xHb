@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -32,7 +32,7 @@ CLASS QtWebEngine
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QtWebEngine
+PROCEDURE destroyObject() CLASS QtWebEngine
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -60,10 +60,10 @@ void initialize()
 HB_FUNC_STATIC( QTWEBENGINE_INITIALIZE )
 {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(0) )
+  if( ISNUMPAR(0) )
   {
 #endif
-      QtWebEngine::initialize ();
+    QtWebEngine::initialize();
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
   }
   else

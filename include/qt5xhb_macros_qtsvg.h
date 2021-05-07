@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -13,19 +13,19 @@
 #ifndef QT5XHB_MACROS_QTSVG_H
 #define QT5XHB_MACROS_QTSVG_H
 
-#define ISQGRAPHICSSVGITEM(n)                               _qt5xhb_isObjectDerivedFrom(n,"QGraphicsSvgItem")
-#define ISQSVGGENERATOR(n)                                  _qt5xhb_isObjectDerivedFrom(n,"QSvgGenerator")
-#define ISQSVGRENDERER(n)                                   _qt5xhb_isObjectDerivedFrom(n,"QSvgRenderer")
-#define ISQSVGWIDGET(n)                                     _qt5xhb_isObjectDerivedFrom(n,"QSvgWidget")
+#define ISQGRAPHICSSVGITEM( n )                             Qt5xHb::isObjectDerivedFrom( n, "QGraphicsSvgItem" )
+#define ISQSVGGENERATOR( n )                                Qt5xHb::isObjectDerivedFrom( n, "QSvgGenerator" )
+#define ISQSVGRENDERER( n )                                 Qt5xHb::isObjectDerivedFrom( n, "QSvgRenderer" )
+#define ISQSVGWIDGET( n )                                   Qt5xHb::isObjectDerivedFrom( n, "QSvgWidget" )
 
-#define PQGRAPHICSSVGITEM(n)                                (QGraphicsSvgItem *) _qt5xhb_itemGetPtr(n)
-#define PQSVGGENERATOR(n)                                   (QSvgGenerator *) _qt5xhb_itemGetPtr(n)
-#define PQSVGRENDERER(n)                                    (QSvgRenderer *) _qt5xhb_itemGetPtr(n)
-#define PQSVGWIDGET(n)                                      (QSvgWidget *) _qt5xhb_itemGetPtr(n)
+#define PQGRAPHICSSVGITEM( n )                              static_cast< QGraphicsSvgItem * >( Qt5xHb::itemGetPtr( n ) )
+#define PQSVGGENERATOR( n )                                 static_cast< QSvgGenerator * >( Qt5xHb::itemGetPtr( n ) )
+#define PQSVGRENDERER( n )                                  static_cast< QSvgRenderer * >( Qt5xHb::itemGetPtr( n ) )
+#define PQSVGWIDGET( n )                                    static_cast< QSvgWidget * >( Qt5xHb::itemGetPtr( n ) )
 
-#define OPQGRAPHICSSVGITEM(n,v)                             ISNIL(n)? v : (QGraphicsSvgItem *) _qt5xhb_itemGetPtr(n)
-#define OPQSVGGENERATOR(n,v)                                ISNIL(n)? v : (QSvgGenerator *) _qt5xhb_itemGetPtr(n)
-#define OPQSVGRENDERER(n,v)                                 ISNIL(n)? v : (QSvgRenderer *) _qt5xhb_itemGetPtr(n)
-#define OPQSVGWIDGET(n,v)                                   ISNIL(n)? v : (QSvgWidget *) _qt5xhb_itemGetPtr(n)
+#define OPQGRAPHICSSVGITEM( n, v )                          HB_ISNIL( n ) ? v : static_cast< QGraphicsSvgItem * >( Qt5xHb::itemGetPtr( n ) )
+#define OPQSVGGENERATOR( n, v )                             HB_ISNIL( n ) ? v : static_cast< QSvgGenerator * >( Qt5xHb::itemGetPtr( n ) )
+#define OPQSVGRENDERER( n, v )                              HB_ISNIL( n ) ? v : static_cast< QSvgRenderer * >( Qt5xHb::itemGetPtr( n ) )
+#define OPQSVGWIDGET( n, v )                                HB_ISNIL( n ) ? v : static_cast< QSvgWidget * >( Qt5xHb::itemGetPtr( n ) )
 
 #endif /* QT5XHB_MACROS_QTSVG_H */

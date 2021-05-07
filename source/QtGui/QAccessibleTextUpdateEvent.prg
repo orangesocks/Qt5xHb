@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -27,7 +27,7 @@ CLASS QAccessibleTextUpdateEvent INHERIT QAccessibleTextCursorEvent
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QAccessibleTextUpdateEvent
+PROCEDURE destroyObject() CLASS QAccessibleTextUpdateEvent
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -50,14 +50,14 @@ RETURN
 #endif
 
 /*
-QAccessibleTextUpdateEvent(QObject *obj, int position, const QString &oldText, const QString &text)
+QAccessibleTextUpdateEvent( QObject * obj, int position, const QString & oldText, const QString & text )
 */
 HB_FUNC_STATIC( QACCESSIBLETEXTUPDATEEVENT_NEW )
 {
-  if( ISNUMPAR(4) && ISQOBJECT(1) && ISNUM(2) && ISCHAR(3) && ISCHAR(4) )
+  if( ISNUMPAR(4) && ISQOBJECT(1) && HB_ISNUM(2) && HB_ISCHAR(3) && HB_ISCHAR(4) )
   {
-    QAccessibleTextUpdateEvent * o = new QAccessibleTextUpdateEvent ( PQOBJECT(1), PINT(2), PQSTRING(3), PQSTRING(4) );
-    _qt5xhb_returnNewObject( o, false );
+    QAccessibleTextUpdateEvent * obj = new QAccessibleTextUpdateEvent( PQOBJECT(1), PINT(2), PQSTRING(3), PQSTRING(4) );
+    Qt5xHb::returnNewObject( obj, true );
   }
   else
   {
@@ -67,7 +67,7 @@ HB_FUNC_STATIC( QACCESSIBLETEXTUPDATEEVENT_NEW )
 
 HB_FUNC_STATIC( QACCESSIBLETEXTUPDATEEVENT_DELETE )
 {
-  QAccessibleTextUpdateEvent * obj = (QAccessibleTextUpdateEvent *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAccessibleTextUpdateEvent * obj = (QAccessibleTextUpdateEvent *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -87,7 +87,7 @@ QString textRemoved() const
 */
 HB_FUNC_STATIC( QACCESSIBLETEXTUPDATEEVENT_TEXTREMOVED )
 {
-  QAccessibleTextUpdateEvent * obj = (QAccessibleTextUpdateEvent *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAccessibleTextUpdateEvent * obj = (QAccessibleTextUpdateEvent *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -95,7 +95,7 @@ HB_FUNC_STATIC( QACCESSIBLETEXTUPDATEEVENT_TEXTREMOVED )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRING( obj->textRemoved () );
+      RQSTRING( obj->textRemoved() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -111,7 +111,7 @@ QString textInserted() const
 */
 HB_FUNC_STATIC( QACCESSIBLETEXTUPDATEEVENT_TEXTINSERTED )
 {
-  QAccessibleTextUpdateEvent * obj = (QAccessibleTextUpdateEvent *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAccessibleTextUpdateEvent * obj = (QAccessibleTextUpdateEvent *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -119,7 +119,7 @@ HB_FUNC_STATIC( QACCESSIBLETEXTUPDATEEVENT_TEXTINSERTED )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRING( obj->textInserted () );
+      RQSTRING( obj->textInserted() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -135,7 +135,7 @@ int changePosition() const
 */
 HB_FUNC_STATIC( QACCESSIBLETEXTUPDATEEVENT_CHANGEPOSITION )
 {
-  QAccessibleTextUpdateEvent * obj = (QAccessibleTextUpdateEvent *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAccessibleTextUpdateEvent * obj = (QAccessibleTextUpdateEvent *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -143,7 +143,7 @@ HB_FUNC_STATIC( QACCESSIBLETEXTUPDATEEVENT_CHANGEPOSITION )
     if( ISNUMPAR(0) )
     {
 #endif
-      RINT( obj->changePosition () );
+      RINT( obj->changePosition() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else

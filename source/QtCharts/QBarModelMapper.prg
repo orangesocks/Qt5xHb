@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -21,7 +21,7 @@ CLASS QBarModelMapper INHERIT QObject
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QBarModelMapper
+PROCEDURE destroyObject() CLASS QBarModelMapper
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -40,6 +40,8 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #if (QT_VERSION >= QT_VERSION_CHECK(5,7,0))
@@ -48,65 +50,5 @@ RETURN
 #endif
 
 using namespace QtCharts;
-
-/*
-explicit QBarModelMapper(QObject *parent = Q_NULLPTR) [protected]
-*/
-
-/*
-QAbstractItemModel *model() const  [protected]
-*/
-
-/*
-void setModel(QAbstractItemModel *model) [protected]
-*/
-
-/*
-QAbstractBarSeries *series() const [protected]
-*/
-
-/*
-void setSeries(QAbstractBarSeries *series) [protected]
-*/
-
-/*
-int first() const [protected]
-*/
-
-/*
-void setFirst(int first) [protected]
-*/
-
-/*
-int count() const [protected]
-*/
-
-/*
-void setCount(int count) [protected]
-*/
-
-/*
-int firstBarSetSection() const [protected]
-*/
-
-/*
-void setFirstBarSetSection(int firstBarSetSection) [protected]
-*/
-
-/*
-int lastBarSetSection() const [protected]
-*/
-
-/*
-void setLastBarSetSection(int lastBarSetSection) [protected]
-*/
-
-/*
-Qt::Orientation orientation() const [protected]
-*/
-
-/*
-void setOrientation(Qt::Orientation orientation) [protected]
-*/
 
 #pragma ENDDUMP

@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -26,7 +26,7 @@ CLASS QPlaceSearchSuggestionReply INHERIT QPlaceReply
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QPlaceSearchSuggestionReply
+PROCEDURE destroyObject() CLASS QPlaceSearchSuggestionReply
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -45,6 +45,8 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #if (QT_VERSION >= QT_VERSION_CHECK(5,4,0))
@@ -53,15 +55,15 @@ RETURN
 #endif
 
 /*
-explicit QPlaceSearchSuggestionReply(QObject *parent = 0)
+QPlaceSearchSuggestionReply( QObject * parent = 0 )
 */
 HB_FUNC_STATIC( QPLACESEARCHSUGGESTIONREPLY_NEW )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,4,0))
-  if( ISBETWEEN(0,1) && (ISQOBJECT(1)||ISNIL(1)) )
+  if( ISBETWEEN(0,1) && (ISQOBJECT(1)||HB_ISNIL(1)) )
   {
-    QPlaceSearchSuggestionReply * o = new QPlaceSearchSuggestionReply ( OPQOBJECT(1,0) );
-    _qt5xhb_returnNewObject( o, false );
+    QPlaceSearchSuggestionReply * obj = new QPlaceSearchSuggestionReply( OPQOBJECT(1,0) );
+    Qt5xHb::returnNewObject( obj, false );
   }
   else
   {
@@ -73,10 +75,12 @@ HB_FUNC_STATIC( QPLACESEARCHSUGGESTIONREPLY_NEW )
 HB_FUNC_STATIC( QPLACESEARCHSUGGESTIONREPLY_DELETE )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,4,0))
-  QPlaceSearchSuggestionReply * obj = (QPlaceSearchSuggestionReply *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPlaceSearchSuggestionReply * obj = (QPlaceSearchSuggestionReply *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -95,7 +99,7 @@ QStringList suggestions() const
 HB_FUNC_STATIC( QPLACESEARCHSUGGESTIONREPLY_SUGGESTIONS )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,4,0))
-  QPlaceSearchSuggestionReply * obj = (QPlaceSearchSuggestionReply *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPlaceSearchSuggestionReply * obj = (QPlaceSearchSuggestionReply *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -103,7 +107,7 @@ HB_FUNC_STATIC( QPLACESEARCHSUGGESTIONREPLY_SUGGESTIONS )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRINGLIST( obj->suggestions () );
+      RQSTRINGLIST( obj->suggestions() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -116,12 +120,12 @@ HB_FUNC_STATIC( QPLACESEARCHSUGGESTIONREPLY_SUGGESTIONS )
 }
 
 /*
-Type type() const
+QPlaceReply::Type type() const
 */
 HB_FUNC_STATIC( QPLACESEARCHSUGGESTIONREPLY_TYPE )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,4,0))
-  QPlaceSearchSuggestionReply * obj = (QPlaceSearchSuggestionReply *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPlaceSearchSuggestionReply * obj = (QPlaceSearchSuggestionReply *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -129,7 +133,7 @@ HB_FUNC_STATIC( QPLACESEARCHSUGGESTIONREPLY_TYPE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RENUM( obj->type () );
+      RENUM( obj->type() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else

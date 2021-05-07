@@ -2,13 +2,13 @@
 
   Qt5xHb Project - Test Program
 
-  Copyright (C) 2019 Marcos Antonio Gambeta
+  Copyright (C) 2021 Marcos Antonio Gambeta
 
   E-mail:
   marcosgambeta AT outlook DOT com
 
   Website:
-  https://github.com/marcosgambeta/Qt5xHb
+  https://github.com/magsoftinfo/qt5xhb
 
 */
 
@@ -18,7 +18,7 @@
 REQUEST HB_GT_WIN
 #endif
 
-PROCEDURE Main ()
+PROCEDURE Main()
 
    LOCAL oApp
    LOCAL oToolBox
@@ -30,15 +30,20 @@ PROCEDURE Main ()
 
    oToolBox := QToolBox():new()
 
-   oWidget1 := QWidget():new():setObjectName("widget1")
-   oWidget2 := QWidget():new():setObjectName("widget2")
-   oWidget3 := QWidget():new():setObjectName("widget3")
+   oWidget1 := QWidget():new()
+   oWidget1:setObjectName( "widget1" )
 
-   oToolBox:addItem(oWidget1, QIcon():new("../images/cut.png"), "Item 1")
-   oToolBox:addItem(oWidget2, QIcon():new("../images/copy.png"), "Item 2")
-   oToolBox:addItem(oWidget3, QIcon():new("../images/paste.png"), "Item 3")
+   oWidget2 := QWidget():new()
+   oWidget2:setObjectName( "widget2" )
 
-   oToolBox:onCurrentChanged({|oSender,nItem|qout(nItem),qout(oToolBox:currentWidget():objectName())})
+   oWidget3 := QWidget():new()
+   oWidget3:setObjectName( "widget3" )
+
+   oToolBox:addItem( oWidget1, QIcon():new( "../images/cut.png" ), "Item 1" )
+   oToolBox:addItem( oWidget2, QIcon():new( "../images/copy.png" ), "Item 2" )
+   oToolBox:addItem( oWidget3, QIcon():new( "../images/paste.png" ), "Item 3" )
+
+   oToolBox:onCurrentChanged( {|oSender,nItem|qout( nItem ), qout( oToolBox:currentWidget():objectName() )} )
 
    oToolBox:show()
 

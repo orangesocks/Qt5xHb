@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -13,10 +13,10 @@
 #ifndef QT5XHB_MACROS_QTQUICKWIDGETS_H
 #define QT5XHB_MACROS_QTQUICKWIDGETS_H
 
-#define ISQQUICKWIDGET(n)                                   _qt5xhb_isObjectDerivedFrom(n,"QQuickWidget")
+#define ISQQUICKWIDGET( n )                                 Qt5xHb::isObjectDerivedFrom( n, "QQuickWidget" )
 
-#define PQQUICKWIDGET(n)                                    (QQuickWidget *) _qt5xhb_itemGetPtr(n)
+#define PQQUICKWIDGET( n )                                  static_cast< QQuickWidget * >( Qt5xHb::itemGetPtr( n ) )
 
-#define OPQQUICKWIDGET(n,v)                                 ISNIL(n)? v : (QQuickWidget *) _qt5xhb_itemGetPtr(n)
+#define OPQQUICKWIDGET( n, v )                              HB_ISNIL( n ) ? v : static_cast< QQuickWidget * >( Qt5xHb::itemGetPtr( n ) )
 
 #endif /* QT5XHB_MACROS_QTQUICKWIDGETS_H */

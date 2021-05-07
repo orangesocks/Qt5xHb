@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -12,63 +12,83 @@
 
 #include "QIODeviceSlots.h"
 
-QIODeviceSlots::QIODeviceSlots(QObject *parent) : QObject(parent)
+QIODeviceSlots::QIODeviceSlots( QObject *parent ) : QObject( parent )
 {
 }
 
 QIODeviceSlots::~QIODeviceSlots()
 {
 }
+
 void QIODeviceSlots::aboutToClose()
 {
   QObject *object = qobject_cast<QObject *>(sender());
-  PHB_ITEM cb = Signals_return_codeblock( object, "aboutToClose()" );
+
+  PHB_ITEM cb = Qt5xHb::Signals_return_codeblock( object, "aboutToClose()" );
+
   if( cb )
   {
-    PHB_ITEM psender = Signals_return_qobject ( (QObject *) object, "QIODEVICE" );
-    hb_vmEvalBlockV( (PHB_ITEM) cb, 1, psender );
-    hb_itemRelease( psender );
-  }
-}
-void QIODeviceSlots::bytesWritten( qint64 bytes )
-{
-  QObject *object = qobject_cast<QObject *>(sender());
-  PHB_ITEM cb = Signals_return_codeblock( object, "bytesWritten(qint64)" );
-  if( cb )
-  {
-    PHB_ITEM psender = Signals_return_qobject ( (QObject *) object, "QIODEVICE" );
-    PHB_ITEM pbytes = hb_itemPutNLL( NULL, bytes );
-    hb_vmEvalBlockV( (PHB_ITEM) cb, 2, psender, pbytes );
-    hb_itemRelease( psender );
-    hb_itemRelease( pbytes );
-  }
-}
-void QIODeviceSlots::readChannelFinished()
-{
-  QObject *object = qobject_cast<QObject *>(sender());
-  PHB_ITEM cb = Signals_return_codeblock( object, "readChannelFinished()" );
-  if( cb )
-  {
-    PHB_ITEM psender = Signals_return_qobject ( (QObject *) object, "QIODEVICE" );
-    hb_vmEvalBlockV( (PHB_ITEM) cb, 1, psender );
-    hb_itemRelease( psender );
-  }
-}
-void QIODeviceSlots::readyRead()
-{
-  QObject *object = qobject_cast<QObject *>(sender());
-  PHB_ITEM cb = Signals_return_codeblock( object, "readyRead()" );
-  if( cb )
-  {
-    PHB_ITEM psender = Signals_return_qobject ( (QObject *) object, "QIODEVICE" );
-    hb_vmEvalBlockV( (PHB_ITEM) cb, 1, psender );
+    PHB_ITEM psender = Qt5xHb::Signals_return_qobject( (QObject *) object, "QIODEVICE" );
+
+    hb_vmEvalBlockV( cb, 1, psender );
+
     hb_itemRelease( psender );
   }
 }
 
-void QIODeviceSlots_connect_signal ( const QString & signal, const QString & slot )
+void QIODeviceSlots::bytesWritten( qint64 bytes )
 {
-  QIODevice * obj = (QIODevice *) hb_itemGetPtr( hb_objSendMsg( hb_stackSelfItem(), "POINTER", 0 ) );
+  QObject *object = qobject_cast<QObject *>(sender());
+
+  PHB_ITEM cb = Qt5xHb::Signals_return_codeblock( object, "bytesWritten(qint64)" );
+
+  if( cb )
+  {
+    PHB_ITEM psender = Qt5xHb::Signals_return_qobject( (QObject *) object, "QIODEVICE" );
+    PHB_ITEM pbytes = hb_itemPutNLL( NULL, bytes );
+
+    hb_vmEvalBlockV( cb, 2, psender, pbytes );
+
+    hb_itemRelease( psender );
+    hb_itemRelease( pbytes );
+  }
+}
+
+void QIODeviceSlots::readChannelFinished()
+{
+  QObject *object = qobject_cast<QObject *>(sender());
+
+  PHB_ITEM cb = Qt5xHb::Signals_return_codeblock( object, "readChannelFinished()" );
+
+  if( cb )
+  {
+    PHB_ITEM psender = Qt5xHb::Signals_return_qobject( (QObject *) object, "QIODEVICE" );
+
+    hb_vmEvalBlockV( cb, 1, psender );
+
+    hb_itemRelease( psender );
+  }
+}
+
+void QIODeviceSlots::readyRead()
+{
+  QObject *object = qobject_cast<QObject *>(sender());
+
+  PHB_ITEM cb = Qt5xHb::Signals_return_codeblock( object, "readyRead()" );
+
+  if( cb )
+  {
+    PHB_ITEM psender = Qt5xHb::Signals_return_qobject( (QObject *) object, "QIODEVICE" );
+
+    hb_vmEvalBlockV( cb, 1, psender );
+
+    hb_itemRelease( psender );
+  }
+}
+
+void QIODeviceSlots_connect_signal( const QString & signal, const QString & slot )
+{
+  QIODevice * obj = (QIODevice *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -81,7 +101,7 @@ void QIODeviceSlots_connect_signal ( const QString & signal, const QString & slo
       s->setParent( QCoreApplication::instance() );
     }
 
-    hb_retl( Signals_connection_disconnection( s, signal, slot ) );
+    hb_retl( Qt5xHb::Signals_connection_disconnection( s, signal, slot ) );
   }
   else
   {

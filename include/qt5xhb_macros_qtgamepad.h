@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -13,16 +13,16 @@
 #ifndef QT5XHB_MACROS_QTGAMEPAD_H
 #define QT5XHB_MACROS_QTGAMEPAD_H
 
-#define ISQGAMEPAD(n)                                       _qt5xhb_isObjectDerivedFrom(n,"QGamepad")
-#define ISQGAMEPADKEYNAVIGATION(n)                          _qt5xhb_isObjectDerivedFrom(n,"QGamepadKeyNavigation")
-#define ISQGAMEPADMANAGER(n)                                _qt5xhb_isObjectDerivedFrom(n,"QGamepadManager")
+#define ISQGAMEPAD( n )                                     Qt5xHb::isObjectDerivedFrom( n, "QGamepad" )
+#define ISQGAMEPADKEYNAVIGATION( n )                        Qt5xHb::isObjectDerivedFrom( n, "QGamepadKeyNavigation" )
+#define ISQGAMEPADMANAGER( n )                              Qt5xHb::isObjectDerivedFrom( n, "QGamepadManager" )
 
-#define PQGAMEPAD(n)                                        (QGamepad *) _qt5xhb_itemGetPtr(n)
-#define PQGAMEPADKEYNAVIGATION(n)                           (QGamepadKeyNavigation *) _qt5xhb_itemGetPtr(n)
-#define PQGAMEPADMANAGER(n)                                 (QGamepadManager *) _qt5xhb_itemGetPtr(n)
+#define PQGAMEPAD( n )                                      static_cast< QGamepad * >( Qt5xHb::itemGetPtr( n ) )
+#define PQGAMEPADKEYNAVIGATION( n )                         static_cast< QGamepadKeyNavigation * >( Qt5xHb::itemGetPtr( n ) )
+#define PQGAMEPADMANAGER( n )                               static_cast< QGamepadManager * >( Qt5xHb::itemGetPtr( n ) )
 
-#define OPQGAMEPAD(n,v)                                     ISNIL(n)? v : (QGamepad *) _qt5xhb_itemGetPtr(n)
-#define OPQGAMEPADKEYNAVIGATION(n,v)                        ISNIL(n)? v : (QGamepadKeyNavigation *) _qt5xhb_itemGetPtr(n)
-#define OPQGAMEPADMANAGER(n,v)                              ISNIL(n)? v : (QGamepadManager *) _qt5xhb_itemGetPtr(n)
+#define OPQGAMEPAD( n, v )                                  HB_ISNIL( n ) ? v : static_cast< QGamepad * >( Qt5xHb::itemGetPtr( n ) )
+#define OPQGAMEPADKEYNAVIGATION( n, v )                     HB_ISNIL( n ) ? v : static_cast< QGamepadKeyNavigation * >( Qt5xHb::itemGetPtr( n ) )
+#define OPQGAMEPADMANAGER( n, v )                           HB_ISNIL( n ) ? v : static_cast< QGamepadManager * >( Qt5xHb::itemGetPtr( n ) )
 
 #endif /* QT5XHB_MACROS_QTGAMEPAD_H */

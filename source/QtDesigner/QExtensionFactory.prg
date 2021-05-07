@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -28,7 +28,7 @@ CLASS QExtensionFactory INHERIT QObject,QAbstractExtensionFactory
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QExtensionFactory
+PROCEDURE destroyObject() CLASS QExtensionFactory
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -45,6 +45,8 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #include <QtDesigner/QExtensionFactory>
@@ -53,14 +55,14 @@ RETURN
 #include <QtDesigner/QExtensionManager>
 
 /*
-QExtensionFactory ( QExtensionManager * parent = 0 )
+QExtensionFactory( QExtensionManager * parent = 0 )
 */
 HB_FUNC_STATIC( QEXTENSIONFACTORY_NEW )
 {
-  if( ISBETWEEN(0,1) && (ISQEXTENSIONMANAGER(1)||ISNIL(1)) )
+  if( ISBETWEEN(0,1) && (ISQEXTENSIONMANAGER(1)||HB_ISNIL(1)) )
   {
-    QExtensionFactory * o = new QExtensionFactory ( OPQEXTENSIONMANAGER(1,0) );
-    _qt5xhb_returnNewObject( o, false );
+    QExtensionFactory * obj = new QExtensionFactory( OPQEXTENSIONMANAGER(1,0) );
+    Qt5xHb::returnNewObject( obj, false );
   }
   else
   {
@@ -70,10 +72,12 @@ HB_FUNC_STATIC( QEXTENSIONFACTORY_NEW )
 
 HB_FUNC_STATIC( QEXTENSIONFACTORY_DELETE )
 {
-  QExtensionFactory * obj = (QExtensionFactory *) _qt5xhb_itemGetPtrStackSelfItem();
+  QExtensionFactory * obj = (QExtensionFactory *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -86,11 +90,11 @@ HB_FUNC_STATIC( QEXTENSIONFACTORY_DELETE )
 }
 
 /*
-QExtensionManager * extensionManager () const
+QExtensionManager * extensionManager() const
 */
 HB_FUNC_STATIC( QEXTENSIONFACTORY_EXTENSIONMANAGER )
 {
-  QExtensionFactory * obj = (QExtensionFactory *) _qt5xhb_itemGetPtrStackSelfItem();
+  QExtensionFactory * obj = (QExtensionFactory *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -98,8 +102,8 @@ HB_FUNC_STATIC( QEXTENSIONFACTORY_EXTENSIONMANAGER )
     if( ISNUMPAR(0) )
     {
 #endif
-      QExtensionManager * ptr = obj->extensionManager ();
-      _qt5xhb_createReturnQObjectClass ( ptr, "QEXTENSIONMANAGER" );
+      QExtensionManager * ptr = obj->extensionManager();
+      Qt5xHb::createReturnQObjectClass( ptr, "QEXTENSIONMANAGER" );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -111,20 +115,20 @@ HB_FUNC_STATIC( QEXTENSIONFACTORY_EXTENSIONMANAGER )
 }
 
 /*
-virtual QObject * extension ( QObject * object, const QString & iid ) const
+virtual QObject * extension( QObject * object, const QString & iid ) const
 */
 HB_FUNC_STATIC( QEXTENSIONFACTORY_EXTENSION )
 {
-  QExtensionFactory * obj = (QExtensionFactory *) _qt5xhb_itemGetPtrStackSelfItem();
+  QExtensionFactory * obj = (QExtensionFactory *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(2) && ISQOBJECT(1) && ISCHAR(2) )
+    if( ISNUMPAR(2) && ISQOBJECT(1) && HB_ISCHAR(2) )
     {
 #endif
-      QObject * ptr = obj->extension ( PQOBJECT(1), PQSTRING(2) );
-      _qt5xhb_createReturnQObjectClass ( ptr, "QOBJECT" );
+      QObject * ptr = obj->extension( PQOBJECT(1), PQSTRING(2) );
+      Qt5xHb::createReturnQObjectClass( ptr, "QOBJECT" );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else

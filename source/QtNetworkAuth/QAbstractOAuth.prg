@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -25,8 +25,10 @@ CLASS QAbstractOAuth INHERIT QObject
    METHOD setClientIdentifier
    METHOD token
    METHOD setToken
+   METHOD status
    METHOD authorizationUrl
    METHOD setAuthorizationUrl
+   METHOD contentType
    METHOD setContentType
    METHOD networkAccessManager
    METHOD setNetworkAccessManager
@@ -48,7 +50,7 @@ CLASS QAbstractOAuth INHERIT QObject
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QAbstractOAuth
+PROCEDURE destroyObject() CLASS QAbstractOAuth
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -67,6 +69,8 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
@@ -78,19 +82,17 @@ RETURN
 #include <QtNetworkAuth/QAbstractOAuthReplyHandler>
 
 /*
-explicit QAbstractOAuth(QAbstractOAuthPrivate &, QObject *parent = nullptr) [protected]
-*/
-
-/*
 virtual ~QAbstractOAuth()
 */
 HB_FUNC_STATIC( QABSTRACTOAUTH_DELETE )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
-  QAbstractOAuth * obj = (QAbstractOAuth *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAbstractOAuth * obj = (QAbstractOAuth *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -109,7 +111,7 @@ QString clientIdentifier() const
 HB_FUNC_STATIC( QABSTRACTOAUTH_CLIENTIDENTIFIER )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
-  QAbstractOAuth * obj = (QAbstractOAuth *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAbstractOAuth * obj = (QAbstractOAuth *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -117,7 +119,7 @@ HB_FUNC_STATIC( QABSTRACTOAUTH_CLIENTIDENTIFIER )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRING( obj->clientIdentifier () );
+      RQSTRING( obj->clientIdentifier() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -130,20 +132,20 @@ HB_FUNC_STATIC( QABSTRACTOAUTH_CLIENTIDENTIFIER )
 }
 
 /*
-void setClientIdentifier(const QString &clientIdentifier)
+void setClientIdentifier( const QString & clientIdentifier )
 */
 HB_FUNC_STATIC( QABSTRACTOAUTH_SETCLIENTIDENTIFIER )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
-  QAbstractOAuth * obj = (QAbstractOAuth *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAbstractOAuth * obj = (QAbstractOAuth *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISCHAR(1) )
+    if( ISNUMPAR(1) && HB_ISCHAR(1) )
     {
 #endif
-      obj->setClientIdentifier ( PQSTRING(1) );
+      obj->setClientIdentifier( PQSTRING(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -163,7 +165,7 @@ QString token() const
 HB_FUNC_STATIC( QABSTRACTOAUTH_TOKEN )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
-  QAbstractOAuth * obj = (QAbstractOAuth *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAbstractOAuth * obj = (QAbstractOAuth *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -171,7 +173,7 @@ HB_FUNC_STATIC( QABSTRACTOAUTH_TOKEN )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRING( obj->token () );
+      RQSTRING( obj->token() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -184,20 +186,20 @@ HB_FUNC_STATIC( QABSTRACTOAUTH_TOKEN )
 }
 
 /*
-void setToken(const QString &token)
+void setToken( const QString & token )
 */
 HB_FUNC_STATIC( QABSTRACTOAUTH_SETTOKEN )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
-  QAbstractOAuth * obj = (QAbstractOAuth *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAbstractOAuth * obj = (QAbstractOAuth *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISCHAR(1) )
+    if( ISNUMPAR(1) && HB_ISCHAR(1) )
     {
 #endif
-      obj->setToken ( PQSTRING(1) );
+      obj->setToken( PQSTRING(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -212,8 +214,30 @@ HB_FUNC_STATIC( QABSTRACTOAUTH_SETTOKEN )
 }
 
 /*
-Status status() const
+QAbstractOAuth::Status status() const
 */
+HB_FUNC_STATIC( QABSTRACTOAUTH_STATUS )
+{
+#if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
+  QAbstractOAuth * obj = (QAbstractOAuth *) Qt5xHb::itemGetPtrStackSelfItem();
+
+  if( obj )
+  {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
+    if( ISNUMPAR(0) )
+    {
+#endif
+      RENUM( obj->status() );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
+    }
+    else
+    {
+      hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
+    }
+#endif
+  }
+#endif
+}
 
 /*
 QUrl authorizationUrl() const
@@ -221,7 +245,7 @@ QUrl authorizationUrl() const
 HB_FUNC_STATIC( QABSTRACTOAUTH_AUTHORIZATIONURL )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
-  QAbstractOAuth * obj = (QAbstractOAuth *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAbstractOAuth * obj = (QAbstractOAuth *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -229,8 +253,8 @@ HB_FUNC_STATIC( QABSTRACTOAUTH_AUTHORIZATIONURL )
     if( ISNUMPAR(0) )
     {
 #endif
-      QUrl * ptr = new QUrl( obj->authorizationUrl () );
-      _qt5xhb_createReturnClass ( ptr, "QURL", true );
+      QUrl * ptr = new QUrl( obj->authorizationUrl() );
+      Qt5xHb::createReturnClass( ptr, "QURL", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -243,12 +267,12 @@ HB_FUNC_STATIC( QABSTRACTOAUTH_AUTHORIZATIONURL )
 }
 
 /*
-void setAuthorizationUrl(const QUrl &url)
+void setAuthorizationUrl( const QUrl & url )
 */
 HB_FUNC_STATIC( QABSTRACTOAUTH_SETAUTHORIZATIONURL )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
-  QAbstractOAuth * obj = (QAbstractOAuth *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAbstractOAuth * obj = (QAbstractOAuth *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -256,7 +280,7 @@ HB_FUNC_STATIC( QABSTRACTOAUTH_SETAUTHORIZATIONURL )
     if( ISNUMPAR(1) && ISQURL(1) )
     {
 #endif
-      obj->setAuthorizationUrl ( *PQURL(1) );
+      obj->setAuthorizationUrl( *PQURL(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -271,48 +295,12 @@ HB_FUNC_STATIC( QABSTRACTOAUTH_SETAUTHORIZATIONURL )
 }
 
 /*
-QVariantMap extraTokens() const
+QAbstractOAuth::ContentType contentType() const
 */
-
-/*
-ContentType contentType() const
-*/
-
-/*
-void setContentType(ContentType contentType)
-*/
-HB_FUNC_STATIC( QABSTRACTOAUTH_SETCONTENTTYPE )
+HB_FUNC_STATIC( QABSTRACTOAUTH_CONTENTTYPE )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
-  QAbstractOAuth * obj = (QAbstractOAuth *) _qt5xhb_itemGetPtrStackSelfItem();
-
-  if( obj )
-  {
-#ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
-    {
-#endif
-      obj->setContentType ( (QAbstractOAuth::ContentType) hb_parni(1) );
-#ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    }
-    else
-    {
-      hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
-    }
-#endif
-  }
-
-  hb_itemReturn( hb_stackSelfItem() );
-#endif
-}
-
-/*
-QNetworkAccessManager *networkAccessManager() const
-*/
-HB_FUNC_STATIC( QABSTRACTOAUTH_NETWORKACCESSMANAGER )
-{
-#if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
-  QAbstractOAuth * obj = (QAbstractOAuth *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAbstractOAuth * obj = (QAbstractOAuth *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -320,8 +308,7 @@ HB_FUNC_STATIC( QABSTRACTOAUTH_NETWORKACCESSMANAGER )
     if( ISNUMPAR(0) )
     {
 #endif
-      QNetworkAccessManager * ptr = obj->networkAccessManager ();
-      _qt5xhb_createReturnQObjectClass ( ptr, "QNETWORKACCESSMANAGER" );
+      RENUM( obj->contentType() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -334,12 +321,67 @@ HB_FUNC_STATIC( QABSTRACTOAUTH_NETWORKACCESSMANAGER )
 }
 
 /*
-void setNetworkAccessManager(QNetworkAccessManager *networkAccessManager)
+void setContentType( QAbstractOAuth::ContentType contentType )
+*/
+HB_FUNC_STATIC( QABSTRACTOAUTH_SETCONTENTTYPE )
+{
+#if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
+  QAbstractOAuth * obj = (QAbstractOAuth *) Qt5xHb::itemGetPtrStackSelfItem();
+
+  if( obj )
+  {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
+    {
+#endif
+      obj->setContentType( (QAbstractOAuth::ContentType) hb_parni(1) );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
+    }
+    else
+    {
+      hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
+    }
+#endif
+  }
+
+  hb_itemReturn( hb_stackSelfItem() );
+#endif
+}
+
+/*
+QNetworkAccessManager * networkAccessManager() const
+*/
+HB_FUNC_STATIC( QABSTRACTOAUTH_NETWORKACCESSMANAGER )
+{
+#if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
+  QAbstractOAuth * obj = (QAbstractOAuth *) Qt5xHb::itemGetPtrStackSelfItem();
+
+  if( obj )
+  {
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
+    if( ISNUMPAR(0) )
+    {
+#endif
+      QNetworkAccessManager * ptr = obj->networkAccessManager();
+      Qt5xHb::createReturnQObjectClass( ptr, "QNETWORKACCESSMANAGER" );
+#ifndef QT5XHB_DONT_CHECK_PARAMETERS
+    }
+    else
+    {
+      hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
+    }
+#endif
+  }
+#endif
+}
+
+/*
+void setNetworkAccessManager( QNetworkAccessManager * networkAccessManager )
 */
 HB_FUNC_STATIC( QABSTRACTOAUTH_SETNETWORKACCESSMANAGER )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
-  QAbstractOAuth * obj = (QAbstractOAuth *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAbstractOAuth * obj = (QAbstractOAuth *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -347,7 +389,7 @@ HB_FUNC_STATIC( QABSTRACTOAUTH_SETNETWORKACCESSMANAGER )
     if( ISNUMPAR(1) && ISQNETWORKACCESSMANAGER(1) )
     {
 #endif
-      obj->setNetworkAccessManager ( PQNETWORKACCESSMANAGER(1) );
+      obj->setNetworkAccessManager( PQNETWORKACCESSMANAGER(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -362,12 +404,12 @@ HB_FUNC_STATIC( QABSTRACTOAUTH_SETNETWORKACCESSMANAGER )
 }
 
 /*
-QAbstractOAuthReplyHandler *replyHandler() const
+QAbstractOAuthReplyHandler * replyHandler() const
 */
 HB_FUNC_STATIC( QABSTRACTOAUTH_REPLYHANDLER )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
-  QAbstractOAuth * obj = (QAbstractOAuth *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAbstractOAuth * obj = (QAbstractOAuth *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -375,8 +417,8 @@ HB_FUNC_STATIC( QABSTRACTOAUTH_REPLYHANDLER )
     if( ISNUMPAR(0) )
     {
 #endif
-      QAbstractOAuthReplyHandler * ptr = obj->replyHandler ();
-      _qt5xhb_createReturnQObjectClass ( ptr, "QABSTRACTOAUTHREPLYHANDLER" );
+      QAbstractOAuthReplyHandler * ptr = obj->replyHandler();
+      Qt5xHb::createReturnQObjectClass( ptr, "QABSTRACTOAUTHREPLYHANDLER" );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -389,12 +431,12 @@ HB_FUNC_STATIC( QABSTRACTOAUTH_REPLYHANDLER )
 }
 
 /*
-void setReplyHandler(QAbstractOAuthReplyHandler *handler)
+void setReplyHandler( QAbstractOAuthReplyHandler * handler )
 */
 HB_FUNC_STATIC( QABSTRACTOAUTH_SETREPLYHANDLER )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
-  QAbstractOAuth * obj = (QAbstractOAuth *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAbstractOAuth * obj = (QAbstractOAuth *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -402,7 +444,7 @@ HB_FUNC_STATIC( QABSTRACTOAUTH_SETREPLYHANDLER )
     if( ISNUMPAR(1) && ISQABSTRACTOAUTHREPLYHANDLER(1) )
     {
 #endif
-      obj->setReplyHandler ( PQABSTRACTOAUTHREPLYHANDLER(1) );
+      obj->setReplyHandler( PQABSTRACTOAUTHREPLYHANDLER(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -417,40 +459,12 @@ HB_FUNC_STATIC( QABSTRACTOAUTH_SETREPLYHANDLER )
 }
 
 /*
-Q_INVOKABLE virtual QNetworkReply *head(const QUrl &url, const QVariantMap &parameters = QVariantMap()) = 0
-*/
-
-/*
-Q_INVOKABLE virtual QNetworkReply *get(const QUrl &url, const QVariantMap &parameters = QVariantMap()) = 0
-*/
-
-/*
-Q_INVOKABLE virtual QNetworkReply *post(const QUrl &url, const QVariantMap &parameters = QVariantMap()) = 0
-*/
-
-/*
-Q_INVOKABLE virtual QNetworkReply *put(const QUrl &url, const QVariantMap &parameters = QVariantMap()) = 0
-*/
-
-/*
-Q_INVOKABLE virtual QNetworkReply *deleteResource( const QUrl &url, const QVariantMap &parameters = QVariantMap()) = 0
-*/
-
-/*
-ModifyParametersFunction modifyParametersFunction() const
-*/
-
-/*
-void setModifyParametersFunction(const ModifyParametersFunction &modifyParametersFunction)
-*/
-
-/*
-virtual void grant() = 0 (slot)
+virtual void grant() = 0
 */
 HB_FUNC_STATIC( QABSTRACTOAUTH_GRANT )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
-  QAbstractOAuth * obj = (QAbstractOAuth *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAbstractOAuth * obj = (QAbstractOAuth *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -458,7 +472,7 @@ HB_FUNC_STATIC( QABSTRACTOAUTH_GRANT )
     if( ISNUMPAR(0) )
     {
 #endif
-      obj->grant ();
+      obj->grant();
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -472,23 +486,7 @@ HB_FUNC_STATIC( QABSTRACTOAUTH_GRANT )
 #endif
 }
 
-/*
-void setStatus(Status status) [protected]
-*/
-
-/*
-QString callback() const [protected]
-*/
-
-/*
-virtual void resourceOwnerAuthorization(const QUrl &url, const QVariantMap &parameters) [protected]
-*/
-
-/*
-static QByteArray generateRandomString(quint8 length) [protected]
-*/
-
-void QAbstractOAuthSlots_connect_signal ( const QString & signal, const QString & slot );
+void QAbstractOAuthSlots_connect_signal( const QString & signal, const QString & slot );
 
 HB_FUNC_STATIC( QABSTRACTOAUTH_ONAUTHORIZATIONURLCHANGED )
 {

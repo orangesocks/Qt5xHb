@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -13,31 +13,31 @@
 #ifndef QT5XHB_MACROS_ACTIVEQT_H
 #define QT5XHB_MACROS_ACTIVEQT_H
 
-#define ISQAXBASE(n)                                        _qt5xhb_isObjectDerivedFrom(n,"QAxBase")
-#define ISQAXBINDABLE(n)                                    _qt5xhb_isObjectDerivedFrom(n,"QAxBindable")
-#define ISQAXFACTORY(n)                                     _qt5xhb_isObjectDerivedFrom(n,"QAxFactory")
-#define ISQAXOBJECT(n)                                      _qt5xhb_isObjectDerivedFrom(n,"QAxObject")
-#define ISQAXSCRIPT(n)                                      _qt5xhb_isObjectDerivedFrom(n,"QAxScript")
-#define ISQAXSCRIPTENGINE(n)                                _qt5xhb_isObjectDerivedFrom(n,"QAxScriptEngine")
-#define ISQAXSCRIPTMANAGER(n)                               _qt5xhb_isObjectDerivedFrom(n,"QAxScriptManager")
-#define ISQAXWIDGET(n)                                      _qt5xhb_isObjectDerivedFrom(n,"QAxWidget")
+#define ISQAXBASE( n )                                      Qt5xHb::isObjectDerivedFrom( n, "QAxBase" )
+#define ISQAXBINDABLE( n )                                  Qt5xHb::isObjectDerivedFrom( n, "QAxBindable" )
+#define ISQAXFACTORY( n )                                   Qt5xHb::isObjectDerivedFrom( n, "QAxFactory" )
+#define ISQAXOBJECT( n )                                    Qt5xHb::isObjectDerivedFrom( n, "QAxObject" )
+#define ISQAXSCRIPT( n )                                    Qt5xHb::isObjectDerivedFrom( n, "QAxScript" )
+#define ISQAXSCRIPTENGINE( n )                              Qt5xHb::isObjectDerivedFrom( n, "QAxScriptEngine" )
+#define ISQAXSCRIPTMANAGER( n )                             Qt5xHb::isObjectDerivedFrom( n, "QAxScriptManager" )
+#define ISQAXWIDGET( n )                                    Qt5xHb::isObjectDerivedFrom( n, "QAxWidget" )
 
-#define PQAXBASE(n)                                         (QAxBase *) _qt5xhb_itemGetPtr(n)
-#define PQAXBINDABLE(n)                                     (QAxBindable *) _qt5xhb_itemGetPtr(n)
-#define PQAXFACTORY(n)                                      (QAxFactory *) _qt5xhb_itemGetPtr(n)
-#define PQAXOBJECT(n)                                       (QAxObject *) _qt5xhb_itemGetPtr(n)
-#define PQAXSCRIPT(n)                                       (QAxScript *) _qt5xhb_itemGetPtr(n)
-#define PQAXSCRIPTENGINE(n)                                 (QAxScriptEngine *) _qt5xhb_itemGetPtr(n)
-#define PQAXSCRIPTMANAGER(n)                                (QAxScriptManager *) _qt5xhb_itemGetPtr(n)
-#define PQAXWIDGET(n)                                       (QAxWidget *) _qt5xhb_itemGetPtr(n)
+#define PQAXBASE( n )                                       static_cast< QAxBase * >( Qt5xHb::itemGetPtr( n ) )
+#define PQAXBINDABLE( n )                                   static_cast< QAxBindable * >( Qt5xHb::itemGetPtr( n ) )
+#define PQAXFACTORY( n )                                    static_cast< QAxFactory * >( Qt5xHb::itemGetPtr( n ) )
+#define PQAXOBJECT( n )                                     static_cast< QAxObject * >( Qt5xHb::itemGetPtr( n ) )
+#define PQAXSCRIPT( n )                                     static_cast< QAxScript * >( Qt5xHb::itemGetPtr( n ) )
+#define PQAXSCRIPTENGINE( n )                               static_cast< QAxScriptEngine * >( Qt5xHb::itemGetPtr( n ) )
+#define PQAXSCRIPTMANAGER( n )                              static_cast< QAxScriptManager * >( Qt5xHb::itemGetPtr( n ) )
+#define PQAXWIDGET( n )                                     static_cast< QAxWidget * >( Qt5xHb::itemGetPtr( n ) )
 
-#define OPQAXBASE(n,v)                                      ISNIL(n)? v : (QAxBase *) _qt5xhb_itemGetPtr(n)
-#define OPQAXBINDABLE(n,v)                                  ISNIL(n)? v : (QAxBindable *) _qt5xhb_itemGetPtr(n)
-#define OPQAXFACTORY(n,v)                                   ISNIL(n)? v : (QAxFactory *) _qt5xhb_itemGetPtr(n)
-#define OPQAXOBJECT(n,v)                                    ISNIL(n)? v : (QAxObject *) _qt5xhb_itemGetPtr(n)
-#define OPQAXSCRIPT(n,v)                                    ISNIL(n)? v : (QAxScript *) _qt5xhb_itemGetPtr(n)
-#define OPQAXSCRIPTENGINE(n,v)                              ISNIL(n)? v : (QAxScriptEngine *) _qt5xhb_itemGetPtr(n)
-#define OPQAXSCRIPTMANAGER(n,v)                             ISNIL(n)? v : (QAxScriptManager *) _qt5xhb_itemGetPtr(n)
-#define OPQAXWIDGET(n,v)                                    ISNIL(n)? v : (QAxWidget *) _qt5xhb_itemGetPtr(n)
+#define OPQAXBASE( n, v )                                   HB_ISNIL( n ) ? v : static_cast< QAxBase * >( Qt5xHb::itemGetPtr( n ) )
+#define OPQAXBINDABLE( n, v )                               HB_ISNIL( n ) ? v : static_cast< QAxBindable * >( Qt5xHb::itemGetPtr( n ) )
+#define OPQAXFACTORY( n, v )                                HB_ISNIL( n ) ? v : static_cast< QAxFactory * >( Qt5xHb::itemGetPtr( n ) )
+#define OPQAXOBJECT( n, v )                                 HB_ISNIL( n ) ? v : static_cast< QAxObject * >( Qt5xHb::itemGetPtr( n ) )
+#define OPQAXSCRIPT( n, v )                                 HB_ISNIL( n ) ? v : static_cast< QAxScript * >( Qt5xHb::itemGetPtr( n ) )
+#define OPQAXSCRIPTENGINE( n, v )                           HB_ISNIL( n ) ? v : static_cast< QAxScriptEngine * >( Qt5xHb::itemGetPtr( n ) )
+#define OPQAXSCRIPTMANAGER( n, v )                          HB_ISNIL( n ) ? v : static_cast< QAxScriptManager * >( Qt5xHb::itemGetPtr( n ) )
+#define OPQAXWIDGET( n, v )                                 HB_ISNIL( n ) ? v : static_cast< QAxWidget * >( Qt5xHb::itemGetPtr( n ) )
 
 #endif /* QT5XHB_MACROS_ACTIVEQT_H */

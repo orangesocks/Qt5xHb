@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -57,7 +57,7 @@ CLASS QTimeLine INHERIT QObject
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QTimeLine
+PROCEDURE destroyObject() CLASS QTimeLine
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -74,20 +74,22 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #include <QtCore/QTimeLine>
 #endif
 
 /*
-QTimeLine ( int duration = 1000, QObject * parent = 0 )
+QTimeLine( int duration = 1000, QObject * parent = 0 )
 */
 HB_FUNC_STATIC( QTIMELINE_NEW )
 {
-  if( ISBETWEEN(0,2) && ISOPTNUM(1) && (ISQOBJECT(2)||ISNIL(2)) )
+  if( ISBETWEEN(0,2) && (HB_ISNUM(1)||HB_ISNIL(1)) && (ISQOBJECT(2)||HB_ISNIL(2)) )
   {
-    QTimeLine * o = new QTimeLine ( OPINT(1,1000), OPQOBJECT(2,0) );
-    _qt5xhb_returnNewObject( o, false );
+    QTimeLine * obj = new QTimeLine( OPINT(1,1000), OPQOBJECT(2,0) );
+    Qt5xHb::returnNewObject( obj, false );
   }
   else
   {
@@ -97,10 +99,12 @@ HB_FUNC_STATIC( QTIMELINE_NEW )
 
 HB_FUNC_STATIC( QTIMELINE_DELETE )
 {
-  QTimeLine * obj = (QTimeLine *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTimeLine * obj = (QTimeLine *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -113,11 +117,11 @@ HB_FUNC_STATIC( QTIMELINE_DELETE )
 }
 
 /*
-int currentFrame () const
+int currentFrame() const
 */
 HB_FUNC_STATIC( QTIMELINE_CURRENTFRAME )
 {
-  QTimeLine * obj = (QTimeLine *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTimeLine * obj = (QTimeLine *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -125,7 +129,7 @@ HB_FUNC_STATIC( QTIMELINE_CURRENTFRAME )
     if( ISNUMPAR(0) )
     {
 #endif
-      RINT( obj->currentFrame () );
+      RINT( obj->currentFrame() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -137,11 +141,11 @@ HB_FUNC_STATIC( QTIMELINE_CURRENTFRAME )
 }
 
 /*
-int currentTime () const
+int currentTime() const
 */
 HB_FUNC_STATIC( QTIMELINE_CURRENTTIME )
 {
-  QTimeLine * obj = (QTimeLine *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTimeLine * obj = (QTimeLine *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -149,7 +153,7 @@ HB_FUNC_STATIC( QTIMELINE_CURRENTTIME )
     if( ISNUMPAR(0) )
     {
 #endif
-      RINT( obj->currentTime () );
+      RINT( obj->currentTime() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -161,11 +165,11 @@ HB_FUNC_STATIC( QTIMELINE_CURRENTTIME )
 }
 
 /*
-qreal currentValue () const
+qreal currentValue() const
 */
 HB_FUNC_STATIC( QTIMELINE_CURRENTVALUE )
 {
-  QTimeLine * obj = (QTimeLine *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTimeLine * obj = (QTimeLine *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -173,7 +177,7 @@ HB_FUNC_STATIC( QTIMELINE_CURRENTVALUE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQREAL( obj->currentValue () );
+      RQREAL( obj->currentValue() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -185,11 +189,11 @@ HB_FUNC_STATIC( QTIMELINE_CURRENTVALUE )
 }
 
 /*
-CurveShape curveShape () const
+QTimeLine::CurveShape curveShape() const
 */
 HB_FUNC_STATIC( QTIMELINE_CURVESHAPE )
 {
-  QTimeLine * obj = (QTimeLine *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTimeLine * obj = (QTimeLine *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -197,7 +201,7 @@ HB_FUNC_STATIC( QTIMELINE_CURVESHAPE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RENUM( obj->curveShape () );
+      RENUM( obj->curveShape() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -209,11 +213,11 @@ HB_FUNC_STATIC( QTIMELINE_CURVESHAPE )
 }
 
 /*
-Direction direction () const
+QTimeLine::Direction direction() const
 */
 HB_FUNC_STATIC( QTIMELINE_DIRECTION )
 {
-  QTimeLine * obj = (QTimeLine *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTimeLine * obj = (QTimeLine *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -221,7 +225,7 @@ HB_FUNC_STATIC( QTIMELINE_DIRECTION )
     if( ISNUMPAR(0) )
     {
 #endif
-      RENUM( obj->direction () );
+      RENUM( obj->direction() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -233,11 +237,11 @@ HB_FUNC_STATIC( QTIMELINE_DIRECTION )
 }
 
 /*
-int duration () const
+int duration() const
 */
 HB_FUNC_STATIC( QTIMELINE_DURATION )
 {
-  QTimeLine * obj = (QTimeLine *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTimeLine * obj = (QTimeLine *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -245,7 +249,7 @@ HB_FUNC_STATIC( QTIMELINE_DURATION )
     if( ISNUMPAR(0) )
     {
 #endif
-      RINT( obj->duration () );
+      RINT( obj->duration() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -257,11 +261,11 @@ HB_FUNC_STATIC( QTIMELINE_DURATION )
 }
 
 /*
-int endFrame () const
+int endFrame() const
 */
 HB_FUNC_STATIC( QTIMELINE_ENDFRAME )
 {
-  QTimeLine * obj = (QTimeLine *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTimeLine * obj = (QTimeLine *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -269,7 +273,7 @@ HB_FUNC_STATIC( QTIMELINE_ENDFRAME )
     if( ISNUMPAR(0) )
     {
 #endif
-      RINT( obj->endFrame () );
+      RINT( obj->endFrame() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -281,19 +285,19 @@ HB_FUNC_STATIC( QTIMELINE_ENDFRAME )
 }
 
 /*
-int frameForTime ( int msec ) const
+int frameForTime( int msec ) const
 */
 HB_FUNC_STATIC( QTIMELINE_FRAMEFORTIME )
 {
-  QTimeLine * obj = (QTimeLine *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTimeLine * obj = (QTimeLine *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      RINT( obj->frameForTime ( PINT(1) ) );
+      RINT( obj->frameForTime( PINT(1) ) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -305,11 +309,11 @@ HB_FUNC_STATIC( QTIMELINE_FRAMEFORTIME )
 }
 
 /*
-int loopCount () const
+int loopCount() const
 */
 HB_FUNC_STATIC( QTIMELINE_LOOPCOUNT )
 {
-  QTimeLine * obj = (QTimeLine *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTimeLine * obj = (QTimeLine *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -317,7 +321,7 @@ HB_FUNC_STATIC( QTIMELINE_LOOPCOUNT )
     if( ISNUMPAR(0) )
     {
 #endif
-      RINT( obj->loopCount () );
+      RINT( obj->loopCount() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -329,19 +333,19 @@ HB_FUNC_STATIC( QTIMELINE_LOOPCOUNT )
 }
 
 /*
-void setCurveShape ( CurveShape shape )
+void setCurveShape( QTimeLine::CurveShape shape )
 */
 HB_FUNC_STATIC( QTIMELINE_SETCURVESHAPE )
 {
-  QTimeLine * obj = (QTimeLine *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTimeLine * obj = (QTimeLine *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setCurveShape ( (QTimeLine::CurveShape) hb_parni(1) );
+      obj->setCurveShape( (QTimeLine::CurveShape) hb_parni(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -355,19 +359,19 @@ HB_FUNC_STATIC( QTIMELINE_SETCURVESHAPE )
 }
 
 /*
-void setDirection ( Direction direction )
+void setDirection( QTimeLine::Direction direction )
 */
 HB_FUNC_STATIC( QTIMELINE_SETDIRECTION )
 {
-  QTimeLine * obj = (QTimeLine *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTimeLine * obj = (QTimeLine *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setDirection ( (QTimeLine::Direction) hb_parni(1) );
+      obj->setDirection( (QTimeLine::Direction) hb_parni(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -381,19 +385,19 @@ HB_FUNC_STATIC( QTIMELINE_SETDIRECTION )
 }
 
 /*
-void setDuration ( int duration )
+void setDuration( int duration )
 */
 HB_FUNC_STATIC( QTIMELINE_SETDURATION )
 {
-  QTimeLine * obj = (QTimeLine *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTimeLine * obj = (QTimeLine *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setDuration ( PINT(1) );
+      obj->setDuration( PINT(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -407,11 +411,11 @@ HB_FUNC_STATIC( QTIMELINE_SETDURATION )
 }
 
 /*
-void setEasingCurve ( const QEasingCurve & curve )
+void setEasingCurve( const QEasingCurve & curve )
 */
 HB_FUNC_STATIC( QTIMELINE_SETEASINGCURVE )
 {
-  QTimeLine * obj = (QTimeLine *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTimeLine * obj = (QTimeLine *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -419,7 +423,7 @@ HB_FUNC_STATIC( QTIMELINE_SETEASINGCURVE )
     if( ISNUMPAR(1) && ISQEASINGCURVE(1) )
     {
 #endif
-      obj->setEasingCurve ( *PQEASINGCURVE(1) );
+      obj->setEasingCurve( *PQEASINGCURVE(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -433,19 +437,19 @@ HB_FUNC_STATIC( QTIMELINE_SETEASINGCURVE )
 }
 
 /*
-void setEndFrame ( int frame )
+void setEndFrame( int frame )
 */
 HB_FUNC_STATIC( QTIMELINE_SETENDFRAME )
 {
-  QTimeLine * obj = (QTimeLine *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTimeLine * obj = (QTimeLine *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setEndFrame ( PINT(1) );
+      obj->setEndFrame( PINT(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -459,19 +463,19 @@ HB_FUNC_STATIC( QTIMELINE_SETENDFRAME )
 }
 
 /*
-void setFrameRange ( int startFrame, int endFrame )
+void setFrameRange( int startFrame, int endFrame )
 */
 HB_FUNC_STATIC( QTIMELINE_SETFRAMERANGE )
 {
-  QTimeLine * obj = (QTimeLine *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTimeLine * obj = (QTimeLine *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(2) && ISNUM(1) && ISNUM(2) )
+    if( ISNUMPAR(2) && HB_ISNUM(1) && HB_ISNUM(2) )
     {
 #endif
-      obj->setFrameRange ( PINT(1), PINT(2) );
+      obj->setFrameRange( PINT(1), PINT(2) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -485,19 +489,19 @@ HB_FUNC_STATIC( QTIMELINE_SETFRAMERANGE )
 }
 
 /*
-void setLoopCount ( int count )
+void setLoopCount( int count )
 */
 HB_FUNC_STATIC( QTIMELINE_SETLOOPCOUNT )
 {
-  QTimeLine * obj = (QTimeLine *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTimeLine * obj = (QTimeLine *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setLoopCount ( PINT(1) );
+      obj->setLoopCount( PINT(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -511,19 +515,19 @@ HB_FUNC_STATIC( QTIMELINE_SETLOOPCOUNT )
 }
 
 /*
-void setStartFrame ( int frame )
+void setStartFrame( int frame )
 */
 HB_FUNC_STATIC( QTIMELINE_SETSTARTFRAME )
 {
-  QTimeLine * obj = (QTimeLine *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTimeLine * obj = (QTimeLine *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setStartFrame ( PINT(1) );
+      obj->setStartFrame( PINT(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -537,19 +541,19 @@ HB_FUNC_STATIC( QTIMELINE_SETSTARTFRAME )
 }
 
 /*
-void setUpdateInterval ( int interval )
+void setUpdateInterval( int interval )
 */
 HB_FUNC_STATIC( QTIMELINE_SETUPDATEINTERVAL )
 {
-  QTimeLine * obj = (QTimeLine *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTimeLine * obj = (QTimeLine *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setUpdateInterval ( PINT(1) );
+      obj->setUpdateInterval( PINT(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -563,11 +567,11 @@ HB_FUNC_STATIC( QTIMELINE_SETUPDATEINTERVAL )
 }
 
 /*
-int startFrame () const
+int startFrame() const
 */
 HB_FUNC_STATIC( QTIMELINE_STARTFRAME )
 {
-  QTimeLine * obj = (QTimeLine *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTimeLine * obj = (QTimeLine *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -575,7 +579,7 @@ HB_FUNC_STATIC( QTIMELINE_STARTFRAME )
     if( ISNUMPAR(0) )
     {
 #endif
-      RINT( obj->startFrame () );
+      RINT( obj->startFrame() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -587,11 +591,11 @@ HB_FUNC_STATIC( QTIMELINE_STARTFRAME )
 }
 
 /*
-State state () const
+QTimeLine::State state() const
 */
 HB_FUNC_STATIC( QTIMELINE_STATE )
 {
-  QTimeLine * obj = (QTimeLine *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTimeLine * obj = (QTimeLine *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -599,7 +603,7 @@ HB_FUNC_STATIC( QTIMELINE_STATE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RENUM( obj->state () );
+      RENUM( obj->state() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -611,11 +615,11 @@ HB_FUNC_STATIC( QTIMELINE_STATE )
 }
 
 /*
-int updateInterval () const
+int updateInterval() const
 */
 HB_FUNC_STATIC( QTIMELINE_UPDATEINTERVAL )
 {
-  QTimeLine * obj = (QTimeLine *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTimeLine * obj = (QTimeLine *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -623,7 +627,7 @@ HB_FUNC_STATIC( QTIMELINE_UPDATEINTERVAL )
     if( ISNUMPAR(0) )
     {
 #endif
-      RINT( obj->updateInterval () );
+      RINT( obj->updateInterval() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -635,19 +639,19 @@ HB_FUNC_STATIC( QTIMELINE_UPDATEINTERVAL )
 }
 
 /*
-virtual qreal valueForTime ( int msec ) const
+virtual qreal valueForTime( int msec ) const
 */
 HB_FUNC_STATIC( QTIMELINE_VALUEFORTIME )
 {
-  QTimeLine * obj = (QTimeLine *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTimeLine * obj = (QTimeLine *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      RQREAL( obj->valueForTime ( PINT(1) ) );
+      RQREAL( obj->valueForTime( PINT(1) ) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -659,11 +663,11 @@ HB_FUNC_STATIC( QTIMELINE_VALUEFORTIME )
 }
 
 /*
-void resume ()
+void resume()
 */
 HB_FUNC_STATIC( QTIMELINE_RESUME )
 {
-  QTimeLine * obj = (QTimeLine *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTimeLine * obj = (QTimeLine *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -671,7 +675,7 @@ HB_FUNC_STATIC( QTIMELINE_RESUME )
     if( ISNUMPAR(0) )
     {
 #endif
-      obj->resume ();
+      obj->resume();
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -685,19 +689,19 @@ HB_FUNC_STATIC( QTIMELINE_RESUME )
 }
 
 /*
-void setCurrentTime ( int msec )
+void setCurrentTime( int msec )
 */
 HB_FUNC_STATIC( QTIMELINE_SETCURRENTTIME )
 {
-  QTimeLine * obj = (QTimeLine *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTimeLine * obj = (QTimeLine *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setCurrentTime ( PINT(1) );
+      obj->setCurrentTime( PINT(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -711,19 +715,19 @@ HB_FUNC_STATIC( QTIMELINE_SETCURRENTTIME )
 }
 
 /*
-void setPaused ( bool paused )
+void setPaused( bool paused )
 */
 HB_FUNC_STATIC( QTIMELINE_SETPAUSED )
 {
-  QTimeLine * obj = (QTimeLine *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTimeLine * obj = (QTimeLine *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISLOG(1) )
+    if( ISNUMPAR(1) && HB_ISLOG(1) )
     {
 #endif
-      obj->setPaused ( PBOOL(1) );
+      obj->setPaused( PBOOL(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -737,11 +741,11 @@ HB_FUNC_STATIC( QTIMELINE_SETPAUSED )
 }
 
 /*
-void start ()
+void start()
 */
 HB_FUNC_STATIC( QTIMELINE_START )
 {
-  QTimeLine * obj = (QTimeLine *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTimeLine * obj = (QTimeLine *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -749,7 +753,7 @@ HB_FUNC_STATIC( QTIMELINE_START )
     if( ISNUMPAR(0) )
     {
 #endif
-      obj->start ();
+      obj->start();
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -763,11 +767,11 @@ HB_FUNC_STATIC( QTIMELINE_START )
 }
 
 /*
-void stop ()
+void stop()
 */
 HB_FUNC_STATIC( QTIMELINE_STOP )
 {
-  QTimeLine * obj = (QTimeLine *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTimeLine * obj = (QTimeLine *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -775,7 +779,7 @@ HB_FUNC_STATIC( QTIMELINE_STOP )
     if( ISNUMPAR(0) )
     {
 #endif
-      obj->stop ();
+      obj->stop();
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -789,11 +793,11 @@ HB_FUNC_STATIC( QTIMELINE_STOP )
 }
 
 /*
-void toggleDirection ()
+void toggleDirection()
 */
 HB_FUNC_STATIC( QTIMELINE_TOGGLEDIRECTION )
 {
-  QTimeLine * obj = (QTimeLine *) _qt5xhb_itemGetPtrStackSelfItem();
+  QTimeLine * obj = (QTimeLine *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -801,7 +805,7 @@ HB_FUNC_STATIC( QTIMELINE_TOGGLEDIRECTION )
     if( ISNUMPAR(0) )
     {
 #endif
-      obj->toggleDirection ();
+      obj->toggleDirection();
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -814,7 +818,7 @@ HB_FUNC_STATIC( QTIMELINE_TOGGLEDIRECTION )
   hb_itemReturn( hb_stackSelfItem() );
 }
 
-void QTimeLineSlots_connect_signal ( const QString & signal, const QString & slot );
+void QTimeLineSlots_connect_signal( const QString & signal, const QString & slot );
 
 HB_FUNC_STATIC( QTIMELINE_ONFINISHED )
 {

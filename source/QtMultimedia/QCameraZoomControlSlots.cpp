@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -12,95 +12,125 @@
 
 #include "QCameraZoomControlSlots.h"
 
-QCameraZoomControlSlots::QCameraZoomControlSlots(QObject *parent) : QObject(parent)
+QCameraZoomControlSlots::QCameraZoomControlSlots( QObject *parent ) : QObject( parent )
 {
 }
 
 QCameraZoomControlSlots::~QCameraZoomControlSlots()
 {
 }
+
 void QCameraZoomControlSlots::currentDigitalZoomChanged( qreal zoom )
 {
   QObject *object = qobject_cast<QObject *>(sender());
-  PHB_ITEM cb = Signals_return_codeblock( object, "currentDigitalZoomChanged(qreal)" );
+
+  PHB_ITEM cb = Qt5xHb::Signals_return_codeblock( object, "currentDigitalZoomChanged(qreal)" );
+
   if( cb )
   {
-    PHB_ITEM psender = Signals_return_qobject ( (QObject *) object, "QCAMERAZOOMCONTROL" );
+    PHB_ITEM psender = Qt5xHb::Signals_return_qobject( (QObject *) object, "QCAMERAZOOMCONTROL" );
     PHB_ITEM pzoom = hb_itemPutND( NULL, zoom );
-    hb_vmEvalBlockV( (PHB_ITEM) cb, 2, psender, pzoom );
-    hb_itemRelease( psender );
-    hb_itemRelease( pzoom );
-  }
-}
-void QCameraZoomControlSlots::currentOpticalZoomChanged( qreal zoom )
-{
-  QObject *object = qobject_cast<QObject *>(sender());
-  PHB_ITEM cb = Signals_return_codeblock( object, "currentOpticalZoomChanged(qreal)" );
-  if( cb )
-  {
-    PHB_ITEM psender = Signals_return_qobject ( (QObject *) object, "QCAMERAZOOMCONTROL" );
-    PHB_ITEM pzoom = hb_itemPutND( NULL, zoom );
-    hb_vmEvalBlockV( (PHB_ITEM) cb, 2, psender, pzoom );
-    hb_itemRelease( psender );
-    hb_itemRelease( pzoom );
-  }
-}
-void QCameraZoomControlSlots::maximumDigitalZoomChanged( qreal zoom )
-{
-  QObject *object = qobject_cast<QObject *>(sender());
-  PHB_ITEM cb = Signals_return_codeblock( object, "maximumDigitalZoomChanged(qreal)" );
-  if( cb )
-  {
-    PHB_ITEM psender = Signals_return_qobject ( (QObject *) object, "QCAMERAZOOMCONTROL" );
-    PHB_ITEM pzoom = hb_itemPutND( NULL, zoom );
-    hb_vmEvalBlockV( (PHB_ITEM) cb, 2, psender, pzoom );
-    hb_itemRelease( psender );
-    hb_itemRelease( pzoom );
-  }
-}
-void QCameraZoomControlSlots::maximumOpticalZoomChanged( qreal zoom )
-{
-  QObject *object = qobject_cast<QObject *>(sender());
-  PHB_ITEM cb = Signals_return_codeblock( object, "maximumOpticalZoomChanged(qreal)" );
-  if( cb )
-  {
-    PHB_ITEM psender = Signals_return_qobject ( (QObject *) object, "QCAMERAZOOMCONTROL" );
-    PHB_ITEM pzoom = hb_itemPutND( NULL, zoom );
-    hb_vmEvalBlockV( (PHB_ITEM) cb, 2, psender, pzoom );
-    hb_itemRelease( psender );
-    hb_itemRelease( pzoom );
-  }
-}
-void QCameraZoomControlSlots::requestedDigitalZoomChanged( qreal zoom )
-{
-  QObject *object = qobject_cast<QObject *>(sender());
-  PHB_ITEM cb = Signals_return_codeblock( object, "requestedDigitalZoomChanged(qreal)" );
-  if( cb )
-  {
-    PHB_ITEM psender = Signals_return_qobject ( (QObject *) object, "QCAMERAZOOMCONTROL" );
-    PHB_ITEM pzoom = hb_itemPutND( NULL, zoom );
-    hb_vmEvalBlockV( (PHB_ITEM) cb, 2, psender, pzoom );
-    hb_itemRelease( psender );
-    hb_itemRelease( pzoom );
-  }
-}
-void QCameraZoomControlSlots::requestedOpticalZoomChanged( qreal zoom )
-{
-  QObject *object = qobject_cast<QObject *>(sender());
-  PHB_ITEM cb = Signals_return_codeblock( object, "requestedOpticalZoomChanged(qreal)" );
-  if( cb )
-  {
-    PHB_ITEM psender = Signals_return_qobject ( (QObject *) object, "QCAMERAZOOMCONTROL" );
-    PHB_ITEM pzoom = hb_itemPutND( NULL, zoom );
-    hb_vmEvalBlockV( (PHB_ITEM) cb, 2, psender, pzoom );
+
+    hb_vmEvalBlockV( cb, 2, psender, pzoom );
+
     hb_itemRelease( psender );
     hb_itemRelease( pzoom );
   }
 }
 
-void QCameraZoomControlSlots_connect_signal ( const QString & signal, const QString & slot )
+void QCameraZoomControlSlots::currentOpticalZoomChanged( qreal zoom )
 {
-  QCameraZoomControl * obj = (QCameraZoomControl *) hb_itemGetPtr( hb_objSendMsg( hb_stackSelfItem(), "POINTER", 0 ) );
+  QObject *object = qobject_cast<QObject *>(sender());
+
+  PHB_ITEM cb = Qt5xHb::Signals_return_codeblock( object, "currentOpticalZoomChanged(qreal)" );
+
+  if( cb )
+  {
+    PHB_ITEM psender = Qt5xHb::Signals_return_qobject( (QObject *) object, "QCAMERAZOOMCONTROL" );
+    PHB_ITEM pzoom = hb_itemPutND( NULL, zoom );
+
+    hb_vmEvalBlockV( cb, 2, psender, pzoom );
+
+    hb_itemRelease( psender );
+    hb_itemRelease( pzoom );
+  }
+}
+
+void QCameraZoomControlSlots::maximumDigitalZoomChanged( qreal zoom )
+{
+  QObject *object = qobject_cast<QObject *>(sender());
+
+  PHB_ITEM cb = Qt5xHb::Signals_return_codeblock( object, "maximumDigitalZoomChanged(qreal)" );
+
+  if( cb )
+  {
+    PHB_ITEM psender = Qt5xHb::Signals_return_qobject( (QObject *) object, "QCAMERAZOOMCONTROL" );
+    PHB_ITEM pzoom = hb_itemPutND( NULL, zoom );
+
+    hb_vmEvalBlockV( cb, 2, psender, pzoom );
+
+    hb_itemRelease( psender );
+    hb_itemRelease( pzoom );
+  }
+}
+
+void QCameraZoomControlSlots::maximumOpticalZoomChanged( qreal zoom )
+{
+  QObject *object = qobject_cast<QObject *>(sender());
+
+  PHB_ITEM cb = Qt5xHb::Signals_return_codeblock( object, "maximumOpticalZoomChanged(qreal)" );
+
+  if( cb )
+  {
+    PHB_ITEM psender = Qt5xHb::Signals_return_qobject( (QObject *) object, "QCAMERAZOOMCONTROL" );
+    PHB_ITEM pzoom = hb_itemPutND( NULL, zoom );
+
+    hb_vmEvalBlockV( cb, 2, psender, pzoom );
+
+    hb_itemRelease( psender );
+    hb_itemRelease( pzoom );
+  }
+}
+
+void QCameraZoomControlSlots::requestedDigitalZoomChanged( qreal zoom )
+{
+  QObject *object = qobject_cast<QObject *>(sender());
+
+  PHB_ITEM cb = Qt5xHb::Signals_return_codeblock( object, "requestedDigitalZoomChanged(qreal)" );
+
+  if( cb )
+  {
+    PHB_ITEM psender = Qt5xHb::Signals_return_qobject( (QObject *) object, "QCAMERAZOOMCONTROL" );
+    PHB_ITEM pzoom = hb_itemPutND( NULL, zoom );
+
+    hb_vmEvalBlockV( cb, 2, psender, pzoom );
+
+    hb_itemRelease( psender );
+    hb_itemRelease( pzoom );
+  }
+}
+
+void QCameraZoomControlSlots::requestedOpticalZoomChanged( qreal zoom )
+{
+  QObject *object = qobject_cast<QObject *>(sender());
+
+  PHB_ITEM cb = Qt5xHb::Signals_return_codeblock( object, "requestedOpticalZoomChanged(qreal)" );
+
+  if( cb )
+  {
+    PHB_ITEM psender = Qt5xHb::Signals_return_qobject( (QObject *) object, "QCAMERAZOOMCONTROL" );
+    PHB_ITEM pzoom = hb_itemPutND( NULL, zoom );
+
+    hb_vmEvalBlockV( cb, 2, psender, pzoom );
+
+    hb_itemRelease( psender );
+    hb_itemRelease( pzoom );
+  }
+}
+
+void QCameraZoomControlSlots_connect_signal( const QString & signal, const QString & slot )
+{
+  QCameraZoomControl * obj = (QCameraZoomControl *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -113,7 +143,7 @@ void QCameraZoomControlSlots_connect_signal ( const QString & signal, const QStr
       s->setParent( QCoreApplication::instance() );
     }
 
-    hb_retl( Signals_connection_disconnection( s, signal, slot ) );
+    hb_retl( Qt5xHb::Signals_connection_disconnection( s, signal, slot ) );
   }
   else
   {

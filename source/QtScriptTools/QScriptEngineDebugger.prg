@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -42,7 +42,7 @@ CLASS QScriptEngineDebugger INHERIT QObject
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QScriptEngineDebugger
+PROCEDURE destroyObject() CLASS QScriptEngineDebugger
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -59,6 +59,8 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #include <QtScriptTools/QScriptEngineDebugger>
@@ -70,14 +72,14 @@ RETURN
 #include <QtWidgets/QMainWindow>
 
 /*
-QScriptEngineDebugger(QObject * parent = 0)
+QScriptEngineDebugger( QObject * parent = 0 )
 */
 HB_FUNC_STATIC( QSCRIPTENGINEDEBUGGER_NEW )
 {
-  if( ISBETWEEN(0,1) && (ISQOBJECT(1)||ISNIL(1)) )
+  if( ISBETWEEN(0,1) && (ISQOBJECT(1)||HB_ISNIL(1)) )
   {
-    QScriptEngineDebugger * o = new QScriptEngineDebugger ( OPQOBJECT(1,0) );
-    _qt5xhb_returnNewObject( o, false );
+    QScriptEngineDebugger * obj = new QScriptEngineDebugger( OPQOBJECT(1,0) );
+    Qt5xHb::returnNewObject( obj, false );
   }
   else
   {
@@ -87,10 +89,12 @@ HB_FUNC_STATIC( QSCRIPTENGINEDEBUGGER_NEW )
 
 HB_FUNC_STATIC( QSCRIPTENGINEDEBUGGER_DELETE )
 {
-  QScriptEngineDebugger * obj = (QScriptEngineDebugger *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScriptEngineDebugger * obj = (QScriptEngineDebugger *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -103,20 +107,20 @@ HB_FUNC_STATIC( QSCRIPTENGINEDEBUGGER_DELETE )
 }
 
 /*
-QAction * action(DebuggerAction action) const
+QAction * action( QScriptEngineDebugger::DebuggerAction action ) const
 */
 HB_FUNC_STATIC( QSCRIPTENGINEDEBUGGER_ACTION )
 {
-  QScriptEngineDebugger * obj = (QScriptEngineDebugger *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScriptEngineDebugger * obj = (QScriptEngineDebugger *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      QAction * ptr = obj->action ( (QScriptEngineDebugger::DebuggerAction) hb_parni(1) );
-      _qt5xhb_createReturnQObjectClass ( ptr, "QACTION" );
+      QAction * ptr = obj->action( (QScriptEngineDebugger::DebuggerAction) hb_parni(1) );
+      Qt5xHb::createReturnQObjectClass( ptr, "QACTION" );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -128,11 +132,11 @@ HB_FUNC_STATIC( QSCRIPTENGINEDEBUGGER_ACTION )
 }
 
 /*
-void attachTo(QScriptEngine * engine)
+void attachTo( QScriptEngine * engine )
 */
 HB_FUNC_STATIC( QSCRIPTENGINEDEBUGGER_ATTACHTO )
 {
-  QScriptEngineDebugger * obj = (QScriptEngineDebugger *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScriptEngineDebugger * obj = (QScriptEngineDebugger *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -140,7 +144,7 @@ HB_FUNC_STATIC( QSCRIPTENGINEDEBUGGER_ATTACHTO )
     if( ISNUMPAR(1) && ISQSCRIPTENGINE(1) )
     {
 #endif
-      obj->attachTo ( PQSCRIPTENGINE(1) );
+      obj->attachTo( PQSCRIPTENGINE(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -158,7 +162,7 @@ bool autoShowStandardWindow() const
 */
 HB_FUNC_STATIC( QSCRIPTENGINEDEBUGGER_AUTOSHOWSTANDARDWINDOW )
 {
-  QScriptEngineDebugger * obj = (QScriptEngineDebugger *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScriptEngineDebugger * obj = (QScriptEngineDebugger *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -166,7 +170,7 @@ HB_FUNC_STATIC( QSCRIPTENGINEDEBUGGER_AUTOSHOWSTANDARDWINDOW )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->autoShowStandardWindow () );
+      RBOOL( obj->autoShowStandardWindow() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -178,20 +182,20 @@ HB_FUNC_STATIC( QSCRIPTENGINEDEBUGGER_AUTOSHOWSTANDARDWINDOW )
 }
 
 /*
-QMenu * createStandardMenu(QWidget * parent = 0)
+QMenu * createStandardMenu( QWidget * parent = 0 )
 */
 HB_FUNC_STATIC( QSCRIPTENGINEDEBUGGER_CREATESTANDARDMENU )
 {
-  QScriptEngineDebugger * obj = (QScriptEngineDebugger *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScriptEngineDebugger * obj = (QScriptEngineDebugger *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISBETWEEN(0,1) && (ISQWIDGET(1)||ISNIL(1)) )
+    if( ISBETWEEN(0,1) && (ISQWIDGET(1)||HB_ISNIL(1)) )
     {
 #endif
-      QMenu * ptr = obj->createStandardMenu ( OPQWIDGET(1,0) );
-      _qt5xhb_createReturnQWidgetClass ( ptr, "QMENU" );
+      QMenu * ptr = obj->createStandardMenu( OPQWIDGET(1,0) );
+      Qt5xHb::createReturnQWidgetClass( ptr, "QMENU" );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -203,20 +207,20 @@ HB_FUNC_STATIC( QSCRIPTENGINEDEBUGGER_CREATESTANDARDMENU )
 }
 
 /*
-QToolBar * createStandardToolBar(QWidget * parent = 0)
+QToolBar * createStandardToolBar( QWidget * parent = 0 )
 */
 HB_FUNC_STATIC( QSCRIPTENGINEDEBUGGER_CREATESTANDARDTOOLBAR )
 {
-  QScriptEngineDebugger * obj = (QScriptEngineDebugger *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScriptEngineDebugger * obj = (QScriptEngineDebugger *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISBETWEEN(0,1) && (ISQWIDGET(1)||ISNIL(1)) )
+    if( ISBETWEEN(0,1) && (ISQWIDGET(1)||HB_ISNIL(1)) )
     {
 #endif
-      QToolBar * ptr = obj->createStandardToolBar ( OPQWIDGET(1,0) );
-      _qt5xhb_createReturnQWidgetClass ( ptr, "QTOOLBAR" );
+      QToolBar * ptr = obj->createStandardToolBar( OPQWIDGET(1,0) );
+      Qt5xHb::createReturnQWidgetClass( ptr, "QTOOLBAR" );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -232,7 +236,7 @@ void detach()
 */
 HB_FUNC_STATIC( QSCRIPTENGINEDEBUGGER_DETACH )
 {
-  QScriptEngineDebugger * obj = (QScriptEngineDebugger *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScriptEngineDebugger * obj = (QScriptEngineDebugger *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -240,7 +244,7 @@ HB_FUNC_STATIC( QSCRIPTENGINEDEBUGGER_DETACH )
     if( ISNUMPAR(0) )
     {
 #endif
-      obj->detach ();
+      obj->detach();
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -254,19 +258,19 @@ HB_FUNC_STATIC( QSCRIPTENGINEDEBUGGER_DETACH )
 }
 
 /*
-void setAutoShowStandardWindow(bool autoShow)
+void setAutoShowStandardWindow( bool autoShow )
 */
 HB_FUNC_STATIC( QSCRIPTENGINEDEBUGGER_SETAUTOSHOWSTANDARDWINDOW )
 {
-  QScriptEngineDebugger * obj = (QScriptEngineDebugger *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScriptEngineDebugger * obj = (QScriptEngineDebugger *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISLOG(1) )
+    if( ISNUMPAR(1) && HB_ISLOG(1) )
     {
 #endif
-      obj->setAutoShowStandardWindow ( PBOOL(1) );
+      obj->setAutoShowStandardWindow( PBOOL(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -284,7 +288,7 @@ QMainWindow * standardWindow() const
 */
 HB_FUNC_STATIC( QSCRIPTENGINEDEBUGGER_STANDARDWINDOW )
 {
-  QScriptEngineDebugger * obj = (QScriptEngineDebugger *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScriptEngineDebugger * obj = (QScriptEngineDebugger *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -292,8 +296,8 @@ HB_FUNC_STATIC( QSCRIPTENGINEDEBUGGER_STANDARDWINDOW )
     if( ISNUMPAR(0) )
     {
 #endif
-      QMainWindow * ptr = obj->standardWindow ();
-      _qt5xhb_createReturnQWidgetClass ( ptr, "QMAINWINDOW" );
+      QMainWindow * ptr = obj->standardWindow();
+      Qt5xHb::createReturnQWidgetClass( ptr, "QMAINWINDOW" );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -305,11 +309,11 @@ HB_FUNC_STATIC( QSCRIPTENGINEDEBUGGER_STANDARDWINDOW )
 }
 
 /*
-DebuggerState state() const
+QScriptEngineDebugger::DebuggerState state() const
 */
 HB_FUNC_STATIC( QSCRIPTENGINEDEBUGGER_STATE )
 {
-  QScriptEngineDebugger * obj = (QScriptEngineDebugger *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScriptEngineDebugger * obj = (QScriptEngineDebugger *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -317,7 +321,7 @@ HB_FUNC_STATIC( QSCRIPTENGINEDEBUGGER_STATE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RENUM( obj->state () );
+      RENUM( obj->state() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -329,20 +333,20 @@ HB_FUNC_STATIC( QSCRIPTENGINEDEBUGGER_STATE )
 }
 
 /*
-QWidget * widget(DebuggerWidget widget) const
+QWidget * widget( QScriptEngineDebugger::DebuggerWidget widget ) const
 */
 HB_FUNC_STATIC( QSCRIPTENGINEDEBUGGER_WIDGET )
 {
-  QScriptEngineDebugger * obj = (QScriptEngineDebugger *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScriptEngineDebugger * obj = (QScriptEngineDebugger *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      QWidget * ptr = obj->widget ( (QScriptEngineDebugger::DebuggerWidget) hb_parni(1) );
-      _qt5xhb_createReturnQWidgetClass ( ptr, "QWIDGET" );
+      QWidget * ptr = obj->widget( (QScriptEngineDebugger::DebuggerWidget) hb_parni(1) );
+      Qt5xHb::createReturnQWidgetClass( ptr, "QWIDGET" );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -353,7 +357,7 @@ HB_FUNC_STATIC( QSCRIPTENGINEDEBUGGER_WIDGET )
   }
 }
 
-void QScriptEngineDebuggerSlots_connect_signal ( const QString & signal, const QString & slot );
+void QScriptEngineDebuggerSlots_connect_signal( const QString & signal, const QString & slot );
 
 HB_FUNC_STATIC( QSCRIPTENGINEDEBUGGER_ONEVALUATIONRESUMED )
 {

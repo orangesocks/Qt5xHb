@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -13,40 +13,40 @@
 #ifndef QT5XHB_MACROS_QTHELP_H
 #define QT5XHB_MACROS_QTHELP_H
 
-#define ISQHELPCONTENTITEM(n)                               _qt5xhb_isObjectDerivedFrom(n,"QHelpContentItem")
-#define ISQHELPCONTENTMODEL(n)                              _qt5xhb_isObjectDerivedFrom(n,"QHelpContentModel")
-#define ISQHELPCONTENTWIDGET(n)                             _qt5xhb_isObjectDerivedFrom(n,"QHelpContentWidget")
-#define ISQHELPENGINE(n)                                    _qt5xhb_isObjectDerivedFrom(n,"QHelpEngine")
-#define ISQHELPENGINECORE(n)                                _qt5xhb_isObjectDerivedFrom(n,"QHelpEngineCore")
-#define ISQHELPINDEXMODEL(n)                                _qt5xhb_isObjectDerivedFrom(n,"QHelpIndexModel")
-#define ISQHELPINDEXWIDGET(n)                               _qt5xhb_isObjectDerivedFrom(n,"QHelpIndexWidget")
-#define ISQHELPSEARCHENGINE(n)                              _qt5xhb_isObjectDerivedFrom(n,"QHelpSearchEngine")
-#define ISQHELPSEARCHQUERY(n)                               _qt5xhb_isObjectDerivedFrom(n,"QHelpSearchQuery")
-#define ISQHELPSEARCHQUERYWIDGET(n)                         _qt5xhb_isObjectDerivedFrom(n,"QHelpSearchQueryWidget")
-#define ISQHELPSEARCHRESULTWIDGET(n)                        _qt5xhb_isObjectDerivedFrom(n,"QHelpSearchResultWidget")
+#define ISQHELPCONTENTITEM( n )                             Qt5xHb::isObjectDerivedFrom( n, "QHelpContentItem" )
+#define ISQHELPCONTENTMODEL( n )                            Qt5xHb::isObjectDerivedFrom( n, "QHelpContentModel" )
+#define ISQHELPCONTENTWIDGET( n )                           Qt5xHb::isObjectDerivedFrom( n, "QHelpContentWidget" )
+#define ISQHELPENGINE( n )                                  Qt5xHb::isObjectDerivedFrom( n, "QHelpEngine" )
+#define ISQHELPENGINECORE( n )                              Qt5xHb::isObjectDerivedFrom( n, "QHelpEngineCore" )
+#define ISQHELPINDEXMODEL( n )                              Qt5xHb::isObjectDerivedFrom( n, "QHelpIndexModel" )
+#define ISQHELPINDEXWIDGET( n )                             Qt5xHb::isObjectDerivedFrom( n, "QHelpIndexWidget" )
+#define ISQHELPSEARCHENGINE( n )                            Qt5xHb::isObjectDerivedFrom( n, "QHelpSearchEngine" )
+#define ISQHELPSEARCHQUERY( n )                             Qt5xHb::isObjectDerivedFrom( n, "QHelpSearchQuery" )
+#define ISQHELPSEARCHQUERYWIDGET( n )                       Qt5xHb::isObjectDerivedFrom( n, "QHelpSearchQueryWidget" )
+#define ISQHELPSEARCHRESULTWIDGET( n )                      Qt5xHb::isObjectDerivedFrom( n, "QHelpSearchResultWidget" )
 
-#define PQHELPCONTENTITEM(n)                                (QHelpContentItem *) _qt5xhb_itemGetPtr(n)
-#define PQHELPCONTENTMODEL(n)                               (QHelpContentModel *) _qt5xhb_itemGetPtr(n)
-#define PQHELPCONTENTWIDGET(n)                              (QHelpContentWidget *) _qt5xhb_itemGetPtr(n)
-#define PQHELPENGINE(n)                                     (QHelpEngine *) _qt5xhb_itemGetPtr(n)
-#define PQHELPENGINECORE(n)                                 (QHelpEngineCore *) _qt5xhb_itemGetPtr(n)
-#define PQHELPINDEXMODEL(n)                                 (QHelpIndexModel *) _qt5xhb_itemGetPtr(n)
-#define PQHELPINDEXWIDGET(n)                                (QHelpIndexWidget *) _qt5xhb_itemGetPtr(n)
-#define PQHELPSEARCHENGINE(n)                               (QHelpSearchEngine *) _qt5xhb_itemGetPtr(n)
-#define PQHELPSEARCHQUERY(n)                                (QHelpSearchQuery *) _qt5xhb_itemGetPtr(n)
-#define PQHELPSEARCHQUERYWIDGET(n)                          (QHelpSearchQueryWidget *) _qt5xhb_itemGetPtr(n)
-#define PQHELPSEARCHRESULTWIDGET(n)                         (QHelpSearchResultWidget *) _qt5xhb_itemGetPtr(n)
+#define PQHELPCONTENTITEM( n )                              static_cast< QHelpContentItem * >( Qt5xHb::itemGetPtr( n ) )
+#define PQHELPCONTENTMODEL( n )                             static_cast< QHelpContentModel * >( Qt5xHb::itemGetPtr( n ) )
+#define PQHELPCONTENTWIDGET( n )                            static_cast< QHelpContentWidget * >( Qt5xHb::itemGetPtr( n ) )
+#define PQHELPENGINE( n )                                   static_cast< QHelpEngine * >( Qt5xHb::itemGetPtr( n ) )
+#define PQHELPENGINECORE( n )                               static_cast< QHelpEngineCore * >( Qt5xHb::itemGetPtr( n ) )
+#define PQHELPINDEXMODEL( n )                               static_cast< QHelpIndexModel * >( Qt5xHb::itemGetPtr( n ) )
+#define PQHELPINDEXWIDGET( n )                              static_cast< QHelpIndexWidget * >( Qt5xHb::itemGetPtr( n ) )
+#define PQHELPSEARCHENGINE( n )                             static_cast< QHelpSearchEngine * >( Qt5xHb::itemGetPtr( n ) )
+#define PQHELPSEARCHQUERY( n )                              static_cast< QHelpSearchQuery * >( Qt5xHb::itemGetPtr( n ) )
+#define PQHELPSEARCHQUERYWIDGET( n )                        static_cast< QHelpSearchQueryWidget * >( Qt5xHb::itemGetPtr( n ) )
+#define PQHELPSEARCHRESULTWIDGET( n )                       static_cast< QHelpSearchResultWidget * >( Qt5xHb::itemGetPtr( n ) )
 
-#define OPQHELPCONTENTITEM(n,v)                             ISNIL(n)? v : (QHelpContentItem *) _qt5xhb_itemGetPtr(n)
-#define OPQHELPCONTENTMODEL(n,v)                            ISNIL(n)? v : (QHelpContentModel *) _qt5xhb_itemGetPtr(n)
-#define OPQHELPCONTENTWIDGET(n,v)                           ISNIL(n)? v : (QHelpContentWidget *) _qt5xhb_itemGetPtr(n)
-#define OPQHELPENGINE(n,v)                                  ISNIL(n)? v : (QHelpEngine *) _qt5xhb_itemGetPtr(n)
-#define OPQHELPENGINECORE(n,v)                              ISNIL(n)? v : (QHelpEngineCore *) _qt5xhb_itemGetPtr(n)
-#define OPQHELPINDEXMODEL(n,v)                              ISNIL(n)? v : (QHelpIndexModel *) _qt5xhb_itemGetPtr(n)
-#define OPQHELPINDEXWIDGET(n,v)                             ISNIL(n)? v : (QHelpIndexWidget *) _qt5xhb_itemGetPtr(n)
-#define OPQHELPSEARCHENGINE(n,v)                            ISNIL(n)? v : (QHelpSearchEngine *) _qt5xhb_itemGetPtr(n)
-#define OPQHELPSEARCHQUERY(n,v)                             ISNIL(n)? v : (QHelpSearchQuery *) _qt5xhb_itemGetPtr(n)
-#define OPQHELPSEARCHQUERYWIDGET(n,v)                       ISNIL(n)? v : (QHelpSearchQueryWidget *) _qt5xhb_itemGetPtr(n)
-#define OPQHELPSEARCHRESULTWIDGET(n,v)                      ISNIL(n)? v : (QHelpSearchResultWidget *) _qt5xhb_itemGetPtr(n)
+#define OPQHELPCONTENTITEM( n, v )                          HB_ISNIL( n ) ? v : static_cast< QHelpContentItem * >( Qt5xHb::itemGetPtr( n ) )
+#define OPQHELPCONTENTMODEL( n, v )                         HB_ISNIL( n ) ? v : static_cast< QHelpContentModel * >( Qt5xHb::itemGetPtr( n ) )
+#define OPQHELPCONTENTWIDGET( n, v )                        HB_ISNIL( n ) ? v : static_cast< QHelpContentWidget * >( Qt5xHb::itemGetPtr( n ) )
+#define OPQHELPENGINE( n, v )                               HB_ISNIL( n ) ? v : static_cast< QHelpEngine * >( Qt5xHb::itemGetPtr( n ) )
+#define OPQHELPENGINECORE( n, v )                           HB_ISNIL( n ) ? v : static_cast< QHelpEngineCore * >( Qt5xHb::itemGetPtr( n ) )
+#define OPQHELPINDEXMODEL( n, v )                           HB_ISNIL( n ) ? v : static_cast< QHelpIndexModel * >( Qt5xHb::itemGetPtr( n ) )
+#define OPQHELPINDEXWIDGET( n, v )                          HB_ISNIL( n ) ? v : static_cast< QHelpIndexWidget * >( Qt5xHb::itemGetPtr( n ) )
+#define OPQHELPSEARCHENGINE( n, v )                         HB_ISNIL( n ) ? v : static_cast< QHelpSearchEngine * >( Qt5xHb::itemGetPtr( n ) )
+#define OPQHELPSEARCHQUERY( n, v )                          HB_ISNIL( n ) ? v : static_cast< QHelpSearchQuery * >( Qt5xHb::itemGetPtr( n ) )
+#define OPQHELPSEARCHQUERYWIDGET( n, v )                    HB_ISNIL( n ) ? v : static_cast< QHelpSearchQueryWidget * >( Qt5xHb::itemGetPtr( n ) )
+#define OPQHELPSEARCHRESULTWIDGET( n, v )                   HB_ISNIL( n ) ? v : static_cast< QHelpSearchResultWidget * >( Qt5xHb::itemGetPtr( n ) )
 
 #endif /* QT5XHB_MACROS_QTHELP_H */

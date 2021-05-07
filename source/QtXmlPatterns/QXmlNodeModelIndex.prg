@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -39,7 +39,7 @@ CLASS QXmlNodeModelIndex
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QXmlNodeModelIndex
+PROCEDURE destroyObject() CLASS QXmlNodeModelIndex
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -62,25 +62,22 @@ RETURN
 #endif
 
 /*
-QXmlNodeModelIndex ()
+QXmlNodeModelIndex()
 */
-void QXmlNodeModelIndex_new1 ()
+void QXmlNodeModelIndex_new1()
 {
-  QXmlNodeModelIndex * o = new QXmlNodeModelIndex ();
-  _qt5xhb_returnNewObject( o, true );
+  QXmlNodeModelIndex * obj = new QXmlNodeModelIndex();
+  Qt5xHb::returnNewObject( obj, true );
 }
 
 /*
-QXmlNodeModelIndex ( const QXmlNodeModelIndex & other )
+QXmlNodeModelIndex( const QXmlNodeModelIndex & other )
 */
-void QXmlNodeModelIndex_new2 ()
+void QXmlNodeModelIndex_new2()
 {
-  QXmlNodeModelIndex * o = new QXmlNodeModelIndex ( *PQXMLNODEMODELINDEX(1) );
-  _qt5xhb_returnNewObject( o, true );
+  QXmlNodeModelIndex * obj = new QXmlNodeModelIndex( *PQXMLNODEMODELINDEX(1) );
+  Qt5xHb::returnNewObject( obj, true );
 }
-
-//[1]QXmlNodeModelIndex ()
-//[2]QXmlNodeModelIndex ( const QXmlNodeModelIndex & other )
 
 HB_FUNC_STATIC( QXMLNODEMODELINDEX_NEW )
 {
@@ -100,7 +97,7 @@ HB_FUNC_STATIC( QXMLNODEMODELINDEX_NEW )
 
 HB_FUNC_STATIC( QXMLNODEMODELINDEX_DELETE )
 {
-  QXmlNodeModelIndex * obj = (QXmlNodeModelIndex *) _qt5xhb_itemGetPtrStackSelfItem();
+  QXmlNodeModelIndex * obj = (QXmlNodeModelIndex *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -116,11 +113,11 @@ HB_FUNC_STATIC( QXMLNODEMODELINDEX_DELETE )
 }
 
 /*
-qint64 additionalData () const
+qint64 additionalData() const
 */
 HB_FUNC_STATIC( QXMLNODEMODELINDEX_ADDITIONALDATA )
 {
-  QXmlNodeModelIndex * obj = (QXmlNodeModelIndex *) _qt5xhb_itemGetPtrStackSelfItem();
+  QXmlNodeModelIndex * obj = (QXmlNodeModelIndex *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -128,7 +125,7 @@ HB_FUNC_STATIC( QXMLNODEMODELINDEX_ADDITIONALDATA )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQINT64( obj->additionalData () );
+      RQINT64( obj->additionalData() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -140,11 +137,11 @@ HB_FUNC_STATIC( QXMLNODEMODELINDEX_ADDITIONALDATA )
 }
 
 /*
-qint64 data () const
+qint64 data() const
 */
 HB_FUNC_STATIC( QXMLNODEMODELINDEX_DATA )
 {
-  QXmlNodeModelIndex * obj = (QXmlNodeModelIndex *) _qt5xhb_itemGetPtrStackSelfItem();
+  QXmlNodeModelIndex * obj = (QXmlNodeModelIndex *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -152,7 +149,7 @@ HB_FUNC_STATIC( QXMLNODEMODELINDEX_DATA )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQINT64( obj->data () );
+      RQINT64( obj->data() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -164,11 +161,11 @@ HB_FUNC_STATIC( QXMLNODEMODELINDEX_DATA )
 }
 
 /*
-void * internalPointer () const
+void * internalPointer() const
 */
 HB_FUNC_STATIC( QXMLNODEMODELINDEX_INTERNALPOINTER )
 {
-  QXmlNodeModelIndex * obj = (QXmlNodeModelIndex *) _qt5xhb_itemGetPtrStackSelfItem();
+  QXmlNodeModelIndex * obj = (QXmlNodeModelIndex *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -176,7 +173,7 @@ HB_FUNC_STATIC( QXMLNODEMODELINDEX_INTERNALPOINTER )
     if( ISNUMPAR(0) )
     {
 #endif
-      hb_retptr( (void *) obj->internalPointer () );
+      hb_retptr( (void *) obj->internalPointer() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -188,11 +185,11 @@ HB_FUNC_STATIC( QXMLNODEMODELINDEX_INTERNALPOINTER )
 }
 
 /*
-bool isNull () const
+bool isNull() const
 */
 HB_FUNC_STATIC( QXMLNODEMODELINDEX_ISNULL )
 {
-  QXmlNodeModelIndex * obj = (QXmlNodeModelIndex *) _qt5xhb_itemGetPtrStackSelfItem();
+  QXmlNodeModelIndex * obj = (QXmlNodeModelIndex *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -200,7 +197,7 @@ HB_FUNC_STATIC( QXMLNODEMODELINDEX_ISNULL )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->isNull () );
+      RBOOL( obj->isNull() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -212,11 +209,11 @@ HB_FUNC_STATIC( QXMLNODEMODELINDEX_ISNULL )
 }
 
 /*
-const QAbstractXmlNodeModel * model () const
+const QAbstractXmlNodeModel * model() const
 */
 HB_FUNC_STATIC( QXMLNODEMODELINDEX_MODEL )
 {
-  QXmlNodeModelIndex * obj = (QXmlNodeModelIndex *) _qt5xhb_itemGetPtrStackSelfItem();
+  QXmlNodeModelIndex * obj = (QXmlNodeModelIndex *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -224,8 +221,8 @@ HB_FUNC_STATIC( QXMLNODEMODELINDEX_MODEL )
     if( ISNUMPAR(0) )
     {
 #endif
-      const QAbstractXmlNodeModel * ptr = obj->model ();
-      _qt5xhb_createReturnClass ( ptr, "QABSTRACTXMLNODEMODEL", false );
+      const QAbstractXmlNodeModel * ptr = obj->model();
+      Qt5xHb::createReturnClass( ptr, "QABSTRACTXMLNODEMODEL", false );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -240,7 +237,7 @@ HB_FUNC_STATIC( QXMLNODEMODELINDEX_NEWFROM )
 {
   PHB_ITEM self = hb_stackSelfItem();
 
-  if( hb_pcount() == 1 && ISOBJECT(1) )
+  if( hb_pcount() == 1 && HB_ISOBJECT(1) )
   {
     PHB_ITEM ptr = hb_itemPutPtr( NULL, (void *) hb_itemGetPtr( hb_objSendMsg( hb_param(1, HB_IT_OBJECT ), "POINTER", 0 ) ) );
     hb_objSendMsg( self, "_pointer", 1, ptr );
@@ -249,7 +246,7 @@ HB_FUNC_STATIC( QXMLNODEMODELINDEX_NEWFROM )
     hb_objSendMsg( self, "_self_destruction", 1, des );
     hb_itemRelease( des );
   }
-  else if( hb_pcount() == 1 && ISPOINTER(1) )
+  else if( hb_pcount() == 1 && HB_ISPOINTER(1) )
   {
     PHB_ITEM ptr = hb_itemPutPtr( NULL, (void *) hb_itemGetPtr( hb_param(1, HB_IT_POINTER ) ) );
     hb_objSendMsg( self, "_pointer", 1, ptr );
@@ -285,7 +282,7 @@ HB_FUNC_STATIC( QXMLNODEMODELINDEX_SETSELFDESTRUCTION )
 {
   PHB_ITEM self = hb_stackSelfItem();
 
-  if( hb_pcount() == 1 && ISLOG(1) )
+  if( hb_pcount() == 1 && HB_ISLOG(1) )
   {
     PHB_ITEM des = hb_itemPutL( NULL, hb_parl(1) );
     hb_objSendMsg( self, "_self_destruction", 1, des );

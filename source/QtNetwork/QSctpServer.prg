@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -28,7 +28,7 @@ CLASS QSctpServer INHERIT QTcpServer
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QSctpServer
+PROCEDURE destroyObject() CLASS QSctpServer
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -47,6 +47,8 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #if (QT_VERSION >= QT_VERSION_CHECK(5,8,0))
@@ -67,10 +69,10 @@ HB_FUNC_STATIC( QSCTPSERVER_NEW )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,8,0))
 #if !defined(QT_NO_SCTP)
-  if( ISBETWEEN(0,1) && (ISQOBJECT(1)||ISNIL(1)) )
+  if( ISBETWEEN(0,1) && (ISQOBJECT(1)||HB_ISNIL(1)) )
   {
-    QSctpServer * o = new QSctpServer ( OPQOBJECT(1,0) );
-    _qt5xhb_returnNewObject( o, false );
+    QSctpServer * obj = new QSctpServer( OPQOBJECT(1,0) );
+    Qt5xHb::returnNewObject( obj, false );
   }
   else
   {
@@ -87,10 +89,12 @@ HB_FUNC_STATIC( QSCTPSERVER_DELETE )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,8,0))
 #if !defined(QT_NO_SCTP)
-  QSctpServer * obj = (QSctpServer *) _qt5xhb_itemGetPtrStackSelfItem();
+  QSctpServer * obj = (QSctpServer *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -111,15 +115,15 @@ HB_FUNC_STATIC( QSCTPSERVER_SETMAXIMUMCHANNELCOUNT )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,8,0))
 #if !defined(QT_NO_SCTP)
-  QSctpServer * obj = (QSctpServer *) _qt5xhb_itemGetPtrStackSelfItem();
+  QSctpServer * obj = (QSctpServer *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setMaximumChannelCount ( PINT(1) );
+      obj->setMaximumChannelCount( PINT(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -141,7 +145,7 @@ HB_FUNC_STATIC( QSCTPSERVER_MAXIMUMCHANNELCOUNT )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,8,0))
 #if !defined(QT_NO_SCTP)
-  QSctpServer * obj = (QSctpServer *) _qt5xhb_itemGetPtrStackSelfItem();
+  QSctpServer * obj = (QSctpServer *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -149,7 +153,7 @@ HB_FUNC_STATIC( QSCTPSERVER_MAXIMUMCHANNELCOUNT )
     if( ISNUMPAR(0) )
     {
 #endif
-      RINT( obj->maximumChannelCount () );
+      RINT( obj->maximumChannelCount() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -169,7 +173,7 @@ HB_FUNC_STATIC( QSCTPSERVER_NEXTPENDINGDATAGRAMCONNECTION )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,8,0))
 #if !defined(QT_NO_SCTP)
-  QSctpServer * obj = (QSctpServer *) _qt5xhb_itemGetPtrStackSelfItem();
+  QSctpServer * obj = (QSctpServer *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -177,8 +181,8 @@ HB_FUNC_STATIC( QSCTPSERVER_NEXTPENDINGDATAGRAMCONNECTION )
     if( ISNUMPAR(0) )
     {
 #endif
-      QSctpSocket * ptr = obj->nextPendingDatagramConnection ();
-      _qt5xhb_createReturnQObjectClass ( ptr, "QSCTPSOCKET" );
+      QSctpSocket * ptr = obj->nextPendingDatagramConnection();
+      Qt5xHb::createReturnQObjectClass( ptr, "QSCTPSOCKET" );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -190,9 +194,5 @@ HB_FUNC_STATIC( QSCTPSERVER_NEXTPENDINGDATAGRAMCONNECTION )
 #endif
 #endif
 }
-
-/*
-void incomingConnection(qintptr handle) Q_DECL_OVERRIDE [protected]
-*/
 
 #pragma ENDDUMP

@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -28,7 +28,7 @@ CLASS QCategory3DAxis INHERIT QAbstract3DAxis
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QCategory3DAxis
+PROCEDURE destroyObject() CLASS QCategory3DAxis
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -45,6 +45,8 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #include <QtDataVisualization/QCategory3DAxis>
@@ -53,14 +55,14 @@ RETURN
 using namespace QtDataVisualization;
 
 /*
-explicit QCategory3DAxis(QObject *parent = Q_NULLPTR)
+QCategory3DAxis( QObject * parent = nullptr )
 */
 HB_FUNC_STATIC( QCATEGORY3DAXIS_NEW )
 {
-  if( ISBETWEEN(0,1) && (ISQOBJECT(1)||ISNIL(1)) )
+  if( ISBETWEEN(0,1) && (ISQOBJECT(1)||HB_ISNIL(1)) )
   {
-    QCategory3DAxis * o = new QCategory3DAxis ( OPQOBJECT(1,Q_NULLPTR) );
-    _qt5xhb_returnNewObject( o, false );
+    QCategory3DAxis * obj = new QCategory3DAxis( OPQOBJECT(1,nullptr) );
+    Qt5xHb::returnNewObject( obj, false );
   }
   else
   {
@@ -73,10 +75,12 @@ virtual ~QCategory3DAxis()
 */
 HB_FUNC_STATIC( QCATEGORY3DAXIS_DELETE )
 {
-  QCategory3DAxis * obj = (QCategory3DAxis *) _qt5xhb_itemGetPtrStackSelfItem();
+  QCategory3DAxis * obj = (QCategory3DAxis *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -93,7 +97,7 @@ QStringList labels() const
 */
 HB_FUNC_STATIC( QCATEGORY3DAXIS_LABELS )
 {
-  QCategory3DAxis * obj = (QCategory3DAxis *) _qt5xhb_itemGetPtrStackSelfItem();
+  QCategory3DAxis * obj = (QCategory3DAxis *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -101,7 +105,7 @@ HB_FUNC_STATIC( QCATEGORY3DAXIS_LABELS )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRINGLIST( obj->labels () );
+      RQSTRINGLIST( obj->labels() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -113,19 +117,19 @@ HB_FUNC_STATIC( QCATEGORY3DAXIS_LABELS )
 }
 
 /*
-void setLabels(const QStringList &labels)
+void setLabels( const QStringList & labels )
 */
 HB_FUNC_STATIC( QCATEGORY3DAXIS_SETLABELS )
 {
-  QCategory3DAxis * obj = (QCategory3DAxis *) _qt5xhb_itemGetPtrStackSelfItem();
+  QCategory3DAxis * obj = (QCategory3DAxis *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISARRAY(1) )
+    if( ISNUMPAR(1) && HB_ISARRAY(1) )
     {
 #endif
-      obj->setLabels ( PQSTRINGLIST(1) );
+      obj->setLabels( PQSTRINGLIST(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -138,7 +142,7 @@ HB_FUNC_STATIC( QCATEGORY3DAXIS_SETLABELS )
   hb_itemReturn( hb_stackSelfItem() );
 }
 
-void QCategory3DAxisSlots_connect_signal ( const QString & signal, const QString & slot );
+void QCategory3DAxisSlots_connect_signal( const QString & signal, const QString & slot );
 
 HB_FUNC_STATIC( QCATEGORY3DAXIS_ONLABELSCHANGED )
 {

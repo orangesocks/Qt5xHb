@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -13,19 +13,19 @@
 #ifndef QT5XHB_MACROS_QTTEXTTOSPEECH_H
 #define QT5XHB_MACROS_QTTEXTTOSPEECH_H
 
-#define ISQTEXTTOSPEECH(n)                                  _qt5xhb_isObjectDerivedFrom(n,"QTextToSpeech")
-#define ISQTEXTTOSPEECHENGINE(n)                            _qt5xhb_isObjectDerivedFrom(n,"QTextToSpeechEngine")
-#define ISQTEXTTOSPEECHPLUGIN(n)                            _qt5xhb_isObjectDerivedFrom(n,"QTextToSpeechPlugin")
-#define ISQVOICE(n)                                         _qt5xhb_isObjectDerivedFrom(n,"QVoice")
+#define ISQTEXTTOSPEECH( n )                                Qt5xHb::isObjectDerivedFrom( n, "QTextToSpeech" )
+#define ISQTEXTTOSPEECHENGINE( n )                          Qt5xHb::isObjectDerivedFrom( n, "QTextToSpeechEngine" )
+#define ISQTEXTTOSPEECHPLUGIN( n )                          Qt5xHb::isObjectDerivedFrom( n, "QTextToSpeechPlugin" )
+#define ISQVOICE( n )                                       Qt5xHb::isObjectDerivedFrom( n, "QVoice" )
 
-#define PQTEXTTOSPEECH(n)                                   (QTextToSpeech *) _qt5xhb_itemGetPtr(n)
-#define PQTEXTTOSPEECHENGINE(n)                             (QTextToSpeechEngine *) _qt5xhb_itemGetPtr(n)
-#define PQTEXTTOSPEECHPLUGIN(n)                             (QTextToSpeechPlugin *) _qt5xhb_itemGetPtr(n)
-#define PQVOICE(n)                                          (QVoice *) _qt5xhb_itemGetPtr(n)
+#define PQTEXTTOSPEECH( n )                                 static_cast< QTextToSpeech * >( Qt5xHb::itemGetPtr( n ) )
+#define PQTEXTTOSPEECHENGINE( n )                           static_cast< QTextToSpeechEngine * >( Qt5xHb::itemGetPtr( n ) )
+#define PQTEXTTOSPEECHPLUGIN( n )                           static_cast< QTextToSpeechPlugin * >( Qt5xHb::itemGetPtr( n ) )
+#define PQVOICE( n )                                        static_cast< QVoice * >( Qt5xHb::itemGetPtr( n ) )
 
-#define OPQTEXTTOSPEECH(n,v)                                ISNIL(n)? v : (QTextToSpeech *) _qt5xhb_itemGetPtr(n)
-#define OPQTEXTTOSPEECHENGINE(n,v)                          ISNIL(n)? v : (QTextToSpeechEngine *) _qt5xhb_itemGetPtr(n)
-#define OPQTEXTTOSPEECHPLUGIN(n,v)                          ISNIL(n)? v : (QTextToSpeechPlugin *) _qt5xhb_itemGetPtr(n)
-#define OPQVOICE(n,v)                                       ISNIL(n)? v : (QVoice *) _qt5xhb_itemGetPtr(n)
+#define OPQTEXTTOSPEECH( n, v )                             HB_ISNIL( n ) ? v : static_cast< QTextToSpeech * >( Qt5xHb::itemGetPtr( n ) )
+#define OPQTEXTTOSPEECHENGINE( n, v )                       HB_ISNIL( n ) ? v : static_cast< QTextToSpeechEngine * >( Qt5xHb::itemGetPtr( n ) )
+#define OPQTEXTTOSPEECHPLUGIN( n, v )                       HB_ISNIL( n ) ? v : static_cast< QTextToSpeechPlugin * >( Qt5xHb::itemGetPtr( n ) )
+#define OPQVOICE( n, v )                                    HB_ISNIL( n ) ? v : static_cast< QVoice * >( Qt5xHb::itemGetPtr( n ) )
 
 #endif /* QT5XHB_MACROS_QTTEXTTOSPEECH_H */

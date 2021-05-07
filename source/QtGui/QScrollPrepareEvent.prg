@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -34,7 +34,7 @@ CLASS QScrollPrepareEvent INHERIT QEvent
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QScrollPrepareEvent
+PROCEDURE destroyObject() CLASS QScrollPrepareEvent
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -57,14 +57,14 @@ RETURN
 #endif
 
 /*
-QScrollPrepareEvent(const QPointF &startPos)
+QScrollPrepareEvent( const QPointF & startPos )
 */
 HB_FUNC_STATIC( QSCROLLPREPAREEVENT_NEW )
 {
   if( ISNUMPAR(1) && ISQPOINTF(1) )
   {
-    QScrollPrepareEvent * o = new QScrollPrepareEvent ( *PQPOINTF(1) );
-    _qt5xhb_returnNewObject( o, false );
+    QScrollPrepareEvent * obj = new QScrollPrepareEvent( *PQPOINTF(1) );
+    Qt5xHb::returnNewObject( obj, false );
   }
   else
   {
@@ -74,7 +74,7 @@ HB_FUNC_STATIC( QSCROLLPREPAREEVENT_NEW )
 
 HB_FUNC_STATIC( QSCROLLPREPAREEVENT_DELETE )
 {
-  QScrollPrepareEvent * obj = (QScrollPrepareEvent *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScrollPrepareEvent * obj = (QScrollPrepareEvent *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -94,7 +94,7 @@ QPointF startPos() const
 */
 HB_FUNC_STATIC( QSCROLLPREPAREEVENT_STARTPOS )
 {
-  QScrollPrepareEvent * obj = (QScrollPrepareEvent *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScrollPrepareEvent * obj = (QScrollPrepareEvent *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -102,8 +102,8 @@ HB_FUNC_STATIC( QSCROLLPREPAREEVENT_STARTPOS )
     if( ISNUMPAR(0) )
     {
 #endif
-      QPointF * ptr = new QPointF( obj->startPos () );
-      _qt5xhb_createReturnClass ( ptr, "QPOINTF", true );
+      QPointF * ptr = new QPointF( obj->startPos() );
+      Qt5xHb::createReturnClass( ptr, "QPOINTF", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -119,7 +119,7 @@ QSizeF viewportSize() const
 */
 HB_FUNC_STATIC( QSCROLLPREPAREEVENT_VIEWPORTSIZE )
 {
-  QScrollPrepareEvent * obj = (QScrollPrepareEvent *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScrollPrepareEvent * obj = (QScrollPrepareEvent *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -127,8 +127,8 @@ HB_FUNC_STATIC( QSCROLLPREPAREEVENT_VIEWPORTSIZE )
     if( ISNUMPAR(0) )
     {
 #endif
-      QSizeF * ptr = new QSizeF( obj->viewportSize () );
-      _qt5xhb_createReturnClass ( ptr, "QSIZEF", true );
+      QSizeF * ptr = new QSizeF( obj->viewportSize() );
+      Qt5xHb::createReturnClass( ptr, "QSIZEF", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -144,7 +144,7 @@ QRectF contentPosRange() const
 */
 HB_FUNC_STATIC( QSCROLLPREPAREEVENT_CONTENTPOSRANGE )
 {
-  QScrollPrepareEvent * obj = (QScrollPrepareEvent *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScrollPrepareEvent * obj = (QScrollPrepareEvent *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -152,8 +152,8 @@ HB_FUNC_STATIC( QSCROLLPREPAREEVENT_CONTENTPOSRANGE )
     if( ISNUMPAR(0) )
     {
 #endif
-      QRectF * ptr = new QRectF( obj->contentPosRange () );
-      _qt5xhb_createReturnClass ( ptr, "QRECTF", true );
+      QRectF * ptr = new QRectF( obj->contentPosRange() );
+      Qt5xHb::createReturnClass( ptr, "QRECTF", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -169,7 +169,7 @@ QPointF contentPos() const
 */
 HB_FUNC_STATIC( QSCROLLPREPAREEVENT_CONTENTPOS )
 {
-  QScrollPrepareEvent * obj = (QScrollPrepareEvent *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScrollPrepareEvent * obj = (QScrollPrepareEvent *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -177,8 +177,8 @@ HB_FUNC_STATIC( QSCROLLPREPAREEVENT_CONTENTPOS )
     if( ISNUMPAR(0) )
     {
 #endif
-      QPointF * ptr = new QPointF( obj->contentPos () );
-      _qt5xhb_createReturnClass ( ptr, "QPOINTF", true );
+      QPointF * ptr = new QPointF( obj->contentPos() );
+      Qt5xHb::createReturnClass( ptr, "QPOINTF", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -190,11 +190,11 @@ HB_FUNC_STATIC( QSCROLLPREPAREEVENT_CONTENTPOS )
 }
 
 /*
-void setViewportSize(const QSizeF &size)
+void setViewportSize( const QSizeF & size )
 */
 HB_FUNC_STATIC( QSCROLLPREPAREEVENT_SETVIEWPORTSIZE )
 {
-  QScrollPrepareEvent * obj = (QScrollPrepareEvent *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScrollPrepareEvent * obj = (QScrollPrepareEvent *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -202,7 +202,7 @@ HB_FUNC_STATIC( QSCROLLPREPAREEVENT_SETVIEWPORTSIZE )
     if( ISNUMPAR(1) && ISQSIZEF(1) )
     {
 #endif
-      obj->setViewportSize ( *PQSIZEF(1) );
+      obj->setViewportSize( *PQSIZEF(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -216,11 +216,11 @@ HB_FUNC_STATIC( QSCROLLPREPAREEVENT_SETVIEWPORTSIZE )
 }
 
 /*
-void setContentPosRange(const QRectF &rect)
+void setContentPosRange( const QRectF & rect )
 */
 HB_FUNC_STATIC( QSCROLLPREPAREEVENT_SETCONTENTPOSRANGE )
 {
-  QScrollPrepareEvent * obj = (QScrollPrepareEvent *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScrollPrepareEvent * obj = (QScrollPrepareEvent *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -228,7 +228,7 @@ HB_FUNC_STATIC( QSCROLLPREPAREEVENT_SETCONTENTPOSRANGE )
     if( ISNUMPAR(1) && ISQRECTF(1) )
     {
 #endif
-      obj->setContentPosRange ( *PQRECTF(1) );
+      obj->setContentPosRange( *PQRECTF(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -242,11 +242,11 @@ HB_FUNC_STATIC( QSCROLLPREPAREEVENT_SETCONTENTPOSRANGE )
 }
 
 /*
-void setContentPos(const QPointF &pos)
+void setContentPos( const QPointF & pos )
 */
 HB_FUNC_STATIC( QSCROLLPREPAREEVENT_SETCONTENTPOS )
 {
-  QScrollPrepareEvent * obj = (QScrollPrepareEvent *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScrollPrepareEvent * obj = (QScrollPrepareEvent *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -254,7 +254,7 @@ HB_FUNC_STATIC( QSCROLLPREPAREEVENT_SETCONTENTPOS )
     if( ISNUMPAR(1) && ISQPOINTF(1) )
     {
 #endif
-      obj->setContentPos ( *PQPOINTF(1) );
+      obj->setContentPos( *PQPOINTF(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else

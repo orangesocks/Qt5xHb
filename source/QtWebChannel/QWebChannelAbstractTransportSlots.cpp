@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -12,24 +12,29 @@
 
 #include "QWebChannelAbstractTransportSlots.h"
 
-QWebChannelAbstractTransportSlots::QWebChannelAbstractTransportSlots(QObject *parent) : QObject(parent)
+QWebChannelAbstractTransportSlots::QWebChannelAbstractTransportSlots( QObject *parent ) : QObject( parent )
 {
 }
 
 QWebChannelAbstractTransportSlots::~QWebChannelAbstractTransportSlots()
 {
 }
+
 #if (QT_VERSION >= QT_VERSION_CHECK(5,4,0))
 void QWebChannelAbstractTransportSlots::messageReceived( const QJsonObject & message, QWebChannelAbstractTransport * transport )
 {
   QObject *object = qobject_cast<QObject *>(sender());
-  PHB_ITEM cb = Signals_return_codeblock( object, "messageReceived(QJsonObject,QWebChannelAbstractTransport*)" );
+
+  PHB_ITEM cb = Qt5xHb::Signals_return_codeblock( object, "messageReceived(QJsonObject,QWebChannelAbstractTransport*)" );
+
   if( cb )
   {
-    PHB_ITEM psender = Signals_return_qobject ( (QObject *) object, "QWEBCHANNELABSTRACTTRANSPORT" );
-    PHB_ITEM pmessage = Signals_return_object( (void *) &message, "QJSONOBJECT" );
-    PHB_ITEM ptransport = Signals_return_qobject( (QObject *) transport, "QWEBCHANNELABSTRACTTRANSPORT" );
-    hb_vmEvalBlockV( (PHB_ITEM) cb, 3, psender, pmessage, ptransport );
+    PHB_ITEM psender = Qt5xHb::Signals_return_qobject( (QObject *) object, "QWEBCHANNELABSTRACTTRANSPORT" );
+    PHB_ITEM pmessage = Qt5xHb::Signals_return_object( (void *) &message, "QJSONOBJECT" );
+    PHB_ITEM ptransport = Qt5xHb::Signals_return_qobject( (QObject *) transport, "QWEBCHANNELABSTRACTTRANSPORT" );
+
+    hb_vmEvalBlockV( cb, 3, psender, pmessage, ptransport );
+
     hb_itemRelease( psender );
     hb_itemRelease( pmessage );
     hb_itemRelease( ptransport );
@@ -37,10 +42,10 @@ void QWebChannelAbstractTransportSlots::messageReceived( const QJsonObject & mes
 }
 #endif
 
-void QWebChannelAbstractTransportSlots_connect_signal ( const QString & signal, const QString & slot )
+void QWebChannelAbstractTransportSlots_connect_signal( const QString & signal, const QString & slot )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,4,0))
-  QWebChannelAbstractTransport * obj = (QWebChannelAbstractTransport *) hb_itemGetPtr( hb_objSendMsg( hb_stackSelfItem(), "POINTER", 0 ) );
+  QWebChannelAbstractTransport * obj = (QWebChannelAbstractTransport *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -53,7 +58,7 @@ void QWebChannelAbstractTransportSlots_connect_signal ( const QString & signal, 
       s->setParent( QCoreApplication::instance() );
     }
 
-    hb_retl( Signals_connection_disconnection( s, signal, slot ) );
+    hb_retl( Qt5xHb::Signals_connection_disconnection( s, signal, slot ) );
   }
   else
   {

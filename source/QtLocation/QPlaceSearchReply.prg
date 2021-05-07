@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -31,7 +31,7 @@ CLASS QPlaceSearchReply INHERIT QPlaceReply
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QPlaceSearchReply
+PROCEDURE destroyObject() CLASS QPlaceSearchReply
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -50,6 +50,8 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #if (QT_VERSION >= QT_VERSION_CHECK(5,4,0))
@@ -60,15 +62,15 @@ RETURN
 #include <QtLocation/QPlaceSearchRequest>
 
 /*
-explicit QPlaceSearchReply(QObject *parent = 0)
+QPlaceSearchReply( QObject * parent = 0 )
 */
 HB_FUNC_STATIC( QPLACESEARCHREPLY_NEW )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,4,0))
-  if( ISBETWEEN(0,1) && (ISQOBJECT(1)||ISNIL(1)) )
+  if( ISBETWEEN(0,1) && (ISQOBJECT(1)||HB_ISNIL(1)) )
   {
-    QPlaceSearchReply * o = new QPlaceSearchReply ( OPQOBJECT(1,0) );
-    _qt5xhb_returnNewObject( o, false );
+    QPlaceSearchReply * obj = new QPlaceSearchReply( OPQOBJECT(1,0) );
+    Qt5xHb::returnNewObject( obj, false );
   }
   else
   {
@@ -80,10 +82,12 @@ HB_FUNC_STATIC( QPLACESEARCHREPLY_NEW )
 HB_FUNC_STATIC( QPLACESEARCHREPLY_DELETE )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,4,0))
-  QPlaceSearchReply * obj = (QPlaceSearchReply *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPlaceSearchReply * obj = (QPlaceSearchReply *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -102,7 +106,7 @@ QPlaceReply::Type type() const
 HB_FUNC_STATIC( QPLACESEARCHREPLY_TYPE )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,4,0))
-  QPlaceSearchReply * obj = (QPlaceSearchReply *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPlaceSearchReply * obj = (QPlaceSearchReply *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -110,7 +114,7 @@ HB_FUNC_STATIC( QPLACESEARCHREPLY_TYPE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RENUM( obj->type () );
+      RENUM( obj->type() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -128,7 +132,7 @@ QList<QPlaceSearchResult> results() const
 HB_FUNC_STATIC( QPLACESEARCHREPLY_RESULTS )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,4,0))
-  QPlaceSearchReply * obj = (QPlaceSearchReply *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPlaceSearchReply * obj = (QPlaceSearchReply *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -136,13 +140,12 @@ HB_FUNC_STATIC( QPLACESEARCHREPLY_RESULTS )
     if( ISNUMPAR(0) )
     {
 #endif
-      QList<QPlaceSearchResult> list = obj->results ();
+      QList<QPlaceSearchResult> list = obj->results();
       PHB_DYNS pDynSym = hb_dynsymFindName( "QPLACESEARCHRESULT" );
       PHB_ITEM pArray = hb_itemArrayNew(0);
-      int i;
-      for(i=0;i<list.count();i++)
+      if( pDynSym )
       {
-        if( pDynSym )
+        for( int i = 0; i < list.count(); i++ )
         {
           hb_vmPushDynSym( pDynSym );
           hb_vmPushNil();
@@ -150,7 +153,7 @@ HB_FUNC_STATIC( QPLACESEARCHREPLY_RESULTS )
           PHB_ITEM pObject = hb_itemNew( NULL );
           hb_itemCopy( pObject, hb_stackReturnItem() );
           PHB_ITEM pItem = hb_itemNew( NULL );
-          hb_itemPutPtr( pItem, (QPlaceSearchResult *) new QPlaceSearchResult ( list[i] ) );
+          hb_itemPutPtr( pItem, (QPlaceSearchResult *) new QPlaceSearchResult( list[i] ) );
           hb_objSendMsg( pObject, "_POINTER", 1, pItem );
           hb_itemRelease( pItem );
           PHB_ITEM pDestroy = hb_itemNew( NULL );
@@ -160,10 +163,10 @@ HB_FUNC_STATIC( QPLACESEARCHREPLY_RESULTS )
           hb_arrayAddForward( pArray, pObject );
           hb_itemRelease( pObject );
         }
-        else
-        {
-          hb_errRT_BASE( EG_NOFUNC, 1001, NULL, "QPLACESEARCHRESULT", HB_ERR_ARGS_BASEPARAMS );
-        }
+      }
+      else
+      {
+        hb_errRT_BASE( EG_NOFUNC, 1001, NULL, "QPLACESEARCHRESULT", HB_ERR_ARGS_BASEPARAMS );
       }
       hb_itemReturnRelease(pArray);
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
@@ -183,7 +186,7 @@ QPlaceSearchRequest request() const
 HB_FUNC_STATIC( QPLACESEARCHREPLY_REQUEST )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,4,0))
-  QPlaceSearchReply * obj = (QPlaceSearchReply *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPlaceSearchReply * obj = (QPlaceSearchReply *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -191,8 +194,8 @@ HB_FUNC_STATIC( QPLACESEARCHREPLY_REQUEST )
     if( ISNUMPAR(0) )
     {
 #endif
-      QPlaceSearchRequest * ptr = new QPlaceSearchRequest( obj->request () );
-      _qt5xhb_createReturnClass ( ptr, "QPLACESEARCHREQUEST", true );
+      QPlaceSearchRequest * ptr = new QPlaceSearchRequest( obj->request() );
+      Qt5xHb::createReturnClass( ptr, "QPLACESEARCHREQUEST", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -210,7 +213,7 @@ QPlaceSearchRequest previousPageRequest() const
 HB_FUNC_STATIC( QPLACESEARCHREPLY_PREVIOUSPAGEREQUEST )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,4,0))
-  QPlaceSearchReply * obj = (QPlaceSearchReply *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPlaceSearchReply * obj = (QPlaceSearchReply *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -218,8 +221,8 @@ HB_FUNC_STATIC( QPLACESEARCHREPLY_PREVIOUSPAGEREQUEST )
     if( ISNUMPAR(0) )
     {
 #endif
-      QPlaceSearchRequest * ptr = new QPlaceSearchRequest( obj->previousPageRequest () );
-      _qt5xhb_createReturnClass ( ptr, "QPLACESEARCHREQUEST", true );
+      QPlaceSearchRequest * ptr = new QPlaceSearchRequest( obj->previousPageRequest() );
+      Qt5xHb::createReturnClass( ptr, "QPLACESEARCHREQUEST", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -237,7 +240,7 @@ QPlaceSearchRequest nextPageRequest() const
 HB_FUNC_STATIC( QPLACESEARCHREPLY_NEXTPAGEREQUEST )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,4,0))
-  QPlaceSearchReply * obj = (QPlaceSearchReply *) _qt5xhb_itemGetPtrStackSelfItem();
+  QPlaceSearchReply * obj = (QPlaceSearchReply *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -245,8 +248,8 @@ HB_FUNC_STATIC( QPLACESEARCHREPLY_NEXTPAGEREQUEST )
     if( ISNUMPAR(0) )
     {
 #endif
-      QPlaceSearchRequest * ptr = new QPlaceSearchRequest( obj->nextPageRequest () );
-      _qt5xhb_createReturnClass ( ptr, "QPLACESEARCHREQUEST", true );
+      QPlaceSearchRequest * ptr = new QPlaceSearchRequest( obj->nextPageRequest() );
+      Qt5xHb::createReturnClass( ptr, "QPLACESEARCHREQUEST", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else

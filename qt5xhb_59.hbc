@@ -1,7 +1,7 @@
 #
 # Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 #
-# Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+# Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 #
 # Configuration file for Qt5xHb and HBMK2 (Qt Framework 5.9)
 #
@@ -9,10 +9,10 @@
 description=Qt5xHb
 
 # include folder of the Qt5xHb
-incpaths=${QT5XHB_INC_DIR}
+incpaths=include
 
 # lib folder of the Qt5xHb
-libpaths=${QT5XHB_LIB_DIR}
+libpaths=lib/${hb_plat}/${hb_comp}
 
 # libraries of the Qt5xHb
 {android}libs=hbqtandroidextras5
@@ -115,3 +115,6 @@ cpp=yes
 gui=yes
 
 {msvc}ldflags=/NODEFAULTLIB:msvcrt.lib
+
+prgflags=-D__QT5XHB__
+cflags=-D__QT5XHB__

@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -25,7 +25,7 @@ CLASS QWinCompositionChangeEvent INHERIT QWinEvent
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QWinCompositionChangeEvent
+PROCEDURE destroyObject() CLASS QWinCompositionChangeEvent
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -52,15 +52,15 @@ RETURN
 #endif
 
 /*
-explicit QWinCompositionChangeEvent(bool enabled)
+QWinCompositionChangeEvent( bool enabled )
 */
 HB_FUNC_STATIC( QWINCOMPOSITIONCHANGEEVENT_NEW )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,2,0))
-  if( ISNUMPAR(1) && ISLOG(1) )
+  if( ISNUMPAR(1) && HB_ISLOG(1) )
   {
-    QWinCompositionChangeEvent * o = new QWinCompositionChangeEvent ( PBOOL(1) );
-    _qt5xhb_returnNewObject( o, false );
+    QWinCompositionChangeEvent * obj = new QWinCompositionChangeEvent( PBOOL(1) );
+    Qt5xHb::returnNewObject( obj, false );
   }
   else
   {
@@ -72,7 +72,7 @@ HB_FUNC_STATIC( QWINCOMPOSITIONCHANGEEVENT_NEW )
 HB_FUNC_STATIC( QWINCOMPOSITIONCHANGEEVENT_DELETE )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,2,0))
-  QWinCompositionChangeEvent * obj = (QWinCompositionChangeEvent *) _qt5xhb_itemGetPtrStackSelfItem();
+  QWinCompositionChangeEvent * obj = (QWinCompositionChangeEvent *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -94,7 +94,7 @@ bool isCompositionEnabled() const
 HB_FUNC_STATIC( QWINCOMPOSITIONCHANGEEVENT_ISCOMPOSITIONENABLED )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,2,0))
-  QWinCompositionChangeEvent * obj = (QWinCompositionChangeEvent *) _qt5xhb_itemGetPtrStackSelfItem();
+  QWinCompositionChangeEvent * obj = (QWinCompositionChangeEvent *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -102,7 +102,7 @@ HB_FUNC_STATIC( QWINCOMPOSITIONCHANGEEVENT_ISCOMPOSITIONENABLED )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->isCompositionEnabled () );
+      RBOOL( obj->isCompositionEnabled() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else

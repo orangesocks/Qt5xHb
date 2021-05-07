@@ -2,19 +2,19 @@
 
   Qt5xHb Project - Test Program
 
-  Copyright (C) 2019 Marcos Antonio Gambeta
+  Copyright (C) 2021 Marcos Antonio Gambeta
 
   E-mail:
   marcosgambeta AT outlook DOT com
 
   Website:
-  https://github.com/marcosgambeta/Qt5xHb
+  https://github.com/magsoftinfo/qt5xhb
 
 */
 
 #include "qt5xhb.ch"
 
-PROCEDURE Main ()
+PROCEDURE Main()
 
    LOCAL oApp
    LOCAL oWindow
@@ -34,27 +34,27 @@ PROCEDURE Main ()
 
    oWindow := QWidget():new()
 
-   oLabelField1 := QLabel():new("Campo 1")
-   oLabelField2 := QLabel():new("Campo 2")
-   oLabelField3 := QLabel():new("Campo 3")
-   oLabelField4 := QLabel():new("Campo 4")
-   oLabelField5 := QLabel():new("Campo 5")
+   oLabelField1 := QLabel():new( "Campo 1" )
+   oLabelField2 := QLabel():new( "Campo 2" )
+   oLabelField3 := QLabel():new( "Campo 3" )
+   oLabelField4 := QLabel():new( "Campo 4" )
+   oLabelField5 := QLabel():new( "Campo 5" )
 
-   oEditField1 := QLineEdit():new("")
-   oEditField2 := QLineEdit():new("")
-   oEditField3 := QLineEdit():new("")
-   oEditField4 := QLineEdit():new("")
-   oEditField5 := QLineEdit():new("")
+   oEditField1 := QLineEdit():new( "" )
+   oEditField2 := QLineEdit():new( "" )
+   oEditField3 := QLineEdit():new( "" )
+   oEditField4 := QLineEdit():new( "" )
+   oEditField5 := QLineEdit():new( "" )
 
    oLayout := QFormLayout():new()
 
-   oLayout:addRow(oLabelField1,oEditField1)
-   oLayout:addRow(oLabelField2,oEditField2)
-   oLayout:addRow(oLabelField3,oEditField3)
-   oLayout:addRow(oLabelField4,oEditField4)
-   oLayout:addRow(oLabelField5,oEditField5)
+   oLayout:addRow( oLabelField1, oEditField1 )
+   oLayout:addRow( oLabelField2, oEditField2 )
+   oLayout:addRow( oLabelField3, oEditField3 )
+   oLayout:addRow( oLabelField4, oEditField4 )
+   oLayout:addRow( oLabelField5, oEditField5 )
 
-   oWindow:setLayout(oLayout)
+   oWindow:setLayout( oLayout )
 
    oWindow:show()
 

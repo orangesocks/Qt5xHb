@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -33,7 +33,7 @@ CLASS QGesture INHERIT QObject
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QGesture
+PROCEDURE destroyObject() CLASS QGesture
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -50,20 +50,22 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #include <QtWidgets/QGesture>
 #endif
 
 /*
-QGesture(QObject * parent = 0)
+QGesture( QObject * parent = 0 )
 */
 HB_FUNC_STATIC( QGESTURE_NEW )
 {
-  if( ISBETWEEN(0,1) && (ISQOBJECT(1)||ISNIL(1)) )
+  if( ISBETWEEN(0,1) && (ISQOBJECT(1)||HB_ISNIL(1)) )
   {
-    QGesture * o = new QGesture ( OPQOBJECT(1,0) );
-    _qt5xhb_returnNewObject( o, false );
+    QGesture * obj = new QGesture( OPQOBJECT(1,0) );
+    Qt5xHb::returnNewObject( obj, false );
   }
   else
   {
@@ -73,10 +75,12 @@ HB_FUNC_STATIC( QGESTURE_NEW )
 
 HB_FUNC_STATIC( QGESTURE_DELETE )
 {
-  QGesture * obj = (QGesture *) _qt5xhb_itemGetPtrStackSelfItem();
+  QGesture * obj = (QGesture *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -89,11 +93,11 @@ HB_FUNC_STATIC( QGESTURE_DELETE )
 }
 
 /*
-GestureCancelPolicy gestureCancelPolicy() const
+QGesture::GestureCancelPolicy gestureCancelPolicy() const
 */
 HB_FUNC_STATIC( QGESTURE_GESTURECANCELPOLICY )
 {
-  QGesture * obj = (QGesture *) _qt5xhb_itemGetPtrStackSelfItem();
+  QGesture * obj = (QGesture *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -101,7 +105,7 @@ HB_FUNC_STATIC( QGESTURE_GESTURECANCELPOLICY )
     if( ISNUMPAR(0) )
     {
 #endif
-      RENUM( obj->gestureCancelPolicy () );
+      RENUM( obj->gestureCancelPolicy() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -117,7 +121,7 @@ Qt::GestureType gestureType() const
 */
 HB_FUNC_STATIC( QGESTURE_GESTURETYPE )
 {
-  QGesture * obj = (QGesture *) _qt5xhb_itemGetPtrStackSelfItem();
+  QGesture * obj = (QGesture *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -125,7 +129,7 @@ HB_FUNC_STATIC( QGESTURE_GESTURETYPE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RENUM( obj->gestureType () );
+      RENUM( obj->gestureType() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -141,7 +145,7 @@ bool hasHotSpot() const
 */
 HB_FUNC_STATIC( QGESTURE_HASHOTSPOT )
 {
-  QGesture * obj = (QGesture *) _qt5xhb_itemGetPtrStackSelfItem();
+  QGesture * obj = (QGesture *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -149,7 +153,7 @@ HB_FUNC_STATIC( QGESTURE_HASHOTSPOT )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->hasHotSpot () );
+      RBOOL( obj->hasHotSpot() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -165,7 +169,7 @@ QPointF hotSpot() const
 */
 HB_FUNC_STATIC( QGESTURE_HOTSPOT )
 {
-  QGesture * obj = (QGesture *) _qt5xhb_itemGetPtrStackSelfItem();
+  QGesture * obj = (QGesture *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -173,8 +177,8 @@ HB_FUNC_STATIC( QGESTURE_HOTSPOT )
     if( ISNUMPAR(0) )
     {
 #endif
-      QPointF * ptr = new QPointF( obj->hotSpot () );
-      _qt5xhb_createReturnClass ( ptr, "QPOINTF", true );
+      QPointF * ptr = new QPointF( obj->hotSpot() );
+      Qt5xHb::createReturnClass( ptr, "QPOINTF", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -186,19 +190,19 @@ HB_FUNC_STATIC( QGESTURE_HOTSPOT )
 }
 
 /*
-void setGestureCancelPolicy(GestureCancelPolicy policy)
+void setGestureCancelPolicy( QGesture::GestureCancelPolicy policy )
 */
 HB_FUNC_STATIC( QGESTURE_SETGESTURECANCELPOLICY )
 {
-  QGesture * obj = (QGesture *) _qt5xhb_itemGetPtrStackSelfItem();
+  QGesture * obj = (QGesture *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setGestureCancelPolicy ( (QGesture::GestureCancelPolicy) hb_parni(1) );
+      obj->setGestureCancelPolicy( (QGesture::GestureCancelPolicy) hb_parni(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -212,11 +216,11 @@ HB_FUNC_STATIC( QGESTURE_SETGESTURECANCELPOLICY )
 }
 
 /*
-void setHotSpot(const QPointF & value)
+void setHotSpot( const QPointF & value )
 */
 HB_FUNC_STATIC( QGESTURE_SETHOTSPOT )
 {
-  QGesture * obj = (QGesture *) _qt5xhb_itemGetPtrStackSelfItem();
+  QGesture * obj = (QGesture *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -224,7 +228,7 @@ HB_FUNC_STATIC( QGESTURE_SETHOTSPOT )
     if( ISNUMPAR(1) && ISQPOINTF(1) )
     {
 #endif
-      obj->setHotSpot ( *PQPOINTF(1) );
+      obj->setHotSpot( *PQPOINTF(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -242,7 +246,7 @@ Qt::GestureState state() const
 */
 HB_FUNC_STATIC( QGESTURE_STATE )
 {
-  QGesture * obj = (QGesture *) _qt5xhb_itemGetPtrStackSelfItem();
+  QGesture * obj = (QGesture *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -250,7 +254,7 @@ HB_FUNC_STATIC( QGESTURE_STATE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RENUM( obj->state () );
+      RENUM( obj->state() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -266,7 +270,7 @@ void unsetHotSpot()
 */
 HB_FUNC_STATIC( QGESTURE_UNSETHOTSPOT )
 {
-  QGesture * obj = (QGesture *) _qt5xhb_itemGetPtrStackSelfItem();
+  QGesture * obj = (QGesture *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -274,7 +278,7 @@ HB_FUNC_STATIC( QGESTURE_UNSETHOTSPOT )
     if( ISNUMPAR(0) )
     {
 #endif
-      obj->unsetHotSpot ();
+      obj->unsetHotSpot();
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else

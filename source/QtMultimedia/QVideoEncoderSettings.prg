@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -50,7 +50,7 @@ CLASS QVideoEncoderSettings
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QVideoEncoderSettings
+PROCEDURE destroyObject() CLASS QVideoEncoderSettings
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -75,23 +75,20 @@ RETURN
 /*
 QVideoEncoderSettings()
 */
-void QVideoEncoderSettings_new1 ()
+void QVideoEncoderSettings_new1()
 {
-  QVideoEncoderSettings * o = new QVideoEncoderSettings ();
-  _qt5xhb_returnNewObject( o, true );
+  QVideoEncoderSettings * obj = new QVideoEncoderSettings();
+  Qt5xHb::returnNewObject( obj, true );
 }
 
 /*
-QVideoEncoderSettings(const QVideoEncoderSettings & other)
+QVideoEncoderSettings( const QVideoEncoderSettings & other )
 */
-void QVideoEncoderSettings_new2 ()
+void QVideoEncoderSettings_new2()
 {
-  QVideoEncoderSettings * o = new QVideoEncoderSettings ( *PQVIDEOENCODERSETTINGS(1) );
-  _qt5xhb_returnNewObject( o, true );
+  QVideoEncoderSettings * obj = new QVideoEncoderSettings( *PQVIDEOENCODERSETTINGS(1) );
+  Qt5xHb::returnNewObject( obj, true );
 }
-
-//[1]QVideoEncoderSettings()
-//[2]QVideoEncoderSettings(const QVideoEncoderSettings & other)
 
 HB_FUNC_STATIC( QVIDEOENCODERSETTINGS_NEW )
 {
@@ -114,7 +111,7 @@ HB_FUNC_STATIC( QVIDEOENCODERSETTINGS_NEW )
 */
 HB_FUNC_STATIC( QVIDEOENCODERSETTINGS_DELETE )
 {
-  QVideoEncoderSettings * obj = (QVideoEncoderSettings *) _qt5xhb_itemGetPtrStackSelfItem();
+  QVideoEncoderSettings * obj = (QVideoEncoderSettings *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -134,7 +131,7 @@ int bitRate() const
 */
 HB_FUNC_STATIC( QVIDEOENCODERSETTINGS_BITRATE )
 {
-  QVideoEncoderSettings * obj = (QVideoEncoderSettings *) _qt5xhb_itemGetPtrStackSelfItem();
+  QVideoEncoderSettings * obj = (QVideoEncoderSettings *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -142,7 +139,7 @@ HB_FUNC_STATIC( QVIDEOENCODERSETTINGS_BITRATE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RINT( obj->bitRate () );
+      RINT( obj->bitRate() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -158,7 +155,7 @@ QString codec() const
 */
 HB_FUNC_STATIC( QVIDEOENCODERSETTINGS_CODEC )
 {
-  QVideoEncoderSettings * obj = (QVideoEncoderSettings *) _qt5xhb_itemGetPtrStackSelfItem();
+  QVideoEncoderSettings * obj = (QVideoEncoderSettings *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -166,7 +163,7 @@ HB_FUNC_STATIC( QVIDEOENCODERSETTINGS_CODEC )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRING( obj->codec () );
+      RQSTRING( obj->codec() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -182,7 +179,7 @@ QMultimedia::EncodingMode encodingMode() const
 */
 HB_FUNC_STATIC( QVIDEOENCODERSETTINGS_ENCODINGMODE )
 {
-  QVideoEncoderSettings * obj = (QVideoEncoderSettings *) _qt5xhb_itemGetPtrStackSelfItem();
+  QVideoEncoderSettings * obj = (QVideoEncoderSettings *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -190,7 +187,7 @@ HB_FUNC_STATIC( QVIDEOENCODERSETTINGS_ENCODINGMODE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RENUM( obj->encodingMode () );
+      RENUM( obj->encodingMode() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -202,20 +199,20 @@ HB_FUNC_STATIC( QVIDEOENCODERSETTINGS_ENCODINGMODE )
 }
 
 /*
-QVariant encodingOption(const QString & option) const
+QVariant encodingOption( const QString & option ) const
 */
 HB_FUNC_STATIC( QVIDEOENCODERSETTINGS_ENCODINGOPTION )
 {
-  QVideoEncoderSettings * obj = (QVideoEncoderSettings *) _qt5xhb_itemGetPtrStackSelfItem();
+  QVideoEncoderSettings * obj = (QVideoEncoderSettings *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISCHAR(1) )
+    if( ISNUMPAR(1) && HB_ISCHAR(1) )
     {
 #endif
-      QVariant * ptr = new QVariant( obj->encodingOption ( PQSTRING(1) ) );
-      _qt5xhb_createReturnClass ( ptr, "QVARIANT", true );
+      QVariant * ptr = new QVariant( obj->encodingOption( PQSTRING(1) ) );
+      Qt5xHb::createReturnClass( ptr, "QVARIANT", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -225,17 +222,13 @@ HB_FUNC_STATIC( QVIDEOENCODERSETTINGS_ENCODINGOPTION )
 #endif
   }
 }
-
-/*
-QVariantMap encodingOptions() const
-*/
 
 /*
 qreal frameRate() const
 */
 HB_FUNC_STATIC( QVIDEOENCODERSETTINGS_FRAMERATE )
 {
-  QVideoEncoderSettings * obj = (QVideoEncoderSettings *) _qt5xhb_itemGetPtrStackSelfItem();
+  QVideoEncoderSettings * obj = (QVideoEncoderSettings *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -243,7 +236,7 @@ HB_FUNC_STATIC( QVIDEOENCODERSETTINGS_FRAMERATE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQREAL( obj->frameRate () );
+      RQREAL( obj->frameRate() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -259,7 +252,7 @@ bool isNull() const
 */
 HB_FUNC_STATIC( QVIDEOENCODERSETTINGS_ISNULL )
 {
-  QVideoEncoderSettings * obj = (QVideoEncoderSettings *) _qt5xhb_itemGetPtrStackSelfItem();
+  QVideoEncoderSettings * obj = (QVideoEncoderSettings *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -267,7 +260,7 @@ HB_FUNC_STATIC( QVIDEOENCODERSETTINGS_ISNULL )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->isNull () );
+      RBOOL( obj->isNull() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -283,7 +276,7 @@ QMultimedia::EncodingQuality quality() const
 */
 HB_FUNC_STATIC( QVIDEOENCODERSETTINGS_QUALITY )
 {
-  QVideoEncoderSettings * obj = (QVideoEncoderSettings *) _qt5xhb_itemGetPtrStackSelfItem();
+  QVideoEncoderSettings * obj = (QVideoEncoderSettings *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -291,7 +284,7 @@ HB_FUNC_STATIC( QVIDEOENCODERSETTINGS_QUALITY )
     if( ISNUMPAR(0) )
     {
 #endif
-      RENUM( obj->quality () );
+      RENUM( obj->quality() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -307,7 +300,7 @@ QSize resolution() const
 */
 HB_FUNC_STATIC( QVIDEOENCODERSETTINGS_RESOLUTION )
 {
-  QVideoEncoderSettings * obj = (QVideoEncoderSettings *) _qt5xhb_itemGetPtrStackSelfItem();
+  QVideoEncoderSettings * obj = (QVideoEncoderSettings *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -315,8 +308,8 @@ HB_FUNC_STATIC( QVIDEOENCODERSETTINGS_RESOLUTION )
     if( ISNUMPAR(0) )
     {
 #endif
-      QSize * ptr = new QSize( obj->resolution () );
-      _qt5xhb_createReturnClass ( ptr, "QSIZE", true );
+      QSize * ptr = new QSize( obj->resolution() );
+      Qt5xHb::createReturnClass( ptr, "QSIZE", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -328,19 +321,19 @@ HB_FUNC_STATIC( QVIDEOENCODERSETTINGS_RESOLUTION )
 }
 
 /*
-void setBitRate(int bitrate)
+void setBitRate( int bitrate )
 */
 HB_FUNC_STATIC( QVIDEOENCODERSETTINGS_SETBITRATE )
 {
-  QVideoEncoderSettings * obj = (QVideoEncoderSettings *) _qt5xhb_itemGetPtrStackSelfItem();
+  QVideoEncoderSettings * obj = (QVideoEncoderSettings *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setBitRate ( PINT(1) );
+      obj->setBitRate( PINT(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -354,19 +347,19 @@ HB_FUNC_STATIC( QVIDEOENCODERSETTINGS_SETBITRATE )
 }
 
 /*
-void setCodec(const QString & codec)
+void setCodec( const QString & codec )
 */
 HB_FUNC_STATIC( QVIDEOENCODERSETTINGS_SETCODEC )
 {
-  QVideoEncoderSettings * obj = (QVideoEncoderSettings *) _qt5xhb_itemGetPtrStackSelfItem();
+  QVideoEncoderSettings * obj = (QVideoEncoderSettings *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISCHAR(1) )
+    if( ISNUMPAR(1) && HB_ISCHAR(1) )
     {
 #endif
-      obj->setCodec ( PQSTRING(1) );
+      obj->setCodec( PQSTRING(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -380,19 +373,19 @@ HB_FUNC_STATIC( QVIDEOENCODERSETTINGS_SETCODEC )
 }
 
 /*
-void setEncodingMode(QMultimedia::EncodingMode mode)
+void setEncodingMode( QMultimedia::EncodingMode mode )
 */
 HB_FUNC_STATIC( QVIDEOENCODERSETTINGS_SETENCODINGMODE )
 {
-  QVideoEncoderSettings * obj = (QVideoEncoderSettings *) _qt5xhb_itemGetPtrStackSelfItem();
+  QVideoEncoderSettings * obj = (QVideoEncoderSettings *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setEncodingMode ( (QMultimedia::EncodingMode) hb_parni(1) );
+      obj->setEncodingMode( (QMultimedia::EncodingMode) hb_parni(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -406,19 +399,19 @@ HB_FUNC_STATIC( QVIDEOENCODERSETTINGS_SETENCODINGMODE )
 }
 
 /*
-void setEncodingOption(const QString & option, const QVariant & value)
+void setEncodingOption( const QString & option, const QVariant & value )
 */
 HB_FUNC_STATIC( QVIDEOENCODERSETTINGS_SETENCODINGOPTION )
 {
-  QVideoEncoderSettings * obj = (QVideoEncoderSettings *) _qt5xhb_itemGetPtrStackSelfItem();
+  QVideoEncoderSettings * obj = (QVideoEncoderSettings *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(2) && ISCHAR(1) && ISQVARIANT(2) )
+    if( ISNUMPAR(2) && HB_ISCHAR(1) && ISQVARIANT(2) )
     {
 #endif
-      obj->setEncodingOption ( PQSTRING(1), *PQVARIANT(2) );
+      obj->setEncodingOption( PQSTRING(1), *PQVARIANT(2) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -432,23 +425,19 @@ HB_FUNC_STATIC( QVIDEOENCODERSETTINGS_SETENCODINGOPTION )
 }
 
 /*
-void setEncodingOptions(const QVariantMap &options)
-*/
-
-/*
-void setFrameRate(qreal rate)
+void setFrameRate( qreal rate )
 */
 HB_FUNC_STATIC( QVIDEOENCODERSETTINGS_SETFRAMERATE )
 {
-  QVideoEncoderSettings * obj = (QVideoEncoderSettings *) _qt5xhb_itemGetPtrStackSelfItem();
+  QVideoEncoderSettings * obj = (QVideoEncoderSettings *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setFrameRate ( PQREAL(1) );
+      obj->setFrameRate( PQREAL(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -462,19 +451,19 @@ HB_FUNC_STATIC( QVIDEOENCODERSETTINGS_SETFRAMERATE )
 }
 
 /*
-void setQuality(QMultimedia::EncodingQuality quality)
+void setQuality( QMultimedia::EncodingQuality quality )
 */
 HB_FUNC_STATIC( QVIDEOENCODERSETTINGS_SETQUALITY )
 {
-  QVideoEncoderSettings * obj = (QVideoEncoderSettings *) _qt5xhb_itemGetPtrStackSelfItem();
+  QVideoEncoderSettings * obj = (QVideoEncoderSettings *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setQuality ( (QMultimedia::EncodingQuality) hb_parni(1) );
+      obj->setQuality( (QMultimedia::EncodingQuality) hb_parni(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -488,37 +477,34 @@ HB_FUNC_STATIC( QVIDEOENCODERSETTINGS_SETQUALITY )
 }
 
 /*
-void setResolution(const QSize & resolution)
+void setResolution( const QSize & resolution )
 */
-void QVideoEncoderSettings_setResolution1 ()
+void QVideoEncoderSettings_setResolution1()
 {
-  QVideoEncoderSettings * obj = (QVideoEncoderSettings *) _qt5xhb_itemGetPtrStackSelfItem();
+  QVideoEncoderSettings * obj = (QVideoEncoderSettings *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
-      obj->setResolution ( *PQSIZE(1) );
+    obj->setResolution( *PQSIZE(1) );
   }
 
   hb_itemReturn( hb_stackSelfItem() );
 }
 
 /*
-void setResolution(int width, int height)
+void setResolution( int width, int height )
 */
-void QVideoEncoderSettings_setResolution2 ()
+void QVideoEncoderSettings_setResolution2()
 {
-  QVideoEncoderSettings * obj = (QVideoEncoderSettings *) _qt5xhb_itemGetPtrStackSelfItem();
+  QVideoEncoderSettings * obj = (QVideoEncoderSettings *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
-      obj->setResolution ( PINT(1), PINT(2) );
+    obj->setResolution( PINT(1), PINT(2) );
   }
 
   hb_itemReturn( hb_stackSelfItem() );
 }
-
-//[1]void setResolution(const QSize & resolution)
-//[2]void setResolution(int width, int height)
 
 HB_FUNC_STATIC( QVIDEOENCODERSETTINGS_SETRESOLUTION )
 {
@@ -526,7 +512,7 @@ HB_FUNC_STATIC( QVIDEOENCODERSETTINGS_SETRESOLUTION )
   {
     QVideoEncoderSettings_setResolution1();
   }
-  else if( ISNUMPAR(2) && ISNUM(1) && ISNUM(2) )
+  else if( ISNUMPAR(2) && HB_ISNUM(1) && HB_ISNUM(2) )
   {
     QVideoEncoderSettings_setResolution2();
   }
@@ -540,7 +526,7 @@ HB_FUNC_STATIC( QVIDEOENCODERSETTINGS_NEWFROM )
 {
   PHB_ITEM self = hb_stackSelfItem();
 
-  if( hb_pcount() == 1 && ISOBJECT(1) )
+  if( hb_pcount() == 1 && HB_ISOBJECT(1) )
   {
     PHB_ITEM ptr = hb_itemPutPtr( NULL, (void *) hb_itemGetPtr( hb_objSendMsg( hb_param(1, HB_IT_OBJECT ), "POINTER", 0 ) ) );
     hb_objSendMsg( self, "_pointer", 1, ptr );
@@ -549,7 +535,7 @@ HB_FUNC_STATIC( QVIDEOENCODERSETTINGS_NEWFROM )
     hb_objSendMsg( self, "_self_destruction", 1, des );
     hb_itemRelease( des );
   }
-  else if( hb_pcount() == 1 && ISPOINTER(1) )
+  else if( hb_pcount() == 1 && HB_ISPOINTER(1) )
   {
     PHB_ITEM ptr = hb_itemPutPtr( NULL, (void *) hb_itemGetPtr( hb_param(1, HB_IT_POINTER ) ) );
     hb_objSendMsg( self, "_pointer", 1, ptr );
@@ -585,7 +571,7 @@ HB_FUNC_STATIC( QVIDEOENCODERSETTINGS_SETSELFDESTRUCTION )
 {
   PHB_ITEM self = hb_stackSelfItem();
 
-  if( hb_pcount() == 1 && ISLOG(1) )
+  if( hb_pcount() == 1 && HB_ISLOG(1) )
   {
     PHB_ITEM des = hb_itemPutL( NULL, hb_parl(1) );
     hb_objSendMsg( self, "_self_destruction", 1, des );

@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -29,7 +29,7 @@ CLASS QWidgetAction INHERIT QAction
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QWidgetAction
+PROCEDURE destroyObject() CLASS QWidgetAction
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -46,20 +46,22 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #include <QtWidgets/QWidgetAction>
 #endif
 
 /*
-QWidgetAction(QObject * parent)
+QWidgetAction( QObject * parent )
 */
 HB_FUNC_STATIC( QWIDGETACTION_NEW )
 {
   if( ISNUMPAR(1) && ISQOBJECT(1) )
   {
-    QWidgetAction * o = new QWidgetAction ( PQOBJECT(1) );
-    _qt5xhb_returnNewObject( o, false );
+    QWidgetAction * obj = new QWidgetAction( PQOBJECT(1) );
+    Qt5xHb::returnNewObject( obj, false );
   }
   else
   {
@@ -69,10 +71,12 @@ HB_FUNC_STATIC( QWIDGETACTION_NEW )
 
 HB_FUNC_STATIC( QWIDGETACTION_DELETE )
 {
-  QWidgetAction * obj = (QWidgetAction *) _qt5xhb_itemGetPtrStackSelfItem();
+  QWidgetAction * obj = (QWidgetAction *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -89,7 +93,7 @@ QWidget * defaultWidget() const
 */
 HB_FUNC_STATIC( QWIDGETACTION_DEFAULTWIDGET )
 {
-  QWidgetAction * obj = (QWidgetAction *) _qt5xhb_itemGetPtrStackSelfItem();
+  QWidgetAction * obj = (QWidgetAction *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -97,8 +101,8 @@ HB_FUNC_STATIC( QWIDGETACTION_DEFAULTWIDGET )
     if( ISNUMPAR(0) )
     {
 #endif
-      QWidget * ptr = obj->defaultWidget ();
-      _qt5xhb_createReturnQWidgetClass ( ptr, "QWIDGET" );
+      QWidget * ptr = obj->defaultWidget();
+      Qt5xHb::createReturnQWidgetClass( ptr, "QWIDGET" );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -110,11 +114,11 @@ HB_FUNC_STATIC( QWIDGETACTION_DEFAULTWIDGET )
 }
 
 /*
-void releaseWidget(QWidget * widget)
+void releaseWidget( QWidget * widget )
 */
 HB_FUNC_STATIC( QWIDGETACTION_RELEASEWIDGET )
 {
-  QWidgetAction * obj = (QWidgetAction *) _qt5xhb_itemGetPtrStackSelfItem();
+  QWidgetAction * obj = (QWidgetAction *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -122,7 +126,7 @@ HB_FUNC_STATIC( QWIDGETACTION_RELEASEWIDGET )
     if( ISNUMPAR(1) && ISQWIDGET(1) )
     {
 #endif
-      obj->releaseWidget ( PQWIDGET(1) );
+      obj->releaseWidget( PQWIDGET(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -136,11 +140,11 @@ HB_FUNC_STATIC( QWIDGETACTION_RELEASEWIDGET )
 }
 
 /*
-QWidget * requestWidget(QWidget * parent)
+QWidget * requestWidget( QWidget * parent )
 */
 HB_FUNC_STATIC( QWIDGETACTION_REQUESTWIDGET )
 {
-  QWidgetAction * obj = (QWidgetAction *) _qt5xhb_itemGetPtrStackSelfItem();
+  QWidgetAction * obj = (QWidgetAction *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -148,8 +152,8 @@ HB_FUNC_STATIC( QWIDGETACTION_REQUESTWIDGET )
     if( ISNUMPAR(1) && ISQWIDGET(1) )
     {
 #endif
-      QWidget * ptr = obj->requestWidget ( PQWIDGET(1) );
-      _qt5xhb_createReturnQWidgetClass ( ptr, "QWIDGET" );
+      QWidget * ptr = obj->requestWidget( PQWIDGET(1) );
+      Qt5xHb::createReturnQWidgetClass( ptr, "QWIDGET" );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -161,11 +165,11 @@ HB_FUNC_STATIC( QWIDGETACTION_REQUESTWIDGET )
 }
 
 /*
-void setDefaultWidget(QWidget * widget)
+void setDefaultWidget( QWidget * widget )
 */
 HB_FUNC_STATIC( QWIDGETACTION_SETDEFAULTWIDGET )
 {
-  QWidgetAction * obj = (QWidgetAction *) _qt5xhb_itemGetPtrStackSelfItem();
+  QWidgetAction * obj = (QWidgetAction *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -173,7 +177,7 @@ HB_FUNC_STATIC( QWIDGETACTION_SETDEFAULTWIDGET )
     if( ISNUMPAR(1) && ISQWIDGET(1) )
     {
 #endif
-      obj->setDefaultWidget ( PQWIDGET(1) );
+      obj->setDefaultWidget( PQWIDGET(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else

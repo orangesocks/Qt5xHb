@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -33,7 +33,7 @@ CLASS QFileSystemWatcher INHERIT QObject
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QFileSystemWatcher
+PROCEDURE destroyObject() CLASS QFileSystemWatcher
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -50,6 +50,8 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #include <QtCore/QFileSystemWatcher>
@@ -58,33 +60,30 @@ RETURN
 #include <QtCore/QStringList>
 
 /*
-QFileSystemWatcher(QObject * parent = 0)
+QFileSystemWatcher( QObject * parent = 0 )
 */
-void QFileSystemWatcher_new1 ()
+void QFileSystemWatcher_new1()
 {
-  QFileSystemWatcher * o = new QFileSystemWatcher ( OPQOBJECT(1,0) );
-  _qt5xhb_returnNewObject( o, false );
+  QFileSystemWatcher * obj = new QFileSystemWatcher( OPQOBJECT(1,0) );
+  Qt5xHb::returnNewObject( obj, false );
 }
 
 /*
-QFileSystemWatcher(const QStringList & paths, QObject * parent = 0)
+QFileSystemWatcher( const QStringList & paths, QObject * parent = 0 )
 */
-void QFileSystemWatcher_new2 ()
+void QFileSystemWatcher_new2()
 {
-  QFileSystemWatcher * o = new QFileSystemWatcher ( PQSTRINGLIST(1), OPQOBJECT(2,0) );
-  _qt5xhb_returnNewObject( o, false );
+  QFileSystemWatcher * obj = new QFileSystemWatcher( PQSTRINGLIST(1), OPQOBJECT(2,0) );
+  Qt5xHb::returnNewObject( obj, false );
 }
-
-//[1]QFileSystemWatcher(QObject * parent = 0)
-//[2]QFileSystemWatcher(const QStringList & paths, QObject * parent = 0)
 
 HB_FUNC_STATIC( QFILESYSTEMWATCHER_NEW )
 {
-  if( ISBETWEEN(0,1) && ISOPTQOBJECT(1) )
+  if( ISBETWEEN(0,1) && (ISQOBJECT(1)||HB_ISNIL(1)) )
   {
     QFileSystemWatcher_new1();
   }
-  else if( ISBETWEEN(1,2) && ISARRAY(1) && ISOPTQOBJECT(2) )
+  else if( ISBETWEEN(1,2) && HB_ISARRAY(1) && (ISQOBJECT(2)||HB_ISNIL(2)) )
   {
     QFileSystemWatcher_new2();
   }
@@ -96,10 +95,12 @@ HB_FUNC_STATIC( QFILESYSTEMWATCHER_NEW )
 
 HB_FUNC_STATIC( QFILESYSTEMWATCHER_DELETE )
 {
-  QFileSystemWatcher * obj = (QFileSystemWatcher *) _qt5xhb_itemGetPtrStackSelfItem();
+  QFileSystemWatcher * obj = (QFileSystemWatcher *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -112,19 +113,19 @@ HB_FUNC_STATIC( QFILESYSTEMWATCHER_DELETE )
 }
 
 /*
-bool addPath(const QString & path)
+bool addPath( const QString & path )
 */
 HB_FUNC_STATIC( QFILESYSTEMWATCHER_ADDPATH )
 {
-  QFileSystemWatcher * obj = (QFileSystemWatcher *) _qt5xhb_itemGetPtrStackSelfItem();
+  QFileSystemWatcher * obj = (QFileSystemWatcher *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISCHAR(1) )
+    if( ISNUMPAR(1) && HB_ISCHAR(1) )
     {
 #endif
-      RBOOL( obj->addPath ( PQSTRING(1) ) );
+      RBOOL( obj->addPath( PQSTRING(1) ) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -136,19 +137,19 @@ HB_FUNC_STATIC( QFILESYSTEMWATCHER_ADDPATH )
 }
 
 /*
-QStringList addPaths(const QStringList & paths)
+QStringList addPaths( const QStringList & paths )
 */
 HB_FUNC_STATIC( QFILESYSTEMWATCHER_ADDPATHS )
 {
-  QFileSystemWatcher * obj = (QFileSystemWatcher *) _qt5xhb_itemGetPtrStackSelfItem();
+  QFileSystemWatcher * obj = (QFileSystemWatcher *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISARRAY(1) )
+    if( ISNUMPAR(1) && HB_ISARRAY(1) )
     {
 #endif
-      RQSTRINGLIST( obj->addPaths ( PQSTRINGLIST(1) ) );
+      RQSTRINGLIST( obj->addPaths( PQSTRINGLIST(1) ) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -164,7 +165,7 @@ QStringList directories() const
 */
 HB_FUNC_STATIC( QFILESYSTEMWATCHER_DIRECTORIES )
 {
-  QFileSystemWatcher * obj = (QFileSystemWatcher *) _qt5xhb_itemGetPtrStackSelfItem();
+  QFileSystemWatcher * obj = (QFileSystemWatcher *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -172,7 +173,7 @@ HB_FUNC_STATIC( QFILESYSTEMWATCHER_DIRECTORIES )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRINGLIST( obj->directories () );
+      RQSTRINGLIST( obj->directories() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -188,7 +189,7 @@ QStringList files() const
 */
 HB_FUNC_STATIC( QFILESYSTEMWATCHER_FILES )
 {
-  QFileSystemWatcher * obj = (QFileSystemWatcher *) _qt5xhb_itemGetPtrStackSelfItem();
+  QFileSystemWatcher * obj = (QFileSystemWatcher *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -196,7 +197,7 @@ HB_FUNC_STATIC( QFILESYSTEMWATCHER_FILES )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRINGLIST( obj->files () );
+      RQSTRINGLIST( obj->files() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -208,19 +209,19 @@ HB_FUNC_STATIC( QFILESYSTEMWATCHER_FILES )
 }
 
 /*
-bool removePath(const QString & path)
+bool removePath( const QString & path )
 */
 HB_FUNC_STATIC( QFILESYSTEMWATCHER_REMOVEPATH )
 {
-  QFileSystemWatcher * obj = (QFileSystemWatcher *) _qt5xhb_itemGetPtrStackSelfItem();
+  QFileSystemWatcher * obj = (QFileSystemWatcher *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISCHAR(1) )
+    if( ISNUMPAR(1) && HB_ISCHAR(1) )
     {
 #endif
-      RBOOL( obj->removePath ( PQSTRING(1) ) );
+      RBOOL( obj->removePath( PQSTRING(1) ) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -232,19 +233,19 @@ HB_FUNC_STATIC( QFILESYSTEMWATCHER_REMOVEPATH )
 }
 
 /*
-QStringList removePaths(const QStringList & paths)
+QStringList removePaths( const QStringList & paths )
 */
 HB_FUNC_STATIC( QFILESYSTEMWATCHER_REMOVEPATHS )
 {
-  QFileSystemWatcher * obj = (QFileSystemWatcher *) _qt5xhb_itemGetPtrStackSelfItem();
+  QFileSystemWatcher * obj = (QFileSystemWatcher *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISARRAY(1) )
+    if( ISNUMPAR(1) && HB_ISARRAY(1) )
     {
 #endif
-      RQSTRINGLIST( obj->removePaths ( PQSTRINGLIST(1) ) );
+      RQSTRINGLIST( obj->removePaths( PQSTRINGLIST(1) ) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -255,7 +256,7 @@ HB_FUNC_STATIC( QFILESYSTEMWATCHER_REMOVEPATHS )
   }
 }
 
-void QFileSystemWatcherSlots_connect_signal ( const QString & signal, const QString & slot );
+void QFileSystemWatcherSlots_connect_signal( const QString & signal, const QString & slot );
 
 HB_FUNC_STATIC( QFILESYSTEMWATCHER_ONDIRECTORYCHANGED )
 {

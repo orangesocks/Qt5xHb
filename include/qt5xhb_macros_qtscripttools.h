@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -13,10 +13,10 @@
 #ifndef QT5XHB_MACROS_QTSCRIPTTOOLS_H
 #define QT5XHB_MACROS_QTSCRIPTTOOLS_H
 
-#define ISQSCRIPTENGINEDEBUGGER(n)                          _qt5xhb_isObjectDerivedFrom(n,"QScriptEngineDebugger")
+#define ISQSCRIPTENGINEDEBUGGER( n )                        Qt5xHb::isObjectDerivedFrom( n, "QScriptEngineDebugger" )
 
-#define PQSCRIPTENGINEDEBUGGER(n)                           (QScriptEngineDebugger *) _qt5xhb_itemGetPtr(n)
+#define PQSCRIPTENGINEDEBUGGER( n )                         static_cast< QScriptEngineDebugger * >( Qt5xHb::itemGetPtr( n ) )
 
-#define OPQSCRIPTENGINEDEBUGGER(n,v)                        ISNIL(n)? v : (QScriptEngineDebugger *) _qt5xhb_itemGetPtr(n)
+#define OPQSCRIPTENGINEDEBUGGER( n, v )                     HB_ISNIL( n ) ? v : static_cast< QScriptEngineDebugger * >( Qt5xHb::itemGetPtr( n ) )
 
 #endif /* QT5XHB_MACROS_QTSCRIPTTOOLS_H */

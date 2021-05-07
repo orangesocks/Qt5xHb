@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -24,7 +24,7 @@ CLASS QCompassFilter INHERIT QSensorFilter
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QCompassFilter
+PROCEDURE destroyObject() CLASS QCompassFilter
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -53,7 +53,7 @@ RETURN
 HB_FUNC_STATIC( QCOMPASSFILTER_DELETE )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,1,0))
-  QCompassFilter * obj = (QCompassFilter *) _qt5xhb_itemGetPtrStackSelfItem();
+  QCompassFilter * obj = (QCompassFilter *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -70,12 +70,12 @@ HB_FUNC_STATIC( QCOMPASSFILTER_DELETE )
 }
 
 /*
-virtual bool filter(QCompassReading *reading) = 0
+virtual bool filter( QCompassReading * reading ) = 0
 */
 HB_FUNC_STATIC( QCOMPASSFILTER_FILTER )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,1,0))
-  QCompassFilter * obj = (QCompassFilter *) _qt5xhb_itemGetPtrStackSelfItem();
+  QCompassFilter * obj = (QCompassFilter *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -83,7 +83,7 @@ HB_FUNC_STATIC( QCOMPASSFILTER_FILTER )
     if( ISNUMPAR(1) && ISQCOMPASSREADING(1) )
     {
 #endif
-      RBOOL( obj->filter ( PQCOMPASSREADING(1) ) );
+      RBOOL( obj->filter( PQCOMPASSREADING(1) ) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else

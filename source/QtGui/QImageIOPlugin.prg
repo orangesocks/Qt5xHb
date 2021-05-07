@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -26,7 +26,7 @@ CLASS QImageIOPlugin INHERIT QObject
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QImageIOPlugin
+PROCEDURE destroyObject() CLASS QImageIOPlugin
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -43,6 +43,8 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #include <QtGui/QImageIOPlugin>
@@ -50,10 +52,12 @@ RETURN
 
 HB_FUNC_STATIC( QIMAGEIOPLUGIN_DELETE )
 {
-  QImageIOPlugin * obj = (QImageIOPlugin *) _qt5xhb_itemGetPtrStackSelfItem();
+  QImageIOPlugin * obj = (QImageIOPlugin *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -66,11 +70,11 @@ HB_FUNC_STATIC( QIMAGEIOPLUGIN_DELETE )
 }
 
 /*
-virtual Capabilities capabilities ( QIODevice * device, const QByteArray & format ) const = 0
+virtual QImageIOPlugin::Capabilities capabilities( QIODevice * device, const QByteArray & format ) const = 0
 */
 HB_FUNC_STATIC( QIMAGEIOPLUGIN_CAPABILITIES )
 {
-  QImageIOPlugin * obj = (QImageIOPlugin *) _qt5xhb_itemGetPtrStackSelfItem();
+  QImageIOPlugin * obj = (QImageIOPlugin *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -78,7 +82,7 @@ HB_FUNC_STATIC( QIMAGEIOPLUGIN_CAPABILITIES )
     if( ISNUMPAR(2) && ISQIODEVICE(1) && ISQBYTEARRAY(2) )
     {
 #endif
-      RENUM( obj->capabilities ( PQIODEVICE(1), *PQBYTEARRAY(2) ) );
+      RENUM( obj->capabilities( PQIODEVICE(1), *PQBYTEARRAY(2) ) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -90,20 +94,20 @@ HB_FUNC_STATIC( QIMAGEIOPLUGIN_CAPABILITIES )
 }
 
 /*
-virtual QImageIOHandler * create ( QIODevice * device, const QByteArray & format = QByteArray() ) const = 0
+virtual QImageIOHandler * create( QIODevice * device, const QByteArray & format = QByteArray() ) const = 0
 */
 HB_FUNC_STATIC( QIMAGEIOPLUGIN_CREATE )
 {
-  QImageIOPlugin * obj = (QImageIOPlugin *) _qt5xhb_itemGetPtrStackSelfItem();
+  QImageIOPlugin * obj = (QImageIOPlugin *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISBETWEEN(1,2) && ISQIODEVICE(1) && (ISQBYTEARRAY(2)||ISNIL(2)) )
+    if( ISBETWEEN(1,2) && ISQIODEVICE(1) && (ISQBYTEARRAY(2)||HB_ISNIL(2)) )
     {
 #endif
-      QImageIOHandler * ptr = obj->create ( PQIODEVICE(1), ISNIL(2)? QByteArray() : *(QByteArray *) _qt5xhb_itemGetPtr(2) );
-      _qt5xhb_createReturnClass ( ptr, "QIMAGEIOHANDLER", false );
+      QImageIOHandler * ptr = obj->create( PQIODEVICE(1), HB_ISNIL(2)? QByteArray() : *(QByteArray *) Qt5xHb::itemGetPtr(2) );
+      Qt5xHb::createReturnClass( ptr, "QIMAGEIOHANDLER", false );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else

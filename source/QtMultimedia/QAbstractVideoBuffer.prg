@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -38,7 +38,7 @@ CLASS QAbstractVideoBuffer
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QAbstractVideoBuffer
+PROCEDURE destroyObject() CLASS QAbstractVideoBuffer
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -63,15 +63,11 @@ RETURN
 #include <QtCore/QVariant>
 
 /*
-QAbstractVideoBuffer(HandleType type) (abstract)
-*/
-
-/*
 virtual ~QAbstractVideoBuffer()
 */
 HB_FUNC_STATIC( QABSTRACTVIDEOBUFFER_DELETE )
 {
-  QAbstractVideoBuffer * obj = (QAbstractVideoBuffer *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAbstractVideoBuffer * obj = (QAbstractVideoBuffer *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -87,11 +83,11 @@ HB_FUNC_STATIC( QABSTRACTVIDEOBUFFER_DELETE )
 }
 
 /*
-virtual QVariant handle () const
+virtual QVariant handle() const
 */
 HB_FUNC_STATIC( QABSTRACTVIDEOBUFFER_HANDLE )
 {
-  QAbstractVideoBuffer * obj = (QAbstractVideoBuffer *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAbstractVideoBuffer * obj = (QAbstractVideoBuffer *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -99,8 +95,8 @@ HB_FUNC_STATIC( QABSTRACTVIDEOBUFFER_HANDLE )
     if( ISNUMPAR(0) )
     {
 #endif
-      QVariant * ptr = new QVariant( obj->handle () );
-      _qt5xhb_createReturnClass ( ptr, "QVARIANT", true );
+      QVariant * ptr = new QVariant( obj->handle() );
+      Qt5xHb::createReturnClass( ptr, "QVARIANT", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -112,11 +108,11 @@ HB_FUNC_STATIC( QABSTRACTVIDEOBUFFER_HANDLE )
 }
 
 /*
-HandleType handleType () const
+QAbstractVideoBuffer::HandleType handleType() const
 */
 HB_FUNC_STATIC( QABSTRACTVIDEOBUFFER_HANDLETYPE )
 {
-  QAbstractVideoBuffer * obj = (QAbstractVideoBuffer *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAbstractVideoBuffer * obj = (QAbstractVideoBuffer *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -124,7 +120,7 @@ HB_FUNC_STATIC( QABSTRACTVIDEOBUFFER_HANDLETYPE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RENUM( obj->handleType () );
+      RENUM( obj->handleType() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -136,15 +132,11 @@ HB_FUNC_STATIC( QABSTRACTVIDEOBUFFER_HANDLETYPE )
 }
 
 /*
-virtual uchar * map ( MapMode mode, int * numBytes, int * bytesPerLine ) = 0
-*/
-
-/*
-virtual MapMode mapMode () const = 0
+virtual QAbstractVideoBuffer::MapMode mapMode() const = 0
 */
 HB_FUNC_STATIC( QABSTRACTVIDEOBUFFER_MAPMODE )
 {
-  QAbstractVideoBuffer * obj = (QAbstractVideoBuffer *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAbstractVideoBuffer * obj = (QAbstractVideoBuffer *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -152,7 +144,7 @@ HB_FUNC_STATIC( QABSTRACTVIDEOBUFFER_MAPMODE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RENUM( obj->mapMode () );
+      RENUM( obj->mapMode() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -164,11 +156,11 @@ HB_FUNC_STATIC( QABSTRACTVIDEOBUFFER_MAPMODE )
 }
 
 /*
-virtual void unmap () = 0
+virtual void unmap() = 0
 */
 HB_FUNC_STATIC( QABSTRACTVIDEOBUFFER_UNMAP )
 {
-  QAbstractVideoBuffer * obj = (QAbstractVideoBuffer *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAbstractVideoBuffer * obj = (QAbstractVideoBuffer *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -176,7 +168,7 @@ HB_FUNC_STATIC( QABSTRACTVIDEOBUFFER_UNMAP )
     if( ISNUMPAR(0) )
     {
 #endif
-      obj->unmap ();
+      obj->unmap();
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -194,7 +186,7 @@ virtual void release()
 */
 HB_FUNC_STATIC( QABSTRACTVIDEOBUFFER_RELEASE )
 {
-  QAbstractVideoBuffer * obj = (QAbstractVideoBuffer *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAbstractVideoBuffer * obj = (QAbstractVideoBuffer *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -202,7 +194,7 @@ HB_FUNC_STATIC( QABSTRACTVIDEOBUFFER_RELEASE )
     if( ISNUMPAR(0) )
     {
 #endif
-      obj->release ();
+      obj->release();
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -215,15 +207,11 @@ HB_FUNC_STATIC( QABSTRACTVIDEOBUFFER_RELEASE )
   hb_itemReturn( hb_stackSelfItem() );
 }
 
-/*
-int mapPlanes(MapMode mode, int *numBytes, int bytesPerLine[4], uchar *data[4])
-*/
-
 HB_FUNC_STATIC( QABSTRACTVIDEOBUFFER_NEWFROM )
 {
   PHB_ITEM self = hb_stackSelfItem();
 
-  if( hb_pcount() == 1 && ISOBJECT(1) )
+  if( hb_pcount() == 1 && HB_ISOBJECT(1) )
   {
     PHB_ITEM ptr = hb_itemPutPtr( NULL, (void *) hb_itemGetPtr( hb_objSendMsg( hb_param(1, HB_IT_OBJECT ), "POINTER", 0 ) ) );
     hb_objSendMsg( self, "_pointer", 1, ptr );
@@ -232,7 +220,7 @@ HB_FUNC_STATIC( QABSTRACTVIDEOBUFFER_NEWFROM )
     hb_objSendMsg( self, "_self_destruction", 1, des );
     hb_itemRelease( des );
   }
-  else if( hb_pcount() == 1 && ISPOINTER(1) )
+  else if( hb_pcount() == 1 && HB_ISPOINTER(1) )
   {
     PHB_ITEM ptr = hb_itemPutPtr( NULL, (void *) hb_itemGetPtr( hb_param(1, HB_IT_POINTER ) ) );
     hb_objSendMsg( self, "_pointer", 1, ptr );
@@ -268,7 +256,7 @@ HB_FUNC_STATIC( QABSTRACTVIDEOBUFFER_SETSELFDESTRUCTION )
 {
   PHB_ITEM self = hb_stackSelfItem();
 
-  if( hb_pcount() == 1 && ISLOG(1) )
+  if( hb_pcount() == 1 && HB_ISLOG(1) )
   {
     PHB_ITEM des = hb_itemPutL( NULL, hb_parl(1) );
     hb_objSendMsg( self, "_self_destruction", 1, des );

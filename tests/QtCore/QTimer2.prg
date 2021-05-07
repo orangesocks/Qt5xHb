@@ -2,13 +2,13 @@
 
   Qt5xHb Project - Test Program
 
-  Copyright (C) 2019 Marcos Antonio Gambeta
+  Copyright (C) 2021 Marcos Antonio Gambeta
 
   E-mail:
   marcosgambeta AT outlook DOT com
 
   Website:
-  https://github.com/marcosgambeta/Qt5xHb
+  https://github.com/magsoftinfo/qt5xhb
 
 */
 
@@ -18,9 +18,9 @@
 REQUEST HB_GT_WIN
 #endif
 
-PROCEDURE Main ()
+PROCEDURE Main()
 
-   lOCAL oApp
+   LOCAL oApp
    LOCAL oWindow
    LOCAL oTimer1
    LOCAL oTimer2
@@ -28,21 +28,19 @@ PROCEDURE Main ()
    oApp := QApplication():new()
 
    oWindow := QWidget():new()
-
-   oWindow:setWindowTitle("Teste")
-
-   oWindow:resize(640,480)
+   oWindow:setWindowTitle( "Teste" )
+   oWindow:resize( 640, 480 )
 
    oWindow:show()
 
-   oTimer1 := QTimer():new(oWindow)
-   ? oTimer1:onTimeout({||qout("timer 1 executado")})
-   oTimer1:setInterval(1000)
+   oTimer1 := QTimer():new( oWindow )
+   ? oTimer1:onTimeout({||qout( "timer 1 executado" )})
+   oTimer1:setInterval( 1000 )
    oTimer1:start()
 
-   oTimer2 := QTimer():new(oWindow)
-   ? oTimer2:onTimeout({||qout("timer 2 executado")})
-   oTimer2:setInterval(2000)
+   oTimer2 := QTimer():new( oWindow )
+   ? oTimer2:onTimeout({||qout( "timer 2 executado" )})
+   oTimer2:setInterval( 2000 )
    oTimer2:start()
 
    oApp:exec()

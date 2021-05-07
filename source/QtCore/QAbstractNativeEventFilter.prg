@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -24,7 +24,7 @@ CLASS QAbstractNativeEventFilter INHERIT QObject
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QAbstractNativeEventFilter
+PROCEDURE destroyObject() CLASS QAbstractNativeEventFilter
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -48,7 +48,7 @@ RETURN
 
 HB_FUNC_STATIC( QABSTRACTNATIVEEVENTFILTER_DELETE )
 {
-  QAbstractNativeEventFilter * obj = (QAbstractNativeEventFilter *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAbstractNativeEventFilter * obj = (QAbstractNativeEventFilter *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -64,20 +64,20 @@ HB_FUNC_STATIC( QABSTRACTNATIVEEVENTFILTER_DELETE )
 }
 
 /*
-virtual bool nativeEventFilter(const QByteArray & eventType, void * message, long * result) = 0
+virtual bool nativeEventFilter( const QByteArray & eventType, void * message, long * result ) = 0
 */
 HB_FUNC_STATIC( QABSTRACTNATIVEEVENTFILTER_NATIVEEVENTFILTER )
 {
-  QAbstractNativeEventFilter * obj = (QAbstractNativeEventFilter *) _qt5xhb_itemGetPtrStackSelfItem();
+  QAbstractNativeEventFilter * obj = (QAbstractNativeEventFilter *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(3) && ISQBYTEARRAY(1) && ISPOINTER(2) && ISNUM(3) )
+    if( ISNUMPAR(3) && ISQBYTEARRAY(1) && HB_ISPOINTER(2) && HB_ISNUM(3) )
     {
 #endif
       long par3;
-      RBOOL( obj->nativeEventFilter ( *PQBYTEARRAY(1), (void *) hb_parptr(2), &par3 ) );
+      RBOOL( obj->nativeEventFilter( *PQBYTEARRAY(1), (void *) hb_parptr(2), &par3 ) );
       hb_stornl( par3, 3 );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }

@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -35,7 +35,7 @@ CLASS QScriptString
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QScriptString
+PROCEDURE destroyObject() CLASS QScriptString
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -60,23 +60,20 @@ RETURN
 /*
 QScriptString()
 */
-void QScriptString_new1 ()
+void QScriptString_new1()
 {
-  QScriptString * o = new QScriptString ();
-  _qt5xhb_returnNewObject( o, true );
+  QScriptString * obj = new QScriptString();
+  Qt5xHb::returnNewObject( obj, true );
 }
 
 /*
-QScriptString(const QScriptString & other)
+QScriptString( const QScriptString & other )
 */
-void QScriptString_new2 ()
+void QScriptString_new2()
 {
-  QScriptString * o = new QScriptString ( *PQSCRIPTSTRING(1) );
-  _qt5xhb_returnNewObject( o, true );
+  QScriptString * obj = new QScriptString( *PQSCRIPTSTRING(1) );
+  Qt5xHb::returnNewObject( obj, true );
 }
-
-//[1]QScriptString()
-//[2]QScriptString(const QScriptString & other)
 
 HB_FUNC_STATIC( QSCRIPTSTRING_NEW )
 {
@@ -96,7 +93,7 @@ HB_FUNC_STATIC( QSCRIPTSTRING_NEW )
 
 HB_FUNC_STATIC( QSCRIPTSTRING_DELETE )
 {
-  QScriptString * obj = (QScriptString *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScriptString * obj = (QScriptString *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -116,7 +113,7 @@ bool isValid() const
 */
 HB_FUNC_STATIC( QSCRIPTSTRING_ISVALID )
 {
-  QScriptString * obj = (QScriptString *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScriptString * obj = (QScriptString *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -124,7 +121,7 @@ HB_FUNC_STATIC( QSCRIPTSTRING_ISVALID )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->isValid () );
+      RBOOL( obj->isValid() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -140,7 +137,7 @@ QString toString() const
 */
 HB_FUNC_STATIC( QSCRIPTSTRING_TOSTRING )
 {
-  QScriptString * obj = (QScriptString *) _qt5xhb_itemGetPtrStackSelfItem();
+  QScriptString * obj = (QScriptString *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -148,7 +145,7 @@ HB_FUNC_STATIC( QSCRIPTSTRING_TOSTRING )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRING( obj->toString () );
+      RQSTRING( obj->toString() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -163,7 +160,7 @@ HB_FUNC_STATIC( QSCRIPTSTRING_NEWFROM )
 {
   PHB_ITEM self = hb_stackSelfItem();
 
-  if( hb_pcount() == 1 && ISOBJECT(1) )
+  if( hb_pcount() == 1 && HB_ISOBJECT(1) )
   {
     PHB_ITEM ptr = hb_itemPutPtr( NULL, (void *) hb_itemGetPtr( hb_objSendMsg( hb_param(1, HB_IT_OBJECT ), "POINTER", 0 ) ) );
     hb_objSendMsg( self, "_pointer", 1, ptr );
@@ -172,7 +169,7 @@ HB_FUNC_STATIC( QSCRIPTSTRING_NEWFROM )
     hb_objSendMsg( self, "_self_destruction", 1, des );
     hb_itemRelease( des );
   }
-  else if( hb_pcount() == 1 && ISPOINTER(1) )
+  else if( hb_pcount() == 1 && HB_ISPOINTER(1) )
   {
     PHB_ITEM ptr = hb_itemPutPtr( NULL, (void *) hb_itemGetPtr( hb_param(1, HB_IT_POINTER ) ) );
     hb_objSendMsg( self, "_pointer", 1, ptr );
@@ -208,7 +205,7 @@ HB_FUNC_STATIC( QSCRIPTSTRING_SETSELFDESTRUCTION )
 {
   PHB_ITEM self = hb_stackSelfItem();
 
-  if( hb_pcount() == 1 && ISLOG(1) )
+  if( hb_pcount() == 1 && HB_ISLOG(1) )
   {
     PHB_ITEM des = hb_itemPutL( NULL, hb_parl(1) );
     hb_objSendMsg( self, "_self_destruction", 1, des );

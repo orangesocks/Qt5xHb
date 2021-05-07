@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -44,7 +44,7 @@ CLASS QOAuth1 INHERIT QAbstractOAuth
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QOAuth1
+PROCEDURE destroyObject() CLASS QOAuth1
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -63,6 +63,8 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
@@ -71,41 +73,34 @@ RETURN
 #endif
 
 /*
-explicit QOAuth1(QObject *parent = nullptr)
+QOAuth1( QObject * parent = nullptr )
 */
-void QOAuth1_new1 ()
+void QOAuth1_new1()
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
-  QOAuth1 * o = new QOAuth1 ( OPQOBJECT(1,nullptr) );
-  _qt5xhb_returnNewObject( o, false );
+  QOAuth1 * obj = new QOAuth1( OPQOBJECT(1,nullptr) );
+  Qt5xHb::returnNewObject( obj, false );
 #endif
 }
 
 /*
-explicit QOAuth1(QNetworkAccessManager *manager, QObject *parent = nullptr)
+QOAuth1( QNetworkAccessManager * manager, QObject * parent = nullptr )
 */
-void QOAuth1_new2 ()
+void QOAuth1_new2()
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
-  QOAuth1 * o = new QOAuth1 ( PQNETWORKACCESSMANAGER(1), OPQOBJECT(2,nullptr) );
-  _qt5xhb_returnNewObject( o, false );
+  QOAuth1 * obj = new QOAuth1( PQNETWORKACCESSMANAGER(1), OPQOBJECT(2,nullptr) );
+  Qt5xHb::returnNewObject( obj, false );
 #endif
 }
-
-/*
-QOAuth1(const QString &clientIdentifier, const QString &clientSharedSecret, QNetworkAccessManager *manager, QObject *parent = nullptr)
-*/
-
-//[1]explicit QOAuth1(QObject *parent = nullptr)
-//[2]explicit QOAuth1(QNetworkAccessManager *manager, QObject *parent = nullptr)
 
 HB_FUNC_STATIC( QOAUTH1_NEW )
 {
-  if( ISBETWEEN(0,1) && (ISQOBJECT(1)||ISNIL(1)) )
+  if( ISBETWEEN(0,1) && (ISQOBJECT(1)||HB_ISNIL(1)) )
   {
     QOAuth1_new1();
   }
-  else if( ISBETWEEN(1,2) && ISQNETWORKACCESSMANAGER(1) && (ISQOBJECT(2)||ISNIL(2)) )
+  else if( ISBETWEEN(1,2) && ISQNETWORKACCESSMANAGER(1) && (ISQOBJECT(2)||HB_ISNIL(2)) )
   {
     QOAuth1_new2();
   }
@@ -118,10 +113,12 @@ HB_FUNC_STATIC( QOAUTH1_NEW )
 HB_FUNC_STATIC( QOAUTH1_DELETE )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
-  QOAuth1 * obj = (QOAuth1 *) _qt5xhb_itemGetPtrStackSelfItem();
+  QOAuth1 * obj = (QOAuth1 *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -140,7 +137,7 @@ QString clientSharedSecret() const
 HB_FUNC_STATIC( QOAUTH1_CLIENTSHAREDSECRET )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
-  QOAuth1 * obj = (QOAuth1 *) _qt5xhb_itemGetPtrStackSelfItem();
+  QOAuth1 * obj = (QOAuth1 *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -148,7 +145,7 @@ HB_FUNC_STATIC( QOAUTH1_CLIENTSHAREDSECRET )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRING( obj->clientSharedSecret () );
+      RQSTRING( obj->clientSharedSecret() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -161,20 +158,20 @@ HB_FUNC_STATIC( QOAUTH1_CLIENTSHAREDSECRET )
 }
 
 /*
-void setClientSharedSecret(const QString &clientSharedSecret)
+void setClientSharedSecret( const QString & clientSharedSecret )
 */
 HB_FUNC_STATIC( QOAUTH1_SETCLIENTSHAREDSECRET )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
-  QOAuth1 * obj = (QOAuth1 *) _qt5xhb_itemGetPtrStackSelfItem();
+  QOAuth1 * obj = (QOAuth1 *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISCHAR(1) )
+    if( ISNUMPAR(1) && HB_ISCHAR(1) )
     {
 #endif
-      obj->setClientSharedSecret ( PQSTRING(1) );
+      obj->setClientSharedSecret( PQSTRING(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -189,28 +186,20 @@ HB_FUNC_STATIC( QOAUTH1_SETCLIENTSHAREDSECRET )
 }
 
 /*
-QPair<QString, QString> clientCredentials() const
-*/
-
-/*
-void setClientCredentials(const QPair<QString, QString> &clientCredentials)
-*/
-
-/*
-void setClientCredentials(const QString &clientIdentifier, const QString &clientSharedSecret)
+void setClientCredentials( const QString & clientIdentifier, const QString & clientSharedSecret )
 */
 HB_FUNC_STATIC( QOAUTH1_SETCLIENTCREDENTIALS )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
-  QOAuth1 * obj = (QOAuth1 *) _qt5xhb_itemGetPtrStackSelfItem();
+  QOAuth1 * obj = (QOAuth1 *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(2) && ISCHAR(1) && ISCHAR(2) )
+    if( ISNUMPAR(2) && HB_ISCHAR(1) && HB_ISCHAR(2) )
     {
 #endif
-      obj->setClientCredentials ( PQSTRING(1), PQSTRING(2) );
+      obj->setClientCredentials( PQSTRING(1), PQSTRING(2) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -223,9 +212,6 @@ HB_FUNC_STATIC( QOAUTH1_SETCLIENTCREDENTIALS )
   hb_itemReturn( hb_stackSelfItem() );
 #endif
 }
-
-//[1]void setClientCredentials(const QPair<QString, QString> &clientCredentials)
-//[2]void setClientCredentials(const QString &clientIdentifier, const QString &clientSharedSecret)
 
 /*
 QString tokenSecret() const
@@ -233,7 +219,7 @@ QString tokenSecret() const
 HB_FUNC_STATIC( QOAUTH1_TOKENSECRET )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
-  QOAuth1 * obj = (QOAuth1 *) _qt5xhb_itemGetPtrStackSelfItem();
+  QOAuth1 * obj = (QOAuth1 *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -241,7 +227,7 @@ HB_FUNC_STATIC( QOAUTH1_TOKENSECRET )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQSTRING( obj->tokenSecret () );
+      RQSTRING( obj->tokenSecret() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -254,20 +240,20 @@ HB_FUNC_STATIC( QOAUTH1_TOKENSECRET )
 }
 
 /*
-void setTokenSecret(const QString &tokenSecret)
+void setTokenSecret( const QString & tokenSecret )
 */
 HB_FUNC_STATIC( QOAUTH1_SETTOKENSECRET )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
-  QOAuth1 * obj = (QOAuth1 *) _qt5xhb_itemGetPtrStackSelfItem();
+  QOAuth1 * obj = (QOAuth1 *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISCHAR(1) )
+    if( ISNUMPAR(1) && HB_ISCHAR(1) )
     {
 #endif
-      obj->setTokenSecret ( PQSTRING(1) );
+      obj->setTokenSecret( PQSTRING(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -282,28 +268,20 @@ HB_FUNC_STATIC( QOAUTH1_SETTOKENSECRET )
 }
 
 /*
-QPair<QString, QString> tokenCredentials() const
-*/
-
-/*
-void setTokenCredentials(const QPair<QString, QString> &tokenCredentials)
-*/
-
-/*
-void setTokenCredentials(const QString &token, const QString &tokenSecret)
+void setTokenCredentials( const QString & token, const QString & tokenSecret )
 */
 HB_FUNC_STATIC( QOAUTH1_SETTOKENCREDENTIALS )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
-  QOAuth1 * obj = (QOAuth1 *) _qt5xhb_itemGetPtrStackSelfItem();
+  QOAuth1 * obj = (QOAuth1 *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(2) && ISCHAR(1) && ISCHAR(2) )
+    if( ISNUMPAR(2) && HB_ISCHAR(1) && HB_ISCHAR(2) )
     {
 #endif
-      obj->setTokenCredentials ( PQSTRING(1), PQSTRING(2) );
+      obj->setTokenCredentials( PQSTRING(1), PQSTRING(2) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -316,9 +294,6 @@ HB_FUNC_STATIC( QOAUTH1_SETTOKENCREDENTIALS )
   hb_itemReturn( hb_stackSelfItem() );
 #endif
 }
-
-//[1]void setTokenCredentials(const QPair<QString, QString> &tokenCredentials)
-//[2]void setTokenCredentials(const QString &token, const QString &tokenSecret)
 
 /*
 QUrl temporaryCredentialsUrl() const
@@ -326,7 +301,7 @@ QUrl temporaryCredentialsUrl() const
 HB_FUNC_STATIC( QOAUTH1_TEMPORARYCREDENTIALSURL )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
-  QOAuth1 * obj = (QOAuth1 *) _qt5xhb_itemGetPtrStackSelfItem();
+  QOAuth1 * obj = (QOAuth1 *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -334,8 +309,8 @@ HB_FUNC_STATIC( QOAUTH1_TEMPORARYCREDENTIALSURL )
     if( ISNUMPAR(0) )
     {
 #endif
-      QUrl * ptr = new QUrl( obj->temporaryCredentialsUrl () );
-      _qt5xhb_createReturnClass ( ptr, "QURL", true );
+      QUrl * ptr = new QUrl( obj->temporaryCredentialsUrl() );
+      Qt5xHb::createReturnClass( ptr, "QURL", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -348,12 +323,12 @@ HB_FUNC_STATIC( QOAUTH1_TEMPORARYCREDENTIALSURL )
 }
 
 /*
-void setTemporaryCredentialsUrl(const QUrl &url)
+void setTemporaryCredentialsUrl( const QUrl & url )
 */
 HB_FUNC_STATIC( QOAUTH1_SETTEMPORARYCREDENTIALSURL )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
-  QOAuth1 * obj = (QOAuth1 *) _qt5xhb_itemGetPtrStackSelfItem();
+  QOAuth1 * obj = (QOAuth1 *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -361,7 +336,7 @@ HB_FUNC_STATIC( QOAUTH1_SETTEMPORARYCREDENTIALSURL )
     if( ISNUMPAR(1) && ISQURL(1) )
     {
 #endif
-      obj->setTemporaryCredentialsUrl ( *PQURL(1) );
+      obj->setTemporaryCredentialsUrl( *PQURL(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -381,7 +356,7 @@ QUrl tokenCredentialsUrl() const
 HB_FUNC_STATIC( QOAUTH1_TOKENCREDENTIALSURL )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
-  QOAuth1 * obj = (QOAuth1 *) _qt5xhb_itemGetPtrStackSelfItem();
+  QOAuth1 * obj = (QOAuth1 *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -389,8 +364,8 @@ HB_FUNC_STATIC( QOAUTH1_TOKENCREDENTIALSURL )
     if( ISNUMPAR(0) )
     {
 #endif
-      QUrl * ptr = new QUrl( obj->tokenCredentialsUrl () );
-      _qt5xhb_createReturnClass ( ptr, "QURL", true );
+      QUrl * ptr = new QUrl( obj->tokenCredentialsUrl() );
+      Qt5xHb::createReturnClass( ptr, "QURL", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -403,12 +378,12 @@ HB_FUNC_STATIC( QOAUTH1_TOKENCREDENTIALSURL )
 }
 
 /*
-void setTokenCredentialsUrl(const QUrl &url)
+void setTokenCredentialsUrl( const QUrl & url )
 */
 HB_FUNC_STATIC( QOAUTH1_SETTOKENCREDENTIALSURL )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
-  QOAuth1 * obj = (QOAuth1 *) _qt5xhb_itemGetPtrStackSelfItem();
+  QOAuth1 * obj = (QOAuth1 *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -416,7 +391,7 @@ HB_FUNC_STATIC( QOAUTH1_SETTOKENCREDENTIALSURL )
     if( ISNUMPAR(1) && ISQURL(1) )
     {
 #endif
-      obj->setTokenCredentialsUrl ( *PQURL(1) );
+      obj->setTokenCredentialsUrl( *PQURL(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -431,24 +406,20 @@ HB_FUNC_STATIC( QOAUTH1_SETTOKENCREDENTIALSURL )
 }
 
 /*
-SignatureMethod signatureMethod() const
-*/
-
-/*
-void setSignatureMethod(SignatureMethod value)
+void setSignatureMethod( QOAuth1::SignatureMethod value )
 */
 HB_FUNC_STATIC( QOAUTH1_SETSIGNATUREMETHOD )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
-  QOAuth1 * obj = (QOAuth1 *) _qt5xhb_itemGetPtrStackSelfItem();
+  QOAuth1 * obj = (QOAuth1 *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setSignatureMethod ( (QOAuth1::SignatureMethod) hb_parni(1) );
+      obj->setSignatureMethod( (QOAuth1::SignatureMethod) hb_parni(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -463,32 +434,12 @@ HB_FUNC_STATIC( QOAUTH1_SETSIGNATUREMETHOD )
 }
 
 /*
-QNetworkReply *head(const QUrl &url, const QVariantMap &parameters = QVariantMap()) override
-*/
-
-/*
-QNetworkReply *get(const QUrl &url, const QVariantMap &parameters = QVariantMap()) override
-*/
-
-/*
-QNetworkReply *post(const QUrl &url, const QVariantMap &parameters = QVariantMap()) override
-*/
-
-/*
-QNetworkReply *put(const QUrl &url, const QVariantMap &parameters = QVariantMap()) override
-*/
-
-/*
-QNetworkReply *deleteResource(const QUrl &url, const QVariantMap &parameters = QVariantMap()) override
-*/
-
-/*
-void grant() override (slot)
+void grant() override
 */
 HB_FUNC_STATIC( QOAUTH1_GRANT )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
-  QOAuth1 * obj = (QOAuth1 *) _qt5xhb_itemGetPtrStackSelfItem();
+  QOAuth1 * obj = (QOAuth1 *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -496,7 +447,7 @@ HB_FUNC_STATIC( QOAUTH1_GRANT )
     if( ISNUMPAR(0) )
     {
 #endif
-      obj->grant ();
+      obj->grant();
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -511,20 +462,20 @@ HB_FUNC_STATIC( QOAUTH1_GRANT )
 }
 
 /*
-void continueGrantWithVerifier(const QString &verifier) (slot)
+void continueGrantWithVerifier( const QString & verifier )
 */
 HB_FUNC_STATIC( QOAUTH1_CONTINUEGRANTWITHVERIFIER )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
-  QOAuth1 * obj = (QOAuth1 *) _qt5xhb_itemGetPtrStackSelfItem();
+  QOAuth1 * obj = (QOAuth1 *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISCHAR(1) )
+    if( ISNUMPAR(1) && HB_ISCHAR(1) )
     {
 #endif
-      obj->continueGrantWithVerifier ( PQSTRING(1) );
+      obj->continueGrantWithVerifier( PQSTRING(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -538,27 +489,7 @@ HB_FUNC_STATIC( QOAUTH1_CONTINUEGRANTWITHVERIFIER )
 #endif
 }
 
-/*
-QNetworkReply *requestTemporaryCredentials(QNetworkAccessManager::Operation operation, const QUrl &url, const QVariantMap &parameters = QVariantMap()) [protected]
-*/
-
-/*
-QNetworkReply *requestTokenCredentials(QNetworkAccessManager::Operation operation, const QUrl &url, const QPair<QString, QString> &temporaryToken, const QVariantMap &parameters = QVariantMap()) [protected]
-*/
-
-/*
-void setup(QNetworkRequest *request, const QVariantMap &signingParameters, QNetworkAccessManager::Operation operation) [protected]
-*/
-
-/*
-static QByteArray nonce() [protected]
-*/
-
-/*
-static QByteArray generateAuthorizationHeader(const QVariantMap &oauthParams) [protected]
-*/
-
-void QOAuth1Slots_connect_signal ( const QString & signal, const QString & slot );
+void QOAuth1Slots_connect_signal( const QString & signal, const QString & slot );
 
 HB_FUNC_STATIC( QOAUTH1_ONCLIENTSHAREDSECRETCHANGED )
 {

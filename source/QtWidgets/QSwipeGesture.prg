@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -27,7 +27,7 @@ CLASS QSwipeGesture INHERIT QGesture
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QSwipeGesture
+PROCEDURE destroyObject() CLASS QSwipeGesture
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -44,6 +44,8 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #include <QtWidgets/QSwipeGesture>
@@ -51,10 +53,12 @@ RETURN
 
 HB_FUNC_STATIC( QSWIPEGESTURE_DELETE )
 {
-  QSwipeGesture * obj = (QSwipeGesture *) _qt5xhb_itemGetPtrStackSelfItem();
+  QSwipeGesture * obj = (QSwipeGesture *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -67,11 +71,11 @@ HB_FUNC_STATIC( QSWIPEGESTURE_DELETE )
 }
 
 /*
-SwipeDirection horizontalDirection() const
+QSwipeGesture::SwipeDirection horizontalDirection() const
 */
 HB_FUNC_STATIC( QSWIPEGESTURE_HORIZONTALDIRECTION )
 {
-  QSwipeGesture * obj = (QSwipeGesture *) _qt5xhb_itemGetPtrStackSelfItem();
+  QSwipeGesture * obj = (QSwipeGesture *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -79,7 +83,7 @@ HB_FUNC_STATIC( QSWIPEGESTURE_HORIZONTALDIRECTION )
     if( ISNUMPAR(0) )
     {
 #endif
-      RENUM( obj->horizontalDirection () );
+      RENUM( obj->horizontalDirection() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -91,19 +95,19 @@ HB_FUNC_STATIC( QSWIPEGESTURE_HORIZONTALDIRECTION )
 }
 
 /*
-void setSwipeAngle(qreal value)
+void setSwipeAngle( qreal value )
 */
 HB_FUNC_STATIC( QSWIPEGESTURE_SETSWIPEANGLE )
 {
-  QSwipeGesture * obj = (QSwipeGesture *) _qt5xhb_itemGetPtrStackSelfItem();
+  QSwipeGesture * obj = (QSwipeGesture *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setSwipeAngle ( PQREAL(1) );
+      obj->setSwipeAngle( PQREAL(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -121,7 +125,7 @@ qreal swipeAngle() const
 */
 HB_FUNC_STATIC( QSWIPEGESTURE_SWIPEANGLE )
 {
-  QSwipeGesture * obj = (QSwipeGesture *) _qt5xhb_itemGetPtrStackSelfItem();
+  QSwipeGesture * obj = (QSwipeGesture *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -129,7 +133,7 @@ HB_FUNC_STATIC( QSWIPEGESTURE_SWIPEANGLE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQREAL( obj->swipeAngle () );
+      RQREAL( obj->swipeAngle() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -141,11 +145,11 @@ HB_FUNC_STATIC( QSWIPEGESTURE_SWIPEANGLE )
 }
 
 /*
-SwipeDirection verticalDirection() const
+QSwipeGesture::SwipeDirection verticalDirection() const
 */
 HB_FUNC_STATIC( QSWIPEGESTURE_VERTICALDIRECTION )
 {
-  QSwipeGesture * obj = (QSwipeGesture *) _qt5xhb_itemGetPtrStackSelfItem();
+  QSwipeGesture * obj = (QSwipeGesture *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -153,7 +157,7 @@ HB_FUNC_STATIC( QSWIPEGESTURE_VERTICALDIRECTION )
     if( ISNUMPAR(0) )
     {
 #endif
-      RENUM( obj->verticalDirection () );
+      RENUM( obj->verticalDirection() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else

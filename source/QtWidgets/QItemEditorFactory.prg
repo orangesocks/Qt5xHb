@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -40,7 +40,7 @@ CLASS QItemEditorFactory
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QItemEditorFactory
+PROCEDURE destroyObject() CLASS QItemEditorFactory
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -69,8 +69,8 @@ HB_FUNC_STATIC( QITEMEDITORFACTORY_NEW )
 {
   if( ISNUMPAR(0) )
   {
-    QItemEditorFactory * o = new QItemEditorFactory ();
-    _qt5xhb_returnNewObject( o, true );
+    QItemEditorFactory * obj = new QItemEditorFactory();
+    Qt5xHb::returnNewObject( obj, true );
   }
   else
   {
@@ -80,7 +80,7 @@ HB_FUNC_STATIC( QITEMEDITORFACTORY_NEW )
 
 HB_FUNC_STATIC( QITEMEDITORFACTORY_DELETE )
 {
-  QItemEditorFactory * obj = (QItemEditorFactory *) _qt5xhb_itemGetPtrStackSelfItem();
+  QItemEditorFactory * obj = (QItemEditorFactory *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -96,20 +96,20 @@ HB_FUNC_STATIC( QITEMEDITORFACTORY_DELETE )
 }
 
 /*
-virtual QWidget *createEditor(int userType, QWidget *parent) const
+virtual QWidget * createEditor( int userType, QWidget * parent ) const
 */
 HB_FUNC_STATIC( QITEMEDITORFACTORY_CREATEEDITOR )
 {
-  QItemEditorFactory * obj = (QItemEditorFactory *) _qt5xhb_itemGetPtrStackSelfItem();
+  QItemEditorFactory * obj = (QItemEditorFactory *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(2) && ISNUM(1) && ISQWIDGET(2) )
+    if( ISNUMPAR(2) && HB_ISNUM(1) && ISQWIDGET(2) )
     {
 #endif
-      QWidget * ptr = obj->createEditor ( PINT(1), PQWIDGET(2) );
-      _qt5xhb_createReturnQWidgetClass ( ptr, "QWIDGET" );
+      QWidget * ptr = obj->createEditor( PINT(1), PQWIDGET(2) );
+      Qt5xHb::createReturnQWidgetClass( ptr, "QWIDGET" );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -121,20 +121,20 @@ HB_FUNC_STATIC( QITEMEDITORFACTORY_CREATEEDITOR )
 }
 
 /*
-virtual QByteArray valuePropertyName(int userType) const
+virtual QByteArray valuePropertyName( int userType ) const
 */
 HB_FUNC_STATIC( QITEMEDITORFACTORY_VALUEPROPERTYNAME )
 {
-  QItemEditorFactory * obj = (QItemEditorFactory *) _qt5xhb_itemGetPtrStackSelfItem();
+  QItemEditorFactory * obj = (QItemEditorFactory *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      QByteArray * ptr = new QByteArray( obj->valuePropertyName ( PINT(1) ) );
-      _qt5xhb_createReturnClass ( ptr, "QBYTEARRAY", true );
+      QByteArray * ptr = new QByteArray( obj->valuePropertyName( PINT(1) ) );
+      Qt5xHb::createReturnClass( ptr, "QBYTEARRAY", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -146,19 +146,19 @@ HB_FUNC_STATIC( QITEMEDITORFACTORY_VALUEPROPERTYNAME )
 }
 
 /*
-void registerEditor(int userType, QItemEditorCreatorBase *creator)
+void registerEditor( int userType, QItemEditorCreatorBase * creator )
 */
 HB_FUNC_STATIC( QITEMEDITORFACTORY_REGISTEREDITOR )
 {
-  QItemEditorFactory * obj = (QItemEditorFactory *) _qt5xhb_itemGetPtrStackSelfItem();
+  QItemEditorFactory * obj = (QItemEditorFactory *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(2) && ISNUM(1) && ISQITEMEDITORCREATORBASE(2) )
+    if( ISNUMPAR(2) && HB_ISNUM(1) && ISQITEMEDITORCREATORBASE(2) )
     {
 #endif
-      obj->registerEditor ( PINT(1), PQITEMEDITORCREATORBASE(2) );
+      obj->registerEditor( PINT(1), PQITEMEDITORCREATORBASE(2) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -172,16 +172,16 @@ HB_FUNC_STATIC( QITEMEDITORFACTORY_REGISTEREDITOR )
 }
 
 /*
-static const QItemEditorFactory *defaultFactory()
+static const QItemEditorFactory * defaultFactory()
 */
 HB_FUNC_STATIC( QITEMEDITORFACTORY_DEFAULTFACTORY )
 {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(0) )
+  if( ISNUMPAR(0) )
   {
 #endif
-      const QItemEditorFactory * ptr = QItemEditorFactory::defaultFactory ();
-      _qt5xhb_createReturnClass ( ptr, "QITEMEDITORFACTORY", false );
+    const QItemEditorFactory * ptr = QItemEditorFactory::defaultFactory();
+    Qt5xHb::createReturnClass( ptr, "QITEMEDITORFACTORY", false );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
   }
   else
@@ -192,15 +192,15 @@ HB_FUNC_STATIC( QITEMEDITORFACTORY_DEFAULTFACTORY )
 }
 
 /*
-static void setDefaultFactory(QItemEditorFactory *factory)
+static void setDefaultFactory( QItemEditorFactory * factory )
 */
 HB_FUNC_STATIC( QITEMEDITORFACTORY_SETDEFAULTFACTORY )
 {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISQITEMEDITORFACTORY(1) )
+  if( ISNUMPAR(1) && ISQITEMEDITORFACTORY(1) )
   {
 #endif
-      QItemEditorFactory::setDefaultFactory ( PQITEMEDITORFACTORY(1) );
+    QItemEditorFactory::setDefaultFactory( PQITEMEDITORFACTORY(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
   }
   else
@@ -216,7 +216,7 @@ HB_FUNC_STATIC( QITEMEDITORFACTORY_NEWFROM )
 {
   PHB_ITEM self = hb_stackSelfItem();
 
-  if( hb_pcount() == 1 && ISOBJECT(1) )
+  if( hb_pcount() == 1 && HB_ISOBJECT(1) )
   {
     PHB_ITEM ptr = hb_itemPutPtr( NULL, (void *) hb_itemGetPtr( hb_objSendMsg( hb_param(1, HB_IT_OBJECT ), "POINTER", 0 ) ) );
     hb_objSendMsg( self, "_pointer", 1, ptr );
@@ -225,7 +225,7 @@ HB_FUNC_STATIC( QITEMEDITORFACTORY_NEWFROM )
     hb_objSendMsg( self, "_self_destruction", 1, des );
     hb_itemRelease( des );
   }
-  else if( hb_pcount() == 1 && ISPOINTER(1) )
+  else if( hb_pcount() == 1 && HB_ISPOINTER(1) )
   {
     PHB_ITEM ptr = hb_itemPutPtr( NULL, (void *) hb_itemGetPtr( hb_param(1, HB_IT_POINTER ) ) );
     hb_objSendMsg( self, "_pointer", 1, ptr );
@@ -261,7 +261,7 @@ HB_FUNC_STATIC( QITEMEDITORFACTORY_SETSELFDESTRUCTION )
 {
   PHB_ITEM self = hb_stackSelfItem();
 
-  if( hb_pcount() == 1 && ISLOG(1) )
+  if( hb_pcount() == 1 && HB_ISLOG(1) )
   {
     PHB_ITEM des = hb_itemPutL( NULL, hb_parl(1) );
     hb_objSendMsg( self, "_self_destruction", 1, des );

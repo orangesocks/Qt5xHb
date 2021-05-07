@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -21,7 +21,7 @@ CLASS QCanBusFactoryV2 INHERIT QCanBusFactory
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QCanBusFactoryV2
+PROCEDURE destroyObject() CLASS QCanBusFactoryV2
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -46,17 +46,5 @@ RETURN
 #include <QtSerialBus/QCanBusFactoryV2>
 #endif
 #endif
-
-/*
-virtual ~QCanBusFactoryV2() [protected]
-*/
-
-/*
-virtual QCanBusDevice *createDevice(const QString &interfaceName, QString *errorMessage) const = 0
-*/
-
-/*
-virtual QList<QCanBusDeviceInfo> availableDevices(QString *errorMessage) const = 0
-*/
 
 #pragma ENDDUMP

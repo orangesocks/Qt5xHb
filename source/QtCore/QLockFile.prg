@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -40,7 +40,7 @@ CLASS QLockFile
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QLockFile
+PROCEDURE destroyObject() CLASS QLockFile
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -67,15 +67,15 @@ RETURN
 #endif
 
 /*
-QLockFile(const QString &fileName)
+QLockFile( const QString & fileName )
 */
 HB_FUNC_STATIC( QLOCKFILE_NEW )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,1,0))
-  if( ISNUMPAR(1) && ISCHAR(1) )
+  if( ISNUMPAR(1) && HB_ISCHAR(1) )
   {
-    QLockFile * o = new QLockFile ( PQSTRING(1) );
-    _qt5xhb_returnNewObject( o, true );
+    QLockFile * obj = new QLockFile( PQSTRING(1) );
+    Qt5xHb::returnNewObject( obj, true );
   }
   else
   {
@@ -87,7 +87,7 @@ HB_FUNC_STATIC( QLOCKFILE_NEW )
 HB_FUNC_STATIC( QLOCKFILE_DELETE )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,1,0))
-  QLockFile * obj = (QLockFile *) _qt5xhb_itemGetPtrStackSelfItem();
+  QLockFile * obj = (QLockFile *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -109,7 +109,7 @@ bool lock()
 HB_FUNC_STATIC( QLOCKFILE_LOCK )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,1,0))
-  QLockFile * obj = (QLockFile *) _qt5xhb_itemGetPtrStackSelfItem();
+  QLockFile * obj = (QLockFile *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -117,7 +117,7 @@ HB_FUNC_STATIC( QLOCKFILE_LOCK )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->lock () );
+      RBOOL( obj->lock() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -130,20 +130,20 @@ HB_FUNC_STATIC( QLOCKFILE_LOCK )
 }
 
 /*
-bool tryLock(int timeout = 0)
+bool tryLock( int timeout = 0 )
 */
 HB_FUNC_STATIC( QLOCKFILE_TRYLOCK )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,1,0))
-  QLockFile * obj = (QLockFile *) _qt5xhb_itemGetPtrStackSelfItem();
+  QLockFile * obj = (QLockFile *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISBETWEEN(0,1) && ISOPTNUM(1) )
+    if( ISBETWEEN(0,1) && (HB_ISNUM(1)||HB_ISNIL(1)) )
     {
 #endif
-      RBOOL( obj->tryLock ( OPINT(1,0) ) );
+      RBOOL( obj->tryLock( OPINT(1,0) ) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -161,7 +161,7 @@ void unlock()
 HB_FUNC_STATIC( QLOCKFILE_UNLOCK )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,1,0))
-  QLockFile * obj = (QLockFile *) _qt5xhb_itemGetPtrStackSelfItem();
+  QLockFile * obj = (QLockFile *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -169,7 +169,7 @@ HB_FUNC_STATIC( QLOCKFILE_UNLOCK )
     if( ISNUMPAR(0) )
     {
 #endif
-      obj->unlock ();
+      obj->unlock();
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -184,20 +184,20 @@ HB_FUNC_STATIC( QLOCKFILE_UNLOCK )
 }
 
 /*
-void setStaleLockTime(int)
+void setStaleLockTime( int )
 */
 HB_FUNC_STATIC( QLOCKFILE_SETSTALELOCKTIME )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,1,0))
-  QLockFile * obj = (QLockFile *) _qt5xhb_itemGetPtrStackSelfItem();
+  QLockFile * obj = (QLockFile *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setStaleLockTime ( PINT(1) );
+      obj->setStaleLockTime( PINT(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -217,7 +217,7 @@ int staleLockTime() const
 HB_FUNC_STATIC( QLOCKFILE_STALELOCKTIME )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,1,0))
-  QLockFile * obj = (QLockFile *) _qt5xhb_itemGetPtrStackSelfItem();
+  QLockFile * obj = (QLockFile *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -225,7 +225,7 @@ HB_FUNC_STATIC( QLOCKFILE_STALELOCKTIME )
     if( ISNUMPAR(0) )
     {
 #endif
-      RINT( obj->staleLockTime () );
+      RINT( obj->staleLockTime() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -243,7 +243,7 @@ bool isLocked() const
 HB_FUNC_STATIC( QLOCKFILE_ISLOCKED )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,1,0))
-  QLockFile * obj = (QLockFile *) _qt5xhb_itemGetPtrStackSelfItem();
+  QLockFile * obj = (QLockFile *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -251,7 +251,7 @@ HB_FUNC_STATIC( QLOCKFILE_ISLOCKED )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->isLocked () );
+      RBOOL( obj->isLocked() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -264,16 +264,12 @@ HB_FUNC_STATIC( QLOCKFILE_ISLOCKED )
 }
 
 /*
-bool getLockInfo(qint64 *pid, QString *hostname, QString *appname) const
-*/
-
-/*
 bool removeStaleLockFile()
 */
 HB_FUNC_STATIC( QLOCKFILE_REMOVESTALELOCKFILE )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,1,0))
-  QLockFile * obj = (QLockFile *) _qt5xhb_itemGetPtrStackSelfItem();
+  QLockFile * obj = (QLockFile *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -281,7 +277,7 @@ HB_FUNC_STATIC( QLOCKFILE_REMOVESTALELOCKFILE )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->removeStaleLockFile () );
+      RBOOL( obj->removeStaleLockFile() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -297,7 +293,7 @@ HB_FUNC_STATIC( QLOCKFILE_NEWFROM )
 {
   PHB_ITEM self = hb_stackSelfItem();
 
-  if( hb_pcount() == 1 && ISOBJECT(1) )
+  if( hb_pcount() == 1 && HB_ISOBJECT(1) )
   {
     PHB_ITEM ptr = hb_itemPutPtr( NULL, (void *) hb_itemGetPtr( hb_objSendMsg( hb_param(1, HB_IT_OBJECT ), "POINTER", 0 ) ) );
     hb_objSendMsg( self, "_pointer", 1, ptr );
@@ -306,7 +302,7 @@ HB_FUNC_STATIC( QLOCKFILE_NEWFROM )
     hb_objSendMsg( self, "_self_destruction", 1, des );
     hb_itemRelease( des );
   }
-  else if( hb_pcount() == 1 && ISPOINTER(1) )
+  else if( hb_pcount() == 1 && HB_ISPOINTER(1) )
   {
     PHB_ITEM ptr = hb_itemPutPtr( NULL, (void *) hb_itemGetPtr( hb_param(1, HB_IT_POINTER ) ) );
     hb_objSendMsg( self, "_pointer", 1, ptr );
@@ -342,7 +338,7 @@ HB_FUNC_STATIC( QLOCKFILE_SETSELFDESTRUCTION )
 {
   PHB_ITEM self = hb_stackSelfItem();
 
-  if( hb_pcount() == 1 && ISLOG(1) )
+  if( hb_pcount() == 1 && HB_ISLOG(1) )
   {
     PHB_ITEM des = hb_itemPutL( NULL, hb_parl(1) );
     hb_objSendMsg( self, "_self_destruction", 1, des );

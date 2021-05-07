@@ -2,21 +2,21 @@
 
   Qt5xHb Project - Test Program
 
-  Copyright (C) 2019 Marcos Antonio Gambeta
+  Copyright (C) 2021 Marcos Antonio Gambeta
 
   E-mail:
   marcosgambeta AT outlook DOT com
 
   Website:
-  https://github.com/marcosgambeta/Qt5xHb
+  https://github.com/magsoftinfo/qt5xhb
 
 */
 
 #include "qt5xhb.ch"
 
-PROCEDURE Main ()
+PROCEDURE Main()
 
-   lOCAL oApp
+   LOCAL oApp
    LOCAL oMainWindow
    LOCAL oStatusBar
 
@@ -25,15 +25,14 @@ PROCEDURE Main ()
    oMainWindow := QMainWindow():new()
 
    oStatusBar := oMainWindow:statusBar()
-
-   oStatusBar:showMessage("teste")
+   oStatusBar:showMessage( "teste" )
 
    oMainWindow:show()
 
    oApp:exec()
-   
+
    oMainWindow:delete()
-   
+
    oApp:delete()
 
 RETURN

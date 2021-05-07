@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -12,26 +12,28 @@
 
 #include "QListViewSlots.h"
 
-QListViewSlots::QListViewSlots(QObject *parent) : QObject(parent)
+QListViewSlots::QListViewSlots( QObject *parent ) : QObject( parent )
 {
 }
 
 QListViewSlots::~QListViewSlots()
 {
 }
+
 void QListViewSlots::indexesMoved( const QModelIndexList & indexes )
 {
   QObject *object = qobject_cast<QObject *>(sender());
-  PHB_ITEM cb = Signals_return_codeblock( object, "indexesMoved(QModelIndexList)" );
+
+  PHB_ITEM cb = Qt5xHb::Signals_return_codeblock( object, "indexesMoved(QModelIndexList)" );
+
   if( cb )
   {
-    PHB_ITEM psender = Signals_return_qobject ( (QObject *) object, "QLISTVIEW" );
+    PHB_ITEM psender = Qt5xHb::Signals_return_qobject( (QObject *) object, "QLISTVIEW" );
     PHB_DYNS pDynSym = hb_dynsymFindName( "QMODELINDEX" );
     PHB_ITEM pindexes = hb_itemArrayNew(0);
-    int i;
-    for(i=0;i<indexes.count();i++)
+    if( pDynSym )
     {
-      if( pDynSym )
+      for( int i = 0; i < indexes.count(); i++ )
       {
         hb_vmPushDynSym( pDynSym );
         hb_vmPushNil();
@@ -39,26 +41,28 @@ void QListViewSlots::indexesMoved( const QModelIndexList & indexes )
         PHB_ITEM pTempObject = hb_itemNew( NULL );
         hb_itemCopy( pTempObject, hb_stackReturnItem() );
         PHB_ITEM pTempItem = hb_itemNew( NULL );
-        hb_itemPutPtr( pTempItem, (QModelIndex *) new QModelIndex ( indexes [i] ) );
+        hb_itemPutPtr( pTempItem, (QModelIndex *) new QModelIndex( indexes [i] ) );
         hb_objSendMsg( pTempObject, "NEWFROMPOINTER", 1, pTempItem );
         hb_arrayAddForward( pindexes, pTempObject );
         hb_itemRelease( pTempObject );
         hb_itemRelease( pTempItem );
       }
-      else
-      {
-        hb_errRT_BASE( EG_NOFUNC, 1001, NULL, "QMODELINDEX", HB_ERR_ARGS_BASEPARAMS );
-      }
     }
-    hb_vmEvalBlockV( (PHB_ITEM) cb, 2, psender, pindexes );
+    else
+    {
+      hb_errRT_BASE( EG_NOFUNC, 1001, NULL, "QMODELINDEX", HB_ERR_ARGS_BASEPARAMS );
+    }
+
+    hb_vmEvalBlockV( cb, 2, psender, pindexes );
+
     hb_itemRelease( psender );
     hb_itemRelease( pindexes );
   }
 }
 
-void QListViewSlots_connect_signal ( const QString & signal, const QString & slot )
+void QListViewSlots_connect_signal( const QString & signal, const QString & slot )
 {
-  QListView * obj = (QListView *) hb_itemGetPtr( hb_objSendMsg( hb_stackSelfItem(), "POINTER", 0 ) );
+  QListView * obj = (QListView *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -71,7 +75,7 @@ void QListViewSlots_connect_signal ( const QString & signal, const QString & slo
       s->setParent( QCoreApplication::instance() );
     }
 
-    hb_retl( Signals_connection_disconnection( s, signal, slot ) );
+    hb_retl( Qt5xHb::Signals_connection_disconnection( s, signal, slot ) );
   }
   else
   {

@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -28,7 +28,7 @@ CLASS QGraphicsAnchor INHERIT QObject
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QGraphicsAnchor
+PROCEDURE destroyObject() CLASS QGraphicsAnchor
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -45,6 +45,8 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #include <QtWidgets/QGraphicsAnchor>
@@ -52,10 +54,12 @@ RETURN
 
 HB_FUNC_STATIC( QGRAPHICSANCHOR_DELETE )
 {
-  QGraphicsAnchor * obj = (QGraphicsAnchor *) _qt5xhb_itemGetPtrStackSelfItem();
+  QGraphicsAnchor * obj = (QGraphicsAnchor *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -68,19 +72,19 @@ HB_FUNC_STATIC( QGRAPHICSANCHOR_DELETE )
 }
 
 /*
-void setSizePolicy(QSizePolicy::Policy policy)
+void setSizePolicy( QSizePolicy::Policy policy )
 */
 HB_FUNC_STATIC( QGRAPHICSANCHOR_SETSIZEPOLICY )
 {
-  QGraphicsAnchor * obj = (QGraphicsAnchor *) _qt5xhb_itemGetPtrStackSelfItem();
+  QGraphicsAnchor * obj = (QGraphicsAnchor *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setSizePolicy ( (QSizePolicy::Policy) hb_parni(1) );
+      obj->setSizePolicy( (QSizePolicy::Policy) hb_parni(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -94,19 +98,19 @@ HB_FUNC_STATIC( QGRAPHICSANCHOR_SETSIZEPOLICY )
 }
 
 /*
-void setSpacing(qreal spacing)
+void setSpacing( qreal spacing )
 */
 HB_FUNC_STATIC( QGRAPHICSANCHOR_SETSPACING )
 {
-  QGraphicsAnchor * obj = (QGraphicsAnchor *) _qt5xhb_itemGetPtrStackSelfItem();
+  QGraphicsAnchor * obj = (QGraphicsAnchor *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISNUM(1) )
+    if( ISNUMPAR(1) && HB_ISNUM(1) )
     {
 #endif
-      obj->setSpacing ( PQREAL(1) );
+      obj->setSpacing( PQREAL(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -124,7 +128,7 @@ QSizePolicy::Policy sizePolicy() const
 */
 HB_FUNC_STATIC( QGRAPHICSANCHOR_SIZEPOLICY )
 {
-  QGraphicsAnchor * obj = (QGraphicsAnchor *) _qt5xhb_itemGetPtrStackSelfItem();
+  QGraphicsAnchor * obj = (QGraphicsAnchor *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -132,7 +136,7 @@ HB_FUNC_STATIC( QGRAPHICSANCHOR_SIZEPOLICY )
     if( ISNUMPAR(0) )
     {
 #endif
-      RENUM( obj->sizePolicy () );
+      RENUM( obj->sizePolicy() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -148,7 +152,7 @@ qreal spacing() const
 */
 HB_FUNC_STATIC( QGRAPHICSANCHOR_SPACING )
 {
-  QGraphicsAnchor * obj = (QGraphicsAnchor *) _qt5xhb_itemGetPtrStackSelfItem();
+  QGraphicsAnchor * obj = (QGraphicsAnchor *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -156,7 +160,7 @@ HB_FUNC_STATIC( QGRAPHICSANCHOR_SPACING )
     if( ISNUMPAR(0) )
     {
 #endif
-      RQREAL( obj->spacing () );
+      RQREAL( obj->spacing() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -172,7 +176,7 @@ void unsetSpacing()
 */
 HB_FUNC_STATIC( QGRAPHICSANCHOR_UNSETSPACING )
 {
-  QGraphicsAnchor * obj = (QGraphicsAnchor *) _qt5xhb_itemGetPtrStackSelfItem();
+  QGraphicsAnchor * obj = (QGraphicsAnchor *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -180,7 +184,7 @@ HB_FUNC_STATIC( QGRAPHICSANCHOR_UNSETSPACING )
     if( ISNUMPAR(0) )
     {
 #endif
-      obj->unsetSpacing ();
+      obj->unsetSpacing();
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else

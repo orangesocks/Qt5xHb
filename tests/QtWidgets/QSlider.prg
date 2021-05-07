@@ -2,13 +2,13 @@
 
   Qt5xHb Project - Test Program
 
-  Copyright (C) 2019 Marcos Antonio Gambeta
+  Copyright (C) 2021 Marcos Antonio Gambeta
 
   E-mail:
   marcosgambeta AT outlook DOT com
 
   Website:
-  https://github.com/marcosgambeta/Qt5xHb
+  https://github.com/magsoftinfo/qt5xhb
 
 */
 
@@ -18,7 +18,7 @@
 REQUEST HB_GT_WIN
 #endif
 
-PROCEDURE Main ()
+PROCEDURE Main()
 
    LOCAL oApp
    LOCAL oWindow
@@ -27,16 +27,16 @@ PROCEDURE Main ()
    oApp := QApplication():new()
 
    oWindow := QWidget():new()
-   oWindow:setWindowTitle("Teste")
-   oWindow:resize(640,480)
-   oWindow:show()
+   oWindow:setWindowTitle( "Teste" )
+   oWindow:resize( 640, 480 )
 
-   oSlider := QSlider():new(oWindow)
-   oSlider:move(20,20)
-   oSlider:resize(20,400)
-   oSlider:setTooltip("Eu sou um QSlider")
-   ? oSlider:onSliderMoved( {|oSender,nValue|test(oSender,nValue)} )
-   oSlider:show()
+   oSlider := QSlider():new( oWindow )
+   oSlider:move( 20, 20 )
+   oSlider:resize( 20, 400 )
+   oSlider:setTooltip( "Eu sou um QSlider" )
+   ? oSlider:onSliderMoved( {|oSender,nValue|test( oSender, nValue )} )
+
+   oWindow:show()
 
    oApp:exec()
 
@@ -46,10 +46,10 @@ PROCEDURE Main ()
 
 RETURN
 
-STATIC FUNCTION test (oSender,nValue)
+STATIC FUNCTION test( oSender, nValue )
 
-   qout("slider moved")
-   qout(oSender:classname())
-   qout(nValue)
+   qout( "slider moved" )
+   qout( oSender:classname() )
+   qout( nValue )
 
 RETURN NIL

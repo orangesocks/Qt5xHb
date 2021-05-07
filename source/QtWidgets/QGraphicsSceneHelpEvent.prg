@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -27,7 +27,7 @@ CLASS QGraphicsSceneHelpEvent INHERIT QGraphicsSceneEvent
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QGraphicsSceneHelpEvent
+PROCEDURE destroyObject() CLASS QGraphicsSceneHelpEvent
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -51,7 +51,7 @@ RETURN
 
 HB_FUNC_STATIC( QGRAPHICSSCENEHELPEVENT_DELETE )
 {
-  QGraphicsSceneHelpEvent * obj = (QGraphicsSceneHelpEvent *) _qt5xhb_itemGetPtrStackSelfItem();
+  QGraphicsSceneHelpEvent * obj = (QGraphicsSceneHelpEvent *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -67,11 +67,11 @@ HB_FUNC_STATIC( QGRAPHICSSCENEHELPEVENT_DELETE )
 }
 
 /*
-QPointF scenePos () const
+QPointF scenePos() const
 */
 HB_FUNC_STATIC( QGRAPHICSSCENEHELPEVENT_SCENEPOS )
 {
-  QGraphicsSceneHelpEvent * obj = (QGraphicsSceneHelpEvent *) _qt5xhb_itemGetPtrStackSelfItem();
+  QGraphicsSceneHelpEvent * obj = (QGraphicsSceneHelpEvent *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -79,8 +79,8 @@ HB_FUNC_STATIC( QGRAPHICSSCENEHELPEVENT_SCENEPOS )
     if( ISNUMPAR(0) )
     {
 #endif
-      QPointF * ptr = new QPointF( obj->scenePos () );
-      _qt5xhb_createReturnClass ( ptr, "QPOINTF", true );
+      QPointF * ptr = new QPointF( obj->scenePos() );
+      Qt5xHb::createReturnClass( ptr, "QPOINTF", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -92,11 +92,11 @@ HB_FUNC_STATIC( QGRAPHICSSCENEHELPEVENT_SCENEPOS )
 }
 
 /*
-QPoint screenPos () const
+QPoint screenPos() const
 */
 HB_FUNC_STATIC( QGRAPHICSSCENEHELPEVENT_SCREENPOS )
 {
-  QGraphicsSceneHelpEvent * obj = (QGraphicsSceneHelpEvent *) _qt5xhb_itemGetPtrStackSelfItem();
+  QGraphicsSceneHelpEvent * obj = (QGraphicsSceneHelpEvent *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -104,8 +104,8 @@ HB_FUNC_STATIC( QGRAPHICSSCENEHELPEVENT_SCREENPOS )
     if( ISNUMPAR(0) )
     {
 #endif
-      QPoint * ptr = new QPoint( obj->screenPos () );
-      _qt5xhb_createReturnClass ( ptr, "QPOINT", true );
+      QPoint * ptr = new QPoint( obj->screenPos() );
+      Qt5xHb::createReturnClass( ptr, "QPOINT", true );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else

@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -32,7 +32,7 @@ CLASS QWebChannel INHERIT QObject
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QWebChannel
+PROCEDURE destroyObject() CLASS QWebChannel
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -51,6 +51,8 @@ RETURN
 #include "qt5xhb_common.h"
 #include "qt5xhb_macros.h"
 #include "qt5xhb_utils.h"
+#include "qt5xhb_events.h"
+#include "qt5xhb_signals.h"
 
 #ifdef __XHARBOUR__
 #if (QT_VERSION >= QT_VERSION_CHECK(5,4,0))
@@ -59,15 +61,15 @@ RETURN
 #endif
 
 /*
-explicit QWebChannel(QObject *parent = 0)
+QWebChannel( QObject * parent = 0 )
 */
 HB_FUNC_STATIC( QWEBCHANNEL_NEW )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,4,0))
-  if( ISBETWEEN(0,1) && (ISQOBJECT(1)||ISNIL(1)) )
+  if( ISBETWEEN(0,1) && (ISQOBJECT(1)||HB_ISNIL(1)) )
   {
-    QWebChannel * o = new QWebChannel ( OPQOBJECT(1,0) );
-    _qt5xhb_returnNewObject( o, false );
+    QWebChannel * obj = new QWebChannel( OPQOBJECT(1,0) );
+    Qt5xHb::returnNewObject( obj, false );
   }
   else
   {
@@ -79,10 +81,12 @@ HB_FUNC_STATIC( QWEBCHANNEL_NEW )
 HB_FUNC_STATIC( QWEBCHANNEL_DELETE )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,4,0))
-  QWebChannel * obj = (QWebChannel *) _qt5xhb_itemGetPtrStackSelfItem();
+  QWebChannel * obj = (QWebChannel *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
+    Qt5xHb::Events_disconnect_all_events( obj, true );
+    Qt5xHb::Signals_disconnect_all_signals( obj, true );
     delete obj;
     obj = NULL;
     PHB_ITEM self = hb_stackSelfItem();
@@ -96,20 +100,20 @@ HB_FUNC_STATIC( QWEBCHANNEL_DELETE )
 }
 
 /*
-Q_INVOKABLE void registerObject(const QString &id, QObject *object)
+Q_INVOKABLE void registerObject( const QString & id, QObject * object )
 */
 HB_FUNC_STATIC( QWEBCHANNEL_REGISTEROBJECT )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,4,0))
-  QWebChannel * obj = (QWebChannel *) _qt5xhb_itemGetPtrStackSelfItem();
+  QWebChannel * obj = (QWebChannel *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(2) && ISCHAR(1) && ISQOBJECT(2) )
+    if( ISNUMPAR(2) && HB_ISCHAR(1) && ISQOBJECT(2) )
     {
 #endif
-      obj->registerObject ( PQSTRING(1), PQOBJECT(2) );
+      obj->registerObject( PQSTRING(1), PQOBJECT(2) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -124,12 +128,12 @@ HB_FUNC_STATIC( QWEBCHANNEL_REGISTEROBJECT )
 }
 
 /*
-Q_INVOKABLE void deregisterObject(QObject *object)
+Q_INVOKABLE void deregisterObject( QObject * object )
 */
 HB_FUNC_STATIC( QWEBCHANNEL_DEREGISTEROBJECT )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,4,0))
-  QWebChannel * obj = (QWebChannel *) _qt5xhb_itemGetPtrStackSelfItem();
+  QWebChannel * obj = (QWebChannel *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -137,7 +141,7 @@ HB_FUNC_STATIC( QWEBCHANNEL_DEREGISTEROBJECT )
     if( ISNUMPAR(1) && ISQOBJECT(1) )
     {
 #endif
-      obj->deregisterObject ( PQOBJECT(1) );
+      obj->deregisterObject( PQOBJECT(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -157,7 +161,7 @@ bool blockUpdates() const
 HB_FUNC_STATIC( QWEBCHANNEL_BLOCKUPDATES )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,4,0))
-  QWebChannel * obj = (QWebChannel *) _qt5xhb_itemGetPtrStackSelfItem();
+  QWebChannel * obj = (QWebChannel *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -165,7 +169,7 @@ HB_FUNC_STATIC( QWEBCHANNEL_BLOCKUPDATES )
     if( ISNUMPAR(0) )
     {
 #endif
-      RBOOL( obj->blockUpdates () );
+      RBOOL( obj->blockUpdates() );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -178,20 +182,20 @@ HB_FUNC_STATIC( QWEBCHANNEL_BLOCKUPDATES )
 }
 
 /*
-void setBlockUpdates(bool block)
+void setBlockUpdates( bool block )
 */
 HB_FUNC_STATIC( QWEBCHANNEL_SETBLOCKUPDATES )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,4,0))
-  QWebChannel * obj = (QWebChannel *) _qt5xhb_itemGetPtrStackSelfItem();
+  QWebChannel * obj = (QWebChannel *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
-    if( ISNUMPAR(1) && ISLOG(1) )
+    if( ISNUMPAR(1) && HB_ISLOG(1) )
     {
 #endif
-      obj->setBlockUpdates ( PBOOL(1) );
+      obj->setBlockUpdates( PBOOL(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -206,12 +210,12 @@ HB_FUNC_STATIC( QWEBCHANNEL_SETBLOCKUPDATES )
 }
 
 /*
-void connectTo(QWebChannelAbstractTransport *transport)
+void connectTo( QWebChannelAbstractTransport * transport )
 */
 HB_FUNC_STATIC( QWEBCHANNEL_CONNECTTO )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,4,0))
-  QWebChannel * obj = (QWebChannel *) _qt5xhb_itemGetPtrStackSelfItem();
+  QWebChannel * obj = (QWebChannel *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -219,7 +223,7 @@ HB_FUNC_STATIC( QWEBCHANNEL_CONNECTTO )
     if( ISNUMPAR(1) && ISQWEBCHANNELABSTRACTTRANSPORT(1) )
     {
 #endif
-      obj->connectTo ( PQWEBCHANNELABSTRACTTRANSPORT(1) );
+      obj->connectTo( PQWEBCHANNELABSTRACTTRANSPORT(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -234,12 +238,12 @@ HB_FUNC_STATIC( QWEBCHANNEL_CONNECTTO )
 }
 
 /*
-void disconnectFrom(QWebChannelAbstractTransport *transport)
+void disconnectFrom( QWebChannelAbstractTransport * transport )
 */
 HB_FUNC_STATIC( QWEBCHANNEL_DISCONNECTFROM )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,4,0))
-  QWebChannel * obj = (QWebChannel *) _qt5xhb_itemGetPtrStackSelfItem();
+  QWebChannel * obj = (QWebChannel *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -247,7 +251,7 @@ HB_FUNC_STATIC( QWEBCHANNEL_DISCONNECTFROM )
     if( ISNUMPAR(1) && ISQWEBCHANNELABSTRACTTRANSPORT(1) )
     {
 #endif
-      obj->disconnectFrom ( PQWEBCHANNELABSTRACTTRANSPORT(1) );
+      obj->disconnectFrom( PQWEBCHANNELABSTRACTTRANSPORT(1) );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -261,7 +265,7 @@ HB_FUNC_STATIC( QWEBCHANNEL_DISCONNECTFROM )
 #endif
 }
 
-void QWebChannelSlots_connect_signal ( const QString & signal, const QString & slot );
+void QWebChannelSlots_connect_signal( const QString & signal, const QString & slot );
 
 HB_FUNC_STATIC( QWEBCHANNEL_ONBLOCKUPDATESCHANGED )
 {

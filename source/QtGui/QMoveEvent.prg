@@ -2,7 +2,7 @@
 
   Qt5xHb - Bindings libraries for Harbour/xHarbour and Qt Framework 5
 
-  Copyright (C) 2019 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
+  Copyright (C) 2021 Marcos Antonio Gambeta <marcosgambeta AT outlook DOT com>
 
 */
 
@@ -27,7 +27,7 @@ CLASS QMoveEvent INHERIT QEvent
 
 END CLASS
 
-PROCEDURE destroyObject () CLASS QMoveEvent
+PROCEDURE destroyObject() CLASS QMoveEvent
    IF ::self_destruction
       ::delete()
    ENDIF
@@ -50,14 +50,14 @@ RETURN
 #endif
 
 /*
-QMoveEvent ( const QPoint & pos, const QPoint & oldPos )
+QMoveEvent( const QPoint & pos, const QPoint & oldPos )
 */
 HB_FUNC_STATIC( QMOVEEVENT_NEW )
 {
   if( ISNUMPAR(2) && ISQPOINT(1) && ISQPOINT(2) )
   {
-    QMoveEvent * o = new QMoveEvent ( *PQPOINT(1), *PQPOINT(2) );
-    _qt5xhb_returnNewObject( o, false );
+    QMoveEvent * obj = new QMoveEvent( *PQPOINT(1), *PQPOINT(2) );
+    Qt5xHb::returnNewObject( obj, false );
   }
   else
   {
@@ -67,7 +67,7 @@ HB_FUNC_STATIC( QMOVEEVENT_NEW )
 
 HB_FUNC_STATIC( QMOVEEVENT_DELETE )
 {
-  QMoveEvent * obj = (QMoveEvent *) _qt5xhb_itemGetPtrStackSelfItem();
+  QMoveEvent * obj = (QMoveEvent *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -83,11 +83,11 @@ HB_FUNC_STATIC( QMOVEEVENT_DELETE )
 }
 
 /*
-const QPoint & oldPos () const
+const QPoint & oldPos() const
 */
 HB_FUNC_STATIC( QMOVEEVENT_OLDPOS )
 {
-  QMoveEvent * obj = (QMoveEvent *) _qt5xhb_itemGetPtrStackSelfItem();
+  QMoveEvent * obj = (QMoveEvent *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -95,8 +95,8 @@ HB_FUNC_STATIC( QMOVEEVENT_OLDPOS )
     if( ISNUMPAR(0) )
     {
 #endif
-      const QPoint * ptr = &obj->oldPos ();
-      _qt5xhb_createReturnClass ( ptr, "QPOINT", false );
+      const QPoint * ptr = &obj->oldPos();
+      Qt5xHb::createReturnClass( ptr, "QPOINT", false );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
@@ -108,11 +108,11 @@ HB_FUNC_STATIC( QMOVEEVENT_OLDPOS )
 }
 
 /*
-const QPoint & pos () const
+const QPoint & pos() const
 */
 HB_FUNC_STATIC( QMOVEEVENT_POS )
 {
-  QMoveEvent * obj = (QMoveEvent *) _qt5xhb_itemGetPtrStackSelfItem();
+  QMoveEvent * obj = (QMoveEvent *) Qt5xHb::itemGetPtrStackSelfItem();
 
   if( obj )
   {
@@ -120,8 +120,8 @@ HB_FUNC_STATIC( QMOVEEVENT_POS )
     if( ISNUMPAR(0) )
     {
 #endif
-      const QPoint * ptr = &obj->pos ();
-      _qt5xhb_createReturnClass ( ptr, "QPOINT", false );
+      const QPoint * ptr = &obj->pos();
+      Qt5xHb::createReturnClass( ptr, "QPOINT", false );
 #ifndef QT5XHB_DONT_CHECK_PARAMETERS
     }
     else
